@@ -1,6 +1,6 @@
 # Results And Status
 
-Current overall status: `inventory and scaffolding`
+Current overall status: `inventory, safe scaffold, and draft DT build validation`
 
 Completed:
 
@@ -19,12 +19,15 @@ Completed:
 - root-validated `insmod` and `rmmod` completed successfully with the default safety gate;
 - 10-cycle safe module lifecycle stress test completed successfully;
 - `i2c_add_driver` and `i2c_del_driver` path validated with `register_i2c_driver=1 allow_hw_probe=0`.
+- scaffold driver DT defaults aligned with NVIDIA-style supply names `vana`, `vdig`, and `vif`;
+- compile-ready OV5647 draft overlay added for reference route `A`;
+- local draft overlay build validated under `artifacts/dtbo/20260417T120134Z-ov5647-p3768-port-a-draft.dtbo`.
 
 Not completed yet:
 
 - CBL carrier identity confirmation from hardware documentation or physical inspection;
 - safe/dev boot profiles applied to `/boot/extlinux/extlinux.conf`;
-- OV5647 DT overlay;
+- verified OV5647 DT overlay;
 - OV5647 I2C probe;
 - chip-ID read;
 - `/dev/videoX`;
@@ -34,5 +37,6 @@ Not completed yet:
 Next smallest safe step:
 
 - verify the physical CBL carrier identity and camera connector path;
-- decide whether the live board really follows p3768 connector `A`, connector `C`, or a carrier-specific route;
-- only after that, enable the first real OV5647 DT node and controlled chip-ID probe.
+- bind the first controlled single-sensor target to exactly one connector route;
+- switch the draft OV5647 node from disabled to enabled only for that one controlled test path;
+- then attempt the first chip-ID probe with `allow_hw_probe=1`.

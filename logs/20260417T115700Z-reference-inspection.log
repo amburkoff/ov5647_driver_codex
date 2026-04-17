@@ -1,0 +1,8 @@
+# reference inspection 20260417T115700Z
+
+$ uname -a
+Linux cam-desktop 5.15.185-tegra #1 SMP PREEMPT Thu Jan 15 19:24:38 PST 2026 aarch64 aarch64 aarch64 GNU/Linux
+
+$ sed -n '1,260p' /usr/src/linux-headers-5.15.185-tegra/drivers/media/i2c/ov5647.c
+
+$ rg -n "imx185|imx219|tegracam_ctrl_ops|camera_common_frmfmt" /usr/src -g '*.[ch]' | head -n 80

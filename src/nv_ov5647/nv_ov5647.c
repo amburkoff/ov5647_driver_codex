@@ -17,6 +17,9 @@
 
 #define OV5647_NAME			"nv_ov5647"
 #define OV5647_DEFAULT_MCLK		"extperiph1"
+#define OV5647_DEFAULT_AVDD_SUPPLY	"vana"
+#define OV5647_DEFAULT_DVDD_SUPPLY	"vdig"
+#define OV5647_DEFAULT_IOVDD_SUPPLY	"vif"
 #define OV5647_GPIO_NOT_PRESENT		UINT_MAX
 
 #define OV5647_TABLE_WAIT_MS		0xfffe
@@ -187,10 +190,11 @@ static struct camera_common_pdata *ov5647_parse_dt(struct tegracam_device *tc_de
 	pdata->pwdn_gpio = OV5647_GPIO_NOT_PRESENT;
 	pdata->af_gpio = OV5647_GPIO_NOT_PRESENT;
 	pdata->use_cam_gpio = true;
-	pdata->regulators.avdd = "avdd";
-	pdata->regulators.dvdd = "dvdd";
-	pdata->regulators.iovdd = "dovdd";
+	pdata->regulators.avdd = OV5647_DEFAULT_AVDD_SUPPLY;
+	pdata->regulators.dvdd = OV5647_DEFAULT_DVDD_SUPPLY;
+	pdata->regulators.iovdd = OV5647_DEFAULT_IOVDD_SUPPLY;
 
+	of_property_read_string(np, "mclk", &pdata->mclk_name);
 	of_property_read_string(np, "avdd-reg", &pdata->regulators.avdd);
 	of_property_read_string(np, "dvdd-reg", &pdata->regulators.dvdd);
 	of_property_read_string(np, "iovdd-reg", &pdata->regulators.iovdd);

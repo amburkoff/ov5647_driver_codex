@@ -14,6 +14,8 @@ This document tracks only hardware facts that are confirmed for the actual targe
 | Linux-visible base camera I2C bus | Confirmed | `i2c-2` maps to `3180000.i2c` |
 | Running camera overlay | Confirmed absent | No live `cam_i2cmux` or sensor nodes found |
 | Reference 22-pin camera overlay family on disk | Confirmed | `imx219-A/C`, `imx477-A/C`, dual combinations in `/boot/` |
+| Physical camera population | Confirmed | User reports identical OV5647 modules inserted into both Jetson 22-pin CSI connectors |
+| Camera flex/module marking | Confirmed | User-reported marking: `JT-ZERO-V2.0 YH` |
 
 ## Not Yet Verified
 
@@ -21,6 +23,7 @@ This document tracks only hardware facts that are confirmed for the actual targe
 | --- | --- | --- |
 | CBL carrier board identity and revision | Unresolved | The running system still identifies as NVIDIA `p3768`; this must be cross-checked against the physical board and any carrier EEPROM override |
 | Physical CSI connector in use | Unresolved | Needed before choosing A vs C vs any carrier-specific route |
+| Exact adapter/cable type behind `JT-ZERO-V2.0 YH` | Unresolved | The marking suggests Raspberry Pi-market OV5647 hardware, but the exact Jetson-side cable/adaptor chain is still not verified |
 | Live CSI port for the connected OV5647 | Unresolved | Needed for `port-index`, `tegra_sinterface`, and endpoint graph |
 | Sensor-side cable or adapter path | Unresolved | Required to avoid connector-orientation mistakes |
 | Actual sensor I2C address | Unresolved | Must be confirmed from hardware and probe results, not assumed |
@@ -39,6 +42,15 @@ The NVIDIA p3768 reference overlays on disk imply two common 22-pin connector ro
 - connector `C`: `serial_c`, `port-index = 2`, `cam_i2cmux/i2c@1`
 
 These are useful design references for an OV5647 overlay skeleton, but they are not accepted as carrier truth until the actual CBL wiring is verified.
+
+## Additional Physical Facts From User
+
+- both Jetson 22-pin CSI connectors are populated with identical OV5647 modules;
+- the visible marking on the camera flex/module is `JT-ZERO-V2.0 YH`;
+- this is consistent with Raspberry Pi-market OV5647 hardware, but it does not by itself identify:
+  - the exact FFC pinout presented to the carrier,
+  - whether any adapter board is inline,
+  - which physical connector should be treated as the first single-sensor milestone path.
 
 ## Strongest Current Reference Evidence
 

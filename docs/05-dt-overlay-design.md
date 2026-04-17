@@ -41,14 +41,14 @@ Reason:
 
 Fields that remain blocked until hardware verification:
 
-- `reg`
-- `reset-gpios`
-- `pwdn-gpios`
-- `clocks` and exact MCLK name
-- supply names
-- `tegra_sinterface`
-- `port-index`
-- `lane_polarity`
+- physical connector selection for the first single-sensor milestone
+- final `reg`
+- whether the path exposes only `pwdn-gpios` or separate `reset-gpios` and `pwdn-gpios`
+- exact clock wiring beyond the default `extperiph1` assumption
+- final rail mapping on the real carrier path
+- final `tegra_sinterface`
+- final `port-index`
+- final `lane_polarity`
 
 ## Safe Boot Interaction
 
@@ -58,9 +58,11 @@ Fields that remain blocked until hardware verification:
 
 ## Draft Overlay Artifact
 
-The repository now contains a non-applicable template:
+The repository now contains:
 
 - `patches/ov5647-p3768-port-a-reference.dts.in`
+- `patches/ov5647-p3768-port-a-draft.dts`
 
-It is intentionally a `.dts.in` template, not a compiled or boot-ready overlay. It captures the currently preferred route and the fields that still require verified hardware values before conversion into a real `.dtbo`.
-
+- `ov5647-p3768-port-a-reference.dts.in` remains the unconstrained placeholder template.
+- `ov5647-p3768-port-a-draft.dts` is a compile-ready draft for local build validation only.
+- The draft keeps the sensor node `status = "disabled"` and must not be treated as a verified or boot-ready carrier overlay.

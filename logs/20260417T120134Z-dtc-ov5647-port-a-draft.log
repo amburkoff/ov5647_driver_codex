@@ -1,0 +1,3 @@
+$ dtc -@ -I dts -O dtb -o artifacts/dtbo/20260417T120134Z-ov5647-p3768-port-a-draft.dtbo patches/ov5647-p3768-port-a-draft.dts
+
+artifacts/dtbo/20260417T120134Z-ov5647-p3768-port-a-draft.dtbo
