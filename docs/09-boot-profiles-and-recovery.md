@@ -23,6 +23,7 @@ The repository now includes `scripts/switch_boot_profile.sh`, which:
 - reads the current `extlinux.conf`;
 - derives a safe candidate pair of boot entries;
 - writes a generated config under `artifacts/boot/<timestamp>/`;
+- can inject one explicit dev-only overlay path with `--dev-overlay /boot/<name>.dtbo`;
 - optionally applies it only when explicitly asked and run as root.
 
 Generated entries:
@@ -38,6 +39,7 @@ Current design choice:
 
 - both entries stay functionally identical to the previous `primary` boot path until OV5647 overlay validation is ready;
 - this preserves recoverability while adding an unambiguous post-boot identity token.
+- when requested, only the dev entry may carry an explicit `FDTOVERLAYS` path; the safe entry must stay overlay-free.
 
 ## Recovery Policy
 

@@ -8,8 +8,8 @@ source "${SCRIPT_DIR}/lib.sh"
 usage() {
     cat <<'EOF'
 Usage:
-  ./scripts/switch_boot_profile.sh [--default safe|dev] [--render-only]
-  sudo ./scripts/switch_boot_profile.sh --apply [--default safe|dev]
+  ./scripts/switch_boot_profile.sh [--default safe|dev] [--dev-overlay /boot/<name>.dtbo] [--render-only]
+  sudo ./scripts/switch_boot_profile.sh --apply [--default safe|dev] [--dev-overlay /boot/<name>.dtbo]
 
 By default the script renders a candidate extlinux.conf under artifacts/boot/
 without modifying the live boot configuration.
@@ -19,6 +19,7 @@ EOF
 APPLY=0
 DEFAULT_PROFILE="safe"
 EXTLINUX=/boot/extlinux/extlinux.conf
+DEV_OVERLAY=""
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -32,6 +33,10 @@ while [[ $# -gt 0 ]]; do
             ;;
         --default)
             DEFAULT_PROFILE=${2:?missing profile name}
+            shift 2
+            ;;
+        --dev-overlay)
+            DEV_OVERLAY=${2:?missing overlay path}
             shift 2
             ;;
         --help|-h)
@@ -48,6 +53,11 @@ done
 
 if [[ "${DEFAULT_PROFILE}" != "safe" && "${DEFAULT_PROFILE}" != "dev" ]]; then
     printf "default profile must be 'safe' or 'dev'\n" >&2
+    exit 1
+fi
+
+if [[ -n "${DEV_OVERLAY}" && "${DEV_OVERLAY}" != /boot/* ]]; then
+    printf "dev overlay path must be under /boot/: %s\n" "${DEV_OVERLAY}" >&2
     exit 1
 fi
 
@@ -92,6 +102,8 @@ if [[ -z "${INITRD_LINE}" ]]; then
     INITRD_LINE="/boot/initrd"
 fi
 
+APPEND_LINE=$(printf "%s\n" "${APPEND_LINE}" | sed -E 's/(^|[[:space:]])boot_profile=[^[:space:]]+//g; s/[[:space:]]+/ /g; s/^ //; s/ $//')
+
 if [[ -z "${TIMEOUT_VALUE}" ]]; then
     TIMEOUT_VALUE="30"
 fi
@@ -126,7 +138,13 @@ fi
     if [[ -n "${FDT_LINE}" ]]; then
         printf "      FDT %s\n" "${FDT_LINE}"
     fi
-    if [[ -n "${FDTOVERLAYS_LINE}" ]]; then
+    if [[ -n "${DEV_OVERLAY}" ]]; then
+        printf "      FDTOVERLAYS %s" "${DEV_OVERLAY}"
+        if [[ -n "${FDTOVERLAYS_LINE}" ]]; then
+            printf " %s" "${FDTOVERLAYS_LINE}"
+        fi
+        printf "\n"
+    elif [[ -n "${FDTOVERLAYS_LINE}" ]]; then
         printf "      FDTOVERLAYS %s\n" "${FDTOVERLAYS_LINE}"
     fi
     printf "      APPEND %s boot_profile=ov5647-dev\n" "${APPEND_LINE}"
@@ -137,6 +155,7 @@ fi
     note "Source label: ${CURRENT_LABEL}"
     note "Source menu label: ${MENU_LABEL:-unknown}"
     note "Requested default profile: ${DEFAULT_PROFILE}"
+    note "Requested dev overlay: ${DEV_OVERLAY:-unset}"
     note "Generated config: ${GENERATED}"
 } | tee "${LOGFILE}"
 
@@ -149,4 +168,3 @@ if [[ "${APPLY}" -eq 1 ]]; then
 else
     note "Render-only mode; live extlinux.conf was not modified" | tee -a "${LOGFILE}"
 fi
-

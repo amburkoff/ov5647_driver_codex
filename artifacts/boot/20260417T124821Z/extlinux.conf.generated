@@ -1,0 +1,17 @@
+TIMEOUT 30
+DEFAULT ov5647-safe
+
+MENU TITLE L4T boot options
+
+LABEL ov5647-safe
+      MENU LABEL Jetson SAFE (no OV5647 auto-load)
+      LINUX /boot/Image
+      INITRD /boot/initrd
+      APPEND ${cbootargs} root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-safe
+
+LABEL ov5647-dev
+      MENU LABEL Jetson DEV OV5647 auto-load
+      LINUX /boot/Image
+      INITRD /boot/initrd
+      FDTOVERLAYS /boot/ov5647-p3768-port-a-probe.dtbo
+      APPEND ${cbootargs} root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev
