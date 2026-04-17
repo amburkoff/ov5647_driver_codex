@@ -1,0 +1,2 @@
+[2026-04-17T10:09:15Z] CMD: bash -lc journalctl --list-boots 2>&1 || true
+ 0 d81c32676f8149849a76110654f395ea Tue 2025-08-26 18:23:06 MSK—Fri 2026-04-17 13:09:15 MSK

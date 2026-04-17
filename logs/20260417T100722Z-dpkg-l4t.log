@@ -1,0 +1,4 @@
+[2026-04-17T10:07:23Z] CMD: dpkg-query -W -f=${Package} ${Version}\n nvidia-l4t-camera nvidia-l4t-core nvidia-l4t-kernel
+nvidia-l4t-camera 36.5.0-20260115194252
+nvidia-l4t-core 36.5.0-20260115194252
+nvidia-l4t-kernel 5.15.185-tegra-36.5.0-20260115194252

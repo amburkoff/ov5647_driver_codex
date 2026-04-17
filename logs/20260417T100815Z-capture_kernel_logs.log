@@ -1,0 +1,4 @@
+[2026-04-17T10:08:15Z] Capturing kernel logs
+[2026-04-17T10:08:15Z] Boot profile token: unset
+[2026-04-17T10:08:16Z] Kernel log capture finished
+[2026-04-17T10:08:16Z] Saved dmesg and journalctl outputs into /home/cam/ov5647_driver_codex/logs

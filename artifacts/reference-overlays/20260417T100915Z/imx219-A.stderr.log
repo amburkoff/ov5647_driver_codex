@@ -1,0 +1,33 @@
+<stdout>: Warning (label_is_string): /fragment@0/__overlay__/bus@0/gpio@6000d000/camera-control-output-low:label: property is not a string
+<stdout>: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/host1x@13e00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@0/endpoint@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@1/endpoint@1: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@1: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@1/rbpcv2_imx219_c@10: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/lens_imx219@RBPCV2: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/gpio@2200000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/gpio@6000d000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /__local_fixups__/fragment@0/__overlay__/tegra-capture-vi/ports/port@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /__local_fixups__/fragment@0/__overlay__/bus@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /__local_fixups__/fragment@0/__overlay__/bus@0/host1x@13e00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /__local_fixups__/fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /__local_fixups__/fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000/channel@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /__local_fixups__/fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /__local_fixups__/fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@0/endpoint@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /__local_fixups__/fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@1: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /__local_fixups__/fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@1/endpoint@1: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /__local_fixups__/fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /__local_fixups__/fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@0/rbpcv2_imx219_a@10: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /__local_fixups__/fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@0/rbpcv2_imx219_a@10/ports/port@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (i2c_bus_bridge): /fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@1: incorrect #address-cells for I2C bus
+<stdout>: Warning (i2c_bus_bridge): /fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@1: incorrect #size-cells for I2C bus
+<stdout>: Warning (i2c_bus_bridge): /__local_fixups__/fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@0: incorrect #address-cells for I2C bus
+<stdout>: Warning (i2c_bus_bridge): /__local_fixups__/fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@0: incorrect #size-cells for I2C bus
+<stdout>: Warning (i2c_bus_reg): Failed prerequisite 'i2c_bus_bridge'
+<stdout>: Warning (gpios_property): /fragment@0/__overlay__/bus@0/cam_i2cmux:mux-gpios: Could not get phandle node for (cell 1)
+<stdout>: Warning (gpios_property): /fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@0/rbpcv2_imx219_a@10:reset-gpios: Could not get phandle node for (cell 1)
+<stdout>: Warning (gpios_property): /__fixups__:gpio: Could not get phandle node for (cell 0)
+<stdout>: Warning (graph_child_address): /fragment@0/__overlay__/tegra-capture-vi/ports: graph node has single child node 'port@0', #address-cells/#size-cells are not necessary
+<stdout>: Warning (graph_child_address): /fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@0/rbpcv2_imx219_a@10/ports: graph node has single child node 'port@0', #address-cells/#size-cells are not necessary

@@ -1,0 +1,1376 @@
+<stdout>: Warning (unit_address_vs_reg): /camera-ivc-channels/ivccapture@4: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /camera-ivc-channels/ivccontrol@3: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /camera-ivc-channels/dbg@2: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /camera-ivc-channels/diag@5: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /camera-ivc-channels/dbg@1: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /camera-ivc-channels/echo@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/xusb_padctl@3520000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/spi@3250000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/i2c@c240000/fusb301@25/connector@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/i2c@c240000/fusb301@25/connector@0/port@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/spi@3240000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/vi1@14c00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/vi0@15c00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/nvcsi@15a00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/isp-thi@14b00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/vi0-thi@15f00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/vi1-thi@14f00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/aon@c000000/ivc-channels@80000000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@133: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@68: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@161: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@96: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@123: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@58: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@9: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@151: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@86: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@113: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@48: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@141: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@76: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@103: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@38: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@131: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@66: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@94: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@28: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@121: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@56: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@7: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@84: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@18: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@178: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@111: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@46: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@74: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@168: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@101: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@36: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@64: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@158: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@92: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@26: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@54: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@5: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@148: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@82: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@16: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@176: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@44: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@138: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@72: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@166: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@34: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@128: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@62: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@156: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@90: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@24: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@118: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@52: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@3: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@146: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@80: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@14: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@174: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@108: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@42: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@136: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@70: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@164: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@99: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@32: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@126: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@60: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@154: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@89: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@22: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@182: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@116: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@50: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@1: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@144: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@79: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@12: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@172: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@106: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@40: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@134: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@69: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@162: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@97: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@30: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@124: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@59: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@152: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@87: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@20: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@180: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@114: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@49: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@142: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@77: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@10: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@170: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@104: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@39: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@132: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@67: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@160: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@95: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@29: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@122: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@57: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@8: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@150: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@85: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@19: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@179: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@112: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@47: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@140: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@75: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@169: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@102: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@37: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@130: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@65: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@159: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@93: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@27: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@120: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@55: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@6: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@149: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@83: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@17: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@177: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@110: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@45: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@139: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@73: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@167: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@100: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@35: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@129: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@63: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@157: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@91: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@25: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@119: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@53: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@4: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@147: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@81: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@15: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@175: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@109: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@43: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@137: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@71: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@165: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@33: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@127: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@61: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@155: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@23: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@117: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@51: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@2: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@145: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@13: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@173: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@107: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@41: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@135: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@163: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@98: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@31: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@125: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@153: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@88: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@21: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@181: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@115: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@143: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@78: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@11: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@171: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@105: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /reserved-memory/ramoops_carveout: node has a reg or ranges property, but no unit name
+<stdout>: Warning (unit_address_vs_reg): /reserved-memory/pva-carveout: node has a reg or ranges property, but no unit name
+<stdout>: Warning (simple_bus_reg): /bus@0/xusb_padctl@3520000: missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): /bus@0/spi@3250000: missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): /bus@0/aon_echo: missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): /bus@0/smmu_test: missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): /bus@0/spi@3240000: missing or empty reg/ranges property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@3160000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@31e0000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@31b0000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@c240000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@3180000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@31c0000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@c250000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@3190000/prod-settings: missing or empty reg property
+<stdout>: Warning (spi_bus_bridge): /bus@0/spi@3210000/spi@1: incorrect #address-cells for SPI bus
+<stdout>: Warning (spi_bus_bridge): /bus@0/spi@3210000/spi@1: incorrect #size-cells for SPI bus
+<stdout>: Warning (spi_bus_bridge): /bus@0/spi@3210000/spi@0: incorrect #address-cells for SPI bus
+<stdout>: Warning (spi_bus_bridge): /bus@0/spi@3210000/spi@0: incorrect #size-cells for SPI bus
+<stdout>: Warning (spi_bus_bridge): /bus@0/spi@3250000: incorrect #address-cells for SPI bus
+<stdout>: Warning (spi_bus_bridge): /bus@0/spi@3250000: incorrect #size-cells for SPI bus
+<stdout>: Warning (spi_bus_bridge): /bus@0/spi@3230000/spi@1: incorrect #address-cells for SPI bus
+<stdout>: Warning (spi_bus_bridge): /bus@0/spi@3230000/spi@1: incorrect #size-cells for SPI bus
+<stdout>: Warning (spi_bus_bridge): /bus@0/spi@3230000/spi@0: incorrect #address-cells for SPI bus
+<stdout>: Warning (spi_bus_bridge): /bus@0/spi@3230000/spi@0: incorrect #size-cells for SPI bus
+<stdout>: Warning (spi_bus_bridge): /bus@0/spi@3240000: incorrect #address-cells for SPI bus
+<stdout>: Warning (spi_bus_bridge): /bus@0/spi@3240000: incorrect #size-cells for SPI bus
+<stdout>: Warning (spi_bus_reg): Failed prerequisite 'spi_bus_bridge'
+<stdout>: Warning (avoid_unnecessary_addr_size): /bus@0/i2c@31e0000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
+<stdout>: Warning (avoid_unnecessary_addr_size): /bus@0/spi@c260000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
+<stdout>: Warning (avoid_unnecessary_addr_size): /bus@0/spi@3300000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
+<stdout>: Warning (avoid_unnecessary_addr_size): /bus@0/i2c@31b0000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
+<stdout>: Warning (avoid_unnecessary_addr_size): /bus@0/i2c@c240000/fusb301@25: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
+<stdout>: Warning (avoid_unnecessary_addr_size): /bus@0/i2c@3180000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
+<stdout>: Warning (avoid_unnecessary_addr_size): /bus@0/i2c@31c0000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
+<stdout>: Warning (avoid_unnecessary_addr_size): /bus@0/i2c@c250000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
+<stdout>: Warning (avoid_unnecessary_addr_size): /bus@0/i2c@3190000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
+<stdout>: Warning (unique_unit_address): /bus@0/pcie-ep@141a0000: duplicate unit-address (also used in node /bus@0/pcie@141a0000)
+<stdout>: Warning (unique_unit_address): /bus@0/pcie-ep@141e0000: duplicate unit-address (also used in node /bus@0/pcie@141e0000)
+<stdout>: Warning (unique_unit_address): /bus@0/pcie-ep@140e0000: duplicate unit-address (also used in node /bus@0/pcie@140e0000)
+<stdout>: Warning (unique_unit_address): /bus@0/xusb_padctl@3520000: duplicate unit-address (also used in node /bus@0/padctl@3520000)
+<stdout>: Warning (unique_unit_address): /bus@0/pcie@14160000: duplicate unit-address (also used in node /bus@0/pcie-ep@14160000)
+<stdout>: Warning (unique_unit_address): /bus@0/pcie-ep@141c0000: duplicate unit-address (also used in node /bus@0/pcie@141c0000)
+<stdout>: Warning (clocks_property): /rtcpu@bc00000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /rtcpu@bc00000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /rtcpu@bc00000:clocks: cell 4 is not a phandle reference
+<stdout>: Warning (clocks_property): /nvpmodel:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/spi@3210000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/pcie-ep@141a0000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/pcie@140c0000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/pcie-ep@141e0000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/pwm@32a0000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/usb@3550000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/usb@3550000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/usb@3550000:clocks: cell 4 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/usb@3550000:clocks: cell 6 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/pwm@32e0000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/pcie@14120000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6900000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6900000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6900000:clocks: cell 4 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6900000:clocks: cell 6 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6900000:clocks: cell 8 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6900000:clocks: cell 10 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6900000:clocks: cell 12 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6900000:clocks: cell 14 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6900000:clocks: cell 16 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6900000:clocks: cell 18 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6900000:clocks: cell 20 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6900000:clocks: cell 22 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/pcie@14160000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/i2c@3160000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/i2c@3160000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/pcie-ep@140e0000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ufshci@2500000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ufshci@2500000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ufshci@2500000:clocks: cell 4 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ufshci@2500000:clocks: cell 6 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ufshci@2500000:clocks: cell 8 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ufshci@2500000:clocks: cell 10 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ufshci@2500000:clocks: cell 12 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ufshci@2500000:clocks: cell 14 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ufshci@2500000:clocks: cell 16 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ufshci@2500000:clocks: cell 18 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ufshci@2500000:clocks: cell 20 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ufshci@2500000:clocks: cell 22 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ufshci@2500000:clocks: cell 24 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ufshci@2500000:clocks: cell 26 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ufshci@2500000:clocks: cell 28 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ufshci@2500000:clocks: cell 30 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ufshci@2500000:clocks: cell 32 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ufshci@2500000:clocks: cell 34 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ufshci@2500000:clocks: cell 36 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ufshci@2500000:clocks: cell 38 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ufshci@2500000:clocks: cell 40 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ufshci@2500000:clocks: cell 42 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ufshci@2500000:clocks: cell 44 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ufshci@2500000:clocks: cell 46 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ufshci@2500000:clocks: cell 48 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/serial@3100000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@2310000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@2310000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@2310000:clocks: cell 4 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@2310000:clocks: cell 6 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@2310000:clocks: cell 8 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@2310000:clocks: cell 10 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@2310000:clocks: cell 12 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@2310000:clocks: cell 14 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@2310000:clocks: cell 16 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@2310000:clocks: cell 18 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@2310000:clocks: cell 20 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6b00000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6b00000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6b00000:clocks: cell 4 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6b00000:clocks: cell 6 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6b00000:clocks: cell 8 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6b00000:clocks: cell 10 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6b00000:clocks: cell 12 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6b00000:clocks: cell 14 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6b00000:clocks: cell 16 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6b00000:clocks: cell 18 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6b00000:clocks: cell 20 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6b00000:clocks: cell 22 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/serial@3140000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/hwpm@f100000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/hwpm@f100000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/mmc@3400000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/mmc@3400000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/hda@3510000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/hda@3510000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6800000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6800000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6800000:clocks: cell 4 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6800000:clocks: cell 6 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6800000:clocks: cell 8 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6800000:clocks: cell 10 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6800000:clocks: cell 12 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6800000:clocks: cell 14 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6800000:clocks: cell 16 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6800000:clocks: cell 18 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6800000:clocks: cell 20 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6800000:clocks: cell 22 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6800000:clocks: cell 24 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/pwm@32f0000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/aconnect@2900000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/aconnect@2900000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/aconnect@2900000/interrupt-controller@2a40000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/aconnect@2900000/dma-controller@2930000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/aconnect@2900000/ahub@2900800:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/aconnect@2900000/ahub@2900800/dmic@2904300:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/aconnect@2900000/ahub@2900800/i2s@2901100:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/aconnect@2900000/ahub@2900800/i2s@2901100:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/aconnect@2900000/ahub@2900800/i2s@2901400:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/aconnect@2900000/ahub@2900800/i2s@2901400:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/aconnect@2900000/ahub@2900800/dmic@2904200:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/aconnect@2900000/ahub@2900800/i2s@2901000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/aconnect@2900000/ahub@2900800/i2s@2901000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/aconnect@2900000/ahub@2900800/dspk@2905100:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/aconnect@2900000/ahub@2900800/i2s@2901300:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/aconnect@2900000/ahub@2900800/i2s@2901300:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/aconnect@2900000/ahub@2900800/dmic@2904100:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/aconnect@2900000/ahub@2900800/dspk@2905000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/aconnect@2900000/ahub@2900800/i2s@2901200:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/aconnect@2900000/ahub@2900800/i2s@2901200:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/aconnect@2900000/ahub@2900800/i2s@2901500:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/aconnect@2900000/ahub@2900800/i2s@2901500:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/aconnect@2900000/ahub@2900800/dmic@2904000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/pcie@141a0000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/pcie@141e0000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/pwm@c340000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/i2c@31e0000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/i2c@31e0000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/pwm@3280000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6a00000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6a00000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6a00000:clocks: cell 4 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6a00000:clocks: cell 6 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6a00000:clocks: cell 8 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6a00000:clocks: cell 10 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6a00000:clocks: cell 12 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6a00000:clocks: cell 14 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6a00000:clocks: cell 16 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6a00000:clocks: cell 18 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6a00000:clocks: cell 20 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/ethernet@6a00000:clocks: cell 22 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/spi@c260000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/mttcan@c310000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/mttcan@c310000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/mttcan@c310000:clocks: cell 4 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/mttcan@c310000:clocks: cell 6 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/pcie@140a0000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/serial@3110000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/spi@3230000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/pcie-ep@141c0000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/pcie@140e0000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/pwm@32c0000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/spi@3300000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/spi@3300000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/i2c@31b0000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/i2c@31b0000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/pcie@14100000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/pwm@3290000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/gpu@17000000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/gpu@17000000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/gpu@17000000:clocks: cell 4 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/pcie@14140000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/padctl@3520000/pads/usb2:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/i2c@c240000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/i2c@c240000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/pcie@14180000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/i2c@3180000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/i2c@3180000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/rtc@c2a0000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/mttcan@c320000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/mttcan@c320000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/mttcan@c320000:clocks: cell 4 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/mttcan@c320000:clocks: cell 6 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/actmon@d230000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/pwm@32d0000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/pcie-ep@14160000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/mmc@3460000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/mmc@3460000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/pcie@141c0000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/i2c@31c0000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/i2c@31c0000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/usb@3610000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/usb@3610000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/usb@3610000:clocks: cell 4 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/usb@3610000:clocks: cell 6 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/usb@3610000:clocks: cell 8 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/usb@3610000:clocks: cell 10 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/usb@3610000:clocks: cell 12 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/usb@3610000:clocks: cell 14 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/usb@3610000:clocks: cell 16 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/memory-controller@2c00000/external-memory-controller@2c60000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/tachometer@39c0000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/host1x@13e00000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/host1x@13e00000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/host1x@13e00000/vi1@14c00000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/host1x@13e00000/vi0@15c00000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/host1x@13e00000/pva0@16000000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/host1x@13e00000/pva0@16000000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/host1x@13e00000/pva0@16000000:clocks: cell 4 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/host1x@13e00000/tsec@15500000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/host1x@13e00000/tsec@15500000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/host1x@13e00000/tsec@15500000:clocks: cell 4 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/host1x@13e00000/crypto@15820000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/host1x@13e00000/nvjpg@15380000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/host1x@13e00000/nvdla1@158c0000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/host1x@13e00000/nvdla1@158c0000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/host1x@13e00000/nvcsi@15a00000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/host1x@13e00000/ofa@15a50000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/host1x@13e00000/isp@14800000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/host1x@13e00000/nvdec@15480000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/host1x@13e00000/nvdec@15480000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/host1x@13e00000/nvdec@15480000:clocks: cell 4 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/host1x@13e00000/crypto@15840000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/host1x@13e00000/nvenc@154c0000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/host1x@13e00000/vic@15340000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/host1x@13e00000/nvjpg@15540000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/host1x@13e00000/nvdla0@15880000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/host1x@13e00000/nvdla0@15880000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/i2c@c250000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/i2c@c250000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/i2c@3190000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/i2c@3190000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /bus@0/fuse@3810000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 4 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 6 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 8 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 10 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 12 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 14 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 16 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 18 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 20 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 22 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 24 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 26 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 28 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 30 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 32 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 34 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 36 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 38 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 40 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 42 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 44 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 46 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 48 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 50 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 52 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 54 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 56 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 58 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 60 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 62 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 64 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 66 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 68 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 70 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 72 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 74 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 76 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 78 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 80 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 82 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 84 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 86 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 88 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 90 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 92 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 94 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 96 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 98 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 100 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 102 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 104 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 106 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 108 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 110 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 112 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 114 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 116 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 118 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 120 is not a phandle reference
+<stdout>: Warning (clocks_property): /display@13800000:clocks: cell 122 is not a phandle reference
+<stdout>: Warning (clocks_property): /sound:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /sound:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /sound:clocks: cell 4 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 0 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 2 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 4 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 6 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 8 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 10 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 12 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 14 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 16 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 18 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 20 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 22 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 24 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 26 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 28 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 30 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 32 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 34 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 36 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 38 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 40 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 42 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 44 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 46 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 48 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 50 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 52 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 54 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 56 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 58 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 60 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 62 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 64 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 66 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 68 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 70 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 72 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 74 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 76 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 78 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 80 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 82 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 84 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 86 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 88 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 90 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 92 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 94 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 96 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 98 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 100 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 102 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 104 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 106 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 108 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 110 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 112 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 114 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 116 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 118 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 120 is not a phandle reference
+<stdout>: Warning (clocks_property): /chosen/framebuffer:clocks: cell 122 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/tj-thermal/cooling-maps/map-active-2:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/tj-thermal/cooling-maps/map-active-0:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/tj-thermal/cooling-maps/map-active-1:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cpu-thermal/cooling-maps/map-hot-surface-alert:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cpu-thermal/cooling-maps/map-throttle-alert:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cpu-thermal/cooling-maps/map-cpufreq:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cpu-thermal/cooling-maps/map-cpufreq:cooling-device: cell 3 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cpu-thermal/cooling-maps/map-cpufreq:cooling-device: cell 6 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cpu-thermal/cooling-maps/map-cpufreq:cooling-device: cell 9 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cpu-thermal/cooling-maps/map-devfreq:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/soc1-thermal/cooling-maps/map-hot-surface-alert:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/soc1-thermal/cooling-maps/map-throttle-alert:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/soc1-thermal/cooling-maps/map-cpufreq:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/soc1-thermal/cooling-maps/map-cpufreq:cooling-device: cell 3 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/soc1-thermal/cooling-maps/map-cpufreq:cooling-device: cell 6 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/soc1-thermal/cooling-maps/map-cpufreq:cooling-device: cell 9 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/soc1-thermal/cooling-maps/map-devfreq:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cv0-thermal/cooling-maps/map-hot-surface-alert:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cv0-thermal/cooling-maps/map-throttle-alert:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cv0-thermal/cooling-maps/map-cpufreq:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cv0-thermal/cooling-maps/map-cpufreq:cooling-device: cell 3 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cv0-thermal/cooling-maps/map-cpufreq:cooling-device: cell 6 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cv0-thermal/cooling-maps/map-cpufreq:cooling-device: cell 9 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cv0-thermal/cooling-maps/map-devfreq:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cv2-thermal/cooling-maps/map-hot-surface-alert:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cv2-thermal/cooling-maps/map-throttle-alert:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cv2-thermal/cooling-maps/map-cpufreq:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cv2-thermal/cooling-maps/map-cpufreq:cooling-device: cell 3 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cv2-thermal/cooling-maps/map-cpufreq:cooling-device: cell 6 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cv2-thermal/cooling-maps/map-cpufreq:cooling-device: cell 9 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cv2-thermal/cooling-maps/map-devfreq:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/soc0-thermal/cooling-maps/map-hot-surface-alert:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/soc0-thermal/cooling-maps/map-throttle-alert:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/soc0-thermal/cooling-maps/map-cpufreq:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/soc0-thermal/cooling-maps/map-cpufreq:cooling-device: cell 3 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/soc0-thermal/cooling-maps/map-cpufreq:cooling-device: cell 6 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/soc0-thermal/cooling-maps/map-cpufreq:cooling-device: cell 9 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/soc0-thermal/cooling-maps/map-devfreq:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/gpu-thermal/cooling-maps/map-hot-surface-alert:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/gpu-thermal/cooling-maps/map-throttle-alert:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/gpu-thermal/cooling-maps/map-cpufreq:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/gpu-thermal/cooling-maps/map-cpufreq:cooling-device: cell 3 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/gpu-thermal/cooling-maps/map-cpufreq:cooling-device: cell 6 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/gpu-thermal/cooling-maps/map-cpufreq:cooling-device: cell 9 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/gpu-thermal/cooling-maps/map-devfreq:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/soc2-thermal/cooling-maps/map-hot-surface-alert:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/soc2-thermal/cooling-maps/map-throttle-alert:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/soc2-thermal/cooling-maps/map-cpufreq:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/soc2-thermal/cooling-maps/map-cpufreq:cooling-device: cell 3 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/soc2-thermal/cooling-maps/map-cpufreq:cooling-device: cell 6 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/soc2-thermal/cooling-maps/map-cpufreq:cooling-device: cell 9 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/soc2-thermal/cooling-maps/map-devfreq:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cv1-thermal/cooling-maps/map-hot-surface-alert:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cv1-thermal/cooling-maps/map-throttle-alert:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cv1-thermal/cooling-maps/map-cpufreq:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cv1-thermal/cooling-maps/map-cpufreq:cooling-device: cell 3 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cv1-thermal/cooling-maps/map-cpufreq:cooling-device: cell 6 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cv1-thermal/cooling-maps/map-cpufreq:cooling-device: cell 9 is not a phandle reference
+<stdout>: Warning (cooling_device_property): /thermal-zones/cv1-thermal/cooling-maps/map-devfreq:cooling-device: cell 0 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/spi@3210000:dmas: cell 0 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/spi@3210000:dmas: cell 2 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/i2c@3160000:dmas: cell 0 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/i2c@3160000:dmas: cell 2 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/serial@3100000:dmas: cell 0 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/serial@3100000:dmas: cell 2 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/serial@3140000:dmas: cell 0 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/serial@3140000:dmas: cell 2 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 0 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 2 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 4 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 6 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 8 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 10 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 12 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 14 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 16 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 18 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 20 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 22 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 24 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 26 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 28 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 30 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 32 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 34 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 36 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 38 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 40 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 42 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 44 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 46 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 48 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 50 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 52 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 54 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 56 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 58 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 60 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 62 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 64 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 66 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 68 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 70 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 72 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 74 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 76 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:dmas: cell 78 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/i2c@31e0000:dmas: cell 0 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/i2c@31e0000:dmas: cell 2 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/spi@c260000:dmas: cell 0 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/spi@c260000:dmas: cell 2 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/spi@3230000:dmas: cell 0 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/spi@3230000:dmas: cell 2 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/i2c@31b0000:dmas: cell 0 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/i2c@31b0000:dmas: cell 2 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/i2c@c240000:dmas: cell 0 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/i2c@c240000:dmas: cell 2 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/i2c@3180000:dmas: cell 0 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/i2c@3180000:dmas: cell 2 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/i2c@31c0000:dmas: cell 0 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/i2c@31c0000:dmas: cell 2 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/i2c@c250000:dmas: cell 0 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/i2c@c250000:dmas: cell 2 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/i2c@3190000:dmas: cell 0 is not a phandle reference
+<stdout>: Warning (dmas_property): /bus@0/i2c@3190000:dmas: cell 2 is not a phandle reference
+<stdout>: Warning (interrupts_extended_property): /bus@0/usb@3610000:interrupts-extended: cell 0 is not a phandle reference
+<stdout>: Warning (interrupts_extended_property): /bus@0/usb@3610000:interrupts-extended: cell 4 is not a phandle reference
+<stdout>: Warning (interrupts_extended_property): /bus@0/usb@3610000:interrupts-extended: cell 8 is not a phandle reference
+<stdout>: Warning (interrupts_extended_property): /bus@0/usb@3610000:interrupts-extended: cell 11 is not a phandle reference
+<stdout>: Warning (interrupts_extended_property): /bus@0/usb@3610000:interrupts-extended: cell 14 is not a phandle reference
+<stdout>: Warning (interrupts_extended_property): /bus@0/usb@3610000:interrupts-extended: cell 17 is not a phandle reference
+<stdout>: Warning (interrupts_extended_property): /bus@0/usb@3610000:interrupts-extended: cell 20 is not a phandle reference
+<stdout>: Warning (interrupts_extended_property): /bus@0/usb@3610000:interrupts-extended: cell 23 is not a phandle reference
+<stdout>: Warning (interrupts_extended_property): /bus@0/usb@3610000:interrupts-extended: cell 26 is not a phandle reference
+<stdout>: Warning (iommus_property): /rtcpu@bc00000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/spi@3210000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/pcie-ep@141a0000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/pcie@140c0000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/pcie-ep@141e0000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/usb@3550000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/pcie@14120000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/ethernet@6900000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/pcie@14160000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/i2c@3160000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/pcie-ep@140e0000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/ufshci@2500000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/dma-controller@2600000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/ethernet@2310000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/ethernet@6b00000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/hwpm@f100000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/mmc@3400000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/hda@3510000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/ethernet@6800000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/aconnect@2900000/ahub@2900800/admaif@290f000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/pcie@141a0000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/pcie@141e0000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/i2c@31e0000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/ethernet@6a00000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/spi@c260000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/pcie@140a0000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/spi@3230000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/pcie-ep@141c0000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/pcie@140e0000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/i2c@31b0000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/pcie@14100000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/pcie@14140000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/i2c@c240000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/pcie@14180000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/i2c@3180000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/smmu_test:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/pcie-ep@14160000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/mmc@3460000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/pcie@141c0000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/i2c@31c0000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/usb@3610000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000/vi1@14c00000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000/vi0@15c00000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000/pva0@16000000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000/pva0@16000000/pva0_niso1_ctx6:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000/pva0@16000000/pva0_niso1_ctx4:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000/pva0@16000000/pva0_niso1_ctx2:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000/pva0@16000000/pva0_niso1_ctx0:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000/pva0@16000000/pva0_niso1_ctx7:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000/pva0@16000000/pva0_niso1_ctx5:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000/pva0@16000000/pva0_niso1_ctx3:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000/pva0@16000000/pva0_niso1_ctx1:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000/tsec@15500000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000/crypto@15820000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000/nvjpg@15380000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000/nvdla1@158c0000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000/isp-thi@14b00000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000/ofa@15a50000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000/isp@14800000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000/nvdec@15480000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000/crypto@15840000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000/nvenc@154c0000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000/vi0-thi@15f00000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000/vic@15340000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000/vi1-thi@14f00000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000/nvjpg@15540000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/host1x@13e00000/nvdla0@15880000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/i2c@c250000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/i2c@3190000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bus@0/aon@c000000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /display@13800000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /display@13800000/nvdisplay-niso:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /dce@d800000:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (iommus_property): /bpmp:iommus: cell 0 is not a phandle reference
+<stdout>: Warning (mboxes_property): /rtcpu@bc00000/hsp-vm2:mboxes: cell 0 is not a phandle reference
+<stdout>: Warning (mboxes_property): /rtcpu@bc00000/hsp-vm2:mboxes: cell 3 is not a phandle reference
+<stdout>: Warning (mboxes_property): /rtcpu@bc00000/hsp-vm2:mboxes: cell 6 is not a phandle reference
+<stdout>: Warning (mboxes_property): /rtcpu@bc00000/hsp-vm1:mboxes: cell 0 is not a phandle reference
+<stdout>: Warning (mboxes_property): /rtcpu@bc00000/hsp-vm1:mboxes: cell 3 is not a phandle reference
+<stdout>: Warning (mboxes_property): /rtcpu@bc00000/hsp-vm1:mboxes: cell 6 is not a phandle reference
+<stdout>: Warning (mboxes_property): /bus@0/aon_echo:mboxes: cell 0 is not a phandle reference
+<stdout>: Warning (mboxes_property): /bus@0/aon@c000000:mboxes: cell 0 is not a phandle reference
+<stdout>: Warning (mboxes_property): /bus@0/aon@c000000/hsp:mboxes: cell 0 is not a phandle reference
+<stdout>: Warning (mboxes_property): /bus@0/aon@c000000/hsp:mboxes: cell 3 is not a phandle reference
+<stdout>: Warning (mboxes_property): /bpmp:mboxes: cell 0 is not a phandle reference
+<stdout>: Warning (mboxes_property): /serial:mboxes: cell 0 is not a phandle reference
+<stdout>: Warning (mboxes_property): /serial:mboxes: cell 3 is not a phandle reference
+<stdout>: Warning (phys_property): /bus@0/usb@3550000:phys: cell 0 is not a phandle reference
+<stdout>: Warning (phys_property): /bus@0/usb@3550000:phys: cell 1 is not a phandle reference
+<stdout>: Warning (phys_property): /bus@0/pcie@14160000:phys: cell 0 is not a phandle reference
+<stdout>: Warning (phys_property): /bus@0/pcie@14160000:phys: cell 1 is not a phandle reference
+<stdout>: Warning (phys_property): /bus@0/pcie@14160000:phys: cell 2 is not a phandle reference
+<stdout>: Warning (phys_property): /bus@0/pcie@14160000:phys: cell 3 is not a phandle reference
+<stdout>: Warning (phys_property): /bus@0/pcie@141e0000:phys: cell 0 is not a phandle reference
+<stdout>: Warning (phys_property): /bus@0/pcie@141e0000:phys: cell 1 is not a phandle reference
+<stdout>: Warning (phys_property): /bus@0/pcie@140a0000:phys: cell 0 is not a phandle reference
+<stdout>: Warning (phys_property): /bus@0/pcie@140a0000:phys: cell 1 is not a phandle reference
+<stdout>: Warning (phys_property): /bus@0/pcie@14100000:phys: cell 0 is not a phandle reference
+<stdout>: Warning (phys_property): /bus@0/pcie-ep@14160000:phys: cell 0 is not a phandle reference
+<stdout>: Warning (phys_property): /bus@0/pcie-ep@14160000:phys: cell 1 is not a phandle reference
+<stdout>: Warning (phys_property): /bus@0/pcie-ep@14160000:phys: cell 2 is not a phandle reference
+<stdout>: Warning (phys_property): /bus@0/pcie-ep@14160000:phys: cell 3 is not a phandle reference
+<stdout>: Warning (phys_property): /bus@0/usb@3610000:phys: cell 0 is not a phandle reference
+<stdout>: Warning (phys_property): /bus@0/usb@3610000:phys: cell 1 is not a phandle reference
+<stdout>: Warning (phys_property): /bus@0/usb@3610000:phys: cell 2 is not a phandle reference
+<stdout>: Warning (phys_property): /bus@0/usb@3610000:phys: cell 3 is not a phandle reference
+<stdout>: Warning (phys_property): /bus@0/usb@3610000:phys: cell 4 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/pcie-ep@141a0000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/pcie@140c0000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/pcie-ep@141e0000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/usb@3550000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/usb@3550000:power-domains: cell 2 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/pcie@14120000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/ethernet@6900000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/pcie@14160000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/pcie-ep@140e0000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/ethernet@6b00000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/hda@3510000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/ethernet@6800000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/aconnect@2900000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/pcie@141a0000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/pcie@141e0000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/ethernet@6a00000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/pcie@140a0000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/pcie-ep@141c0000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/pcie@140e0000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/pcie@14100000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/gpu@17000000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/pcie@14140000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/pcie@14180000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/pcie-ep@14160000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/pcie@141c0000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/usb@3610000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/usb@3610000:power-domains: cell 2 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/host1x@13e00000/pva0@16000000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/host1x@13e00000/nvjpg@15380000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/host1x@13e00000/nvdla1@158c0000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/host1x@13e00000/ofa@15a50000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/host1x@13e00000/isp@14800000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/host1x@13e00000/nvdec@15480000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/host1x@13e00000/nvenc@154c0000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/host1x@13e00000/vic@15340000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/host1x@13e00000/nvjpg@15540000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /bus@0/host1x@13e00000/nvdla0@15880000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /display@13800000:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (power_domains_property): /chosen/framebuffer:power-domains: cell 0 is not a phandle reference
+<stdout>: Warning (pwms_property): /pwm-fan:pwms: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /rtcpu@bc00000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/spi@3210000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie-ep@141a0000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie-ep@141a0000:resets: cell 2 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie@140c0000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie@140c0000:resets: cell 2 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie-ep@141e0000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie-ep@141e0000:resets: cell 2 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pwm@32a0000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pwm@32e0000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie@14120000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie@14120000:resets: cell 2 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/ethernet@6900000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/ethernet@6900000:resets: cell 2 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie@14160000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie@14160000:resets: cell 2 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/i2c@3160000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie-ep@140e0000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie-ep@140e0000:resets: cell 2 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/ufshci@2500000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/ufshci@2500000:resets: cell 2 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/ufshci@2500000:resets: cell 4 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/ufshci@2500000:resets: cell 6 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/ufshci@2500000:resets: cell 8 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/ufshci@2500000:resets: cell 10 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/ufshci@2500000:resets: cell 12 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/ufshci@2500000:resets: cell 14 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/dma-controller@2600000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/serial@3100000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/ethernet@2310000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/ethernet@2310000:resets: cell 2 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/ethernet@6b00000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/ethernet@6b00000:resets: cell 2 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/serial@3140000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/hwpm@f100000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/hwpm@f100000:resets: cell 2 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/mmc@3400000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/hda@3510000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/hda@3510000:resets: cell 2 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/ethernet@6800000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/ethernet@6800000:resets: cell 2 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/ethernet@6800000:resets: cell 4 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pwm@32f0000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie@141a0000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie@141a0000:resets: cell 2 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie@141e0000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie@141e0000:resets: cell 2 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pwm@c340000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/i2c@31e0000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pwm@3280000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/ethernet@6a00000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/ethernet@6a00000:resets: cell 2 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/spi@c260000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/mttcan@c310000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie@140a0000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie@140a0000:resets: cell 2 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/serial@3110000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/spi@3230000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie-ep@141c0000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie-ep@141c0000:resets: cell 2 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie@140e0000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie@140e0000:resets: cell 2 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pwm@32c0000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/spi@3300000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/i2c@31b0000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie@14100000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie@14100000:resets: cell 2 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pwm@3290000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/gpu@17000000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie@14140000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie@14140000:resets: cell 2 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/padctl@3520000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/i2c@c240000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie@14180000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie@14180000:resets: cell 2 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/i2c@3180000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/mttcan@c320000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pwm@32d0000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie-ep@14160000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie-ep@14160000:resets: cell 2 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/mmc@3460000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie@141c0000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/pcie@141c0000:resets: cell 2 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/i2c@31c0000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/tachometer@39c0000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/host1x@13e00000/vi1@14c00000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/host1x@13e00000/vi0@15c00000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/host1x@13e00000/pva0@16000000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/host1x@13e00000/tsec@15500000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/host1x@13e00000/nvjpg@15380000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/host1x@13e00000/nvdla1@158c0000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/host1x@13e00000/nvcsi@15a00000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/host1x@13e00000/isp-thi@14b00000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/host1x@13e00000/ofa@15a50000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/host1x@13e00000/isp@14800000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/host1x@13e00000/nvdec@15480000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/host1x@13e00000/nvenc@154c0000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/host1x@13e00000/vi0-thi@15f00000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/host1x@13e00000/vic@15340000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/host1x@13e00000/vi1-thi@14f00000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/host1x@13e00000/nvjpg@15540000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/host1x@13e00000/nvdla0@15880000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/i2c@c250000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /bus@0/i2c@3190000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /display@13800000:resets: cell 0 is not a phandle reference
+<stdout>: Warning (resets_property): /display@13800000:resets: cell 2 is not a phandle reference
+<stdout>: Warning (resets_property): /display@13800000:resets: cell 4 is not a phandle reference
+<stdout>: Warning (resets_property): /display@13800000:resets: cell 6 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@133/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@133/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@68/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@68/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@161/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@161/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@96/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@96/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@123/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@123/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@58/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@58/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@9/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@9/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@151/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@151/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@86/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@86/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@113/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@113/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@48/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@48/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@141/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@141/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@76/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@76/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@103/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@103/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@38/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@38/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@131/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@131/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@66/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@66/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@94/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@94/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@28/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@28/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@121/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@121/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@56/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@56/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@7/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@7/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@84/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@84/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@18/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@18/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@178/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@178/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@111/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@111/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@46/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@46/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@74/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@74/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@168/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@168/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@101/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@101/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@36/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@36/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@64/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@64/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@158/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@158/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@92/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@92/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@26/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@26/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@54/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@54/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@5/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@5/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@148/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@148/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@82/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@82/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@16/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@16/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@176/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@176/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@44/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@44/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@138/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@138/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@72/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@72/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@166/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@166/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@34/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@34/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@128/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@128/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@62/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@62/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@156/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@156/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@90/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@90/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@24/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@24/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@118/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@118/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@52/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@52/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@3/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@3/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@146/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@146/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@80/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@80/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@14/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@14/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@174/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@174/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@108/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@108/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@42/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@42/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@136/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@136/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@70/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@70/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@164/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@164/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@99/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@99/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@32/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@32/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@126/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@126/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@60/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@60/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@154/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@154/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@89/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@89/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@22/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@22/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@182/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@182/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@116/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@116/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@50/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@50/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@1/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@1/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@144/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@144/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@79/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@79/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@12/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@12/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@172/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@172/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@106/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@106/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@40/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@40/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@134/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@134/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@69/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@69/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@162/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@162/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@97/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@97/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@30/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@30/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@124/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@124/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@59/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@59/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@152/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@152/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@87/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@87/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@20/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@20/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@180/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@180/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@114/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@114/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@49/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@49/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@142/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@142/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@77/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@77/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@10/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@10/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@170/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@170/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@104/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@104/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@39/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@39/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@132/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@132/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@67/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@67/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@160/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@160/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@95/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@95/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@29/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@29/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@122/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@122/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@57/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@57/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@8/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@8/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@150/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@150/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@85/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@85/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@19/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@19/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@179/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@179/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@112/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@112/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@47/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@47/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@140/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@140/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@75/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@75/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@169/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@169/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@102/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@102/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@37/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@37/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@130/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@130/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@65/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@65/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@159/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@159/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@93/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@93/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@27/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@27/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@120/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@120/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@55/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@55/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@6/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@6/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@149/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@149/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@83/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@83/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@17/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@17/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@177/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@177/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@110/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@110/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@45/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@45/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@139/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@139/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@73/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@73/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@167/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@167/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@100/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@100/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@35/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@35/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@129/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@129/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@63/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@63/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@157/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@157/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@91/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@91/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@25/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@25/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@119/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@119/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@53/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@53/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@4/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@4/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@147/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@147/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@81/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@81/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@15/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@15/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@175/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@175/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@109/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@109/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@43/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@43/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@137/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@137/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@71/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@71/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@165/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@165/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@33/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@33/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@127/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@127/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@61/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@61/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@155/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@155/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@23/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@23/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@117/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@117/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@51/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@51/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@2/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@2/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@145/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@145/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@13/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@13/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@173/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@173/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@107/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@107/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@41/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@41/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@135/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@135/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@163/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@163/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@98/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@98/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@31/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@31/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@125/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@125/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@153/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@153/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@88/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@88/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@21/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@21/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@181/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@181/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@115/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@115/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@0/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@0/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@143/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@143/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@78/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@78/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@11/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@11/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@171/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@171/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@105/cpu:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (sound_dai_property): /sound/nvidia-audio-card,dai-link@105/codec:sound-dai: cell 0 is not a phandle reference
+<stdout>: Warning (thermal_sensors_property): /thermal-zones/tj-thermal:thermal-sensors: cell 0 is not a phandle reference
+<stdout>: Warning (thermal_sensors_property): /thermal-zones/cpu-thermal:thermal-sensors: cell 0 is not a phandle reference
+<stdout>: Warning (thermal_sensors_property): /thermal-zones/soc1-thermal:thermal-sensors: cell 0 is not a phandle reference
+<stdout>: Warning (thermal_sensors_property): /thermal-zones/cv0-thermal:thermal-sensors: cell 0 is not a phandle reference
+<stdout>: Warning (thermal_sensors_property): /thermal-zones/cv2-thermal:thermal-sensors: cell 0 is not a phandle reference
+<stdout>: Warning (thermal_sensors_property): /thermal-zones/soc0-thermal:thermal-sensors: cell 0 is not a phandle reference
+<stdout>: Warning (thermal_sensors_property): /thermal-zones/gpu-thermal:thermal-sensors: cell 0 is not a phandle reference
+<stdout>: Warning (thermal_sensors_property): /thermal-zones/soc2-thermal:thermal-sensors: cell 0 is not a phandle reference
+<stdout>: Warning (thermal_sensors_property): /thermal-zones/cv1-thermal:thermal-sensors: cell 0 is not a phandle reference
+<stdout>: Warning (gpios_property): /regulator-vdd-3v3-sd:gpio: cell 0 is not a phandle reference
+<stdout>: Warning (gpios_property): /bus@0/mmc@3400000:cd-gpios: cell 0 is not a phandle reference
+<stdout>: Warning (gpios_property): /bus@0/pcie@14100000:nvidia,pex-wake-gpios: cell 0 is not a phandle reference
+<stdout>: Warning (gpios_property): /bus@0/pcie-ep@14160000:reset-gpios: cell 0 is not a phandle reference
+<stdout>: Warning (gpios_property): /bus@0/pcie-ep@14160000:nvidia,refclk-select-gpios: cell 0 is not a phandle reference
+<stdout>: Warning (gpios_property): /gpio-keys/key-power:gpios: cell 0 is not a phandle reference
+<stdout>: Warning (gpios_property): /gpio-keys/key-force-recovery:gpios: cell 0 is not a phandle reference
+<stdout>: Warning (gpios_property): /regulator-vdd-3v3-pcie:gpio: cell 0 is not a phandle reference
+<stdout>: Warning (gpios_property): /__symbols__:gpio: cell 0 is not a phandle reference
+<stdout>: Warning (gpios_property): /__symbols__:gpio: Could not get phandle node for (cell 0)
+<stdout>: Warning (interrupt_provider): /bus@0/pmc@c360000: Missing #address-cells in interrupt provider
+<stdout>: Warning (interrupt_provider): /bus@0/aconnect@2900000/interrupt-controller@2a40000: Missing #address-cells in interrupt provider
+<stdout>: Warning (interrupt_provider): /bus@0/gpio@2200000: Missing #address-cells in interrupt provider
+<stdout>: Warning (interrupt_provider): /bus@0/gpio@c2f0000: Missing #address-cells in interrupt provider
+<stdout>: Warning (interrupt_provider): /bpmp/i2c/vrs@3c: Missing #address-cells in interrupt provider
+<stdout>: Warning (alias_paths): /aliases:qspi0: aliases property is not a valid node (/bus@0/spi@3270000)

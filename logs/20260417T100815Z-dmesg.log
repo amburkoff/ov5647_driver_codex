@@ -1,0 +1,2 @@
+[2026-04-17T10:08:15Z] CMD: bash -lc dmesg 2>&1 || true
+dmesg: read kernel buffer failed: Operation not permitted

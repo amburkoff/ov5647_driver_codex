@@ -1,0 +1,2 @@
+[2026-04-17T10:07:23Z] CMD: dmesg
+dmesg: read kernel buffer failed: Operation not permitted

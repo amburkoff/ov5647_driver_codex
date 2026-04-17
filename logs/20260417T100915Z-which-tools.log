@@ -1,0 +1,5 @@
+[2026-04-17T10:09:15Z] CMD: bash -lc which dtc i2cdetect modinfo journalctl v4l2-ctl media-ctl v4l2-compliance || true
+/usr/bin/dtc
+/usr/sbin/i2cdetect
+/usr/sbin/modinfo
+/usr/bin/journalctl

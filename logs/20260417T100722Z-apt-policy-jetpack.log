@@ -1,0 +1,21 @@
+[2026-04-17T10:07:23Z] CMD: bash -lc apt-cache policy nvidia-jetpack nvidia-l4t-core nvidia-l4t-kernel
+nvidia-jetpack:
+  Installed: (none)
+  Candidate: 6.2.2+b24
+  Version table:
+     6.2.2+b24 600
+        600 https://repo.download.nvidia.com/jetson/common r36.5/main arm64 Packages
+nvidia-l4t-core:
+  Installed: 36.5.0-20260115194252
+  Candidate: 36.5.0-20260115194252
+  Version table:
+ *** 36.5.0-20260115194252 600
+        600 https://repo.download.nvidia.com/jetson/t234 r36.5/main arm64 Packages
+        100 /var/lib/dpkg/status
+nvidia-l4t-kernel:
+  Installed: 5.15.185-tegra-36.5.0-20260115194252
+  Candidate: 5.15.185-tegra-36.5.0-20260115194252
+  Version table:
+ *** 5.15.185-tegra-36.5.0-20260115194252 600
+        600 https://repo.download.nvidia.com/jetson/t234 r36.5/main arm64 Packages
+        100 /var/lib/dpkg/status

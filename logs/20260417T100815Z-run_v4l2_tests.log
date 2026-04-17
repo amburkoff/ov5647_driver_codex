@@ -1,0 +1,3 @@
+[2026-04-17T10:08:15Z] Starting V4L2 test collection
+[2026-04-17T10:08:15Z] Requested device: /dev/video0
+[2026-04-17T10:08:15Z] SKIP: v4l2-ctl is not installed

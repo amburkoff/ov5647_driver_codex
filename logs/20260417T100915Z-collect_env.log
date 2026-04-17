@@ -1,0 +1,8 @@
+[2026-04-17T10:09:15Z] Starting environment collection
+[2026-04-17T10:09:15Z] Repository root: /home/cam/ov5647_driver_codex
+[2026-04-17T10:09:15Z] Boot profile token: unset
+[2026-04-17T10:09:16Z] Environment collection finished
+[2026-04-17T10:09:16Z] Saved logs under /home/cam/ov5647_driver_codex/logs
+[2026-04-17T10:09:16Z] Saved DT artifacts under /home/cam/ov5647_driver_codex/artifacts/device-tree/20260417T100915Z
+[2026-04-17T10:09:16Z] Saved boot snapshots under /home/cam/ov5647_driver_codex/artifacts/boot/20260417T100915Z
+[2026-04-17T10:09:16Z] Saved reference overlays under /home/cam/ov5647_driver_codex/artifacts/reference-overlays/20260417T100915Z

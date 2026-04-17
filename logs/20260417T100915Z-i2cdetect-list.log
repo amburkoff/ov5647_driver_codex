@@ -1,0 +1,8 @@
+[2026-04-17T10:09:15Z] CMD: i2cdetect -l
+i2c-0	unknown   	3160000.i2c                     	N/A
+i2c-1	unknown   	c240000.i2c                     	N/A
+i2c-2	unknown   	3180000.i2c                     	N/A
+i2c-4	unknown   	Tegra BPMP I2C adapter          	N/A
+i2c-5	unknown   	31b0000.i2c                     	N/A
+i2c-7	unknown   	c250000.i2c                     	N/A
+i2c-9	unknown   	NVIDIA SOC i2c adapter 0        	N/A
