@@ -40,6 +40,54 @@ The NVIDIA p3768 reference overlays on disk imply two common 22-pin connector ro
 
 These are useful design references for an OV5647 overlay skeleton, but they are not accepted as carrier truth until the actual CBL wiring is verified.
 
+## Strongest Current Reference Evidence
+
+From the locally installed NVIDIA p3768 overlays:
+
+### Route A
+
+- `imx219-A`
+  - `cam_i2cmux/i2c@0`
+  - `tegra_sinterface = "serial_b"`
+  - `port-index = 1`
+  - `bus-width = 2`
+  - `reset-gpios = <... 0x3e ...>`
+  - `lane_polarity = "6"`
+- `imx477-A`
+  - `cam_i2cmux/i2c@0`
+  - `tegra_sinterface = "serial_b"`
+  - `port-index = 1`
+  - `bus-width = 2`
+  - `reset-gpios = <... 0x3e ...>`
+  - `lane_polarity = "6"`
+
+### Route C
+
+- `imx219-C`
+  - `cam_i2cmux/i2c@1`
+  - `tegra_sinterface = "serial_c"`
+  - `port-index = 2`
+  - `bus-width = 2`
+  - `reset-gpios = <... 0xa0 ...>`
+  - no explicit `lane_polarity` seen in the decompiled overlay excerpt
+- `imx477-C`
+  - `cam_i2cmux/i2c@1`
+  - `tegra_sinterface = "serial_c"`
+  - `port-index = 2`
+  - `bus-width = 2`
+  - `reset-gpios = <... 0xa0 ...>`
+  - `lane_polarity = "0"`
+
+Inference from these local references:
+
+- route `A` is the cleaner first candidate because two separate NVIDIA overlays agree on:
+  - the mux leg
+  - `serial_b`
+  - `port-index = 1`
+  - reset GPIO token `0x3e`
+  - `lane_polarity = 6`
+- route `C` remains plausible, but its lane-polarity handling is less uniform in the installed references.
+
 ## Blocking Next Checks
 
 1. Inspect the physical carrier board silkscreen and connector labels.
@@ -47,4 +95,3 @@ These are useful design references for an OV5647 overlay skeleton, but they are 
 3. Confirm whether the carrier exposes Jetson devkit-style 22-pin connectors or a custom route.
 4. After the physical route is known, bind it to one live DT port and one camera I2C path.
 5. Only then choose the first OV5647 overlay target and the first probe attempt.
-

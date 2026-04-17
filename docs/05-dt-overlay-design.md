@@ -25,6 +25,20 @@ The first OV5647 overlay will need:
 - one `mode0` only;
 - no experimental boot-time enablement until manual probe is stable.
 
+Current preferred reference target, pending physical verification:
+
+- p3768-style route `A`
+- `cam_i2cmux/i2c@0`
+- `serial_b`
+- `port-index = 1`
+- `bus-width = 2`
+- reference `lane_polarity = 6`
+
+Reason:
+
+- both installed NVIDIA `imx219-A` and `imx477-A` overlays agree on this mapping;
+- the route `C` references are less uniform for lane-polarity handling.
+
 Fields that remain blocked until hardware verification:
 
 - `reg`
@@ -41,4 +55,12 @@ Fields that remain blocked until hardware verification:
 - the generated `ov5647-safe` profile will not reference any OV5647 overlay;
 - the generated `ov5647-dev` profile currently adds only a `boot_profile=ov5647-dev` marker;
 - adding `FDTOVERLAYS` for OV5647 is deferred until the manual overlay path is validated.
+
+## Draft Overlay Artifact
+
+The repository now contains a non-applicable template:
+
+- `patches/ov5647-p3768-port-a-reference.dts.in`
+
+It is intentionally a `.dts.in` template, not a compiled or boot-ready overlay. It captures the currently preferred route and the fields that still require verified hardware values before conversion into a real `.dtbo`.
 
