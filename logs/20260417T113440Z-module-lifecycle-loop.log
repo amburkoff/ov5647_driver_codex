@@ -1,0 +1,82 @@
+[2026-04-17T11:34:40Z] Starting 10-cycle nv_ov5647 safe lifecycle test
+[2026-04-17T11:34:40Z] Cycle 1/10 install
+[2026-04-17T11:34:40Z] Installing module: ./src/nv_ov5647/nv_ov5647.ko
+[2026-04-17T11:34:40Z] Boot profile token: unset
+[2026-04-17T11:34:40Z] Module install finished
+[2026-04-17T11:34:40Z] Cycle 1/10 unload
+[2026-04-17T11:34:40Z] Removing nv_ov5647
+[2026-04-17T11:34:40Z] Boot profile token: unset
+[2026-04-17T11:34:40Z] Module unload finished
+[2026-04-17T11:34:40Z] Cycle 2/10 install
+[2026-04-17T11:34:40Z] Installing module: ./src/nv_ov5647/nv_ov5647.ko
+[2026-04-17T11:34:40Z] Boot profile token: unset
+[2026-04-17T11:34:40Z] Module install finished
+[2026-04-17T11:34:40Z] Cycle 2/10 unload
+[2026-04-17T11:34:40Z] Removing nv_ov5647
+[2026-04-17T11:34:40Z] Boot profile token: unset
+[2026-04-17T11:34:40Z] Module unload finished
+[2026-04-17T11:34:40Z] Cycle 3/10 install
+[2026-04-17T11:34:40Z] Installing module: ./src/nv_ov5647/nv_ov5647.ko
+[2026-04-17T11:34:40Z] Boot profile token: unset
+[2026-04-17T11:34:41Z] Module install finished
+[2026-04-17T11:34:41Z] Cycle 3/10 unload
+[2026-04-17T11:34:41Z] Removing nv_ov5647
+[2026-04-17T11:34:41Z] Boot profile token: unset
+[2026-04-17T11:34:41Z] Module unload finished
+[2026-04-17T11:34:41Z] Cycle 4/10 install
+[2026-04-17T11:34:41Z] Installing module: ./src/nv_ov5647/nv_ov5647.ko
+[2026-04-17T11:34:41Z] Boot profile token: unset
+[2026-04-17T11:34:41Z] Module install finished
+[2026-04-17T11:34:41Z] Cycle 4/10 unload
+[2026-04-17T11:34:41Z] Removing nv_ov5647
+[2026-04-17T11:34:41Z] Boot profile token: unset
+[2026-04-17T11:34:41Z] Module unload finished
+[2026-04-17T11:34:41Z] Cycle 5/10 install
+[2026-04-17T11:34:41Z] Installing module: ./src/nv_ov5647/nv_ov5647.ko
+[2026-04-17T11:34:41Z] Boot profile token: unset
+[2026-04-17T11:34:41Z] Module install finished
+[2026-04-17T11:34:41Z] Cycle 5/10 unload
+[2026-04-17T11:34:41Z] Removing nv_ov5647
+[2026-04-17T11:34:41Z] Boot profile token: unset
+[2026-04-17T11:34:41Z] Module unload finished
+[2026-04-17T11:34:41Z] Cycle 6/10 install
+[2026-04-17T11:34:41Z] Installing module: ./src/nv_ov5647/nv_ov5647.ko
+[2026-04-17T11:34:41Z] Boot profile token: unset
+[2026-04-17T11:34:41Z] Module install finished
+[2026-04-17T11:34:41Z] Cycle 6/10 unload
+[2026-04-17T11:34:41Z] Removing nv_ov5647
+[2026-04-17T11:34:41Z] Boot profile token: unset
+[2026-04-17T11:34:41Z] Module unload finished
+[2026-04-17T11:34:41Z] Cycle 7/10 install
+[2026-04-17T11:34:41Z] Installing module: ./src/nv_ov5647/nv_ov5647.ko
+[2026-04-17T11:34:41Z] Boot profile token: unset
+[2026-04-17T11:34:41Z] Module install finished
+[2026-04-17T11:34:41Z] Cycle 7/10 unload
+[2026-04-17T11:34:41Z] Removing nv_ov5647
+[2026-04-17T11:34:41Z] Boot profile token: unset
+[2026-04-17T11:34:41Z] Module unload finished
+[2026-04-17T11:34:41Z] Cycle 8/10 install
+[2026-04-17T11:34:41Z] Installing module: ./src/nv_ov5647/nv_ov5647.ko
+[2026-04-17T11:34:41Z] Boot profile token: unset
+[2026-04-17T11:34:41Z] Module install finished
+[2026-04-17T11:34:41Z] Cycle 8/10 unload
+[2026-04-17T11:34:41Z] Removing nv_ov5647
+[2026-04-17T11:34:41Z] Boot profile token: unset
+[2026-04-17T11:34:41Z] Module unload finished
+[2026-04-17T11:34:41Z] Cycle 9/10 install
+[2026-04-17T11:34:41Z] Installing module: ./src/nv_ov5647/nv_ov5647.ko
+[2026-04-17T11:34:41Z] Boot profile token: unset
+[2026-04-17T11:34:41Z] Module install finished
+[2026-04-17T11:34:41Z] Cycle 9/10 unload
+[2026-04-17T11:34:41Z] Removing nv_ov5647
+[2026-04-17T11:34:41Z] Boot profile token: unset
+[2026-04-17T11:34:41Z] Module unload finished
+[2026-04-17T11:34:41Z] Cycle 10/10 install
+[2026-04-17T11:34:41Z] Installing module: ./src/nv_ov5647/nv_ov5647.ko
+[2026-04-17T11:34:41Z] Boot profile token: unset
+[2026-04-17T11:34:42Z] Module install finished
+[2026-04-17T11:34:42Z] Cycle 10/10 unload
+[2026-04-17T11:34:42Z] Removing nv_ov5647
+[2026-04-17T11:34:42Z] Boot profile token: unset
+[2026-04-17T11:34:42Z] Module unload finished
+[2026-04-17T11:34:42Z] Completed 10-cycle nv_ov5647 safe lifecycle test

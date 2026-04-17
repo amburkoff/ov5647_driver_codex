@@ -1,0 +1,3 @@
+[2026-04-17T11:35:14Z] insmod with register_i2c_driver=1 allow_hw_probe=0
+nv_ov5647              20480  0
+[2026-04-17T11:35:14Z] rmmod nv_ov5647

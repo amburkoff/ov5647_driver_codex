@@ -1,0 +1,80 @@
+[   11.864084] zram: Added device: zram0
+[   11.868785] zram: Added device: zram1
+[   11.874437] zram: Added device: zram2
+[   11.878835] zram: Added device: zram3
+[   11.942698] zram0: detected capacity change from 0 to 4004600
+[   11.974658] Adding 2002296k swap on /dev/zram0.  Priority:5 extents:1 across:2002296k SS
+[   11.984313] zram1: detected capacity change from 0 to 4004600
+[   11.994792] Adding 2002296k swap on /dev/zram1.  Priority:5 extents:1 across:2002296k SS
+[   12.002809] zram2: detected capacity change from 0 to 4004600
+[   12.022210] Adding 2002296k swap on /dev/zram2.  Priority:5 extents:1 across:2002296k SS
+[   12.028621] zram3: detected capacity change from 0 to 4004600
+[   12.046371] Adding 2002296k swap on /dev/zram3.  Priority:5 extents:1 across:2002296k SS
+[   12.183267] tegra-xudc 3550000.usb: EP 5 (type: intr, dir: in) enabled
+[   12.183291] tegra-xudc 3550000.usb: EP 3 (type: bulk, dir: in) enabled
+[   12.183306] tegra-xudc 3550000.usb: EP 2 (type: bulk, dir: out) enabled
+[   12.183366] IPv6: ADDRCONF(NETDEV_CHANGE): usb0: link becomes ready
+[   12.183392] tegra-xudc 3550000.usb: EP 9 (type: intr, dir: in) enabled
+[   12.183408] tegra-xudc 3550000.usb: EP 7 (type: bulk, dir: in) enabled
+[   12.183420] tegra-xudc 3550000.usb: EP 4 (type: bulk, dir: out) enabled
+[   12.183449] tegra-xudc 3550000.usb: EP 15 (type: intr, dir: in) enabled
+[   12.183494] tegra-xudc 3550000.usb: EP 11 (type: bulk, dir: in) enabled
+[   12.183510] tegra-xudc 3550000.usb: EP 6 (type: bulk, dir: out) enabled
+[   12.194509] tegra-xudc 3550000.usb: EP 13 (type: bulk, dir: in) enabled
+[   12.194530] tegra-xudc 3550000.usb: EP 8 (type: bulk, dir: out) enabled
+[   12.194646] IPv6: ADDRCONF(NETDEV_CHANGE): usb1: link becomes ready
+[   12.196258] tegra-xudc 3550000.usb: ep 13 disabled
+[   12.196349] tegra-xudc 3550000.usb: ep 8 disabled
+[   12.217268] tegra-xudc 3550000.usb: EP 13 (type: bulk, dir: in) enabled
+[   12.217292] tegra-xudc 3550000.usb: EP 8 (type: bulk, dir: out) enabled
+[   14.091982] l4tbr0: port 2(usb1) entered blocking state
+[   14.091995] l4tbr0: port 2(usb1) entered forwarding state
+[   14.092065] l4tbr0: port 1(usb0) entered blocking state
+[   14.092073] l4tbr0: port 1(usb0) entered forwarding state
+[   14.102423] IPv6: ADDRCONF(NETDEV_CHANGE): l4tbr0: link becomes ready
+[   14.301079] nvidia-modeset: Loading NVIDIA UNIX Open Kernel Mode Setting Driver for aarch64  540.5.0  Release Build  (buildbrain@239549d1-8639-491a-b9e7-120e21430986-l1eu-vqrkv)  Thu Jan 15 19:36:45 PST 2026
+[   14.311591] [drm] [nvidia-drm] [GPU ID 0x00020000] Loading driver
+[   14.598859] NVRM rpcRmApiControl_dce: NVRM_RPC_DCE: Failed RM ctrl call cmd:0x731341 result 0xffff:
+[   14.599945] NVRM rpcRmApiControl_dce: NVRM_RPC_DCE: Failed RM ctrl call cmd:0x730282 result 0x1f:
+[   14.652210] [drm] Initialized nvidia-drm 0.0.0 20160202 for 13800000.display on minor 1
+[   14.732948] Console: switching to colour frame buffer device 240x67
+[   14.732970] nv_platform 13800000.display: [drm] fb0: nvidia-drmdrmfb frame buffer device
+[   16.022937] ACK 04 d4
+[   16.024138] ACK 04 d4
+[   16.026330] IPv6: ADDRCONF(NETDEV_CHANGE): wlP1p1s0: link becomes ready
+[   19.115874] rfkill: input handler disabled
+[   19.115955] loop10: detected capacity change from 0 to 8
+[   22.173788] audit: type=1326 audit(1776346910.551:2): auid=4294967295 uid=0 gid=0 ses=4294967295 subj=kernel pid=2504 comm="cupsd" exe="/snap/cups/1184/sbin/cupsd" sig=0 arch=c00000b7 syscall=55 compat=0 ip=0xffff918cce0c code=0x50000
+[   23.265408] audit: type=1326 audit(1776346911.643:3): auid=4294967295 uid=0 gid=0 ses=4294967295 subj=kernel pid=2504 comm="cupsd" exe="/snap/cups/1184/sbin/cupsd" sig=0 arch=c00000b7 syscall=55 compat=0 ip=0xffff918cce0c code=0x50000
+[   23.296467] audit: type=1326 audit(1776346911.675:4): auid=4294967295 uid=0 gid=0 ses=4294967295 subj=kernel pid=2558 comm="cups-browsed" exe="/snap/cups/1184/sbin/cups-browsed" sig=0 arch=c00000b7 syscall=274 compat=0 ip=0xffff9c7a5b68 code=0x50000
+[13972.233534] nv_ov5647: module verification failed: signature and/or required key missing - tainting kernel
+[13972.234285] nv_ov5647: module init register_i2c_driver=0 allow_hw_probe=0
+[13972.234290] nv_ov5647: safety gate active; i2c driver registration skipped
+[13990.123959] nv_ov5647: module exit without i2c driver registration
+[13999.819986] nv_ov5647: module init register_i2c_driver=0 allow_hw_probe=0
+[13999.819998] nv_ov5647: safety gate active; i2c driver registration skipped
+[13999.878178] nv_ov5647: module exit without i2c driver registration
+[13999.968923] nv_ov5647: module init register_i2c_driver=0 allow_hw_probe=0
+[13999.968936] nv_ov5647: safety gate active; i2c driver registration skipped
+[14000.029222] nv_ov5647: module exit without i2c driver registration
+[14000.118381] nv_ov5647: module init register_i2c_driver=0 allow_hw_probe=0
+[14000.118392] nv_ov5647: safety gate active; i2c driver registration skipped
+[14000.179060] nv_ov5647: module exit without i2c driver registration
+[14000.257334] nv_ov5647: module init register_i2c_driver=0 allow_hw_probe=0
+[14000.257346] nv_ov5647: safety gate active; i2c driver registration skipped
+[14000.317298] nv_ov5647: module exit without i2c driver registration
+[14000.413034] nv_ov5647: module init register_i2c_driver=0 allow_hw_probe=0
+[14000.413046] nv_ov5647: safety gate active; i2c driver registration skipped
+[14000.470634] nv_ov5647: module exit without i2c driver registration
+[14000.555042] nv_ov5647: module init register_i2c_driver=0 allow_hw_probe=0
+[14000.555054] nv_ov5647: safety gate active; i2c driver registration skipped
+[14000.615079] nv_ov5647: module exit without i2c driver registration
+[14000.704865] nv_ov5647: module init register_i2c_driver=0 allow_hw_probe=0
+[14000.704877] nv_ov5647: safety gate active; i2c driver registration skipped
+[14000.765223] nv_ov5647: module exit without i2c driver registration
+[14000.841466] nv_ov5647: module init register_i2c_driver=0 allow_hw_probe=0
+[14000.841478] nv_ov5647: safety gate active; i2c driver registration skipped
+[14000.901540] nv_ov5647: module exit without i2c driver registration
+[14000.979141] nv_ov5647: module init register_i2c_driver=0 allow_hw_probe=0
+[14000.979154] nv_ov5647: safety gate active; i2c driver registration skipped
+[14001.039105] nv_ov5647: module exit without i2c driver registration

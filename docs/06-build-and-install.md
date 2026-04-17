@@ -37,3 +37,24 @@ Current safety properties:
 - no verified mode table yet, so `set_mode` and `start_streaming` still fail fast with explicit logs.
 
 This is deliberate. The first objective is to validate a clean LKM build and lifecycle loop before touching hardware.
+
+## Runtime Validation Completed
+
+Validated on the target:
+
+- `sudo ./scripts/install_module.sh ./src/nv_ov5647/nv_ov5647.ko`
+- `sudo ./scripts/unload_module.sh`
+- 10 sequential install or unload cycles with the default safety gate active
+- one explicit `insmod` with:
+
+```bash
+sudo insmod ./src/nv_ov5647/nv_ov5647.ko register_i2c_driver=1 allow_hw_probe=0
+sudo rmmod nv_ov5647
+```
+
+Observed result:
+
+- module loads cleanly;
+- module unloads cleanly;
+- i2c driver registers and unregisters cleanly;
+- no real probe starts because `allow_hw_probe=0` and no verified OV5647 DT node is active.
