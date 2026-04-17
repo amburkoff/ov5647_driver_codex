@@ -7,14 +7,15 @@ Current checkpoint:
 - live platform inventory captured from the running target;
 - repository scaffolding, docs, scripts, and log layout created;
 - safe/dev boot profile workflow prepared as a generated `extlinux.conf` candidate, not auto-applied;
-- external module build pipeline prepared with a non-probing `nv_ov5647` skeleton module.
+- external module build pipeline prepared with a gated `nv_ov5647` driver scaffold.
 
 Current blockers:
 
 - the running system identifies itself as NVIDIA reference carrier `p3768`, not yet as a verified CBL-specific carrier;
 - no `boot_profile=*` token exists in the active kernel command line;
 - no live camera overlay is currently applied;
-- `v4l2-ctl`, `media-ctl`, and `v4l2-compliance` are not currently installed on the target.
+- `v4l2-ctl`, `media-ctl`, and `v4l2-compliance` are not currently installed on the target;
+- root-only `insmod` or `rmmod` validation from the agent is blocked by interactive `sudo` authentication on this machine.
 
 Start here:
 

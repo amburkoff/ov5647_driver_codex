@@ -1,0 +1,24 @@
+[2026-04-17T10:52:24Z] Building nv_ov5647 external module
+[2026-04-17T10:52:24Z] Kernel headers: /lib/modules/5.15.185-tegra/build
+[2026-04-17T10:52:24Z] Source dir: /home/cam/ov5647_driver_codex/src/nv_ov5647
+make: Entering directory '/usr/src/linux-headers-5.15.185-tegra-ubuntu22.04_aarch64/3rdparty/canonical/linux-jammy/kernel-source'
+warning: the compiler differs from the one used to build the kernel
+  The kernel was built by: gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
+  You are using:           gcc (Ubuntu 11.4.0-1ubuntu1~22.04.2) 11.4.0
+  CC [M]  /home/cam/ov5647_driver_codex/src/nv_ov5647/nv_ov5647.o
+  MODPOST /home/cam/ov5647_driver_codex/src/nv_ov5647/Module.symvers
+ERROR: modpost: "tegracam_v4l2subdev_register" [/home/cam/ov5647_driver_codex/src/nv_ov5647/nv_ov5647.ko] undefined!
+ERROR: modpost: "camera_common_parse_ports" [/home/cam/ov5647_driver_codex/src/nv_ov5647/nv_ov5647.ko] undefined!
+ERROR: modpost: "sensor_common_init_sensor_properties" [/home/cam/ov5647_driver_codex/src/nv_ov5647/nv_ov5647.ko] undefined!
+ERROR: modpost: "sensor_common_parse_num_modes" [/home/cam/ov5647_driver_codex/src/nv_ov5647/nv_ov5647.ko] undefined!
+ERROR: modpost: "tegracam_device_register" [/home/cam/ov5647_driver_codex/src/nv_ov5647/nv_ov5647.ko] undefined!
+ERROR: modpost: "tegracam_set_privdata" [/home/cam/ov5647_driver_codex/src/nv_ov5647/nv_ov5647.ko] undefined!
+ERROR: modpost: "tegracam_version" [/home/cam/ov5647_driver_codex/src/nv_ov5647/nv_ov5647.ko] undefined!
+ERROR: modpost: "camera_common_mclk_enable" [/home/cam/ov5647_driver_codex/src/nv_ov5647/nv_ov5647.ko] undefined!
+ERROR: modpost: "to_tegracam_device" [/home/cam/ov5647_driver_codex/src/nv_ov5647/nv_ov5647.ko] undefined!
+ERROR: modpost: "camera_common_parse_clocks" [/home/cam/ov5647_driver_codex/src/nv_ov5647/nv_ov5647.ko] undefined!
+WARNING: modpost: suppressed 5 unresolved symbol warnings because there were too many)
+make[1]: *** [scripts/Makefile.modpost:133: /home/cam/ov5647_driver_codex/src/nv_ov5647/Module.symvers] Error 1
+make[1]: *** Deleting file '/home/cam/ov5647_driver_codex/src/nv_ov5647/Module.symvers'
+make: *** [Makefile:1849: modules] Error 2
+make: Leaving directory '/usr/src/linux-headers-5.15.185-tegra-ubuntu22.04_aarch64/3rdparty/canonical/linux-jammy/kernel-source'

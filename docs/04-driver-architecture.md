@@ -6,6 +6,9 @@ Planned driver shape:
 - target framework: Jetson V4L2 Camera Framework on Jetson Linux `r36.5`
 - development mode: loadable kernel module first
 - first runtime scope: one sensor instance, one mode, direct V4L2 RAW path
+- current safety gate:
+  - `register_i2c_driver=0` by default
+  - `allow_hw_probe=0` by default
 
 Planned implementation layers:
 
@@ -25,7 +28,12 @@ Logging policy inside the driver:
 
 Current repository state:
 
-- `src/nv_ov5647/nv_ov5647.c` is a non-probing skeleton module;
-- it exists only to validate build, install, remove, and logging infrastructure without touching hardware yet;
-- real sensor registration starts only after carrier mapping is verified.
-
+- `src/nv_ov5647/nv_ov5647.c` is now a Jetson-style OV5647 driver scaffold;
+- it contains:
+  - `tegracam` device plumbing
+  - `camera_common` power and DT hooks
+  - regmap read or write wrappers
+  - chip-ID board-setup path
+  - explicit logging on probe, DT parse, power, and chip-ID operations
+- by default the module still does not register its i2c driver on load;
+- even if the i2c driver is registered later, probe is blocked unless `allow_hw_probe=1` is set explicitly.

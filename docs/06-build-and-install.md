@@ -11,6 +11,7 @@ Build the current skeleton module:
 What it does:
 
 - builds `src/nv_ov5647/nv_ov5647.c` as an external kernel module against `/lib/modules/$(uname -r)/build`;
+- resolves NVIDIA Jetson camera framework exports using `/usr/src/nvidia/nvidia-oot/Module.symvers`;
 - writes a build log to `logs/`;
 - copies generated outputs to `artifacts/build/<timestamp>/`.
 
@@ -30,10 +31,9 @@ sudo ./scripts/unload_module.sh
 
 Current safety properties:
 
-- no device-tree match table yet;
-- no I2C probe yet;
-- no sensor power sequencing yet;
-- no boot-time auto-load path.
+- the module has `of:i2c` aliases for `ovti,ov5647`, but does not register the i2c driver unless loaded with `register_i2c_driver=1`;
+- the probe path itself is blocked unless loaded with `allow_hw_probe=1`;
+- no boot-time auto-load path;
+- no verified mode table yet, so `set_mode` and `start_streaming` still fail fast with explicit logs.
 
 This is deliberate. The first objective is to validate a clean LKM build and lifecycle loop before touching hardware.
-

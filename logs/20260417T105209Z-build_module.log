@@ -1,0 +1,15 @@
+[2026-04-17T10:52:09Z] Building nv_ov5647 external module
+[2026-04-17T10:52:09Z] Kernel headers: /lib/modules/5.15.185-tegra/build
+[2026-04-17T10:52:09Z] Source dir: /home/cam/ov5647_driver_codex/src/nv_ov5647
+make: Entering directory '/usr/src/linux-headers-5.15.185-tegra-ubuntu22.04_aarch64/3rdparty/canonical/linux-jammy/kernel-source'
+warning: the compiler differs from the one used to build the kernel
+  The kernel was built by: gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
+  You are using:           gcc (Ubuntu 11.4.0-1ubuntu1~22.04.2) 11.4.0
+  CC [M]  /home/cam/ov5647_driver_codex/src/nv_ov5647/nv_ov5647.o
+/home/cam/ov5647_driver_codex/src/nv_ov5647/nv_ov5647.c:13:10: fatal error: media/camera_common.h: No such file or directory
+   13 | #include <media/camera_common.h>
+      |          ^~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.build:295: /home/cam/ov5647_driver_codex/src/nv_ov5647/nv_ov5647.o] Error 1
+make: *** [Makefile:1931: /home/cam/ov5647_driver_codex/src/nv_ov5647] Error 2
+make: Leaving directory '/usr/src/linux-headers-5.15.185-tegra-ubuntu22.04_aarch64/3rdparty/canonical/linux-jammy/kernel-source'

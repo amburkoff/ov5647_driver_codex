@@ -13,13 +13,16 @@ Completed:
 - safe and dev boot profile generation workflow added;
 - candidate `extlinux.conf` for safe/dev rendered under `artifacts/boot/20260417T100722Z/`;
 - non-probing `nv_ov5647` external module skeleton added;
-- `nv_ov5647.ko` build validated under `artifacts/build/20260417T100753Z/`.
+- `nv_ov5647.ko` build validated under `artifacts/build/20260417T100753Z/`;
+- `nv_ov5647` upgraded to a gated OV5647 driver scaffold with `tegracam` and `camera_common` hooks;
+- build against NVIDIA camera framework symbols validated under `artifacts/build/20260417T105242Z/`.
 
 Not completed yet:
 
 - CBL carrier identity confirmation from hardware documentation or physical inspection;
 - safe/dev boot profiles applied to `/boot/extlinux/extlinux.conf`;
 - OV5647 DT overlay;
+- root-verified `insmod`/`rmmod` of the new scaffold on this machine;
 - OV5647 I2C probe;
 - chip-ID read;
 - `/dev/videoX`;
