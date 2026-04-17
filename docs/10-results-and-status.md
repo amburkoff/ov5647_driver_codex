@@ -22,11 +22,13 @@ Completed:
 - scaffold driver DT defaults aligned with NVIDIA-style supply names `vana`, `vdig`, and `vif`;
 - compile-ready OV5647 draft overlay added for reference route `A`;
 - local draft overlay build validated under `artifacts/dtbo/20260417T120134Z-ov5647-p3768-port-a-draft.dtbo`.
+- safe/dev boot entries applied to `/boot/extlinux/extlinux.conf`;
+- `DEFAULT` now points to `ov5647-safe` on disk;
+- base camera I2C bus inventory confirms `i2c-2` exists, but no downstream camera devices are currently visible without an active camera overlay.
 
 Not completed yet:
 
 - CBL carrier identity confirmation from hardware documentation or physical inspection;
-- safe/dev boot profiles applied to `/boot/extlinux/extlinux.conf`;
 - verified OV5647 DT overlay;
 - OV5647 I2C probe;
 - chip-ID read;
@@ -38,5 +40,6 @@ Next smallest safe step:
 
 - verify the physical CBL carrier identity and camera connector path;
 - bind the first controlled single-sensor target to exactly one connector route;
+- decide whether the first OV5647 DT enablement will be tested by rebooted `FDTOVERLAYS` flow or by another validated live-apply mechanism;
 - switch the draft OV5647 node from disabled to enabled only for that one controlled test path;
 - then attempt the first chip-ID probe with `allow_hw_probe=1`.

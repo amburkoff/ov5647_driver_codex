@@ -2,14 +2,19 @@
 
 ## Current State
 
-The running system currently has:
+The running kernel session currently has:
 
-- one active boot label: `primary`;
-- `DEFAULT primary`;
-- no `boot_profile=ov5647-safe`;
-- no `boot_profile=ov5647-dev`.
+- no `boot_profile=ov5647-safe` in `/proc/cmdline`;
+- no `boot_profile=ov5647-dev` in `/proc/cmdline`.
 
-This does not yet satisfy the repository safety policy.
+This is expected until the first reboot after the boot-profile change.
+
+The on-disk boot configuration now has:
+
+- `DEFAULT ov5647-safe`;
+- `LABEL ov5647-safe`;
+- `LABEL ov5647-dev`;
+- backup saved as `/boot/extlinux/extlinux.conf.20260417T120404Z.bak`.
 
 ## Prepared Workflow
 
@@ -31,7 +36,7 @@ Generated entries:
 
 Current design choice:
 
-- both generated entries stay functionally identical to the current primary boot path until OV5647 overlay validation is ready;
+- both entries stay functionally identical to the previous `primary` boot path until OV5647 overlay validation is ready;
 - this preserves recoverability while adding an unambiguous post-boot identity token.
 
 ## Recovery Policy
@@ -39,4 +44,3 @@ Current design choice:
 - safe profile must remain available at all times;
 - safe profile should stay the default until manual OV5647 probe and remove are stable;
 - recovery action is to set `DEFAULT ov5647-safe` and reboot.
-

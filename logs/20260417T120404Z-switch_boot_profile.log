@@ -1,0 +1,7 @@
+[2026-04-17T12:04:04Z] Rendered candidate boot profile config
+[2026-04-17T12:04:04Z] Source label: primary
+[2026-04-17T12:04:04Z] Source menu label: primary kernel
+[2026-04-17T12:04:04Z] Requested default profile: safe
+[2026-04-17T12:04:04Z] Generated config: /home/cam/ov5647_driver_codex/artifacts/boot/20260417T120404Z/extlinux.conf.generated
+[2026-04-17T12:04:04Z] Applied generated extlinux.conf and backed up the previous file to /boot/extlinux/extlinux.conf.20260417T120404Z.bak
+[2026-04-17T12:04:04Z] Applied generated extlinux.conf and backed up the previous file to /boot/extlinux/extlinux.conf.20260417T120404Z.bak
