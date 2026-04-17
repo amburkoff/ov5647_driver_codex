@@ -62,7 +62,9 @@ The repository now contains:
 
 - `patches/ov5647-p3768-port-a-reference.dts.in`
 - `patches/ov5647-p3768-port-a-draft.dts`
+- `patches/ov5647-p3768-port-a-probe.dts`
 
 - `ov5647-p3768-port-a-reference.dts.in` remains the unconstrained placeholder template.
 - `ov5647-p3768-port-a-draft.dts` is a compile-ready draft for local build validation only.
+- `ov5647-p3768-port-a-probe.dts` is the first compile-ready route-A candidate with the sensor node enabled for a future controlled chip-id probe.
 - The draft keeps the sensor node `status = "disabled"` and must not be treated as a verified or boot-ready carrier overlay.

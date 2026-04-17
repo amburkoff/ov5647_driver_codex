@@ -1,6 +1,6 @@
 # Results And Status
 
-Current overall status: `inventory, safe scaffold, and draft DT build validation`
+Current overall status: `inventory, safe scaffold, boot safety, and probe-overlay preparation`
 
 Completed:
 
@@ -25,6 +25,8 @@ Completed:
 - safe/dev boot entries applied to `/boot/extlinux/extlinux.conf`;
 - `DEFAULT` now points to `ov5647-safe` on disk;
 - base camera I2C bus inventory confirms `i2c-2` exists, but no downstream camera devices are currently visible without an active camera overlay.
+- reusable overlay build pipeline added through `scripts/build_overlay.sh`;
+- route-A probe-oriented overlay candidate compiles under `artifacts/dtbo/20260417T124633Z-ov5647-p3768-port-a-probe.dtbo`.
 
 Not completed yet:
 
@@ -41,5 +43,5 @@ Next smallest safe step:
 - verify the physical CBL carrier identity and camera connector path;
 - bind the first controlled single-sensor target to exactly one connector route;
 - decide whether the first OV5647 DT enablement will be tested by rebooted `FDTOVERLAYS` flow or by another validated live-apply mechanism;
-- switch the draft OV5647 node from disabled to enabled only for that one controlled test path;
+- install exactly one enabled OV5647 overlay on exactly one controlled test path;
 - then attempt the first chip-ID probe with `allow_hw_probe=1`.
