@@ -1,0 +1,7 @@
+[2026-04-17T13:11:27Z] Rendered candidate boot profile config
+[2026-04-17T13:11:27Z] Source label: ov5647-safe
+[2026-04-17T13:11:27Z] Source menu label: Jetson SAFE (no OV5647 auto-load)
+[2026-04-17T13:11:27Z] Requested default profile: dev
+[2026-04-17T13:11:27Z] Requested dev overlay: /boot/ov5647-p3768-port-a-probe.dtbo
+[2026-04-17T13:11:27Z] Generated config: /home/cam/ov5647_driver_codex/artifacts/boot/20260417T131127Z/extlinux.conf.generated
+[2026-04-17T13:11:27Z] Applied generated extlinux.conf and backed up the previous file to /boot/extlinux/extlinux.conf.20260417T131127Z.bak

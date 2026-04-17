@@ -11,10 +11,10 @@ This is expected until the first reboot after the boot-profile change.
 
 The on-disk boot configuration now has:
 
-- `DEFAULT ov5647-safe`;
+- `DEFAULT ov5647-dev`;
 - `LABEL ov5647-safe`;
 - `LABEL ov5647-dev`;
-- backup saved as `/boot/extlinux/extlinux.conf.20260417T120404Z.bak`.
+- latest backup saved as `/boot/extlinux/extlinux.conf.20260417T131127Z.bak`.
 
 ## Prepared Workflow
 
@@ -40,9 +40,10 @@ Current design choice:
 - both entries stay functionally identical to the previous `primary` boot path until OV5647 overlay validation is ready;
 - this preserves recoverability while adding an unambiguous post-boot identity token.
 - when requested, only the dev entry may carry an explicit `FDTOVERLAYS` path; the safe entry must stay overlay-free.
+- current prepared reboot package points the dev entry at `/boot/ov5647-p3768-port-a-probe.dtbo`.
 
 ## Recovery Policy
 
 - safe profile must remain available at all times;
-- safe profile should stay the default until manual OV5647 probe and remove are stable;
+- safe profile must remain manually selectable even when dev is temporarily set as `DEFAULT` for a controlled reboot experiment;
 - recovery action is to set `DEFAULT ov5647-safe` and reboot.

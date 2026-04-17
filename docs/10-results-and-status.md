@@ -27,11 +27,15 @@ Completed:
 - base camera I2C bus inventory confirms `i2c-2` exists, but no downstream camera devices are currently visible without an active camera overlay.
 - reusable overlay build pipeline added through `scripts/build_overlay.sh`;
 - route-A probe-oriented overlay candidate compiles under `artifacts/dtbo/20260417T124633Z-ov5647-p3768-port-a-probe.dtbo`.
+- route-A probe overlay staged into `/boot/ov5647-p3768-port-a-probe.dtbo`;
+- on-disk `extlinux.conf` now points `DEFAULT` to `ov5647-dev` for the next controlled reboot;
+- the dev entry now carries `FDTOVERLAYS /boot/ov5647-p3768-port-a-probe.dtbo`.
 
 Not completed yet:
 
 - CBL carrier identity confirmation from hardware documentation or physical inspection;
 - verified OV5647 DT overlay;
+- first reboot into the prepared dev profile;
 - OV5647 I2C probe;
 - chip-ID read;
 - `/dev/videoX`;
