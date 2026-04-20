@@ -134,6 +134,7 @@ static const struct reg_8 ov5647_mode0_640x480_10bpp[] = {
 	{0x3820, 0x41},
 	{0x3612, 0x59},
 	{0x3618, 0x00},
+	{0x5002, 0x41},
 	{0x3814, 0x35},
 	{0x3815, 0x35},
 	{0x3708, 0x64},
@@ -156,6 +157,7 @@ static const struct reg_8 ov5647_mode0_640x480_10bpp[] = {
 	{0x3a0d, 0x02},
 	{0x3a0e, 0x01},
 	{0x4004, 0x02},
+	{0x4837, 0x16},
 	{0x4800, 0x34},
 	{ OV5647_TABLE_END, 0x00 },
 };
@@ -703,7 +705,9 @@ static int ov5647_set_mode(struct tegracam_device *tc_dev)
 static int ov5647_start_streaming(struct tegracam_device *tc_dev)
 {
 	struct camera_common_data *s_data = tc_dev->s_data;
-	u8 val = OV5647_MIPI_CTRL00_BUS_IDLE;
+	u8 val = OV5647_MIPI_CTRL00_BUS_IDLE |
+		 OV5647_MIPI_CTRL00_CLOCK_LANE_GATE |
+		 OV5647_MIPI_CTRL00_LINE_SYNC_ENABLE;
 	int err;
 
 	dev_info(tc_dev->dev, "%s: enter\n", __func__);
@@ -720,6 +724,11 @@ static int ov5647_start_streaming(struct tegracam_device *tc_dev)
 		return err;
 
 	err = ov5647_write_reg(s_data, OV5647_REG_FRAME_OFF_NUMBER, 0x00);
+	if (err)
+		return err;
+
+	err = ov5647_write_reg(s_data, OV5647_REG_MODE_SELECT,
+			       OV5647_MODE_STREAMING);
 	if (err)
 		return err;
 
