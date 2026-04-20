@@ -963,8 +963,17 @@ static int ov5647_remove(struct i2c_client *client)
 	else
 		dev_warn(&client->dev, "%s: tc_dev->s_data is NULL\n", __func__);
 
+	dev_info(&client->dev, "%s: before tegracam_v4l2subdev_unregister\n",
+		 __func__);
 	tegracam_v4l2subdev_unregister(tc_dev);
+	dev_info(&client->dev, "%s: after tegracam_v4l2subdev_unregister\n",
+		 __func__);
+
+	dev_info(&client->dev, "%s: before tegracam_device_unregister\n",
+		 __func__);
 	tegracam_device_unregister(tc_dev);
+	dev_info(&client->dev, "%s: after tegracam_device_unregister\n",
+		 __func__);
 
 	dev_info(&client->dev, "%s: exit success\n", __func__);
 	return 0;
