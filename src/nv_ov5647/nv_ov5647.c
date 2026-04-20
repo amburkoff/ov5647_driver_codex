@@ -1037,8 +1037,13 @@ static int __init nv_ov5647_init(void)
 
 static void __exit nv_ov5647_exit(void)
 {
+	pr_info("%s: module exit enter driver_registered=%d\n",
+		OV5647_NAME, driver_registered);
+
 	if (driver_registered) {
+		pr_info("%s: before i2c_del_driver\n", OV5647_NAME);
 		i2c_del_driver(&ov5647_i2c_driver);
+		pr_info("%s: after i2c_del_driver\n", OV5647_NAME);
 		driver_registered = false;
 		pr_info("%s: i2c driver unregistered\n", OV5647_NAME);
 		return;

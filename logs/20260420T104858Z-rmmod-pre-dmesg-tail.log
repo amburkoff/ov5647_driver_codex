@@ -1,0 +1,50 @@
+[   12.026985] tegra-xudc 3550000.usb: EP 13 (type: bulk, dir: in) enabled
+[   12.027008] tegra-xudc 3550000.usb: EP 8 (type: bulk, dir: out) enabled
+[   12.027400] IPv6: ADDRCONF(NETDEV_CHANGE): usb1: link becomes ready
+[   12.028862] tegra-xudc 3550000.usb: ep 13 disabled
+[   12.028957] tegra-xudc 3550000.usb: ep 8 disabled
+[   12.048121] tegra-xudc 3550000.usb: EP 13 (type: bulk, dir: in) enabled
+[   12.048145] tegra-xudc 3550000.usb: EP 8 (type: bulk, dir: out) enabled
+[   13.936808] l4tbr0: port 2(usb1) entered blocking state
+[   13.936821] l4tbr0: port 2(usb1) entered forwarding state
+[   13.936884] l4tbr0: port 1(usb0) entered blocking state
+[   13.936888] l4tbr0: port 1(usb0) entered forwarding state
+[   13.944390] IPv6: ADDRCONF(NETDEV_CHANGE): l4tbr0: link becomes ready
+[   14.151010] nvidia-modeset: Loading NVIDIA UNIX Open Kernel Mode Setting Driver for aarch64  540.5.0  Release Build  (buildbrain@239549d1-8639-491a-b9e7-120e21430986-l1eu-vqrkv)  Thu Jan 15 19:36:45 PST 2026
+[   14.159498] [drm] [nvidia-drm] [GPU ID 0x00020000] Loading driver
+[   14.449977] NVRM rpcRmApiControl_dce: NVRM_RPC_DCE: Failed RM ctrl call cmd:0x731341 result 0xffff:
+[   14.451084] NVRM rpcRmApiControl_dce: NVRM_RPC_DCE: Failed RM ctrl call cmd:0x730282 result 0x1f:
+[   14.503521] [drm] Initialized nvidia-drm 0.0.0 20160202 for 13800000.display on minor 1
+[   14.584968] Console: switching to colour frame buffer device 240x67
+[   14.584989] nv_platform 13800000.display: [drm] fb0: nvidia-drmdrmfb frame buffer device
+[   15.816284] ACK 04 d4
+[   15.816777] ACK 04 d4
+[   15.816957] ACK 04 d4
+[   15.818882] ACK 04 d4
+[   15.821253] IPv6: ADDRCONF(NETDEV_CHANGE): wlP1p1s0: link becomes ready
+[   18.895848] loop10: detected capacity change from 0 to 8
+[   20.362033] audit: type=1326 audit(1776681731.144:2): auid=4294967295 uid=0 gid=0 ses=4294967295 subj=kernel pid=2156 comm="cupsd" exe="/snap/cups/1184/sbin/cupsd" sig=0 arch=c00000b7 syscall=55 compat=0 ip=0xffff9d0ece0c code=0x50000
+[   21.083569] rfkill: input handler disabled
+[   21.224954] audit: type=1326 audit(1776681732.008:3): auid=4294967295 uid=0 gid=0 ses=4294967295 subj=kernel pid=2156 comm="cupsd" exe="/snap/cups/1184/sbin/cupsd" sig=0 arch=c00000b7 syscall=55 compat=0 ip=0xffff9d0ece0c code=0x50000
+[   21.370756] audit: type=1326 audit(1776681732.152:4): auid=4294967295 uid=0 gid=0 ses=4294967295 subj=kernel pid=2222 comm="cups-browsed" exe="/snap/cups/1184/sbin/cups-browsed" sig=0 arch=c00000b7 syscall=274 compat=0 ip=0xffffa0845b68 code=0x50000
+[  241.103595] nv_ov5647: module verification failed: signature and/or required key missing - tainting kernel
+[  241.104406] nv_ov5647: module init register_i2c_driver=1 allow_hw_probe=1
+[  241.104691] nv_ov5647 9-0036: ov5647_probe: enter client=ov5647 addr=0x36
+[  241.104772] nv_ov5647 9-0036: ov5647_parse_dt: enter
+[  241.104797] nv_ov5647 9-0036: ov5647_parse_dt: pdata=00000000bcea20b2 mclk=extperiph1 reset_gpio=-1 pwdn_gpio=397 avdd=vana dvdd=vdig iovdd=vif
+[  241.104804] nv_ov5647 9-0036: ov5647_power_get: enter priv=000000000f7d1e4e s_data=000000004abe7c03 pdata=00000000bcea20b2
+[  241.104834] nv_ov5647 9-0036: supply vana not found, using dummy regulator
+[  241.105000] nv_ov5647 9-0036: supply vdig not found, using dummy regulator
+[  241.105063] nv_ov5647 9-0036: supply vif not found, using dummy regulator
+[  241.105180] nv_ov5647 9-0036: ov5647_power_get: exit
+[  241.105255] nv_ov5647 9-0036: tegracam sensor driver:nv_ov5647_v2.0.6
+[  241.105287] nv_ov5647 9-0036: ov5647_board_setup: enter
+[  241.105289] nv_ov5647 9-0036: ov5647_power_on: enter
+[  241.114981] nv_ov5647 9-0036: ov5647_power_on: exit success
+[  241.115436] nv_ov5647 9-0036: ov5647_board_setup: detected chip_id=0x5647
+[  241.115440] nv_ov5647 9-0036: ov5647_power_off: enter
+[  241.115931] nv_ov5647 9-0036: ov5647_power_off: exit success
+[  241.115933] nv_ov5647 9-0036: ov5647_board_setup: exit success
+[  241.115992] tegra-camrtc-capture-vi tegra-capture-vi: subdev nv_ov5647 9-0036 bound
+[  241.116462] nv_ov5647 9-0036: ov5647_probe: exit success
+[  241.120025] nv_ov5647: i2c driver registered

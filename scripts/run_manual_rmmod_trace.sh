@@ -24,11 +24,14 @@ cleanup() {
 trap cleanup EXIT
 
 sleep 1
+echo "[${TS}] collecting pre-rmmod state" | tee -a "${RUN_LOG}"
+lsmod | grep -E '^nv_ov5647\\b' | tee -a "${RUN_LOG}" || true
+sync
+sudo dmesg | tail -n 120 > "${LOG_DIR}/${TS}-rmmod-pre-dmesg-tail.log" 2>&1 || true
+sync
 echo "[${TS}] running: rmmod nv_ov5647" | tee -a "${RUN_LOG}"
 sync
-sudo dmesg | tail -n 50 > "${LOG_DIR}/${TS}-rmmod-pre-dmesg-tail.log" 2>&1 || true
-sync
-rmmod nv_ov5647
+sudo rmmod nv_ov5647
 RC=$?
 echo "[${TS}] rmmod rc=${RC}" | tee -a "${RUN_LOG}"
 sync

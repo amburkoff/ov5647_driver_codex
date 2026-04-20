@@ -6,7 +6,6 @@
 - The active dev overlay is still an assumption-driven route-A candidate from the physical-connector point of view, even though it is now logically validated by successful probe and `/dev/video0`.
 - The physical camera modules are present on both 22-pin connectors, but the exact mapping from physical connector to route `A` or `C` is still unverified.
 - The visible camera marking `JT-ZERO-V2.0 YH` suggests Raspberry Pi-market OV5647 hardware, but the exact FFC/adaptor topology is not yet documented.
-- `v4l2-ctl`, `media-ctl`, and `v4l2-compliance` are not installed at this checkpoint.
 - Local `nvidia-oot` headers are present, but full local sample sensor source files are not installed under `/usr/src/nvidia/`.
 - Unprivileged `dmesg` access is restricted, so full kernel-buffer capture requires elevated privileges.
 - `journalctl --list-boots` and `uptime -s` disagree about the current boot start time, so timestamp interpretation needs care.
@@ -24,5 +23,11 @@
   - `ov5647_remove()` dereferenced invalid state through `ov5647_power_off()`;
   - `pstore` shows `Unable to handle kernel NULL pointer dereference` followed by `Kernel panic - not syncing`;
   - further `rmmod`, `insmod`, and `STREAMON` tests must be run manually by the user after each checkpoint is committed and the new `.ko` is confirmed built.
-- The driver has only a placeholder mode table and does not yet have a validated mode-programming sequence for streaming.
-- `/dev/video0` exists, but raw capture and preview are not yet validated.
+- Even after the NULL-dereference fix, manual unload is still not stable:
+  - `sudo rmmod nv_ov5647` can still hang the Jetson hard enough that no useful `pstore` record is left behind;
+  - the latest preserved unload trace stops before any visible `ov5647_remove()` marker, so the exact stall boundary is still being narrowed.
+- The current minimal stream path reaches sensor `STREAMING` state in driver logs, but VI still times out:
+  - capture returns with zero-byte output files;
+  - kernel logs show repeated `uncorr_err: request timed out after 2500 ms`;
+  - this indicates mode/CSI timing is still incomplete even though probe and node registration succeed.
+- `/dev/video0` exists and `v4l2-compliance` has passed, but raw image delivery and preview are not yet validated.

@@ -1,6 +1,6 @@
 # Results And Status
 
-Current overall status: `inventory, safe scaffold, corrected dev overlay boot, successful single-sensor probe, and first /dev/video0`
+Current overall status: `inventory, safe scaffold, corrected dev overlay boot, successful single-sensor probe, first /dev/video0, passing v4l2-compliance, capture path reaches STREAMON but no frames yet, unload path still unstable`
 
 Completed:
 
@@ -61,18 +61,28 @@ Completed:
 - the VI stack logs:
   - `tegra-camrtc-capture-vi tegra-capture-vi: subdev nv_ov5647 9-0036 bound`
 - the current manual probe exits successfully with no panic and no negative-probe unwind warning on the successful path.
+- `v4l-utils` tooling is installed on the target and logging is wired into the repo workflow.
+- `v4l2-compliance -d /dev/video0` previously completed successfully with all reported checks passing.
+- a first manual capture path now executes through:
+  - `ov5647_power_on`
+  - `ov5647_set_mode`
+  - `ov5647_start_streaming`
+  - `ov5647_stop_streaming`
+- the first capture attempt did not hang the Jetson, but produced no image data:
+  - the raw output file was zero bytes;
+  - VI reported repeated `uncorr_err: request timed out after 2500 ms`.
 
 Not completed yet:
 
 - CBL carrier identity confirmation from hardware documentation or physical inspection;
 - verified OV5647 DT overlay;
 - verified OV5647 DT overlay for the actual physical connector used by the user;
-- raw capture;
+- stable `rmmod`;
+- raw capture with non-empty frame data;
 - live preview.
 
 Next smallest safe step:
 
-- install `v4l-utils` tooling so the media graph and node capabilities can be captured into logs;
-- record `v4l2-ctl --all`, `--list-formats-ext`, `media-ctl -p`, and `v4l2-compliance`;
-- align the first minimal mode table with the DT mode and move from successful probe to first raw frame capture;
+- finish narrowing the `rmmod` hang boundary with manual-only unload tests and new exit-path markers;
+- continue aligning the minimal mode table and CSI timing until VI receives real frames instead of timing out;
 - keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.
