@@ -133,6 +133,8 @@
 							sensor_model = "ov5647";
 							use_sensor_mode_id = "true";
 							mclk = "extperiph1";
+							clocks = <&bpmp 0x07>;
+							clock-names = "extperiph1";
 							avdd-reg = "vana";
 							dvdd-reg = "vdig";
 							iovdd-reg = "vif";

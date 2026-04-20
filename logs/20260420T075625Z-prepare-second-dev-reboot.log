@@ -1,0 +1,30 @@
+$ sudo ./scripts/switch_boot_profile.sh --apply --default dev --dev-overlay /boot/ov5647-p3768-port-a-probe.dtbo
+[2026-04-20T07:56:25Z] Rendered candidate boot profile config
+[2026-04-20T07:56:25Z] Source label: ov5647-safe
+[2026-04-20T07:56:25Z] Source menu label: Jetson SAFE (no OV5647 auto-load)
+[2026-04-20T07:56:25Z] Requested default profile: dev
+[2026-04-20T07:56:25Z] Requested dev overlay: /boot/ov5647-p3768-port-a-probe.dtbo
+[2026-04-20T07:56:25Z] Detected UEFI DTB: /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb
+[2026-04-20T07:56:25Z] Generated config: /home/cam/ov5647_driver_codex/artifacts/boot/20260420T075625Z/extlinux.conf.generated
+[2026-04-20T07:56:25Z] Applied generated extlinux.conf and backed up the previous file to /boot/extlinux/extlinux.conf.20260420T075625Z.bak
+
+$ sed -n '1,220p' /boot/extlinux/extlinux.conf
+TIMEOUT 30
+DEFAULT ov5647-dev
+
+MENU TITLE L4T boot options
+
+LABEL ov5647-safe
+      MENU LABEL Jetson SAFE (no OV5647 auto-load)
+      LINUX /boot/Image
+      INITRD /boot/initrd
+      FDT /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb
+      APPEND ${cbootargs} root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-safe
+
+LABEL ov5647-dev
+      MENU LABEL Jetson DEV OV5647 auto-load
+      LINUX /boot/Image
+      INITRD /boot/initrd
+      FDT /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb
+      OVERLAYS /boot/ov5647-p3768-port-a-probe.dtbo
+      APPEND ${cbootargs} root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev

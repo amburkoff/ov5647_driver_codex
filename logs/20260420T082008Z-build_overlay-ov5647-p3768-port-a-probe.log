@@ -1,0 +1,13 @@
+[2026-04-20T08:20:08Z] Building overlay
+[2026-04-20T08:20:08Z] Source: patches/ov5647-p3768-port-a-probe.dts
+[2026-04-20T08:20:08Z] Output: /home/cam/ov5647_driver_codex/artifacts/dtbo/20260420T082008Z-ov5647-p3768-port-a-probe.dtbo
+$ dtc -@ -I dts -O dtb -o /home/cam/ov5647_driver_codex/artifacts/dtbo/20260420T082008Z-ov5647-p3768-port-a-probe.dtbo patches/ov5647-p3768-port-a-probe.dts
+patches/ov5647-p3768-port-a-probe.dts:76.10-199.6: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0: node has a unit name, but no reg or ranges property
+patches/ov5647-p3768-port-a-probe.dts:77.21-110.7: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/host1x@13e00000: node has a unit name, but no reg or ranges property
+patches/ov5647-p3768-port-a-probe.dts:78.21-109.8: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000: node has a unit name, but no reg or ranges property
+patches/ov5647-p3768-port-a-probe.dts:93.43-97.12: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@0/endpoint@0: node has a unit name, but no reg or ranges property
+patches/ov5647-p3768-port-a-probe.dts:103.44-105.12: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@1/endpoint@1: node has a unit name, but no reg or ranges property
+patches/ov5647-p3768-port-a-probe.dts:42.11-55.7: Warning (graph_child_address): /fragment@0/__overlay__/tegra-capture-vi/ports: graph node has single child node 'port@0', #address-cells/#size-cells are not necessary
+patches/ov5647-p3768-port-a-probe.dts:182.14-195.10: Warning (graph_child_address): /fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports: graph node has single child node 'port@0', #address-cells/#size-cells are not necessary
+[2026-04-20T08:20:08Z] Overlay build finished
+[2026-04-20T08:20:08Z] Artifacts saved under /home/cam/ov5647_driver_codex/artifacts/dtbo/20260420T082008Z-ov5647-p3768-port-a-probe.dtbo

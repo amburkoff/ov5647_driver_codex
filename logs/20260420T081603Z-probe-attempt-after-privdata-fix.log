@@ -1,0 +1,15 @@
+$ sudo dmesg -C
+
+$ sudo insmod ./src/nv_ov5647/nv_ov5647.ko register_i2c_driver=1 allow_hw_probe=1
+insmod_rc=0
+
+$ sudo dmesg
+[  606.107749] nv_ov5647: module verification failed: signature and/or required key missing - tainting kernel
+[  606.108348] nv_ov5647: module init register_i2c_driver=1 allow_hw_probe=1
+[  606.108581] nv_ov5647 9-0036: ov5647_probe: enter client=ov5647 addr=0x36
+[  606.108662] nv_ov5647 9-0036: ov5647_parse_dt: enter
+[  606.108680] nv_ov5647 9-0036: ov5647_parse_dt: mclk=extperiph1 reset_gpio=-1 pwdn_gpio=397 avdd=vana dvdd=vdig iovdd=vif
+[  606.108684] nv_ov5647 9-0036: unable to power get
+[  606.108685] nv_ov5647 9-0036: ov5647_probe: tegracam_device_register failed err=-14
+[  606.108720] nv_ov5647: probe of 9-0036 failed with error -14
+[  606.108792] nv_ov5647: i2c driver registered

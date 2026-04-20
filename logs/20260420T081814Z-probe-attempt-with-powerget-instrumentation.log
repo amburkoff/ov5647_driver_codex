@@ -1,0 +1,17 @@
+$ sudo dmesg -C
+
+$ sudo insmod ./src/nv_ov5647/nv_ov5647.ko register_i2c_driver=1 allow_hw_probe=1
+
+$ sudo dmesg
+[  736.823983] nv_ov5647: module init register_i2c_driver=1 allow_hw_probe=1
+[  736.824088] nv_ov5647 9-0036: ov5647_probe: enter client=ov5647 addr=0x36
+[  736.824168] nv_ov5647 9-0036: ov5647_parse_dt: enter
+[  736.824192] nv_ov5647 9-0036: ov5647_parse_dt: pdata=00000000ae83306a mclk=extperiph1 reset_gpio=-1 pwdn_gpio=397 avdd=vana dvdd=vdig iovdd=vif
+[  736.824199] nv_ov5647 9-0036: ov5647_power_get: enter priv=0000000000000000 s_data=0000000034512d23 pdata=00000000ae83306a
+[  736.824203] nv_ov5647 9-0036: ov5647_power_get: priv is NULL
+[  736.824206] nv_ov5647 9-0036: unable to power get
+[  736.824208] nv_ov5647 9-0036: ov5647_probe: tegracam_device_register failed err=-14
+[  736.824246] nv_ov5647: probe of 9-0036 failed with error -14
+[  736.824318] nv_ov5647: i2c driver registered
+
+$ sudo rmmod nv_ov5647

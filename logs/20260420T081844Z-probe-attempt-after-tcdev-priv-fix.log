@@ -1,0 +1,40 @@
+$ sudo dmesg -C
+
+$ sudo insmod ./src/nv_ov5647/nv_ov5647.ko register_i2c_driver=1 allow_hw_probe=1
+
+$ sudo dmesg
+[  767.298303] nv_ov5647: module init register_i2c_driver=1 allow_hw_probe=1
+[  767.298405] nv_ov5647 9-0036: ov5647_probe: enter client=ov5647 addr=0x36
+[  767.298492] nv_ov5647 9-0036: ov5647_parse_dt: enter
+[  767.298511] nv_ov5647 9-0036: ov5647_parse_dt: pdata=00000000b4120c9e mclk=extperiph1 reset_gpio=-1 pwdn_gpio=397 avdd=vana dvdd=vdig iovdd=vif
+[  767.298517] nv_ov5647 9-0036: ov5647_power_get: enter priv=00000000bb1ded14 s_data=0000000046d1e769 pdata=00000000b4120c9e
+[  767.298541] nv_ov5647 9-0036: supply vana not found, using dummy regulator
+[  767.298662] nv_ov5647 9-0036: supply vdig not found, using dummy regulator
+[  767.298688] nv_ov5647 9-0036: supply vif not found, using dummy regulator
+[  767.298713] nv_ov5647 9-0036: ov5647_power_get: mclk get failed err=-2
+[  767.298714] nv_ov5647 9-0036: unable to power get
+[  767.298716] nv_ov5647 9-0036: ov5647_probe: tegracam_device_register failed err=-14
+[  767.298863] nv_ov5647: probe of 9-0036 failed with error -14
+[  767.298921] nv_ov5647: i2c driver registered
+
+$ lsmod | grep nv_ov5647 || true
+nv_ov5647              20480  0
+tegra_camera          221184  4 nvhost_isp5,nvhost_nvcsi_t194,nv_ov5647,nvhost_vi5
+
+$ sudo rmmod nv_ov5647
+
+$ sudo dmesg | tail -n 80
+[  767.298303] nv_ov5647: module init register_i2c_driver=1 allow_hw_probe=1
+[  767.298405] nv_ov5647 9-0036: ov5647_probe: enter client=ov5647 addr=0x36
+[  767.298492] nv_ov5647 9-0036: ov5647_parse_dt: enter
+[  767.298511] nv_ov5647 9-0036: ov5647_parse_dt: pdata=00000000b4120c9e mclk=extperiph1 reset_gpio=-1 pwdn_gpio=397 avdd=vana dvdd=vdig iovdd=vif
+[  767.298517] nv_ov5647 9-0036: ov5647_power_get: enter priv=00000000bb1ded14 s_data=0000000046d1e769 pdata=00000000b4120c9e
+[  767.298541] nv_ov5647 9-0036: supply vana not found, using dummy regulator
+[  767.298662] nv_ov5647 9-0036: supply vdig not found, using dummy regulator
+[  767.298688] nv_ov5647 9-0036: supply vif not found, using dummy regulator
+[  767.298713] nv_ov5647 9-0036: ov5647_power_get: mclk get failed err=-2
+[  767.298714] nv_ov5647 9-0036: unable to power get
+[  767.298716] nv_ov5647 9-0036: ov5647_probe: tegracam_device_register failed err=-14
+[  767.298863] nv_ov5647: probe of 9-0036 failed with error -14
+[  767.298921] nv_ov5647: i2c driver registered
+[  767.335695] nv_ov5647: i2c driver unregistered

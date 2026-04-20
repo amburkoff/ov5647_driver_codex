@@ -1,0 +1,5 @@
+$ sudo cp artifacts/dtbo/20260420T082008Z-ov5647-p3768-port-a-probe.dtbo /boot/ov5647-p3768-port-a-probe.dtbo
+
+$ sha256sum artifacts/dtbo/20260420T082008Z-ov5647-p3768-port-a-probe.dtbo /boot/ov5647-p3768-port-a-probe.dtbo
+69b9f6e55beb448b7644c2531455c2378a08ecae42630703800e4899688774c3  artifacts/dtbo/20260420T082008Z-ov5647-p3768-port-a-probe.dtbo
+69b9f6e55beb448b7644c2531455c2378a08ecae42630703800e4899688774c3  /boot/ov5647-p3768-port-a-probe.dtbo

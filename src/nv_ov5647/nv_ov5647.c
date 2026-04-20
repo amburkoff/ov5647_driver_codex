@@ -208,8 +208,8 @@ static struct camera_common_pdata *ov5647_parse_dt(struct tegracam_device *tc_de
 		pdata->pwdn_gpio = gpio;
 
 	dev_info(dev,
-		 "%s: mclk=%s reset_gpio=%d pwdn_gpio=%d avdd=%s dvdd=%s iovdd=%s\n",
-		 __func__, pdata->mclk_name,
+		 "%s: pdata=%p mclk=%s reset_gpio=%d pwdn_gpio=%d avdd=%s dvdd=%s iovdd=%s\n",
+		 __func__, pdata, pdata->mclk_name,
 		 (int)pdata->reset_gpio, (int)pdata->pwdn_gpio,
 		 pdata->regulators.avdd ?: "unset",
 		 pdata->regulators.dvdd ?: "unset",
@@ -227,14 +227,27 @@ static int ov5647_power_get(struct tegracam_device *tc_dev)
 	struct camera_common_power_rail *pw;
 	int err;
 
-	if (!priv || !s_data || !s_data->pdata)
+	dev_info(dev, "%s: enter priv=%p s_data=%p pdata=%p\n",
+		 __func__, priv, s_data, s_data ? s_data->pdata : NULL);
+
+	if (!priv) {
+		dev_err(dev, "%s: priv is NULL\n", __func__);
 		return -EINVAL;
+	}
+
+	if (!s_data) {
+		dev_err(dev, "%s: s_data is NULL\n", __func__);
+		return -EINVAL;
+	}
+
+	if (!s_data->pdata) {
+		dev_err(dev, "%s: s_data->pdata is NULL\n", __func__);
+		return -EINVAL;
+	}
 
 	pdata = s_data->pdata;
 	pw = &priv->power;
 	s_data->power = pw;
-
-	dev_info(dev, "%s: enter\n", __func__);
 
 	pw->reset_gpio = pdata->reset_gpio;
 	pw->pwdn_gpio = pdata->pwdn_gpio;
@@ -617,8 +630,8 @@ static int ov5647_probe(struct i2c_client *client,
 	tc_dev->numctrls = ARRAY_SIZE(ov5647_ctrl_cid_list);
 	tc_dev->ctrl_cid_list = ov5647_ctrl_cid_list;
 	tc_dev->version = tegracam_version(2, 0, 0);
+	tc_dev->priv = priv;
 
-	tegracam_set_privdata(tc_dev, priv);
 	i2c_set_clientdata(client, tc_dev);
 	priv->tc_dev = tc_dev;
 
@@ -636,6 +649,7 @@ static int ov5647_probe(struct i2c_client *client,
 		goto unregister_device;
 	}
 
+	tegracam_set_privdata(tc_dev, priv);
 	priv->s_data->priv = priv;
 
 	if (!sensor_common_parse_num_modes(dev))

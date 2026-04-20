@@ -1,6 +1,6 @@
 # Results And Status
 
-Current overall status: `inventory, safe scaffold, boot safety, and probe-overlay preparation`
+Current overall status: `inventory, safe scaffold, corrected dev overlay boot, first controlled probe, and mclk bring-up debugging`
 
 Completed:
 
@@ -31,14 +31,24 @@ Completed:
 - first dev reboot completed successfully and confirmed `boot_profile=ov5647-dev`;
 - first dev reboot showed that `FDTOVERLAYS` did not apply the custom camera overlay on this target;
 - boot tooling was corrected to UEFI-style `FDT + OVERLAYS`;
-- on-disk `extlinux.conf` has been returned to `DEFAULT ov5647-safe` while keeping the corrected dev entry available.
+- a second dev reboot with the corrected `OVERLAYS` syntax completed successfully without a boot hang;
+- the corrected dev boot now applies the custom probe overlay into the live DT;
+- live DT now contains `cam_i2cmux`, `ov5647_a@36`, `tegra_sinterface = "serial_b"`, `lane_polarity = "6"`, and `bus-width = <2>`;
+- the muxed downstream camera I2C bus appears as `i2c-9`;
+- pstore evidence from the previous unexpected reboot was captured and tied to a kernel panic in `nv_ov5647` during `insmod`;
+- the `tegracam_set_privdata()` ordering bug that caused the kernel panic has been fixed in the driver;
+- controlled `insmod` no longer panics the kernel on the current code;
+- current controlled probe reaches regulator and clock acquisition, then fails cleanly at `mclk get` with `err=-2`;
+- the probe overlay source was updated to add an explicit `clocks = <&bpmp 0x07>` binding for `extperiph1`;
+- the updated probe overlay has been rebuilt and staged to `/boot/ov5647-p3768-port-a-probe.dtbo` for the next reboot.
 
 Not completed yet:
 
 - CBL carrier identity confirmation from hardware documentation or physical inspection;
 - verified OV5647 DT overlay;
-- second reboot into the corrected UEFI-style dev profile;
-- OV5647 I2C probe;
+- successful `mclk` acquisition in probe;
+- OV5647 chip-ID read;
+- confirmed sensor response at `0x36` on the muxed downstream bus;
 - chip-ID read;
 - `/dev/videoX`;
 - raw capture;
@@ -46,8 +56,8 @@ Not completed yet:
 
 Next smallest safe step:
 
-- verify the physical CBL carrier identity and camera connector path;
-- bind the first controlled single-sensor target to exactly one connector route;
-- decide whether the first OV5647 DT enablement will be tested by rebooted `FDTOVERLAYS` flow or by another validated live-apply mechanism;
-- install exactly one enabled OV5647 overlay on exactly one controlled test path;
-- then attempt the first chip-ID probe with `allow_hw_probe=1`.
+- reboot once more into `ov5647-dev` so the updated overlay with the explicit clock phandle is applied;
+- confirm the live DT now carries the new clock binding;
+- rerun the controlled module probe and verify whether `mclk get failed err=-2` is resolved;
+- if `mclk` comes up, continue immediately to power-on sequencing and chip-ID read;
+- if `mclk` still fails, compare the live clock phandle and sample camera DT bindings against the active BSP DT before changing any other variable.
