@@ -40,7 +40,10 @@ Current design choice:
 - both entries stay functionally identical to the previous `primary` boot path until OV5647 overlay validation is ready;
 - this preserves recoverability while adding an unambiguous post-boot identity token.
 - when requested, only the dev entry may carry an explicit `FDTOVERLAYS` path; the safe entry must stay overlay-free.
-- current prepared reboot package points the dev entry at `/boot/ov5647-p3768-port-a-probe.dtbo`.
+- on this r36.x target, local NVIDIA `jetson-io` tooling indicates the UEFI/L4tLauncher path should use `FDT + OVERLAYS`, not `FDTOVERLAYS`.
+- current corrected dev entry points at:
+  - `FDT /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb`
+  - `OVERLAYS /boot/ov5647-p3768-port-a-probe.dtbo`
 
 ## Recovery Policy
 

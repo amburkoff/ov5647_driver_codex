@@ -1,0 +1,922 @@
+[2026-04-20T07:52:14Z] CMD: bash -lc journalctl -k -b 2>&1 || true
+Aug 26 18:23:06 cam-desktop kernel: Booting Linux on physical CPU 0x0000000000 [0x410fd421]
+Aug 26 18:23:06 cam-desktop kernel: Linux version 5.15.185-tegra (buildbrain@239549d1-8639-491a-b9e7-120e21430986-l1eu-vqrkv) (aarch64-buildroot-linux-gnu-gcc.br_real (Buildroot 2022.08) 11.3.0, GNU ld (GNU Binutils) 2.38) #1 SMP PREEMPT Thu Jan 15 19:24:38 PST 2026 ()
+Aug 26 18:23:06 cam-desktop kernel: Machine model: NVIDIA Jetson Orin NX Engineering Reference Developer Kit
+Aug 26 18:23:06 cam-desktop kernel: efi: EFI v2.70 by EDK II
+Aug 26 18:23:06 cam-desktop kernel: efi: RTPROP=0x46de1e698 TPMFinalLog=0x45e8f0000 SMBIOS=0xffff0000 SMBIOS 3.0=0x46da40000 MEMATTR=0x467efe018 ESRT=0x468420518 TPMEventLog=0x45e0cc018 RNG=0x45e900018 MEMRESERVE=0x45e901f98 
+Aug 26 18:23:06 cam-desktop kernel: random: crng init done
+Aug 26 18:23:06 cam-desktop kernel: secureboot: Secure boot disabled
+Aug 26 18:23:06 cam-desktop kernel: esrt: Reserving ESRT space from 0x0000000468420518 to 0x0000000468420550.
+Aug 26 18:23:06 cam-desktop kernel: Reserved memory: created CMA memory pool at 0x0000000449000000, size 256 MiB
+Aug 26 18:23:06 cam-desktop kernel: OF: reserved mem: initialized node linux,cma, compatible id shared-dma-pool
+Aug 26 18:23:06 cam-desktop kernel: NUMA: No NUMA configuration found
+Aug 26 18:23:06 cam-desktop kernel: NUMA: Faking a node at [mem 0x0000000080000000-0x0000000477ffffff]
+Aug 26 18:23:06 cam-desktop kernel: NUMA: NODE_DATA [mem 0x470300800-0x470302fff]
+Aug 26 18:23:06 cam-desktop kernel: Zone ranges:
+Aug 26 18:23:06 cam-desktop kernel:   DMA      [mem 0x0000000080000000-0x00000000ffffffff]
+Aug 26 18:23:06 cam-desktop kernel:   DMA32    empty
+Aug 26 18:23:06 cam-desktop kernel:   Normal   [mem 0x0000000100000000-0x0000000477ffffff]
+Aug 26 18:23:06 cam-desktop kernel: Movable zone start for each node
+Aug 26 18:23:06 cam-desktop kernel: Early memory node ranges
+Aug 26 18:23:06 cam-desktop kernel:   node   0: [mem 0x0000000080000000-0x00000000bdffffff]
+Aug 26 18:23:06 cam-desktop kernel:   node   0: [mem 0x00000000c2000000-0x00000000fffdffff]
+Aug 26 18:23:06 cam-desktop kernel:   node   0: [mem 0x00000000fffe0000-0x00000000ffffffff]
+Aug 26 18:23:06 cam-desktop kernel:   node   0: [mem 0x0000000100000000-0x000000045d48ffff]
+Aug 26 18:23:06 cam-desktop kernel:   node   0: [mem 0x000000045d490000-0x000000045e0bffff]
+Aug 26 18:23:06 cam-desktop kernel:   node   0: [mem 0x000000045e0c0000-0x000000045e0effff]
+Aug 26 18:23:06 cam-desktop kernel:   node   0: [mem 0x000000045e0f0000-0x000000045e0fffff]
+Aug 26 18:23:06 cam-desktop kernel:   node   0: [mem 0x000000045e100000-0x000000045e14ffff]
+Aug 26 18:23:06 cam-desktop kernel:   node   0: [mem 0x000000045e150000-0x000000045e30ffff]
+Aug 26 18:23:06 cam-desktop kernel:   node   0: [mem 0x000000045e310000-0x000000045e8effff]
+Aug 26 18:23:06 cam-desktop kernel:   node   0: [mem 0x000000045e8f0000-0x000000045e8fffff]
+Aug 26 18:23:06 cam-desktop kernel:   node   0: [mem 0x000000045e900000-0x000000046bedffff]
+Aug 26 18:23:06 cam-desktop kernel:   node   0: [mem 0x000000046bee0000-0x000000046de1ffff]
+Aug 26 18:23:06 cam-desktop kernel:   node   0: [mem 0x000000046de20000-0x0000000471dfffff]
+Aug 26 18:23:06 cam-desktop kernel:   node   0: [mem 0x0000000471e00000-0x0000000471ffffff]
+Aug 26 18:23:06 cam-desktop kernel:   node   0: [mem 0x0000000472000000-0x000000047259ffff]
+Aug 26 18:23:06 cam-desktop kernel:   node   0: [mem 0x0000000476000000-0x0000000477ffffff]
+Aug 26 18:23:06 cam-desktop kernel: mminit::pageflags_layout_widths Section 0 Node 4 Zone 2 Lastcpupid 16 Kasantag 0 Flags 24
+Aug 26 18:23:06 cam-desktop kernel: mminit::pageflags_layout_shifts Section 21 Node 4 Zone 2 Lastcpupid 16 Kasantag 0
+Aug 26 18:23:06 cam-desktop kernel: mminit::pageflags_layout_pgshifts Section 0 Node 60 Zone 58 Lastcpupid 42 Kasantag 0
+Aug 26 18:23:06 cam-desktop kernel: mminit::pageflags_layout_nodezoneid Node/Zone ID: 64 -> 58
+Aug 26 18:23:06 cam-desktop kernel: mminit::pageflags_layout_usage location: 64 -> 42 layout 42 -> 24 unused 24 -> 0 page-flags
+Aug 26 18:23:06 cam-desktop kernel: Initmem setup node 0 [mem 0x0000000080000000-0x0000000477ffffff]
+Aug 26 18:23:06 cam-desktop kernel: mminit::memmap_init Initialising map node 0 zone 0 pfns 524288 -> 1048576
+Aug 26 18:23:06 cam-desktop kernel: mminit::memmap_init Initialising map node 0 zone 2 pfns 1048576 -> 4685824
+Aug 26 18:23:06 cam-desktop kernel: On node 0, zone DMA: 16384 pages in unavailable ranges
+Aug 26 18:23:06 cam-desktop kernel: On node 0, zone Normal: 14944 pages in unavailable ranges
+Aug 26 18:23:06 cam-desktop kernel: psci: probing for conduit method from DT.
+Aug 26 18:23:06 cam-desktop kernel: psci: PSCIv1.1 detected in firmware.
+Aug 26 18:23:06 cam-desktop kernel: psci: Using standard PSCI v0.2 function IDs
+Aug 26 18:23:06 cam-desktop kernel: psci: Trusted OS migration not required
+Aug 26 18:23:06 cam-desktop kernel: psci: SMC Calling Convention v1.2
+Aug 26 18:23:06 cam-desktop kernel: percpu: Embedded 30 pages/cpu s83480 r8192 d31208 u122880
+Aug 26 18:23:06 cam-desktop kernel: pcpu-alloc: s83480 r8192 d31208 u122880 alloc=30*4096
+Aug 26 18:23:06 cam-desktop kernel: pcpu-alloc: [0] 0 [0] 1 [0] 2 [0] 3 [0] 4 [0] 5 [0] 6 [0] 7 
+Aug 26 18:23:06 cam-desktop kernel: Detected PIPT I-cache on CPU0
+Aug 26 18:23:06 cam-desktop kernel: CPU features: detected: Address authentication (architected algorithm)
+Aug 26 18:23:06 cam-desktop kernel: CPU features: detected: GIC system register CPU interface
+Aug 26 18:23:06 cam-desktop kernel: CPU features: detected: Virtualization Host Extensions
+Aug 26 18:23:06 cam-desktop kernel: CPU features: detected: Hardware dirty bit management
+Aug 26 18:23:06 cam-desktop kernel: CPU features: detected: Spectre-v4
+Aug 26 18:23:06 cam-desktop kernel: CPU features: detected: Spectre-BHB
+Aug 26 18:23:06 cam-desktop kernel: CPU features: kernel page table isolation forced ON by KASLR
+Aug 26 18:23:06 cam-desktop kernel: CPU features: detected: Kernel page table isolation (KPTI)
+Aug 26 18:23:06 cam-desktop kernel: alternatives: patching kernel code
+Aug 26 18:23:06 cam-desktop kernel: mminit::zonelist general 0:DMA = 0:DMA 
+Aug 26 18:23:06 cam-desktop kernel: mminit::zonelist general 0:Normal = 0:Normal 0:DMA 
+Aug 26 18:23:06 cam-desktop kernel: mminit::zonelist thisnode 0:DMA = 0:DMA 
+Aug 26 18:23:06 cam-desktop kernel: mminit::zonelist thisnode 0:Normal = 0:Normal 0:DMA 
+Aug 26 18:23:06 cam-desktop kernel: Built 1 zonelists, mobility grouping on.  Total pages: 4065184
+Aug 26 18:23:06 cam-desktop kernel: Policy zone: Normal
+Aug 26 18:23:06 cam-desktop kernel: Kernel command line: root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+Aug 26 18:23:06 cam-desktop kernel: Unknown kernel command line parameters "boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000", will be passed to user space.
+Aug 26 18:23:06 cam-desktop kernel: Dentry cache hash table entries: 2097152 (order: 12, 16777216 bytes, linear)
+Aug 26 18:23:06 cam-desktop kernel: Inode-cache hash table entries: 1048576 (order: 11, 8388608 bytes, linear)
+Aug 26 18:23:06 cam-desktop kernel: mem auto-init: stack:off, heap alloc:off, heap free:off
+Aug 26 18:23:06 cam-desktop kernel: software IO TLB: mapped [mem 0x00000000fbfe0000-0x00000000fffe0000] (64MB)
+Aug 26 18:23:06 cam-desktop kernel: Memory: 15732972K/16520832K available (20480K kernel code, 4086K rwdata, 10172K rodata, 7744K init, 529K bss, 525716K reserved, 262144K cma-reserved)
+Aug 26 18:23:06 cam-desktop kernel: SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=8, Nodes=1
+Aug 26 18:23:06 cam-desktop kernel: trace event string verifier disabled
+Aug 26 18:23:06 cam-desktop kernel: rcu: Preemptible hierarchical RCU implementation.
+Aug 26 18:23:06 cam-desktop kernel: rcu:         RCU event tracing is enabled.
+Aug 26 18:23:06 cam-desktop kernel: rcu:         RCU restricting CPUs from NR_CPUS=256 to nr_cpu_ids=8.
+Aug 26 18:23:06 cam-desktop kernel:         Trampoline variant of Tasks RCU enabled.
+Aug 26 18:23:06 cam-desktop kernel:         Rude variant of Tasks RCU enabled.
+Aug 26 18:23:06 cam-desktop kernel:         Tracing variant of Tasks RCU enabled.
+Aug 26 18:23:06 cam-desktop kernel: rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+Aug 26 18:23:06 cam-desktop kernel: rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=8
+Aug 26 18:23:06 cam-desktop kernel: NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+Aug 26 18:23:06 cam-desktop kernel: GICv3: GIC: Using split EOI/Deactivate mode
+Aug 26 18:23:06 cam-desktop kernel: GICv3: 960 SPIs implemented
+Aug 26 18:23:06 cam-desktop kernel: GICv3: 0 Extended SPIs implemented
+Aug 26 18:23:06 cam-desktop kernel: GICv3: Distributor has no Range Selector support
+Aug 26 18:23:06 cam-desktop kernel: Root IRQ handler: gic_handle_irq
+Aug 26 18:23:06 cam-desktop kernel: GICv3: 16 PPIs implemented
+Aug 26 18:23:06 cam-desktop kernel: GICv3: CPU0: found redistributor 0 region 0:0x000000000f440000
+Aug 26 18:23:06 cam-desktop kernel: arch_timer: cp15 timer(s) running at 31.25MHz (phys).
+Aug 26 18:23:06 cam-desktop kernel: clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0xe6a171046, max_idle_ns: 881590405314 ns
+Aug 26 18:23:06 cam-desktop kernel: sched_clock: 56 bits at 31MHz, resolution 32ns, wraps every 4398046511088ns
+Aug 26 18:23:06 cam-desktop kernel: Console: colour dummy device 80x25
+Aug 26 18:23:06 cam-desktop kernel: printk: console [tty0] enabled
+Aug 26 18:23:06 cam-desktop kernel: Calibrating delay loop (skipped), value calculated using timer frequency.. 62.50 BogoMIPS (lpj=125000)
+Aug 26 18:23:06 cam-desktop kernel: pid_max: default: 32768 minimum: 301
+Aug 26 18:23:06 cam-desktop kernel: LSM: Security Framework initializing
+Aug 26 18:23:06 cam-desktop kernel: Yama: becoming mindful.
+Aug 26 18:23:06 cam-desktop kernel: SELinux:  Initializing.
+Aug 26 18:23:06 cam-desktop kernel: Mount-cache hash table entries: 32768 (order: 6, 262144 bytes, linear)
+Aug 26 18:23:06 cam-desktop kernel: Mountpoint-cache hash table entries: 32768 (order: 6, 262144 bytes, linear)
+Aug 26 18:23:06 cam-desktop kernel: rcu: Hierarchical SRCU implementation.
+Aug 26 18:23:06 cam-desktop kernel: Tegra Revision: A01 SKU: 211 CPU Process: 0 SoC Process: 0
+Aug 26 18:23:06 cam-desktop kernel: Remapping and enabling EFI services.
+Aug 26 18:23:06 cam-desktop kernel: smp: Bringing up secondary CPUs ...
+Aug 26 18:23:06 cam-desktop kernel: Detected PIPT I-cache on CPU1
+Aug 26 18:23:06 cam-desktop kernel: GICv3: CPU1: found redistributor 100 region 0:0x000000000f460000
+Aug 26 18:23:06 cam-desktop kernel: CPU1: Booted secondary processor 0x0000000100 [0x410fd421]
+Aug 26 18:23:06 cam-desktop kernel: Detected PIPT I-cache on CPU2
+Aug 26 18:23:06 cam-desktop kernel: GICv3: CPU2: found redistributor 200 region 0:0x000000000f480000
+Aug 26 18:23:06 cam-desktop kernel: CPU2: Booted secondary processor 0x0000000200 [0x410fd421]
+Aug 26 18:23:06 cam-desktop kernel: Detected PIPT I-cache on CPU3
+Aug 26 18:23:06 cam-desktop kernel: GICv3: CPU3: found redistributor 300 region 0:0x000000000f4a0000
+Aug 26 18:23:06 cam-desktop kernel: CPU3: Booted secondary processor 0x0000000300 [0x410fd421]
+Aug 26 18:23:06 cam-desktop kernel: Detected PIPT I-cache on CPU4
+Aug 26 18:23:06 cam-desktop kernel: GICv3: CPU4: found redistributor 10000 region 0:0x000000000f4c0000
+Aug 26 18:23:06 cam-desktop kernel: CPU4: Booted secondary processor 0x0000010000 [0x410fd421]
+Aug 26 18:23:06 cam-desktop kernel: Detected PIPT I-cache on CPU5
+Aug 26 18:23:06 cam-desktop kernel: GICv3: CPU5: found redistributor 10100 region 0:0x000000000f4e0000
+Aug 26 18:23:06 cam-desktop kernel: CPU5: Booted secondary processor 0x0000010100 [0x410fd421]
+Aug 26 18:23:06 cam-desktop kernel: Detected PIPT I-cache on CPU6
+Aug 26 18:23:06 cam-desktop kernel: GICv3: CPU6: found redistributor 10200 region 0:0x000000000f500000
+Aug 26 18:23:06 cam-desktop kernel: CPU6: Booted secondary processor 0x0000010200 [0x410fd421]
+Aug 26 18:23:06 cam-desktop kernel: Detected PIPT I-cache on CPU7
+Aug 26 18:23:06 cam-desktop kernel: GICv3: CPU7: found redistributor 10300 region 0:0x000000000f520000
+Aug 26 18:23:06 cam-desktop kernel: CPU7: Booted secondary processor 0x0000010300 [0x410fd421]
+Aug 26 18:23:06 cam-desktop kernel: smp: Brought up 1 node, 8 CPUs
+Aug 26 18:23:06 cam-desktop kernel: SMP: Total of 8 processors activated.
+Aug 26 18:23:06 cam-desktop kernel: CPU features: detected: 32-bit EL0 Support
+Aug 26 18:23:06 cam-desktop kernel: CPU features: detected: Data cache clean to the PoU not required for I/D coherence
+Aug 26 18:23:06 cam-desktop kernel: CPU features: detected: Common not Private translations
+Aug 26 18:23:06 cam-desktop kernel: CPU features: detected: CRC32 instructions
+Aug 26 18:23:06 cam-desktop kernel: CPU features: detected: Data cache clean to Point of Persistence
+Aug 26 18:23:06 cam-desktop kernel: CPU features: detected: Generic authentication (architected algorithm)
+Aug 26 18:23:06 cam-desktop kernel: CPU features: detected: RCpc load-acquire (LDAPR)
+Aug 26 18:23:06 cam-desktop kernel: CPU features: detected: LSE atomic instructions
+Aug 26 18:23:06 cam-desktop kernel: CPU features: detected: Privileged Access Never
+Aug 26 18:23:06 cam-desktop kernel: CPU features: detected: RAS Extension Support
+Aug 26 18:23:06 cam-desktop kernel: CPU features: detected: Speculative Store Bypassing Safe (SSBS)
+Aug 26 18:23:06 cam-desktop kernel: CPU: All CPU(s) started at EL2
+Aug 26 18:23:06 cam-desktop kernel: devtmpfs: initialized
+Aug 26 18:23:06 cam-desktop kernel: KASLR enabled
+Aug 26 18:23:06 cam-desktop kernel: clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+Aug 26 18:23:06 cam-desktop kernel: futex hash table entries: 2048 (order: 5, 131072 bytes, linear)
+Aug 26 18:23:06 cam-desktop kernel: pinctrl core: initialized pinctrl subsystem
+Aug 26 18:23:06 cam-desktop kernel: SMBIOS 3.6.0 present.
+Aug 26 18:23:06 cam-desktop kernel: DMI: NVIDIA NVIDIA Jetson Orin NX Engineering Reference Developer Kit/Jetson, BIOS 36.5.0-gcid-43688277 01/16/2026
+Aug 26 18:23:06 cam-desktop kernel: NET: Registered PF_NETLINK/PF_ROUTE protocol family
+Aug 26 18:23:06 cam-desktop kernel: DMA: preallocated 2048 KiB GFP_KERNEL pool for atomic allocations
+Aug 26 18:23:06 cam-desktop kernel: DMA: preallocated 2048 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+Aug 26 18:23:06 cam-desktop kernel: DMA: preallocated 2048 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+Aug 26 18:23:06 cam-desktop kernel: audit: initializing netlink subsys (disabled)
+Aug 26 18:23:06 cam-desktop kernel: audit: type=2000 audit(0.056:1): state=initialized audit_enabled=0 res=1
+Aug 26 18:23:06 cam-desktop kernel: thermal_sys: Registered thermal governor 'step_wise'
+Aug 26 18:23:06 cam-desktop kernel: thermal_sys: Registered thermal governor 'user_space'
+Aug 26 18:23:06 cam-desktop kernel: thermal_sys: Registered thermal governor 'power_allocator'
+Aug 26 18:23:06 cam-desktop kernel: cpuidle: using governor menu
+Aug 26 18:23:06 cam-desktop kernel: hw-breakpoint: found 6 breakpoint and 4 watchpoint registers.
+Aug 26 18:23:06 cam-desktop kernel: ASID allocator initialised with 32768 entries
+Aug 26 18:23:06 cam-desktop kernel: Serial: AMBA PL011 UART driver
+Aug 26 18:23:06 cam-desktop kernel: 31d0000.serial: ttyAMA0 at MMIO 0x31d0000 (irq = 117, base_baud = 0) is a SBSA
+Aug 26 18:23:06 cam-desktop kernel: platform bpmp: Fixing up cyclic dependency with 2c60000.external-memory-controller
+Aug 26 18:23:06 cam-desktop kernel: HugeTLB registered 1.00 GiB page size, pre-allocated 0 pages
+Aug 26 18:23:06 cam-desktop kernel: HugeTLB registered 32.0 MiB page size, pre-allocated 0 pages
+Aug 26 18:23:06 cam-desktop kernel: HugeTLB registered 2.00 MiB page size, pre-allocated 0 pages
+Aug 26 18:23:06 cam-desktop kernel: HugeTLB registered 64.0 KiB page size, pre-allocated 0 pages
+Aug 26 18:23:06 cam-desktop kernel: cryptd: max_cpu_qlen set to 1000
+Aug 26 18:23:06 cam-desktop kernel: ACPI: Interpreter disabled.
+Aug 26 18:23:06 cam-desktop kernel: VDD_1V8_AO: supplied by VDD_5V0_SYS
+Aug 26 18:23:06 cam-desktop kernel: VDD_3V3_AO: supplied by VDD_5V0_SYS
+Aug 26 18:23:06 cam-desktop kernel: VDD_AV10_HUB: supplied by VDD_5V0_SYS
+Aug 26 18:23:06 cam-desktop kernel: iommu: Default domain type: Translated 
+Aug 26 18:23:06 cam-desktop kernel: iommu: DMA domain TLB invalidation policy: strict mode 
+Aug 26 18:23:06 cam-desktop kernel: SCSI subsystem initialized
+Aug 26 18:23:06 cam-desktop kernel: libata version 3.00 loaded.
+Aug 26 18:23:06 cam-desktop kernel: vgaarb: loaded
+Aug 26 18:23:06 cam-desktop kernel: usbcore: registered new interface driver usbfs
+Aug 26 18:23:06 cam-desktop kernel: usbcore: registered new interface driver hub
+Aug 26 18:23:06 cam-desktop kernel: usbcore: registered new device driver usb
+Aug 26 18:23:06 cam-desktop kernel: pps_core: LinuxPPS API ver. 1 registered
+Aug 26 18:23:06 cam-desktop kernel: pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+Aug 26 18:23:06 cam-desktop kernel: PTP clock support registered
+Aug 26 18:23:06 cam-desktop kernel: EDAC MC: Ver: 3.0.0
+Aug 26 18:23:06 cam-desktop kernel: Registered efivars operations
+Aug 26 18:23:06 cam-desktop kernel: FPGA manager framework
+Aug 26 18:23:06 cam-desktop kernel: Advanced Linux Sound Architecture Driver Initialized.
+Aug 26 18:23:06 cam-desktop kernel: Bluetooth: Core ver 2.22
+Aug 26 18:23:06 cam-desktop kernel: NET: Registered PF_BLUETOOTH protocol family
+Aug 26 18:23:06 cam-desktop kernel: Bluetooth: HCI device and connection manager initialized
+Aug 26 18:23:06 cam-desktop kernel: Bluetooth: HCI socket layer initialized
+Aug 26 18:23:06 cam-desktop kernel: Bluetooth: L2CAP socket layer initialized
+Aug 26 18:23:06 cam-desktop kernel: Bluetooth: SCO socket layer initialized
+Aug 26 18:23:06 cam-desktop kernel: clocksource: Switched to clocksource arch_sys_counter
+Aug 26 18:23:06 cam-desktop kernel: VFS: Disk quotas dquot_6.6.0
+Aug 26 18:23:06 cam-desktop kernel: VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+Aug 26 18:23:06 cam-desktop kernel: pnp: PnP ACPI: disabled
+Aug 26 18:23:06 cam-desktop kernel: NET: Registered PF_INET protocol family
+Aug 26 18:23:06 cam-desktop kernel: IP idents hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+Aug 26 18:23:06 cam-desktop kernel: tcp_listen_portaddr_hash hash table entries: 8192 (order: 5, 131072 bytes, linear)
+Aug 26 18:23:06 cam-desktop kernel: Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+Aug 26 18:23:06 cam-desktop kernel: TCP established hash table entries: 131072 (order: 8, 1048576 bytes, linear)
+Aug 26 18:23:06 cam-desktop kernel: TCP bind hash table entries: 65536 (order: 8, 1048576 bytes, linear)
+Aug 26 18:23:06 cam-desktop kernel: TCP: Hash tables configured (established 131072 bind 65536)
+Aug 26 18:23:06 cam-desktop kernel: UDP hash table entries: 8192 (order: 6, 262144 bytes, linear)
+Aug 26 18:23:06 cam-desktop kernel: UDP-Lite hash table entries: 8192 (order: 6, 262144 bytes, linear)
+Aug 26 18:23:06 cam-desktop kernel: NET: Registered PF_UNIX/PF_LOCAL protocol family
+Aug 26 18:23:06 cam-desktop kernel: RPC: Registered named UNIX socket transport module.
+Aug 26 18:23:06 cam-desktop kernel: RPC: Registered udp transport module.
+Aug 26 18:23:06 cam-desktop kernel: RPC: Registered tcp transport module.
+Aug 26 18:23:06 cam-desktop kernel: RPC: Registered tcp NFSv4.1 backchannel transport module.
+Aug 26 18:23:06 cam-desktop kernel: PCI: CLS 0 bytes, default 64
+Aug 26 18:23:06 cam-desktop kernel: Unpacking initramfs...
+Aug 26 18:23:06 cam-desktop kernel: hw perfevents: enabled with armv8_cortex_a78 PMU driver, 7 counters available
+Aug 26 18:23:06 cam-desktop kernel: kvm [1]: IPA Size Limit: 48 bits
+Aug 26 18:23:06 cam-desktop kernel: kvm [1]: GICv3: no GICV resource entry
+Aug 26 18:23:06 cam-desktop kernel: kvm [1]: disabling GICv2 emulation
+Aug 26 18:23:06 cam-desktop kernel: kvm [1]: GIC system register CPU interface enabled
+Aug 26 18:23:06 cam-desktop kernel: kvm [1]: vgic interrupt IRQ9
+Aug 26 18:23:06 cam-desktop kernel: kvm [1]: VHE mode initialized successfully
+Aug 26 18:23:06 cam-desktop kernel: Initialise system trusted keyrings
+Aug 26 18:23:06 cam-desktop kernel: Key type blacklist registered
+Aug 26 18:23:06 cam-desktop kernel: workingset: timestamp_bits=42 max_order=22 bucket_order=0
+Aug 26 18:23:06 cam-desktop kernel: squashfs: version 4.0 (2009/01/31) Phillip Lougher
+Aug 26 18:23:06 cam-desktop kernel: NFS: Registering the id_resolver key type
+Aug 26 18:23:06 cam-desktop kernel: Key type id_resolver registered
+Aug 26 18:23:06 cam-desktop kernel: Key type id_legacy registered
+Aug 26 18:23:06 cam-desktop kernel: nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+Aug 26 18:23:06 cam-desktop kernel: nfs4flexfilelayout_init: NFSv4 Flexfile Layout Driver Registering...
+Aug 26 18:23:06 cam-desktop kernel: ntfs: driver 2.1.32 [Flags: R/O].
+Aug 26 18:23:06 cam-desktop kernel: 9p: Installing v9fs 9p2000 file system support
+Aug 26 18:23:06 cam-desktop kernel: integrity: Platform Keyring initialized
+Aug 26 18:23:06 cam-desktop kernel: Key type asymmetric registered
+Aug 26 18:23:06 cam-desktop kernel: Asymmetric key parser 'x509' registered
+Aug 26 18:23:06 cam-desktop kernel: Block layer SCSI generic (bsg) driver version 0.4 loaded (major 245)
+Aug 26 18:23:06 cam-desktop kernel: io scheduler mq-deadline registered
+Aug 26 18:23:06 cam-desktop kernel: io scheduler kyber registered
+Aug 26 18:23:06 cam-desktop kernel: EINJ: ACPI disabled.
+Aug 26 18:23:06 cam-desktop kernel: Serial: 8250/16550 driver, 4 ports, IRQ sharing enabled
+Aug 26 18:23:06 cam-desktop kernel: SuperH (H)SCI(F) driver initialized
+Aug 26 18:23:06 cam-desktop kernel: msm_serial: driver initialized
+Aug 26 18:23:06 cam-desktop kernel: printk: console [ttyTCU0] enabled
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 8000000.iommu: probing hardware configuration...
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 8000000.iommu: SMMUv2 with:
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 8000000.iommu:         stage 1 translation
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 8000000.iommu:         stage 2 translation
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 8000000.iommu:         nested translation
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 8000000.iommu:         stream matching with 128 register groups
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 8000000.iommu:         128 context banks (0 stage-2 only)
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 8000000.iommu:         Supported page sizes: 0x61311000
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 8000000.iommu:         Stage-1: 48-bit VA -> 48-bit IPA
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 8000000.iommu:         Stage-2: 48-bit IPA -> 48-bit PA
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 10000000.iommu: probing hardware configuration...
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 10000000.iommu: SMMUv2 with:
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 10000000.iommu:         stage 1 translation
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 10000000.iommu:         stage 2 translation
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 10000000.iommu:         nested translation
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 10000000.iommu:         stream matching with 128 register groups
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 10000000.iommu:         128 context banks (0 stage-2 only)
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 10000000.iommu:         Supported page sizes: 0x61311000
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 10000000.iommu:         Stage-1: 48-bit VA -> 48-bit IPA
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 10000000.iommu:         Stage-2: 48-bit IPA -> 48-bit PA
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 12000000.iommu: probing hardware configuration...
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 12000000.iommu: SMMUv2 with:
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 12000000.iommu:         stage 1 translation
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 12000000.iommu:         stage 2 translation
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 12000000.iommu:         nested translation
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 12000000.iommu:         stream matching with 128 register groups
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 12000000.iommu:         128 context banks (0 stage-2 only)
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 12000000.iommu:         Supported page sizes: 0x61311000
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 12000000.iommu:         Stage-1: 48-bit VA -> 48-bit IPA
+Aug 26 18:23:06 cam-desktop kernel: arm-smmu 12000000.iommu:         Stage-2: 48-bit IPA -> 48-bit PA
+Aug 26 18:23:06 cam-desktop kernel: loop: module loaded
+Aug 26 18:23:06 cam-desktop kernel: megasas: 07.727.03.00-rc1
+Aug 26 18:23:06 cam-desktop kernel: tun: Universal TUN/TAP device driver, 1.6
+Aug 26 18:23:06 cam-desktop kernel: thunder_xcv, ver 1.0
+Aug 26 18:23:06 cam-desktop kernel: thunder_bgx, ver 1.0
+Aug 26 18:23:06 cam-desktop kernel: nicpf, ver 1.0
+Aug 26 18:23:06 cam-desktop kernel: hns3: Hisilicon Ethernet Network Driver for Hip08 Family - version
+Aug 26 18:23:06 cam-desktop kernel: hns3: Copyright (c) 2017 Huawei Corporation.
+Aug 26 18:23:06 cam-desktop kernel: hclge is initializing
+Aug 26 18:23:06 cam-desktop kernel: e1000: Intel(R) PRO/1000 Network Driver
+Aug 26 18:23:06 cam-desktop kernel: e1000: Copyright (c) 1999-2006 Intel Corporation.
+Aug 26 18:23:06 cam-desktop kernel: e1000e: Intel(R) PRO/1000 Network Driver
+Aug 26 18:23:06 cam-desktop kernel: e1000e: Copyright(c) 1999 - 2015 Intel Corporation.
+Aug 26 18:23:06 cam-desktop kernel: igb: Intel(R) Gigabit Ethernet Network Driver
+Aug 26 18:23:06 cam-desktop kernel: igb: Copyright (c) 2007-2014 Intel Corporation.
+Aug 26 18:23:06 cam-desktop kernel: igbvf: Intel(R) Gigabit Virtual Function Network Driver
+Aug 26 18:23:06 cam-desktop kernel: igbvf: Copyright (c) 2009 - 2012 Intel Corporation.
+Aug 26 18:23:06 cam-desktop kernel: sky2: driver version 1.30
+Aug 26 18:23:06 cam-desktop kernel: VFIO - User Level meta-driver version: 0.3
+Aug 26 18:23:06 cam-desktop kernel: ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+Aug 26 18:23:06 cam-desktop kernel: ehci-pci: EHCI PCI platform driver
+Aug 26 18:23:06 cam-desktop kernel: ehci-platform: EHCI generic platform driver
+Aug 26 18:23:06 cam-desktop kernel: ehci-orion: EHCI orion driver
+Aug 26 18:23:06 cam-desktop kernel: ehci-exynos: EHCI Exynos driver
+Aug 26 18:23:06 cam-desktop kernel: ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+Aug 26 18:23:06 cam-desktop kernel: ohci-pci: OHCI PCI platform driver
+Aug 26 18:23:06 cam-desktop kernel: ohci-platform: OHCI generic platform driver
+Aug 26 18:23:06 cam-desktop kernel: ohci-exynos: OHCI Exynos driver
+Aug 26 18:23:06 cam-desktop kernel: usbcore: registered new interface driver usb-storage
+Aug 26 18:23:06 cam-desktop kernel: i2c_dev: i2c /dev entries driver
+Aug 26 18:23:06 cam-desktop kernel: pps_ldisc: PPS line discipline registered
+Aug 26 18:23:06 cam-desktop kernel: device-mapper: ioctl: 4.45.0-ioctl (2021-03-22) initialised: dm-devel@redhat.com
+Aug 26 18:23:06 cam-desktop kernel: sdhci: Secure Digital Host Controller Interface driver
+Aug 26 18:23:06 cam-desktop kernel: sdhci: Copyright(c) Pierre Ossman
+Aug 26 18:23:06 cam-desktop kernel: Synopsys Designware Multimedia Card Interface Driver
+Aug 26 18:23:06 cam-desktop kernel: sdhci-pltfm: SDHCI platform and OF driver helper
+Aug 26 18:23:06 cam-desktop kernel: ledtrig-cpu: registered to indicate activity on CPUs
+Aug 26 18:23:06 cam-desktop kernel: SMCCC: SOC_ID: ID = jep106:036b:0234 Revision = 0x00000401
+Aug 26 18:23:06 cam-desktop kernel: tegra-bpmp bpmp: Adding to iommu group 0
+Aug 26 18:23:06 cam-desktop kernel: tegra-bpmp bpmp: firmware: 40c4ded2a7425760713a-68f126a8abf
+Aug 26 18:23:06 cam-desktop kernel: Freeing initrd memory: 15548K
+Aug 26 18:23:06 cam-desktop kernel: clocksource: tsc: mask: 0xffffffffffffff max_cycles: 0xe6a171046, max_idle_ns: 881590405314 ns
+Aug 26 18:23:06 cam-desktop kernel: clocksource: osc: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 49772407460 ns
+Aug 26 18:23:06 cam-desktop kernel: clocksource: usec: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1911260446275 ns
+Aug 26 18:23:06 cam-desktop kernel: hid: raw HID events driver (C) Jiri Kosina
+Aug 26 18:23:06 cam-desktop kernel: usbcore: registered new interface driver usbhid
+Aug 26 18:23:06 cam-desktop kernel: usbhid: USB HID core driver
+Aug 26 18:23:06 cam-desktop kernel: optee: probing for conduit method.
+Aug 26 18:23:06 cam-desktop kernel: optee: revision 4.2 (5ef90dab)
+Aug 26 18:23:06 cam-desktop kernel: optee: dynamic shared memory is enabled
+Aug 26 18:23:06 cam-desktop kernel: optee: initialized driver
+Aug 26 18:23:06 cam-desktop kernel: usbcore: registered new interface driver snd-usb-audio
+Aug 26 18:23:06 cam-desktop kernel: NET: Registered PF_PACKET protocol family
+Aug 26 18:23:06 cam-desktop kernel: Bluetooth: RFCOMM TTY layer initialized
+Aug 26 18:23:06 cam-desktop kernel: Bluetooth: RFCOMM socket layer initialized
+Aug 26 18:23:06 cam-desktop kernel: Bluetooth: RFCOMM ver 1.11
+Aug 26 18:23:06 cam-desktop kernel: 9pnet: Installing 9P2000 support
+Aug 26 18:23:06 cam-desktop kernel: Key type dns_resolver registered
+Aug 26 18:23:06 cam-desktop kernel: printk: console [tty0]: printing thread started
+Aug 26 18:23:06 cam-desktop kernel: printk: console [ttyTCU0]: printing thread started
+Aug 26 18:23:06 cam-desktop kernel: Loading compiled-in X.509 certificates
+Aug 26 18:23:06 cam-desktop kernel: Loaded X.509 cert 'Build time autogenerated kernel key: d77ad5d0e7e5d02a2dc9cf8ec8dfa4a966aa85ba'
+Aug 26 18:23:06 cam-desktop kernel: tegra-gpcdma 2600000.dma-controller: Adding to iommu group 1
+Aug 26 18:23:06 cam-desktop kernel: tegra-gpcdma 2600000.dma-controller: GPC DMA driver register 31 channels
+Aug 26 18:23:06 cam-desktop kernel: 3100000.serial: ttyTHS1 at MMIO 0x3100000 (irq = 112, base_baud = 0) is a TEGRA_UART
+Aug 26 18:23:06 cam-desktop kernel: 3140000.serial: ttyTHS2 at MMIO 0x3140000 (irq = 113, base_baud = 0) is a TEGRA_UART
+Aug 26 18:23:06 cam-desktop kernel: tegra_rtc c2a0000.rtc: registered as rtc1
+Aug 26 18:23:06 cam-desktop kernel: tegra_rtc c2a0000.rtc: Tegra internal Real Time Clock
+Aug 26 18:23:06 cam-desktop kernel: tegra-i2c 3160000.i2c: Adding to iommu group 1
+Aug 26 18:23:06 cam-desktop kernel: tegra-i2c 3180000.i2c: Adding to iommu group 1
+Aug 26 18:23:06 cam-desktop kernel: tegra-i2c 31b0000.i2c: Adding to iommu group 1
+Aug 26 18:23:06 cam-desktop kernel: tegra-i2c c240000.i2c: Adding to iommu group 1
+Aug 26 18:23:06 cam-desktop kernel: i2c 1-0025: Fixing up cyclic dependency with 3520000.padctl
+Aug 26 18:23:06 cam-desktop kernel: tegra-i2c c250000.i2c: Adding to iommu group 1
+Aug 26 18:23:06 cam-desktop kernel: cpufreq: cpufreq_online: CPU4: Running at unlisted initial frequency: 1992000 KHz, changing to: 1984000 KHz
+Aug 26 18:23:06 cam-desktop kernel: tegra-xusb 3610000.usb: Adding to iommu group 2
+Aug 26 18:23:06 cam-desktop kernel: tegra-xusb 3610000.usb: Firmware timestamp: 2023-02-10 03:48:10 UTC
+Aug 26 18:23:06 cam-desktop kernel: tegra-xusb 3610000.usb: xHCI Host Controller
+Aug 26 18:23:06 cam-desktop kernel: tegra-xusb 3610000.usb: new USB bus registered, assigned bus number 1
+Aug 26 18:23:06 cam-desktop kernel: tegra-xusb 3610000.usb: hcc params 0x0180ff05 hci version 0x120 quirks 0x0000000000010810
+Aug 26 18:23:06 cam-desktop kernel: tegra-xusb 3610000.usb: irq 123, io mem 0x03610000
+Aug 26 18:23:06 cam-desktop kernel: tegra-xusb 3610000.usb: xHCI Host Controller
+Aug 26 18:23:06 cam-desktop kernel: tegra-xusb 3610000.usb: new USB bus registered, assigned bus number 2
+Aug 26 18:23:06 cam-desktop kernel: tegra-xusb 3610000.usb: Host supports USB 3.1 Enhanced SuperSpeed
+Aug 26 18:23:06 cam-desktop kernel: hub 1-0:1.0: USB hub found
+Aug 26 18:23:06 cam-desktop kernel: hub 1-0:1.0: 4 ports detected
+Aug 26 18:23:06 cam-desktop kernel: hub 2-0:1.0: USB hub found
+Aug 26 18:23:06 cam-desktop kernel: hub 2-0:1.0: 4 ports detected
+Aug 26 18:23:06 cam-desktop kernel: irq: IRQ227: trimming hierarchy from :bus@0:pmc@c360000
+Aug 26 18:23:06 cam-desktop kernel: irq: IRQ228: trimming hierarchy from :bus@0:interrupt-controller@f400000-1
+Aug 26 18:23:06 cam-desktop kernel: input: gpio-keys as /devices/platform/gpio-keys/input/input0
+Aug 26 18:23:06 cam-desktop kernel: clk: Disabling unused clocks
+Aug 26 18:23:06 cam-desktop kernel: ALSA device list:
+Aug 26 18:23:06 cam-desktop kernel:   No soundcards found.
+Aug 26 18:23:06 cam-desktop kernel: Freeing unused kernel memory: 7744K
+Aug 26 18:23:06 cam-desktop kernel: Run /init as init process
+Aug 26 18:23:06 cam-desktop kernel:   with arguments:
+Aug 26 18:23:06 cam-desktop kernel:     /init
+Aug 26 18:23:06 cam-desktop kernel:   with environment:
+Aug 26 18:23:06 cam-desktop kernel:     HOME=/
+Aug 26 18:23:06 cam-desktop kernel:     TERM=linux
+Aug 26 18:23:06 cam-desktop kernel:     boot_profile=ov5647-dev
+Aug 26 18:23:06 cam-desktop kernel:     bl_prof_dataptr=2031616@0x471E10000
+Aug 26 18:23:06 cam-desktop kernel:     bl_prof_ro_ptr=65536@0x471E00000
+Aug 26 18:23:06 cam-desktop unknown: Checking overlayfs setting...
+Aug 26 18:23:06 cam-desktop unknown: Overlayfs is disabled...
+Aug 26 18:23:06 cam-desktop unknown: Root device found: PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344
+Aug 26 18:23:06 cam-desktop kernel: usb 1-2: new high-speed USB device number 2 using tegra-xusb
+Aug 26 18:23:06 cam-desktop kernel: hub 1-2:1.0: USB hub found
+Aug 26 18:23:06 cam-desktop kernel: hub 1-2:1.0: 4 ports detected
+Aug 26 18:23:06 cam-desktop kernel: usb 2-1: new SuperSpeed Plus Gen 2x1 USB device number 2 using tegra-xusb
+Aug 26 18:23:06 cam-desktop kernel: hub 2-1:1.0: USB hub found
+Aug 26 18:23:06 cam-desktop kernel: hub 2-1:1.0: 4 ports detected
+Aug 26 18:23:06 cam-desktop kernel: usb 1-3: new full-speed USB device number 3 using tegra-xusb
+Aug 26 18:23:06 cam-desktop kernel: usb 1-2.4: new low-speed USB device number 4 using tegra-xusb
+Aug 26 18:23:06 cam-desktop kernel: input: Lenovo Lenovo Calliope USB Keyboard as /devices/platform/bus@0/3610000.usb/usb1/1-2/1-2.4/1-2.4:1.0/0003:17EF:608C.0001/input/input1
+Aug 26 18:23:06 cam-desktop kernel: hid-generic 0003:17EF:608C.0001: input,hidraw0: USB HID v1.11 Keyboard [Lenovo Lenovo Calliope USB Keyboard] on usb-3610000.usb-2.4/input0
+Aug 26 18:23:06 cam-desktop kernel: input: Lenovo Lenovo Calliope USB Keyboard System Control as /devices/platform/bus@0/3610000.usb/usb1/1-2/1-2.4/1-2.4:1.1/0003:17EF:608C.0002/input/input2
+Aug 26 18:23:06 cam-desktop kernel: input: Lenovo Lenovo Calliope USB Keyboard Consumer Control as /devices/platform/bus@0/3610000.usb/usb1/1-2/1-2.4/1-2.4:1.1/0003:17EF:608C.0002/input/input3
+Aug 26 18:23:06 cam-desktop kernel: hid-generic 0003:17EF:608C.0002: input,hidraw1: USB HID v1.11 Device [Lenovo Lenovo Calliope USB Keyboard] on usb-3610000.usb-2.4/input1
+Aug 26 18:23:06 cam-desktop kernel: tegra194-pcie 14100000.pcie: Adding to iommu group 3
+Aug 26 18:23:06 cam-desktop kernel: irq: IRQ229: trimming hierarchy from :bus@0:interrupt-controller@f400000-1
+Aug 26 18:23:06 cam-desktop kernel: tegra194-pcie 14100000.pcie: host bridge /bus@0/pcie@14100000 ranges:
+Aug 26 18:23:06 cam-desktop kernel: tegra194-pcie 14100000.pcie:      MEM 0x2080000000..0x20a7ffffff -> 0x2080000000
+Aug 26 18:23:06 cam-desktop kernel: tegra194-pcie 14100000.pcie:      MEM 0x20a8000000..0x20afffffff -> 0x0040000000
+Aug 26 18:23:06 cam-desktop kernel: tegra194-pcie 14100000.pcie:       IO 0x0030100000..0x00301fffff -> 0x0030100000
+Aug 26 18:23:06 cam-desktop kernel: tegra194-pcie 14100000.pcie: iATU unroll: enabled
+Aug 26 18:23:06 cam-desktop kernel: tegra194-pcie 14100000.pcie: Detected iATU regions: 8 outbound, 2 inbound
+Aug 26 18:23:06 cam-desktop kernel: tegra-xudc 3550000.usb: Adding to iommu group 4
+Aug 26 18:23:06 cam-desktop kernel: tegra194-pcie 14100000.pcie: Link up
+Aug 26 18:23:06 cam-desktop kernel: tegra194-pcie 14100000.pcie: Link up
+Aug 26 18:23:06 cam-desktop kernel: tegra194-pcie 14100000.pcie: PCI host bridge to bus 0001:00
+Aug 26 18:23:06 cam-desktop kernel: pci_bus 0001:00: root bus resource [bus 00-ff]
+Aug 26 18:23:06 cam-desktop kernel: pci_bus 0001:00: root bus resource [mem 0x2080000000-0x20a7ffffff pref]
+Aug 26 18:23:06 cam-desktop kernel: pci_bus 0001:00: root bus resource [mem 0x20a8000000-0x20afffffff] (bus address [0x40000000-0x47ffffff])
+Aug 26 18:23:06 cam-desktop kernel: pci_bus 0001:00: root bus resource [io  0x0000-0xfffff] (bus address [0x30100000-0x301fffff])
+Aug 26 18:23:06 cam-desktop kernel: pci 0001:00:00.0: [10de:229e] type 01 class 0x060400
+Aug 26 18:23:06 cam-desktop kernel: pci 0001:00:00.0: PME# supported from D0 D3hot
+Aug 26 18:23:06 cam-desktop kernel: pci 0001:01:00.0: [10ec:c822] type 00 class 0x028000
+Aug 26 18:23:06 cam-desktop kernel: pci 0001:01:00.0: reg 0x10: [io  0x0000-0x00ff]
+Aug 26 18:23:06 cam-desktop kernel: pci 0001:01:00.0: reg 0x18: [mem 0x20a8000000-0x20a800ffff 64bit]
+Aug 26 18:23:06 cam-desktop kernel: pci 0001:01:00.0: supports D1 D2
+Aug 26 18:23:06 cam-desktop kernel: pci 0001:01:00.0: PME# supported from D0 D1 D2 D3hot D3cold
+Aug 26 18:23:06 cam-desktop kernel: pci 0001:00:00.0: BAR 14: assigned [mem 0x20a8000000-0x20a80fffff]
+Aug 26 18:23:06 cam-desktop kernel: pci 0001:00:00.0: BAR 13: assigned [io  0x1000-0x1fff]
+Aug 26 18:23:06 cam-desktop kernel: pci 0001:01:00.0: BAR 2: assigned [mem 0x20a8000000-0x20a800ffff 64bit]
+Aug 26 18:23:06 cam-desktop kernel: pci 0001:01:00.0: BAR 0: assigned [io  0x1000-0x10ff]
+Aug 26 18:23:06 cam-desktop kernel: pci 0001:00:00.0: PCI bridge to [bus 01-ff]
+Aug 26 18:23:06 cam-desktop kernel: pci 0001:00:00.0:   bridge window [io  0x1000-0x1fff]
+Aug 26 18:23:06 cam-desktop kernel: pci 0001:00:00.0:   bridge window [mem 0x20a8000000-0x20a80fffff]
+Aug 26 18:23:06 cam-desktop kernel: pci 0001:00:00.0: Max Payload Size set to  256/ 256 (was  128), Max Read Rq  256
+Aug 26 18:23:06 cam-desktop kernel: pci 0001:01:00.0: Max Payload Size set to  128/ 128 (was  128), Max Read Rq  128
+Aug 26 18:23:06 cam-desktop kernel: pcieport 0001:00:00.0: Adding to iommu group 3
+Aug 26 18:23:06 cam-desktop kernel: pcieport 0001:00:00.0: PME: Signaling with IRQ 190
+Aug 26 18:23:06 cam-desktop kernel: pcieport 0001:00:00.0: AER: enabled with IRQ 190
+Aug 26 18:23:06 cam-desktop kernel: tegra194-pcie 14160000.pcie: Adding to iommu group 5
+Aug 26 18:23:06 cam-desktop kernel: tegra194-pcie 14160000.pcie: host bridge /bus@0/pcie@14160000 ranges:
+Aug 26 18:23:06 cam-desktop kernel: tegra194-pcie 14160000.pcie:      MEM 0x2140000000..0x2427ffffff -> 0x2140000000
+Aug 26 18:23:06 cam-desktop kernel: tegra194-pcie 14160000.pcie:      MEM 0x2428000000..0x242fffffff -> 0x0040000000
+Aug 26 18:23:06 cam-desktop kernel: tegra194-pcie 14160000.pcie:       IO 0x0036100000..0x00361fffff -> 0x0036100000
+Aug 26 18:23:06 cam-desktop kernel: tegra194-pcie 14160000.pcie: iATU unroll: enabled
+Aug 26 18:23:06 cam-desktop kernel: tegra194-pcie 14160000.pcie: Detected iATU regions: 8 outbound, 2 inbound
+Aug 26 18:23:06 cam-desktop kernel: tegra194-pcie 14160000.pcie: Link up
+Aug 26 18:23:06 cam-desktop kernel: tegra194-pcie 14160000.pcie: Link up
+Aug 26 18:23:06 cam-desktop kernel: tegra194-pcie 14160000.pcie: PCI host bridge to bus 0004:00
+Aug 26 18:23:06 cam-desktop kernel: pci_bus 0004:00: root bus resource [bus 00-ff]
+Aug 26 18:23:06 cam-desktop kernel: pci_bus 0004:00: root bus resource [mem 0x2140000000-0x2427ffffff pref]
+Aug 26 18:23:06 cam-desktop kernel: pci_bus 0004:00: root bus resource [mem 0x2428000000-0x242fffffff] (bus address [0x40000000-0x47ffffff])
+Aug 26 18:23:06 cam-desktop kernel: pci_bus 0004:00: root bus resource [io  0x100000-0x1fffff] (bus address [0x36100000-0x361fffff])
+Aug 26 18:23:06 cam-desktop kernel: pci 0004:00:00.0: [10de:229c] type 01 class 0x060400
+Aug 26 18:23:06 cam-desktop kernel: pci 0004:00:00.0: PME# supported from D0 D3hot
+Aug 26 18:23:06 cam-desktop kernel: pci 0004:01:00.0: [4321:2263] type 00 class 0x010802
+Aug 26 18:23:06 cam-desktop kernel: pci 0004:01:00.0: reg 0x10: [mem 0x00000000-0x00003fff 64bit]
+Aug 26 18:23:06 cam-desktop kernel: pci 0004:00:00.0: BAR 14: assigned [mem 0x2428000000-0x24280fffff]
+Aug 26 18:23:06 cam-desktop kernel: pci 0004:01:00.0: BAR 0: assigned [mem 0x2428000000-0x2428003fff 64bit]
+Aug 26 18:23:06 cam-desktop kernel: pci 0004:00:00.0: PCI bridge to [bus 01-ff]
+Aug 26 18:23:06 cam-desktop kernel: pci 0004:00:00.0:   bridge window [mem 0x2428000000-0x24280fffff]
+Aug 26 18:23:06 cam-desktop kernel: pci 0004:00:00.0: Max Payload Size set to  256/ 256 (was  128), Max Read Rq  256
+Aug 26 18:23:06 cam-desktop kernel: pci 0004:01:00.0: Max Payload Size set to  128/ 128 (was  128), Max Read Rq  128
+Aug 26 18:23:06 cam-desktop kernel: pcieport 0004:00:00.0: Adding to iommu group 5
+Aug 26 18:23:06 cam-desktop kernel: pcieport 0004:00:00.0: PME: Signaling with IRQ 192
+Aug 26 18:23:06 cam-desktop kernel: pcieport 0004:00:00.0: AER: enabled with IRQ 192
+Aug 26 18:23:06 cam-desktop kernel: nvme 0004:01:00.0: Adding to iommu group 5
+Aug 26 18:23:06 cam-desktop kernel: nvme nvme0: pci function 0004:01:00.0
+Aug 26 18:23:06 cam-desktop kernel: nvme 0004:01:00.0: enabling device (0000 -> 0002)
+Aug 26 18:23:07 cam-desktop kernel: tegra194-pcie 141e0000.pcie: Adding to iommu group 6
+Aug 26 18:23:07 cam-desktop kernel: tegra194-pcie 141e0000.pcie: host bridge /bus@0/pcie@141e0000 ranges:
+Aug 26 18:23:07 cam-desktop kernel: tegra194-pcie 141e0000.pcie:      MEM 0x3000000000..0x3227ffffff -> 0x3000000000
+Aug 26 18:23:07 cam-desktop kernel: tegra194-pcie 141e0000.pcie:      MEM 0x3228000000..0x322fffffff -> 0x0040000000
+Aug 26 18:23:07 cam-desktop kernel: tegra194-pcie 141e0000.pcie:       IO 0x003e100000..0x003e1fffff -> 0x003e100000
+Aug 26 18:23:07 cam-desktop kernel: tegra194-pcie 141e0000.pcie: iATU unroll: enabled
+Aug 26 18:23:07 cam-desktop kernel: tegra194-pcie 141e0000.pcie: Detected iATU regions: 8 outbound, 2 inbound
+Aug 26 18:23:07 cam-desktop kernel: nvme nvme0: allocated 64 MiB host memory buffer.
+Aug 26 18:23:07 cam-desktop kernel: nvme nvme0: 8/0/0 default/read/poll queues
+Aug 26 18:23:07 cam-desktop kernel:  nvme0n1: p1 p2 p3 p4 p5 p6 p7 p8 p9 p10 p11 p12 p13 p14 p15
+Aug 26 18:23:07 cam-desktop kernel: EXT4-fs (nvme0n1p1): mounted filesystem with ordered data mode. Opts: (null). Quota mode: none.
+Aug 26 18:23:07 cam-desktop unknown: Rootfs mounted over PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344
+Aug 26 18:23:07 cam-desktop unknown: Switching from initrd to actual rootfs
+Aug 26 18:23:07 cam-desktop systemd[1]: System time before build time, advancing clock.
+Aug 26 18:23:07 cam-desktop kernel: NET: Registered PF_INET6 protocol family
+Aug 26 18:23:07 cam-desktop kernel: Segment Routing with IPv6
+Aug 26 18:23:07 cam-desktop kernel: In-situ OAM (IOAM) with IPv6
+Aug 26 18:23:07 cam-desktop systemd[1]: systemd 249.11-0ubuntu3.17 running in system mode (+PAM +AUDIT +SELINUX +APPARMOR +IMA +SMACK +SECCOMP +GCRYPT +GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS +FIDO2 +IDN2 -IDN +IPTC +KMOD +LIBCRYPTSETUP +LIBFDISK +PCRE2 -PWQUALITY -P11KIT -QRENCODE +BZIP2 +LZ4 +XZ +ZLIB +ZSTD -XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified)
+Aug 26 18:23:07 cam-desktop systemd[1]: Detected architecture arm64.
+Aug 26 18:23:07 cam-desktop systemd[1]: Hostname set to <cam-desktop>.
+Aug 26 18:23:07 cam-desktop systemd[1]: Using hardware watchdog 'NVIDIA Tegra186 WDT', version 0, device /dev/watchdog
+Aug 26 18:23:07 cam-desktop systemd[1]: Set hardware watchdog to 2min.
+Aug 26 18:23:07 cam-desktop systemd[1]: /lib/systemd/system/snapd.service:23: Unknown key name 'RestartMode' in section 'Service', ignoring.
+Aug 26 18:23:07 cam-desktop systemd[1]: /etc/systemd/system/nvs-service.service:41: Standard output type syslog is obsolete, automatically updating to journal. Please update your unit file, and consider removing the setting altogether.
+Aug 26 18:23:07 cam-desktop systemd[1]: /etc/systemd/system/nvargus-daemon.service:42: Standard output type syslog is obsolete, automatically updating to journal. Please update your unit file, and consider removing the setting altogether.
+Aug 26 18:23:07 cam-desktop systemd[1]: Queued start job for default target Graphical Interface.
+Aug 26 18:23:07 cam-desktop systemd[1]: Created slice Slice /system/modprobe.
+Aug 26 18:23:07 cam-desktop systemd[1]: Created slice Slice /system/openvpn.
+Aug 26 18:23:07 cam-desktop systemd[1]: Created slice Slice /system/serial-getty.
+Aug 26 18:23:07 cam-desktop systemd[1]: Created slice Slice /system/systemd-fsck.
+Aug 26 18:23:07 cam-desktop systemd[1]: Created slice User and Session Slice.
+Aug 26 18:23:07 cam-desktop systemd[1]: Started Forward Password Requests to Wall Directory Watch.
+Aug 26 18:23:07 cam-desktop systemd[1]: Set up automount Arbitrary Executable File Formats File System Automount Point.
+Aug 26 18:23:07 cam-desktop systemd[1]: Reached target Slice Units.
+Aug 26 18:23:07 cam-desktop systemd[1]: Reached target Mounting snaps.
+Aug 26 18:23:07 cam-desktop systemd[1]: Reached target Swaps.
+Aug 26 18:23:07 cam-desktop systemd[1]: Reached target Local Verity Protected Volumes.
+Aug 26 18:23:07 cam-desktop systemd[1]: Listening on Device-mapper event daemon FIFOs.
+Aug 26 18:23:07 cam-desktop systemd[1]: Listening on LVM2 poll daemon socket.
+Aug 26 18:23:07 cam-desktop systemd[1]: Listening on RPCbind Server Activation Socket.
+Aug 26 18:23:07 cam-desktop systemd[1]: Listening on Syslog Socket.
+Aug 26 18:23:07 cam-desktop systemd[1]: Listening on fsck to fsckd communication Socket.
+Aug 26 18:23:07 cam-desktop systemd[1]: Listening on initctl Compatibility Named Pipe.
+Aug 26 18:23:07 cam-desktop systemd[1]: Listening on Journal Audit Socket.
+Aug 26 18:23:07 cam-desktop systemd[1]: Listening on Journal Socket (/dev/log).
+Aug 26 18:23:07 cam-desktop systemd[1]: Listening on Journal Socket.
+Aug 26 18:23:07 cam-desktop systemd[1]: Listening on udev Control Socket.
+Aug 26 18:23:07 cam-desktop systemd[1]: Listening on udev Kernel Socket.
+Aug 26 18:23:07 cam-desktop systemd[1]: Mounting Huge Pages File System...
+Aug 26 18:23:07 cam-desktop systemd[1]: Mounting POSIX Message Queue File System...
+Aug 26 18:23:07 cam-desktop systemd[1]: Mounting Kernel Debug File System...
+Aug 26 18:23:07 cam-desktop systemd[1]: Mounting Kernel Trace File System...
+Aug 26 18:23:07 cam-desktop systemd[1]: Starting Journal Service...
+Aug 26 18:23:07 cam-desktop systemd[1]: Finished Availability of block devices.
+Aug 26 18:23:07 cam-desktop systemd[1]: Starting Set the console keyboard layout...
+Aug 26 18:23:07 cam-desktop systemd[1]: Starting Create List of Static Device Nodes...
+Aug 26 18:23:07 cam-desktop systemd[1]: Starting Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling...
+Aug 26 18:23:07 cam-desktop systemd[1]: Starting Load Kernel Module configfs...
+Aug 26 18:23:07 cam-desktop systemd[1]: Starting Load Kernel Module drm...
+Aug 26 18:23:07 cam-desktop systemd[1]: Starting Load Kernel Module efi_pstore...
+Aug 26 18:23:07 cam-desktop systemd[1]: Starting Load Kernel Module fuse...
+Aug 26 18:23:07 cam-desktop systemd[1]: Starting NVIDIA specific first-boot udev script...
+Aug 26 18:23:07 cam-desktop kernel: fuse: init (API version 7.34)
+Aug 26 18:23:07 cam-desktop systemd[1]: Started Nameserver information manager.
+Aug 26 18:23:07 cam-desktop systemd[1]: Reached target Preparation for Network.
+Aug 26 18:23:07 cam-desktop systemd[1]: Condition check resulted in File System Check on Root Device being skipped.
+Aug 26 18:23:07 cam-desktop systemd[1]: Starting Load Kernel Modules...
+Aug 26 18:23:07 cam-desktop kernel: nvsciipc: loading out-of-tree module taints kernel.
+Aug 26 18:23:07 cam-desktop kernel: nvsciipc: loaded module
+Aug 26 18:23:07 cam-desktop kernel: nvmap_heap_init: nvmap_heap_init: created heap block cache
+Aug 26 18:23:07 cam-desktop kernel: nvmap_page_pool_init: Total RAM pages: 4004602
+Aug 26 18:23:07 cam-desktop kernel: nvmap_page_pool_init: nvmap page pool size: 500575 pages (1955 MB)
+Aug 26 18:23:07 cam-desktop kernel: nvmap_background_zero_thread: PP zeroing thread starting.
+Aug 26 18:23:07 cam-desktop kernel: tegra-host1x 13e00000.host1x: Adding to iommu group 7
+Aug 26 18:23:07 cam-desktop kernel: host1x-context host1x-ctx.0: Adding to iommu group 8
+Aug 26 18:23:07 cam-desktop kernel: host1x-context host1x-ctx.1: Adding to iommu group 9
+Aug 26 18:23:07 cam-desktop kernel: host1x-context host1x-ctx.2: Adding to iommu group 10
+Aug 26 18:23:07 cam-desktop kernel: host1x-context host1x-ctx.3: Adding to iommu group 11
+Aug 26 18:23:07 cam-desktop kernel: host1x-context host1x-ctx.4: Adding to iommu group 12
+Aug 26 18:23:07 cam-desktop kernel: host1x-context host1x-ctx.5: Adding to iommu group 13
+Aug 26 18:23:07 cam-desktop kernel: host1x-context host1x-ctx.6: Adding to iommu group 14
+Aug 26 18:23:07 cam-desktop kernel: host1x-context host1x-ctx.7: Adding to iommu group 15
+Aug 26 18:23:07 cam-desktop kernel: host1x-context host1x-ctx.8: Adding to iommu group 16
+Aug 26 18:23:07 cam-desktop kernel: host1x-context host1x-ctx.9: Adding to iommu group 17
+Aug 26 18:23:07 cam-desktop kernel: host1x-context host1x-ctx.10: Adding to iommu group 18
+Aug 26 18:23:07 cam-desktop kernel: host1x-context host1x-ctx.11: Adding to iommu group 19
+Aug 26 18:23:07 cam-desktop kernel: host1x-context host1x-ctx.12: Adding to iommu group 20
+Aug 26 18:23:07 cam-desktop kernel: host1x-context host1x-ctx.13: Adding to iommu group 21
+Aug 26 18:23:07 cam-desktop kernel: host1x-context host1x-ctx.14: Adding to iommu group 22
+Aug 26 18:23:07 cam-desktop kernel: host1x-context host1x-ctx.15: Adding to iommu group 23
+Aug 26 18:23:07 cam-desktop systemd[1]: Starting Remount Root and Kernel File Systems...
+Aug 26 18:23:07 cam-desktop kernel: EXT4-fs (nvme0n1p1): re-mounted. Opts: (null). Quota mode: none.
+Aug 26 18:23:07 cam-desktop kernel: nvgpu: 17000000.gpu          nvgpu_nvhost_syncpt_init:122  [INFO]  syncpt_unit_base 60000000 syncpt_unit_size 4000000 size 10000
+Aug 26 18:23:07 cam-desktop systemd[1]: Starting Coldplug All udev Devices...
+Aug 26 18:23:07 cam-desktop systemd[1]: Mounted Huge Pages File System.
+Aug 26 18:23:07 cam-desktop systemd[1]: Mounted POSIX Message Queue File System.
+Aug 26 18:23:07 cam-desktop systemd[1]: Mounted Kernel Debug File System.
+Aug 26 18:23:07 cam-desktop systemd[1]: Mounted Kernel Trace File System.
+Aug 26 18:23:07 cam-desktop systemd[1]: Finished Set the console keyboard layout.
+Aug 26 18:23:07 cam-desktop systemd[1]: Finished Create List of Static Device Nodes.
+Aug 26 18:23:07 cam-desktop systemd[1]: modprobe@configfs.service: Deactivated successfully.
+Aug 26 18:23:07 cam-desktop systemd[1]: Finished Load Kernel Module configfs.
+Aug 26 18:23:07 cam-desktop systemd[1]: modprobe@drm.service: Deactivated successfully.
+Aug 26 18:23:07 cam-desktop systemd[1]: Finished Load Kernel Module drm.
+Aug 26 18:23:07 cam-desktop systemd[1]: modprobe@efi_pstore.service: Deactivated successfully.
+Aug 26 18:23:07 cam-desktop systemd[1]: Finished Load Kernel Module efi_pstore.
+Aug 26 18:23:07 cam-desktop systemd[1]: modprobe@fuse.service: Deactivated successfully.
+Aug 26 18:23:07 cam-desktop systemd[1]: Finished Load Kernel Module fuse.
+Aug 26 18:23:07 cam-desktop kernel: tegra194-pcie 141e0000.pcie: Phy link never came up
+Aug 26 18:23:07 cam-desktop systemd[1]: Finished NVIDIA specific first-boot udev script.
+Aug 26 18:23:07 cam-desktop systemd[1]: Finished Load Kernel Modules.
+Aug 26 18:23:07 cam-desktop systemd[1]: Finished Remount Root and Kernel File Systems.
+Aug 26 18:23:07 cam-desktop systemd[1]: Mounting FUSE Control File System...
+Aug 26 18:23:07 cam-desktop systemd[1]: Mounting Kernel Configuration File System...
+Aug 26 18:23:07 cam-desktop systemd[1]: Starting OP-TEE Client Supplicant...
+Aug 26 18:23:07 cam-desktop systemd[1]: Condition check resulted in Platform Persistent Storage Archival being skipped.
+Aug 26 18:23:07 cam-desktop systemd[1]: Starting Load/Save Random Seed...
+Aug 26 18:23:07 cam-desktop systemd[1]: Starting Apply Kernel Variables...
+Aug 26 18:23:07 cam-desktop systemd[1]: Starting Create System Users...
+Aug 26 18:23:07 cam-desktop systemd[1]: Mounted FUSE Control File System.
+Aug 26 18:23:07 cam-desktop systemd[1]: Mounted Kernel Configuration File System.
+Aug 26 18:23:07 cam-desktop systemd[1]: Finished Load/Save Random Seed.
+Aug 26 18:23:07 cam-desktop systemd[1]: Condition check resulted in First Boot Complete being skipped.
+Aug 26 18:23:07 cam-desktop systemd[1]: Finished Apply Kernel Variables.
+Aug 26 18:23:07 cam-desktop systemd[1]: Finished Create System Users.
+Aug 26 18:23:07 cam-desktop systemd[1]: Starting Create Static Device Nodes in /dev...
+Aug 26 18:23:07 cam-desktop systemd[1]: Finished Create Static Device Nodes in /dev.
+Aug 26 18:23:07 cam-desktop systemd[1]: Starting Rule-based Manager for Device Events and Files...
+Aug 26 18:23:07 cam-desktop systemd[1]: Started Rule-based Manager for Device Events and Files.
+Aug 26 18:23:07 cam-desktop kernel: tegra-se 15820000.crypto: Adding to iommu group 24
+Aug 26 18:23:07 cam-desktop kernel: tegra-se 15840000.crypto: Adding to iommu group 25
+Aug 26 18:23:07 cam-desktop kernel: tegra-soc-hwpm f100000.hwpm: Adding to iommu group 26
+Aug 26 18:23:07 cam-desktop kernel: scare-pigeon 13e00000.host1x:vi0-thi@15f00000: Adding to iommu group 27
+Aug 26 18:23:07 cam-desktop kernel: scare-pigeon 13e00000.host1x:vi0-thi@15f00000: syncpt_unit_base 60000000 syncpt_unit_size 4000000 size 10000
+Aug 26 18:23:07 cam-desktop kernel: scare-pigeon 13e00000.host1x:vi1-thi@14f00000: Adding to iommu group 28
+Aug 26 18:23:07 cam-desktop kernel: scare-pigeon 13e00000.host1x:vi1-thi@14f00000: syncpt_unit_base 60000000 syncpt_unit_size 4000000 size 10000
+Aug 26 18:23:07 cam-desktop kernel: scare-pigeon 13e00000.host1x:isp-thi@14b00000: Adding to iommu group 29
+Aug 26 18:23:07 cam-desktop kernel: scare-pigeon 13e00000.host1x:isp-thi@14b00000: syncpt_unit_base 60000000 syncpt_unit_size 4000000 size 10000
+Aug 26 18:23:07 cam-desktop kernel: mc: Linux media interface: v0.10
+Aug 26 18:23:07 cam-desktop kernel: videodev: Linux video capture interface: v2.00
+Aug 26 18:23:07 cam-desktop kernel: pva 16000000.pva0: Adding to iommu group 30
+Aug 26 18:23:07 cam-desktop kernel: nvdla 15880000.nvdla0: Adding to iommu group 31
+Aug 26 18:23:07 cam-desktop kernel: pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx0: Adding to iommu group 32
+Aug 26 18:23:07 cam-desktop kernel: pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx0: initialized (streamid=18, iommu=smmu.0x0000000008000000)
+Aug 26 18:23:07 cam-desktop kernel: pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx1: Adding to iommu group 33
+Aug 26 18:23:07 cam-desktop kernel: pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx1: initialized (streamid=19, iommu=smmu.0x0000000008000000)
+Aug 26 18:23:07 cam-desktop kernel: pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx2: Adding to iommu group 34
+Aug 26 18:23:07 cam-desktop kernel: pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx2: initialized (streamid=20, iommu=smmu.0x0000000008000000)
+Aug 26 18:23:07 cam-desktop kernel: pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx3: Adding to iommu group 35
+Aug 26 18:23:07 cam-desktop kernel: pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx3: initialized (streamid=21, iommu=smmu.0x0000000008000000)
+Aug 26 18:23:07 cam-desktop kernel: pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx4: Adding to iommu group 36
+Aug 26 18:23:07 cam-desktop kernel: pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx4: initialized (streamid=22, iommu=smmu.0x0000000008000000)
+Aug 26 18:23:07 cam-desktop kernel: pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx5: Adding to iommu group 37
+Aug 26 18:23:07 cam-desktop kernel: pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx5: initialized (streamid=23, iommu=smmu.0x0000000008000000)
+Aug 26 18:23:07 cam-desktop kernel: pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx6: Adding to iommu group 38
+Aug 26 18:23:07 cam-desktop kernel: nvdla 15880000.nvdla0: syncpt_unit_base 60000000 syncpt_unit_size 4000000 size 10000
+Aug 26 18:23:07 cam-desktop kernel: pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx6: initialized (streamid=24, iommu=smmu.0x0000000008000000)
+Aug 26 18:23:07 cam-desktop kernel: nvdla 158c0000.nvdla1: Adding to iommu group 39
+Aug 26 18:23:07 cam-desktop kernel: pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx7: Adding to iommu group 40
+Aug 26 18:23:07 cam-desktop kernel: pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx7: initialized (streamid=25, iommu=smmu.0x0000000008000000)
+Aug 26 18:23:07 cam-desktop kernel: pva 16000000.pva0: pdata->version is HW_GEN2
+Aug 26 18:23:07 cam-desktop kernel: pva 16000000.pva0: Completed nvhost_client_device_init
+Aug 26 18:23:07 cam-desktop kernel: nvdla 158c0000.nvdla1: syncpt_unit_base 60000000 syncpt_unit_size 4000000 size 10000
+Aug 26 18:23:07 cam-desktop kernel: pva 16000000.pva0: syncpt_unit_base 60000000 syncpt_unit_size 4000000 size 10000
+Aug 26 18:23:07 cam-desktop kernel: tegra-vic 15340000.vic: Adding to iommu group 41
+Aug 26 18:23:07 cam-desktop systemd[1]: Started OP-TEE Client Supplicant.
+Aug 26 18:23:07 cam-desktop kernel: tegra-nvdec 15480000.nvdec: Adding to iommu group 42
+Aug 26 18:23:07 cam-desktop kernel: tegra-nvenc 154c0000.nvenc: Adding to iommu group 43
+Aug 26 18:23:07 cam-desktop kernel: Inserting ivc_ext.ko module
+Aug 26 18:23:07 cam-desktop kernel: tegra-nvjpg 15380000.nvjpg: Adding to iommu group 44
+Aug 26 18:23:07 cam-desktop kernel: tegra186-cam-rtcpu bc00000.rtcpu: Adding to iommu group 45
+Aug 26 18:23:07 cam-desktop kernel: tegra186-cam-rtcpu bc00000.rtcpu: Trace buffer configured at IOVA=0xbff00000
+Aug 26 18:23:07 cam-desktop kernel: tegra-ivc-bus bc00000.rtcpu:ivc-bus: region 0: iova=0xbfec0000-0xbfee027f size=131712
+Aug 26 18:23:07 cam-desktop kernel: tegra-nvjpg 15540000.nvjpg: Adding to iommu group 46
+Aug 26 18:23:07 cam-desktop kernel: tegra-ivc-bus bc00000.rtcpu:ivc-bus:echo@0: echo: ver=0 grp=1 RX[16x64]=0x1000-0x1480 TX[16x64]=0x1480-0x1900
+Aug 26 18:23:07 cam-desktop kernel: tegra-ivc-bus bc00000.rtcpu:ivc-bus:dbg@1: dbg: ver=0 grp=1 RX[1x512]=0x1900-0x1b80 TX[1x512]=0x1b80-0x1e00
+Aug 26 18:23:07 cam-desktop kernel: tegra-ivc-bus bc00000.rtcpu:ivc-bus:dbg@2: dbg: ver=0 grp=1 RX[1x8192]=0x1e00-0x3e80 TX[1x8192]=0x3e80-0x5f00
+Aug 26 18:23:07 cam-desktop kernel: tegra-ivc-bus bc00000.rtcpu:ivc-bus:ivccontrol@3: ivccontrol: ver=0 grp=1 RX[64x320]=0x5f00-0xaf80 TX[64x320]=0xaf80-0x10000
+Aug 26 18:23:07 cam-desktop kernel: tegra-ivc-bus bc00000.rtcpu:ivc-bus:ivccapture@4: ivccapture: ver=0 grp=1 RX[512x64]=0x10000-0x18080 TX[512x64]=0x18080-0x20100
+Aug 26 18:23:07 cam-desktop kernel: tegra-ivc-bus bc00000.rtcpu:ivc-bus:diag@5: diag: ver=0 grp=1 RX[1x64]=0x20100-0x201c0 TX[1x64]=0x201c0-0x20280
+Aug 26 18:23:07 cam-desktop kernel: tegra186-cam-rtcpu bc00000.rtcpu: using cam RTCPU IRQ (218)
+Aug 26 18:23:07 cam-desktop kernel: tegra186-cam-rtcpu bc00000.rtcpu: tegra_camrtc_mon_create is successful
+Aug 26 18:23:07 cam-desktop kernel: tegra186-cam-rtcpu bc00000.rtcpu: firmware version cpu=rce cmd=6 sha1=04ea869968864dcb132a50cad9712bd529a09ee2
+Aug 26 18:23:07 cam-desktop kernel: tegra-ivc-bus bc00000.rtcpu:ivc-bus:echo@0: ivc channel driver missing
+Aug 26 18:23:07 cam-desktop kernel: tegra-ivc-bus bc00000.rtcpu:ivc-bus:dbg@1: ivc channel driver missing
+Aug 26 18:23:07 cam-desktop kernel: tegra-ivc-bus bc00000.rtcpu:ivc-bus:dbg@2: ivc channel driver missing
+Aug 26 18:23:07 cam-desktop kernel: tegra-ivc-bus bc00000.rtcpu:ivc-bus:ivccontrol@3: ivc channel driver missing
+Aug 26 18:23:07 cam-desktop kernel: tegra-ivc-bus bc00000.rtcpu:ivc-bus:ivccapture@4: ivc channel driver missing
+Aug 26 18:23:07 cam-desktop kernel: tegra-ivc-bus bc00000.rtcpu:ivc-bus:diag@5: ivc channel driver missing
+Aug 26 18:23:07 cam-desktop kernel: tegra-ofa 15a50000.ofa: Adding to iommu group 47
+Aug 26 18:23:07 cam-desktop kernel: [drm] Initialized tegra 1.0.99 20120330 for drm on minor 0
+Aug 26 18:23:07 cam-desktop kernel: drm drm: [drm] Cannot find any crtc or sizes
+Aug 26 18:23:07 cam-desktop kernel: [RCE] TCU debug prints will be routed to traces.
+Aug 26 18:23:07 cam-desktop kernel: tegra194-isp5 14800000.isp: Adding to iommu group 29
+Aug 26 18:23:07 cam-desktop kernel: tegra194-vi5 13e00000.host1x:vi0@15c00000: Adding to iommu group 27
+Aug 26 18:23:07 cam-desktop kernel: driver not enabled, cannot register any devices
+Aug 26 18:23:07 cam-desktop kernel: driver not enabled, cannot register any devices
+Aug 26 18:23:07 cam-desktop kernel: tegra194-vi5 13e00000.host1x:vi1@14c00000: Adding to iommu group 28
+Aug 26 18:23:07 cam-desktop kernel: driver not enabled, cannot register any devices
+Aug 26 18:23:07 cam-desktop kernel: (NULL device *): fops function table already registered
+Aug 26 18:23:07 cam-desktop kernel: driver not enabled, cannot register any devices
+Aug 26 18:23:07 cam-desktop kernel: tegra194-pcie 141e0000.pcie: Phy link never came up
+Aug 26 18:23:07 cam-desktop kernel: tegra194-pcie 141e0000.pcie: PCI host bridge to bus 0007:00
+Aug 26 18:23:07 cam-desktop kernel: pci_bus 0007:00: root bus resource [bus 00-ff]
+Aug 26 18:23:07 cam-desktop kernel: pci_bus 0007:00: root bus resource [mem 0x3000000000-0x3227ffffff pref]
+Aug 26 18:23:07 cam-desktop kernel: pci_bus 0007:00: root bus resource [mem 0x3228000000-0x322fffffff] (bus address [0x40000000-0x47ffffff])
+Aug 26 18:23:07 cam-desktop kernel: pci_bus 0007:00: root bus resource [io  0x200000-0x2fffff] (bus address [0x3e100000-0x3e1fffff])
+Aug 26 18:23:07 cam-desktop kernel: pci 0007:00:00.0: [10de:229a] type 01 class 0x060400
+Aug 26 18:23:07 cam-desktop kernel: pci 0007:00:00.0: PME# supported from D0 D3hot
+Aug 26 18:23:07 cam-desktop kernel: pci 0007:00:00.0: PCI bridge to [bus 01-ff]
+Aug 26 18:23:07 cam-desktop kernel: pci 0007:00:00.0: Max Payload Size set to  256/ 256 (was  128), Max Read Rq  256
+Aug 26 18:23:07 cam-desktop kernel: pcieport 0007:00:00.0: Adding to iommu group 6
+Aug 26 18:23:07 cam-desktop kernel: pcieport 0007:00:00.0: PME: Signaling with IRQ 194
+Aug 26 18:23:07 cam-desktop kernel: pcieport 0007:00:00.0: AER: enabled with IRQ 194
+Aug 26 18:23:07 cam-desktop kernel: pci_bus 0007:01: busn_res: [bus 01-ff] is released
+Aug 26 18:23:07 cam-desktop kernel: pci 0007:00:00.0: Removing from iommu group 6
+Aug 26 18:23:07 cam-desktop kernel: pci_bus 0007:00: busn_res: [bus 00-ff] is released
+Aug 26 18:23:08 cam-desktop kernel: tegra194-pcie 140a0000.pcie: Adding to iommu group 48
+Aug 26 18:23:08 cam-desktop kernel: tegra-dce d800000.dce: Adding to iommu group 49
+Aug 26 18:23:08 cam-desktop kernel: dce: dce_ipc_channel_init:311  Invalid Channel State [0x0] for ch_type [2]
+Aug 26 18:23:08 cam-desktop kernel: dce: tegra_dce_probe:247  Found display consumer device
+Aug 26 18:23:08 cam-desktop kernel: dce: dce_mailbox_set_full_interrupt:157  Intr bit set multiple times for MB : [0x5]
+Aug 26 18:23:08 cam-desktop kernel: dce: dce_mailbox_set_full_interrupt:157  Intr bit set multiple times for MB : [0x5]
+Aug 26 18:23:08 cam-desktop kernel: dce: dce_admin_send_cmd_ver:456  version : [0x3] err : [0x0]
+Aug 26 18:23:08 cam-desktop kernel: dce: dce_mailbox_set_full_interrupt:157  Intr bit set multiple times for MB : [0x1]
+Aug 26 18:23:08 cam-desktop kernel: dce: dce_admin_setup_clients_ipc:585  Channel Reset Complete for Type [1] ...
+Aug 26 18:23:08 cam-desktop kernel: dce: dce_admin_setup_clients_ipc:561  Get queue info failed for [2]
+Aug 26 18:23:08 cam-desktop kernel: dce: dce_mailbox_set_full_interrupt:157  Intr bit set multiple times for MB : [0x2]
+Aug 26 18:23:08 cam-desktop kernel: dce: dce_admin_setup_clients_ipc:585  Channel Reset Complete for Type [3] ...
+Aug 26 18:23:08 cam-desktop kernel: dce: dce_start_boot_flow:166  DCE_BOOT_DONE
+Aug 26 18:23:08 cam-desktop kernel: tegra194-pcie 140a0000.pcie: host bridge /bus@0/pcie@140a0000 ranges:
+Aug 26 18:23:08 cam-desktop kernel: tegra194-pcie 140a0000.pcie:      MEM 0x3240000000..0x3527ffffff -> 0x3240000000
+Aug 26 18:23:08 cam-desktop kernel: tegra194-pcie 140a0000.pcie:      MEM 0x3528000000..0x352fffffff -> 0x0040000000
+Aug 26 18:23:08 cam-desktop kernel: tegra194-pcie 140a0000.pcie:       IO 0x002a100000..0x002a1fffff -> 0x002a100000
+Aug 26 18:23:08 cam-desktop kernel: tegra194-pcie 140a0000.pcie: iATU unroll: enabled
+Aug 26 18:23:08 cam-desktop kernel: tegra194-pcie 140a0000.pcie: Detected iATU regions: 8 outbound, 2 inbound
+Aug 26 18:23:08 cam-desktop kernel: nvvrs_pseq 4-003c: NVVRS Vendor ID: 0x9
+Aug 26 18:23:08 cam-desktop kernel: nvvrs_pseq 4-003c: NVVRS Model Rev: 0x82
+Aug 26 18:23:08 cam-desktop kernel: nvvrs_pseq 4-003c: NVVRS PSEQ probe successful
+Aug 26 18:23:08 cam-desktop systemd[1]: Finished Coldplug All udev Devices.
+Aug 26 18:23:08 cam-desktop systemd[1]: Condition check resulted in Show Plymouth Boot Screen being skipped.
+Aug 26 18:23:08 cam-desktop systemd[1]: Started Dispatch Password Requests to Console Directory Watch.
+Aug 26 18:23:08 cam-desktop systemd[1]: Condition check resulted in Forward Password Requests to Plymouth Directory Watch being skipped.
+Aug 26 18:23:08 cam-desktop systemd[1]: Reached target Local Encrypted Volumes.
+Aug 26 18:23:08 cam-desktop kernel: nv_platform 13800000.display: Adding to iommu group 50
+Aug 26 18:23:08 cam-desktop kernel: platform 13800000.display:nvdisplay-niso: Adding to iommu group 51
+Aug 26 18:23:08 cam-desktop kernel: tegra194-pcie 140a0000.pcie: Link up
+Aug 26 18:23:08 cam-desktop kernel: tegra194-pcie 140a0000.pcie: Link up
+Aug 26 18:23:08 cam-desktop kernel: tegra194-pcie 140a0000.pcie: PCI host bridge to bus 0008:00
+Aug 26 18:23:08 cam-desktop kernel: pci_bus 0008:00: root bus resource [bus 00-ff]
+Aug 26 18:23:08 cam-desktop kernel: pci_bus 0008:00: root bus resource [mem 0x3240000000-0x3527ffffff pref]
+Aug 26 18:23:08 cam-desktop kernel: pci_bus 0008:00: root bus resource [mem 0x3528000000-0x352fffffff] (bus address [0x40000000-0x47ffffff])
+Aug 26 18:23:08 cam-desktop kernel: pci_bus 0008:00: root bus resource [io  0x300000-0x3fffff] (bus address [0x2a100000-0x2a1fffff])
+Aug 26 18:23:08 cam-desktop kernel: pci 0008:00:00.0: [10de:229c] type 01 class 0x060400
+Aug 26 18:23:08 cam-desktop kernel: pci 0008:00:00.0: PME# supported from D0 D3hot
+Aug 26 18:23:08 cam-desktop kernel: pci 0008:01:00.0: [10ec:8168] type 00 class 0x020000
+Aug 26 18:23:08 cam-desktop kernel: pci 0008:01:00.0: reg 0x10: [io  0x0000-0x00ff]
+Aug 26 18:23:08 cam-desktop kernel: pci 0008:01:00.0: reg 0x18: [mem 0x00000000-0x00000fff 64bit]
+Aug 26 18:23:08 cam-desktop kernel: pci 0008:01:00.0: reg 0x20: [mem 0x00000000-0x00003fff 64bit]
+Aug 26 18:23:08 cam-desktop kernel: pci 0008:01:00.0: supports D1 D2
+Aug 26 18:23:08 cam-desktop kernel: pci 0008:01:00.0: PME# supported from D0 D1 D2 D3hot D3cold
+Aug 26 18:23:08 cam-desktop kernel: pci 0008:00:00.0: BAR 14: assigned [mem 0x3528000000-0x35280fffff]
+Aug 26 18:23:08 cam-desktop kernel: pci 0008:00:00.0: BAR 13: assigned [io  0x300000-0x300fff]
+Aug 26 18:23:08 cam-desktop kernel: pci 0008:01:00.0: BAR 4: assigned [mem 0x3528000000-0x3528003fff 64bit]
+Aug 26 18:23:08 cam-desktop kernel: pci 0008:01:00.0: BAR 2: assigned [mem 0x3528004000-0x3528004fff 64bit]
+Aug 26 18:23:08 cam-desktop kernel: pci 0008:01:00.0: BAR 0: assigned [io  0x300000-0x3000ff]
+Aug 26 18:23:08 cam-desktop kernel: pci 0008:00:00.0: PCI bridge to [bus 01-ff]
+Aug 26 18:23:08 cam-desktop kernel: pci 0008:00:00.0:   bridge window [io  0x300000-0x300fff]
+Aug 26 18:23:08 cam-desktop kernel: pci 0008:00:00.0:   bridge window [mem 0x3528000000-0x35280fffff]
+Aug 26 18:23:08 cam-desktop kernel: pci 0008:00:00.0: Max Payload Size set to  256/ 256 (was  128), Max Read Rq  256
+Aug 26 18:23:08 cam-desktop kernel: pci 0008:01:00.0: Max Payload Size set to  128/ 128 (was  128), Max Read Rq  128
+Aug 26 18:23:08 cam-desktop kernel: pcieport 0008:00:00.0: Adding to iommu group 48
+Aug 26 18:23:08 cam-desktop kernel: pcieport 0008:00:00.0: PME: Signaling with IRQ 188
+Aug 26 18:23:08 cam-desktop kernel: pcieport 0008:00:00.0: AER: enabled with IRQ 188
+Aug 26 18:23:08 cam-desktop systemd[1]: Started Journal Service.
+Aug 26 18:23:08 cam-desktop kernel: cfg80211: Loading compiled-in X.509 certificates for regulatory database
+Aug 26 18:23:08 cam-desktop kernel: cfg80211: Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+Aug 26 18:23:08 cam-desktop kernel: cfg80211: Loaded X.509 cert 'wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600'
+Aug 26 18:23:08 cam-desktop kernel: spi-tegra114 3210000.spi: Adding to iommu group 1
+Aug 26 18:23:08 cam-desktop kernel: at24 0-0050: 256 byte 24c02 EEPROM, read-only
+Aug 26 18:23:08 cam-desktop kernel: at24 0-0057: 256 byte 24c02 EEPROM, read-only
+Aug 26 18:23:08 cam-desktop kernel: spi-tegra114 3230000.spi: Adding to iommu group 1
+Aug 26 18:23:08 cam-desktop kernel: rtl88x2ce 0001:01:00.0: Adding to iommu group 3
+Aug 26 18:23:08 cam-desktop kernel: rtl88x2ce 0001:01:00.0: enabling device (0000 -> 0003)
+Aug 26 18:23:08 cam-desktop kernel: tegra-hda 3510000.hda: Adding to iommu group 52
+Aug 26 18:23:08 cam-desktop kernel: tegra234-aon c000000.aon: Adding to iommu group 53
+Aug 26 18:23:08 cam-desktop kernel: CAN device driver interface
+Aug 26 18:23:08 cam-desktop kernel:  c000000.aon:hsp: probed
+Aug 26 18:23:08 cam-desktop kernel: tegra234-aon c000000.aon: init done
+Aug 26 18:23:08 cam-desktop kernel: thermal-trip-event cpu-throttle-alert: cooling device registered.
+Aug 26 18:23:08 cam-desktop kernel: TT CAN feature is not supported
+Aug 26 18:23:08 cam-desktop kernel:          Message RAM Configuration
+                                            | base addr   |0x0c312000|
+                                            | sidfc_flssa |0x00000000|
+                                            | xidfc_flesa |0x00000040|
+                                            | rxf0c_f0sa  |0x000000c0|
+                                            | rxf1c_f1sa  |0x000009c0|
+                                            | rxbc_rbsa   |0x000009c0|
+                                            | txefc_efsa  |0x000009c0|
+                                            | txbc_tbsa   |0x00000a40|
+                                            | tmc_tmsa    |0x00000ec0|
+                                            | mram size   |0x00001000|
+Aug 26 18:23:08 cam-desktop kernel: Release 3.2.3 from 09.06.2018
+Aug 26 18:23:08 cam-desktop kernel: thermal-trip-event gpu-throttle-alert: cooling device registered.
+Aug 26 18:23:08 cam-desktop kernel: input: NVIDIA Jetson Orin NX HDA HDMI/DP,pcm=3 as /devices/platform/bus@0/3510000.hda/sound/card0/input4
+Aug 26 18:23:08 cam-desktop kernel: gic 2a41000.interrupt-controller: GIC IRQ controller registered
+Aug 26 18:23:08 cam-desktop kernel: thermal-trip-event cv0-throttle-alert: cooling device registered.
+Aug 26 18:23:08 cam-desktop kernel: tegra-aconnect bus@0:aconnect@2900000: Tegra ACONNECT bus registered
+Aug 26 18:23:08 cam-desktop kernel: input: NVIDIA Jetson Orin NX HDA HDMI/DP,pcm=7 as /devices/platform/bus@0/3510000.hda/sound/card0/input5
+Aug 26 18:23:08 cam-desktop kernel: thermal-trip-event cv1-throttle-alert: cooling device registered.
+Aug 26 18:23:08 cam-desktop kernel: net can0: mttcan device registered (regs=00000000d58451ca, irq=200)
+Aug 26 18:23:08 cam-desktop kernel: input: NVIDIA Jetson Orin NX HDA HDMI/DP,pcm=8 as /devices/platform/bus@0/3510000.hda/sound/card0/input6
+Aug 26 18:23:08 cam-desktop kernel: thermal-trip-event cv2-throttle-alert: cooling device registered.
+Aug 26 18:23:08 cam-desktop kernel: thermal-trip-event soc0-throttle-alert: cooling device registered.
+Aug 26 18:23:08 cam-desktop kernel: input: NVIDIA Jetson Orin NX HDA HDMI/DP,pcm=9 as /devices/platform/bus@0/3510000.hda/sound/card0/input7
+Aug 26 18:23:08 cam-desktop kernel: thermal-trip-event soc1-throttle-alert: cooling device registered.
+Aug 26 18:23:08 cam-desktop kernel: thermal-trip-event soc2-throttle-alert: cooling device registered.
+Aug 26 18:23:08 cam-desktop kernel: irq: IRQ255: trimming hierarchy from :bus@0:pmc@c360000
+Aug 26 18:23:08 cam-desktop kernel: fusb301 1-0025: device id: 0x12
+Aug 26 18:23:08 cam-desktop kernel: thermal-trip-event hot-surface-alert: cooling device registered.
+Aug 26 18:23:08 cam-desktop kernel: fusb301 1-0025: toggle_time(0) is not updated
+Aug 26 18:23:08 cam-desktop kernel: fusb301 1-0025: fusb301_set_mode: mode (32)(32)
+Aug 26 18:23:08 cam-desktop kernel: fusb301 1-0025: fusb301_detach: type[0x00] chipstate[0x01]
+Aug 26 18:23:08 cam-desktop kernel: fusb301 1-0025: fusb_update_state: 1
+Aug 26 18:23:08 cam-desktop kernel: fusb301 1-0025: mode[0x20], host_cur[0x02], dttime[0x00]
+Aug 26 18:23:08 cam-desktop kernel: usbcore: registered new interface driver btusb
+Aug 26 18:23:08 cam-desktop kernel: Bluetooth: hci0: RTL: examining hci_ver=0a hci_rev=000c lmp_ver=0a lmp_subver=8822
+Aug 26 18:23:08 cam-desktop kernel: Bluetooth: hci0: RTL: rom_version status=0 version=3
+Aug 26 18:23:08 cam-desktop kernel: Bluetooth: hci0: RTL: loading rtl_bt/rtl8822cu_fw.bin
+Aug 26 18:23:08 cam-desktop kernel: rtk_btusb: Realtek Bluetooth USB driver ver 3.1.65ab490.20240531-141726
+Aug 26 18:23:08 cam-desktop kernel: rtk_btcoex: rtk_btcoex_init: version: 1.2
+Aug 26 18:23:08 cam-desktop kernel: rtk_btcoex: create workqueue
+Aug 26 18:23:08 cam-desktop kernel: rtk_btcoex: alloc buffers 1792, 2432 for ev and l2
+Aug 26 18:23:08 cam-desktop kernel: usbcore: registered new interface driver rtk_btusb
+Aug 26 18:23:08 cam-desktop kernel: Bluetooth: hci0: RTL: loading rtl_bt/rtl8822cu_config.bin
+Aug 26 18:23:08 cam-desktop kernel: Bluetooth: hci0: RTL: cfg_sz 6, total sz 35086
+Aug 26 18:23:08 cam-desktop kernel: loop0: detected capacity change from 0 to 373072
+Aug 26 18:23:08 cam-desktop kernel: loop1: detected capacity change from 0 to 8
+Aug 26 18:23:08 cam-desktop kernel: loop2: detected capacity change from 0 to 141232
+Aug 26 18:23:08 cam-desktop kernel: loop3: detected capacity change from 0 to 126776
+Aug 26 18:23:08 cam-desktop kernel: nvvrs-pseq-rtc nvvrs-pseq-rtc: registered as rtc0
+Jan 01 03:00:56 cam-desktop kernel: nvvrs-pseq-rtc nvvrs-pseq-rtc: setting system clock to 1970-01-01T00:00:56 UTC (56)
+Jan 01 03:00:56 cam-desktop kernel: loop4: detected capacity change from 0 to 1132440
+Jan 01 03:00:56 cam-desktop kernel: r8168 0008:01:00.0: Adding to iommu group 48
+Jan 01 03:00:56 cam-desktop kernel: loop5: detected capacity change from 0 to 95512
+Jan 01 03:00:56 cam-desktop kernel: r8168 Gigabit Ethernet driver 8.053.00-NAPI loaded
+Jan 01 03:00:56 cam-desktop kernel: r8168 0008:01:00.0: enabling device (0000 -> 0003)
+Jan 01 03:00:56 cam-desktop kernel: loop6: detected capacity change from 0 to 187776
+Jan 01 03:00:56 cam-desktop kernel: loop7: detected capacity change from 0 to 357512
+Jan 01 03:00:56 cam-desktop kernel: fusb301 1-0025: fusb301_work_handler: int_sts[0x05]
+Jan 01 03:00:56 cam-desktop kernel: fusb301 1-0025: sts[0x2f], type[0x08]
+Jan 01 03:00:56 cam-desktop kernel: fusb301 1-0025: fusb_update_state: 6
+Jan 01 03:00:56 cam-desktop kernel: r8168: This product is covered by one or more of the following patents: US6,570,884, US6,115,776, and US6,327,625.
+Jan 01 03:00:56 cam-desktop kernel: loop8: detected capacity change from 0 to 85664
+Jan 01 03:00:56 cam-desktop kernel: rtl88x2ce 0001:01:00.0 wlP1p1s0: renamed from wlan0
+Jan 01 03:00:56 cam-desktop kernel: r8168  Copyright (C) 2024 Realtek NIC software team <nicfae@realtek.com> 
+                                     This program comes with ABSOLUTELY NO WARRANTY; for details, please see <http://www.gnu.org/licenses/>. 
+                                     This is free software, and you are welcome to redistribute it under certain conditions; see <http://www.gnu.org/licenses/>. 
+Jan 01 03:00:56 cam-desktop kernel: tegra-adma 2930000.dma-controller: Tegra210 ADMA driver registered 32 channels
+Jan 01 03:00:56 cam-desktop kernel: r8168 0008:01:00.0 enP8p1s0: renamed from eth0
+Jan 01 03:00:56 cam-desktop kernel: tegra210-admaif 290f000.admaif: Adding to iommu group 54
+Apr 17 16:16:47 cam-desktop kernel: Bluetooth: hci0: RTL: fw version 0x19b76d7d
+Apr 17 16:16:49 cam-desktop kernel: using random self ethernet address
+Apr 17 16:16:49 cam-desktop kernel: using random host ethernet address
+Apr 17 16:16:49 cam-desktop kernel: Bluetooth: BNEP (Ethernet Emulation) ver 1.3
+Apr 17 16:16:49 cam-desktop kernel: Bluetooth: BNEP filters: protocol multicast
+Apr 17 16:16:49 cam-desktop kernel: Bluetooth: BNEP socket layer initialized
+Apr 17 16:16:49 cam-desktop kernel: NET: Registered PF_ALG protocol family
+Apr 17 16:16:49 cam-desktop kernel: loop9: detected capacity change from 0 to 32768
+Apr 17 16:16:49 cam-desktop nv_nvsciipc_init.sh[947]: found /dev/nvsciipc
+Apr 17 16:16:49 cam-desktop kernel: nvsciipc: set_db start
+Apr 17 16:16:49 cam-desktop kernel: nvsciipc: set_db done
+Apr 17 16:16:49 cam-desktop kernel: enP8p1s0: 0xffff800008eed000, 3c:6d:66:0d:53:d9, IRQ 256
+Apr 17 16:16:49 cam-desktop kernel: IRQ230: set affinity failed(-22).
+Apr 17 16:16:49 cam-desktop kernel: IRQ253: set affinity failed(-22).
+Apr 17 16:16:49 cam-desktop kernel: IRQ256: set affinity failed(-22).
+Apr 17 16:16:49 cam-desktop kernel: psci: CPU4 killed (polled 0 ms)
+Apr 17 16:16:49 cam-desktop kernel: Mass Storage Function, version: 2009/09/11
+Apr 17 16:16:49 cam-desktop kernel: LUN: removable file: (no medium)
+Apr 17 16:16:49 cam-desktop kernel: IRQ230: set affinity failed(-22).
+Apr 17 16:16:49 cam-desktop kernel: IRQ253: set affinity failed(-22).
+Apr 17 16:16:49 cam-desktop kernel: IRQ256: set affinity failed(-22).
+Apr 17 16:16:49 cam-desktop kernel: psci: CPU5 killed (polled 0 ms)
+Apr 17 16:16:49 cam-desktop kernel: using random self ethernet address
+Apr 17 16:16:49 cam-desktop kernel: using random host ethernet address
+Apr 17 16:16:49 cam-desktop kernel: IRQ230: set affinity failed(-22).
+Apr 17 16:16:49 cam-desktop kernel: IRQ253: set affinity failed(-22).
+Apr 17 16:16:49 cam-desktop kernel: IRQ256: set affinity failed(-22).
+Apr 17 16:16:49 cam-desktop kernel: psci: CPU6 killed (polled 0 ms)
+Apr 17 16:16:49 cam-desktop kernel: IRQ230: set affinity failed(-22).
+Apr 17 16:16:49 cam-desktop kernel: psci: CPU7 killed (polled 0 ms)
+Apr 17 16:16:49 cam-desktop kernel: pstore: Using crash dump compression: deflate
+Apr 17 16:16:49 cam-desktop kernel: printk: console [ramoops-1]: printing thread started
+Apr 17 16:16:49 cam-desktop kernel: printk: console [ramoops-1] enabled
+Apr 17 16:16:49 cam-desktop kernel: pstore: Registered ramoops as persistent store backend
+Apr 17 16:16:49 cam-desktop kernel: ramoops: using 0x200000@0x4725f0000, ecc: 0
+Apr 17 16:16:50 cam-desktop kernel: bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your scripts to load br_netfilter if you need this.
+Apr 17 16:16:50 cam-desktop kernel: usb0: HOST MAC c2:d6:da:8f:db:b0
+Apr 17 16:16:50 cam-desktop kernel: usb0: MAC c2:d6:da:8f:db:b1
+Apr 17 16:16:50 cam-desktop kernel: usb1: HOST MAC c2:d6:da:8f:db:b2
+Apr 17 16:16:50 cam-desktop kernel: usb1: MAC c2:d6:da:8f:db:b3
+Apr 17 16:16:50 cam-desktop kernel: tegra-xudc 3550000.usb: EP 0 (type: ctrl, dir: out) enabled
+Apr 17 16:16:50 cam-desktop kernel: l4tbr0: port 1(usb0) entered blocking state
+Apr 17 16:16:50 cam-desktop kernel: l4tbr0: port 1(usb0) entered disabled state
+Apr 17 16:16:50 cam-desktop kernel: device usb0 entered promiscuous mode
+Apr 17 16:16:50 cam-desktop kernel: l4tbr0: port 2(usb1) entered blocking state
+Apr 17 16:16:50 cam-desktop kernel: l4tbr0: port 2(usb1) entered disabled state
+Apr 17 16:16:50 cam-desktop kernel: device usb1 entered promiscuous mode
+Apr 17 16:16:50 cam-desktop kernel: loop9: detected capacity change from 0 to 32768
+Apr 17 16:16:50 cam-desktop kernel: nvgpu: 17000000.gpu                  gk20a_scale_init:541  [INFO]  enabled scaling for GPU
+Apr 17 16:16:50 cam-desktop kernel: zram: Added device: zram0
+Apr 17 16:16:50 cam-desktop kernel: zram: Added device: zram1
+Apr 17 16:16:50 cam-desktop kernel: zram: Added device: zram2
+Apr 17 16:16:50 cam-desktop kernel: zram: Added device: zram3
+Apr 17 16:16:50 cam-desktop kernel: zram0: detected capacity change from 0 to 4004608
+Apr 17 16:16:50 cam-desktop kernel: Adding 2002300k swap on /dev/zram0.  Priority:5 extents:1 across:2002300k SS
+Apr 17 16:16:50 cam-desktop kernel: zram1: detected capacity change from 0 to 4004608
+Apr 17 16:16:50 cam-desktop kernel: Adding 2002300k swap on /dev/zram1.  Priority:5 extents:1 across:2002300k SS
+Apr 17 16:16:50 cam-desktop kernel: zram2: detected capacity change from 0 to 4004608
+Apr 17 16:16:50 cam-desktop kernel: Adding 2002300k swap on /dev/zram2.  Priority:5 extents:1 across:2002300k SS
+Apr 17 16:16:50 cam-desktop kernel: zram3: detected capacity change from 0 to 4004608
+Apr 17 16:16:50 cam-desktop kernel: Adding 2002300k swap on /dev/zram3.  Priority:5 extents:1 across:2002300k SS
+Apr 17 16:16:50 cam-desktop kernel: tegra-xudc 3550000.usb: EP 5 (type: intr, dir: in) enabled
+Apr 17 16:16:50 cam-desktop kernel: tegra-xudc 3550000.usb: EP 3 (type: bulk, dir: in) enabled
+Apr 17 16:16:50 cam-desktop kernel: tegra-xudc 3550000.usb: EP 2 (type: bulk, dir: out) enabled
+Apr 17 16:16:50 cam-desktop kernel: IPv6: ADDRCONF(NETDEV_CHANGE): usb0: link becomes ready
+Apr 17 16:16:50 cam-desktop kernel: tegra-xudc 3550000.usb: EP 9 (type: intr, dir: in) enabled
+Apr 17 16:16:50 cam-desktop kernel: tegra-xudc 3550000.usb: EP 7 (type: bulk, dir: in) enabled
+Apr 17 16:16:50 cam-desktop kernel: tegra-xudc 3550000.usb: EP 4 (type: bulk, dir: out) enabled
+Apr 17 16:16:50 cam-desktop kernel: tegra-xudc 3550000.usb: EP 15 (type: intr, dir: in) enabled
+Apr 17 16:16:50 cam-desktop kernel: tegra-xudc 3550000.usb: EP 11 (type: bulk, dir: in) enabled
+Apr 17 16:16:50 cam-desktop kernel: tegra-xudc 3550000.usb: EP 6 (type: bulk, dir: out) enabled
+Apr 17 16:16:50 cam-desktop kernel: tegra-xudc 3550000.usb: EP 13 (type: bulk, dir: in) enabled
+Apr 17 16:16:50 cam-desktop kernel: tegra-xudc 3550000.usb: EP 8 (type: bulk, dir: out) enabled
+Apr 17 16:16:50 cam-desktop kernel: tegra-xudc 3550000.usb: ep 13 disabled
+Apr 17 16:16:50 cam-desktop kernel: tegra-xudc 3550000.usb: ep 8 disabled
+Apr 17 16:16:50 cam-desktop kernel: tegra-xudc 3550000.usb: EP 13 (type: bulk, dir: in) enabled
+Apr 17 16:16:50 cam-desktop kernel: tegra-xudc 3550000.usb: EP 8 (type: bulk, dir: out) enabled
+Apr 17 16:16:50 cam-desktop kernel: IPv6: ADDRCONF(NETDEV_CHANGE): usb1: link becomes ready
+Apr 17 16:16:52 cam-desktop kernel: l4tbr0: port 2(usb1) entered blocking state
+Apr 17 16:16:52 cam-desktop kernel: l4tbr0: port 2(usb1) entered forwarding state
+Apr 17 16:16:52 cam-desktop kernel: l4tbr0: port 1(usb0) entered blocking state
+Apr 17 16:16:52 cam-desktop kernel: l4tbr0: port 1(usb0) entered forwarding state
+Apr 17 16:16:52 cam-desktop kernel: IPv6: ADDRCONF(NETDEV_CHANGE): l4tbr0: link becomes ready
+Apr 17 16:16:52 cam-desktop kernel: nvidia-modeset: Loading NVIDIA UNIX Open Kernel Mode Setting Driver for aarch64  540.5.0  Release Build  (buildbrain@239549d1-8639-491a-b9e7-120e21430986-l1eu-vqrkv)  Thu Jan 15 19:36:45 PST 2026
+Apr 17 16:16:52 cam-desktop kernel: [drm] [nvidia-drm] [GPU ID 0x00020000] Loading driver
+Apr 17 16:16:52 cam-desktop kernel: NVRM rpcRmApiControl_dce: NVRM_RPC_DCE: Failed RM ctrl call cmd:0x731341 result 0xffff:
+Apr 17 16:16:52 cam-desktop kernel: NVRM rpcRmApiControl_dce: NVRM_RPC_DCE: Failed RM ctrl call cmd:0x730282 result 0x1f:
+Apr 17 16:16:53 cam-desktop kernel: [drm] Initialized nvidia-drm 0.0.0 20160202 for 13800000.display on minor 1
+Apr 17 16:16:53 cam-desktop kernel: Console: switching to colour frame buffer device 240x67
+Apr 17 16:16:53 cam-desktop kernel: nv_platform 13800000.display: [drm] fb0: nvidia-drmdrmfb frame buffer device
+Apr 17 16:16:54 cam-desktop kernel: ACK 04 d4
+Apr 17 16:16:54 cam-desktop kernel: ACK 04 d4
+Apr 17 16:16:54 cam-desktop kernel: IPv6: ADDRCONF(NETDEV_CHANGE): wlP1p1s0: link becomes ready
+Apr 17 16:16:57 cam-desktop kernel: loop10: detected capacity change from 0 to 8
+Apr 17 16:16:57 cam-desktop kernel: rfkill: input handler disabled
+Apr 17 16:17:01 cam-desktop kernel: audit: type=1326 audit(1776431821.358:2): auid=4294967295 uid=0 gid=0 ses=4294967295 subj=kernel pid=2535 comm="cupsd" exe="/snap/cups/1184/sbin/cupsd" sig=0 arch=c00000b7 syscall=55 compat=0 ip=0xffffa0cfce0c code=0x50000
+Apr 17 16:17:06 cam-desktop kernel: audit: type=1326 audit(1776431826.794:3): auid=4294967295 uid=0 gid=0 ses=4294967295 subj=kernel pid=2535 comm="cupsd" exe="/snap/cups/1184/sbin/cupsd" sig=0 arch=c00000b7 syscall=55 compat=0 ip=0xffffa0cfce0c code=0x50000
+Apr 17 16:17:06 cam-desktop kernel: audit: type=1326 audit(1776431826.822:4): auid=4294967295 uid=0 gid=0 ses=4294967295 subj=kernel pid=2551 comm="cups-browsed" exe="/snap/cups/1184/sbin/cups-browsed" sig=0 arch=c00000b7 syscall=274 compat=0 ip=0xffffaf885b68 code=0x50000

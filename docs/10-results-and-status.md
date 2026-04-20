@@ -28,14 +28,16 @@ Completed:
 - reusable overlay build pipeline added through `scripts/build_overlay.sh`;
 - route-A probe-oriented overlay candidate compiles under `artifacts/dtbo/20260417T124633Z-ov5647-p3768-port-a-probe.dtbo`.
 - route-A probe overlay staged into `/boot/ov5647-p3768-port-a-probe.dtbo`;
-- on-disk `extlinux.conf` now points `DEFAULT` to `ov5647-dev` for the next controlled reboot;
-- the dev entry now carries `FDTOVERLAYS /boot/ov5647-p3768-port-a-probe.dtbo`.
+- first dev reboot completed successfully and confirmed `boot_profile=ov5647-dev`;
+- first dev reboot showed that `FDTOVERLAYS` did not apply the custom camera overlay on this target;
+- boot tooling was corrected to UEFI-style `FDT + OVERLAYS`;
+- on-disk `extlinux.conf` has been returned to `DEFAULT ov5647-safe` while keeping the corrected dev entry available.
 
 Not completed yet:
 
 - CBL carrier identity confirmation from hardware documentation or physical inspection;
 - verified OV5647 DT overlay;
-- first reboot into the prepared dev profile;
+- second reboot into the corrected UEFI-style dev profile;
 - OV5647 I2C probe;
 - chip-ID read;
 - `/dev/videoX`;

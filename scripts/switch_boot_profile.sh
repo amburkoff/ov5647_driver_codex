@@ -20,6 +20,7 @@ APPLY=0
 DEFAULT_PROFILE="safe"
 EXTLINUX=/boot/extlinux/extlinux.conf
 DEV_OVERLAY=""
+UEFI_DTB=""
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -59,6 +60,10 @@ fi
 if [[ -n "${DEV_OVERLAY}" && "${DEV_OVERLAY}" != /boot/* ]]; then
     printf "dev overlay path must be under /boot/: %s\n" "${DEV_OVERLAY}" >&2
     exit 1
+fi
+
+if [[ -f /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb ]]; then
+    UEFI_DTB=/boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb
 fi
 
 STAMP=$(timestamp_utc)
@@ -123,11 +128,10 @@ fi
     printf "      MENU LABEL Jetson SAFE (no OV5647 auto-load)\n"
     printf "      LINUX %s\n" "${LINUX_LINE}"
     printf "      INITRD %s\n" "${INITRD_LINE}"
-    if [[ -n "${FDT_LINE}" ]]; then
+    if [[ -n "${UEFI_DTB}" ]]; then
+        printf "      FDT %s\n" "${UEFI_DTB}"
+    elif [[ -n "${FDT_LINE}" ]]; then
         printf "      FDT %s\n" "${FDT_LINE}"
-    fi
-    if [[ -n "${FDTOVERLAYS_LINE}" ]]; then
-        printf "      FDTOVERLAYS %s\n" "${FDTOVERLAYS_LINE}"
     fi
     printf "      APPEND %s boot_profile=ov5647-safe\n\n" "${APPEND_LINE}"
 
@@ -135,17 +139,13 @@ fi
     printf "      MENU LABEL Jetson DEV OV5647 auto-load\n"
     printf "      LINUX %s\n" "${LINUX_LINE}"
     printf "      INITRD %s\n" "${INITRD_LINE}"
-    if [[ -n "${FDT_LINE}" ]]; then
+    if [[ -n "${UEFI_DTB}" ]]; then
+        printf "      FDT %s\n" "${UEFI_DTB}"
+    elif [[ -n "${FDT_LINE}" ]]; then
         printf "      FDT %s\n" "${FDT_LINE}"
     fi
     if [[ -n "${DEV_OVERLAY}" ]]; then
-        printf "      FDTOVERLAYS %s" "${DEV_OVERLAY}"
-        if [[ -n "${FDTOVERLAYS_LINE}" ]]; then
-            printf " %s" "${FDTOVERLAYS_LINE}"
-        fi
-        printf "\n"
-    elif [[ -n "${FDTOVERLAYS_LINE}" ]]; then
-        printf "      FDTOVERLAYS %s\n" "${FDTOVERLAYS_LINE}"
+        printf "      OVERLAYS %s\n" "${DEV_OVERLAY}"
     fi
     printf "      APPEND %s boot_profile=ov5647-dev\n" "${APPEND_LINE}"
 } >"${GENERATED}"
@@ -156,6 +156,7 @@ fi
     note "Source menu label: ${MENU_LABEL:-unknown}"
     note "Requested default profile: ${DEFAULT_PROFILE}"
     note "Requested dev overlay: ${DEV_OVERLAY:-unset}"
+    note "Detected UEFI DTB: ${UEFI_DTB:-unset}"
     note "Generated config: ${GENERATED}"
 } | tee "${LOGFILE}"
 

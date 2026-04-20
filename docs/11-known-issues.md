@@ -12,3 +12,4 @@
 - `journalctl --list-boots` and `uptime -s` disagree about the current boot start time, so timestamp interpretation needs care.
 - The draft route-A OV5647 overlay compiles locally, but it still relies on unresolved hardware assumptions and keeps the sensor node disabled.
 - The probe-oriented route-A OV5647 overlay also compiles locally, but it remains an assumption-driven candidate and has not yet been applied or probed on hardware.
+- The first rebooted dev attempt proved that `FDTOVERLAYS` was not the correct overlay mechanism for this UEFI-based boot path; the corrected path now uses `FDT + OVERLAYS`.
