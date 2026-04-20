@@ -3,8 +3,7 @@
 - The user target is described as a CBL Developer Kit carrier, but the running DT identifies NVIDIA reference carrier `p3768-0000`.
 - The running system currently boots with `boot_profile=ov5647-dev`, while the carrier hardware still needs independent CBL-specific documentation beyond what the base DT exposes.
 - The safe boot entry still exists, but the on-disk default is currently set to `ov5647-dev` for the next controlled overlay-validation reboot cycle.
-- The active dev overlay is still an assumption-driven route-A candidate and has only been validated far enough to create the muxed I2C path and sensor DT node.
-- `/dev/media0` is present, but no `/dev/video*` node exists yet.
+- The active dev overlay is still an assumption-driven route-A candidate from the physical-connector point of view, even though it is now logically validated by successful probe and `/dev/video0`.
 - The physical camera modules are present on both 22-pin connectors, but the exact mapping from physical connector to route `A` or `C` is still unverified.
 - The visible camera marking `JT-ZERO-V2.0 YH` suggests Raspberry Pi-market OV5647 hardware, but the exact FFC/adaptor topology is not yet documented.
 - `v4l2-ctl`, `media-ctl`, and `v4l2-compliance` are not installed at this checkpoint.
@@ -15,5 +14,11 @@
 - The probe-oriented route-A OV5647 overlay now applies at boot and probes far enough to request regulators and clock resources, but it still relies on unresolved hardware assumptions.
 - The first rebooted dev attempt proved that `FDTOVERLAYS` was not the correct overlay mechanism for this UEFI-based boot path; the corrected path now uses `FDT + OVERLAYS`.
 - A previous manual `insmod` of `nv_ov5647` triggered a kernel panic due to `tegracam_set_privdata()` being called too early; that ordering bug is fixed, but the panic history remains relevant for regression checking.
-- The current first-order runtime blocker is `ov5647_power_get(): mclk get failed err=-2`, which indicates the active live DT still lacks a usable clock binding for the sensor node.
-- `i2cdetect -y 9` still does not show a visible responder at `0x36`, so the hardware route, power state, or sensor identity is not yet confirmed from the bus level.
+- The earlier `mclk get failed err=-2` blocker is fixed by the explicit live DT clock binding `clocks = <&bpmp 0x07>`, but this needs to stay documented because it was a real bring-up gate.
+- The current path confirms a responder at `0x36` and a correct chip ID `0x5647`, but the observed `pwdn` semantics differ from the original assumption:
+  - chip-ID failed when the driver drove GPIO 397 low on power-on;
+  - chip-ID succeeded when GPIO 397 stayed high on power-on;
+  - this polarity still needs carrier-level confirmation.
+- A failed probe path that reaches `tegracam_device_unregister()` still triggers a kernel warning in `devm_kfree`; successful probe no longer hits that path, but the failure unwind issue remains open for robustness work.
+- The driver has only a placeholder mode table and does not yet have a validated mode-programming sequence for streaming.
+- `/dev/video0` exists, but raw capture and preview are not yet validated.

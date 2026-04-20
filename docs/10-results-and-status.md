@@ -1,6 +1,6 @@
 # Results And Status
 
-Current overall status: `inventory, safe scaffold, corrected dev overlay boot, first controlled probe, and mclk bring-up debugging`
+Current overall status: `inventory, safe scaffold, corrected dev overlay boot, successful single-sensor probe, and first /dev/video0`
 
 Completed:
 
@@ -41,23 +41,38 @@ Completed:
 - current controlled probe reaches regulator and clock acquisition, then fails cleanly at `mclk get` with `err=-2`;
 - the probe overlay source was updated to add an explicit `clocks = <&bpmp 0x07>` binding for `extperiph1`;
 - the updated probe overlay has been rebuilt and staged to `/boot/ov5647-p3768-port-a-probe.dtbo` for the next reboot.
+- the current dev boot now exposes a live route-A OV5647 path on:
+  - `serial_b`
+  - `port-index = 1`
+  - `bus-width = <2>`
+  - `lane_polarity = "6"`
+- direct bus inspection confirms the muxed downstream camera bus is:
+  - `i2c-9`
+- direct hardware reads confirm a real OV5647 responder at:
+  - `0x36`
+  - chip ID `0x5647`
+- the current path is probe-stable only when `pwdn_gpio=397` is kept high during power-on;
+- with that change, `ov5647_board_setup()` now succeeds and logs the correct chip ID;
+- after removing `TEGRA_CAMERA_CID_GROUP_HOLD` from the driver control list, `tegracam_v4l2subdev_register()` succeeds;
+- the kernel now creates:
+  - `/dev/video0`
+  - `/dev/v4l-subdev0`
+  - `/dev/v4l-subdev1`
+- the VI stack logs:
+  - `tegra-camrtc-capture-vi tegra-capture-vi: subdev nv_ov5647 9-0036 bound`
+- the current manual probe exits successfully with no panic and no negative-probe unwind warning on the successful path.
 
 Not completed yet:
 
 - CBL carrier identity confirmation from hardware documentation or physical inspection;
 - verified OV5647 DT overlay;
-- successful `mclk` acquisition in probe;
-- OV5647 chip-ID read;
-- confirmed sensor response at `0x36` on the muxed downstream bus;
-- chip-ID read;
-- `/dev/videoX`;
+- verified OV5647 DT overlay for the actual physical connector used by the user;
 - raw capture;
 - live preview.
 
 Next smallest safe step:
 
-- reboot once more into `ov5647-dev` so the updated overlay with the explicit clock phandle is applied;
-- confirm the live DT now carries the new clock binding;
-- rerun the controlled module probe and verify whether `mclk get failed err=-2` is resolved;
-- if `mclk` comes up, continue immediately to power-on sequencing and chip-ID read;
-- if `mclk` still fails, compare the live clock phandle and sample camera DT bindings against the active BSP DT before changing any other variable.
+- install `v4l-utils` tooling so the media graph and node capabilities can be captured into logs;
+- record `v4l2-ctl --all`, `--list-formats-ext`, `media-ctl -p`, and `v4l2-compliance`;
+- align the first minimal mode table with the DT mode and move from successful probe to first raw frame capture;
+- keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.

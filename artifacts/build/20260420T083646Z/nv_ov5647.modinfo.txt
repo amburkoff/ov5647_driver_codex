@@ -1,0 +1,14 @@
+filename:       /home/cam/ov5647_driver_codex/src/nv_ov5647/nv_ov5647.ko
+version:        0.1.0
+license:        GPL v2
+description:    OV5647 Jetson bring-up scaffold for Jetson Linux r36.5
+author:         OpenAI Codex
+srcversion:     031458D097C1B80E1DE6F6C
+alias:          of:N*T*Covti,ov5647C*
+alias:          of:N*T*Covti,ov5647
+alias:          i2c:ov5647
+depends:        tegra-camera
+name:           nv_ov5647
+vermagic:       5.15.185-tegra SMP preempt mod_unload modversions aarch64
+parm:           register_i2c_driver:Register the OV5647 i2c driver on module load. Default: false (bool)
+parm:           allow_hw_probe:Allow real OV5647 probe and board setup when a DT match exists. Default: false (bool)

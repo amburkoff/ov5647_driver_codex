@@ -1,0 +1,7 @@
+[2026-04-20T08:33:49Z] CMD: bash -lc ls -la /sys/fs/pstore 2>&1 || true
+total 0
+drwxr-x---  2 root root     0 Aug 26  2025 .
+drwxr-xr-x 11 root root     0 Jan  1  1970 ..
+-r--r--r--  1 root root 12118 Apr 20 11:33 console-ramoops-0
+-r--r--r--  1 root root 75963 Apr 20 11:03 dmesg-ramoops-0
+-r--r--r--  1 root root 76302 Apr 20 11:03 dmesg-ramoops-1
