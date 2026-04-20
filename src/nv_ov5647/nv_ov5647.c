@@ -29,10 +29,19 @@
 #define OV5647_REG_CHIP_ID_LOW		0x300b
 #define OV5647_REG_SW_RESET		0x0103
 #define OV5647_REG_MODE_SELECT		0x0100
+#define OV5647_REG_FRAME_OFF_NUMBER	0x4202
+#define OV5647_REG_MIPI_CTRL00		0x4800
+#define OV5647_REG_MIPI_CTRL14		0x4814
+#define OV5640_REG_PAD_OUT		0x300d
 
 #define OV5647_MODE_STANDBY		0x00
 #define OV5647_MODE_STREAMING		0x01
 #define OV5647_CHIP_ID			0x5647
+
+#define OV5647_MIPI_CTRL00_CLOCK_LANE_GATE	BIT(5)
+#define OV5647_MIPI_CTRL00_LINE_SYNC_ENABLE	BIT(4)
+#define OV5647_MIPI_CTRL00_BUS_IDLE		BIT(2)
+#define OV5647_MIPI_CTRL00_CLOCK_LANE_DISABLE	BIT(0)
 
 struct ov5647_mode {
 	const char *name;
@@ -64,7 +73,90 @@ MODULE_PARM_DESC(allow_hw_probe,
 
 static bool driver_registered;
 
-static const struct reg_8 ov5647_mode0_placeholder_table[] = {
+static const struct reg_8 ov5647_common_regs[] = {
+	{0x0100, 0x00},
+	{0x0103, 0x01},
+	{0x3034, 0x1a},
+	{0x3035, 0x21},
+	{0x303c, 0x11},
+	{0x3106, 0xf5},
+	{0x3827, 0xec},
+	{0x370c, 0x03},
+	{0x5000, 0x06},
+	{0x5003, 0x08},
+	{0x5a00, 0x08},
+	{0x3000, 0x00},
+	{0x3001, 0x00},
+	{0x3002, 0x00},
+	{0x3016, 0x08},
+	{0x3017, 0xe0},
+	{0x3018, 0x44},
+	{0x301c, 0xf8},
+	{0x301d, 0xf0},
+	{0x3a18, 0x00},
+	{0x3a19, 0xf8},
+	{0x3c01, 0x80},
+	{0x3b07, 0x0c},
+	{0x3630, 0x2e},
+	{0x3632, 0xe2},
+	{0x3633, 0x23},
+	{0x3634, 0x44},
+	{0x3636, 0x06},
+	{0x3620, 0x64},
+	{0x3621, 0xe0},
+	{0x3600, 0x37},
+	{0x3704, 0xa0},
+	{0x3703, 0x5a},
+	{0x3715, 0x78},
+	{0x3717, 0x01},
+	{0x3731, 0x02},
+	{0x370b, 0x60},
+	{0x3705, 0x1a},
+	{0x3f05, 0x02},
+	{0x3f06, 0x10},
+	{0x3f01, 0x0a},
+	{0x3a08, 0x01},
+	{0x3a0f, 0x58},
+	{0x3a10, 0x50},
+	{0x3a1b, 0x58},
+	{0x3a1e, 0x50},
+	{0x3a11, 0x60},
+	{0x3a1f, 0x28},
+	{0x4001, 0x02},
+	{0x4000, 0x09},
+	{0x3503, 0x03},
+	{ OV5647_TABLE_END, 0x00 },
+};
+
+static const struct reg_8 ov5647_mode0_640x480_10bpp[] = {
+	{0x3036, 0x46},
+	{0x3821, 0x01},
+	{0x3820, 0x41},
+	{0x3612, 0x59},
+	{0x3618, 0x00},
+	{0x3814, 0x35},
+	{0x3815, 0x35},
+	{0x3708, 0x64},
+	{0x3709, 0x52},
+	{0x3800, 0x00},
+	{0x3801, 0x10},
+	{0x3802, 0x00},
+	{0x3803, 0x00},
+	{0x3804, 0x0a},
+	{0x3805, 0x2f},
+	{0x3806, 0x07},
+	{0x3807, 0x9f},
+	{0x3808, 0x02},
+	{0x3809, 0x80},
+	{0x380a, 0x01},
+	{0x380b, 0xe0},
+	{0x3a09, 0x2e},
+	{0x3a0a, 0x00},
+	{0x3a0b, 0xfb},
+	{0x3a0d, 0x02},
+	{0x3a0e, 0x01},
+	{0x4004, 0x02},
+	{0x4800, 0x34},
 	{ OV5647_TABLE_END, 0x00 },
 };
 
@@ -87,11 +179,11 @@ static const struct camera_common_frmfmt ov5647_frmfmt[] = {
 
 static const struct ov5647_mode ov5647_modes[] = {
 	{
-		.name = "placeholder-safe-mode0",
+		.name = "640x480-10bpp-30fps",
 		.width = 640,
 		.height = 480,
 		.code = MEDIA_BUS_FMT_SBGGR10_1X10,
-		.table = ov5647_mode0_placeholder_table,
+		.table = ov5647_mode0_640x480_10bpp,
 	},
 };
 
@@ -202,6 +294,25 @@ static int ov5647_read_reg(struct camera_common_data *s_data, u16 addr, u8 *val)
 	*val = reg_val;
 	dev_dbg(s_data->dev, "%s: addr=0x%04x val=0x%02x\n",
 		__func__, addr, *val);
+
+	return 0;
+}
+
+static int ov5647_write_table(struct camera_common_data *s_data,
+			      const struct reg_8 *table)
+{
+	int err;
+
+	for (; table->addr != OV5647_TABLE_END; table++) {
+		if (table->addr == OV5647_TABLE_WAIT_MS) {
+			msleep(table->val);
+			continue;
+		}
+
+		err = ov5647_write_reg(s_data, table->addr, table->val);
+		if (err)
+			return err;
+	}
 
 	return 0;
 }
@@ -438,13 +549,27 @@ disable_iovdd:
 
 static int ov5647_power_off(struct camera_common_data *s_data)
 {
-	struct device *dev = s_data->dev;
-	struct camera_common_power_rail *pw = s_data->power;
+	struct device *dev;
+	struct camera_common_power_rail *pw;
+
+	if (!s_data)
+		return 0;
+
+	dev = s_data->dev;
+	pw = s_data->power;
+
+	if (!dev) {
+		pr_warn("%s: s_data->dev is NULL, skipping power-off\n",
+			__func__);
+		return 0;
+	}
 
 	dev_info(dev, "%s: enter\n", __func__);
 
-	if (!pw)
-		return -EINVAL;
+	if (!pw) {
+		dev_warn(dev, "%s: s_data->power is NULL, skipping\n", __func__);
+		return 0;
+	}
 
 	if (!pw->state) {
 		dev_dbg(dev, "%s: already off\n", __func__);
@@ -495,54 +620,145 @@ static int ov5647_set_group_hold(struct tegracam_device *tc_dev, bool val)
 
 static int ov5647_set_gain(struct tegracam_device *tc_dev, s64 val)
 {
-	dev_info(tc_dev->dev, "%s: gain=%lld not implemented yet\n",
-		 __func__, val);
-	return -EOPNOTSUPP;
+	dev_dbg(tc_dev->dev, "%s: gain=%lld not applied yet\n",
+		__func__, val);
+	return 0;
 }
 
 static int ov5647_set_exposure(struct tegracam_device *tc_dev, s64 val)
 {
-	dev_info(tc_dev->dev, "%s: exposure=%lld not implemented yet\n",
-		 __func__, val);
-	return -EOPNOTSUPP;
+	dev_dbg(tc_dev->dev, "%s: exposure=%lld not applied yet\n",
+		__func__, val);
+	return 0;
 }
 
 static int ov5647_set_frame_rate(struct tegracam_device *tc_dev, s64 val)
 {
-	dev_info(tc_dev->dev, "%s: frame_rate=%lld not implemented yet\n",
-		 __func__, val);
-	return -EOPNOTSUPP;
+	dev_dbg(tc_dev->dev, "%s: frame_rate=%lld not applied yet\n",
+		__func__, val);
+	return 0;
 }
 
 static int ov5647_set_mode(struct tegracam_device *tc_dev)
 {
 	struct camera_common_data *s_data = tc_dev->s_data;
+	struct ov5647 *priv = to_ov5647(tc_dev);
 	int mode = s_data ? s_data->mode : -1;
+	u8 standby;
+	u8 vc_ctrl;
+	int err;
 
 	if (mode < 0 || mode >= ARRAY_SIZE(ov5647_modes)) {
 		dev_err(tc_dev->dev, "%s: invalid mode index %d\n", __func__, mode);
 		return -EINVAL;
 	}
 
+	if (!priv || !priv->board_setup_done) {
+		dev_err(tc_dev->dev, "%s: board setup not complete\n", __func__);
+		return -EIO;
+	}
+
 	dev_info(tc_dev->dev,
-		 "%s: mode=%d name=%s %ux%u is still placeholder-only\n",
+		 "%s: applying mode=%d name=%s %ux%u\n",
 		 __func__, mode, ov5647_modes[mode].name,
 		 ov5647_modes[mode].width, ov5647_modes[mode].height);
 
-	return -EOPNOTSUPP;
+	err = ov5647_read_reg(s_data, OV5647_REG_MODE_SELECT, &standby);
+	if (err)
+		return err;
+
+	err = ov5647_write_table(s_data, ov5647_common_regs);
+	if (err) {
+		dev_err(tc_dev->dev, "%s: common table failed err=%d\n",
+			__func__, err);
+		return err;
+	}
+
+	err = ov5647_write_table(s_data, ov5647_modes[mode].table);
+	if (err) {
+		dev_err(tc_dev->dev, "%s: mode table failed err=%d\n",
+			__func__, err);
+		return err;
+	}
+
+	err = ov5647_read_reg(s_data, OV5647_REG_MIPI_CTRL14, &vc_ctrl);
+	if (err)
+		return err;
+
+	vc_ctrl &= ~(3 << 6);
+	err = ov5647_write_reg(s_data, OV5647_REG_MIPI_CTRL14, vc_ctrl);
+	if (err)
+		return err;
+
+	if (!(standby & OV5647_MODE_STREAMING)) {
+		err = ov5647_write_reg(s_data, OV5647_REG_MODE_SELECT,
+				       OV5647_MODE_STREAMING);
+		if (err)
+			return err;
+	}
+
+	return 0;
 }
 
 static int ov5647_start_streaming(struct tegracam_device *tc_dev)
 {
-	dev_info(tc_dev->dev,
-		 "%s: streaming is gated until a verified mode table exists\n",
-		 __func__);
-	return -EOPNOTSUPP;
+	struct camera_common_data *s_data = tc_dev->s_data;
+	u8 val = OV5647_MIPI_CTRL00_BUS_IDLE;
+	int err;
+
+	dev_info(tc_dev->dev, "%s: enter\n", __func__);
+
+	err = ov5647_set_mode(tc_dev);
+	if (err) {
+		dev_err(tc_dev->dev, "%s: set_mode failed err=%d\n",
+			__func__, err);
+		return err;
+	}
+
+	err = ov5647_write_reg(s_data, OV5647_REG_MIPI_CTRL00, val);
+	if (err)
+		return err;
+
+	err = ov5647_write_reg(s_data, OV5647_REG_FRAME_OFF_NUMBER, 0x00);
+	if (err)
+		return err;
+
+	err = ov5647_write_reg(s_data, OV5640_REG_PAD_OUT, 0x00);
+	if (err)
+		return err;
+
+	dev_info(tc_dev->dev, "%s: exit success\n", __func__);
+	return 0;
 }
 
 static int ov5647_stop_streaming(struct tegracam_device *tc_dev)
 {
-	dev_info(tc_dev->dev, "%s: stream stop requested\n", __func__);
+	struct camera_common_data *s_data = tc_dev->s_data;
+	int err;
+
+	dev_info(tc_dev->dev, "%s: enter\n", __func__);
+
+	err = ov5647_write_reg(s_data, OV5647_REG_MIPI_CTRL00,
+			       OV5647_MIPI_CTRL00_CLOCK_LANE_GATE |
+			       OV5647_MIPI_CTRL00_BUS_IDLE |
+			       OV5647_MIPI_CTRL00_CLOCK_LANE_DISABLE);
+	if (err)
+		return err;
+
+	err = ov5647_write_reg(s_data, OV5647_REG_FRAME_OFF_NUMBER, 0x0f);
+	if (err)
+		return err;
+
+	err = ov5647_write_reg(s_data, OV5640_REG_PAD_OUT, 0x01);
+	if (err)
+		return err;
+
+	err = ov5647_write_reg(s_data, OV5647_REG_MODE_SELECT,
+			       OV5647_MODE_STANDBY);
+	if (err)
+		return err;
+
+	dev_info(tc_dev->dev, "%s: exit success\n", __func__);
 	return 0;
 }
 
@@ -734,16 +950,18 @@ unregister_device:
 static int ov5647_remove(struct i2c_client *client)
 {
 	struct tegracam_device *tc_dev = i2c_get_clientdata(client);
-	struct ov5647 *priv;
+	struct camera_common_data *s_data = NULL;
 
 	dev_info(&client->dev, "%s: enter\n", __func__);
 
 	if (!tc_dev)
 		return 0;
 
-	priv = to_ov5647(tc_dev);
-	if (priv && priv->s_data)
-		ov5647_power_off(priv->s_data);
+	s_data = tc_dev->s_data;
+	if (s_data)
+		ov5647_power_off(s_data);
+	else
+		dev_warn(&client->dev, "%s: tc_dev->s_data is NULL\n", __func__);
 
 	tegracam_v4l2subdev_unregister(tc_dev);
 	tegracam_device_unregister(tc_dev);

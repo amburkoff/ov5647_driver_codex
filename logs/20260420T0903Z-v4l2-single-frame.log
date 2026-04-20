@@ -1,0 +1,15 @@
+VIDIOC_QUERYCAP: ok
+VIDIOC_S_EXT_CTRLS: ok
+VIDIOC_G_FMT: ok
+VIDIOC_S_FMT: ok
+Format Video Capture:
+	Width/Height      : 640/480
+	Pixel Format      : 'BG10' (10-bit Bayer BGBG/GRGR)
+	Field             : None
+	Bytes per Line    : 1280
+	Size Image        : 655360
+	Colorspace        : sRGB
+	Transfer Function : Default (maps to sRGB)
+	YCbCr/HSV Encoding: Default (maps to ITU-R 601)
+	Quantization      : Default (maps to Full Range)
+	Flags             : 

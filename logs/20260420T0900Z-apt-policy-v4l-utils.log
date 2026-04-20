@@ -1,0 +1,6 @@
+v4l-utils:
+  Installed: (none)
+  Candidate: 1.22.1-2build1
+  Version table:
+     1.22.1-2build1 500
+        500 http://ports.ubuntu.com/ubuntu-ports jammy/universe arm64 Packages

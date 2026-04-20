@@ -20,5 +20,9 @@
   - chip-ID succeeded when GPIO 397 stayed high on power-on;
   - this polarity still needs carrier-level confirmation.
 - A failed probe path that reaches `tegracam_device_unregister()` still triggers a kernel warning in `devm_kfree`; successful probe no longer hits that path, but the failure unwind issue remains open for robustness work.
+- A later unload test on the previously loaded module caused a second reboot:
+  - `ov5647_remove()` dereferenced invalid state through `ov5647_power_off()`;
+  - `pstore` shows `Unable to handle kernel NULL pointer dereference` followed by `Kernel panic - not syncing`;
+  - further `rmmod`, `insmod`, and `STREAMON` tests must be run manually by the user after each checkpoint is committed and the new `.ko` is confirmed built.
 - The driver has only a placeholder mode table and does not yet have a validated mode-programming sequence for streaming.
 - `/dev/video0` exists, but raw capture and preview are not yet validated.
