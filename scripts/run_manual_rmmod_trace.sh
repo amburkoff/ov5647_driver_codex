@@ -10,6 +10,7 @@ RUN_LOG="${LOG_DIR}/${TS}-rmmod-trace.log"
 mkdir -p "${LOG_DIR}"
 
 echo "[${TS}] starting live dmesg capture" | tee "${RUN_LOG}"
+sync
 
 stdbuf -oL dmesg -w > "${TRACE_LOG}" 2>&1 &
 DMESG_PID=$!
@@ -24,8 +25,12 @@ trap cleanup EXIT
 
 sleep 1
 echo "[${TS}] running: rmmod nv_ov5647" | tee -a "${RUN_LOG}"
+sync
+sudo dmesg | tail -n 50 > "${LOG_DIR}/${TS}-rmmod-pre-dmesg-tail.log" 2>&1 || true
+sync
 rmmod nv_ov5647
 RC=$?
 echo "[${TS}] rmmod rc=${RC}" | tee -a "${RUN_LOG}"
+sync
 sleep 1
 exit "${RC}"
