@@ -82,6 +82,7 @@ Completed:
 - prepared next-stage unload diagnostics:
   - `skip_v4l2_unregister`;
   - `unload_marker_delay_ms`.
+- unload helper now supports optional `RMMOD_SYSRQ_DELAY_SEC` blocked-task watchdog.
 
 Not completed yet:
 

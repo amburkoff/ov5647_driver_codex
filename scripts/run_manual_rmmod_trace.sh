@@ -9,6 +9,8 @@ RUN_LOG="${LOG_DIR}/${TS}-rmmod-trace.log"
 DEVNODE_LOG="${LOG_DIR}/${TS}-rmmod-devnodes.log"
 FUSER_LOG="${LOG_DIR}/${TS}-rmmod-fuser.log"
 LSOF_LOG="${LOG_DIR}/${TS}-rmmod-lsof.log"
+SYSRQ_LOG="${LOG_DIR}/${TS}-rmmod-sysrq-watchdog.log"
+SYSRQ_DELAY="${RMMOD_SYSRQ_DELAY_SEC:-0}"
 
 mkdir -p "${LOG_DIR}"
 
@@ -22,11 +24,16 @@ sync
 	done
 ) > "${TRACE_LOG}" &
 DMESG_PID=$!
+SYSRQ_PID=""
 
 cleanup() {
 	if kill -0 "${DMESG_PID}" >/dev/null 2>&1; then
 		kill "${DMESG_PID}" >/dev/null 2>&1 || true
 		wait "${DMESG_PID}" 2>/dev/null || true
+	fi
+	if [[ -n "${SYSRQ_PID}" ]] && kill -0 "${SYSRQ_PID}" >/dev/null 2>&1; then
+		kill "${SYSRQ_PID}" >/dev/null 2>&1 || true
+		wait "${SYSRQ_PID}" 2>/dev/null || true
 	fi
 }
 trap cleanup EXIT
@@ -49,6 +56,22 @@ fi
 sync
 sudo dmesg | tail -n 120 > "${LOG_DIR}/${TS}-rmmod-pre-dmesg-tail.log" 2>&1 || true
 sync
+if [[ "${SYSRQ_DELAY}" =~ ^[0-9]+$ ]] && ((SYSRQ_DELAY > 0)); then
+	echo "[${TS}] arming sysrq watchdog delay=${SYSRQ_DELAY}s" | tee -a "${RUN_LOG}"
+	(
+		sleep "${SYSRQ_DELAY}"
+		{
+			echo "[${TS}] sysrq watchdog firing after ${SYSRQ_DELAY}s"
+			echo w | sudo tee /proc/sysrq-trigger >/dev/null
+			echo t | sudo tee /proc/sysrq-trigger >/dev/null
+			sync
+		} >> "${SYSRQ_LOG}" 2>&1
+	) &
+	SYSRQ_PID=$!
+	sync
+else
+	echo "[${TS}] sysrq watchdog disabled" > "${SYSRQ_LOG}"
+fi
 echo "[${TS}] running: rmmod nv_ov5647" | tee -a "${RUN_LOG}"
 sync
 sudo rmmod nv_ov5647

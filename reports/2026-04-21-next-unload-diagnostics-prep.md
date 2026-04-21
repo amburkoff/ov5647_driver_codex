@@ -19,6 +19,10 @@
 - added `unload_marker_delay_ms`:
   - optional delay after unload markers;
   - intended to give the live `dmesg -W` helper time to persist the last marker before a possible hard hang.
+- extended `run_manual_rmmod_trace.sh` with optional sysrq watchdog:
+  - disabled by default;
+  - enabled with `RMMOD_SYSRQ_DELAY_SEC=<seconds>`;
+  - emits SysRq `w` and `t` if the system is still alive after the delay.
 
 ## Intended Use
 
@@ -37,6 +41,14 @@ Only after that, consider the diagnostic:
 - `skip_v4l2_unregister=1`
 
 That test is not a fix; it only checks whether the hang is inside `tegracam_v4l2subdev_unregister()` or in later framework cleanup.
+
+If a future unload appears to stall without hard-locking the whole system, run the helper as:
+
+```bash
+sudo env RMMOD_SYSRQ_DELAY_SEC=10 /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh
+```
+
+This may capture blocked-task stacks in dmesg. If the Jetson hard-locks immediately, the watchdog may not run.
 
 ## Safety Note
 

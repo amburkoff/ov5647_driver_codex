@@ -28,3 +28,20 @@ When a reboot is needed:
 - keep the safe profile available;
 - after reconnect, read `/proc/cmdline` before anything else.
 
+## Manual Unload Hang Capture
+
+Use manual-only unload tests. Do not run these from Codex when a hard hang is plausible.
+
+Basic trace:
+
+```bash
+sudo /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh
+```
+
+Trace with delayed SysRq task dumps:
+
+```bash
+sudo env RMMOD_SYSRQ_DELAY_SEC=10 /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh
+```
+
+The SysRq mode is useful only if the kernel remains alive after `rmmod` stalls. If the Jetson hard-locks immediately, no watchdog output may be written.
