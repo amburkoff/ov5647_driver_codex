@@ -1,0 +1,61 @@
+# command: tail -n 60 docs/10-results-and-status.md
+- source-side remove fix is prepared so full-probe remove forces V4L2 unregister whenever `s_data` exists and `skip_v4l2_register=0`, even if the private flag is inconsistent.
+- rebuilt `nv_ov5647.ko` contains the new forced-unregister warning and state dump markers.
+- a follow-up manual split-unregister unload still hung, but the new state dump revealed the root cause:
+  - `ov5647_remove()` used `i2c_get_clientdata(client)` as `struct tegracam_device *`;
+  - after V4L2 subdev init, I2C clientdata points to the V4L2 subdev, not the tegracam device;
+  - remove was therefore operating on a miscast pointer.
+- source-side fix is prepared to use NVIDIA sample-style remove lookup:
+  - `to_camera_common_data(&client->dev)`
+  - `s_data->priv`
+  - `priv->tc_dev`
+- rebuilt `nv_ov5647.ko` contains the corrected remove lookup and additional probe/remove state markers.
+- manual full-probe unload after the corrected remove lookup succeeded with `rmmod rc=0`.
+- the successful unload completed:
+  - `v4l2_ctrl_handler_free`
+  - `v4l2_async_unregister_subdev`
+  - `media_entity_cleanup`
+  - `tegracam_device_unregister`
+  - `i2c_del_driver`
+- remove-time state is now valid:
+  - `s_data->priv` is non-NULL;
+  - `tc_dev->dev` is non-NULL;
+  - `v4l2_registered=1`.
+- manual normal-path full-probe unload also succeeded with `split_v4l2_unregister=0` and `rmmod rc=0`.
+- the normal NVIDIA tegracam unregister path now completes through:
+  - `tegracam_v4l2subdev_unregister`
+  - VI subdev unbind
+  - `tegracam_device_unregister`
+  - `i2c_del_driver`
+- after a clean normal remove checkpoint and fresh full-delay load, the next manual single-frame capture reached `VIDIOC_STREAMON` but still produced no frame data:
+  - capture command returned `rc=124` after the 30 second timeout;
+  - raw output `artifacts/captures/20260421T151642Z/ov5647-640x480-bg10.raw` is zero bytes;
+  - VI logged repeated `uncorr_err: request timed out after 2500 ms`;
+  - driver logs show `power_on`, `set_mode`, `start_streaming`, `stop_streaming`, and `power_off` all returned without hanging.
+- current source comparison against upstream Linux OV5647 shows the local 640x480 table is not identical to upstream VGA mode:
+  - upstream uses `0x3821 = 0x03`;
+  - the local table currently uses `0x3821 = 0x01`;
+  - the local VGA table also contains additional `0x5002` and `0x4837` writes that are not present in upstream VGA mode.
+- a stronger upstream difference was found in the power-on path:
+  - upstream OV5647 writes a stream-stop sequence after output-enable to put CSI lanes into LP-11;
+  - the local driver did not do this before the zero-byte capture test.
+- source-side LP-11 power-on fix is now prepared and builds:
+  - `ov5647_power_on()` writes the upstream stream-stop sequence after output-enable;
+  - `ov5647_stop_streaming()` now uses the same helper;
+  - rebuilt `.ko` contains `stream-stop LP-11 setup complete`.
+
+Not completed yet:
+
+- CBL carrier identity confirmation from hardware documentation or physical inspection;
+- verified OV5647 DT overlay;
+- verified OV5647 DT overlay for the actual physical connector used by the user;
+- raw capture with non-empty frame data;
+- live preview.
+
+Next smallest safe step:
+
+- do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
+- manually unload the old in-memory module, load the rebuilt LP-11 `.ko`, and rerun one bounded single-frame capture;
+- if capture still times out, prepare one source-only OV5647 640x480 mode-table alignment against upstream Linux;
+- continue aligning the minimal mode table and CSI timing until VI receives real frames instead of timing out;
+- keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.

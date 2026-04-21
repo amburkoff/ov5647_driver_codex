@@ -1,0 +1,9 @@
+# user reported: rmmod ok after commit 211e879
+
+# command: lsmod | grep nv_ov5647 || true
+
+# command: test -d /sys/module/nv_ov5647; echo rc=0
+rc=1
+
+# command: ls -l /dev/video* /dev/media* /dev/v4l-subdev* 2>/dev/null || true
+crw-rw----+ 1 root video 503, 0 Aug 26  2025 /dev/media0

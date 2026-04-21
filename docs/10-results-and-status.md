@@ -144,6 +144,15 @@ Completed:
   - `ov5647_power_on()` writes the upstream stream-stop sequence after output-enable;
   - `ov5647_stop_streaming()` now uses the same helper;
   - rebuilt `.ko` contains `stream-stop LP-11 setup complete`.
+- runtime validation of the LP-11 fix completed:
+  - manual `rmmod` returned cleanly;
+  - manual `insmod full-delay` returned cleanly and `/dev/video0` appeared;
+  - dmesg confirms the new `stream-stop LP-11 setup complete` marker executed;
+  - single-frame capture still timed out with `rc=124` and a zero-byte raw file.
+- the next source-side hypothesis is incomplete mode timing:
+  - upstream OV5647 mode data defines VGA `hts = 1852` and `vts = 0x1f8`;
+  - upstream applies HTS/VTS through controls;
+  - the local tegracam control callbacks are still stubs, so the minimal mode table should explicitly program HTS/VTS for the single 640x480 mode.
 
 Not completed yet:
 
@@ -156,7 +165,6 @@ Not completed yet:
 Next smallest safe step:
 
 - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
-- manually unload the old in-memory module, load the rebuilt LP-11 `.ko`, and rerun one bounded single-frame capture;
-- if capture still times out, prepare one source-only OV5647 640x480 mode-table alignment against upstream Linux;
+- prepare one source-only OV5647 640x480 HTS/VTS mode-table patch against upstream Linux timing;
 - continue aligning the minimal mode table and CSI timing until VI receives real frames instead of timing out;
 - keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.

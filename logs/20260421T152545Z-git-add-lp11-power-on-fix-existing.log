@@ -1,1 +1,42 @@
 # command: git add lp11 power-on fix files with existing log globs
+git add rc=0
+
+# command: git diff --cached --name-status | tail -n 90
+M	docs/10-results-and-status.md
+M	docs/11-known-issues.md
+A	logs/20260421T152154Z-git-add-final-capture-timeout-checkpoint.log
+A	logs/20260421T152201Z-git-commit-capture-timeout-clean-remove.log
+A	logs/20260421T152205Z-git-push-capture-timeout-clean-remove.log
+A	logs/20260421T152223Z-rpi-ov5647-vga-reference.log
+A	logs/20260421T152223Z-set-mode-source-before-mode-align.log
+A	logs/20260421T152223Z-start-streaming-source-before-mode-align.log
+A	logs/20260421T152223Z-upstream-ov5647-timing-register-reference.log
+A	logs/20260421T152240Z-rpi-output-stream-register-reference.log
+A	logs/20260421T152240Z-stream-register-defines-before-mode-align.log
+A	logs/20260421T152240Z-upstream-output-stream-register-reference.log
+A	logs/20260421T152251Z-local-power-output-reglists-reference.log
+A	logs/20260421T152251Z-upstream-power-reglists-reference.log
+A	logs/20260421T152251Z-upstream-streaming-function-reference.log
+A	logs/20260421T152256Z-upstream-s-stream-reference.log
+A	logs/20260421T152303Z-upstream-enable-streams-reference.log
+A	logs/20260421T152325Z-source-header-before-lp11-fix.log
+A	logs/20260421T152329Z-write-table-source-before-lp11-fix.log
+A	logs/20260421T152333Z-write-table-source-2-before-lp11-fix.log
+A	logs/20260421T152406Z-diff-lp11-power-on-fix.log
+A	logs/20260421T152406Z-git-diff-check-lp11-power-on-fix.log
+A	logs/20260421T152406Z-source-after-lp11-power-on-fix.log
+A	logs/20260421T152410Z-build-module-lp11-power-on-fix.log
+A	logs/20260421T152410Z-build_module.log
+A	logs/20260421T152427Z-build-artifacts-lp11-power-on-fix.log
+A	logs/20260421T152427Z-git-status-after-lp11-build.log
+A	logs/20260421T152427Z-ko-strings-lp11-power-on-fix.log
+A	logs/20260421T152427Z-modinfo-lp11-power-on-fix.log
+A	logs/20260421T152511Z-diff-lp11-power-on-report.log
+A	logs/20260421T152511Z-git-diff-check-lp11-power-on-report.log
+A	logs/20260421T152511Z-git-status-before-lp11-commit.log
+A	logs/20260421T152519Z-gitignore-before-lp11-commit.log
+A	logs/20260421T152528Z-git-add-lp11-power-on-fix.log
+A	logs/20260421T152535Z-git-add-lp11-pathspec-recovery.log
+A	logs/20260421T152545Z-git-add-lp11-power-on-fix-existing.log
+A	reports/2026-04-21-lp11-power-on-fix.md
+M	src/nv_ov5647/nv_ov5647.c

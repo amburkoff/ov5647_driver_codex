@@ -1,0 +1,51 @@
+# command: git diff -- docs/10-results-and-status.md docs/11-known-issues.md reports/2026-04-21-lp11-runtime-timeout.md
+diff --git a/docs/10-results-and-status.md b/docs/10-results-and-status.md
+index 048ce95..b98aba8 100644
+--- a/docs/10-results-and-status.md
++++ b/docs/10-results-and-status.md
+@@ -144,6 +144,15 @@ Completed:
+   - `ov5647_power_on()` writes the upstream stream-stop sequence after output-enable;
+   - `ov5647_stop_streaming()` now uses the same helper;
+   - rebuilt `.ko` contains `stream-stop LP-11 setup complete`.
++- runtime validation of the LP-11 fix completed:
++  - manual `rmmod` returned cleanly;
++  - manual `insmod full-delay` returned cleanly and `/dev/video0` appeared;
++  - dmesg confirms the new `stream-stop LP-11 setup complete` marker executed;
++  - single-frame capture still timed out with `rc=124` and a zero-byte raw file.
++- the next source-side hypothesis is incomplete mode timing:
++  - upstream OV5647 mode data defines VGA `hts = 1852` and `vts = 0x1f8`;
++  - upstream applies HTS/VTS through controls;
++  - the local tegracam control callbacks are still stubs, so the minimal mode table should explicitly program HTS/VTS for the single 640x480 mode.
+ 
+ Not completed yet:
+ 
+@@ -156,7 +165,6 @@ Not completed yet:
+ Next smallest safe step:
+ 
+ - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
+-- manually unload the old in-memory module, load the rebuilt LP-11 `.ko`, and rerun one bounded single-frame capture;
+-- if capture still times out, prepare one source-only OV5647 640x480 mode-table alignment against upstream Linux;
++- prepare one source-only OV5647 640x480 HTS/VTS mode-table patch against upstream Linux timing;
+ - continue aligning the minimal mode table and CSI timing until VI receives real frames instead of timing out;
+ - keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.
+diff --git a/docs/11-known-issues.md b/docs/11-known-issues.md
+index 3a3729d..35a4a92 100644
+--- a/docs/11-known-issues.md
++++ b/docs/11-known-issues.md
+@@ -87,6 +87,16 @@
+   - upstream writes a stream-stop register sequence after sensor output-enable;
+   - this is intended to force CSI lanes into LP-11 before stream start;
+   - the local code now has this fix built, but runtime validation requires a manual unload/load/capture cycle.
++- Runtime validation of the LP-11 power-on fix still timed out:
++  - the new marker executed in probe and capture power-on;
++  - `VIDIOC_STREAMON` returned success;
++  - capture still returned `rc=124`;
++  - raw output remained zero bytes;
++  - VI still reported repeated `uncorr_err: request timed out after 2500 ms`.
++- The local control callbacks are still stubs, so upstream timing values that are normally applied through V4L2 controls are not guaranteed to reach the sensor:
++  - upstream VGA `hts = 1852`;
++  - upstream VGA `vts = 0x1f8`;
++  - the minimal local mode table should explicitly program these for the first single-mode bring-up.
+ - Current OV5647 `set_mode()` no longer enables streaming in source:
+   - NVIDIA r36.5 tegracam calls `set_mode()` before `start_streaming()`;
+   - NVIDIA sample drivers keep `set_mode()` to register programming and start output from `start_streaming()`;

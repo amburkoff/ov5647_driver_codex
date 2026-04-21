@@ -1,0 +1,27 @@
+# user reported: insmod ok after LP-11 fix commit 211e879
+
+# command: lsmod | grep nv_ov5647 || true
+nv_ov5647              24576  0
+tegra_camera          221184  6 nvhost_isp5,nvhost_nvcsi_t194,nv_ov5647,nvhost_vi5
+v4l2_async             20480  3 v4l2_fwnode,nv_ov5647,tegra_camera
+videodev              249856  5 v4l2_async,videobuf2_v4l2,nv_ov5647,tegra_camera,videobuf2_common
+
+# command: find /sys/module/nv_ov5647/parameters -maxdepth 1 -type f -print -exec sh -c 'for f; do printf %s= ; cat ; done' sh {} + 2>/dev/null || true
+/sys/module/nv_ov5647/parameters/allow_hw_probe
+/sys/module/nv_ov5647/parameters/split_v4l2_unregister
+/sys/module/nv_ov5647/parameters/unload_marker_delay_ms
+/sys/module/nv_ov5647/parameters/skip_v4l2_register
+/sys/module/nv_ov5647/parameters/skip_v4l2_unregister
+/sys/module/nv_ov5647/parameters/register_i2c_driver
+/sys/module/nv_ov5647/parameters/allow_hw_probe=Y
+/sys/module/nv_ov5647/parameters/split_v4l2_unregister=N
+/sys/module/nv_ov5647/parameters/unload_marker_delay_ms=500
+/sys/module/nv_ov5647/parameters/skip_v4l2_register=N
+/sys/module/nv_ov5647/parameters/skip_v4l2_unregister=N
+/sys/module/nv_ov5647/parameters/register_i2c_driver=Y
+
+# command: ls -l /dev/video* /dev/media* /dev/v4l-subdev* 2>/dev/null || true
+crw-rw----+ 1 root video 503, 0 Aug 26  2025 /dev/media0
+crw-rw----+ 1 root video  81, 1 Apr 21 18:29 /dev/v4l-subdev0
+crw-rw----+ 1 root video  81, 2 Apr 21 18:29 /dev/v4l-subdev1
+crw-rw----+ 1 root video  81, 0 Apr 21 18:29 /dev/video0

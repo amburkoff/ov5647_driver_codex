@@ -1,0 +1,13 @@
+# command: find logs -maxdepth 1 -type f -name '20260421T1532*' -o -name '20260421T1530*' | sort
+logs/20260421T153000Z-after-manual-insmod-lp11-state.log
+logs/20260421T153001Z-after-manual-insmod-lp11-dmesg.log
+logs/20260421T153001Z-after-manual-insmod-lp11-media-ctl.log
+logs/20260421T153001Z-after-manual-insmod-lp11-v4l2-query.log
+logs/20260421T153049Z-single-frame-post-dmesg-tail.log
+logs/20260421T153049Z-single-frame-trace.log
+logs/20260421T153049Z-stream-live-dmesg.log
+logs/20260421T153224Z-after-lp11-capture-timeout-dmesg.log
+logs/20260421T153224Z-after-lp11-capture-timeout-state.log
+logs/20260421T153224Z-git-state-after-lp11-capture-timeout.log
+logs/20260421T153224Z-lp11-capture-timeout-script-log-summary.log
+logs/20260421T153244Z-recent-lp11-capture-files.log
