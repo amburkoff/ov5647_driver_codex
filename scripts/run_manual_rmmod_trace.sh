@@ -17,12 +17,9 @@ mkdir -p "${LOG_DIR}"
 echo "[${TS}] starting live dmesg capture" | tee "${RUN_LOG}"
 sync
 
-(
-	dmesg -W 2>&1 | while IFS= read -r line; do
-		printf '%s\n' "${line}"
-		sync
-	done
-) > "${TRACE_LOG}" &
+# Keep this as a single background process. A pipeline here can leave orphaned
+# dmesg readers after rmmod returns, which corrupts later timestamped logs.
+dmesg -W > "${TRACE_LOG}" 2>&1 &
 DMESG_PID=$!
 SYSRQ_PID=""
 

@@ -122,19 +122,24 @@ Completed:
   - `s_data->priv` is non-NULL;
   - `tc_dev->dev` is non-NULL;
   - `v4l2_registered=1`.
+- manual normal-path full-probe unload also succeeded with `split_v4l2_unregister=0` and `rmmod rc=0`.
+- the normal NVIDIA tegracam unregister path now completes through:
+  - `tegracam_v4l2subdev_unregister`
+  - VI subdev unbind
+  - `tegracam_device_unregister`
+  - `i2c_del_driver`
 
 Not completed yet:
 
 - CBL carrier identity confirmation from hardware documentation or physical inspection;
 - verified OV5647 DT overlay;
 - verified OV5647 DT overlay for the actual physical connector used by the user;
-- stable normal-path `rmmod` without split-unregister diagnostics;
 - raw capture with non-empty frame data;
 - live preview.
 
 Next smallest safe step:
 
 - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
-- manually validate one normal full load/unload cycle without `split_v4l2_unregister=1`; if clean, return to the zero-byte capture / VI timeout problem.
+- return to the zero-byte capture / VI timeout problem with one bounded manual single-frame capture after a fresh full-delay load.
 - continue aligning the minimal mode table and CSI timing until VI receives real frames instead of timing out;
 - keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.

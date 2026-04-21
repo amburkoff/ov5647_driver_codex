@@ -71,7 +71,9 @@
 - Runtime validation of the corrected remove lookup passed once with split-unregister diagnostics:
   - manual `rmmod` returned `rc=0`;
   - V4L2 ctrl cleanup, async unregister, media cleanup, tegracam unregister, and i2c driver unregister all completed.
-- Normal `tegracam_v4l2subdev_unregister()` without split diagnostics still needs one manual validation cycle.
+- Normal `tegracam_v4l2subdev_unregister()` without split diagnostics also passed once:
+  - manual `rmmod` returned `rc=0`;
+  - VI subdev unbind, tegracam unregister, and i2c driver unregister all completed.
 - Current OV5647 `set_mode()` no longer enables streaming in source:
   - NVIDIA r36.5 tegracam calls `set_mode()` before `start_streaming()`;
   - NVIDIA sample drivers keep `set_mode()` to register programming and start output from `start_streaming()`;

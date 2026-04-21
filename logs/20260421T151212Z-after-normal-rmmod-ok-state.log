@@ -1,0 +1,26 @@
+timestamp=20260421T151212Z
+cmdline=root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+lsmod:
+module_dir:
+ls: cannot access '/sys/module/nv_ov5647': No such file or directory
+last rmmod logs:
+logs/20260421T151212Z-latest-normal-rmmod-ok-analysis.log
+logs/20260421T151212Z-after-normal-rmmod-ok-state.log
+logs/20260421T151212Z-dmesg-after-normal-rmmod-ok.log
+logs/20260421T151139Z-rmmod-trace.log
+logs/20260421T150531Z-rmmod-live-dmesg.log
+logs/20260421T151139Z-rmmod-live-dmesg.log
+logs/20260421T151139Z-rmmod-pre-dmesg-tail.log
+logs/20260421T151139Z-rmmod-lsof.log
+logs/20260421T151139Z-rmmod-fuser.log
+logs/20260421T151139Z-rmmod-devnodes.log
+logs/20260421T150611Z-dmesg-after-clientdata-fix-rmmod-ok.log
+logs/20260421T150611Z-latest-rmmod-ok-logs-analysis.log
+logs/20260421T150611Z-after-clientdata-fix-rmmod-ok-state.log
+logs/20260421T150531Z-rmmod-trace.log
+logs/20260421T150531Z-rmmod-pre-dmesg-tail.log
+logs/20260421T150531Z-rmmod-lsof.log
+logs/20260421T150531Z-rmmod-devnodes.log
+logs/20260421T150531Z-rmmod-fuser.log
+logs/20260421T145848Z-rmmod-145443-analysis.log
+logs/20260421T145809Z-pstore-after-powercycle-rmmod-hang.log

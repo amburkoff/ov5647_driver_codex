@@ -1,0 +1,7 @@
+timestamp=20260421T151340Z
+before:
+root        4980       1  0 18:05 ?        00:00:00 dmesg -W
+root        4981       1  0 18:05 ?        00:00:00 bash /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh
+root        5657       1  0 18:11 ?        00:00:00 dmesg -W
+root        5658       1  0 18:11 ?        00:00:00 bash /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh
+after:
