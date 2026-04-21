@@ -19,9 +19,10 @@ The practical first milestone remains:
   - `boot_profile=ov5647-dev`
 - Latest pushed commit:
   - `bd681fc debug: instrument ov5647 module exit and log fourth rmmod hang`
-- Current module state at handoff snapshot:
-  - `nv_ov5647` is loaded;
-  - the user reported the latest manual `insmod` as `ok`.
+- Current module state after the latest isolated test:
+  - `nv_ov5647` is unloaded;
+  - `skip_v4l2_register=1` load succeeded;
+  - `skip_v4l2_register=1` unload succeeded.
 - Handoff snapshot:
   - `logs/20260421T084235Z-handoff-snapshot.log`
 
@@ -50,6 +51,7 @@ The practical first milestone remains:
   - `ov5647_remove`;
   - `tegracam_v4l2subdev_unregister`;
   - `tegracam_device_unregister`.
+- The isolated `skip_v4l2_register=1` unload returned successfully and proves that basic I2C/chip-ID/tegracam device unregister is not the hard-hang boundary.
 
 ## Important Changed Files
 
@@ -74,9 +76,9 @@ The practical first milestone remains:
 
 ## Remaining Work
 
-- Stabilize `rmmod` before doing repeated streaming work.
-- Use the new `module_exit/i2c_del_driver` markers to locate the exact unload hang boundary.
-- Fix the underlying unload hang once the boundary is known.
+- Stabilize full V4L2-registration `rmmod` before doing repeated streaming work.
+- Review and correct the V4L2 subdev/media graph unregister order.
+- Fix or eliminate the `devm_kfree` warning in `tegracam_device_unregister()`.
 - Continue mode/CSI timing work because current capture reaches STREAMON but VI times out.
 - Produce a non-empty raw frame and validate file size/statistics/Bayer plausibility.
 - Build a stable preview path only after raw capture is real and repeatable.
@@ -85,7 +87,7 @@ The practical first milestone remains:
 
 ## Current Risks
 
-- `sudo rmmod nv_ov5647` can still hard-hang the Jetson.
+- `sudo rmmod nv_ov5647` can still hard-hang the Jetson after full V4L2 subdev registration.
 - The next unload test is intentionally risky and must remain manual-only.
 - `pstore` has not always preserved useful data after unload hangs.
 - Stream-on currently does not deliver frames to VI:
@@ -96,17 +98,10 @@ The practical first milestone remains:
 
 ## Next Best Step
 
-Do not repeat the same full V4L2-registration unload test immediately. The latest manual unload hang did not preserve any `module_exit` marker, so the next safer diagnostic step is to rebuild with `skip_v4l2_register=1` support and test unload after chip-ID probe but before V4L2 subdev/media graph registration.
+Do not repeat the same full V4L2-registration unload test until the remove order is reviewed against NVIDIA r36.x sample drivers.
 
-Next manual command after rebuild:
+Next engineering step after the remove-order patch:
 
-```bash
-sudo insmod /home/cam/ov5647_driver_codex/src/nv_ov5647/nv_ov5647.ko register_i2c_driver=1 allow_hw_probe=1 skip_v4l2_register=1
-```
-
-Expected user response:
-
-- `insmod ok` if the command returns;
-- `hang` if the Jetson freezes.
-
-Do not run `rmmod`, `STREAMON`, or capture commands until the result of this isolated `insmod` is recorded.
+- rebuild the module;
+- manually load with full V4L2 registration;
+- keep the next full unload test manual-only and use the `dmesg -W` helper.

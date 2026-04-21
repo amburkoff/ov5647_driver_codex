@@ -975,7 +975,6 @@ unregister_device:
 static int ov5647_remove(struct i2c_client *client)
 {
 	struct tegracam_device *tc_dev = i2c_get_clientdata(client);
-	struct camera_common_data *s_data = NULL;
 	struct ov5647 *priv;
 
 	dev_info(&client->dev, "%s: enter\n", __func__);
@@ -984,11 +983,6 @@ static int ov5647_remove(struct i2c_client *client)
 		return 0;
 
 	priv = to_ov5647(tc_dev);
-	s_data = tc_dev->s_data;
-	if (s_data)
-		ov5647_power_off(s_data);
-	else
-		dev_warn(&client->dev, "%s: tc_dev->s_data is NULL\n", __func__);
 
 	if (priv && priv->v4l2_registered) {
 		dev_info(&client->dev,
@@ -1010,6 +1004,9 @@ static int ov5647_remove(struct i2c_client *client)
 	tegracam_device_unregister(tc_dev);
 	dev_info(&client->dev, "%s: after tegracam_device_unregister\n",
 		 __func__);
+
+	if (priv)
+		mutex_destroy(&priv->lock);
 
 	dev_info(&client->dev, "%s: exit success\n", __func__);
 	return 0;

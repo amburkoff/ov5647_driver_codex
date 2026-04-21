@@ -30,6 +30,9 @@
   - the `.ko` contains that marker string;
   - this makes the full unload path too risky to repeat without further isolation;
   - `skip_v4l2_register=1` was added to separate chip-ID probe from V4L2 subdev/media graph registration.
+- The `skip_v4l2_register=1` isolated unload succeeds:
+  - this narrows the hard hang to the V4L2 subdev/media graph lifetime path;
+  - `tegracam_device_unregister()` alone still emits a `devm_kfree` warning but returns.
 - The current minimal stream path reaches sensor `STREAMING` state in driver logs, but VI still times out:
   - capture returns with zero-byte output files;
   - kernel logs show repeated `uncorr_err: request timed out after 2500 ms`;
