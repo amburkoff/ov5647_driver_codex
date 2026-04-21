@@ -1,3 +1,4 @@
+# command: tail -n 120 docs/11-known-issues.md
 # Known Issues
 
 - The user target is described as a CBL Developer Kit carrier, but the running DT identifies NVIDIA reference carrier `p3768-0000`.
@@ -74,15 +75,6 @@
 - Normal `tegracam_v4l2subdev_unregister()` without split diagnostics also passed once:
   - manual `rmmod` returned `rc=0`;
   - VI subdev unbind, tegracam unregister, and i2c driver unregister all completed.
-- After the clean normal remove checkpoint, a fresh full-delay load followed by manual single-frame capture still timed out:
-  - `VIDIOC_STREAMON` returned success;
-  - capture timed out with `rc=124`;
-  - raw output size was zero bytes;
-  - VI reported repeated `uncorr_err: request timed out after 2500 ms`.
-- The current minimal 640x480 mode table differs from upstream Linux OV5647 VGA setup:
-  - upstream VGA mode uses `0x3821 = 0x03`;
-  - current local code uses `0x3821 = 0x01`;
-  - current local code includes local-only VGA writes to `0x5002` and `0x4837`.
 - Current OV5647 `set_mode()` no longer enables streaming in source:
   - NVIDIA r36.5 tegracam calls `set_mode()` before `start_streaming()`;
   - NVIDIA sample drivers keep `set_mode()` to register programming and start output from `start_streaming()`;

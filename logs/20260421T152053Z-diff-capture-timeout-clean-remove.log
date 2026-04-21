@@ -1,0 +1,49 @@
+# command: git diff -- docs/10-results-and-status.md docs/11-known-issues.md reports/2026-04-21-single-frame-timeout-after-clean-remove.md
+diff --git a/docs/10-results-and-status.md b/docs/10-results-and-status.md
+index c13d856..de10277 100644
+--- a/docs/10-results-and-status.md
++++ b/docs/10-results-and-status.md
+@@ -128,6 +128,15 @@ Completed:
+   - VI subdev unbind
+   - `tegracam_device_unregister`
+   - `i2c_del_driver`
++- after a clean normal remove checkpoint and fresh full-delay load, the next manual single-frame capture reached `VIDIOC_STREAMON` but still produced no frame data:
++  - capture command returned `rc=124` after the 30 second timeout;
++  - raw output `artifacts/captures/20260421T151642Z/ov5647-640x480-bg10.raw` is zero bytes;
++  - VI logged repeated `uncorr_err: request timed out after 2500 ms`;
++  - driver logs show `power_on`, `set_mode`, `start_streaming`, `stop_streaming`, and `power_off` all returned without hanging.
++- current source comparison against upstream Linux OV5647 shows the local 640x480 table is not identical to upstream VGA mode:
++  - upstream uses `0x3821 = 0x03`;
++  - the local table currently uses `0x3821 = 0x01`;
++  - the local VGA table also contains additional `0x5002` and `0x4837` writes that are not present in upstream VGA mode.
+ 
+ Not completed yet:
+ 
+@@ -140,6 +149,6 @@ Not completed yet:
+ Next smallest safe step:
+ 
+ - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
+-- return to the zero-byte capture / VI timeout problem with one bounded manual single-frame capture after a fresh full-delay load.
++- prepare one source-only OV5647 640x480 mode-table alignment against upstream Linux, rebuild, and commit before the next manual runtime test;
+ - continue aligning the minimal mode table and CSI timing until VI receives real frames instead of timing out;
+ - keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.
+diff --git a/docs/11-known-issues.md b/docs/11-known-issues.md
+index 18e8930..6fb8d00 100644
+--- a/docs/11-known-issues.md
++++ b/docs/11-known-issues.md
+@@ -74,6 +74,15 @@
+ - Normal `tegracam_v4l2subdev_unregister()` without split diagnostics also passed once:
+   - manual `rmmod` returned `rc=0`;
+   - VI subdev unbind, tegracam unregister, and i2c driver unregister all completed.
++- After the clean normal remove checkpoint, a fresh full-delay load followed by manual single-frame capture still timed out:
++  - `VIDIOC_STREAMON` returned success;
++  - capture timed out with `rc=124`;
++  - raw output size was zero bytes;
++  - VI reported repeated `uncorr_err: request timed out after 2500 ms`.
++- The current minimal 640x480 mode table differs from upstream Linux OV5647 VGA setup:
++  - upstream VGA mode uses `0x3821 = 0x03`;
++  - current local code uses `0x3821 = 0x01`;
++  - current local code includes local-only VGA writes to `0x5002` and `0x4837`.
+ - Current OV5647 `set_mode()` no longer enables streaming in source:
+   - NVIDIA r36.5 tegracam calls `set_mode()` before `start_streaming()`;
+   - NVIDIA sample drivers keep `set_mode()` to register programming and start output from `start_streaming()`;

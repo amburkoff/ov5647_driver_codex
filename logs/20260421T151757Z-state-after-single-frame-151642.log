@@ -1,0 +1,13 @@
+timestamp=20260421T151757Z
+module:
+nv_ov5647              24576  0
+params:
+allow_hw_probe=Y
+register_i2c_driver=Y
+skip_v4l2_register=N
+skip_v4l2_unregister=N
+split_v4l2_unregister=N
+unload_marker_delay_ms=500
+refcnt=
+0
+orphan capture processes:

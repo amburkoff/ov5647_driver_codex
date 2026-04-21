@@ -1,0 +1,152 @@
+# command: sed -n '320,470p' artifacts/reference/upstream-linux/ov5647.c
+	{0x3a0e, 0x06},
+	{0x4004, 0x04},
+	{0x4837, 0x16},
+	{0x4800, 0x24},
+	{0x350a, 0x00},
+	{0x350b, 0x10},
+	{0x3500, 0x00},
+	{0x3501, 0x1a},
+	{0x3502, 0xf0},
+	{0x3212, 0xa0},
+	{0x0100, 0x01},
+};
+
+static const struct reg_sequence ov5647_640x480_10bpp[] = {
+	{0x3036, 0x46},
+	{0x3821, 0x03},
+	{0x3820, 0x41},
+	{0x3612, 0x59},
+	{0x3618, 0x00},
+	{0x3814, 0x35},
+	{0x3815, 0x35},
+	{0x3708, 0x64},
+	{0x3709, 0x52},
+	{0x3800, 0x00},
+	{0x3801, 0x10},
+	{0x3802, 0x00},
+	{0x3803, 0x00},
+	{0x3804, 0x0a},
+	{0x3805, 0x2f},
+	{0x3806, 0x07},
+	{0x3807, 0x9f},
+	{0x3808, 0x02},
+	{0x3809, 0x80},
+	{0x380a, 0x01},
+	{0x380b, 0xe0},
+	{0x3a09, 0x2e},
+	{0x3a0a, 0x00},
+	{0x3a0b, 0xfb},
+	{0x3a0d, 0x02},
+	{0x3a0e, 0x01},
+	{0x4004, 0x02},
+	{0x4800, 0x34},
+	{0x0100, 0x01},
+};
+
+static const struct ov5647_mode ov5647_modes[] = {
+	/* 2592x1944 full resolution full FOV 10-bit mode. */
+	{
+		.format = {
+			.code		= MEDIA_BUS_FMT_SBGGR10_1X10,
+			.colorspace	= V4L2_COLORSPACE_RAW,
+			.field		= V4L2_FIELD_NONE,
+			.width		= 2592,
+			.height		= 1944
+		},
+		.crop = {
+			.left		= OV5647_PIXEL_ARRAY_LEFT,
+			.top		= OV5647_PIXEL_ARRAY_TOP,
+			.width		= 2592,
+			.height		= 1944
+		},
+		.pixel_rate	= 87500000,
+		.link_freq_index = FREQ_INDEX_FULL,
+		.hts		= 2844,
+		.vts		= 0x7b0,
+		.reg_list	= ov5647_2592x1944_10bpp,
+		.num_regs	= ARRAY_SIZE(ov5647_2592x1944_10bpp)
+	},
+	/* 1080p30 10-bit mode. Full resolution centre-cropped down to 1080p. */
+	{
+		.format = {
+			.code		= MEDIA_BUS_FMT_SBGGR10_1X10,
+			.colorspace	= V4L2_COLORSPACE_RAW,
+			.field		= V4L2_FIELD_NONE,
+			.width		= 1920,
+			.height		= 1080
+		},
+		.crop = {
+			.left		= 348 + OV5647_PIXEL_ARRAY_LEFT,
+			.top		= 434 + OV5647_PIXEL_ARRAY_TOP,
+			.width		= 1928,
+			.height		= 1080,
+		},
+		.pixel_rate	= 87500000,
+		.link_freq_index = FREQ_INDEX_FULL,
+		.hts		= 2416,
+		.vts		= 0x450,
+		.reg_list	= ov5647_1080p30_10bpp,
+		.num_regs	= ARRAY_SIZE(ov5647_1080p30_10bpp)
+	},
+	/* 2x2 binned full FOV 10-bit mode. */
+	{
+		.format = {
+			.code		= MEDIA_BUS_FMT_SBGGR10_1X10,
+			.colorspace	= V4L2_COLORSPACE_RAW,
+			.field		= V4L2_FIELD_NONE,
+			.width		= 1296,
+			.height		= 972
+		},
+		.crop = {
+			.left		= OV5647_PIXEL_ARRAY_LEFT,
+			.top		= OV5647_PIXEL_ARRAY_TOP,
+			.width		= 2592,
+			.height		= 1944,
+		},
+		.pixel_rate	= 87500000,
+		.link_freq_index = FREQ_INDEX_FULL,
+		.hts		= 1896,
+		.vts		= 0x59b,
+		.reg_list	= ov5647_2x2binned_10bpp,
+		.num_regs	= ARRAY_SIZE(ov5647_2x2binned_10bpp)
+	},
+	/* 10-bit VGA full FOV 60fps. 2x2 binned and subsampled down to VGA. */
+	{
+		.format = {
+			.code		= MEDIA_BUS_FMT_SBGGR10_1X10,
+			.colorspace	= V4L2_COLORSPACE_RAW,
+			.field		= V4L2_FIELD_NONE,
+			.width		= 640,
+			.height		= 480
+		},
+		.crop = {
+			.left		= 16 + OV5647_PIXEL_ARRAY_LEFT,
+			.top		= OV5647_PIXEL_ARRAY_TOP,
+			.width		= 2560,
+			.height		= 1920,
+		},
+		.pixel_rate	= 58333000,
+		.link_freq_index = FREQ_INDEX_VGA,
+		.hts		= 1852,
+		.vts		= 0x1f8,
+		.reg_list	= ov5647_640x480_10bpp,
+		.num_regs	= ARRAY_SIZE(ov5647_640x480_10bpp)
+	},
+};
+
+/* Default sensor mode is 2x2 binned 640x480 SBGGR10_1X10. */
+#define OV5647_DEFAULT_MODE	(&ov5647_modes[3])
+#define OV5647_DEFAULT_FORMAT	(ov5647_modes[3].format)
+
+static int ov5647_set_virtual_channel(struct v4l2_subdev *sd, int channel)
+{
+	struct ov5647 *sensor = to_sensor(sd);
+
+	return cci_update_bits(sensor->regmap, OV5647_REG_MIPI_CTRL14,
+			       OV5647_REG_MIPI_CTRL14_CHANNEL_MASK,
+			       channel << OV5647_REG_MIPI_CTRL14_CHANNEL_SHIFT,
+			       NULL);
+}
+
+static int ov5647_set_mode(struct v4l2_subdev *sd)

@@ -1,0 +1,6 @@
+ioctl: VIDIOC_ENUM_FMT
+	Type: Video Capture
+
+	[0]: 'BG10' (10-bit Bayer BGBG/GRGR)
+		Size: Discrete 640x480
+			Interval: Discrete 0.033s (30.000 fps)

@@ -1,0 +1,255 @@
+# command: grep -n -A80 -B10 'ov5647_mode0_640x480_10bpp' src/nv_ov5647/nv_ov5647.c
+208-	{ OV5647_TABLE_END, 0x00 },
+209-};
+210-
+211-static const struct reg_8 ov5647_sensor_oe_disable_regs[] = {
+212-	{0x3000, 0x00},
+213-	{0x3001, 0x00},
+214-	{0x3002, 0x00},
+215-	{ OV5647_TABLE_END, 0x00 },
+216-};
+217-
+218:static const struct reg_8 ov5647_mode0_640x480_10bpp[] = {
+219-	{0x3036, 0x46},
+220-	{0x3821, 0x01},
+221-	{0x3820, 0x41},
+222-	{0x3612, 0x59},
+223-	{0x3618, 0x00},
+224-	{0x5002, 0x41},
+225-	{0x3814, 0x35},
+226-	{0x3815, 0x35},
+227-	{0x3708, 0x64},
+228-	{0x3709, 0x52},
+229-	{0x3800, 0x00},
+230-	{0x3801, 0x10},
+231-	{0x3802, 0x00},
+232-	{0x3803, 0x00},
+233-	{0x3804, 0x0a},
+234-	{0x3805, 0x2f},
+235-	{0x3806, 0x07},
+236-	{0x3807, 0x9f},
+237-	{0x3808, 0x02},
+238-	{0x3809, 0x80},
+239-	{0x380a, 0x01},
+240-	{0x380b, 0xe0},
+241-	{0x3a09, 0x2e},
+242-	{0x3a0a, 0x00},
+243-	{0x3a0b, 0xfb},
+244-	{0x3a0d, 0x02},
+245-	{0x3a0e, 0x01},
+246-	{0x4004, 0x02},
+247-	{0x4837, 0x16},
+248-	{0x4800, 0x34},
+249-	{ OV5647_TABLE_END, 0x00 },
+250-};
+251-
+252-static const int ov5647_30fps[] = {
+253-	30,
+254-};
+255-
+256-static const struct camera_common_frmfmt ov5647_frmfmt[] = {
+257-	{
+258-		.size = {
+259-			.width = 640,
+260-			.height = 480,
+261-		},
+262-		.framerates = ov5647_30fps,
+263-		.num_framerates = ARRAY_SIZE(ov5647_30fps),
+264-		.hdr_en = false,
+265-		.mode = 0,
+266-	},
+267-};
+268-
+269-static const struct ov5647_mode ov5647_modes[] = {
+270-	{
+271-		.name = "640x480-10bpp-30fps",
+272-		.width = 640,
+273-		.height = 480,
+274-		.code = MEDIA_BUS_FMT_SBGGR10_1X10,
+275:		.table = ov5647_mode0_640x480_10bpp,
+276-	},
+277-};
+278-
+279-static const u32 ov5647_ctrl_cid_list[] = {
+280-	TEGRA_CAMERA_CID_GAIN,
+281-	TEGRA_CAMERA_CID_EXPOSURE,
+282-	TEGRA_CAMERA_CID_FRAME_RATE,
+283-	TEGRA_CAMERA_CID_SENSOR_MODE_ID,
+284-};
+285-
+286-static const struct regmap_config ov5647_regmap_config = {
+287-	.reg_bits = 16,
+288-	.val_bits = 8,
+289-	.cache_type = REGCACHE_RBTREE,
+290-	.max_register = 0xffff,
+291-};
+292-
+293-static inline struct ov5647 *to_ov5647(struct tegracam_device *tc_dev)
+294-{
+295-	return tegracam_get_privdata(tc_dev);
+296-}
+297-
+298-static inline struct ov5647 *s_data_to_ov5647(struct camera_common_data *s_data)
+299-{
+300-	if (!s_data || !to_tegracam_device(s_data))
+301-		return NULL;
+302-
+303-	return to_ov5647(to_tegracam_device(s_data));
+304-}
+305-
+306-static int ov5647_write_reg(struct camera_common_data *s_data, u16 addr, u8 val)
+307-{
+308-	struct ov5647 *priv = s_data_to_ov5647(s_data);
+309-	struct i2c_client *client;
+310-	u8 buf[3];
+311-	int err;
+312-
+313-	if (!priv || !s_data)
+314-		return -EINVAL;
+315-
+316-	client = priv->client;
+317-	if (!client)
+318-		return -ENODEV;
+319-
+320-	buf[0] = addr >> 8;
+321-	buf[1] = addr & 0xff;
+322-	buf[2] = val;
+323-
+324-	err = i2c_master_send(client, buf, sizeof(buf));
+325-	if (err == sizeof(buf))
+326-		err = 0;
+327-	else if (err >= 0)
+328-		err = -EIO;
+329-
+330-	if (err)
+331-		dev_err(s_data->dev,
+332-			"%s: reg write failed addr=0x%04x val=0x%02x err=%d\n",
+333-			__func__, addr, val, err);
+334-	else
+335-		dev_dbg(s_data->dev, "%s: addr=0x%04x val=0x%02x\n",
+336-			__func__, addr, val);
+337-
+338-	return err;
+339-}
+340-
+341-static int ov5647_read_reg(struct camera_common_data *s_data, u16 addr, u8 *val)
+342-{
+343-	struct ov5647 *priv = s_data_to_ov5647(s_data);
+344-	struct i2c_client *client;
+345-	struct i2c_msg msgs[2];
+346-	u8 addr_buf[2];
+347-	u8 reg_val;
+348-	int err;
+349-
+350-	if (!priv || !s_data || !val)
+351-		return -EINVAL;
+352-
+353-	client = priv->client;
+354-	if (!client)
+355-		return -ENODEV;
+
+# command: grep -n -A40 -B10 'ov5647_frmfmt' src/nv_ov5647/nv_ov5647.c
+246-	{0x4004, 0x02},
+247-	{0x4837, 0x16},
+248-	{0x4800, 0x34},
+249-	{ OV5647_TABLE_END, 0x00 },
+250-};
+251-
+252-static const int ov5647_30fps[] = {
+253-	30,
+254-};
+255-
+256:static const struct camera_common_frmfmt ov5647_frmfmt[] = {
+257-	{
+258-		.size = {
+259-			.width = 640,
+260-			.height = 480,
+261-		},
+262-		.framerates = ov5647_30fps,
+263-		.num_framerates = ARRAY_SIZE(ov5647_30fps),
+264-		.hdr_en = false,
+265-		.mode = 0,
+266-	},
+267-};
+268-
+269-static const struct ov5647_mode ov5647_modes[] = {
+270-	{
+271-		.name = "640x480-10bpp-30fps",
+272-		.width = 640,
+273-		.height = 480,
+274-		.code = MEDIA_BUS_FMT_SBGGR10_1X10,
+275-		.table = ov5647_mode0_640x480_10bpp,
+276-	},
+277-};
+278-
+279-static const u32 ov5647_ctrl_cid_list[] = {
+280-	TEGRA_CAMERA_CID_GAIN,
+281-	TEGRA_CAMERA_CID_EXPOSURE,
+282-	TEGRA_CAMERA_CID_FRAME_RATE,
+283-	TEGRA_CAMERA_CID_SENSOR_MODE_ID,
+284-};
+285-
+286-static const struct regmap_config ov5647_regmap_config = {
+287-	.reg_bits = 16,
+288-	.val_bits = 8,
+289-	.cache_type = REGCACHE_RBTREE,
+290-	.max_register = 0xffff,
+291-};
+292-
+293-static inline struct ov5647 *to_ov5647(struct tegracam_device *tc_dev)
+294-{
+295-	return tegracam_get_privdata(tc_dev);
+296-}
+--
+920-static const struct tegracam_ctrl_ops ov5647_ctrl_ops = {
+921-	.numctrls = ARRAY_SIZE(ov5647_ctrl_cid_list),
+922-	.ctrl_cid_list = ov5647_ctrl_cid_list,
+923-	.set_gain = ov5647_set_gain,
+924-	.set_exposure = ov5647_set_exposure,
+925-	.set_frame_rate = ov5647_set_frame_rate,
+926-	.set_group_hold = ov5647_set_group_hold,
+927-};
+928-
+929-static struct camera_common_sensor_ops ov5647_common_ops = {
+930:	.numfrmfmts = ARRAY_SIZE(ov5647_frmfmt),
+931:	.frmfmt_table = ov5647_frmfmt,
+932-	.power_on = ov5647_power_on,
+933-	.power_off = ov5647_power_off,
+934-	.write_reg = ov5647_write_reg,
+935-	.read_reg = ov5647_read_reg,
+936-	.parse_dt = ov5647_parse_dt,
+937-	.power_get = ov5647_power_get,
+938-	.power_put = ov5647_power_put,
+939-	.set_mode = ov5647_set_mode,
+940-	.start_streaming = ov5647_start_streaming,
+941-	.stop_streaming = ov5647_stop_streaming,
+942-};
+943-
+944-static const struct v4l2_subdev_ops ov5647_subdev_ops = {
+945-};
+946-
+947-static int ov5647_probe(struct i2c_client *client,
+948-			const struct i2c_device_id *id)
+949-{
+950-	struct device *dev = &client->dev;
+951-	struct tegracam_device *tc_dev;
+952-	struct ov5647 *priv;
+953-	int err;
+954-
+955-	dev_info(dev, "%s: enter client=%s addr=0x%02x\n",
+956-		 __func__, client->name, client->addr);
+957-
+958-	if (!allow_hw_probe) {
+959-		dev_warn(dev,
+960-			 "%s: probe gate is closed; reload with allow_hw_probe=1 after hardware mapping is verified\n",
+961-			 __func__);
+962-		return -EPERM;
+963-	}
+964-
+965-	if (!dev->of_node) {
+966-		dev_err(dev, "%s: DT node is required\n", __func__);
+967-		return -ENODEV;
+968-	}
+969-
+970-	tc_dev = devm_kzalloc(dev, sizeof(*tc_dev), GFP_KERNEL);
+971-	if (!tc_dev)

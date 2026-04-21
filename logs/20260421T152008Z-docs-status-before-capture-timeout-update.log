@@ -1,28 +1,4 @@
-# Results And Status
-
-Current overall status: `inventory, safe scaffold, corrected dev overlay boot, successful single-sensor probe, first /dev/video0, passing v4l2-compliance, capture path reaches STREAMON but no frames yet, full unload hang isolated to V4L2 subdev/media graph path`
-
-Completed:
-
-- live platform inventory gathered from the target;
-- timestamped logs written under `logs/`;
-- DT and boot snapshots written under `artifacts/`;
-- repository layout created;
-- baseline documentation added;
-- log collection scripts added;
-- safe and dev boot profile generation workflow added;
-- candidate `extlinux.conf` for safe/dev rendered under `artifacts/boot/20260417T100722Z/`;
-- non-probing `nv_ov5647` external module skeleton added;
-- `nv_ov5647.ko` build validated under `artifacts/build/20260417T100753Z/`;
-- `nv_ov5647` upgraded to a gated OV5647 driver scaffold with `tegracam` and `camera_common` hooks;
-- build against NVIDIA camera framework symbols validated under `artifacts/build/20260417T105242Z/`;
-- root-validated `insmod` and `rmmod` completed successfully with the default safety gate;
-- 10-cycle safe module lifecycle stress test completed successfully;
-- `i2c_add_driver` and `i2c_del_driver` path validated with `register_i2c_driver=1 allow_hw_probe=0`.
-- scaffold driver DT defaults aligned with NVIDIA-style supply names `vana`, `vdig`, and `vif`;
-- compile-ready OV5647 draft overlay added for reference route `A`;
-- local draft overlay build validated under `artifacts/dtbo/20260417T120134Z-ov5647-p3768-port-a-draft.dtbo`.
-- safe/dev boot entries applied to `/boot/extlinux/extlinux.conf`;
+# command: tail -n 120 docs/10-results-and-status.md
 - `DEFAULT` now points to `ov5647-safe` on disk;
 - base camera I2C bus inventory confirms `i2c-2` exists, but no downstream camera devices are currently visible without an active camera overlay.
 - reusable overlay build pipeline added through `scripts/build_overlay.sh`;
@@ -128,15 +104,6 @@ Completed:
   - VI subdev unbind
   - `tegracam_device_unregister`
   - `i2c_del_driver`
-- after a clean normal remove checkpoint and fresh full-delay load, the next manual single-frame capture reached `VIDIOC_STREAMON` but still produced no frame data:
-  - capture command returned `rc=124` after the 30 second timeout;
-  - raw output `artifacts/captures/20260421T151642Z/ov5647-640x480-bg10.raw` is zero bytes;
-  - VI logged repeated `uncorr_err: request timed out after 2500 ms`;
-  - driver logs show `power_on`, `set_mode`, `start_streaming`, `stop_streaming`, and `power_off` all returned without hanging.
-- current source comparison against upstream Linux OV5647 shows the local 640x480 table is not identical to upstream VGA mode:
-  - upstream uses `0x3821 = 0x03`;
-  - the local table currently uses `0x3821 = 0x01`;
-  - the local VGA table also contains additional `0x5002` and `0x4837` writes that are not present in upstream VGA mode.
 
 Not completed yet:
 
@@ -149,6 +116,6 @@ Not completed yet:
 Next smallest safe step:
 
 - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
-- prepare one source-only OV5647 640x480 mode-table alignment against upstream Linux, rebuild, and commit before the next manual runtime test;
+- return to the zero-byte capture / VI timeout problem with one bounded manual single-frame capture after a fresh full-delay load.
 - continue aligning the minimal mode table and CSI timing until VI receives real frames instead of timing out;
 - keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.
