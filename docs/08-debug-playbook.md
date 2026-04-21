@@ -32,6 +32,20 @@ When a reboot is needed:
 
 Use manual-only unload tests. Do not run these from Codex when a hard hang is plausible.
 
+Manual diagnostic load profiles:
+
+```bash
+sudo /home/cam/ov5647_driver_codex/scripts/run_manual_insmod_diag.sh full-delay
+```
+
+```bash
+sudo /home/cam/ov5647_driver_codex/scripts/run_manual_insmod_diag.sh skip-register
+```
+
+```bash
+sudo /home/cam/ov5647_driver_codex/scripts/run_manual_insmod_diag.sh skip-unregister
+```
+
 Basic trace:
 
 ```bash

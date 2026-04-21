@@ -21,8 +21,16 @@ if ! lsmod | awk '$1 == "nv_ov5647" { found = 1 } END { exit(found ? 0 : 1) }'; 
     exit 0
 fi
 
+if [[ "${OV5647_ALLOW_UNSAFE_RMMOD:-0}" != "1" ]]; then
+    {
+        note "Refusing direct rmmod because full V4L2 unload can hard-hang this Jetson"
+        note "Use scripts/run_manual_rmmod_trace.sh manually, or set OV5647_ALLOW_UNSAFE_RMMOD=1 only for a controlled diagnostic run"
+    } | tee -a "${LOGFILE}"
+    exit 2
+fi
+
+note "OV5647_ALLOW_UNSAFE_RMMOD=1 set; running direct rmmod" | tee -a "${LOGFILE}"
 rmmod nv_ov5647 2>&1 | tee -a "${LOGFILE}"
 dmesg | tail -n 80 >"${LOG_DIR}/${STAMP}-unload_module.dmesg-tail.log"
 
 note "Module unload finished" | tee -a "${LOGFILE}"
-
