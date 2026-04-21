@@ -36,6 +36,10 @@
 - Full V4L2-registration unload still hangs after removing direct `ov5647_power_off()` from `remove()`:
   - the `dmesg -W` live trace for the failed run was empty;
   - the pre-rmmod dmesg tail confirms full probe and subdev bind completed.
+- The hang is not explained by obvious userspace/module references:
+  - `fuser` and `lsof` show no holders for current media/video/subdev nodes;
+  - `/sys/module/nv_ov5647/refcnt` is `0`;
+  - `/sys/module/nv_ov5647/holders` is empty.
 - The current minimal stream path reaches sensor `STREAMING` state in driver logs, but VI still times out:
   - capture returns with zero-byte output files;
   - kernel logs show repeated `uncorr_err: request timed out after 2500 ms`;

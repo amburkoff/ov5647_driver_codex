@@ -77,6 +77,8 @@ Completed:
 - the isolated unload still reports a `devm_kfree` warning from `tegracam_device_unregister()`, but does not hang.
 - after removing direct `ov5647_power_off()` from `remove()`, full V4L2-registration unload still hangs.
 - unload helper now records media/video/subdev node holders through `fuser` and `lsof` before issuing `rmmod`.
+- follow-up full-load inspection showed no userspace holders, module `refcnt=0`, and no module holders.
+- current media graph is linked as `nv_ov5647 -> nvcsi -> vi-output`, with `/dev/video0` at `BG10 640x480`.
 
 Not completed yet:
 
@@ -89,6 +91,6 @@ Not completed yet:
 
 Next smallest safe step:
 
-- use the improved unload helper to check for userspace holders before the next manual full unload test;
+- avoid repeating the full unload hang; add narrower kernel-side diagnostics for V4L2 unregister or task-state capture first;
 - continue aligning the minimal mode table and CSI timing until VI receives real frames instead of timing out;
 - keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.

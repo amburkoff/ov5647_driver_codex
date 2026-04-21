@@ -1,0 +1,6 @@
+NVIDIA Tegra Video Input Device (platform:tegra-camrtc-ca):
+	/dev/media0
+
+vi-output, nv_ov5647 9-0036 (platform:tegra-capture-vi:1):
+	/dev/video0
+

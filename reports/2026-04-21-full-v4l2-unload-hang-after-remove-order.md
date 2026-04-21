@@ -52,14 +52,27 @@
   - save `fuser -v` output for those nodes;
   - save `lsof` output for those nodes.
 
+## Follow-Up Inspection
+
+- after the next successful full-load probe, `fuser` and `lsof` showed no userspace holders for:
+  - `/dev/media0`
+  - `/dev/video0`
+  - `/dev/v4l-subdev0`
+  - `/dev/v4l-subdev1`
+- `/sys/module/nv_ov5647/refcnt` reported:
+  - `0`
+- `/sys/module/nv_ov5647/holders` was empty;
+- media graph remained correctly linked:
+  - `nv_ov5647 9-0036 -> nvcsi -> vi-output`
+- current `/dev/video0` format:
+  - `BG10`
+  - `640x480`
+  - `Size Image = 614400`
+
 ## Next Best Step
 
 Do not run another full unload test until a new checkpoint is committed and pushed.
 
-The next manual full unload test should first answer whether any process holds:
+The next risky full unload test should not be repeated just to confirm the same hang.
 
-- `/dev/video*`
-- `/dev/media*`
-- `/dev/v4l-subdev*`
-
-If no process holds these nodes, add a narrower driver-side isolation switch for the V4L2 unregister phase.
+Next code-side work should add narrower diagnostics for the full V4L2 unregister phase, or prepare a helper that captures kernel task state before attempting unload.
