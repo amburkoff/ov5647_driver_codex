@@ -1,0 +1,51 @@
+# command: git diff -- src/nv_ov5647/nv_ov5647.c docs/10-results-and-status.md docs/11-known-issues.md reports/2026-04-21-vga-hts-vts-mode-fix.md
+diff --git a/docs/10-results-and-status.md b/docs/10-results-and-status.md
+index b98aba8..0b351a4 100644
+--- a/docs/10-results-and-status.md
++++ b/docs/10-results-and-status.md
+@@ -153,6 +153,10 @@ Completed:
+   - upstream OV5647 mode data defines VGA `hts = 1852` and `vts = 0x1f8`;
+   - upstream applies HTS/VTS through controls;
+   - the local tegracam control callbacks are still stubs, so the minimal mode table should explicitly program HTS/VTS for the single 640x480 mode.
++- source-side HTS/VTS mode fix is prepared:
++  - `0x380c/0x380d = 0x073c` for upstream VGA HTS 1852;
++  - `0x380e/0x380f = 0x01f8` for upstream VGA VTS;
++  - no runtime validation has been run yet.
+ 
+ Not completed yet:
+ 
+@@ -165,6 +169,6 @@ Not completed yet:
+ Next smallest safe step:
+ 
+ - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
+-- prepare one source-only OV5647 640x480 HTS/VTS mode-table patch against upstream Linux timing;
++- rebuild and commit the HTS/VTS mode-table patch, then manually unload/load/capture one command at a time;
+ - continue aligning the minimal mode table and CSI timing until VI receives real frames instead of timing out;
+ - keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.
+diff --git a/docs/11-known-issues.md b/docs/11-known-issues.md
+index 35a4a92..8c880d6 100644
+--- a/docs/11-known-issues.md
++++ b/docs/11-known-issues.md
+@@ -97,6 +97,7 @@
+   - upstream VGA `hts = 1852`;
+   - upstream VGA `vts = 0x1f8`;
+   - the minimal local mode table should explicitly program these for the first single-mode bring-up.
++- Source-side HTS/VTS programming has been added to the local VGA mode table, but it is not runtime-tested yet.
+ - Current OV5647 `set_mode()` no longer enables streaming in source:
+   - NVIDIA r36.5 tegracam calls `set_mode()` before `start_streaming()`;
+   - NVIDIA sample drivers keep `set_mode()` to register programming and start output from `start_streaming()`;
+diff --git a/src/nv_ov5647/nv_ov5647.c b/src/nv_ov5647/nv_ov5647.c
+index 662a0d8..5b156e3 100644
+--- a/src/nv_ov5647/nv_ov5647.c
++++ b/src/nv_ov5647/nv_ov5647.c
+@@ -238,6 +238,10 @@ static const struct reg_8 ov5647_mode0_640x480_10bpp[] = {
+ 	{0x3809, 0x80},
+ 	{0x380a, 0x01},
+ 	{0x380b, 0xe0},
++	{0x380c, 0x07}, /* HTS = 1852, upstream VGA timing */
++	{0x380d, 0x3c},
++	{0x380e, 0x01}, /* VTS = 0x01f8, upstream VGA timing */
++	{0x380f, 0xf8},
+ 	{0x3a09, 0x2e},
+ 	{0x3a0a, 0x00},
+ 	{0x3a0b, 0xfb},

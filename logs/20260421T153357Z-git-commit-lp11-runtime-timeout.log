@@ -1,0 +1,40 @@
+# command: git commit -m 'test: record ov5647 lp11 capture timeout'
+[main a5e019e] test: record ov5647 lp11 capture timeout
+ 39 files changed, 4433 insertions(+), 2 deletions(-)
+ create mode 100644 artifacts/captures/20260421T153049Z/ov5647-640x480-bg10.raw
+ create mode 100644 logs/20260421T152552Z-git-commit-lp11-power-on-fix.log
+ create mode 100644 logs/20260421T152557Z-git-push-lp11-power-on-fix.log
+ create mode 100644 logs/20260421T152609Z-runtime-state-before-manual-lp11-test.log
+ create mode 100644 logs/20260421T152609Z-status-after-lp11-push.log
+ create mode 100644 logs/20260421T152756Z-rmmod-devnodes.log
+ create mode 100644 logs/20260421T152756Z-rmmod-fuser.log
+ create mode 100644 logs/20260421T152756Z-rmmod-live-dmesg.log
+ create mode 100644 logs/20260421T152756Z-rmmod-lsof.log
+ create mode 100644 logs/20260421T152756Z-rmmod-pre-dmesg-tail.log
+ create mode 100644 logs/20260421T152756Z-rmmod-sysrq-watchdog.log
+ create mode 100644 logs/20260421T152756Z-rmmod-trace.log
+ create mode 100644 logs/20260421T152840Z-after-manual-rmmod-lp11-test-dmesg.log
+ create mode 100644 logs/20260421T152840Z-after-manual-rmmod-lp11-test-git-state.log
+ create mode 100644 logs/20260421T152840Z-after-manual-rmmod-lp11-test-state.log
+ create mode 100644 logs/20260421T152923Z-manual-insmod-full-delay.dmesg-tail.log
+ create mode 100644 logs/20260421T152923Z-manual-insmod-full-delay.log
+ create mode 100644 logs/20260421T152923Z-manual-insmod-full-delay.modinfo.log
+ create mode 100644 logs/20260421T153000Z-after-manual-insmod-lp11-state.log
+ create mode 100644 logs/20260421T153001Z-after-manual-insmod-lp11-dmesg.log
+ create mode 100644 logs/20260421T153001Z-after-manual-insmod-lp11-media-ctl.log
+ create mode 100644 logs/20260421T153001Z-after-manual-insmod-lp11-v4l2-query.log
+ create mode 100644 logs/20260421T153049Z-single-frame-post-dmesg-tail.log
+ create mode 100644 logs/20260421T153049Z-single-frame-trace.log
+ create mode 100644 logs/20260421T153049Z-stream-live-dmesg.log
+ create mode 100644 logs/20260421T153224Z-after-lp11-capture-timeout-dmesg.log
+ create mode 100644 logs/20260421T153224Z-after-lp11-capture-timeout-state.log
+ create mode 100644 logs/20260421T153224Z-git-state-after-lp11-capture-timeout.log
+ create mode 100644 logs/20260421T153224Z-lp11-capture-timeout-script-log-summary.log
+ create mode 100644 logs/20260421T153244Z-recent-lp11-capture-files.log
+ create mode 100644 logs/20260421T153245Z-known-issues-before-lp11-timeout-report.log
+ create mode 100644 logs/20260421T153245Z-status-doc-before-lp11-timeout-report.log
+ create mode 100644 logs/20260421T153339Z-git-diff-check-lp11-runtime-timeout-report.log
+ create mode 100644 logs/20260421T153340Z-diff-lp11-runtime-timeout-report.log
+ create mode 100644 logs/20260421T153340Z-status-before-lp11-runtime-timeout-commit.log
+ create mode 100644 reports/2026-04-21-lp11-runtime-timeout.md
+git commit rc=0

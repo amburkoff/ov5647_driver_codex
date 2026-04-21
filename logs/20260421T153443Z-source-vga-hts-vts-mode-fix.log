@@ -1,0 +1,52 @@
+# command: grep -n -A40 -B10 '0x3808' src/nv_ov5647/nv_ov5647.c
+227-	{0x3708, 0x64},
+228-	{0x3709, 0x52},
+229-	{0x3800, 0x00},
+230-	{0x3801, 0x10},
+231-	{0x3802, 0x00},
+232-	{0x3803, 0x00},
+233-	{0x3804, 0x0a},
+234-	{0x3805, 0x2f},
+235-	{0x3806, 0x07},
+236-	{0x3807, 0x9f},
+237:	{0x3808, 0x02},
+238-	{0x3809, 0x80},
+239-	{0x380a, 0x01},
+240-	{0x380b, 0xe0},
+241-	{0x380c, 0x07}, /* HTS = 1852, upstream VGA timing */
+242-	{0x380d, 0x3c},
+243-	{0x380e, 0x01}, /* VTS = 0x01f8, upstream VGA timing */
+244-	{0x380f, 0xf8},
+245-	{0x3a09, 0x2e},
+246-	{0x3a0a, 0x00},
+247-	{0x3a0b, 0xfb},
+248-	{0x3a0d, 0x02},
+249-	{0x3a0e, 0x01},
+250-	{0x4004, 0x02},
+251-	{0x4837, 0x16},
+252-	{0x4800, 0x34},
+253-	{ OV5647_TABLE_END, 0x00 },
+254-};
+255-
+256-static const int ov5647_30fps[] = {
+257-	30,
+258-};
+259-
+260-static const struct camera_common_frmfmt ov5647_frmfmt[] = {
+261-	{
+262-		.size = {
+263-			.width = 640,
+264-			.height = 480,
+265-		},
+266-		.framerates = ov5647_30fps,
+267-		.num_framerates = ARRAY_SIZE(ov5647_30fps),
+268-		.hdr_en = false,
+269-		.mode = 0,
+270-	},
+271-};
+272-
+273-static const struct ov5647_mode ov5647_modes[] = {
+274-	{
+275-		.name = "640x480-10bpp-30fps",
+276-		.width = 640,
+277-		.height = 480,

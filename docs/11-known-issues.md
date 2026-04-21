@@ -97,6 +97,7 @@
   - upstream VGA `hts = 1852`;
   - upstream VGA `vts = 0x1f8`;
   - the minimal local mode table should explicitly program these for the first single-mode bring-up.
+- Source-side HTS/VTS programming has been added to the local VGA mode table, but it is not runtime-tested yet.
 - Current OV5647 `set_mode()` no longer enables streaming in source:
   - NVIDIA r36.5 tegracam calls `set_mode()` before `start_streaming()`;
   - NVIDIA sample drivers keep `set_mode()` to register programming and start output from `start_streaming()`;

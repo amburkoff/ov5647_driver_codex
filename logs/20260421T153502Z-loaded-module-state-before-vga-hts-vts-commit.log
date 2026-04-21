@@ -1,0 +1,5 @@
+# command: lsmod | grep nv_ov5647 || true
+nv_ov5647              24576  0
+tegra_camera          221184  8 nvhost_isp5,nvhost_nvcsi_t194,nv_ov5647,nvhost_vi5
+v4l2_async             20480  3 v4l2_fwnode,nv_ov5647,tegra_camera
+videodev              249856  5 v4l2_async,videobuf2_v4l2,nv_ov5647,tegra_camera,videobuf2_common

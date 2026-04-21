@@ -153,6 +153,10 @@ Completed:
   - upstream OV5647 mode data defines VGA `hts = 1852` and `vts = 0x1f8`;
   - upstream applies HTS/VTS through controls;
   - the local tegracam control callbacks are still stubs, so the minimal mode table should explicitly program HTS/VTS for the single 640x480 mode.
+- source-side HTS/VTS mode fix is prepared:
+  - `0x380c/0x380d = 0x073c` for upstream VGA HTS 1852;
+  - `0x380e/0x380f = 0x01f8` for upstream VGA VTS;
+  - no runtime validation has been run yet.
 
 Not completed yet:
 
@@ -165,6 +169,6 @@ Not completed yet:
 Next smallest safe step:
 
 - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
-- prepare one source-only OV5647 640x480 HTS/VTS mode-table patch against upstream Linux timing;
+- rebuild and commit the HTS/VTS mode-table patch, then manually unload/load/capture one command at a time;
 - continue aligning the minimal mode table and CSI timing until VI receives real frames instead of timing out;
 - keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.

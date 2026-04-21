@@ -1,0 +1,5 @@
+# command: find artifacts/build/20260421T153447Z -maxdepth 1 -type f -ls
+   267783      4 -rw-rw-r--   1 cam      cam            57 Apr 21 18:34 artifacts/build/20260421T153447Z/modules.order
+   267784      4 -rw-rw-r--   1 cam      cam          1225 Apr 21 18:34 artifacts/build/20260421T153447Z/nv_ov5647.modinfo.txt
+   267781     92 -rw-rw-r--   1 cam      cam         92512 Apr 21 18:34 artifacts/build/20260421T153447Z/nv_ov5647.ko
+   267782      0 -rw-rw-r--   1 cam      cam             0 Apr 21 18:34 artifacts/build/20260421T153447Z/Module.symvers
