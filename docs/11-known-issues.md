@@ -33,6 +33,9 @@
 - The `skip_v4l2_register=1` isolated unload succeeds:
   - this narrows the hard hang to the V4L2 subdev/media graph lifetime path;
   - `tegracam_device_unregister()` alone still emits a `devm_kfree` warning but returns.
+- Full V4L2-registration unload still hangs after removing direct `ov5647_power_off()` from `remove()`:
+  - the `dmesg -W` live trace for the failed run was empty;
+  - the pre-rmmod dmesg tail confirms full probe and subdev bind completed.
 - The current minimal stream path reaches sensor `STREAMING` state in driver logs, but VI still times out:
   - capture returns with zero-byte output files;
   - kernel logs show repeated `uncorr_err: request timed out after 2500 ms`;

@@ -1,6 +1,6 @@
 # Results And Status
 
-Current overall status: `inventory, safe scaffold, corrected dev overlay boot, successful single-sensor probe, first /dev/video0, passing v4l2-compliance, capture path reaches STREAMON but no frames yet, unload hang isolated to V4L2 subdev/media graph path`
+Current overall status: `inventory, safe scaffold, corrected dev overlay boot, successful single-sensor probe, first /dev/video0, passing v4l2-compliance, capture path reaches STREAMON but no frames yet, full unload hang isolated to V4L2 subdev/media graph path`
 
 Completed:
 
@@ -75,6 +75,8 @@ Completed:
 - a diagnostic `skip_v4l2_register` module parameter has been added to isolate chip-ID probe from V4L2 subdev/media graph registration.
 - with `skip_v4l2_register=1`, manual `rmmod` returned successfully with `rmmod rc=0`.
 - the isolated unload still reports a `devm_kfree` warning from `tegracam_device_unregister()`, but does not hang.
+- after removing direct `ov5647_power_off()` from `remove()`, full V4L2-registration unload still hangs.
+- unload helper now records media/video/subdev node holders through `fuser` and `lsof` before issuing `rmmod`.
 
 Not completed yet:
 
@@ -87,6 +89,6 @@ Not completed yet:
 
 Next smallest safe step:
 
-- rebuild and manually test the corrected full V4L2-registration remove order;
+- use the improved unload helper to check for userspace holders before the next manual full unload test;
 - continue aligning the minimal mode table and CSI timing until VI receives real frames instead of timing out;
 - keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.

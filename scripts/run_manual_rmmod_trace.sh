@@ -6,13 +6,21 @@ TS="$(date -u +%Y%m%dT%H%M%SZ)"
 LOG_DIR="${ROOT_DIR}/logs"
 TRACE_LOG="${LOG_DIR}/${TS}-rmmod-live-dmesg.log"
 RUN_LOG="${LOG_DIR}/${TS}-rmmod-trace.log"
+DEVNODE_LOG="${LOG_DIR}/${TS}-rmmod-devnodes.log"
+FUSER_LOG="${LOG_DIR}/${TS}-rmmod-fuser.log"
+LSOF_LOG="${LOG_DIR}/${TS}-rmmod-lsof.log"
 
 mkdir -p "${LOG_DIR}"
 
 echo "[${TS}] starting live dmesg capture" | tee "${RUN_LOG}"
 sync
 
-stdbuf -oL dmesg -W > "${TRACE_LOG}" 2>&1 &
+(
+	dmesg -W 2>&1 | while IFS= read -r line; do
+		printf '%s\n' "${line}"
+		sync
+	done
+) > "${TRACE_LOG}" &
 DMESG_PID=$!
 
 cleanup() {
@@ -26,6 +34,18 @@ trap cleanup EXIT
 sleep 1
 echo "[${TS}] collecting pre-rmmod state" | tee -a "${RUN_LOG}"
 lsmod | grep -E '^nv_ov5647\\b' | tee -a "${RUN_LOG}" || true
+sync
+mapfile -t DEVICES < <(find /dev -maxdepth 1 \
+	\( -name 'media*' -o -name 'video*' -o -name 'v4l-subdev*' \) \
+	-print 2>/dev/null | sort)
+printf '%s\n' "${DEVICES[@]}" > "${DEVNODE_LOG}"
+if ((${#DEVICES[@]})); then
+	fuser -v "${DEVICES[@]}" > "${FUSER_LOG}" 2>&1 || true
+	lsof "${DEVICES[@]}" > "${LSOF_LOG}" 2>&1 || true
+else
+	echo "no media/video/subdev nodes found" > "${FUSER_LOG}"
+	echo "no media/video/subdev nodes found" > "${LSOF_LOG}"
+fi
 sync
 sudo dmesg | tail -n 120 > "${LOG_DIR}/${TS}-rmmod-pre-dmesg-tail.log" 2>&1 || true
 sync
