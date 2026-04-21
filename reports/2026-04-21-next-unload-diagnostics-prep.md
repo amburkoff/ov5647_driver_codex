@@ -9,6 +9,10 @@
   - `lsof` empty;
   - module `refcnt=0`;
   - module holders empty.
+- NVIDIA r36.x camera documentation confirms the intended tegracam remove order:
+  - `tegracam_v4l2subdev_unregister(priv->tc_dev);`
+  - `tegracam_device_unregister(priv->tc_dev);`
+- the current driver follows that order, so the next work should isolate where the framework unregister call blocks rather than reordering it blindly.
 
 ## Change Prepared
 

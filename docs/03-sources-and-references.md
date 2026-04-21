@@ -10,6 +10,10 @@ Primary documentation for this project:
   - <https://docs.nvidia.com/jetson/archives/r36.5/DeveloperGuide/SD/CameraDevelopment.html>
 - Jetson Linux `r36.5` Sensor Software Driver Programming:
   - <https://docs.nvidia.com/jetson/archives/r36.5/DeveloperGuide/SD/CameraDevelopment/SensorSoftwareDriverProgramming.html>
+- Jetson Linux `r36.4.3` Sensor Software Driver Programming, used as the latest accessible r36.x camera framework reference when r36.5 page content is unavailable:
+  - <https://docs.nvidia.com/jetson/archives/r36.4.3/DeveloperGuide/SD/CameraDevelopment/SensorSoftwareDriverProgramming.html>
+  - confirms the r36.x tegracam remove order: `tegracam_v4l2subdev_unregister()` followed by `tegracam_device_unregister()`;
+  - confirms NVIDIA's intended LKM development loop for camera sensor drivers.
 - Jetson Linux `r36.5` Jetson Orin Series feature reference:
   - <https://docs.nvidia.com/jetson/archives/r36.5/DeveloperGuide/SO/JetsonOrinSeries.html>
 - Jetson Linux `r36.5` Kernel guide:
@@ -53,4 +57,4 @@ JetPack note:
 - NVIDIA `nv_imx*` overlays and modules define the expected r36.5 Jetson camera framework shape.
 - upstream `ov5647.c` provides sensor semantics, register behavior, power timing cues, and mode-table reference.
 - local live DT and boot files override any stale assumption from reference material.
-
+- When official r36.5 web pages are not available in the public docs archive, use the local r36.5 headers and installed BSP artifacts as runtime truth, and use the closest official r36.x NVIDIA documentation only to confirm framework patterns.
