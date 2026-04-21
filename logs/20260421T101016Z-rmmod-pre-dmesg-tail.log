@@ -1,0 +1,120 @@
+[   10.954391] Bluetooth: BNEP (Ethernet Emulation) ver 1.3
+[   10.954400] Bluetooth: BNEP filters: protocol multicast
+[   10.954411] Bluetooth: BNEP socket layer initialized
+[   10.964614] NET: Registered PF_ALG protocol family
+[   10.994937] loop9: detected capacity change from 0 to 32768
+[   11.121432] nv_nvsciipc_init.sh[951]: found /dev/nvsciipc
+[   11.129518] nvsciipc: set_db start
+[   11.129549] nvsciipc: set_db done
+[   11.130649] enP8p1s0: 0xffff800008f91000, 3c:6d:66:0d:53:d9, IRQ 256
+[   11.227763] IRQ230: set affinity failed(-22).
+[   11.227795] IRQ253: set affinity failed(-22).
+[   11.227799] IRQ256: set affinity failed(-22).
+[   11.228205] psci: CPU4 killed (polled 0 ms)
+[   11.248522] Mass Storage Function, version: 2009/09/11
+[   11.248531] LUN: removable file: (no medium)
+[   11.307748] IRQ230: set affinity failed(-22).
+[   11.307781] IRQ253: set affinity failed(-22).
+[   11.307785] IRQ256: set affinity failed(-22).
+[   11.308435] psci: CPU5 killed (polled 0 ms)
+[   11.336524] using random self ethernet address
+[   11.336530] using random host ethernet address
+[   11.387796] IRQ230: set affinity failed(-22).
+[   11.387830] IRQ253: set affinity failed(-22).
+[   11.387835] IRQ256: set affinity failed(-22).
+[   11.388139] psci: CPU6 killed (polled 0 ms)
+[   11.449974] IRQ230: set affinity failed(-22).
+[   11.451413] psci: CPU7 killed (polled 0 ms)
+[   11.516392] pstore: Using crash dump compression: deflate
+[   11.516454] printk: console [ramoops-1]: printing thread started
+[   11.516462] printk: console [ramoops-1] enabled
+[   11.516463] pstore: Registered ramoops as persistent store backend
+[   11.516464] ramoops: using 0x200000@0x4725f0000, ecc: 0
+[   11.550992] bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your scripts to load br_netfilter if you need this.
+[   11.556857] usb0: HOST MAC c2:d6:da:8f:db:b0
+[   11.556865] usb0: MAC c2:d6:da:8f:db:b1
+[   11.557255] usb1: HOST MAC c2:d6:da:8f:db:b2
+[   11.557258] usb1: MAC c2:d6:da:8f:db:b3
+[   11.557279] tegra-xudc 3550000.usb: EP 0 (type: ctrl, dir: out) enabled
+[   11.561292] l4tbr0: port 1(usb0) entered blocking state
+[   11.561309] l4tbr0: port 1(usb0) entered disabled state
+[   11.570623] device usb0 entered promiscuous mode
+[   11.580136] l4tbr0: port 2(usb1) entered blocking state
+[   11.580153] l4tbr0: port 2(usb1) entered disabled state
+[   11.580353] device usb1 entered promiscuous mode
+[   11.591182] loop9: detected capacity change from 0 to 32768
+[   11.657293] nvgpu: 17000000.gpu                  gk20a_scale_init:541  [INFO]  enabled scaling for GPU
+
+[   11.810903] zram: Added device: zram0
+[   11.813532] zram: Added device: zram1
+[   11.825716] zram: Added device: zram2
+[   11.826390] zram: Added device: zram3
+[   11.909992] zram0: detected capacity change from 0 to 4004600
+[   11.948768] Adding 2002296k swap on /dev/zram0.  Priority:5 extents:1 across:2002296k SS
+[   11.955733] zram1: detected capacity change from 0 to 4004600
+[   11.972281] Adding 2002296k swap on /dev/zram1.  Priority:5 extents:1 across:2002296k SS
+[   11.980341] zram2: detected capacity change from 0 to 4004600
+[   12.012611] Adding 2002296k swap on /dev/zram2.  Priority:5 extents:1 across:2002296k SS
+[   12.021929] zram3: detected capacity change from 0 to 4004600
+[   12.032389] Adding 2002296k swap on /dev/zram3.  Priority:5 extents:1 across:2002296k SS
+[   12.078497] tegra-xudc 3550000.usb: EP 5 (type: intr, dir: in) enabled
+[   12.078521] tegra-xudc 3550000.usb: EP 3 (type: bulk, dir: in) enabled
+[   12.078533] tegra-xudc 3550000.usb: EP 2 (type: bulk, dir: out) enabled
+[   12.078610] tegra-xudc 3550000.usb: EP 9 (type: intr, dir: in) enabled
+[   12.078624] tegra-xudc 3550000.usb: EP 7 (type: bulk, dir: in) enabled
+[   12.078636] tegra-xudc 3550000.usb: EP 4 (type: bulk, dir: out) enabled
+[   12.078665] tegra-xudc 3550000.usb: EP 15 (type: intr, dir: in) enabled
+[   12.078680] tegra-xudc 3550000.usb: EP 11 (type: bulk, dir: in) enabled
+[   12.078699] tegra-xudc 3550000.usb: EP 6 (type: bulk, dir: out) enabled
+[   12.079500] IPv6: ADDRCONF(NETDEV_CHANGE): usb0: link becomes ready
+[   12.085991] tegra-xudc 3550000.usb: EP 13 (type: bulk, dir: in) enabled
+[   12.086012] tegra-xudc 3550000.usb: EP 8 (type: bulk, dir: out) enabled
+[   12.086060] IPv6: ADDRCONF(NETDEV_CHANGE): usb1: link becomes ready
+[   12.087866] tegra-xudc 3550000.usb: ep 13 disabled
+[   12.087961] tegra-xudc 3550000.usb: ep 8 disabled
+[   12.108622] tegra-xudc 3550000.usb: EP 13 (type: bulk, dir: in) enabled
+[   12.108644] tegra-xudc 3550000.usb: EP 8 (type: bulk, dir: out) enabled
+[   14.015486] l4tbr0: port 2(usb1) entered blocking state
+[   14.015498] l4tbr0: port 2(usb1) entered forwarding state
+[   14.015560] l4tbr0: port 1(usb0) entered blocking state
+[   14.015564] l4tbr0: port 1(usb0) entered forwarding state
+[   14.028568] IPv6: ADDRCONF(NETDEV_CHANGE): l4tbr0: link becomes ready
+[   14.210477] nvidia-modeset: Loading NVIDIA UNIX Open Kernel Mode Setting Driver for aarch64  540.5.0  Release Build  (buildbrain@239549d1-8639-491a-b9e7-120e21430986-l1eu-vqrkv)  Thu Jan 15 19:36:45 PST 2026
+[   14.219606] [drm] [nvidia-drm] [GPU ID 0x00020000] Loading driver
+[   14.506966] NVRM rpcRmApiControl_dce: NVRM_RPC_DCE: Failed RM ctrl call cmd:0x731341 result 0xffff:
+[   14.508070] NVRM rpcRmApiControl_dce: NVRM_RPC_DCE: Failed RM ctrl call cmd:0x730282 result 0x1f:
+[   14.560346] [drm] Initialized nvidia-drm 0.0.0 20160202 for 13800000.display on minor 1
+[   14.640971] Console: switching to colour frame buffer device 240x67
+[   14.640993] nv_platform 13800000.display: [drm] fb0: nvidia-drmdrmfb frame buffer device
+[   15.862023] ACK 04 d4
+[   15.862671] ACK 04 d4
+[   15.862842] ACK 04 d4
+[   15.863031] ACK 04 d4
+[   15.864619] ACK 04 d4
+[   15.866471] IPv6: ADDRCONF(NETDEV_CHANGE): wlP1p1s0: link becomes ready
+[   18.872523] loop10: detected capacity change from 0 to 8
+[   20.563498] audit: type=1326 audit(1776761429.844:2): auid=4294967295 uid=0 gid=0 ses=4294967295 subj=kernel pid=2157 comm="cupsd" exe="/snap/cups/1184/sbin/cupsd" sig=0 arch=c00000b7 syscall=55 compat=0 ip=0xffff8858ce0c code=0x50000
+[   21.164894] rfkill: input handler disabled
+[   21.354178] audit: type=1326 audit(1776761430.640:3): auid=4294967295 uid=0 gid=0 ses=4294967295 subj=kernel pid=2157 comm="cupsd" exe="/snap/cups/1184/sbin/cupsd" sig=0 arch=c00000b7 syscall=55 compat=0 ip=0xffff8858ce0c code=0x50000
+[   21.469565] audit: type=1326 audit(1776761430.756:4): auid=4294967295 uid=0 gid=0 ses=4294967295 subj=kernel pid=2234 comm="cups-browsed" exe="/snap/cups/1184/sbin/cups-browsed" sig=0 arch=c00000b7 syscall=274 compat=0 ip=0xffffaf9f5b68 code=0x50000
+[  414.339743] nv_ov5647: module verification failed: signature and/or required key missing - tainting kernel
+[  414.340432] nv_ov5647: module init register_i2c_driver=1 allow_hw_probe=1 skip_v4l2_register=0
+[  414.340679] nv_ov5647 9-0036: ov5647_probe: enter client=ov5647 addr=0x36
+[  414.340764] nv_ov5647 9-0036: ov5647_parse_dt: enter
+[  414.340782] nv_ov5647 9-0036: ov5647_parse_dt: pdata=00000000a005855a mclk=extperiph1 reset_gpio=-1 pwdn_gpio=397 avdd=vana dvdd=vdig iovdd=vif
+[  414.340788] nv_ov5647 9-0036: ov5647_power_get: enter priv=00000000b233d22c s_data=000000005f1e1331 pdata=00000000a005855a
+[  414.340811] nv_ov5647 9-0036: supply vana not found, using dummy regulator
+[  414.340944] nv_ov5647 9-0036: supply vdig not found, using dummy regulator
+[  414.340977] nv_ov5647 9-0036: supply vif not found, using dummy regulator
+[  414.341045] nv_ov5647 9-0036: ov5647_power_get: exit
+[  414.341089] nv_ov5647 9-0036: tegracam sensor driver:nv_ov5647_v2.0.6
+[  414.341109] nv_ov5647 9-0036: ov5647_board_setup: enter
+[  414.341111] nv_ov5647 9-0036: ov5647_power_on: enter
+[  414.350878] nv_ov5647 9-0036: ov5647_power_on: exit success
+[  414.351325] nv_ov5647 9-0036: ov5647_board_setup: detected chip_id=0x5647
+[  414.351329] nv_ov5647 9-0036: ov5647_power_off: enter
+[  414.352113] nv_ov5647 9-0036: ov5647_power_off: exit success
+[  414.352115] nv_ov5647 9-0036: ov5647_board_setup: exit success
+[  414.352173] tegra-camrtc-capture-vi tegra-capture-vi: subdev nv_ov5647 9-0036 bound
+[  414.352695] nv_ov5647 9-0036: ov5647_probe: exit success
+[  414.356375] nv_ov5647: i2c driver registered

@@ -1,0 +1,28 @@
+# previous reboot records around 12:50-13:16
+cam      pts/0        192.168.55.100   Tue Apr 21 13:14   still logged in
+runlevel (to lvl 5)   5.15.185-tegra   Tue Apr 21 13:14   still running
+cam      :0           :0               Tue Apr 21 13:14   still logged in
+reboot   system boot  5.15.185-tegra   Tue Apr 21 13:14   still running
+shutdown system down  5.15.185-tegra   Tue Apr 21 13:13 - 13:14  (00:00)
+cam      pts/0        192.168.55.100   Tue Apr 21 13:13 - 13:13  (00:00)
+runlevel (to lvl 5)   5.15.185-tegra   Tue Apr 21 12:58 - 13:13  (00:14)
+cam      :0           :0               Tue Apr 21 12:58 - down   (00:14)
+reboot   system boot  5.15.185-tegra   Tue Apr 21 12:58 - 13:13  (00:14)
+cam      pts/0        192.168.55.100   Tue Apr 21 11:59 - crash  (00:59)
+runlevel (to lvl 5)   5.15.185-tegra   Tue Apr 21 11:50 - 12:58  (01:08)
+cam      :0           :0               Tue Apr 21 11:50 - crash  (01:08)
+
+# auth/sudo reboot around current boot if available
+Apr 21 13:14:21 cam-desktop systemd[1]: Starting Record System Boot/Shutdown in UTMP...
+Apr 21 13:14:23 cam-desktop systemd[1]: Finished Record System Boot/Shutdown in UTMP.
+Apr 21 13:14:23 cam-desktop systemd[1]: Starting LSB: Execute the kexec -e command to reboot system...
+Apr 21 13:14:23 cam-desktop systemd[1]: sssd-sudo.socket: Bound to unit sssd.service, but unit isn't active.
+Apr 21 13:14:23 cam-desktop systemd[1]: Dependency failed for SSSD Sudo Service responder socket.
+Apr 21 13:14:23 cam-desktop systemd[1]: sssd-sudo.socket: Job sssd-sudo.socket/start failed with result 'dependency'.
+Apr 21 13:14:23 cam-desktop systemd[1]: Condition check resulted in Ubuntu Pro reboot cmds being skipped.
+Apr 21 13:14:23 cam-desktop systemd[1]: Started LSB: Execute the kexec -e command to reboot system.
+Apr 21 13:14:24 cam-desktop cron[1293]: (CRON) INFO (Running @reboot jobs)
+Apr 21 13:14:27 cam-desktop /usr/libexec/gdm-x-session[1600]: Kernel command line: root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000
+Apr 21 13:16:19 cam-desktop sudo[3890]:      cam : PWD=/home/cam/ov5647_driver_codex ; USER=root ; COMMAND=/usr/bin/ls -la /sys/fs/pstore
+Apr 21 13:16:19 cam-desktop sudo[3890]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+Apr 21 13:16:19 cam-desktop sudo[3890]: pam_unix(sudo:session): session closed for user root

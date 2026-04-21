@@ -49,6 +49,10 @@
 - The previous `devm_kfree` warning in isolated unload was traced to wrong `s_data->power` ownership:
   - code-side fix is prepared;
   - runtime validation still requires loading the rebuilt module in a future manual cycle.
+- Latest `rmmod` hang evidence is incomplete:
+  - `logs/20260421T101016Z-rmmod-trace.log` stopped at `running: rmmod nv_ov5647`;
+  - `logs/20260421T101016Z-rmmod-live-dmesg.log` is empty;
+  - the later accidental clean `sudo reboot` likely overwrote useful pstore evidence.
 - The current minimal stream path reaches sensor `STREAMING` state in driver logs, but VI still times out:
   - capture returns with zero-byte output files;
   - kernel logs show repeated `uncorr_err: request timed out after 2500 ms`;

@@ -1,0 +1,31 @@
+# latest rmmod-related logs
+-rw-r--r-- 1 root root    43 Apr 21 13:10 logs/20260421T101016Z-rmmod-sysrq-watchdog.log
+-rw-r--r-- 1 root root   137 Apr 21 13:10 logs/20260421T101016Z-rmmod-trace.log
+-rw-r--r-- 1 root root  8319 Apr 21 13:10 logs/20260421T101016Z-rmmod-pre-dmesg-tail.log
+-rw-r--r-- 1 root root   235 Apr 21 13:10 logs/20260421T101016Z-rmmod-lsof.log
+-rw-r--r-- 1 root root     0 Apr 21 13:10 logs/20260421T101016Z-rmmod-fuser.log
+-rw-r--r-- 1 root root    58 Apr 21 13:10 logs/20260421T101016Z-rmmod-devnodes.log
+-rw-r--r-- 1 root root     0 Apr 21 13:10 logs/20260421T101016Z-rmmod-live-dmesg.log
+-rw-rw-r-- 1 cam  cam      0 Apr 21 12:11 logs/20260421T094600Z-git-push-rmmod-sysrq-watchdog.log
+-rw-r--r-- 1 root root   137 Apr 21 11:56 logs/20260421T085648Z-rmmod-trace.log
+-rw-r--r-- 1 root root 10722 Apr 21 11:56 logs/20260421T085648Z-rmmod-pre-dmesg-tail.log
+-rw-r--r-- 1 root root     0 Apr 21 11:56 logs/20260421T085648Z-rmmod-live-dmesg.log
+-rw-r--r-- 1 root root   167 Apr 21 11:52 logs/20260421T085230Z-rmmod-trace.log
+-rw-r--r-- 1 root root  4988 Apr 21 11:52 logs/20260421T085230Z-rmmod-live-dmesg.log
+-rw-r--r-- 1 root root  8457 Apr 21 11:52 logs/20260421T085230Z-rmmod-pre-dmesg-tail.log
+-rw-r--r-- 1 root root   137 Apr 21 11:44 logs/20260421T084418Z-rmmod-trace.log
+-rw-r--r-- 1 root root  7815 Apr 21 11:44 logs/20260421T084418Z-rmmod-pre-dmesg-tail.log
+-rw-r--r-- 1 root root 69401 Apr 21 11:44 logs/20260421T084418Z-rmmod-live-dmesg.log
+-rw-r--r-- 1 root root  4131 Apr 20 13:48 logs/20260420T104858Z-rmmod-pre-dmesg-tail.log
+-rw-r--r-- 1 root root    91 Apr 20 13:48 logs/20260420T104858Z-rmmod-trace.log
+-rw-r--r-- 1 root root 68619 Apr 20 13:48 logs/20260420T104858Z-rmmod-live-dmesg.log
+-rw-r--r-- 1 root root    91 Apr 20 13:31 logs/20260420T103133Z-rmmod-trace.log
+-rw-r--r-- 1 root root 69401 Apr 20 13:31 logs/20260420T103133Z-rmmod-live-dmesg.log
+-rw-rw-r-- 1 cam  cam      0 Apr 20 11:56 logs/20260420T0900Z-dmesg-before-rmmod-retest.log
+-rw-rw-r-- 1 cam  cam   6741 Apr 20 11:37 logs/20260420T0842Z-rmmod-after-failed-probe.log
+
+# latest manual logs
+-rw-rw-r-- 1 cam  cam      0 Apr 21 12:45 logs/20260421T094514Z-bash-n-run-manual-insmod-diag.log
+-rw-r--r-- 1 root root 71978 Apr 20 13:36 logs/20260420T103519Z-stream-live-dmesg.log
+-rw-r--r-- 1 root root   188 Apr 20 13:35 logs/20260420T103519Z-single-frame-trace.log
+-rw-rw-r-- 1 cam  cam    452 Apr 20 11:44 logs/20260420T0903Z-v4l2-single-frame.log

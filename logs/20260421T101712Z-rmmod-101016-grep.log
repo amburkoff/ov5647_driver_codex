@@ -1,0 +1,23 @@
+# nv_ov5647 in logs around latest rmmod
+logs/20260421T101016Z-rmmod-pre-dmesg-tail.log:100:[  414.339743] nv_ov5647: module verification failed: signature and/or required key missing - tainting kernel
+logs/20260421T101016Z-rmmod-pre-dmesg-tail.log:101:[  414.340432] nv_ov5647: module init register_i2c_driver=1 allow_hw_probe=1 skip_v4l2_register=0
+logs/20260421T101016Z-rmmod-pre-dmesg-tail.log:102:[  414.340679] nv_ov5647 9-0036: ov5647_probe: enter client=ov5647 addr=0x36
+logs/20260421T101016Z-rmmod-pre-dmesg-tail.log:103:[  414.340764] nv_ov5647 9-0036: ov5647_parse_dt: enter
+logs/20260421T101016Z-rmmod-pre-dmesg-tail.log:104:[  414.340782] nv_ov5647 9-0036: ov5647_parse_dt: pdata=00000000a005855a mclk=extperiph1 reset_gpio=-1 pwdn_gpio=397 avdd=vana dvdd=vdig iovdd=vif
+logs/20260421T101016Z-rmmod-pre-dmesg-tail.log:105:[  414.340788] nv_ov5647 9-0036: ov5647_power_get: enter priv=00000000b233d22c s_data=000000005f1e1331 pdata=00000000a005855a
+logs/20260421T101016Z-rmmod-pre-dmesg-tail.log:106:[  414.340811] nv_ov5647 9-0036: supply vana not found, using dummy regulator
+logs/20260421T101016Z-rmmod-pre-dmesg-tail.log:107:[  414.340944] nv_ov5647 9-0036: supply vdig not found, using dummy regulator
+logs/20260421T101016Z-rmmod-pre-dmesg-tail.log:108:[  414.340977] nv_ov5647 9-0036: supply vif not found, using dummy regulator
+logs/20260421T101016Z-rmmod-pre-dmesg-tail.log:109:[  414.341045] nv_ov5647 9-0036: ov5647_power_get: exit
+logs/20260421T101016Z-rmmod-pre-dmesg-tail.log:110:[  414.341089] nv_ov5647 9-0036: tegracam sensor driver:nv_ov5647_v2.0.6
+logs/20260421T101016Z-rmmod-pre-dmesg-tail.log:111:[  414.341109] nv_ov5647 9-0036: ov5647_board_setup: enter
+logs/20260421T101016Z-rmmod-pre-dmesg-tail.log:112:[  414.341111] nv_ov5647 9-0036: ov5647_power_on: enter
+logs/20260421T101016Z-rmmod-pre-dmesg-tail.log:113:[  414.350878] nv_ov5647 9-0036: ov5647_power_on: exit success
+logs/20260421T101016Z-rmmod-pre-dmesg-tail.log:114:[  414.351325] nv_ov5647 9-0036: ov5647_board_setup: detected chip_id=0x5647
+logs/20260421T101016Z-rmmod-pre-dmesg-tail.log:115:[  414.351329] nv_ov5647 9-0036: ov5647_power_off: enter
+logs/20260421T101016Z-rmmod-pre-dmesg-tail.log:116:[  414.352113] nv_ov5647 9-0036: ov5647_power_off: exit success
+logs/20260421T101016Z-rmmod-pre-dmesg-tail.log:117:[  414.352115] nv_ov5647 9-0036: ov5647_board_setup: exit success
+logs/20260421T101016Z-rmmod-pre-dmesg-tail.log:118:[  414.352173] tegra-camrtc-capture-vi tegra-capture-vi: subdev nv_ov5647 9-0036 bound
+logs/20260421T101016Z-rmmod-pre-dmesg-tail.log:119:[  414.352695] nv_ov5647 9-0036: ov5647_probe: exit success
+logs/20260421T101016Z-rmmod-pre-dmesg-tail.log:120:[  414.356375] nv_ov5647: i2c driver registered
+logs/20260421T101016Z-rmmod-trace.log:3:[20260421T101016Z] running: rmmod nv_ov5647

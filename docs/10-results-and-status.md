@@ -88,6 +88,8 @@ Completed:
 - added `scripts/run_manual_insmod_diag.sh` with `full-delay`, `skip-register`, `skip-unregister`, and `split-unregister` profiles.
 - fixed OV5647 power rail ownership to use framework-owned `s_data->power` instead of an embedded private object.
 - prepared upstream-aligned OV5647 sensor output-enable handling for power-on/power-off (`0x3000/0x3001/0x3002`), not runtime-tested yet.
+- latest manual `rmmod` hang occurred with an older loaded module that did not contain the new split-unregister diagnostics or output-enable fix.
+- after user rebooted and accidentally ran a second `sudo reboot`, the system is clean with no `nv_ov5647` loaded; pstore contains only the later clean reboot trail.
 
 Not completed yet:
 
