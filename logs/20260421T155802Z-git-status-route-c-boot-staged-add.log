@@ -1,0 +1,14 @@
+A  artifacts/boot/20260421T155602Z/extlinux.conf.current
+A  artifacts/boot/20260421T155602Z/extlinux.conf.generated
+A  artifacts/boot/20260421T155611Z-route-c-applied/extlinux.conf.active
+A  artifacts/boot/20260421T155611Z-route-c-applied/extlinux.conf.before-route-c.bak
+A  artifacts/boot/20260421T155611Z-route-c-applied/extlinux.conf.generated
+M  docs/09-boot-profiles-and-recovery.md
+M  docs/10-results-and-status.md
+A  logs/20260421T155602Z-apply-route-c-dev-boot-profile.log
+A  logs/20260421T155602Z-switch_boot_profile.log
+A  logs/20260421T155602Z-verify-route-c-dev-boot-profile.log
+A  logs/20260421T155611Z-copy-active-extlinux-route-c.log
+A  logs/20260421T155611Z-route-c-boot-artifact-list.log
+A  reports/2026-04-21-route-c-boot-staged.md
+?? logs/20260421T155802Z-git-add-route-c-boot-staged.log

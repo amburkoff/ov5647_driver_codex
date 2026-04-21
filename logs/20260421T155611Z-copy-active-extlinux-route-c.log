@@ -1,0 +1,3 @@
+'/boot/extlinux/extlinux.conf' -> 'artifacts/boot/20260421T155611Z-route-c-applied/extlinux.conf.active'
+'/boot/extlinux/extlinux.conf.20260421T155602Z.bak' -> 'artifacts/boot/20260421T155611Z-route-c-applied/extlinux.conf.before-route-c.bak'
+'artifacts/boot/20260421T155602Z/extlinux.conf.generated' -> 'artifacts/boot/20260421T155611Z-route-c-applied/extlinux.conf.generated'

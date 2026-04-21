@@ -2,19 +2,26 @@
 
 ## Current State
 
-The running kernel session currently has:
-
-- no `boot_profile=ov5647-safe` in `/proc/cmdline`;
-- no `boot_profile=ov5647-dev` in `/proc/cmdline`.
-
-This is expected until the first reboot after the boot-profile change.
-
-The on-disk boot configuration now has:
+The on-disk boot configuration is staged for the route-C overlay experiment:
 
 - `DEFAULT ov5647-dev`;
 - `LABEL ov5647-safe`;
 - `LABEL ov5647-dev`;
-- latest backup saved as `/boot/extlinux/extlinux.conf.20260417T131127Z.bak`.
+- safe profile has no OV5647 overlay;
+- dev profile uses `OVERLAYS /boot/ov5647-p3768-port-c-probe.dtbo`;
+- latest backup saved as `/boot/extlinux/extlinux.conf.20260421T155602Z.bak`.
+
+After the next reboot, the first required check is:
+
+```bash
+cat /proc/cmdline
+```
+
+Expected marker:
+
+```text
+boot_profile=ov5647-dev
+```
 
 ## Prepared Workflow
 
@@ -43,7 +50,7 @@ Current design choice:
 - on this r36.x target, local NVIDIA `jetson-io` tooling indicates the UEFI/L4tLauncher path should use `FDT + OVERLAYS`, not `FDTOVERLAYS`.
 - current corrected dev entry points at:
   - `FDT /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb`
-  - `OVERLAYS /boot/ov5647-p3768-port-a-probe.dtbo`
+  - `OVERLAYS /boot/ov5647-p3768-port-c-probe.dtbo`
 
 ## Recovery Policy
 

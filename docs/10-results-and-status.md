@@ -188,7 +188,13 @@ Completed:
   - source `patches/ov5647-p3768-port-c-probe.dts`;
   - built artifact `artifacts/dtbo/20260421T155351Z-ov5647-p3768-port-c-probe.dtbo`;
   - route fields: `cam_i2cmux/i2c@1`, `serial_c`, `port-index=2`, `bus-width=2`, `pwdn-gpios=<... 0xa0 ...>`, `lane_polarity="0"`;
-  - route-C boot config was rendered only under `artifacts/boot/20260421T155412Z/`; live `/boot` has not yet been modified for route C.
+  - route-C boot config was rendered under `artifacts/boot/20260421T155412Z/`.
+- route-C boot staging is now applied for the next reboot:
+  - `/boot/ov5647-p3768-port-c-probe.dtbo` staged;
+  - `DEFAULT ov5647-dev`;
+  - dev entry uses `OVERLAYS /boot/ov5647-p3768-port-c-probe.dtbo`;
+  - safe entry remains available and has no OV5647 overlay;
+  - previous extlinux backed up as `/boot/extlinux/extlinux.conf.20260421T155602Z.bak`.
 
 Not completed yet:
 
@@ -201,5 +207,5 @@ Not completed yet:
 Next smallest safe step:
 
 - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
-- stage route-C DTBO into `/boot`, apply dev boot profile with safe profile retained, then ask the user to run exactly `sudo reboot`;
-- after reboot, collect post-boot logs and check whether route C probes and whether `/dev/video0` appears.
+- ask the user to run exactly `sudo reboot`;
+- after reboot, collect post-boot logs and check whether route C overlay appears in live DT before any module operation.

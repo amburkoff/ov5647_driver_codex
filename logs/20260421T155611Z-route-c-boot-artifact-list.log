@@ -1,0 +1,4 @@
+total 12
+-rw-r--r-- 1 root root 1087 Apr 21 18:56 extlinux.conf.active
+-rw-r--r-- 1 root root 1087 Apr 21 18:56 extlinux.conf.before-route-c.bak
+-rw-r--r-- 1 cam  cam  1087 Apr 21 18:56 extlinux.conf.generated
