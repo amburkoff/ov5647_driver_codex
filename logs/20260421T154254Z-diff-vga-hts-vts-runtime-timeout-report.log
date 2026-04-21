@@ -1,0 +1,52 @@
+diff --git a/docs/10-results-and-status.md b/docs/10-results-and-status.md
+index 0b351a4..84b4001 100644
+--- a/docs/10-results-and-status.md
++++ b/docs/10-results-and-status.md
+@@ -156,7 +156,15 @@ Completed:
+ - source-side HTS/VTS mode fix is prepared:
+   - `0x380c/0x380d = 0x073c` for upstream VGA HTS 1852;
+   - `0x380e/0x380f = 0x01f8` for upstream VGA VTS;
+-  - no runtime validation has been run yet.
++  - runtime validation has now been run.
++- runtime validation of the HTS/VTS mode fix still timed out:
++  - manual `rmmod` returned cleanly before the test cycle;
++  - manual `insmod full-delay` returned cleanly and `/dev/video0` appeared;
++  - single-frame capture reached `VIDIOC_STREAMON`;
++  - capture returned `rc=124` after the 30 second timeout;
++  - raw output `artifacts/captures/20260421T153826Z/ov5647-640x480-bg10.raw` is zero bytes;
++  - VI still logged repeated `uncorr_err: request timed out after 2500 ms`;
++  - driver cleanup logs show `stop_streaming` and `power_off` returned successfully.
+ 
+ Not completed yet:
+ 
+@@ -169,6 +177,6 @@ Not completed yet:
+ Next smallest safe step:
+ 
+ - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
+-- rebuild and commit the HTS/VTS mode-table patch, then manually unload/load/capture one command at a time;
+-- continue aligning the minimal mode table and CSI timing until VI receives real frames instead of timing out;
++- inspect live DT/media graph read-only to compare all available camera route candidates against the active `serial_b` route;
++- decide whether the next single-variable experiment is a minimal mode-table cleanup or an alternate DT route/connector overlay;
+ - keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.
+diff --git a/docs/11-known-issues.md b/docs/11-known-issues.md
+index 8c880d6..33f2e7e 100644
+--- a/docs/11-known-issues.md
++++ b/docs/11-known-issues.md
+@@ -97,7 +97,16 @@
+   - upstream VGA `hts = 1852`;
+   - upstream VGA `vts = 0x1f8`;
+   - the minimal local mode table should explicitly program these for the first single-mode bring-up.
+-- Source-side HTS/VTS programming has been added to the local VGA mode table, but it is not runtime-tested yet.
++- Source-side HTS/VTS programming has been added to the local VGA mode table and runtime-tested.
++- Runtime validation of the HTS/VTS programming still timed out:
++  - `VIDIOC_STREAMON` returned success;
++  - capture returned `rc=124`;
++  - raw output remained zero bytes;
++  - VI still reported repeated `uncorr_err: request timed out after 2500 ms`.
++- After LP-11 setup and explicit HTS/VTS both failed to produce frames, the probability of a wrong CSI route, lane polarity, or physical connector mapping is higher than before:
++  - two identical OV5647 modules are installed in both physical CSI connectors;
++  - I2C chip-ID success proves the sensor on `i2c-9` responds, but does not prove that valid CSI lanes are connected to the configured `serial_b` capture route;
++  - the physical connector to DT route mapping remains unresolved and must be treated as a blocking hardware assumption before declaring the overlay correct.
+ - Current OV5647 `set_mode()` no longer enables streaming in source:
+   - NVIDIA r36.5 tegracam calls `set_mode()` before `start_streaming()`;
+   - NVIDIA sample drivers keep `set_mode()` to register programming and start output from `start_streaming()`;

@@ -156,7 +156,15 @@ Completed:
 - source-side HTS/VTS mode fix is prepared:
   - `0x380c/0x380d = 0x073c` for upstream VGA HTS 1852;
   - `0x380e/0x380f = 0x01f8` for upstream VGA VTS;
-  - no runtime validation has been run yet.
+  - runtime validation has now been run.
+- runtime validation of the HTS/VTS mode fix still timed out:
+  - manual `rmmod` returned cleanly before the test cycle;
+  - manual `insmod full-delay` returned cleanly and `/dev/video0` appeared;
+  - single-frame capture reached `VIDIOC_STREAMON`;
+  - capture returned `rc=124` after the 30 second timeout;
+  - raw output `artifacts/captures/20260421T153826Z/ov5647-640x480-bg10.raw` is zero bytes;
+  - VI still logged repeated `uncorr_err: request timed out after 2500 ms`;
+  - driver cleanup logs show `stop_streaming` and `power_off` returned successfully.
 
 Not completed yet:
 
@@ -169,6 +177,6 @@ Not completed yet:
 Next smallest safe step:
 
 - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
-- rebuild and commit the HTS/VTS mode-table patch, then manually unload/load/capture one command at a time;
-- continue aligning the minimal mode table and CSI timing until VI receives real frames instead of timing out;
+- inspect live DT/media graph read-only to compare all available camera route candidates against the active `serial_b` route;
+- decide whether the next single-variable experiment is a minimal mode-table cleanup or an alternate DT route/connector overlay;
 - keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.

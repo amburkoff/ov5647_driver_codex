@@ -97,7 +97,16 @@
   - upstream VGA `hts = 1852`;
   - upstream VGA `vts = 0x1f8`;
   - the minimal local mode table should explicitly program these for the first single-mode bring-up.
-- Source-side HTS/VTS programming has been added to the local VGA mode table, but it is not runtime-tested yet.
+- Source-side HTS/VTS programming has been added to the local VGA mode table and runtime-tested.
+- Runtime validation of the HTS/VTS programming still timed out:
+  - `VIDIOC_STREAMON` returned success;
+  - capture returned `rc=124`;
+  - raw output remained zero bytes;
+  - VI still reported repeated `uncorr_err: request timed out after 2500 ms`.
+- After LP-11 setup and explicit HTS/VTS both failed to produce frames, the probability of a wrong CSI route, lane polarity, or physical connector mapping is higher than before:
+  - two identical OV5647 modules are installed in both physical CSI connectors;
+  - I2C chip-ID success proves the sensor on `i2c-9` responds, but does not prove that valid CSI lanes are connected to the configured `serial_b` capture route;
+  - the physical connector to DT route mapping remains unresolved and must be treated as a blocking hardware assumption before declaring the overlay correct.
 - Current OV5647 `set_mode()` no longer enables streaming in source:
   - NVIDIA r36.5 tegracam calls `set_mode()` before `start_streaming()`;
   - NVIDIA sample drivers keep `set_mode()` to register programming and start output from `start_streaming()`;

@@ -1,0 +1,11 @@
+A  artifacts/captures/20260421T153826Z/ov5647-640x480-bg10.raw
+M  docs/10-results-and-status.md
+M  docs/11-known-issues.md
+A  logs/20260421T153826Z-single-frame-post-dmesg-tail.log
+A  logs/20260421T153826Z-single-frame-trace.log
+A  logs/20260421T153826Z-stream-live-dmesg.log
+A  logs/20260421T153949Z-after-vga-hts-vts-capture-timeout-dmesg.log
+A  logs/20260421T153949Z-after-vga-hts-vts-capture-timeout-state.log
+A  logs/20260421T153949Z-vga-hts-vts-capture-timeout-script-log-summary.log
+A  logs/20260421T154254Z-diff-vga-hts-vts-runtime-timeout-report.log
+A  reports/2026-04-21-vga-hts-vts-runtime-timeout.md
