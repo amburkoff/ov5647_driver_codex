@@ -1,0 +1,21 @@
+# tegracam ownership references
+
+79:int tegracam_device_register(struct tegracam_device *tc_dev)
+103:	s_data->power = pw_rail;
+178:EXPORT_SYMBOL_GPL(tegracam_device_register);
+180:void tegracam_device_unregister(struct tegracam_device *tc_dev)
+200:	devm_kfree(tc_dev->dev, tc_dev->s_data->power);
+204:EXPORT_SYMBOL_GPL(tegracam_device_unregister);
+
+# v4l2 unregister references
+271:void tegracam_v4l2subdev_unregister(struct tegracam_device *tc_dev)
+283:	v4l2_async_unregister_subdev(sd);
+286:	media_entity_cleanup(&sd->entity);
+
+# imx219 remove references
+742:		tegracam_device_unregister(tc_dev);
+749:		tegracam_device_unregister(tc_dev);
+760:static int imx219_remove(struct i2c_client *client)
+762:static void imx219_remove(struct i2c_client *client)
+778:	tegracam_v4l2subdev_unregister(priv->tc_dev);
+779:	tegracam_device_unregister(priv->tc_dev);

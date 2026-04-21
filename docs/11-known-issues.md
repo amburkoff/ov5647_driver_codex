@@ -43,6 +43,9 @@
 - `skip_v4l2_unregister` is diagnostic-only:
   - it can intentionally skip framework cleanup and may leak media/V4L2 state;
   - do not treat it as a production workaround.
+- The previous `devm_kfree` warning in isolated unload was traced to wrong `s_data->power` ownership:
+  - code-side fix is prepared;
+  - runtime validation still requires loading the rebuilt module in a future manual cycle.
 - The current minimal stream path reaches sensor `STREAMING` state in driver logs, but VI still times out:
   - capture returns with zero-byte output files;
   - kernel logs show repeated `uncorr_err: request timed out after 2500 ms`;

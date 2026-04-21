@@ -56,7 +56,6 @@ struct ov5647 {
 	struct tegracam_device *tc_dev;
 	struct camera_common_data *s_data;
 	struct mutex lock;
-	struct camera_common_power_rail power;
 	u32 chip_id;
 	bool board_setup_done;
 	bool v4l2_registered;
@@ -419,10 +418,13 @@ static int ov5647_power_get(struct tegracam_device *tc_dev)
 		return -EINVAL;
 	}
 
-	pdata = s_data->pdata;
-	pw = &priv->power;
-	s_data->power = pw;
+	if (!s_data->power) {
+		dev_err(dev, "%s: s_data->power is NULL\n", __func__);
+		return -EINVAL;
+	}
 
+	pdata = s_data->pdata;
+	pw = s_data->power;
 	pw->reset_gpio = pdata->reset_gpio;
 	pw->pwdn_gpio = pdata->pwdn_gpio;
 
@@ -623,14 +625,16 @@ static int ov5647_power_off(struct camera_common_data *s_data)
 
 static int ov5647_power_put(struct tegracam_device *tc_dev)
 {
-	struct ov5647 *priv = to_ov5647(tc_dev);
+	struct camera_common_data *s_data = tc_dev->s_data;
+	struct camera_common_power_rail *pw;
 
-	if (!priv)
+	if (!s_data || !s_data->power)
 		return -EINVAL;
 
-	memset(&priv->power, 0, sizeof(priv->power));
-	priv->power.reset_gpio = OV5647_GPIO_NOT_PRESENT;
-	priv->power.pwdn_gpio = OV5647_GPIO_NOT_PRESENT;
+	pw = s_data->power;
+	pw->mclk = NULL;
+	pw->reset_gpio = OV5647_GPIO_NOT_PRESENT;
+	pw->pwdn_gpio = OV5647_GPIO_NOT_PRESENT;
 
 	dev_info(tc_dev->dev, "%s: power rail references cleared\n", __func__);
 	return 0;
@@ -903,8 +907,6 @@ static int ov5647_probe(struct i2c_client *client,
 
 	mutex_init(&priv->lock);
 	priv->client = client;
-	priv->power.reset_gpio = OV5647_GPIO_NOT_PRESENT;
-	priv->power.pwdn_gpio = OV5647_GPIO_NOT_PRESENT;
 
 	strscpy(tc_dev->name, OV5647_NAME, sizeof(tc_dev->name));
 	tc_dev->dev = dev;

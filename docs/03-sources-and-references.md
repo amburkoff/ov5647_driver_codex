@@ -18,6 +18,10 @@ Primary documentation for this project:
   - <https://docs.nvidia.com/jetson/archives/r36.5/DeveloperGuide/SO/JetsonOrinSeries.html>
 - Jetson Linux `r36.5` Kernel guide:
   - <https://docs.nvidia.com/jetson/archives/r36.5/DeveloperGuide/SD/Kernel.html>
+- Jetson Linux `r36.5` public BSP sources:
+  - <https://developer.nvidia.com/downloads/embedded/l4t/r36_release_v5.0/sources/public_sources.tbz2>
+  - local unpacked reference subset: `artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/`;
+  - used for authoritative `tegracam_core.c`, `tegracam_v4l2.c`, and `nv_imx219.c` lifetime/order checks.
 - NVIDIA Jetson documentation archive index:
   - <https://docs.nvidia.com/jetson/archives/index.html>
 

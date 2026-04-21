@@ -16,6 +16,12 @@
 
 ## Change Prepared
 
+- fixed `s_data->power` ownership:
+  - NVIDIA r36.5 `tegracam_device_register()` allocates `s_data->power` with `devm_kzalloc()`;
+  - NVIDIA r36.5 `tegracam_device_unregister()` later frees `tc_dev->s_data->power` with `devm_kfree()`;
+  - the OV5647 driver had overwritten `s_data->power` with an embedded `priv->power` pointer;
+  - this explains the isolated unload `devm_kfree` warning;
+  - the driver now uses the framework-owned `s_data->power` object.
 - added `skip_v4l2_unregister`:
   - diagnostic-only module parameter;
   - skips `tegracam_v4l2subdev_unregister()` inside `remove()`;
