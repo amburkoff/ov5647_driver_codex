@@ -46,6 +46,16 @@ sudo /home/cam/ov5647_driver_codex/scripts/run_manual_insmod_diag.sh skip-regist
 sudo /home/cam/ov5647_driver_codex/scripts/run_manual_insmod_diag.sh skip-unregister
 ```
 
+```bash
+sudo /home/cam/ov5647_driver_codex/scripts/run_manual_insmod_diag.sh split-unregister
+```
+
+Use `split-unregister` only after a clean load of the rebuilt module. It replaces the single `tegracam_v4l2subdev_unregister()` call with marked sub-steps:
+
+- `v4l2_ctrl_handler_free`;
+- `v4l2_async_unregister_subdev`;
+- `media_entity_cleanup`.
+
 Basic trace:
 
 ```bash

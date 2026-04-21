@@ -1,0 +1,6 @@
+# /boot/config
+
+# generated autoconf
+#define CONFIG_MEDIA_CONTROLLER_REQUEST_API 1
+#define CONFIG_V4L2_ASYNC_MODULE 1
+#define CONFIG_MEDIA_CONTROLLER 1

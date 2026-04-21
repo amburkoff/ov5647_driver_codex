@@ -26,6 +26,10 @@
   - diagnostic-only module parameter;
   - skips `tegracam_v4l2subdev_unregister()` inside `remove()`;
   - intentionally documented as leak-risk diagnostic, not a production fix.
+- added `split_v4l2_unregister`:
+  - diagnostic-only module parameter;
+  - replaces `tegracam_v4l2subdev_unregister()` with marked sub-steps;
+  - expected markers are `v4l2_ctrl_handler_free`, `v4l2_async_unregister_subdev`, and `media_entity_cleanup`.
 - added `unload_marker_delay_ms`:
   - optional delay after unload markers;
   - intended to give the live `dmesg -W` helper time to persist the last marker before a possible hard hang.
@@ -49,8 +53,9 @@ If full unload still hangs without visible markers, increase marker persistence 
 Only after that, consider the diagnostic:
 
 - `skip_v4l2_unregister=1`
+- `split_v4l2_unregister=1`
 
-That test is not a fix; it only checks whether the hang is inside `tegracam_v4l2subdev_unregister()` or in later framework cleanup.
+These tests are not fixes. `skip_v4l2_unregister=1` checks whether the hang is inside `tegracam_v4l2subdev_unregister()` or in later framework cleanup. `split_v4l2_unregister=1` narrows the hang to one unregister sub-step.
 
 If a future unload appears to stall without hard-locking the whole system, run the helper as:
 

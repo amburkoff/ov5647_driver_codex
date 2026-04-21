@@ -1,0 +1,9 @@
+[main cf0da17] driver: use framework-owned ov5647 power rail
+ 13 files changed, 138 insertions(+), 11 deletions(-)
+ create mode 100644 logs/20260421T093958Z-build_module-power-ownership.log
+ create mode 100644 logs/20260421T094009Z-git-diff-check-power-ownership.log
+ create mode 100644 logs/20260421T094009Z-modinfo-power-ownership.log
+ create mode 100644 logs/20260421T094009Z-power-ownership-grep.log
+ create mode 100644 logs/20260421T094046Z-nvidia-r365-tegracam-reference-grep.log
+ create mode 100644 logs/20260421T094111Z-git-diff-check-before-power-ownership-commit.log
+ create mode 100644 reports/2026-04-21-r365-tegracam-power-ownership.md

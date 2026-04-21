@@ -43,6 +43,9 @@
 - `skip_v4l2_unregister` is diagnostic-only:
   - it can intentionally skip framework cleanup and may leak media/V4L2 state;
   - do not treat it as a production workaround.
+- `split_v4l2_unregister` is diagnostic-only:
+  - it is intended to identify whether full unload blocks at control cleanup, V4L2 async unregister, or media entity cleanup;
+  - it should not be enabled in normal operation.
 - The previous `devm_kfree` warning in isolated unload was traced to wrong `s_data->power` ownership:
   - code-side fix is prepared;
   - runtime validation still requires loading the rebuilt module in a future manual cycle.

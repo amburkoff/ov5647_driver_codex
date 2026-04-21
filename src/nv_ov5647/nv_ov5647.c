@@ -11,9 +11,12 @@
 #include <linux/regmap.h>
 
 #include <media/camera_common.h>
+#include <media/media-entity.h>
 #include <media/sensor_common.h>
 #include <media/tegra-v4l2-camera.h>
 #include <media/tegracam_core.h>
+#include <media/v4l2-async.h>
+#include <media/v4l2-ctrls.h>
 
 #define OV5647_NAME			"nv_ov5647"
 #define OV5647_DEFAULT_MCLK		"extperiph1"
@@ -81,6 +84,11 @@ module_param(skip_v4l2_unregister, bool, 0644);
 MODULE_PARM_DESC(skip_v4l2_unregister,
 		 "Diagnostic only: skip tegracam_v4l2subdev_unregister() in remove(). Default: false");
 
+static bool split_v4l2_unregister;
+module_param(split_v4l2_unregister, bool, 0644);
+MODULE_PARM_DESC(split_v4l2_unregister,
+		 "Diagnostic only: inline V4L2 unregister phases with markers. Default: false");
+
 static uint unload_marker_delay_ms;
 module_param(unload_marker_delay_ms, uint, 0644);
 MODULE_PARM_DESC(unload_marker_delay_ms,
@@ -92,6 +100,50 @@ static void ov5647_unload_marker_delay(void)
 {
 	if (unload_marker_delay_ms)
 		msleep(unload_marker_delay_ms);
+}
+
+static void ov5647_split_v4l2subdev_unregister(struct tegracam_device *tc_dev)
+{
+	struct camera_common_data *s_data = tc_dev->s_data;
+	struct v4l2_subdev *sd;
+
+	if (!s_data) {
+		dev_warn(tc_dev->dev,
+			 "%s: s_data is NULL, skipping split unregister\n",
+			 __func__);
+		return;
+	}
+
+	sd = &s_data->subdev;
+
+	dev_info(tc_dev->dev, "%s: before v4l2_ctrl_handler_free\n",
+		 __func__);
+	ov5647_unload_marker_delay();
+	v4l2_ctrl_handler_free(s_data->ctrl_handler);
+	dev_info(tc_dev->dev, "%s: after v4l2_ctrl_handler_free\n",
+		 __func__);
+
+#if IS_ENABLED(CONFIG_V4L2_ASYNC)
+	dev_info(tc_dev->dev, "%s: before v4l2_async_unregister_subdev\n",
+		 __func__);
+	ov5647_unload_marker_delay();
+	v4l2_async_unregister_subdev(sd);
+	dev_info(tc_dev->dev, "%s: after v4l2_async_unregister_subdev\n",
+		 __func__);
+#else
+	dev_info(tc_dev->dev, "%s: CONFIG_V4L2_ASYNC is disabled\n",
+		 __func__);
+#endif
+
+#if IS_ENABLED(CONFIG_MEDIA_CONTROLLER)
+	dev_info(tc_dev->dev, "%s: before media_entity_cleanup\n", __func__);
+	ov5647_unload_marker_delay();
+	media_entity_cleanup(&sd->entity);
+	dev_info(tc_dev->dev, "%s: after media_entity_cleanup\n", __func__);
+#else
+	dev_info(tc_dev->dev, "%s: CONFIG_MEDIA_CONTROLLER is disabled\n",
+		 __func__);
+#endif
 }
 
 static const struct reg_8 ov5647_common_regs[] = {
@@ -1011,6 +1063,12 @@ static int ov5647_remove(struct i2c_client *client)
 			dev_warn(&client->dev,
 				 "%s: skip_v4l2_unregister=1; diagnostic leak risk, skipping v4l2 unregister\n",
 				 __func__);
+		} else if (split_v4l2_unregister) {
+			dev_warn(&client->dev,
+				 "%s: split_v4l2_unregister=1; diagnostic path, using inline unregister phases\n",
+				 __func__);
+			ov5647_split_v4l2subdev_unregister(tc_dev);
+			priv->v4l2_registered = false;
 		} else {
 			tegracam_v4l2subdev_unregister(tc_dev);
 			priv->v4l2_registered = false;
@@ -1064,9 +1122,9 @@ static int __init nv_ov5647_init(void)
 {
 	int err = 0;
 
-	pr_info("%s: module init register_i2c_driver=%d allow_hw_probe=%d skip_v4l2_register=%d skip_v4l2_unregister=%d unload_marker_delay_ms=%u\n",
+	pr_info("%s: module init register_i2c_driver=%d allow_hw_probe=%d skip_v4l2_register=%d skip_v4l2_unregister=%d split_v4l2_unregister=%d unload_marker_delay_ms=%u\n",
 		OV5647_NAME, register_i2c_driver, allow_hw_probe,
-		skip_v4l2_register, skip_v4l2_unregister,
+		skip_v4l2_register, skip_v4l2_unregister, split_v4l2_unregister,
 		unload_marker_delay_ms);
 
 	if (!register_i2c_driver) {

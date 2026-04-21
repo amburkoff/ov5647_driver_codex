@@ -81,10 +81,11 @@ Completed:
 - current media graph is linked as `nv_ov5647 -> nvcsi -> vi-output`, with `/dev/video0` at `BG10 640x480`.
 - prepared next-stage unload diagnostics:
   - `skip_v4l2_unregister`;
+  - `split_v4l2_unregister`;
   - `unload_marker_delay_ms`.
 - unload helper now supports optional `RMMOD_SYSRQ_DELAY_SEC` blocked-task watchdog.
 - direct `scripts/unload_module.sh` now refuses unsafe unload unless `OV5647_ALLOW_UNSAFE_RMMOD=1` is explicitly set.
-- added `scripts/run_manual_insmod_diag.sh` with `full-delay`, `skip-register`, and `skip-unregister` profiles.
+- added `scripts/run_manual_insmod_diag.sh` with `full-delay`, `skip-register`, `skip-unregister`, and `split-unregister` profiles.
 - fixed OV5647 power rail ownership to use framework-owned `s_data->power` instead of an embedded private object.
 
 Not completed yet:
