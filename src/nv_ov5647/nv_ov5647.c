@@ -59,6 +59,7 @@ struct ov5647 {
 	struct camera_common_power_rail power;
 	u32 chip_id;
 	bool board_setup_done;
+	bool v4l2_registered;
 };
 
 static bool register_i2c_driver;
@@ -69,7 +70,12 @@ MODULE_PARM_DESC(register_i2c_driver,
 static bool allow_hw_probe;
 module_param(allow_hw_probe, bool, 0644);
 MODULE_PARM_DESC(allow_hw_probe,
-		 "Allow real OV5647 probe and board setup when a DT match exists. Default: false");
+			 "Allow real OV5647 probe and board setup when a DT match exists. Default: false");
+
+static bool skip_v4l2_register;
+module_param(skip_v4l2_register, bool, 0644);
+MODULE_PARM_DESC(skip_v4l2_register,
+		 "Probe sensor and chip ID but skip tegracam_v4l2subdev_register(). Default: false");
 
 static bool driver_registered;
 
@@ -941,12 +947,22 @@ static int ov5647_probe(struct i2c_client *client,
 		goto unregister_device;
 	}
 
+	if (skip_v4l2_register) {
+		dev_info(dev,
+			 "%s: skip_v4l2_register=1; leaving probe before v4l2 subdev registration\n",
+			 __func__);
+		dev_info(dev, "%s: exit success without v4l2 registration\n",
+			 __func__);
+		return 0;
+	}
+
 	err = tegracam_v4l2subdev_register(tc_dev, true);
 	if (err) {
 		dev_err(dev, "%s: tegracam_v4l2subdev_register failed err=%d\n",
 			__func__, err);
 		goto unregister_device;
 	}
+	priv->v4l2_registered = true;
 
 	dev_info(dev, "%s: exit success\n", __func__);
 	return 0;
@@ -960,23 +976,34 @@ static int ov5647_remove(struct i2c_client *client)
 {
 	struct tegracam_device *tc_dev = i2c_get_clientdata(client);
 	struct camera_common_data *s_data = NULL;
+	struct ov5647 *priv;
 
 	dev_info(&client->dev, "%s: enter\n", __func__);
 
 	if (!tc_dev)
 		return 0;
 
+	priv = to_ov5647(tc_dev);
 	s_data = tc_dev->s_data;
 	if (s_data)
 		ov5647_power_off(s_data);
 	else
 		dev_warn(&client->dev, "%s: tc_dev->s_data is NULL\n", __func__);
 
-	dev_info(&client->dev, "%s: before tegracam_v4l2subdev_unregister\n",
-		 __func__);
-	tegracam_v4l2subdev_unregister(tc_dev);
-	dev_info(&client->dev, "%s: after tegracam_v4l2subdev_unregister\n",
-		 __func__);
+	if (priv && priv->v4l2_registered) {
+		dev_info(&client->dev,
+			 "%s: before tegracam_v4l2subdev_unregister\n",
+			 __func__);
+		tegracam_v4l2subdev_unregister(tc_dev);
+		priv->v4l2_registered = false;
+		dev_info(&client->dev,
+			 "%s: after tegracam_v4l2subdev_unregister\n",
+			 __func__);
+	} else {
+		dev_info(&client->dev,
+			 "%s: v4l2 subdev was not registered, skipping unregister\n",
+			 __func__);
+	}
 
 	dev_info(&client->dev, "%s: before tegracam_device_unregister\n",
 		 __func__);
@@ -1014,8 +1041,9 @@ static int __init nv_ov5647_init(void)
 {
 	int err = 0;
 
-	pr_info("%s: module init register_i2c_driver=%d allow_hw_probe=%d\n",
-		OV5647_NAME, register_i2c_driver, allow_hw_probe);
+	pr_info("%s: module init register_i2c_driver=%d allow_hw_probe=%d skip_v4l2_register=%d\n",
+		OV5647_NAME, register_i2c_driver, allow_hw_probe,
+		skip_v4l2_register);
 
 	if (!register_i2c_driver) {
 		pr_info("%s: safety gate active; i2c driver registration skipped\n",

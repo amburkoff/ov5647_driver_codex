@@ -1,0 +1,1 @@
+[2026-04-21T08:48:01Z] CMD: bash -lc find /sys/fs/pstore -maxdepth 1 -type f 2>&1 || true

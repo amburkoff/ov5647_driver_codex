@@ -12,7 +12,7 @@ mkdir -p "${LOG_DIR}"
 echo "[${TS}] starting live dmesg capture" | tee "${RUN_LOG}"
 sync
 
-stdbuf -oL dmesg -w > "${TRACE_LOG}" 2>&1 &
+stdbuf -oL dmesg -W > "${TRACE_LOG}" 2>&1 &
 DMESG_PID=$!
 
 cleanup() {

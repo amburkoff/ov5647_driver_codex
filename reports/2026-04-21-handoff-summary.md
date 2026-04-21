@@ -96,18 +96,17 @@ The practical first milestone remains:
 
 ## Next Best Step
 
-Run exactly one manual unload helper invocation while preserving the Codex session. This should reveal whether the last visible marker is before `i2c_del_driver`, inside `ov5647_remove`, or after one of the tegracam unregister calls.
+Do not repeat the same full V4L2-registration unload test immediately. The latest manual unload hang did not preserve any `module_exit` marker, so the next safer diagnostic step is to rebuild with `skip_v4l2_register=1` support and test unload after chip-ID probe but before V4L2 subdev/media graph registration.
 
-Manual command:
+Next manual command after rebuild:
 
 ```bash
-sudo /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh
+sudo insmod /home/cam/ov5647_driver_codex/src/nv_ov5647/nv_ov5647.ko register_i2c_driver=1 allow_hw_probe=1 skip_v4l2_register=1
 ```
 
 Expected user response:
 
-- `rmmod ok` if the command returns;
-- `hang` if the Jetson freezes;
-- `rebooted` after manual reboot if a hang occurred.
+- `insmod ok` if the command returns;
+- `hang` if the Jetson freezes.
 
-Do not run additional `insmod`, `rmmod`, `STREAMON`, or capture commands until the result of this one unload test is recorded.
+Do not run `rmmod`, `STREAMON`, or capture commands until the result of this isolated `insmod` is recorded.

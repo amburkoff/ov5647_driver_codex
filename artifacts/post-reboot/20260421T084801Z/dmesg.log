@@ -1,0 +1,906 @@
+[2026-04-21T08:48:01Z] CMD: bash -lc dmesg 2>&1 || true
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd421]
+[    0.000000] Linux version 5.15.185-tegra (buildbrain@239549d1-8639-491a-b9e7-120e21430986-l1eu-vqrkv) (aarch64-buildroot-linux-gnu-gcc.br_real (Buildroot 2022.08) 11.3.0, GNU ld (GNU Binutils) 2.38) #1 SMP PREEMPT Thu Jan 15 19:24:38 PST 2026 ()
+[    0.000000] Machine model: NVIDIA Jetson Orin NX Engineering Reference Developer Kit
+[    0.000000] efi: EFI v2.70 by EDK II
+[    0.000000] efi: RTPROP=0x46de1e698 TPMFinalLog=0x45e8f0000 SMBIOS=0xffff0000 SMBIOS 3.0=0x46da40000 MEMATTR=0x467efe018 ESRT=0x468420518 TPMEventLog=0x45e0cc018 RNG=0x45e900018 MEMRESERVE=0x45e901f98 
+[    0.000000] random: crng init done
+[    0.000000] secureboot: Secure boot disabled
+[    0.000000] esrt: Reserving ESRT space from 0x0000000468420518 to 0x0000000468420550.
+[    0.000000] Reserved memory: created CMA memory pool at 0x0000000449000000, size 256 MiB
+[    0.000000] OF: reserved mem: initialized node linux,cma, compatible id shared-dma-pool
+[    0.000000] NUMA: No NUMA configuration found
+[    0.000000] NUMA: Faking a node at [mem 0x0000000080000000-0x0000000477ffffff]
+[    0.000000] NUMA: NODE_DATA [mem 0x4702fc800-0x4702fefff]
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem 0x0000000080000000-0x00000000ffffffff]
+[    0.000000]   DMA32    empty
+[    0.000000]   Normal   [mem 0x0000000100000000-0x0000000477ffffff]
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000080000000-0x00000000bdffffff]
+[    0.000000]   node   0: [mem 0x00000000c2000000-0x00000000fffdffff]
+[    0.000000]   node   0: [mem 0x00000000fffe0000-0x00000000ffffffff]
+[    0.000000]   node   0: [mem 0x0000000100000000-0x000000045d48ffff]
+[    0.000000]   node   0: [mem 0x000000045d490000-0x000000045e0bffff]
+[    0.000000]   node   0: [mem 0x000000045e0c0000-0x000000045e0effff]
+[    0.000000]   node   0: [mem 0x000000045e0f0000-0x000000045e0fffff]
+[    0.000000]   node   0: [mem 0x000000045e100000-0x000000045e14ffff]
+[    0.000000]   node   0: [mem 0x000000045e150000-0x000000045e30ffff]
+[    0.000000]   node   0: [mem 0x000000045e310000-0x000000045e8effff]
+[    0.000000]   node   0: [mem 0x000000045e8f0000-0x000000045e8fffff]
+[    0.000000]   node   0: [mem 0x000000045e900000-0x000000046bedffff]
+[    0.000000]   node   0: [mem 0x000000046bee0000-0x000000046de1ffff]
+[    0.000000]   node   0: [mem 0x000000046de20000-0x0000000471dfffff]
+[    0.000000]   node   0: [mem 0x0000000471e00000-0x0000000471ffffff]
+[    0.000000]   node   0: [mem 0x0000000472000000-0x000000047259ffff]
+[    0.000000]   node   0: [mem 0x0000000476000000-0x0000000477ffffff]
+[    0.000000] mminit::pageflags_layout_widths Section 0 Node 4 Zone 2 Lastcpupid 16 Kasantag 0 Flags 24
+[    0.000000] mminit::pageflags_layout_shifts Section 21 Node 4 Zone 2 Lastcpupid 16 Kasantag 0
+[    0.000000] mminit::pageflags_layout_pgshifts Section 0 Node 60 Zone 58 Lastcpupid 42 Kasantag 0
+[    0.000000] mminit::pageflags_layout_nodezoneid Node/Zone ID: 64 -> 58
+[    0.000000] mminit::pageflags_layout_usage location: 64 -> 42 layout 42 -> 24 unused 24 -> 0 page-flags
+[    0.000000] Initmem setup node 0 [mem 0x0000000080000000-0x0000000477ffffff]
+[    0.000000] mminit::memmap_init Initialising map node 0 zone 0 pfns 524288 -> 1048576
+[    0.000000] mminit::memmap_init Initialising map node 0 zone 2 pfns 1048576 -> 4685824
+[    0.000000] On node 0, zone DMA: 16384 pages in unavailable ranges
+[    0.000000] On node 0, zone Normal: 14944 pages in unavailable ranges
+[    0.000000] psci: probing for conduit method from DT.
+[    0.000000] psci: PSCIv1.1 detected in firmware.
+[    0.000000] psci: Using standard PSCI v0.2 function IDs
+[    0.000000] psci: Trusted OS migration not required
+[    0.000000] psci: SMC Calling Convention v1.2
+[    0.000000] percpu: Embedded 30 pages/cpu s83480 r8192 d31208 u122880
+[    0.000000] pcpu-alloc: s83480 r8192 d31208 u122880 alloc=30*4096
+[    0.000000] pcpu-alloc: [0] 0 [0] 1 [0] 2 [0] 3 [0] 4 [0] 5 [0] 6 [0] 7 
+[    0.000000] Detected PIPT I-cache on CPU0
+[    0.000000] CPU features: detected: Address authentication (architected algorithm)
+[    0.000000] CPU features: detected: GIC system register CPU interface
+[    0.000000] CPU features: detected: Virtualization Host Extensions
+[    0.000000] CPU features: detected: Hardware dirty bit management
+[    0.000000] CPU features: detected: Spectre-v4
+[    0.000000] CPU features: detected: Spectre-BHB
+[    0.000000] CPU features: kernel page table isolation forced ON by KASLR
+[    0.000000] CPU features: detected: Kernel page table isolation (KPTI)
+[    0.000000] alternatives: patching kernel code
+[    0.000000] mminit::zonelist general 0:DMA = 0:DMA 
+[    0.000000] mminit::zonelist general 0:Normal = 0:Normal 0:DMA 
+[    0.000000] mminit::zonelist thisnode 0:DMA = 0:DMA 
+[    0.000000] mminit::zonelist thisnode 0:Normal = 0:Normal 0:DMA 
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 4065184
+[    0.000000] Policy zone: Normal
+[    0.000000] Kernel command line: root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+[    0.000000] Unknown kernel command line parameters "boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000", will be passed to user space.
+[    0.000000] Dentry cache hash table entries: 2097152 (order: 12, 16777216 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 1048576 (order: 11, 8388608 bytes, linear)
+[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000] software IO TLB: mapped [mem 0x00000000fbfe0000-0x00000000fffe0000] (64MB)
+[    0.000000] Memory: 15732952K/16520832K available (20480K kernel code, 4086K rwdata, 10172K rodata, 7744K init, 529K bss, 525736K reserved, 262144K cma-reserved)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=8, Nodes=1
+[    0.000000] trace event string verifier disabled
+[    0.000000] rcu: Preemptible hierarchical RCU implementation.
+[    0.000000] rcu: 	RCU event tracing is enabled.
+[    0.000000] rcu: 	RCU restricting CPUs from NR_CPUS=256 to nr_cpu_ids=8.
+[    0.000000] 	Trampoline variant of Tasks RCU enabled.
+[    0.000000] 	Rude variant of Tasks RCU enabled.
+[    0.000000] 	Tracing variant of Tasks RCU enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=8
+[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[    0.000000] GICv3: GIC: Using split EOI/Deactivate mode
+[    0.000000] GICv3: 960 SPIs implemented
+[    0.000000] GICv3: 0 Extended SPIs implemented
+[    0.000000] GICv3: Distributor has no Range Selector support
+[    0.000000] Root IRQ handler: gic_handle_irq
+[    0.000000] GICv3: 16 PPIs implemented
+[    0.000000] GICv3: CPU0: found redistributor 0 region 0:0x000000000f440000
+[    0.000000] arch_timer: cp15 timer(s) running at 31.25MHz (phys).
+[    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0xe6a171046, max_idle_ns: 881590405314 ns
+[    0.000000] sched_clock: 56 bits at 31MHz, resolution 32ns, wraps every 4398046511088ns
+[    0.000336] Console: colour dummy device 80x25
+[    0.000342] printk: console [tty0] enabled
+[    0.000387] Calibrating delay loop (skipped), value calculated using timer frequency.. 62.50 BogoMIPS (lpj=125000)
+[    0.000393] pid_max: default: 32768 minimum: 301
+[    0.000423] LSM: Security Framework initializing
+[    0.000440] Yama: becoming mindful.
+[    0.000450] SELinux:  Initializing.
+[    0.000515] Mount-cache hash table entries: 32768 (order: 6, 262144 bytes, linear)
+[    0.000534] Mountpoint-cache hash table entries: 32768 (order: 6, 262144 bytes, linear)
+[    0.001386] rcu: Hierarchical SRCU implementation.
+[    0.003544] Tegra Revision: A01 SKU: 211 CPU Process: 0 SoC Process: 0
+[    0.003796] Remapping and enabling EFI services.
+[    0.004808] smp: Bringing up secondary CPUs ...
+[    0.005176] Detected PIPT I-cache on CPU1
+[    0.005205] GICv3: CPU1: found redistributor 100 region 0:0x000000000f460000
+[    0.005226] CPU1: Booted secondary processor 0x0000000100 [0x410fd421]
+[    0.005570] Detected PIPT I-cache on CPU2
+[    0.005580] GICv3: CPU2: found redistributor 200 region 0:0x000000000f480000
+[    0.005592] CPU2: Booted secondary processor 0x0000000200 [0x410fd421]
+[    0.005904] Detected PIPT I-cache on CPU3
+[    0.005914] GICv3: CPU3: found redistributor 300 region 0:0x000000000f4a0000
+[    0.005925] CPU3: Booted secondary processor 0x0000000300 [0x410fd421]
+[    0.008216] Detected PIPT I-cache on CPU4
+[    0.008239] GICv3: CPU4: found redistributor 10000 region 0:0x000000000f4c0000
+[    0.008260] CPU4: Booted secondary processor 0x0000010000 [0x410fd421]
+[    0.008626] Detected PIPT I-cache on CPU5
+[    0.008635] GICv3: CPU5: found redistributor 10100 region 0:0x000000000f4e0000
+[    0.008647] CPU5: Booted secondary processor 0x0000010100 [0x410fd421]
+[    0.008972] Detected PIPT I-cache on CPU6
+[    0.008982] GICv3: CPU6: found redistributor 10200 region 0:0x000000000f500000
+[    0.008994] CPU6: Booted secondary processor 0x0000010200 [0x410fd421]
+[    0.009325] Detected PIPT I-cache on CPU7
+[    0.009335] GICv3: CPU7: found redistributor 10300 region 0:0x000000000f520000
+[    0.009347] CPU7: Booted secondary processor 0x0000010300 [0x410fd421]
+[    0.009391] smp: Brought up 1 node, 8 CPUs
+[    0.009394] SMP: Total of 8 processors activated.
+[    0.009396] CPU features: detected: 32-bit EL0 Support
+[    0.009397] CPU features: detected: Data cache clean to the PoU not required for I/D coherence
+[    0.009399] CPU features: detected: Common not Private translations
+[    0.009400] CPU features: detected: CRC32 instructions
+[    0.009400] CPU features: detected: Data cache clean to Point of Persistence
+[    0.009402] CPU features: detected: Generic authentication (architected algorithm)
+[    0.009402] CPU features: detected: RCpc load-acquire (LDAPR)
+[    0.009403] CPU features: detected: LSE atomic instructions
+[    0.009404] CPU features: detected: Privileged Access Never
+[    0.009404] CPU features: detected: RAS Extension Support
+[    0.009406] CPU features: detected: Speculative Store Bypassing Safe (SSBS)
+[    0.035991] CPU: All CPU(s) started at EL2
+[    0.037669] devtmpfs: initialized
+[    0.048876] KASLR enabled
+[    0.048966] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+[    0.048977] futex hash table entries: 2048 (order: 5, 131072 bytes, linear)
+[    0.051105] pinctrl core: initialized pinctrl subsystem
+[    0.051605] SMBIOS 3.6.0 present.
+[    0.051613] DMI: NVIDIA NVIDIA Jetson Orin NX Engineering Reference Developer Kit/Jetson, BIOS 36.5.0-gcid-43688277 01/16/2026
+[    0.051890] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.053063] DMA: preallocated 2048 KiB GFP_KERNEL pool for atomic allocations
+[    0.053194] DMA: preallocated 2048 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+[    0.053314] DMA: preallocated 2048 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+[    0.053345] audit: initializing netlink subsys (disabled)
+[    0.053430] audit: type=2000 audit(0.052:1): state=initialized audit_enabled=0 res=1
+[    0.054429] thermal_sys: Registered thermal governor 'step_wise'
+[    0.054431] thermal_sys: Registered thermal governor 'user_space'
+[    0.054432] thermal_sys: Registered thermal governor 'power_allocator'
+[    0.056401] cpuidle: using governor menu
+[    0.056536] hw-breakpoint: found 6 breakpoint and 4 watchpoint registers.
+[    0.056616] ASID allocator initialised with 32768 entries
+[    0.057690] Serial: AMBA PL011 UART driver
+[    0.065924] 31d0000.serial: ttyAMA0 at MMIO 0x31d0000 (irq = 117, base_baud = 0) is a SBSA
+[    0.073656] platform bpmp: Fixing up cyclic dependency with 2c60000.external-memory-controller
+[    0.080300] HugeTLB registered 1.00 GiB page size, pre-allocated 0 pages
+[    0.080306] HugeTLB registered 32.0 MiB page size, pre-allocated 0 pages
+[    0.080307] HugeTLB registered 2.00 MiB page size, pre-allocated 0 pages
+[    0.080308] HugeTLB registered 64.0 KiB page size, pre-allocated 0 pages
+[    0.080927] cryptd: max_cpu_qlen set to 1000
+[    0.082181] ACPI: Interpreter disabled.
+[    0.083030] VDD_1V8_AO: supplied by VDD_5V0_SYS
+[    0.083116] VDD_3V3_AO: supplied by VDD_5V0_SYS
+[    0.083265] VDD_AV10_HUB: supplied by VDD_5V0_SYS
+[    0.083565] iommu: Default domain type: Translated 
+[    0.083568] iommu: DMA domain TLB invalidation policy: strict mode 
+[    0.083730] SCSI subsystem initialized
+[    0.083786] libata version 3.00 loaded.
+[    0.083834] vgaarb: loaded
+[    0.083925] usbcore: registered new interface driver usbfs
+[    0.083940] usbcore: registered new interface driver hub
+[    0.083950] usbcore: registered new device driver usb
+[    0.084273] pps_core: LinuxPPS API ver. 1 registered
+[    0.084275] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.084281] PTP clock support registered
+[    0.084329] EDAC MC: Ver: 3.0.0
+[    0.084954] Registered efivars operations
+[    0.085351] FPGA manager framework
+[    0.085389] Advanced Linux Sound Architecture Driver Initialized.
+[    0.085682] Bluetooth: Core ver 2.22
+[    0.085699] NET: Registered PF_BLUETOOTH protocol family
+[    0.085701] Bluetooth: HCI device and connection manager initialized
+[    0.085706] Bluetooth: HCI socket layer initialized
+[    0.085709] Bluetooth: L2CAP socket layer initialized
+[    0.085716] Bluetooth: SCO socket layer initialized
+[    0.085996] clocksource: Switched to clocksource arch_sys_counter
+[    0.110409] VFS: Disk quotas dquot_6.6.0
+[    0.110459] VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+[    0.110709] pnp: PnP ACPI: disabled
+[    0.113934] NET: Registered PF_INET protocol family
+[    0.114524] IP idents hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+[    0.116930] tcp_listen_portaddr_hash hash table entries: 8192 (order: 5, 131072 bytes, linear)
+[    0.117120] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    0.117142] TCP established hash table entries: 131072 (order: 8, 1048576 bytes, linear)
+[    0.117562] TCP bind hash table entries: 65536 (order: 8, 1048576 bytes, linear)
+[    0.119021] TCP: Hash tables configured (established 131072 bind 65536)
+[    0.119243] UDP hash table entries: 8192 (order: 6, 262144 bytes, linear)
+[    0.119411] UDP-Lite hash table entries: 8192 (order: 6, 262144 bytes, linear)
+[    0.119778] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    0.120243] RPC: Registered named UNIX socket transport module.
+[    0.120247] RPC: Registered udp transport module.
+[    0.120249] RPC: Registered tcp transport module.
+[    0.120251] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    0.120271] PCI: CLS 0 bytes, default 64
+[    0.120538] Unpacking initramfs...
+[    0.126935] hw perfevents: enabled with armv8_cortex_a78 PMU driver, 7 counters available
+[    0.127292] kvm [1]: IPA Size Limit: 48 bits
+[    0.127333] kvm [1]: GICv3: no GICV resource entry
+[    0.127340] kvm [1]: disabling GICv2 emulation
+[    0.127372] kvm [1]: GIC system register CPU interface enabled
+[    0.127460] kvm [1]: vgic interrupt IRQ9
+[    0.127630] kvm [1]: VHE mode initialized successfully
+[    0.130845] Initialise system trusted keyrings
+[    0.130889] Key type blacklist registered
+[    0.130995] workingset: timestamp_bits=42 max_order=22 bucket_order=0
+[    0.135061] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.135585] NFS: Registering the id_resolver key type
+[    0.135619] Key type id_resolver registered
+[    0.135623] Key type id_legacy registered
+[    0.135674] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+[    0.135692] nfs4flexfilelayout_init: NFSv4 Flexfile Layout Driver Registering...
+[    0.135720] ntfs: driver 2.1.32 [Flags: R/O].
+[    0.135970] 9p: Installing v9fs 9p2000 file system support
+[    0.136728] integrity: Platform Keyring initialized
+[    0.148212] Key type asymmetric registered
+[    0.148219] Asymmetric key parser 'x509' registered
+[    0.148299] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 245)
+[    0.148311] io scheduler mq-deadline registered
+[    0.148319] io scheduler kyber registered
+[    0.158527] EINJ: ACPI disabled.
+[    0.170898] Serial: 8250/16550 driver, 4 ports, IRQ sharing enabled
+[    0.172705] SuperH (H)SCI(F) driver initialized
+[    0.173053] msm_serial: driver initialized
+[    0.173735] printk: console [ttyTCU0] enabled
+[    0.174684] arm-smmu 8000000.iommu: probing hardware configuration...
+[    0.174691] arm-smmu 8000000.iommu: SMMUv2 with:
+[    0.174698] arm-smmu 8000000.iommu: 	stage 1 translation
+[    0.174699] arm-smmu 8000000.iommu: 	stage 2 translation
+[    0.174701] arm-smmu 8000000.iommu: 	nested translation
+[    0.174705] arm-smmu 8000000.iommu: 	stream matching with 128 register groups
+[    0.174710] arm-smmu 8000000.iommu: 	128 context banks (0 stage-2 only)
+[    0.174733] arm-smmu 8000000.iommu: 	Supported page sizes: 0x61311000
+[    0.174737] arm-smmu 8000000.iommu: 	Stage-1: 48-bit VA -> 48-bit IPA
+[    0.174738] arm-smmu 8000000.iommu: 	Stage-2: 48-bit IPA -> 48-bit PA
+[    0.175721] arm-smmu 10000000.iommu: probing hardware configuration...
+[    0.175725] arm-smmu 10000000.iommu: SMMUv2 with:
+[    0.175727] arm-smmu 10000000.iommu: 	stage 1 translation
+[    0.175727] arm-smmu 10000000.iommu: 	stage 2 translation
+[    0.175728] arm-smmu 10000000.iommu: 	nested translation
+[    0.175731] arm-smmu 10000000.iommu: 	stream matching with 128 register groups
+[    0.175734] arm-smmu 10000000.iommu: 	128 context banks (0 stage-2 only)
+[    0.175739] arm-smmu 10000000.iommu: 	Supported page sizes: 0x61311000
+[    0.175740] arm-smmu 10000000.iommu: 	Stage-1: 48-bit VA -> 48-bit IPA
+[    0.175742] arm-smmu 10000000.iommu: 	Stage-2: 48-bit IPA -> 48-bit PA
+[    0.176098] arm-smmu 12000000.iommu: probing hardware configuration...
+[    0.176100] arm-smmu 12000000.iommu: SMMUv2 with:
+[    0.176102] arm-smmu 12000000.iommu: 	stage 1 translation
+[    0.176104] arm-smmu 12000000.iommu: 	stage 2 translation
+[    0.176104] arm-smmu 12000000.iommu: 	nested translation
+[    0.176107] arm-smmu 12000000.iommu: 	stream matching with 128 register groups
+[    0.176109] arm-smmu 12000000.iommu: 	128 context banks (0 stage-2 only)
+[    0.176113] arm-smmu 12000000.iommu: 	Supported page sizes: 0x61311000
+[    0.176114] arm-smmu 12000000.iommu: 	Stage-1: 48-bit VA -> 48-bit IPA
+[    0.176115] arm-smmu 12000000.iommu: 	Stage-2: 48-bit IPA -> 48-bit PA
+[    0.184655] loop: module loaded
+[    0.185631] megasas: 07.727.03.00-rc1
+[    0.189760] tun: Universal TUN/TAP device driver, 1.6
+[    0.190374] thunder_xcv, ver 1.0
+[    0.190404] thunder_bgx, ver 1.0
+[    0.190434] nicpf, ver 1.0
+[    0.191313] hns3: Hisilicon Ethernet Network Driver for Hip08 Family - version
+[    0.191321] hns3: Copyright (c) 2017 Huawei Corporation.
+[    0.191369] hclge is initializing
+[    0.191406] e1000: Intel(R) PRO/1000 Network Driver
+[    0.191410] e1000: Copyright (c) 1999-2006 Intel Corporation.
+[    0.191445] e1000e: Intel(R) PRO/1000 Network Driver
+[    0.191449] e1000e: Copyright(c) 1999 - 2015 Intel Corporation.
+[    0.191477] igb: Intel(R) Gigabit Ethernet Network Driver
+[    0.191483] igb: Copyright (c) 2007-2014 Intel Corporation.
+[    0.191500] igbvf: Intel(R) Gigabit Virtual Function Network Driver
+[    0.191506] igbvf: Copyright (c) 2009 - 2012 Intel Corporation.
+[    0.191730] sky2: driver version 1.30
+[    0.192400] VFIO - User Level meta-driver version: 0.3
+[    0.193951] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    0.193962] ehci-pci: EHCI PCI platform driver
+[    0.193985] ehci-platform: EHCI generic platform driver
+[    0.194067] ehci-orion: EHCI orion driver
+[    0.194141] ehci-exynos: EHCI Exynos driver
+[    0.194194] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+[    0.194217] ohci-pci: OHCI PCI platform driver
+[    0.194251] ohci-platform: OHCI generic platform driver
+[    0.194319] ohci-exynos: OHCI Exynos driver
+[    0.194754] usbcore: registered new interface driver usb-storage
+[    0.196614] i2c_dev: i2c /dev entries driver
+[    0.197904] pps_ldisc: PPS line discipline registered
+[    0.200303] device-mapper: ioctl: 4.45.0-ioctl (2021-03-22) initialised: dm-devel@redhat.com
+[    0.202371] sdhci: Secure Digital Host Controller Interface driver
+[    0.202378] sdhci: Copyright(c) Pierre Ossman
+[    0.202810] Synopsys Designware Multimedia Card Interface Driver
+[    0.203404] sdhci-pltfm: SDHCI platform and OF driver helper
+[    0.204496] ledtrig-cpu: registered to indicate activity on CPUs
+[    0.205408] SMCCC: SOC_ID: ID = jep106:036b:0234 Revision = 0x00000401
+[    0.206016] tegra-bpmp bpmp: Adding to iommu group 0
+[    0.207450] tegra-bpmp bpmp: firmware: 40c4ded2a7425760713a-68f126a8abf
+[    0.375689] Freeing initrd memory: 15548K
+[    1.720894] clocksource: tsc: mask: 0xffffffffffffff max_cycles: 0xe6a171046, max_idle_ns: 881590405314 ns
+[    1.720925] clocksource: osc: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 49772407460 ns
+[    1.720927] clocksource: usec: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1911260446275 ns
+[    1.721293] hid: raw HID events driver (C) Jiri Kosina
+[    1.721648] usbcore: registered new interface driver usbhid
+[    1.721653] usbhid: USB HID core driver
+[    1.725794] optee: probing for conduit method.
+[    1.725853] optee: revision 4.2 (5ef90dab)
+[    1.785265] optee: dynamic shared memory is enabled
+[    1.785542] optee: initialized driver
+[    1.788598] usbcore: registered new interface driver snd-usb-audio
+[    1.790334] NET: Registered PF_PACKET protocol family
+[    1.790773] Bluetooth: RFCOMM TTY layer initialized
+[    1.790782] Bluetooth: RFCOMM socket layer initialized
+[    1.790805] Bluetooth: RFCOMM ver 1.11
+[    1.791041] 9pnet: Installing 9P2000 support
+[    1.791147] Key type dns_resolver registered
+[    1.791650] printk: console [tty0]: printing thread started
+[    1.791708] printk: console [ttyTCU0]: printing thread started
+[    1.791811] Loading compiled-in X.509 certificates
+[    1.795167] Loaded X.509 cert 'Build time autogenerated kernel key: d77ad5d0e7e5d02a2dc9cf8ec8dfa4a966aa85ba'
+[    1.830951] tegra-gpcdma 2600000.dma-controller: Adding to iommu group 1
+[    1.832424] tegra-gpcdma 2600000.dma-controller: GPC DMA driver register 31 channels
+[    1.833777] 3100000.serial: ttyTHS1 at MMIO 0x3100000 (irq = 112, base_baud = 0) is a TEGRA_UART
+[    1.834802] 3140000.serial: ttyTHS2 at MMIO 0x3140000 (irq = 113, base_baud = 0) is a TEGRA_UART
+[    1.837592] tegra_rtc c2a0000.rtc: registered as rtc1
+[    1.837601] tegra_rtc c2a0000.rtc: Tegra internal Real Time Clock
+[    1.838038] tegra-i2c 3160000.i2c: Adding to iommu group 1
+[    1.840833] tegra-i2c 3180000.i2c: Adding to iommu group 1
+[    1.842386] tegra-i2c 31b0000.i2c: Adding to iommu group 1
+[    1.843777] tegra-i2c c240000.i2c: Adding to iommu group 1
+[    1.845045] i2c 1-0025: Fixing up cyclic dependency with 3520000.padctl
+[    1.845538] tegra-i2c c250000.i2c: Adding to iommu group 1
+[    1.847540] i2c i2c-2: Added multiplexed i2c bus 9
+[    1.847547] i2c-mux-gpio bus@0:cam_i2cmux: 1 port mux on 3180000.i2c adapter
+[    1.865847] cpufreq: cpufreq_online: CPU4: Running at unlisted initial frequency: 1990000 KHz, changing to: 1984000 KHz
+[    1.868067] tegra-xusb 3610000.usb: Adding to iommu group 2
+[    1.882840] tegra-xusb 3610000.usb: Firmware timestamp: 2023-02-10 03:48:10 UTC
+[    1.882846] tegra-xusb 3610000.usb: xHCI Host Controller
+[    1.882856] tegra-xusb 3610000.usb: new USB bus registered, assigned bus number 1
+[    1.883578] tegra-xusb 3610000.usb: hcc params 0x0180ff05 hci version 0x120 quirks 0x0000000000010810
+[    1.883595] tegra-xusb 3610000.usb: irq 123, io mem 0x03610000
+[    1.883696] tegra-xusb 3610000.usb: xHCI Host Controller
+[    1.883700] tegra-xusb 3610000.usb: new USB bus registered, assigned bus number 2
+[    1.883703] tegra-xusb 3610000.usb: Host supports USB 3.1 Enhanced SuperSpeed
+[    1.884133] hub 1-0:1.0: USB hub found
+[    1.884148] hub 1-0:1.0: 4 ports detected
+[    1.884404] hub 2-0:1.0: USB hub found
+[    1.884415] hub 2-0:1.0: 4 ports detected
+[    1.886218] irq: IRQ227: trimming hierarchy from :bus@0:pmc@c360000
+[    1.886276] irq: IRQ228: trimming hierarchy from :bus@0:interrupt-controller@f400000-1
+[    1.886343] input: gpio-keys as /devices/platform/gpio-keys/input/input0
+[    1.887113] clk: Disabling unused clocks
+[    1.927412] ALSA device list:
+[    1.927416]   No soundcards found.
+[    1.939821] Freeing unused kernel memory: 7744K
+[    1.939892] Run /init as init process
+[    1.939893]   with arguments:
+[    1.939894]     /init
+[    1.939894]   with environment:
+[    1.939895]     HOME=/
+[    1.939896]     TERM=linux
+[    1.939896]     boot_profile=ov5647-dev
+[    1.939897]     bl_prof_dataptr=2031616@0x471E10000
+[    1.939898]     bl_prof_ro_ptr=65536@0x471E00000
+[    1.954662] Checking overlayfs setting...
+[    1.963923] Overlayfs is disabled...
+[    1.970463] Root device found: PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344
+[    2.230182] usb 1-2: new high-speed USB device number 2 using tegra-xusb
+[    2.402590] hub 1-2:1.0: USB hub found
+[    2.403891] hub 1-2:1.0: 4 ports detected
+[    2.514855] usb 2-1: new SuperSpeed Plus Gen 2x1 USB device number 2 using tegra-xusb
+[    2.566992] hub 2-1:1.0: USB hub found
+[    2.569615] hub 2-1:1.0: 4 ports detected
+[    2.674003] usb 1-3: new full-speed USB device number 3 using tegra-xusb
+[    3.101997] usb 1-2.4: new low-speed USB device number 4 using tegra-xusb
+[    3.221114] input: Lenovo Lenovo Calliope USB Keyboard as /devices/platform/bus@0/3610000.usb/usb1/1-2/1-2.4/1-2.4:1.0/0003:17EF:608C.0001/input/input1
+[    3.346069] hid-generic 0003:17EF:608C.0001: input,hidraw0: USB HID v1.11 Keyboard [Lenovo Lenovo Calliope USB Keyboard] on usb-3610000.usb-2.4/input0
+[    3.351628] input: Lenovo Lenovo Calliope USB Keyboard System Control as /devices/platform/bus@0/3610000.usb/usb1/1-2/1-2.4/1-2.4:1.1/0003:17EF:608C.0002/input/input2
+[    3.410060] input: Lenovo Lenovo Calliope USB Keyboard Consumer Control as /devices/platform/bus@0/3610000.usb/usb1/1-2/1-2.4/1-2.4:1.1/0003:17EF:608C.0002/input/input3
+[    3.410112] hid-generic 0003:17EF:608C.0002: input,hidraw1: USB HID v1.11 Device [Lenovo Lenovo Calliope USB Keyboard] on usb-3610000.usb-2.4/input1
+[    5.483029] tegra194-pcie 14100000.pcie: Adding to iommu group 3
+[    5.484078] irq: IRQ229: trimming hierarchy from :bus@0:interrupt-controller@f400000-1
+[    5.484953] tegra194-pcie 14100000.pcie: host bridge /bus@0/pcie@14100000 ranges:
+[    5.484969] tegra194-pcie 14100000.pcie:      MEM 0x2080000000..0x20a7ffffff -> 0x2080000000
+[    5.484975] tegra194-pcie 14100000.pcie:      MEM 0x20a8000000..0x20afffffff -> 0x0040000000
+[    5.484978] tegra194-pcie 14100000.pcie:       IO 0x0030100000..0x00301fffff -> 0x0030100000
+[    5.485291] tegra194-pcie 14100000.pcie: iATU unroll: enabled
+[    5.485293] tegra194-pcie 14100000.pcie: Detected iATU regions: 8 outbound, 2 inbound
+[    5.505368] tegra-xudc 3550000.usb: Adding to iommu group 4
+[    5.590000] tegra194-pcie 14100000.pcie: Link up
+[    5.592675] tegra194-pcie 14100000.pcie: Link up
+[    5.593018] tegra194-pcie 14100000.pcie: PCI host bridge to bus 0001:00
+[    5.593024] pci_bus 0001:00: root bus resource [bus 00-ff]
+[    5.593028] pci_bus 0001:00: root bus resource [mem 0x2080000000-0x20a7ffffff pref]
+[    5.593030] pci_bus 0001:00: root bus resource [mem 0x20a8000000-0x20afffffff] (bus address [0x40000000-0x47ffffff])
+[    5.593032] pci_bus 0001:00: root bus resource [io  0x0000-0xfffff] (bus address [0x30100000-0x301fffff])
+[    5.593082] pci 0001:00:00.0: [10de:229e] type 01 class 0x060400
+[    5.593247] pci 0001:00:00.0: PME# supported from D0 D3hot
+[    5.596497] pci 0001:01:00.0: [10ec:c822] type 00 class 0x028000
+[    5.597031] pci 0001:01:00.0: reg 0x10: [io  0x0000-0x00ff]
+[    5.597076] pci 0001:01:00.0: reg 0x18: [mem 0x20a8000000-0x20a800ffff 64bit]
+[    5.597960] pci 0001:01:00.0: supports D1 D2
+[    5.597962] pci 0001:01:00.0: PME# supported from D0 D1 D2 D3hot D3cold
+[    5.612695] pci 0001:00:00.0: BAR 14: assigned [mem 0x20a8000000-0x20a80fffff]
+[    5.612698] pci 0001:00:00.0: BAR 13: assigned [io  0x1000-0x1fff]
+[    5.612702] pci 0001:01:00.0: BAR 2: assigned [mem 0x20a8000000-0x20a800ffff 64bit]
+[    5.612804] pci 0001:01:00.0: BAR 0: assigned [io  0x1000-0x10ff]
+[    5.612836] pci 0001:00:00.0: PCI bridge to [bus 01-ff]
+[    5.612840] pci 0001:00:00.0:   bridge window [io  0x1000-0x1fff]
+[    5.612844] pci 0001:00:00.0:   bridge window [mem 0x20a8000000-0x20a80fffff]
+[    5.612864] pci 0001:00:00.0: Max Payload Size set to  256/ 256 (was  128), Max Read Rq  256
+[    5.613011] pci 0001:01:00.0: Max Payload Size set to  128/ 128 (was  128), Max Read Rq  128
+[    5.613108] pcieport 0001:00:00.0: Adding to iommu group 3
+[    5.613201] pcieport 0001:00:00.0: PME: Signaling with IRQ 190
+[    5.613499] pcieport 0001:00:00.0: AER: enabled with IRQ 190
+[    5.614304] tegra194-pcie 14160000.pcie: Adding to iommu group 5
+[    5.615803] tegra194-pcie 14160000.pcie: host bridge /bus@0/pcie@14160000 ranges:
+[    5.615815] tegra194-pcie 14160000.pcie:      MEM 0x2140000000..0x2427ffffff -> 0x2140000000
+[    5.615820] tegra194-pcie 14160000.pcie:      MEM 0x2428000000..0x242fffffff -> 0x0040000000
+[    5.615823] tegra194-pcie 14160000.pcie:       IO 0x0036100000..0x00361fffff -> 0x0036100000
+[    5.616114] tegra194-pcie 14160000.pcie: iATU unroll: enabled
+[    5.616116] tegra194-pcie 14160000.pcie: Detected iATU regions: 8 outbound, 2 inbound
+[    5.722177] tegra194-pcie 14160000.pcie: Link up
+[    5.723555] tegra194-pcie 14160000.pcie: Link up
+[    5.723606] tegra194-pcie 14160000.pcie: PCI host bridge to bus 0004:00
+[    5.723608] pci_bus 0004:00: root bus resource [bus 00-ff]
+[    5.723611] pci_bus 0004:00: root bus resource [mem 0x2140000000-0x2427ffffff pref]
+[    5.723613] pci_bus 0004:00: root bus resource [mem 0x2428000000-0x242fffffff] (bus address [0x40000000-0x47ffffff])
+[    5.723616] pci_bus 0004:00: root bus resource [io  0x100000-0x1fffff] (bus address [0x36100000-0x361fffff])
+[    5.723658] pci 0004:00:00.0: [10de:229c] type 01 class 0x060400
+[    5.723803] pci 0004:00:00.0: PME# supported from D0 D3hot
+[    5.726828] pci 0004:01:00.0: [4321:2263] type 00 class 0x010802
+[    5.727292] pci 0004:01:00.0: reg 0x10: [mem 0x00000000-0x00003fff 64bit]
+[    5.740643] pci 0004:00:00.0: BAR 14: assigned [mem 0x2428000000-0x24280fffff]
+[    5.740648] pci 0004:01:00.0: BAR 0: assigned [mem 0x2428000000-0x2428003fff 64bit]
+[    5.740734] pci 0004:00:00.0: PCI bridge to [bus 01-ff]
+[    5.740738] pci 0004:00:00.0:   bridge window [mem 0x2428000000-0x24280fffff]
+[    5.740756] pci 0004:00:00.0: Max Payload Size set to  256/ 256 (was  128), Max Read Rq  256
+[    5.740881] pci 0004:01:00.0: Max Payload Size set to  128/ 128 (was  128), Max Read Rq  128
+[    5.740962] pcieport 0004:00:00.0: Adding to iommu group 5
+[    5.741042] pcieport 0004:00:00.0: PME: Signaling with IRQ 192
+[    5.741153] pcieport 0004:00:00.0: AER: enabled with IRQ 192
+[    5.741323] nvme 0004:01:00.0: Adding to iommu group 5
+[    5.741676] nvme nvme0: pci function 0004:01:00.0
+[    5.741732] nvme 0004:01:00.0: enabling device (0000 -> 0002)
+[    5.742254] tegra194-pcie 141e0000.pcie: Adding to iommu group 6
+[    5.743433] tegra194-pcie 141e0000.pcie: host bridge /bus@0/pcie@141e0000 ranges:
+[    5.743445] tegra194-pcie 141e0000.pcie:      MEM 0x3000000000..0x3227ffffff -> 0x3000000000
+[    5.743451] tegra194-pcie 141e0000.pcie:      MEM 0x3228000000..0x322fffffff -> 0x0040000000
+[    5.743454] tegra194-pcie 141e0000.pcie:       IO 0x003e100000..0x003e1fffff -> 0x003e100000
+[    5.743752] tegra194-pcie 141e0000.pcie: iATU unroll: enabled
+[    5.743755] tegra194-pcie 141e0000.pcie: Detected iATU regions: 8 outbound, 2 inbound
+[    5.760251] nvme nvme0: allocated 64 MiB host memory buffer.
+[    5.778705] nvme nvme0: 8/0/0 default/read/poll queues
+[    5.787014]  nvme0n1: p1 p2 p3 p4 p5 p6 p7 p8 p9 p10 p11 p12 p13 p14 p15
+[    6.843427] tegra194-pcie 141e0000.pcie: Phy link never came up
+[    7.170509] EXT4-fs (nvme0n1p1): 4 orphan inodes deleted
+[    7.170520] EXT4-fs (nvme0n1p1): recovery complete
+[    7.173870] EXT4-fs (nvme0n1p1): mounted filesystem with ordered data mode. Opts: (null). Quota mode: none.
+[    7.180465] Rootfs mounted over PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344
+[    7.188303] Switching from initrd to actual rootfs
+[    7.231876] systemd[1]: System time before build time, advancing clock.
+[    7.250451] NET: Registered PF_INET6 protocol family
+[    7.250861] Segment Routing with IPv6
+[    7.250868] In-situ OAM (IOAM) with IPv6
+[    7.263515] systemd[1]: systemd 249.11-0ubuntu3.17 running in system mode (+PAM +AUDIT +SELINUX +APPARMOR +IMA +SMACK +SECCOMP +GCRYPT +GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS +FIDO2 +IDN2 -IDN +IPTC +KMOD +LIBCRYPTSETUP +LIBFDISK +PCRE2 -PWQUALITY -P11KIT -QRENCODE +BZIP2 +LZ4 +XZ +ZLIB +ZSTD -XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified)
+[    7.263875] systemd[1]: Detected architecture arm64.
+[    7.264492] systemd[1]: Hostname set to <cam-desktop>.
+[    7.274170] systemd[1]: Using hardware watchdog 'NVIDIA Tegra186 WDT', version 0, device /dev/watchdog
+[    7.274187] systemd[1]: Set hardware watchdog to 2min.
+[    7.417318] systemd[1]: /lib/systemd/system/snapd.service:23: Unknown key name 'RestartMode' in section 'Service', ignoring.
+[    7.428245] systemd[1]: /etc/systemd/system/nvs-service.service:41: Standard output type syslog is obsolete, automatically updating to journal. Please update your unit file, and consider removing the setting altogether.
+[    7.431040] systemd[1]: /etc/systemd/system/nvargus-daemon.service:42: Standard output type syslog is obsolete, automatically updating to journal. Please update your unit file, and consider removing the setting altogether.
+[    7.471056] systemd[1]: Queued start job for default target Graphical Interface.
+[    7.472546] systemd[1]: Created slice Slice /system/modprobe.
+[    7.473121] systemd[1]: Created slice Slice /system/openvpn.
+[    7.473571] systemd[1]: Created slice Slice /system/serial-getty.
+[    7.473982] systemd[1]: Created slice Slice /system/systemd-fsck.
+[    7.475237] systemd[1]: Created slice User and Session Slice.
+[    7.475395] systemd[1]: Started Forward Password Requests to Wall Directory Watch.
+[    7.475745] systemd[1]: Set up automount Arbitrary Executable File Formats File System Automount Point.
+[    7.475908] systemd[1]: Reached target Slice Units.
+[    7.475969] systemd[1]: Reached target Mounting snaps.
+[    7.476023] systemd[1]: Reached target Swaps.
+[    7.476078] systemd[1]: Reached target Local Verity Protected Volumes.
+[    7.476219] systemd[1]: Listening on Device-mapper event daemon FIFOs.
+[    7.476429] systemd[1]: Listening on LVM2 poll daemon socket.
+[    7.481909] systemd[1]: Listening on RPCbind Server Activation Socket.
+[    7.482561] systemd[1]: Listening on Syslog Socket.
+[    7.483595] systemd[1]: Listening on fsck to fsckd communication Socket.
+[    7.483746] systemd[1]: Listening on initctl Compatibility Named Pipe.
+[    7.484078] systemd[1]: Listening on Journal Audit Socket.
+[    7.484260] systemd[1]: Listening on Journal Socket (/dev/log).
+[    7.484473] systemd[1]: Listening on Journal Socket.
+[    7.484746] systemd[1]: Listening on udev Control Socket.
+[    7.484899] systemd[1]: Listening on udev Kernel Socket.
+[    7.486003] systemd[1]: Mounting Huge Pages File System...
+[    7.522643] systemd[1]: Mounting POSIX Message Queue File System...
+[    7.534597] systemd[1]: Mounting Kernel Debug File System...
+[    7.535827] systemd[1]: Mounting Kernel Trace File System...
+[    7.537976] systemd[1]: Starting Journal Service...
+[    7.550149] systemd[1]: Finished Availability of block devices.
+[    7.552684] systemd[1]: Starting Set the console keyboard layout...
+[    7.553979] systemd[1]: Starting Create List of Static Device Nodes...
+[    7.570358] systemd[1]: Starting Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling...
+[    7.571762] systemd[1]: Starting Load Kernel Module configfs...
+[    7.573202] systemd[1]: Starting Load Kernel Module drm...
+[    7.574818] systemd[1]: Starting Load Kernel Module efi_pstore...
+[    7.598328] systemd[1]: Starting Load Kernel Module fuse...
+[    7.599740] systemd[1]: Starting NVIDIA specific first-boot udev script...
+[    7.601009] systemd[1]: Started Nameserver information manager.
+[    7.601241] systemd[1]: Reached target Preparation for Network.
+[    7.601469] systemd[1]: Condition check resulted in File System Check on Root Device being skipped.
+[    7.604070] systemd[1]: Starting Load Kernel Modules...
+[    7.606129] fuse: init (API version 7.34)
+[    7.613507] nvsciipc: loading out-of-tree module taints kernel.
+[    7.614662] nvsciipc: loaded module
+[    7.619967] nvmap_heap_init: nvmap_heap_init: created heap block cache
+[    7.620477] nvmap_page_pool_init: Total RAM pages: 4004597
+[    7.620479] nvmap_page_pool_init: nvmap page pool size: 500574 pages (1955 MB)
+[    7.620534] nvmap_background_zero_thread: PP zeroing thread starting.
+[    7.627062] tegra-host1x 13e00000.host1x: Adding to iommu group 7
+[    7.628242] host1x-context host1x-ctx.0: Adding to iommu group 8
+[    7.628349] host1x-context host1x-ctx.1: Adding to iommu group 9
+[    7.628441] host1x-context host1x-ctx.2: Adding to iommu group 10
+[    7.628532] host1x-context host1x-ctx.3: Adding to iommu group 11
+[    7.628626] host1x-context host1x-ctx.4: Adding to iommu group 12
+[    7.628713] host1x-context host1x-ctx.5: Adding to iommu group 13
+[    7.628801] host1x-context host1x-ctx.6: Adding to iommu group 14
+[    7.628895] host1x-context host1x-ctx.7: Adding to iommu group 15
+[    7.628985] host1x-context host1x-ctx.8: Adding to iommu group 16
+[    7.629084] host1x-context host1x-ctx.9: Adding to iommu group 17
+[    7.629177] host1x-context host1x-ctx.10: Adding to iommu group 18
+[    7.629271] host1x-context host1x-ctx.11: Adding to iommu group 19
+[    7.629374] host1x-context host1x-ctx.12: Adding to iommu group 20
+[    7.629460] host1x-context host1x-ctx.13: Adding to iommu group 21
+[    7.629555] host1x-context host1x-ctx.14: Adding to iommu group 22
+[    7.629651] host1x-context host1x-ctx.15: Adding to iommu group 23
+[    7.637663] platform 13e00000.host1x:nvcsi@15a00000: Fixing up cyclic dependency with 9-0036
+[    7.637679] platform 13e00000.host1x:nvcsi@15a00000: Fixing up cyclic dependency with tegra-capture-vi
+[    7.641484] systemd[1]: Starting Remount Root and Kernel File Systems...
+[    7.649576] EXT4-fs (nvme0n1p1): re-mounted. Opts: (null). Quota mode: none.
+[    7.675625] nvgpu: 17000000.gpu          nvgpu_nvhost_syncpt_init:122  [INFO]  syncpt_unit_base 60000000 syncpt_unit_size 4000000 size 10000
+
+[    7.676713] systemd[1]: Starting Coldplug All udev Devices...
+[    7.732551] systemd[1]: Mounted Huge Pages File System.
+[    7.780075] systemd[1]: Mounted POSIX Message Queue File System.
+[    7.838011] tegra194-pcie 141e0000.pcie: Phy link never came up
+[    7.838088] tegra194-pcie 141e0000.pcie: PCI host bridge to bus 0007:00
+[    7.838092] pci_bus 0007:00: root bus resource [bus 00-ff]
+[    7.838096] pci_bus 0007:00: root bus resource [mem 0x3000000000-0x3227ffffff pref]
+[    7.838098] pci_bus 0007:00: root bus resource [mem 0x3228000000-0x322fffffff] (bus address [0x40000000-0x47ffffff])
+[    7.838101] pci_bus 0007:00: root bus resource [io  0x200000-0x2fffff] (bus address [0x3e100000-0x3e1fffff])
+[    7.838149] pci 0007:00:00.0: [10de:229a] type 01 class 0x060400
+[    7.838297] pci 0007:00:00.0: PME# supported from D0 D3hot
+[    7.841878] systemd[1]: Mounted Kernel Debug File System.
+[    7.844166] pci 0007:00:00.0: PCI bridge to [bus 01-ff]
+[    7.844191] pci 0007:00:00.0: Max Payload Size set to  256/ 256 (was  128), Max Read Rq  256
+[    7.844321] pcieport 0007:00:00.0: Adding to iommu group 6
+[    7.844424] pcieport 0007:00:00.0: PME: Signaling with IRQ 194
+[    7.845054] pcieport 0007:00:00.0: AER: enabled with IRQ 194
+[    7.845288] pci_bus 0007:01: busn_res: [bus 01-ff] is released
+[    7.845372] pci 0007:00:00.0: Removing from iommu group 6
+[    7.845383] pci_bus 0007:00: busn_res: [bus 00-ff] is released
+[    7.847019] tegra194-pcie 140a0000.pcie: Adding to iommu group 24
+[    7.899966] systemd[1]: Mounted Kernel Trace File System.
+[    7.947990] systemd[1]: Finished Set the console keyboard layout.
+[    7.954468] tegra194-pcie 140a0000.pcie: host bridge /bus@0/pcie@140a0000 ranges:
+[    7.954485] tegra194-pcie 140a0000.pcie:      MEM 0x3240000000..0x3527ffffff -> 0x3240000000
+[    7.954491] tegra194-pcie 140a0000.pcie:      MEM 0x3528000000..0x352fffffff -> 0x0040000000
+[    7.954494] tegra194-pcie 140a0000.pcie:       IO 0x002a100000..0x002a1fffff -> 0x002a100000
+[    7.954782] tegra194-pcie 140a0000.pcie: iATU unroll: enabled
+[    7.954784] tegra194-pcie 140a0000.pcie: Detected iATU regions: 8 outbound, 2 inbound
+[    8.005104] systemd[1]: Finished Create List of Static Device Nodes.
+[    8.024753] systemd[1]: modprobe@configfs.service: Deactivated successfully.
+[    8.025052] systemd[1]: Finished Load Kernel Module configfs.
+[    8.025444] systemd[1]: modprobe@drm.service: Deactivated successfully.
+[    8.025722] systemd[1]: Finished Load Kernel Module drm.
+[    8.026118] systemd[1]: modprobe@efi_pstore.service: Deactivated successfully.
+[    8.026396] systemd[1]: Finished Load Kernel Module efi_pstore.
+[    8.061996] tegra194-pcie 140a0000.pcie: Link up
+[    8.063376] tegra194-pcie 140a0000.pcie: Link up
+[    8.063424] tegra194-pcie 140a0000.pcie: PCI host bridge to bus 0008:00
+[    8.063427] pci_bus 0008:00: root bus resource [bus 00-ff]
+[    8.063429] pci_bus 0008:00: root bus resource [mem 0x3240000000-0x3527ffffff pref]
+[    8.063431] pci_bus 0008:00: root bus resource [mem 0x3528000000-0x352fffffff] (bus address [0x40000000-0x47ffffff])
+[    8.063433] pci_bus 0008:00: root bus resource [io  0x300000-0x3fffff] (bus address [0x2a100000-0x2a1fffff])
+[    8.063476] pci 0008:00:00.0: [10de:229c] type 01 class 0x060400
+[    8.063623] pci 0008:00:00.0: PME# supported from D0 D3hot
+[    8.066806] pci 0008:01:00.0: [10ec:8168] type 00 class 0x020000
+[    8.067286] pci 0008:01:00.0: reg 0x10: [io  0x0000-0x00ff]
+[    8.067328] pci 0008:01:00.0: reg 0x18: [mem 0x00000000-0x00000fff 64bit]
+[    8.067355] pci 0008:01:00.0: reg 0x20: [mem 0x00000000-0x00003fff 64bit]
+[    8.068274] pci 0008:01:00.0: supports D1 D2
+[    8.068276] pci 0008:01:00.0: PME# supported from D0 D1 D2 D3hot D3cold
+[    8.071739] systemd[1]: modprobe@fuse.service: Deactivated successfully.
+[    8.072004] systemd[1]: Finished Load Kernel Module fuse.
+[    8.080692] pci 0008:00:00.0: BAR 14: assigned [mem 0x3528000000-0x35280fffff]
+[    8.080695] pci 0008:00:00.0: BAR 13: assigned [io  0x300000-0x300fff]
+[    8.080699] pci 0008:01:00.0: BAR 4: assigned [mem 0x3528000000-0x3528003fff 64bit]
+[    8.080792] pci 0008:01:00.0: BAR 2: assigned [mem 0x3528004000-0x3528004fff 64bit]
+[    8.080883] pci 0008:01:00.0: BAR 0: assigned [io  0x300000-0x3000ff]
+[    8.080911] pci 0008:00:00.0: PCI bridge to [bus 01-ff]
+[    8.080914] pci 0008:00:00.0:   bridge window [io  0x300000-0x300fff]
+[    8.080918] pci 0008:00:00.0:   bridge window [mem 0x3528000000-0x35280fffff]
+[    8.080936] pci 0008:00:00.0: Max Payload Size set to  256/ 256 (was  128), Max Read Rq  256
+[    8.081068] pci 0008:01:00.0: Max Payload Size set to  128/ 128 (was  128), Max Read Rq  128
+[    8.081152] pcieport 0008:00:00.0: Adding to iommu group 24
+[    8.081233] pcieport 0008:00:00.0: PME: Signaling with IRQ 188
+[    8.081543] pcieport 0008:00:00.0: AER: enabled with IRQ 188
+[    8.129423] systemd[1]: Started Journal Service.
+[    8.279411] systemd-journald[269]: Received client request to flush runtime journal.
+[    8.412901] tegra-soc-hwpm f100000.hwpm: Adding to iommu group 25
+[    8.444354] tegra-vic 15340000.vic: Adding to iommu group 26
+[    8.452850] tegra-se 15820000.crypto: Adding to iommu group 27
+[    8.453730] tegra-se 15840000.crypto: Adding to iommu group 28
+[    8.454043] scare-pigeon 13e00000.host1x:vi0-thi@15f00000: Adding to iommu group 29
+[    8.454074] nvdla 15880000.nvdla0: Adding to iommu group 30
+[    8.455103] scare-pigeon 13e00000.host1x:vi0-thi@15f00000: syncpt_unit_base 60000000 syncpt_unit_size 4000000 size 10000
+[    8.455221] scare-pigeon 13e00000.host1x:vi1-thi@14f00000: Adding to iommu group 31
+[    8.458311] scare-pigeon 13e00000.host1x:vi1-thi@14f00000: syncpt_unit_base 60000000 syncpt_unit_size 4000000 size 10000
+[    8.468586] scare-pigeon 13e00000.host1x:isp-thi@14b00000: Adding to iommu group 32
+[    8.469035] nvdla 15880000.nvdla0: syncpt_unit_base 60000000 syncpt_unit_size 4000000 size 10000
+[    8.469478] scare-pigeon 13e00000.host1x:isp-thi@14b00000: syncpt_unit_base 60000000 syncpt_unit_size 4000000 size 10000
+[    8.476239] pva 16000000.pva0: Adding to iommu group 34
+[    8.478051] nvdla 158c0000.nvdla1: Adding to iommu group 33
+[    8.478464] mc: Linux media interface: v0.10
+[    8.499285] nvdla 158c0000.nvdla1: syncpt_unit_base 60000000 syncpt_unit_size 4000000 size 10000
+[    8.504041] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx0: Adding to iommu group 35
+[    8.504571] tegra-nvdec 15480000.nvdec: Adding to iommu group 36
+[    8.509003] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx0: initialized (streamid=18, iommu=smmu.0x0000000008000000)
+[    8.518537] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx1: Adding to iommu group 37
+[    8.519793] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx1: initialized (streamid=19, iommu=smmu.0x0000000008000000)
+[    8.535957] tegra-nvenc 154c0000.nvenc: Adding to iommu group 38
+[    8.541695] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx2: Adding to iommu group 39
+[    8.544218] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx2: initialized (streamid=20, iommu=smmu.0x0000000008000000)
+[    8.565221] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx3: Adding to iommu group 40
+[    8.567174] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx3: initialized (streamid=21, iommu=smmu.0x0000000008000000)
+[    8.586916] tegra-nvjpg 15380000.nvjpg: Adding to iommu group 41
+[    8.597030] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx4: Adding to iommu group 42
+[    8.598863] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx4: initialized (streamid=22, iommu=smmu.0x0000000008000000)
+[    8.607223] tegra-nvjpg 15540000.nvjpg: Adding to iommu group 43
+[    8.612683] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx5: Adding to iommu group 44
+[    8.614502] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx5: initialized (streamid=23, iommu=smmu.0x0000000008000000)
+[    8.625802] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx6: Adding to iommu group 45
+[    8.627834] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx6: initialized (streamid=24, iommu=smmu.0x0000000008000000)
+[    8.630363] tegra-ofa 15a50000.ofa: Adding to iommu group 46
+[    8.636804] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx7: Adding to iommu group 47
+[    8.637724] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx7: initialized (streamid=25, iommu=smmu.0x0000000008000000)
+[    8.637916] pva 16000000.pva0: pdata->version is HW_GEN2
+[    8.638876] [drm] Initialized tegra 1.0.99 20120330 for drm on minor 0
+[    8.638891] drm drm: [drm] Cannot find any crtc or sizes
+[    8.641816] pva 16000000.pva0: Completed nvhost_client_device_init
+[    8.642730] pva 16000000.pva0: syncpt_unit_base 60000000 syncpt_unit_size 4000000 size 10000
+[    8.731957] videodev: Linux video capture interface: v2.00
+[    8.791358] Inserting ivc_ext.ko module
+[    8.811363] tegra186-cam-rtcpu bc00000.rtcpu: Adding to iommu group 48
+[    8.812341] tegra186-cam-rtcpu bc00000.rtcpu: Trace buffer configured at IOVA=0xbff00000
+[    8.817005] tegra-ivc-bus bc00000.rtcpu:ivc-bus: region 0: iova=0xbfec0000-0xbfee027f size=131712
+[    8.817071] tegra-ivc-bus bc00000.rtcpu:ivc-bus:echo@0: echo: ver=0 grp=1 RX[16x64]=0x1000-0x1480 TX[16x64]=0x1480-0x1900
+[    8.817120] tegra-ivc-bus bc00000.rtcpu:ivc-bus:dbg@1: dbg: ver=0 grp=1 RX[1x512]=0x1900-0x1b80 TX[1x512]=0x1b80-0x1e00
+[    8.817140] tegra-ivc-bus bc00000.rtcpu:ivc-bus:dbg@2: dbg: ver=0 grp=1 RX[1x8192]=0x1e00-0x3e80 TX[1x8192]=0x3e80-0x5f00
+[    8.817168] tegra-ivc-bus bc00000.rtcpu:ivc-bus:ivccontrol@3: ivccontrol: ver=0 grp=1 RX[64x320]=0x5f00-0xaf80 TX[64x320]=0xaf80-0x10000
+[    8.817191] tegra-ivc-bus bc00000.rtcpu:ivc-bus:ivccapture@4: ivccapture: ver=0 grp=1 RX[512x64]=0x10000-0x18080 TX[512x64]=0x18080-0x20100
+[    8.817212] tegra-ivc-bus bc00000.rtcpu:ivc-bus:diag@5: diag: ver=0 grp=1 RX[1x64]=0x20100-0x201c0 TX[1x64]=0x201c0-0x20280
+[    8.817388] tegra186-cam-rtcpu bc00000.rtcpu: using cam RTCPU IRQ (218)
+[    8.817391] tegra186-cam-rtcpu bc00000.rtcpu: tegra_camrtc_mon_create is successful
+[    8.817641] tegra186-cam-rtcpu bc00000.rtcpu: firmware version cpu=rce cmd=6 sha1=04ea869968864dcb132a50cad9712bd529a09ee2
+[    8.817771] tegra-ivc-bus bc00000.rtcpu:ivc-bus:echo@0: ivc channel driver missing
+[    8.817775] tegra-ivc-bus bc00000.rtcpu:ivc-bus:dbg@1: ivc channel driver missing
+[    8.817777] tegra-ivc-bus bc00000.rtcpu:ivc-bus:dbg@2: ivc channel driver missing
+[    8.817779] tegra-ivc-bus bc00000.rtcpu:ivc-bus:ivccontrol@3: ivc channel driver missing
+[    8.817781] tegra-ivc-bus bc00000.rtcpu:ivc-bus:ivccapture@4: ivc channel driver missing
+[    8.817783] tegra-ivc-bus bc00000.rtcpu:ivc-bus:diag@5: ivc channel driver missing
+[    8.817787] tegra-hsp b950000.tegra-hsp: Try increasing MBOX_TX_QUEUE_LEN
+[    8.817792] tegra-hsp b950000.tegra-hsp: Try increasing MBOX_TX_QUEUE_LEN
+[    8.817794] tegra-hsp b950000.tegra-hsp: Try increasing MBOX_TX_QUEUE_LEN
+[    8.866020] [RCE] TCU debug prints will be routed to traces.
+[    8.963428] tegra-dce d800000.dce: Adding to iommu group 49
+[    8.964343] dce: dce_ipc_channel_init:311  Invalid Channel State [0x0] for ch_type [2]
+[    8.964622] dce: tegra_dce_probe:247  Found display consumer device
+[    8.965034] dce: dce_mailbox_set_full_interrupt:157  Intr bit set multiple times for MB : [0x5]
+[    8.965041] dce: dce_mailbox_set_full_interrupt:157  Intr bit set multiple times for MB : [0x5]
+[    8.965292] dce: dce_admin_send_cmd_ver:456  version : [0x3] err : [0x0]
+[    8.965498] dce: dce_mailbox_set_full_interrupt:157  Intr bit set multiple times for MB : [0x1]
+[    8.965504] dce: dce_mailbox_set_full_interrupt:157  Intr bit set multiple times for MB : [0x1]
+[    8.965507] dce: dce_admin_setup_clients_ipc:585  Channel Reset Complete for Type [1] ...
+[    8.965509] dce: dce_admin_setup_clients_ipc:561  Get queue info failed for [2]
+[    8.965705] dce: dce_mailbox_set_full_interrupt:157  Intr bit set multiple times for MB : [0x2]
+[    8.965712] dce: dce_admin_setup_clients_ipc:585  Channel Reset Complete for Type [3] ...
+[    8.966679] dce: dce_start_boot_flow:166  DCE_BOOT_DONE
+[    8.969601] r8168 0008:01:00.0: Adding to iommu group 24
+[    8.969716] r8168 Gigabit Ethernet driver 8.053.00-NAPI loaded
+[    8.969791] r8168 0008:01:00.0: enabling device (0000 -> 0003)
+[    8.970547] tegra-camrtc-capture-vi tegra-capture-vi: subdev 13e00000.host1x:nvcsi@15a00000- bound
+[    8.971173] tegra194-isp5 14800000.isp: Adding to iommu group 32
+[    8.971737] tegra194-vi5 13e00000.host1x:vi0@15c00000: Adding to iommu group 29
+[    8.973401] nvvrs_pseq 4-003c: NVVRS Vendor ID: 0x9
+[    8.973440] tegra194-vi5 13e00000.host1x:vi1@14c00000: Adding to iommu group 31
+[    8.973491] (NULL device *): fops function table already registered
+[    8.974352] nvvrs_pseq 4-003c: NVVRS Model Rev: 0x82
+[    8.975732] nvvrs_pseq 4-003c: NVVRS PSEQ probe successful
+[    8.985005] nv_platform 13800000.display: Adding to iommu group 50
+[    8.986830] r8168: This product is covered by one or more of the following patents: US6,570,884, US6,115,776, and US6,327,625.
+[    8.988855] platform 13800000.display:nvdisplay-niso: Adding to iommu group 51
+[    8.988894] r8168  Copyright (C) 2024 Realtek NIC software team <nicfae@realtek.com> 
+                This program comes with ABSOLUTELY NO WARRANTY; for details, please see <http://www.gnu.org/licenses/>. 
+                This is free software, and you are welcome to redistribute it under certain conditions; see <http://www.gnu.org/licenses/>. 
+[    9.022557] spi-tegra114 3210000.spi: Adding to iommu group 1
+[    9.064432] spi-tegra114 3230000.spi: Adding to iommu group 1
+[    9.067509] tegra-hda 3510000.hda: Adding to iommu group 52
+[    9.078710] cfg80211: Loading compiled-in X.509 certificates for regulatory database
+[    9.079211] cfg80211: Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+[    9.079432] cfg80211: Loaded X.509 cert 'wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600'
+[    9.181875] rtl88x2ce 0001:01:00.0: Adding to iommu group 3
+[    9.183485] rtl88x2ce 0001:01:00.0: enabling device (0000 -> 0003)
+[    9.205511] at24 0-0050: 256 byte 24c02 EEPROM, read-only
+[    9.220479] at24 0-0057: 256 byte 24c02 EEPROM, read-only
+[    9.243733] input: NVIDIA Jetson Orin NX HDA HDMI/DP,pcm=3 as /devices/platform/bus@0/3510000.hda/sound/card0/input4
+[    9.255726] tegra234-aon c000000.aon: Adding to iommu group 53
+[    9.257237]  c000000.aon:hsp: probed
+[    9.257563] input: NVIDIA Jetson Orin NX HDA HDMI/DP,pcm=7 as /devices/platform/bus@0/3510000.hda/sound/card0/input5
+[    9.257603] tegra234-aon c000000.aon: init done
+[    9.257691] input: NVIDIA Jetson Orin NX HDA HDMI/DP,pcm=8 as /devices/platform/bus@0/3510000.hda/sound/card0/input6
+[    9.257775] input: NVIDIA Jetson Orin NX HDA HDMI/DP,pcm=9 as /devices/platform/bus@0/3510000.hda/sound/card0/input7
+[    9.268237] CAN device driver interface
+[    9.277120] thermal-trip-event cpu-throttle-alert: cooling device registered.
+[    9.288880] thermal-trip-event gpu-throttle-alert: cooling device registered.
+[    9.304030] thermal-trip-event cv0-throttle-alert: cooling device registered.
+[    9.304248] gic 2a41000.interrupt-controller: GIC IRQ controller registered
+[    9.304455] tegra-aconnect bus@0:aconnect@2900000: Tegra ACONNECT bus registered
+[    9.326146] TT CAN feature is not supported
+[    9.326705] 	 Message RAM Configuration
+               	| base addr   |0x0c312000|
+               	| sidfc_flssa |0x00000000|
+               	| xidfc_flesa |0x00000040|
+               	| rxf0c_f0sa  |0x000000c0|
+               	| rxf1c_f1sa  |0x000009c0|
+               	| rxbc_rbsa   |0x000009c0|
+               	| txefc_efsa  |0x000009c0|
+               	| txbc_tbsa   |0x00000a40|
+               	| tmc_tmsa    |0x00000ec0|
+               	| mram size   |0x00001000|
+[    9.328237] Release 3.2.3 from 09.06.2018
+[    9.328584] net can0: mttcan device registered (regs=000000004cb8cbed, irq=200)
+[    9.331234] thermal-trip-event cv1-throttle-alert: cooling device registered.
+[    9.331746] irq: IRQ256: trimming hierarchy from :bus@0:pmc@c360000
+[    9.332280] fusb301 1-0025: device id: 0x12
+[    9.335909] thermal-trip-event cv2-throttle-alert: cooling device registered.
+[    9.344746] thermal-trip-event soc0-throttle-alert: cooling device registered.
+[    9.353671] thermal-trip-event soc1-throttle-alert: cooling device registered.
+[    9.355608] thermal-trip-event soc2-throttle-alert: cooling device registered.
+[    9.357082] thermal-trip-event hot-surface-alert: cooling device registered.
+[    9.364464] fusb301 1-0025: toggle_time(0) is not updated
+[    9.364811] fusb301 1-0025: fusb301_set_mode: mode (32)(32)
+[    9.365147] fusb301 1-0025: fusb301_detach: type[0x00] chipstate[0x01]
+[    9.365150] fusb301 1-0025: fusb_update_state: 1
+[    9.365945] fusb301 1-0025: mode[0x20], host_cur[0x02], dttime[0x00]
+[    9.391793] usbcore: registered new interface driver btusb
+[    9.393296] Bluetooth: hci0: RTL: examining hci_ver=0a hci_rev=000c lmp_ver=0a lmp_subver=8822
+[    9.394273] Bluetooth: hci0: RTL: rom_version status=0 version=3
+[    9.394280] Bluetooth: hci0: RTL: loading rtl_bt/rtl8822cu_fw.bin
+[    9.394448] rtk_btusb: Realtek Bluetooth USB driver ver 3.1.65ab490.20240531-141726
+[    9.394451] rtk_btcoex: rtk_btcoex_init: version: 1.2
+[    9.394452] rtk_btcoex: create workqueue
+[    9.394541] rtk_btcoex: alloc buffers 1792, 2432 for ev and l2
+[    9.394606] usbcore: registered new interface driver rtk_btusb
+[    9.395057] Bluetooth: hci0: RTL: loading rtl_bt/rtl8822cu_config.bin
+[    9.395307] Bluetooth: hci0: RTL: cfg_sz 6, total sz 35086
+[    9.534177] fusb301 1-0025: fusb301_work_handler: int_sts[0x05]
+[    9.534750] fusb301 1-0025: sts[0x2f], type[0x08]
+[    9.534755] fusb301 1-0025: fusb_update_state: 6
+[    9.577088] loop0: detected capacity change from 0 to 8
+[    9.579786] loop1: detected capacity change from 0 to 373072
+[    9.583933] loop2: detected capacity change from 0 to 141232
+[    9.595655] loop3: detected capacity change from 0 to 126776
+[    9.601726] loop4: detected capacity change from 0 to 95512
+[    9.604496] r8168 0008:01:00.0 enP8p1s0: renamed from eth0
+[    9.608246] loop5: detected capacity change from 0 to 1132440
+[    9.612767] nvvrs-pseq-rtc nvvrs-pseq-rtc: registered as rtc0
+[    9.614152] nvvrs-pseq-rtc nvvrs-pseq-rtc: setting system clock to 1970-01-01T00:00:56 UTC (56)
+[    9.614318] loop6: detected capacity change from 0 to 187776
+[    9.623556] loop7: detected capacity change from 0 to 357512
+[    9.630235] loop8: detected capacity change from 0 to 85664
+[    9.634400] rtl88x2ce 0001:01:00.0 wlP1p1s0: renamed from wlan0
+[    9.653660] tegra-adma 2930000.dma-controller: Tegra210 ADMA driver registered 32 channels
+[    9.817006] tegra210-admaif 290f000.admaif: Adding to iommu group 54
+[    9.894301] Bluetooth: hci0: RTL: fw version 0x19b76d7d
+[   11.910020] using random self ethernet address
+[   11.910026] using random host ethernet address
+[   11.926276] Bluetooth: BNEP (Ethernet Emulation) ver 1.3
+[   11.926286] Bluetooth: BNEP filters: protocol multicast
+[   11.926297] Bluetooth: BNEP socket layer initialized
+[   11.938426] NET: Registered PF_ALG protocol family
+[   11.988935] loop9: detected capacity change from 0 to 32768
+[   12.018487] nv_nvsciipc_init.sh[886]: found /dev/nvsciipc
+[   12.034126] nvsciipc: set_db start
+[   12.034156] nvsciipc: set_db done
+[   12.114463] IRQ230: set affinity failed(-22).
+[   12.114497] IRQ254: set affinity failed(-22).
+[   12.115685] psci: CPU4 killed (polled 0 ms)
+[   12.130361] enP8p1s0: 0xffff800008ead000, 3c:6d:66:0d:53:d9, IRQ 251
+[   12.141181] Mass Storage Function, version: 2009/09/11
+[   12.141189] LUN: removable file: (no medium)
+[   12.198348] IRQ230: set affinity failed(-22).
+[   12.198378] IRQ251: set affinity failed(-22).
+[   12.198382] IRQ254: set affinity failed(-22).
+[   12.199460] psci: CPU5 killed (polled 0 ms)
+[   12.232795] using random self ethernet address
+[   12.232804] using random host ethernet address
+[   12.270341] IRQ230: set affinity failed(-22).
+[   12.270371] IRQ251: set affinity failed(-22).
+[   12.270375] IRQ254: set affinity failed(-22).
+[   12.270585] psci: CPU6 killed (polled 0 ms)
+[   12.351357] IRQ230: set affinity failed(-22).
+[   12.351456] IRQ251: set affinity failed(-22).
+[   12.352098] psci: CPU7 killed (polled 0 ms)
+[   12.390764] pstore: Using crash dump compression: deflate
+[   12.390894] printk: console [ramoops-1]: printing thread started
+[   12.390914] printk: console [ramoops-1] enabled
+[   12.390916] pstore: Registered ramoops as persistent store backend
+[   12.390918] ramoops: using 0x200000@0x4725f0000, ecc: 0
+[   12.549188] bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your scripts to load br_netfilter if you need this.
+[   12.560390] usb0: HOST MAC c2:d6:da:8f:db:b0
+[   12.560397] usb0: MAC c2:d6:da:8f:db:b1
+[   12.562994] nvgpu: 17000000.gpu                  gk20a_scale_init:541  [INFO]  enabled scaling for GPU
+
+[   12.563355] usb1: HOST MAC c2:d6:da:8f:db:b2
+[   12.563359] usb1: MAC c2:d6:da:8f:db:b3
+[   12.563389] tegra-xudc 3550000.usb: EP 0 (type: ctrl, dir: out) enabled
+[   12.567449] l4tbr0: port 1(usb0) entered blocking state
+[   12.567464] l4tbr0: port 1(usb0) entered disabled state
+[   12.581514] device usb0 entered promiscuous mode
+[   12.604734] l4tbr0: port 2(usb1) entered blocking state
+[   12.604753] l4tbr0: port 2(usb1) entered disabled state
+[   12.607544] device usb1 entered promiscuous mode
+[   12.617801] loop9: detected capacity change from 0 to 32768
+[   12.697298] zram: Added device: zram0
+[   12.713537] zram: Added device: zram1
+[   12.715836] zram: Added device: zram2
+[   12.724212] zram: Added device: zram3
+[   12.819344] zram0: detected capacity change from 0 to 4004600
+[   12.854546] Adding 2002296k swap on /dev/zram0.  Priority:5 extents:1 across:2002296k SS
+[   12.864355] zram1: detected capacity change from 0 to 4004600
+[   12.874846] Adding 2002296k swap on /dev/zram1.  Priority:5 extents:1 across:2002296k SS
+[   12.882640] zram2: detected capacity change from 0 to 4004600
+[   12.894187] Adding 2002296k swap on /dev/zram2.  Priority:5 extents:1 across:2002296k SS
+[   12.898967] zram3: detected capacity change from 0 to 4004600
+[   12.912732] Adding 2002296k swap on /dev/zram3.  Priority:5 extents:1 across:2002296k SS
+[   13.094913] tegra-xudc 3550000.usb: EP 5 (type: intr, dir: in) enabled
+[   13.094936] tegra-xudc 3550000.usb: EP 3 (type: bulk, dir: in) enabled
+[   13.094949] tegra-xudc 3550000.usb: EP 2 (type: bulk, dir: out) enabled
+[   13.095001] IPv6: ADDRCONF(NETDEV_CHANGE): usb0: link becomes ready
+[   13.095025] tegra-xudc 3550000.usb: EP 9 (type: intr, dir: in) enabled
+[   13.095039] tegra-xudc 3550000.usb: EP 7 (type: bulk, dir: in) enabled
+[   13.095050] tegra-xudc 3550000.usb: EP 4 (type: bulk, dir: out) enabled
+[   13.095077] tegra-xudc 3550000.usb: EP 15 (type: intr, dir: in) enabled
+[   13.095118] tegra-xudc 3550000.usb: EP 11 (type: bulk, dir: in) enabled
+[   13.095130] tegra-xudc 3550000.usb: EP 6 (type: bulk, dir: out) enabled
+[   13.103005] tegra-xudc 3550000.usb: EP 13 (type: bulk, dir: in) enabled
+[   13.103025] tegra-xudc 3550000.usb: EP 8 (type: bulk, dir: out) enabled
+[   13.103075] IPv6: ADDRCONF(NETDEV_CHANGE): usb1: link becomes ready
+[   13.104498] tegra-xudc 3550000.usb: ep 13 disabled
+[   13.104585] tegra-xudc 3550000.usb: ep 8 disabled
+[   13.124996] tegra-xudc 3550000.usb: EP 13 (type: bulk, dir: in) enabled
+[   13.125016] tegra-xudc 3550000.usb: EP 8 (type: bulk, dir: out) enabled
+[   14.950545] l4tbr0: port 2(usb1) entered blocking state
+[   14.950558] l4tbr0: port 2(usb1) entered forwarding state
+[   14.950630] l4tbr0: port 1(usb0) entered blocking state
+[   14.950635] l4tbr0: port 1(usb0) entered forwarding state
+[   14.958421] IPv6: ADDRCONF(NETDEV_CHANGE): l4tbr0: link becomes ready
+[   15.154188] nvidia-modeset: Loading NVIDIA UNIX Open Kernel Mode Setting Driver for aarch64  540.5.0  Release Build  (buildbrain@239549d1-8639-491a-b9e7-120e21430986-l1eu-vqrkv)  Thu Jan 15 19:36:45 PST 2026
+[   15.160865] [drm] [nvidia-drm] [GPU ID 0x00020000] Loading driver
+[   15.451626] NVRM rpcRmApiControl_dce: NVRM_RPC_DCE: Failed RM ctrl call cmd:0x731341 result 0xffff:
+[   15.452701] NVRM rpcRmApiControl_dce: NVRM_RPC_DCE: Failed RM ctrl call cmd:0x730282 result 0x1f:
+[   15.505464] [drm] Initialized nvidia-drm 0.0.0 20160202 for 13800000.display on minor 1
+[   15.586953] Console: switching to colour frame buffer device 240x67
+[   15.586975] nv_platform 13800000.display: [drm] fb0: nvidia-drmdrmfb frame buffer device
+[   17.029691] ACK 04 d4
+[   17.034179] ACK 04 d4
+[   17.036355] IPv6: ADDRCONF(NETDEV_CHANGE): wlP1p1s0: link becomes ready
+[   20.139014] loop10: detected capacity change from 0 to 8
+[   21.746195] audit: type=1326 audit(1776760780.913:2): auid=4294967295 uid=0 gid=0 ses=4294967295 subj=kernel pid=2123 comm="cupsd" exe="/snap/cups/1184/sbin/cupsd" sig=0 arch=c00000b7 syscall=55 compat=0 ip=0xffff8ffdce0c code=0x50000
+[   22.206434] rfkill: input handler disabled
+[   22.488096] audit: type=1326 audit(1776760781.653:3): auid=4294967295 uid=0 gid=0 ses=4294967295 subj=kernel pid=2123 comm="cupsd" exe="/snap/cups/1184/sbin/cupsd" sig=0 arch=c00000b7 syscall=55 compat=0 ip=0xffff8ffdce0c code=0x50000
+[   23.168766] audit: type=1326 audit(1776760782.333:4): auid=4294967295 uid=0 gid=0 ses=4294967295 subj=kernel pid=2168 comm="cups-browsed" exe="/snap/cups/1184/sbin/cups-browsed" sig=0 arch=c00000b7 syscall=274 compat=0 ip=0xffffa4df5b68 code=0x50000

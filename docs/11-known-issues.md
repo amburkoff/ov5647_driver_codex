@@ -26,6 +26,10 @@
 - Even after the NULL-dereference fix, manual unload is still not stable:
   - `sudo rmmod nv_ov5647` can still hang the Jetson hard enough that no useful `pstore` record is left behind;
   - the latest preserved unload trace stops before any visible `ov5647_remove()` marker, so the exact stall boundary is still being narrowed.
+- The latest preserved unload trace also stops before the newly added `module exit enter` marker:
+  - the `.ko` contains that marker string;
+  - this makes the full unload path too risky to repeat without further isolation;
+  - `skip_v4l2_register=1` was added to separate chip-ID probe from V4L2 subdev/media graph registration.
 - The current minimal stream path reaches sensor `STREAMING` state in driver logs, but VI still times out:
   - capture returns with zero-byte output files;
   - kernel logs show repeated `uncorr_err: request timed out after 2500 ms`;

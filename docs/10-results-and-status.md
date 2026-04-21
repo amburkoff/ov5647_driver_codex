@@ -1,6 +1,6 @@
 # Results And Status
 
-Current overall status: `inventory, safe scaffold, corrected dev overlay boot, successful single-sensor probe, first /dev/video0, passing v4l2-compliance, capture path reaches STREAMON but no frames yet, unload path still unstable`
+Current overall status: `inventory, safe scaffold, corrected dev overlay boot, successful single-sensor probe, first /dev/video0, passing v4l2-compliance, capture path reaches STREAMON but no frames yet, unload path still unstable and now isolated with skip_v4l2_register`
 
 Completed:
 
@@ -71,6 +71,8 @@ Completed:
 - the first capture attempt did not hang the Jetson, but produced no image data:
   - the raw output file was zero bytes;
   - VI reported repeated `uncorr_err: request timed out after 2500 ms`.
+- the latest manual unload hang did not preserve any `module_exit` marker despite the loaded `.ko` containing the marker strings.
+- a diagnostic `skip_v4l2_register` module parameter has been added to isolate chip-ID probe from V4L2 subdev/media graph registration.
 
 Not completed yet:
 
@@ -83,6 +85,6 @@ Not completed yet:
 
 Next smallest safe step:
 
-- finish narrowing the `rmmod` hang boundary with manual-only unload tests and new exit-path markers;
+- run the next manual-only isolated load/unload test with `skip_v4l2_register=1`;
 - continue aligning the minimal mode table and CSI timing until VI receives real frames instead of timing out;
 - keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.
