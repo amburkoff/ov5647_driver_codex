@@ -79,6 +79,9 @@ Completed:
 - unload helper now records media/video/subdev node holders through `fuser` and `lsof` before issuing `rmmod`.
 - follow-up full-load inspection showed no userspace holders, module `refcnt=0`, and no module holders.
 - current media graph is linked as `nv_ov5647 -> nvcsi -> vi-output`, with `/dev/video0` at `BG10 640x480`.
+- prepared next-stage unload diagnostics:
+  - `skip_v4l2_unregister`;
+  - `unload_marker_delay_ms`.
 
 Not completed yet:
 
@@ -91,6 +94,6 @@ Not completed yet:
 
 Next smallest safe step:
 
-- avoid repeating the full unload hang; add narrower kernel-side diagnostics for V4L2 unregister or task-state capture first;
+- do not unload the currently loaded module from Codex; next risky unload must be manual and use the new marker-delay diagnostics after a fresh module load;
 - continue aligning the minimal mode table and CSI timing until VI receives real frames instead of timing out;
 - keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.

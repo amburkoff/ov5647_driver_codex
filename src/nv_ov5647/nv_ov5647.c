@@ -77,7 +77,23 @@ module_param(skip_v4l2_register, bool, 0644);
 MODULE_PARM_DESC(skip_v4l2_register,
 		 "Probe sensor and chip ID but skip tegracam_v4l2subdev_register(). Default: false");
 
+static bool skip_v4l2_unregister;
+module_param(skip_v4l2_unregister, bool, 0644);
+MODULE_PARM_DESC(skip_v4l2_unregister,
+		 "Diagnostic only: skip tegracam_v4l2subdev_unregister() in remove(). Default: false");
+
+static uint unload_marker_delay_ms;
+module_param(unload_marker_delay_ms, uint, 0644);
+MODULE_PARM_DESC(unload_marker_delay_ms,
+		 "Optional delay after unload markers to let userspace persist logs. Default: 0");
+
 static bool driver_registered;
+
+static void ov5647_unload_marker_delay(void)
+{
+	if (unload_marker_delay_ms)
+		msleep(unload_marker_delay_ms);
+}
 
 static const struct reg_8 ov5647_common_regs[] = {
 	{0x0100, 0x00},
@@ -988,8 +1004,15 @@ static int ov5647_remove(struct i2c_client *client)
 		dev_info(&client->dev,
 			 "%s: before tegracam_v4l2subdev_unregister\n",
 			 __func__);
-		tegracam_v4l2subdev_unregister(tc_dev);
-		priv->v4l2_registered = false;
+		ov5647_unload_marker_delay();
+		if (skip_v4l2_unregister) {
+			dev_warn(&client->dev,
+				 "%s: skip_v4l2_unregister=1; diagnostic leak risk, skipping v4l2 unregister\n",
+				 __func__);
+		} else {
+			tegracam_v4l2subdev_unregister(tc_dev);
+			priv->v4l2_registered = false;
+		}
 		dev_info(&client->dev,
 			 "%s: after tegracam_v4l2subdev_unregister\n",
 			 __func__);
@@ -1001,6 +1024,7 @@ static int ov5647_remove(struct i2c_client *client)
 
 	dev_info(&client->dev, "%s: before tegracam_device_unregister\n",
 		 __func__);
+	ov5647_unload_marker_delay();
 	tegracam_device_unregister(tc_dev);
 	dev_info(&client->dev, "%s: after tegracam_device_unregister\n",
 		 __func__);
@@ -1038,9 +1062,10 @@ static int __init nv_ov5647_init(void)
 {
 	int err = 0;
 
-	pr_info("%s: module init register_i2c_driver=%d allow_hw_probe=%d skip_v4l2_register=%d\n",
+	pr_info("%s: module init register_i2c_driver=%d allow_hw_probe=%d skip_v4l2_register=%d skip_v4l2_unregister=%d unload_marker_delay_ms=%u\n",
 		OV5647_NAME, register_i2c_driver, allow_hw_probe,
-		skip_v4l2_register);
+		skip_v4l2_register, skip_v4l2_unregister,
+		unload_marker_delay_ms);
 
 	if (!register_i2c_driver) {
 		pr_info("%s: safety gate active; i2c driver registration skipped\n",
@@ -1064,9 +1089,11 @@ static void __exit nv_ov5647_exit(void)
 {
 	pr_info("%s: module exit enter driver_registered=%d\n",
 		OV5647_NAME, driver_registered);
+	ov5647_unload_marker_delay();
 
 	if (driver_registered) {
 		pr_info("%s: before i2c_del_driver\n", OV5647_NAME);
+		ov5647_unload_marker_delay();
 		i2c_del_driver(&ov5647_i2c_driver);
 		pr_info("%s: after i2c_del_driver\n", OV5647_NAME);
 		driver_registered = false;

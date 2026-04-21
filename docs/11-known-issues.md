@@ -40,6 +40,9 @@
   - `fuser` and `lsof` show no holders for current media/video/subdev nodes;
   - `/sys/module/nv_ov5647/refcnt` is `0`;
   - `/sys/module/nv_ov5647/holders` is empty.
+- `skip_v4l2_unregister` is diagnostic-only:
+  - it can intentionally skip framework cleanup and may leak media/V4L2 state;
+  - do not treat it as a production workaround.
 - The current minimal stream path reaches sensor `STREAMING` state in driver logs, but VI still times out:
   - capture returns with zero-byte output files;
   - kernel logs show repeated `uncorr_err: request timed out after 2500 ms`;
