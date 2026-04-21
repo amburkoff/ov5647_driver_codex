@@ -137,6 +137,13 @@ Completed:
   - upstream uses `0x3821 = 0x03`;
   - the local table currently uses `0x3821 = 0x01`;
   - the local VGA table also contains additional `0x5002` and `0x4837` writes that are not present in upstream VGA mode.
+- a stronger upstream difference was found in the power-on path:
+  - upstream OV5647 writes a stream-stop sequence after output-enable to put CSI lanes into LP-11;
+  - the local driver did not do this before the zero-byte capture test.
+- source-side LP-11 power-on fix is now prepared and builds:
+  - `ov5647_power_on()` writes the upstream stream-stop sequence after output-enable;
+  - `ov5647_stop_streaming()` now uses the same helper;
+  - rebuilt `.ko` contains `stream-stop LP-11 setup complete`.
 
 Not completed yet:
 
@@ -149,6 +156,7 @@ Not completed yet:
 Next smallest safe step:
 
 - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
-- prepare one source-only OV5647 640x480 mode-table alignment against upstream Linux, rebuild, and commit before the next manual runtime test;
+- manually unload the old in-memory module, load the rebuilt LP-11 `.ko`, and rerun one bounded single-frame capture;
+- if capture still times out, prepare one source-only OV5647 640x480 mode-table alignment against upstream Linux;
 - continue aligning the minimal mode table and CSI timing until VI receives real frames instead of timing out;
 - keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.

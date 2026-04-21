@@ -1,0 +1,83 @@
+# command: git diff -- src/nv_ov5647/nv_ov5647.c
+diff --git a/src/nv_ov5647/nv_ov5647.c b/src/nv_ov5647/nv_ov5647.c
+index a68779d..662a0d8 100644
+--- a/src/nv_ov5647/nv_ov5647.c
++++ b/src/nv_ov5647/nv_ov5647.c
+@@ -406,6 +406,33 @@ static int ov5647_write_table(struct camera_common_data *s_data,
+ 	return 0;
+ }
+ 
++static int ov5647_write_stream_stop_regs(struct camera_common_data *s_data,
++					 bool standby)
++{
++	int err;
++
++	err = ov5647_write_reg(s_data, OV5647_REG_MIPI_CTRL00,
++			       OV5647_MIPI_CTRL00_CLOCK_LANE_GATE |
++			       OV5647_MIPI_CTRL00_BUS_IDLE |
++			       OV5647_MIPI_CTRL00_CLOCK_LANE_DISABLE);
++	if (err)
++		return err;
++
++	err = ov5647_write_reg(s_data, OV5647_REG_FRAME_OFF_NUMBER, 0x0f);
++	if (err)
++		return err;
++
++	err = ov5647_write_reg(s_data, OV5640_REG_PAD_OUT, 0x01);
++	if (err)
++		return err;
++
++	if (!standby)
++		return 0;
++
++	return ov5647_write_reg(s_data, OV5647_REG_MODE_SELECT,
++				OV5647_MODE_STANDBY);
++}
++
+ static struct camera_common_pdata *ov5647_parse_dt(struct tegracam_device *tc_dev)
+ {
+ 	struct device *dev = tc_dev->dev;
+@@ -630,6 +657,18 @@ static int ov5647_power_on(struct camera_common_data *s_data)
+ 		goto disable_mclk;
+ 	}
+ 
++	/*
++	 * Upstream OV5647 forces stream-stop during power-on to put the CSI
++	 * lanes into LP-11 before the first real stream start.
++	 */
++	err = ov5647_write_stream_stop_regs(s_data, false);
++	if (err) {
++		dev_err(dev, "%s: stream-stop LP-11 setup failed err=%d\n",
++			__func__, err);
++		goto disable_mclk;
++	}
++	dev_info(dev, "%s: stream-stop LP-11 setup complete\n", __func__);
++
+ 	pw->state = true;
+ 
+ 	dev_info(dev, "%s: exit success\n", __func__);
+@@ -843,23 +882,7 @@ static int ov5647_stop_streaming(struct tegracam_device *tc_dev)
+ 
+ 	dev_info(tc_dev->dev, "%s: enter\n", __func__);
+ 
+-	err = ov5647_write_reg(s_data, OV5647_REG_MIPI_CTRL00,
+-			       OV5647_MIPI_CTRL00_CLOCK_LANE_GATE |
+-			       OV5647_MIPI_CTRL00_BUS_IDLE |
+-			       OV5647_MIPI_CTRL00_CLOCK_LANE_DISABLE);
+-	if (err)
+-		return err;
+-
+-	err = ov5647_write_reg(s_data, OV5647_REG_FRAME_OFF_NUMBER, 0x0f);
+-	if (err)
+-		return err;
+-
+-	err = ov5647_write_reg(s_data, OV5640_REG_PAD_OUT, 0x01);
+-	if (err)
+-		return err;
+-
+-	err = ov5647_write_reg(s_data, OV5647_REG_MODE_SELECT,
+-			       OV5647_MODE_STANDBY);
++	err = ov5647_write_stream_stop_regs(s_data, true);
+ 	if (err)
+ 		return err;
+ 

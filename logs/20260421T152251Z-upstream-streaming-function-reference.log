@@ -1,0 +1,112 @@
+# command: sed -n '930,1040p' artifacts/reference/upstream-linux/ov5647.c
+
+static const struct v4l2_subdev_internal_ops ov5647_subdev_internal_ops = {
+	.open = ov5647_open,
+};
+
+static int ov5647_s_ctrl(struct v4l2_ctrl *ctrl)
+{
+	struct ov5647 *sensor = container_of(ctrl->handler,
+					    struct ov5647, ctrls);
+	struct v4l2_subdev *sd = &sensor->sd;
+	struct i2c_client *client = v4l2_get_subdevdata(sd);
+	int ret = 0;
+
+	if (ctrl->id == V4L2_CID_VBLANK) {
+		int exposure_max, exposure_def;
+
+		/* Update max exposure while meeting expected vblanking */
+		exposure_max = sensor->mode->format.height + ctrl->val - 4;
+		exposure_def = min(exposure_max, OV5647_EXPOSURE_DEFAULT);
+		__v4l2_ctrl_modify_range(sensor->exposure,
+					 sensor->exposure->minimum,
+					 exposure_max, sensor->exposure->step,
+					 exposure_def);
+	}
+
+	/*
+	 * If the device is not powered up do not apply any controls
+	 * to H/W at this time. Instead the controls will be restored
+	 * at s_stream(1) time.
+	 */
+	if (pm_runtime_get_if_in_use(&client->dev) == 0)
+		return 0;
+
+	switch (ctrl->id) {
+	case V4L2_CID_AUTO_WHITE_BALANCE:
+		ret = cci_write(sensor->regmap, OV5647_REG_AWB,
+				ctrl->val ? 1 : 0, NULL);
+		break;
+	case V4L2_CID_AUTOGAIN:
+		/* Non-zero turns on AGC by clearing bit 1.*/
+		ret = cci_update_bits(sensor->regmap, OV5647_REG_AEC_AGC, BIT(1),
+				      ctrl->val ? 0 : BIT(1), NULL);
+		break;
+	case V4L2_CID_EXPOSURE_AUTO:
+		/*
+		 * Everything except V4L2_EXPOSURE_MANUAL turns on AEC by
+		 * clearing bit 0.
+		 */
+		ret = cci_update_bits(sensor->regmap, OV5647_REG_AEC_AGC, BIT(0),
+				      ctrl->val == V4L2_EXPOSURE_MANUAL ? BIT(0) : 0, NULL);
+		break;
+	case V4L2_CID_ANALOGUE_GAIN:
+		/* 10 bits of gain, 2 in the high register. */
+		ret = cci_write(sensor->regmap, OV5647_REG_GAIN,
+				ctrl->val & 0x3ff, NULL);
+		break;
+	case V4L2_CID_EXPOSURE:
+		/*
+		 * Sensor has 20 bits, but the bottom 4 bits are fractions of a line
+		 * which we leave as zero (and don't receive in "val").
+		 */
+		ret = cci_write(sensor->regmap, OV5647_REG_EXPOSURE,
+				ctrl->val << 4, NULL);
+		break;
+	case V4L2_CID_VBLANK:
+		ret = cci_write(sensor->regmap, OV5647_REG_VTS,
+				sensor->mode->format.height + ctrl->val, NULL);
+		break;
+	case V4L2_CID_HBLANK:
+		ret = cci_write(sensor->regmap, OV5647_REG_HTS,
+				sensor->mode->format.width + ctrl->val, &ret);
+		break;
+	case V4L2_CID_TEST_PATTERN:
+		ret = cci_write(sensor->regmap, OV5647_REG_ISPCTRL3D,
+				ov5647_test_pattern_val[ctrl->val], NULL);
+		break;
+	case V4L2_CID_HFLIP:
+		/* There's an in-built hflip in the sensor, so account for that here. */
+		ret = cci_update_bits(sensor->regmap, OV5647_REG_TIMING_TC_H, BIT(1),
+				      ctrl->val ? 0 : BIT(1), NULL);
+		break;
+	case V4L2_CID_VFLIP:
+		ret = cci_update_bits(sensor->regmap, OV5647_REG_TIMING_TC_V, BIT(1),
+				      ctrl->val ? BIT(1) : 0, NULL);
+		break;
+
+	default:
+		dev_info(&client->dev,
+			 "Control (id:0x%x, val:0x%x) not supported\n",
+			 ctrl->id, ctrl->val);
+		return -EINVAL;
+	}
+
+	pm_runtime_put(&client->dev);
+
+	return ret;
+}
+
+static const struct v4l2_ctrl_ops ov5647_ctrl_ops = {
+	.s_ctrl = ov5647_s_ctrl,
+};
+
+static int ov5647_configure_regulators(struct device *dev,
+				       struct ov5647 *sensor)
+{
+	for (unsigned int i = 0; i < OV5647_NUM_SUPPLIES; i++)
+		sensor->supplies[i].supply = ov5647_supply_names[i];
+
+	return devm_regulator_bulk_get(dev, OV5647_NUM_SUPPLIES,
+				       sensor->supplies);
+}

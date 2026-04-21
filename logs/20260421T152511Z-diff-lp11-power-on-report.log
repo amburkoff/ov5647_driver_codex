@@ -1,0 +1,125 @@
+# command: git diff -- src/nv_ov5647/nv_ov5647.c docs/10-results-and-status.md docs/11-known-issues.md reports/2026-04-21-lp11-power-on-fix.md
+diff --git a/docs/10-results-and-status.md b/docs/10-results-and-status.md
+index de10277..048ce95 100644
+--- a/docs/10-results-and-status.md
++++ b/docs/10-results-and-status.md
+@@ -137,6 +137,13 @@ Completed:
+   - upstream uses `0x3821 = 0x03`;
+   - the local table currently uses `0x3821 = 0x01`;
+   - the local VGA table also contains additional `0x5002` and `0x4837` writes that are not present in upstream VGA mode.
++- a stronger upstream difference was found in the power-on path:
++  - upstream OV5647 writes a stream-stop sequence after output-enable to put CSI lanes into LP-11;
++  - the local driver did not do this before the zero-byte capture test.
++- source-side LP-11 power-on fix is now prepared and builds:
++  - `ov5647_power_on()` writes the upstream stream-stop sequence after output-enable;
++  - `ov5647_stop_streaming()` now uses the same helper;
++  - rebuilt `.ko` contains `stream-stop LP-11 setup complete`.
+ 
+ Not completed yet:
+ 
+@@ -149,6 +156,7 @@ Not completed yet:
+ Next smallest safe step:
+ 
+ - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
+-- prepare one source-only OV5647 640x480 mode-table alignment against upstream Linux, rebuild, and commit before the next manual runtime test;
++- manually unload the old in-memory module, load the rebuilt LP-11 `.ko`, and rerun one bounded single-frame capture;
++- if capture still times out, prepare one source-only OV5647 640x480 mode-table alignment against upstream Linux;
+ - continue aligning the minimal mode table and CSI timing until VI receives real frames instead of timing out;
+ - keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.
+diff --git a/docs/11-known-issues.md b/docs/11-known-issues.md
+index 6fb8d00..3a3729d 100644
+--- a/docs/11-known-issues.md
++++ b/docs/11-known-issues.md
+@@ -83,6 +83,10 @@
+   - upstream VGA mode uses `0x3821 = 0x03`;
+   - current local code uses `0x3821 = 0x01`;
+   - current local code includes local-only VGA writes to `0x5002` and `0x4837`.
++- Before the LP-11 source fix, local `ov5647_power_on()` missed an upstream power-on step:
++  - upstream writes a stream-stop register sequence after sensor output-enable;
++  - this is intended to force CSI lanes into LP-11 before stream start;
++  - the local code now has this fix built, but runtime validation requires a manual unload/load/capture cycle.
+ - Current OV5647 `set_mode()` no longer enables streaming in source:
+   - NVIDIA r36.5 tegracam calls `set_mode()` before `start_streaming()`;
+   - NVIDIA sample drivers keep `set_mode()` to register programming and start output from `start_streaming()`;
+diff --git a/src/nv_ov5647/nv_ov5647.c b/src/nv_ov5647/nv_ov5647.c
+index a68779d..662a0d8 100644
+--- a/src/nv_ov5647/nv_ov5647.c
++++ b/src/nv_ov5647/nv_ov5647.c
+@@ -406,6 +406,33 @@ static int ov5647_write_table(struct camera_common_data *s_data,
+ 	return 0;
+ }
+ 
++static int ov5647_write_stream_stop_regs(struct camera_common_data *s_data,
++					 bool standby)
++{
++	int err;
++
++	err = ov5647_write_reg(s_data, OV5647_REG_MIPI_CTRL00,
++			       OV5647_MIPI_CTRL00_CLOCK_LANE_GATE |
++			       OV5647_MIPI_CTRL00_BUS_IDLE |
++			       OV5647_MIPI_CTRL00_CLOCK_LANE_DISABLE);
++	if (err)
++		return err;
++
++	err = ov5647_write_reg(s_data, OV5647_REG_FRAME_OFF_NUMBER, 0x0f);
++	if (err)
++		return err;
++
++	err = ov5647_write_reg(s_data, OV5640_REG_PAD_OUT, 0x01);
++	if (err)
++		return err;
++
++	if (!standby)
++		return 0;
++
++	return ov5647_write_reg(s_data, OV5647_REG_MODE_SELECT,
++				OV5647_MODE_STANDBY);
++}
++
+ static struct camera_common_pdata *ov5647_parse_dt(struct tegracam_device *tc_dev)
+ {
+ 	struct device *dev = tc_dev->dev;
+@@ -630,6 +657,18 @@ static int ov5647_power_on(struct camera_common_data *s_data)
+ 		goto disable_mclk;
+ 	}
+ 
++	/*
++	 * Upstream OV5647 forces stream-stop during power-on to put the CSI
++	 * lanes into LP-11 before the first real stream start.
++	 */
++	err = ov5647_write_stream_stop_regs(s_data, false);
++	if (err) {
++		dev_err(dev, "%s: stream-stop LP-11 setup failed err=%d\n",
++			__func__, err);
++		goto disable_mclk;
++	}
++	dev_info(dev, "%s: stream-stop LP-11 setup complete\n", __func__);
++
+ 	pw->state = true;
+ 
+ 	dev_info(dev, "%s: exit success\n", __func__);
+@@ -843,23 +882,7 @@ static int ov5647_stop_streaming(struct tegracam_device *tc_dev)
+ 
+ 	dev_info(tc_dev->dev, "%s: enter\n", __func__);
+ 
+-	err = ov5647_write_reg(s_data, OV5647_REG_MIPI_CTRL00,
+-			       OV5647_MIPI_CTRL00_CLOCK_LANE_GATE |
+-			       OV5647_MIPI_CTRL00_BUS_IDLE |
+-			       OV5647_MIPI_CTRL00_CLOCK_LANE_DISABLE);
+-	if (err)
+-		return err;
+-
+-	err = ov5647_write_reg(s_data, OV5647_REG_FRAME_OFF_NUMBER, 0x0f);
+-	if (err)
+-		return err;
+-
+-	err = ov5647_write_reg(s_data, OV5640_REG_PAD_OUT, 0x01);
+-	if (err)
+-		return err;
+-
+-	err = ov5647_write_reg(s_data, OV5647_REG_MODE_SELECT,
+-			       OV5647_MODE_STANDBY);
++	err = ov5647_write_stream_stop_regs(s_data, true);
+ 	if (err)
+ 		return err;
+ 

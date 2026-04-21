@@ -1,0 +1,92 @@
+# command: sed -n '380,470p' src/nv_ov5647/nv_ov5647.c
+		return err;
+	}
+
+	*val = reg_val;
+	dev_dbg(s_data->dev, "%s: addr=0x%04x val=0x%02x\n",
+		__func__, addr, *val);
+
+	return 0;
+}
+
+static int ov5647_write_table(struct camera_common_data *s_data,
+			      const struct reg_8 *table)
+{
+	int err;
+
+	for (; table->addr != OV5647_TABLE_END; table++) {
+		if (table->addr == OV5647_TABLE_WAIT_MS) {
+			msleep(table->val);
+			continue;
+		}
+
+		err = ov5647_write_reg(s_data, table->addr, table->val);
+		if (err)
+			return err;
+	}
+
+	return 0;
+}
+
+static struct camera_common_pdata *ov5647_parse_dt(struct tegracam_device *tc_dev)
+{
+	struct device *dev = tc_dev->dev;
+	struct device_node *np = dev->of_node;
+	struct camera_common_pdata *pdata;
+	int gpio;
+
+	dev_info(dev, "%s: enter\n", __func__);
+
+	if (!np) {
+		dev_err(dev, "%s: device tree node is missing\n", __func__);
+		return NULL;
+	}
+
+	pdata = devm_kzalloc(dev, sizeof(*pdata), GFP_KERNEL);
+	if (!pdata)
+		return NULL;
+
+	pdata->mclk_name = OV5647_DEFAULT_MCLK;
+	pdata->reset_gpio = OV5647_GPIO_NOT_PRESENT;
+	pdata->pwdn_gpio = OV5647_GPIO_NOT_PRESENT;
+	pdata->af_gpio = OV5647_GPIO_NOT_PRESENT;
+	pdata->use_cam_gpio = true;
+	pdata->regulators.avdd = OV5647_DEFAULT_AVDD_SUPPLY;
+	pdata->regulators.dvdd = OV5647_DEFAULT_DVDD_SUPPLY;
+	pdata->regulators.iovdd = OV5647_DEFAULT_IOVDD_SUPPLY;
+
+	of_property_read_string(np, "mclk", &pdata->mclk_name);
+	of_property_read_string(np, "avdd-reg", &pdata->regulators.avdd);
+	of_property_read_string(np, "dvdd-reg", &pdata->regulators.dvdd);
+	of_property_read_string(np, "iovdd-reg", &pdata->regulators.iovdd);
+
+	gpio = of_get_named_gpio(np, "reset-gpios", 0);
+	if (gpio >= 0)
+		pdata->reset_gpio = gpio;
+
+	gpio = of_get_named_gpio(np, "pwdn-gpios", 0);
+	if (gpio >= 0)
+		pdata->pwdn_gpio = gpio;
+
+	dev_info(dev,
+		 "%s: pdata=%p mclk=%s reset_gpio=%d pwdn_gpio=%d avdd=%s dvdd=%s iovdd=%s\n",
+		 __func__, pdata, pdata->mclk_name,
+		 (int)pdata->reset_gpio, (int)pdata->pwdn_gpio,
+		 pdata->regulators.avdd ?: "unset",
+		 pdata->regulators.dvdd ?: "unset",
+		 pdata->regulators.iovdd ?: "unset");
+
+	return pdata;
+}
+
+static int ov5647_power_get(struct tegracam_device *tc_dev)
+{
+	struct device *dev = tc_dev->dev;
+	struct ov5647 *priv = to_ov5647(tc_dev);
+	struct camera_common_data *s_data = tc_dev->s_data;
+	struct camera_common_pdata *pdata;
+	struct camera_common_power_rail *pw;
+	int err;
+
+	dev_info(dev, "%s: enter priv=%p s_data=%p pdata=%p\n",
+		 __func__, priv, s_data, s_data ? s_data->pdata : NULL);

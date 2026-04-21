@@ -1,0 +1,5 @@
+# command: strings src/nv_ov5647/nv_ov5647.ko | grep -E 'stream-stop LP-11|write_stream_stop_regs'
+%s: stream-stop LP-11 setup failed err=%d
+%s: stream-stop LP-11 setup complete
+ov5647_write_stream_stop_regs
+ov5647_write_stream_stop_regs

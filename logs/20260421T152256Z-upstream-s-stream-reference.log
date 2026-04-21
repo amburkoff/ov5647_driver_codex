@@ -1,0 +1,204 @@
+# command: grep -n -A80 -B20 's_stream\|set_stream' artifacts/reference/upstream-linux/ov5647.c
+690-	.s_register		= ov5647_sensor_set_register,
+691-#endif
+692-};
+693-
+694-static const struct v4l2_rect *
+695-__ov5647_get_pad_crop(struct ov5647 *ov5647,
+696-		      struct v4l2_subdev_state *sd_state,
+697-		      unsigned int pad, enum v4l2_subdev_format_whence which)
+698-{
+699-	switch (which) {
+700-	case V4L2_SUBDEV_FORMAT_TRY:
+701-		return v4l2_subdev_state_get_crop(sd_state, pad);
+702-	case V4L2_SUBDEV_FORMAT_ACTIVE:
+703-		return &ov5647->mode->crop;
+704-	}
+705-
+706-	return NULL;
+707-}
+708-
+709-static const struct v4l2_subdev_video_ops ov5647_subdev_video_ops = {
+710:	.s_stream = v4l2_subdev_s_stream_helper,
+711-};
+712-
+713-/*
+714- * This function returns the mbus code for the current settings of the HFLIP
+715- * and VFLIP controls.
+716- */
+717-static u32 ov5647_get_mbus_code(struct v4l2_subdev *sd)
+718-{
+719-	struct ov5647 *sensor = to_sensor(sd);
+720-	/* The control values are only 0 or 1. */
+721-	int index =  sensor->hflip->val | (sensor->vflip->val << 1);
+722-
+723-	static const u32 codes[4] = {
+724-		MEDIA_BUS_FMT_SGBRG10_1X10,
+725-		MEDIA_BUS_FMT_SBGGR10_1X10,
+726-		MEDIA_BUS_FMT_SRGGB10_1X10,
+727-		MEDIA_BUS_FMT_SGRBG10_1X10
+728-	};
+729-
+730-	return codes[index];
+731-}
+732-
+733-static int ov5647_enum_mbus_code(struct v4l2_subdev *sd,
+734-				 struct v4l2_subdev_state *sd_state,
+735-				 struct v4l2_subdev_mbus_code_enum *code)
+736-{
+737-	if (code->index > 0)
+738-		return -EINVAL;
+739-
+740-	code->code = ov5647_get_mbus_code(sd);
+741-
+742-	return 0;
+743-}
+744-
+745-static int ov5647_enum_frame_size(struct v4l2_subdev *sd,
+746-				  struct v4l2_subdev_state *sd_state,
+747-				  struct v4l2_subdev_frame_size_enum *fse)
+748-{
+749-	const struct v4l2_mbus_framefmt *fmt;
+750-
+751-	if (fse->code != ov5647_get_mbus_code(sd) ||
+752-	    fse->index >= ARRAY_SIZE(ov5647_modes))
+753-		return -EINVAL;
+754-
+755-	fmt = &ov5647_modes[fse->index].format;
+756-	fse->min_width = fmt->width;
+757-	fse->max_width = fmt->width;
+758-	fse->min_height = fmt->height;
+759-	fse->max_height = fmt->height;
+760-
+761-	return 0;
+762-}
+763-
+764-static int ov5647_get_pad_fmt(struct v4l2_subdev *sd,
+765-			      struct v4l2_subdev_state *sd_state,
+766-			      struct v4l2_subdev_format *format)
+767-{
+768-	struct v4l2_mbus_framefmt *fmt = &format->format;
+769-	const struct v4l2_mbus_framefmt *sensor_format;
+770-	struct ov5647 *sensor = to_sensor(sd);
+771-
+772-	switch (format->which) {
+773-	case V4L2_SUBDEV_FORMAT_TRY:
+774-		sensor_format = v4l2_subdev_state_get_format(sd_state,
+775-							     format->pad);
+776-		break;
+777-	default:
+778-		sensor_format = &sensor->mode->format;
+779-		break;
+780-	}
+781-
+782-	*fmt = *sensor_format;
+783-	/* The code we pass back must reflect the current h/vflips. */
+784-	fmt->code = ov5647_get_mbus_code(sd);
+785-
+786-	return 0;
+787-}
+788-
+789-static int ov5647_set_pad_fmt(struct v4l2_subdev *sd,
+790-			      struct v4l2_subdev_state *sd_state,
+--
+938-					    struct ov5647, ctrls);
+939-	struct v4l2_subdev *sd = &sensor->sd;
+940-	struct i2c_client *client = v4l2_get_subdevdata(sd);
+941-	int ret = 0;
+942-
+943-	if (ctrl->id == V4L2_CID_VBLANK) {
+944-		int exposure_max, exposure_def;
+945-
+946-		/* Update max exposure while meeting expected vblanking */
+947-		exposure_max = sensor->mode->format.height + ctrl->val - 4;
+948-		exposure_def = min(exposure_max, OV5647_EXPOSURE_DEFAULT);
+949-		__v4l2_ctrl_modify_range(sensor->exposure,
+950-					 sensor->exposure->minimum,
+951-					 exposure_max, sensor->exposure->step,
+952-					 exposure_def);
+953-	}
+954-
+955-	/*
+956-	 * If the device is not powered up do not apply any controls
+957-	 * to H/W at this time. Instead the controls will be restored
+958:	 * at s_stream(1) time.
+959-	 */
+960-	if (pm_runtime_get_if_in_use(&client->dev) == 0)
+961-		return 0;
+962-
+963-	switch (ctrl->id) {
+964-	case V4L2_CID_AUTO_WHITE_BALANCE:
+965-		ret = cci_write(sensor->regmap, OV5647_REG_AWB,
+966-				ctrl->val ? 1 : 0, NULL);
+967-		break;
+968-	case V4L2_CID_AUTOGAIN:
+969-		/* Non-zero turns on AGC by clearing bit 1.*/
+970-		ret = cci_update_bits(sensor->regmap, OV5647_REG_AEC_AGC, BIT(1),
+971-				      ctrl->val ? 0 : BIT(1), NULL);
+972-		break;
+973-	case V4L2_CID_EXPOSURE_AUTO:
+974-		/*
+975-		 * Everything except V4L2_EXPOSURE_MANUAL turns on AEC by
+976-		 * clearing bit 0.
+977-		 */
+978-		ret = cci_update_bits(sensor->regmap, OV5647_REG_AEC_AGC, BIT(0),
+979-				      ctrl->val == V4L2_EXPOSURE_MANUAL ? BIT(0) : 0, NULL);
+980-		break;
+981-	case V4L2_CID_ANALOGUE_GAIN:
+982-		/* 10 bits of gain, 2 in the high register. */
+983-		ret = cci_write(sensor->regmap, OV5647_REG_GAIN,
+984-				ctrl->val & 0x3ff, NULL);
+985-		break;
+986-	case V4L2_CID_EXPOSURE:
+987-		/*
+988-		 * Sensor has 20 bits, but the bottom 4 bits are fractions of a line
+989-		 * which we leave as zero (and don't receive in "val").
+990-		 */
+991-		ret = cci_write(sensor->regmap, OV5647_REG_EXPOSURE,
+992-				ctrl->val << 4, NULL);
+993-		break;
+994-	case V4L2_CID_VBLANK:
+995-		ret = cci_write(sensor->regmap, OV5647_REG_VTS,
+996-				sensor->mode->format.height + ctrl->val, NULL);
+997-		break;
+998-	case V4L2_CID_HBLANK:
+999-		ret = cci_write(sensor->regmap, OV5647_REG_HTS,
+1000-				sensor->mode->format.width + ctrl->val, &ret);
+1001-		break;
+1002-	case V4L2_CID_TEST_PATTERN:
+1003-		ret = cci_write(sensor->regmap, OV5647_REG_ISPCTRL3D,
+1004-				ov5647_test_pattern_val[ctrl->val], NULL);
+1005-		break;
+1006-	case V4L2_CID_HFLIP:
+1007-		/* There's an in-built hflip in the sensor, so account for that here. */
+1008-		ret = cci_update_bits(sensor->regmap, OV5647_REG_TIMING_TC_H, BIT(1),
+1009-				      ctrl->val ? 0 : BIT(1), NULL);
+1010-		break;
+1011-	case V4L2_CID_VFLIP:
+1012-		ret = cci_update_bits(sensor->regmap, OV5647_REG_TIMING_TC_V, BIT(1),
+1013-				      ctrl->val ? BIT(1) : 0, NULL);
+1014-		break;
+1015-
+1016-	default:
+1017-		dev_info(&client->dev,
+1018-			 "Control (id:0x%x, val:0x%x) not supported\n",
+1019-			 ctrl->id, ctrl->val);
+1020-		return -EINVAL;
+1021-	}
+1022-
+1023-	pm_runtime_put(&client->dev);
+1024-
+1025-	return ret;
+1026-}
+1027-
+1028-static const struct v4l2_ctrl_ops ov5647_ctrl_ops = {
+1029-	.s_ctrl = ov5647_s_ctrl,
+1030-};
+1031-
+1032-static int ov5647_configure_regulators(struct device *dev,
+1033-				       struct ov5647 *sensor)
+1034-{
+1035-	for (unsigned int i = 0; i < OV5647_NUM_SUPPLIES; i++)
+1036-		sensor->supplies[i].supply = ov5647_supply_names[i];
+1037-
+1038-	return devm_regulator_bulk_get(dev, OV5647_NUM_SUPPLIES,

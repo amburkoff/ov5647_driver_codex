@@ -1,0 +1,4 @@
+# command: git push
+To github.com:amburkoff/ov5647_driver_codex.git
+   5f857d4..b1f8ef8  main -> main
+git push rc=0

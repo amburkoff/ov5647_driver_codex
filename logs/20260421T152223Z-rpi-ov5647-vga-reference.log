@@ -1,0 +1,115 @@
+# command: grep -n -A45 -B10 'ov5647_640x480_10bpp' artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c
+330-	{0x4800, 0x24},
+331-	{0x350a, 0x00},
+332-	{0x350b, 0x10},
+333-	{0x3500, 0x00},
+334-	{0x3501, 0x1a},
+335-	{0x3502, 0xf0},
+336-	{0x3212, 0xa0},
+337-	{0x0100, 0x01},
+338-};
+339-
+340:static struct regval_list ov5647_640x480_10bpp[] = {
+341-	{0x3036, 0x46},
+342-	{0x3821, 0x01},
+343-	{0x3820, 0x41},
+344-	{0x3612, 0x59},
+345-	{0x3618, 0x00},
+346-	{0x3814, 0x35},
+347-	{0x3815, 0x35},
+348-	{0x3708, 0x64},
+349-	{0x3709, 0x52},
+350-	{0x3800, 0x00},
+351-	{0x3801, 0x10},
+352-	{0x3802, 0x00},
+353-	{0x3803, 0x00},
+354-	{0x3804, 0x0a},
+355-	{0x3805, 0x2f},
+356-	{0x3806, 0x07},
+357-	{0x3807, 0x9f},
+358-	{0x3808, 0x02},
+359-	{0x3809, 0x80},
+360-	{0x380a, 0x01},
+361-	{0x380b, 0xe0},
+362-	{0x3a09, 0x2e},
+363-	{0x3a0a, 0x00},
+364-	{0x3a0b, 0xfb},
+365-	{0x3a0d, 0x02},
+366-	{0x3a0e, 0x01},
+367-	{0x4004, 0x02},
+368-	{0x4800, 0x34},
+369-	{0x0100, 0x01},
+370-};
+371-
+372-static const struct ov5647_mode ov5647_modes[] = {
+373-	/* 2592x1944 full resolution full FOV 10-bit mode. */
+374-	{
+375-		.format = {
+376-			.code		= MEDIA_BUS_FMT_SBGGR10_1X10,
+377-			.colorspace	= V4L2_COLORSPACE_RAW,
+378-			.field		= V4L2_FIELD_NONE,
+379-			.width		= 2592,
+380-			.height		= 1944
+381-		},
+382-		.crop = {
+383-			.left		= OV5647_PIXEL_ARRAY_LEFT,
+384-			.top		= OV5647_PIXEL_ARRAY_TOP,
+385-			.width		= 2592,
+--
+448-		.crop = {
+449-			.left		= 16 + OV5647_PIXEL_ARRAY_LEFT,
+450-			.top		= OV5647_PIXEL_ARRAY_TOP,
+451-			.width		= 2560,
+452-			.height		= 1920,
+453-		},
+454-		.pixel_rate	= 55000000,
+455-		.link_freq_index = FREQ_INDEX_VGA,
+456-		.hts		= 1852,
+457-		.vts		= 0x1f8,
+458:		.reg_list	= ov5647_640x480_10bpp,
+459:		.num_regs	= ARRAY_SIZE(ov5647_640x480_10bpp)
+460-	},
+461-};
+462-
+463-/* Default sensor mode is 2x2 binned 640x480 SBGGR10_1X10. */
+464-#define OV5647_DEFAULT_MODE	(&ov5647_modes[3])
+465-#define OV5647_DEFAULT_FORMAT	(ov5647_modes[3].format)
+466-
+467-static int ov5647_write16(struct v4l2_subdev *sd, u16 reg, u16 val)
+468-{
+469-	unsigned char data[4] = { reg >> 8, reg & 0xff, val >> 8, val & 0xff};
+470-	struct i2c_client *client = v4l2_get_subdevdata(sd);
+471-	int ret;
+472-
+473-	ret = i2c_master_send(client, data, 4);
+474-	/*
+475-	 * Writing the wrong number of bytes also needs to be flagged as an
+476-	 * error. Success needs to produce a 0 return code.
+477-	 */
+478-	if (ret == 4) {
+479-		ret = 0;
+480-	} else {
+481-		dev_dbg(&client->dev, "%s: i2c write error, reg: %x\n",
+482-			__func__, reg);
+483-		return ret;
+484-	}
+485-
+486-	return 0;
+487-}
+488-
+489-static int ov5647_write(struct v4l2_subdev *sd, u16 reg, u8 val)
+490-{
+491-	unsigned char data[3] = { reg >> 8, reg & 0xff, val};
+492-	struct i2c_client *client = v4l2_get_subdevdata(sd);
+493-	int ret;
+494-
+495-	ret = i2c_master_send(client, data, 3);
+496-	/*
+497-	 * Writing the wrong number of bytes also needs to be flagged as an
+498-	 * error. Success needs to produce a 0 return code.
+499-	 */
+500-	if (ret == 3) {
+501-		ret = 0;
+502-	} else {
+503-		dev_dbg(&client->dev, "%s: i2c write error, reg: %x\n",
+504-				__func__, reg);

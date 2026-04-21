@@ -1,0 +1,13 @@
+# command: grep -n 'OV5640_REG_PAD_OUT\|OV5647_REG_MIPI_CTRL00\|FRAME_OFF\|MODE_SELECT' src/nv_ov5647/nv_ov5647.c
+34:#define OV5647_REG_MODE_SELECT		0x0100
+35:#define OV5647_REG_FRAME_OFF_NUMBER	0x4202
+36:#define OV5647_REG_MIPI_CTRL00		0x4800
+38:#define OV5640_REG_PAD_OUT		0x300d
+818:	err = ov5647_write_reg(s_data, OV5647_REG_MIPI_CTRL00, val);
+822:	err = ov5647_write_reg(s_data, OV5647_REG_FRAME_OFF_NUMBER, 0x00);
+826:	err = ov5647_write_reg(s_data, OV5647_REG_MODE_SELECT,
+831:	err = ov5647_write_reg(s_data, OV5640_REG_PAD_OUT, 0x00);
+846:	err = ov5647_write_reg(s_data, OV5647_REG_MIPI_CTRL00,
+853:	err = ov5647_write_reg(s_data, OV5647_REG_FRAME_OFF_NUMBER, 0x0f);
+857:	err = ov5647_write_reg(s_data, OV5640_REG_PAD_OUT, 0x01);
+861:	err = ov5647_write_reg(s_data, OV5647_REG_MODE_SELECT,

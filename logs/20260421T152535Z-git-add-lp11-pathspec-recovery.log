@@ -1,0 +1,9 @@
+Previous git add failed: pathspec for gitignore log timestamp did not match; no staged LP-11 files.
+
+# command: find logs -maxdepth 1 -type f -name '20260421T1525*' | sort
+logs/20260421T152511Z-diff-lp11-power-on-report.log
+logs/20260421T152511Z-git-diff-check-lp11-power-on-report.log
+logs/20260421T152511Z-git-status-before-lp11-commit.log
+logs/20260421T152519Z-gitignore-before-lp11-commit.log
+logs/20260421T152528Z-git-add-lp11-power-on-fix.log
+logs/20260421T152535Z-git-add-lp11-pathspec-recovery.log

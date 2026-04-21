@@ -1,0 +1,363 @@
+# command: grep -n -A50 -B10 'ov5647_sensor_oe_enable_regs\|ov5647_sensor_oe_disable_regs\|power_on\|power_off' src/nv_ov5647/nv_ov5647.c
+194-	{0x3a1b, 0x58},
+195-	{0x3a1e, 0x50},
+196-	{0x3a11, 0x60},
+197-	{0x3a1f, 0x28},
+198-	{0x4001, 0x02},
+199-	{0x4000, 0x09},
+200-	{0x3503, 0x03},
+201-	{ OV5647_TABLE_END, 0x00 },
+202-};
+203-
+204:static const struct reg_8 ov5647_sensor_oe_enable_regs[] = {
+205-	{0x3000, 0x0f},
+206-	{0x3001, 0xff},
+207-	{0x3002, 0xe4},
+208-	{ OV5647_TABLE_END, 0x00 },
+209-};
+210-
+211:static const struct reg_8 ov5647_sensor_oe_disable_regs[] = {
+212-	{0x3000, 0x00},
+213-	{0x3001, 0x00},
+214-	{0x3002, 0x00},
+215-	{ OV5647_TABLE_END, 0x00 },
+216-};
+217-
+218-static const struct reg_8 ov5647_mode0_640x480_10bpp[] = {
+219-	{0x3036, 0x46},
+220-	{0x3821, 0x01},
+221-	{0x3820, 0x41},
+222-	{0x3612, 0x59},
+223-	{0x3618, 0x00},
+224-	{0x5002, 0x41},
+225-	{0x3814, 0x35},
+226-	{0x3815, 0x35},
+227-	{0x3708, 0x64},
+228-	{0x3709, 0x52},
+229-	{0x3800, 0x00},
+230-	{0x3801, 0x10},
+231-	{0x3802, 0x00},
+232-	{0x3803, 0x00},
+233-	{0x3804, 0x0a},
+234-	{0x3805, 0x2f},
+235-	{0x3806, 0x07},
+236-	{0x3807, 0x9f},
+237-	{0x3808, 0x02},
+238-	{0x3809, 0x80},
+239-	{0x380a, 0x01},
+240-	{0x380b, 0xe0},
+241-	{0x3a09, 0x2e},
+242-	{0x3a0a, 0x00},
+243-	{0x3a0b, 0xfb},
+244-	{0x3a0d, 0x02},
+245-	{0x3a0e, 0x01},
+246-	{0x4004, 0x02},
+247-	{0x4837, 0x16},
+248-	{0x4800, 0x34},
+249-	{ OV5647_TABLE_END, 0x00 },
+250-};
+251-
+252-static const int ov5647_30fps[] = {
+253-	30,
+254-};
+255-
+256-static const struct camera_common_frmfmt ov5647_frmfmt[] = {
+257-	{
+258-		.size = {
+259-			.width = 640,
+260-			.height = 480,
+261-		},
+--
+554-				__func__, err);
+555-			return err;
+556-		}
+557-	}
+558-
+559-	dev_info(dev, "%s: exit\n", __func__);
+560-
+561-	return 0;
+562-}
+563-
+564:static int ov5647_power_on(struct camera_common_data *s_data)
+565-{
+566-	struct device *dev = s_data->dev;
+567-	struct camera_common_power_rail *pw = s_data->power;
+568-	int err;
+569-
+570-	dev_info(dev, "%s: enter\n", __func__);
+571-
+572-	if (!pw)
+573-		return -EINVAL;
+574-
+575-	if (pw->state) {
+576-		dev_dbg(dev, "%s: already on\n", __func__);
+577-		return 0;
+578-	}
+579-
+580-	if (pw->iovdd) {
+581-		err = regulator_enable(pw->iovdd);
+582-		if (err) {
+583-			dev_err(dev, "%s: iovdd enable failed err=%d\n",
+584-				__func__, err);
+585-			return err;
+586-		}
+587-	}
+588-
+589-	if (pw->dvdd) {
+590-		err = regulator_enable(pw->dvdd);
+591-		if (err) {
+592-			dev_err(dev, "%s: dvdd enable failed err=%d\n",
+593-				__func__, err);
+594-			goto disable_iovdd;
+595-		}
+596-	}
+597-
+598-	if (pw->avdd) {
+599-		err = regulator_enable(pw->avdd);
+600-		if (err) {
+601-			dev_err(dev, "%s: avdd enable failed err=%d\n",
+602-				__func__, err);
+603-			goto disable_dvdd;
+604-		}
+605-	}
+606-
+607-	err = camera_common_mclk_enable(s_data);
+608-	if (err) {
+609-		dev_err(dev, "%s: mclk enable failed err=%d\n", __func__, err);
+610-		goto disable_avdd;
+611-	}
+612-
+613-	usleep_range(1000, 1500);
+614-
+--
+616-		gpio_set_value(pw->pwdn_gpio, 1);
+617-
+618-	if (gpio_is_valid((int)pw->reset_gpio)) {
+619-		gpio_set_value(pw->reset_gpio, 0);
+620-		usleep_range(1000, 1500);
+621-		gpio_set_value(pw->reset_gpio, 1);
+622-	}
+623-
+624-	usleep_range(5000, 6000);
+625-
+626:	err = ov5647_write_table(s_data, ov5647_sensor_oe_enable_regs);
+627-	if (err) {
+628-		dev_err(dev, "%s: sensor output-enable table failed err=%d\n",
+629-			__func__, err);
+630-		goto disable_mclk;
+631-	}
+632-
+633-	pw->state = true;
+634-
+635-	dev_info(dev, "%s: exit success\n", __func__);
+636-	return 0;
+637-
+638-disable_mclk:
+639-	camera_common_mclk_disable(s_data);
+640-disable_avdd:
+641-	if (pw->avdd)
+642-		regulator_disable(pw->avdd);
+643-disable_dvdd:
+644-	if (pw->dvdd)
+645-		regulator_disable(pw->dvdd);
+646-disable_iovdd:
+647-	if (pw->iovdd)
+648-		regulator_disable(pw->iovdd);
+649-	return err;
+650-}
+651-
+652:static int ov5647_power_off(struct camera_common_data *s_data)
+653-{
+654-	struct device *dev;
+655-	struct camera_common_power_rail *pw;
+656-
+657-	if (!s_data)
+658-		return 0;
+659-
+660-	dev = s_data->dev;
+661-	pw = s_data->power;
+662-
+663-	if (!dev) {
+664-		pr_warn("%s: s_data->dev is NULL, skipping power-off\n",
+665-			__func__);
+666-		return 0;
+667-	}
+668-
+669-	dev_info(dev, "%s: enter\n", __func__);
+670-
+671-	if (!pw) {
+672-		dev_warn(dev, "%s: s_data->power is NULL, skipping\n", __func__);
+673-		return 0;
+674-	}
+675-
+676-	if (!pw->state) {
+677-		dev_dbg(dev, "%s: already off\n", __func__);
+678-		return 0;
+679-	}
+680-
+681:	if (ov5647_write_table(s_data, ov5647_sensor_oe_disable_regs))
+682-		dev_warn(dev, "%s: sensor output-disable table failed\n",
+683-			 __func__);
+684-
+685-	if (gpio_is_valid((int)pw->pwdn_gpio))
+686-		gpio_set_value(pw->pwdn_gpio, 1);
+687-
+688-	if (gpio_is_valid((int)pw->reset_gpio))
+689-		gpio_set_value(pw->reset_gpio, 0);
+690-
+691-	camera_common_mclk_disable(s_data);
+692-
+693-	if (pw->avdd)
+694-		regulator_disable(pw->avdd);
+695-	if (pw->dvdd)
+696-		regulator_disable(pw->dvdd);
+697-	if (pw->iovdd)
+698-		regulator_disable(pw->iovdd);
+699-
+700-	pw->state = false;
+701-	dev_info(dev, "%s: exit success\n", __func__);
+702-
+703-	return 0;
+704-}
+705-
+706-static int ov5647_power_put(struct tegracam_device *tc_dev)
+707-{
+708-	struct camera_common_data *s_data = tc_dev->s_data;
+709-	struct camera_common_power_rail *pw;
+710-
+711-	if (!s_data || !s_data->power)
+712-		return -EINVAL;
+713-
+714-	pw = s_data->power;
+715-	pw->mclk = NULL;
+716-	pw->reset_gpio = OV5647_GPIO_NOT_PRESENT;
+717-	pw->pwdn_gpio = OV5647_GPIO_NOT_PRESENT;
+718-
+719-	dev_info(tc_dev->dev, "%s: power rail references cleared\n", __func__);
+720-	return 0;
+721-}
+722-
+723-static int ov5647_set_group_hold(struct tegracam_device *tc_dev, bool val)
+724-{
+725-	dev_dbg(tc_dev->dev, "%s: group_hold=%d (stub)\n", __func__, val);
+726-	return 0;
+727-}
+728-
+729-static int ov5647_set_gain(struct tegracam_device *tc_dev, s64 val)
+730-{
+731-	dev_dbg(tc_dev->dev, "%s: gain=%lld not applied yet\n",
+--
+870-static int ov5647_board_setup(struct ov5647 *priv)
+871-{
+872-	struct camera_common_data *s_data = priv->s_data;
+873-	struct device *dev = s_data->dev;
+874-	u8 chip_id_high = 0;
+875-	u8 chip_id_low = 0;
+876-	int err;
+877-
+878-	dev_info(dev, "%s: enter\n", __func__);
+879-
+880:	err = ov5647_power_on(s_data);
+881-	if (err) {
+882:		dev_err(dev, "%s: power_on failed err=%d\n", __func__, err);
+883-		return err;
+884-	}
+885-
+886-	err = ov5647_read_reg(s_data, OV5647_REG_CHIP_ID_HIGH, &chip_id_high);
+887-	if (err)
+888:		goto power_off;
+889-
+890-	err = ov5647_read_reg(s_data, OV5647_REG_CHIP_ID_LOW, &chip_id_low);
+891-	if (err)
+892:		goto power_off;
+893-
+894-	priv->chip_id = (chip_id_high << 8) | chip_id_low;
+895-	dev_info(dev, "%s: detected chip_id=0x%04x\n", __func__, priv->chip_id);
+896-
+897-	if (priv->chip_id != OV5647_CHIP_ID) {
+898-		dev_err(dev,
+899-			"%s: unexpected chip_id=0x%04x expected=0x%04x\n",
+900-			__func__, priv->chip_id, OV5647_CHIP_ID);
+901-		err = -ENODEV;
+902:		goto power_off;
+903-	}
+904-
+905-	priv->board_setup_done = true;
+906-	err = 0;
+907-
+908:power_off:
+909:	if (ov5647_power_off(s_data))
+910:		dev_warn(dev, "%s: power_off failed during unwind\n", __func__);
+911-
+912-	if (err)
+913-		dev_err(dev, "%s: exit failure err=%d\n", __func__, err);
+914-	else
+915-		dev_info(dev, "%s: exit success\n", __func__);
+916-
+917-	return err;
+918-}
+919-
+920-static const struct tegracam_ctrl_ops ov5647_ctrl_ops = {
+921-	.numctrls = ARRAY_SIZE(ov5647_ctrl_cid_list),
+922-	.ctrl_cid_list = ov5647_ctrl_cid_list,
+923-	.set_gain = ov5647_set_gain,
+924-	.set_exposure = ov5647_set_exposure,
+925-	.set_frame_rate = ov5647_set_frame_rate,
+926-	.set_group_hold = ov5647_set_group_hold,
+927-};
+928-
+929-static struct camera_common_sensor_ops ov5647_common_ops = {
+930-	.numfrmfmts = ARRAY_SIZE(ov5647_frmfmt),
+931-	.frmfmt_table = ov5647_frmfmt,
+932:	.power_on = ov5647_power_on,
+933:	.power_off = ov5647_power_off,
+934-	.write_reg = ov5647_write_reg,
+935-	.read_reg = ov5647_read_reg,
+936-	.parse_dt = ov5647_parse_dt,
+937-	.power_get = ov5647_power_get,
+938-	.power_put = ov5647_power_put,
+939-	.set_mode = ov5647_set_mode,
+940-	.start_streaming = ov5647_start_streaming,
+941-	.stop_streaming = ov5647_stop_streaming,
+942-};
+943-
+944-static const struct v4l2_subdev_ops ov5647_subdev_ops = {
+945-};
+946-
+947-static int ov5647_probe(struct i2c_client *client,
+948-			const struct i2c_device_id *id)
+949-{
+950-	struct device *dev = &client->dev;
+951-	struct tegracam_device *tc_dev;
+952-	struct ov5647 *priv;
+953-	int err;
+954-
+955-	dev_info(dev, "%s: enter client=%s addr=0x%02x\n",
+956-		 __func__, client->name, client->addr);
+957-
+958-	if (!allow_hw_probe) {
+959-		dev_warn(dev,
+960-			 "%s: probe gate is closed; reload with allow_hw_probe=1 after hardware mapping is verified\n",
+961-			 __func__);
+962-		return -EPERM;
+963-	}
+964-
+965-	if (!dev->of_node) {
+966-		dev_err(dev, "%s: DT node is required\n", __func__);
+967-		return -ENODEV;
+968-	}
+969-
+970-	tc_dev = devm_kzalloc(dev, sizeof(*tc_dev), GFP_KERNEL);
+971-	if (!tc_dev)
+972-		return -ENOMEM;
+973-
+974-	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+975-	if (!priv)
+976-		return -ENOMEM;
+977-
+978-	mutex_init(&priv->lock);
+979-	priv->client = client;
+980-
+981-	strscpy(tc_dev->name, OV5647_NAME, sizeof(tc_dev->name));
+982-	tc_dev->dev = dev;
+983-	tc_dev->client = client;

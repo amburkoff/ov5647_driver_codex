@@ -1,0 +1,27 @@
+# command: grep -n '380c\|380d\|380e\|380f\|HTS\|VTS\|vts\|hts' -n artifacts/reference/upstream-linux/ov5647.c
+54:#define OV5647_REG_HTS			CCI_REG16(0x380c)
+55:#define OV5647_REG_VTS			CCI_REG16(0x380e)
+81:#define OV5647_VTS_MAX			32767
+83:#define OV5647_HTS_MAX			0x1fff
+111:	int				hts;
+112:	int				vts;
+383:		.hts		= 2844,
+384:		.vts		= 0x7b0,
+405:		.hts		= 2416,
+406:		.vts		= 0x450,
+427:		.hts		= 1896,
+428:		.vts		= 0x59b,
+449:		.hts		= 1852,
+450:		.vts		= 0x1f8,
+812:		hblank = mode->hts - mode->format.width;
+814:					 OV5647_HTS_MAX - mode->format.width, 1,
+817:		vblank = mode->vts - mode->format.height;
+819:					 OV5647_VTS_MAX - mode->format.height,
+823:		exposure_max = mode->vts - 4;
+995:		ret = cci_write(sensor->regmap, OV5647_REG_VTS,
+999:		ret = cci_write(sensor->regmap, OV5647_REG_HTS,
+1061:	exposure_max = sensor->mode->vts - 4;
+1080:	hblank = sensor->mode->hts - sensor->mode->format.width;
+1083:					   OV5647_HTS_MAX -
+1089:					   OV5647_VTS_MAX -
+1091:					   sensor->mode->vts -

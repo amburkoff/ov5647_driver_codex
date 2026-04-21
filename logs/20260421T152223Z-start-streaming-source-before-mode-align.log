@@ -1,0 +1,281 @@
+# command: grep -n -A120 -B20 'ov5647_start_streaming' src/nv_ov5647/nv_ov5647.c
+781-	if (err) {
+782-		dev_err(tc_dev->dev, "%s: mode table failed err=%d\n",
+783-			__func__, err);
+784-		return err;
+785-	}
+786-
+787-	err = ov5647_read_reg(s_data, OV5647_REG_MIPI_CTRL14, &vc_ctrl);
+788-	if (err)
+789-		return err;
+790-
+791-	vc_ctrl &= ~(3 << 6);
+792-	err = ov5647_write_reg(s_data, OV5647_REG_MIPI_CTRL14, vc_ctrl);
+793-	if (err)
+794-		return err;
+795-
+796-	dev_info(tc_dev->dev, "%s: mode applied, sensor remains in standby\n",
+797-		 __func__);
+798-	return 0;
+799-}
+800-
+801:static int ov5647_start_streaming(struct tegracam_device *tc_dev)
+802-{
+803-	struct camera_common_data *s_data = tc_dev->s_data;
+804-	u8 val = OV5647_MIPI_CTRL00_BUS_IDLE |
+805-		 OV5647_MIPI_CTRL00_CLOCK_LANE_GATE |
+806-		 OV5647_MIPI_CTRL00_LINE_SYNC_ENABLE;
+807-	int err;
+808-
+809-	dev_info(tc_dev->dev, "%s: enter\n", __func__);
+810-
+811-	err = ov5647_set_mode(tc_dev);
+812-	if (err) {
+813-		dev_err(tc_dev->dev, "%s: set_mode failed err=%d\n",
+814-			__func__, err);
+815-		return err;
+816-	}
+817-
+818-	err = ov5647_write_reg(s_data, OV5647_REG_MIPI_CTRL00, val);
+819-	if (err)
+820-		return err;
+821-
+822-	err = ov5647_write_reg(s_data, OV5647_REG_FRAME_OFF_NUMBER, 0x00);
+823-	if (err)
+824-		return err;
+825-
+826-	err = ov5647_write_reg(s_data, OV5647_REG_MODE_SELECT,
+827-			       OV5647_MODE_STREAMING);
+828-	if (err)
+829-		return err;
+830-
+831-	err = ov5647_write_reg(s_data, OV5640_REG_PAD_OUT, 0x00);
+832-	if (err)
+833-		return err;
+834-
+835-	dev_info(tc_dev->dev, "%s: exit success\n", __func__);
+836-	return 0;
+837-}
+838-
+839-static int ov5647_stop_streaming(struct tegracam_device *tc_dev)
+840-{
+841-	struct camera_common_data *s_data = tc_dev->s_data;
+842-	int err;
+843-
+844-	dev_info(tc_dev->dev, "%s: enter\n", __func__);
+845-
+846-	err = ov5647_write_reg(s_data, OV5647_REG_MIPI_CTRL00,
+847-			       OV5647_MIPI_CTRL00_CLOCK_LANE_GATE |
+848-			       OV5647_MIPI_CTRL00_BUS_IDLE |
+849-			       OV5647_MIPI_CTRL00_CLOCK_LANE_DISABLE);
+850-	if (err)
+851-		return err;
+852-
+853-	err = ov5647_write_reg(s_data, OV5647_REG_FRAME_OFF_NUMBER, 0x0f);
+854-	if (err)
+855-		return err;
+856-
+857-	err = ov5647_write_reg(s_data, OV5640_REG_PAD_OUT, 0x01);
+858-	if (err)
+859-		return err;
+860-
+861-	err = ov5647_write_reg(s_data, OV5647_REG_MODE_SELECT,
+862-			       OV5647_MODE_STANDBY);
+863-	if (err)
+864-		return err;
+865-
+866-	dev_info(tc_dev->dev, "%s: exit success\n", __func__);
+867-	return 0;
+868-}
+869-
+870-static int ov5647_board_setup(struct ov5647 *priv)
+871-{
+872-	struct camera_common_data *s_data = priv->s_data;
+873-	struct device *dev = s_data->dev;
+874-	u8 chip_id_high = 0;
+875-	u8 chip_id_low = 0;
+876-	int err;
+877-
+878-	dev_info(dev, "%s: enter\n", __func__);
+879-
+880-	err = ov5647_power_on(s_data);
+881-	if (err) {
+882-		dev_err(dev, "%s: power_on failed err=%d\n", __func__, err);
+883-		return err;
+884-	}
+885-
+886-	err = ov5647_read_reg(s_data, OV5647_REG_CHIP_ID_HIGH, &chip_id_high);
+887-	if (err)
+888-		goto power_off;
+889-
+890-	err = ov5647_read_reg(s_data, OV5647_REG_CHIP_ID_LOW, &chip_id_low);
+891-	if (err)
+892-		goto power_off;
+893-
+894-	priv->chip_id = (chip_id_high << 8) | chip_id_low;
+895-	dev_info(dev, "%s: detected chip_id=0x%04x\n", __func__, priv->chip_id);
+896-
+897-	if (priv->chip_id != OV5647_CHIP_ID) {
+898-		dev_err(dev,
+899-			"%s: unexpected chip_id=0x%04x expected=0x%04x\n",
+900-			__func__, priv->chip_id, OV5647_CHIP_ID);
+901-		err = -ENODEV;
+902-		goto power_off;
+903-	}
+904-
+905-	priv->board_setup_done = true;
+906-	err = 0;
+907-
+908-power_off:
+909-	if (ov5647_power_off(s_data))
+910-		dev_warn(dev, "%s: power_off failed during unwind\n", __func__);
+911-
+912-	if (err)
+913-		dev_err(dev, "%s: exit failure err=%d\n", __func__, err);
+914-	else
+915-		dev_info(dev, "%s: exit success\n", __func__);
+916-
+917-	return err;
+918-}
+919-
+920-static const struct tegracam_ctrl_ops ov5647_ctrl_ops = {
+921-	.numctrls = ARRAY_SIZE(ov5647_ctrl_cid_list),
+922-	.ctrl_cid_list = ov5647_ctrl_cid_list,
+923-	.set_gain = ov5647_set_gain,
+924-	.set_exposure = ov5647_set_exposure,
+925-	.set_frame_rate = ov5647_set_frame_rate,
+926-	.set_group_hold = ov5647_set_group_hold,
+927-};
+928-
+929-static struct camera_common_sensor_ops ov5647_common_ops = {
+930-	.numfrmfmts = ARRAY_SIZE(ov5647_frmfmt),
+931-	.frmfmt_table = ov5647_frmfmt,
+932-	.power_on = ov5647_power_on,
+933-	.power_off = ov5647_power_off,
+934-	.write_reg = ov5647_write_reg,
+935-	.read_reg = ov5647_read_reg,
+936-	.parse_dt = ov5647_parse_dt,
+937-	.power_get = ov5647_power_get,
+938-	.power_put = ov5647_power_put,
+939-	.set_mode = ov5647_set_mode,
+940:	.start_streaming = ov5647_start_streaming,
+941-	.stop_streaming = ov5647_stop_streaming,
+942-};
+943-
+944-static const struct v4l2_subdev_ops ov5647_subdev_ops = {
+945-};
+946-
+947-static int ov5647_probe(struct i2c_client *client,
+948-			const struct i2c_device_id *id)
+949-{
+950-	struct device *dev = &client->dev;
+951-	struct tegracam_device *tc_dev;
+952-	struct ov5647 *priv;
+953-	int err;
+954-
+955-	dev_info(dev, "%s: enter client=%s addr=0x%02x\n",
+956-		 __func__, client->name, client->addr);
+957-
+958-	if (!allow_hw_probe) {
+959-		dev_warn(dev,
+960-			 "%s: probe gate is closed; reload with allow_hw_probe=1 after hardware mapping is verified\n",
+961-			 __func__);
+962-		return -EPERM;
+963-	}
+964-
+965-	if (!dev->of_node) {
+966-		dev_err(dev, "%s: DT node is required\n", __func__);
+967-		return -ENODEV;
+968-	}
+969-
+970-	tc_dev = devm_kzalloc(dev, sizeof(*tc_dev), GFP_KERNEL);
+971-	if (!tc_dev)
+972-		return -ENOMEM;
+973-
+974-	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+975-	if (!priv)
+976-		return -ENOMEM;
+977-
+978-	mutex_init(&priv->lock);
+979-	priv->client = client;
+980-
+981-	strscpy(tc_dev->name, OV5647_NAME, sizeof(tc_dev->name));
+982-	tc_dev->dev = dev;
+983-	tc_dev->client = client;
+984-	tc_dev->sensor_ops = &ov5647_common_ops;
+985-	tc_dev->tcctrl_ops = &ov5647_ctrl_ops;
+986-	tc_dev->v4l2sd_ops = &ov5647_subdev_ops;
+987-	tc_dev->dev_regmap_config = &ov5647_regmap_config;
+988-	tc_dev->numctrls = ARRAY_SIZE(ov5647_ctrl_cid_list);
+989-	tc_dev->ctrl_cid_list = ov5647_ctrl_cid_list;
+990-	tc_dev->version = tegracam_version(2, 0, 0);
+991-	tc_dev->priv = priv;
+992-
+993-	i2c_set_clientdata(client, tc_dev);
+994-	priv->tc_dev = tc_dev;
+995-
+996-	err = tegracam_device_register(tc_dev);
+997-	if (err) {
+998-		dev_err(dev, "%s: tegracam_device_register failed err=%d\n",
+999-			__func__, err);
+1000-		return err;
+1001-	}
+1002-
+1003-	priv->s_data = tc_dev->s_data;
+1004-	if (!priv->s_data) {
+1005-		dev_err(dev, "%s: tc_dev->s_data is NULL\n", __func__);
+1006-		err = -EINVAL;
+1007-		goto unregister_device;
+1008-	}
+1009-
+1010-	tegracam_set_privdata(tc_dev, priv);
+1011-	dev_info(dev,
+1012-		 "%s: private data linked tc_dev=%p tc_dev->priv=%p s_data=%p s_data->priv=%p\n",
+1013-		 __func__, tc_dev, tc_dev->priv, priv->s_data,
+1014-		 priv->s_data->priv);
+1015-
+1016-	if (!sensor_common_parse_num_modes(dev))
+1017-		dev_warn(dev, "%s: sensor_common_parse_num_modes returned 0\n",
+1018-			 __func__);
+1019-
+1020-	err = sensor_common_init_sensor_properties(dev, dev->of_node,
+1021-						   &priv->s_data->sensor_props);
+1022-	if (err) {
+1023-		dev_err(dev,
+1024-			"%s: sensor_common_init_sensor_properties failed err=%d\n",
+1025-			__func__, err);
+1026-		goto unregister_device;
+1027-	}
+1028-
+1029-	err = camera_common_parse_ports(dev, priv->s_data);
+1030-	if (err) {
+1031-		dev_err(dev, "%s: camera_common_parse_ports failed err=%d\n",
+1032-			__func__, err);
+1033-		goto unregister_device;
+1034-	}
+1035-
+1036-	err = ov5647_board_setup(priv);
+1037-	if (err) {
+1038-		dev_err(dev, "%s: board setup failed err=%d\n", __func__, err);
+1039-		goto unregister_device;
+1040-	}
+1041-
+1042-	if (skip_v4l2_register) {
+1043-		dev_info(dev,
+1044-			 "%s: skip_v4l2_register=1; leaving probe before v4l2 subdev registration\n",
+1045-			 __func__);
+1046-		dev_info(dev, "%s: exit success without v4l2 registration\n",
+1047-			 __func__);
+1048-		return 0;
+1049-	}
+1050-
+1051-	err = tegracam_v4l2subdev_register(tc_dev, true);
+1052-	if (err) {
+1053-		dev_err(dev, "%s: tegracam_v4l2subdev_register failed err=%d\n",
+1054-			__func__, err);
+1055-		goto unregister_device;
+1056-	}
+1057-	priv->v4l2_registered = true;
+1058-	tegracam_set_privdata(tc_dev, priv);
+1059-	dev_info(dev,
+1060-		 "%s: v4l2 registered tc_dev=%p tc_dev->priv=%p s_data=%p s_data->priv=%p v4l2_registered=%d\n",

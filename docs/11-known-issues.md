@@ -83,6 +83,10 @@
   - upstream VGA mode uses `0x3821 = 0x03`;
   - current local code uses `0x3821 = 0x01`;
   - current local code includes local-only VGA writes to `0x5002` and `0x4837`.
+- Before the LP-11 source fix, local `ov5647_power_on()` missed an upstream power-on step:
+  - upstream writes a stream-stop register sequence after sensor output-enable;
+  - this is intended to force CSI lanes into LP-11 before stream start;
+  - the local code now has this fix built, but runtime validation requires a manual unload/load/capture cycle.
 - Current OV5647 `set_mode()` no longer enables streaming in source:
   - NVIDIA r36.5 tegracam calls `set_mode()` before `start_streaming()`;
   - NVIDIA sample drivers keep `set_mode()` to register programming and start output from `start_streaming()`;

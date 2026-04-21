@@ -1,0 +1,82 @@
+# command: sed -n '300,380p' src/nv_ov5647/nv_ov5647.c
+	if (!s_data || !to_tegracam_device(s_data))
+		return NULL;
+
+	return to_ov5647(to_tegracam_device(s_data));
+}
+
+static int ov5647_write_reg(struct camera_common_data *s_data, u16 addr, u8 val)
+{
+	struct ov5647 *priv = s_data_to_ov5647(s_data);
+	struct i2c_client *client;
+	u8 buf[3];
+	int err;
+
+	if (!priv || !s_data)
+		return -EINVAL;
+
+	client = priv->client;
+	if (!client)
+		return -ENODEV;
+
+	buf[0] = addr >> 8;
+	buf[1] = addr & 0xff;
+	buf[2] = val;
+
+	err = i2c_master_send(client, buf, sizeof(buf));
+	if (err == sizeof(buf))
+		err = 0;
+	else if (err >= 0)
+		err = -EIO;
+
+	if (err)
+		dev_err(s_data->dev,
+			"%s: reg write failed addr=0x%04x val=0x%02x err=%d\n",
+			__func__, addr, val, err);
+	else
+		dev_dbg(s_data->dev, "%s: addr=0x%04x val=0x%02x\n",
+			__func__, addr, val);
+
+	return err;
+}
+
+static int ov5647_read_reg(struct camera_common_data *s_data, u16 addr, u8 *val)
+{
+	struct ov5647 *priv = s_data_to_ov5647(s_data);
+	struct i2c_client *client;
+	struct i2c_msg msgs[2];
+	u8 addr_buf[2];
+	u8 reg_val;
+	int err;
+
+	if (!priv || !s_data || !val)
+		return -EINVAL;
+
+	client = priv->client;
+	if (!client)
+		return -ENODEV;
+
+	addr_buf[0] = addr >> 8;
+	addr_buf[1] = addr & 0xff;
+
+	msgs[0].addr = client->addr;
+	msgs[0].flags = 0;
+	msgs[0].len = sizeof(addr_buf);
+	msgs[0].buf = addr_buf;
+
+	msgs[1].addr = client->addr;
+	msgs[1].flags = I2C_M_RD;
+	msgs[1].len = sizeof(reg_val);
+	msgs[1].buf = &reg_val;
+
+	err = i2c_transfer(client->adapter, msgs, ARRAY_SIZE(msgs));
+	if (err == ARRAY_SIZE(msgs))
+		err = 0;
+	else if (err >= 0)
+		err = -EIO;
+
+	if (err) {
+		dev_err(s_data->dev,
+			"%s: reg read failed addr=0x%04x err=%d\n",
+			__func__, addr, err);
+		return err;

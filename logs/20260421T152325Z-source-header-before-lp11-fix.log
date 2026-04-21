@@ -1,0 +1,91 @@
+# command: sed -n '1,90p' src/nv_ov5647/nv_ov5647.c
+#include <linux/delay.h>
+#include <linux/gpio.h>
+#include <linux/i2c.h>
+#include <linux/init.h>
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/moduleparam.h>
+#include <linux/mutex.h>
+#include <linux/of_device.h>
+#include <linux/of_gpio.h>
+#include <linux/regmap.h>
+
+#include <media/camera_common.h>
+#include <media/media-entity.h>
+#include <media/sensor_common.h>
+#include <media/tegra-v4l2-camera.h>
+#include <media/tegracam_core.h>
+#include <media/v4l2-async.h>
+#include <media/v4l2-ctrls.h>
+
+#define OV5647_NAME			"nv_ov5647"
+#define OV5647_DEFAULT_MCLK		"extperiph1"
+#define OV5647_DEFAULT_AVDD_SUPPLY	"vana"
+#define OV5647_DEFAULT_DVDD_SUPPLY	"vdig"
+#define OV5647_DEFAULT_IOVDD_SUPPLY	"vif"
+#define OV5647_GPIO_NOT_PRESENT		UINT_MAX
+
+#define OV5647_TABLE_WAIT_MS		0xfffe
+#define OV5647_TABLE_END		0xffff
+
+#define OV5647_REG_CHIP_ID_HIGH		0x300a
+#define OV5647_REG_CHIP_ID_LOW		0x300b
+#define OV5647_REG_SW_RESET		0x0103
+#define OV5647_REG_MODE_SELECT		0x0100
+#define OV5647_REG_FRAME_OFF_NUMBER	0x4202
+#define OV5647_REG_MIPI_CTRL00		0x4800
+#define OV5647_REG_MIPI_CTRL14		0x4814
+#define OV5640_REG_PAD_OUT		0x300d
+
+#define OV5647_MODE_STANDBY		0x00
+#define OV5647_MODE_STREAMING		0x01
+#define OV5647_CHIP_ID			0x5647
+
+#define OV5647_MIPI_CTRL00_CLOCK_LANE_GATE	BIT(5)
+#define OV5647_MIPI_CTRL00_LINE_SYNC_ENABLE	BIT(4)
+#define OV5647_MIPI_CTRL00_BUS_IDLE		BIT(2)
+#define OV5647_MIPI_CTRL00_CLOCK_LANE_DISABLE	BIT(0)
+
+struct ov5647_mode {
+	const char *name;
+	u32 width;
+	u32 height;
+	u32 code;
+	const struct reg_8 *table;
+};
+
+struct ov5647 {
+	struct i2c_client *client;
+	struct tegracam_device *tc_dev;
+	struct camera_common_data *s_data;
+	struct mutex lock;
+	u32 chip_id;
+	bool board_setup_done;
+	bool v4l2_registered;
+};
+
+static bool register_i2c_driver;
+module_param(register_i2c_driver, bool, 0644);
+MODULE_PARM_DESC(register_i2c_driver,
+		 "Register the OV5647 i2c driver on module load. Default: false");
+
+static bool allow_hw_probe;
+module_param(allow_hw_probe, bool, 0644);
+MODULE_PARM_DESC(allow_hw_probe,
+			 "Allow real OV5647 probe and board setup when a DT match exists. Default: false");
+
+static bool skip_v4l2_register;
+module_param(skip_v4l2_register, bool, 0644);
+MODULE_PARM_DESC(skip_v4l2_register,
+		 "Probe sensor and chip ID but skip tegracam_v4l2subdev_register(). Default: false");
+
+static bool skip_v4l2_unregister;
+module_param(skip_v4l2_unregister, bool, 0644);
+MODULE_PARM_DESC(skip_v4l2_unregister,
+		 "Diagnostic only: skip tegracam_v4l2subdev_unregister() in remove(). Default: false");
+
+static bool split_v4l2_unregister;
+module_param(split_v4l2_unregister, bool, 0644);
+MODULE_PARM_DESC(split_v4l2_unregister,
+		 "Diagnostic only: inline V4L2 unregister phases with markers. Default: false");

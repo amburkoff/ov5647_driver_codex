@@ -1,0 +1,39 @@
+# command: git commit -m 'test: record ov5647 capture timeout after clean remove'
+[main b1f8ef8] test: record ov5647 capture timeout after clean remove
+ 37 files changed, 4515 insertions(+), 1 deletion(-)
+ create mode 100644 artifacts/captures/20260421T151642Z/ov5647-640x480-bg10.raw
+ create mode 100644 logs/20260421T151526Z-manual-insmod-full-delay.dmesg-tail.log
+ create mode 100644 logs/20260421T151526Z-manual-insmod-full-delay.log
+ create mode 100644 logs/20260421T151526Z-manual-insmod-full-delay.modinfo.log
+ create mode 100644 logs/20260421T151558Z-before-capture-full-delay-insmod-state.log
+ create mode 100644 logs/20260421T151559Z-before-capture-media-ctl-p.log
+ create mode 100644 logs/20260421T151559Z-before-capture-v4l2-all.log
+ create mode 100644 logs/20260421T151559Z-before-capture-v4l2-formats.log
+ create mode 100644 logs/20260421T151559Z-before-capture-v4l2-list-devices.log
+ create mode 100644 logs/20260421T151559Z-dmesg-before-capture-full-delay.log
+ create mode 100644 logs/20260421T151642Z-single-frame-post-dmesg-tail.log
+ create mode 100644 logs/20260421T151642Z-single-frame-trace.log
+ create mode 100644 logs/20260421T151642Z-stream-live-dmesg.log
+ create mode 100644 logs/20260421T151757Z-dmesg-after-single-frame-151642.log
+ create mode 100644 logs/20260421T151757Z-single-frame-151642-analysis.log
+ create mode 100644 logs/20260421T151757Z-state-after-single-frame-151642.log
+ create mode 100644 logs/20260421T151940Z-session-resume-state.log
+ create mode 100644 logs/20260421T151956Z-current-mode-table-reference.log
+ create mode 100644 logs/20260421T151956Z-git-state-before-capture-timeout-report.log
+ create mode 100644 logs/20260421T151956Z-recent-files-before-capture-timeout-report.log
+ create mode 100644 logs/20260421T151956Z-upstream-ov5647-vga-reference.log
+ create mode 100644 logs/20260421T152008Z-docs-status-before-capture-timeout-update.log
+ create mode 100644 logs/20260421T152008Z-known-issues-before-capture-timeout-update.log
+ create mode 100644 logs/20260421T152008Z-normal-remove-report-reference.log
+ create mode 100644 logs/20260421T152008Z-single-frame-analysis-reference.log
+ create mode 100644 logs/20260421T152053Z-diff-capture-timeout-clean-remove.log
+ create mode 100644 logs/20260421T152053Z-git-diff-check-capture-timeout-clean-remove.log
+ create mode 100644 logs/20260421T152117Z-git-add-capture-timeout-pathspec-recovery.log
+ create mode 100644 logs/20260421T152117Z-staged-after-failed-capture-timeout-add.log
+ create mode 100644 logs/20260421T152128Z-git-add-capture-timeout-clean-remove.log
+ create mode 100644 logs/20260421T152135Z-git-add-capture-timeout-missing-logs.log
+ create mode 100644 logs/20260421T152142Z-git-add-missing-log-failure-note.log
+ create mode 100644 logs/20260421T152142Z-git-add-missing-log-recovery-list.log
+ create mode 100644 logs/20260421T152147Z-recent-logs-before-capture-timeout-commit.log
+ create mode 100644 reports/2026-04-21-single-frame-timeout-after-clean-remove.md
+git commit rc=0

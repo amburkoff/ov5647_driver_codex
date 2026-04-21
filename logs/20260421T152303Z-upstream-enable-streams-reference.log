@@ -1,0 +1,324 @@
+# command: grep -n -A120 -B20 'enable_streams\|disable_streams\|start_stream' artifacts/reference/upstream-linux/ov5647.c
+506-		if (ret < 0)
+507-			return ret;
+508-	}
+509-
+510-	return 0;
+511-}
+512-
+513-static int ov5647_stream_stop(struct ov5647 *sensor)
+514-{
+515-	int ret = 0;
+516-
+517-	cci_write(sensor->regmap, OV5647_REG_MIPI_CTRL00,
+518-		  MIPI_CTRL00_CLOCK_LANE_GATE | MIPI_CTRL00_BUS_IDLE |
+519-		  MIPI_CTRL00_CLOCK_LANE_DISABLE, &ret);
+520-	cci_write(sensor->regmap, OV5647_REG_FRAME_OFF_NUMBER, 0x0f, &ret);
+521-	cci_write(sensor->regmap, OV5640_REG_PAD_OUT, 0x01, &ret);
+522-
+523-	return ret;
+524-}
+525-
+526:static int ov5647_enable_streams(struct v4l2_subdev *sd,
+527-				 struct v4l2_subdev_state *state, u32 pad,
+528-				 u64 streams_mask)
+529-{
+530-	struct i2c_client *client = v4l2_get_subdevdata(sd);
+531-	struct ov5647 *sensor = to_sensor(sd);
+532-	u8 val = MIPI_CTRL00_BUS_IDLE;
+533-	int ret;
+534-
+535-	ret = pm_runtime_resume_and_get(&client->dev);
+536-	if (ret < 0)
+537-		return ret;
+538-
+539-	ret = ov5647_set_mode(sd);
+540-	if (ret) {
+541-		dev_err(&client->dev, "Failed to program sensor mode: %d\n", ret);
+542-		goto done;
+543-	}
+544-
+545-	/* Apply customized values from user when stream starts. */
+546-	ret =  __v4l2_ctrl_handler_setup(sd->ctrl_handler);
+547-	if (ret)
+548-		goto done;
+549-
+550-	if (sensor->clock_ncont)
+551-		val |= MIPI_CTRL00_CLOCK_LANE_GATE |
+552-		       MIPI_CTRL00_LINE_SYNC_ENABLE;
+553-
+554-	cci_write(sensor->regmap, OV5647_REG_MIPI_CTRL00, val, &ret);
+555-	cci_write(sensor->regmap, OV5647_REG_FRAME_OFF_NUMBER, 0x00, &ret);
+556-	cci_write(sensor->regmap, OV5640_REG_PAD_OUT, 0x00, &ret);
+557-
+558-done:
+559-	if (ret)
+560-		pm_runtime_put(&client->dev);
+561-
+562-	return ret;
+563-}
+564-
+565:static int ov5647_disable_streams(struct v4l2_subdev *sd,
+566-				  struct v4l2_subdev_state *state, u32 pad,
+567-				  u64 streams_mask)
+568-{
+569-	struct i2c_client *client = v4l2_get_subdevdata(sd);
+570-	struct ov5647 *sensor = to_sensor(sd);
+571-	int ret;
+572-
+573-	ret = ov5647_stream_stop(sensor);
+574-
+575-	pm_runtime_put(&client->dev);
+576-
+577-	return ret;
+578-}
+579-
+580-static int ov5647_power_on(struct device *dev)
+581-{
+582-	struct ov5647 *sensor = dev_get_drvdata(dev);
+583-	int ret;
+584-
+585-	dev_dbg(dev, "OV5647 power on\n");
+586-
+587-	ret = regulator_bulk_enable(OV5647_NUM_SUPPLIES, sensor->supplies);
+588-	if (ret < 0) {
+589-		dev_err(dev, "Failed to enable regulators: %d\n", ret);
+590-		return ret;
+591-	}
+592-
+593-	ret = gpiod_set_value_cansleep(sensor->pwdn, 0);
+594-	if (ret < 0) {
+595-		dev_err(dev, "pwdn gpio set value failed: %d\n", ret);
+596-		goto error_reg_disable;
+597-	}
+598-
+599-	msleep(PWDN_ACTIVE_DELAY_MS);
+600-
+601-	ret = clk_prepare_enable(sensor->xclk);
+602-	if (ret < 0) {
+603-		dev_err(dev, "clk prepare enable failed\n");
+604-		goto error_pwdn;
+605-	}
+606-
+607-	ret = regmap_multi_reg_write(sensor->regmap, sensor_oe_enable_regs,
+608-				     ARRAY_SIZE(sensor_oe_enable_regs));
+609-	if (ret < 0) {
+610-		dev_err(dev, "write sensor_oe_enable_regs error\n");
+611-		goto error_clk_disable;
+612-	}
+613-
+614-	/* Stream off to coax lanes into LP-11 state. */
+615-	ret = ov5647_stream_stop(sensor);
+616-	if (ret < 0) {
+617-		dev_err(dev, "camera not available, check power\n");
+618-		goto error_clk_disable;
+619-	}
+620-
+621-	return 0;
+622-
+623-error_clk_disable:
+624-	clk_disable_unprepare(sensor->xclk);
+625-error_pwdn:
+626-	gpiod_set_value_cansleep(sensor->pwdn, 1);
+627-error_reg_disable:
+628-	regulator_bulk_disable(OV5647_NUM_SUPPLIES, sensor->supplies);
+629-
+630-	return ret;
+631-}
+632-
+633-static int ov5647_power_off(struct device *dev)
+634-{
+635-	struct ov5647 *sensor = dev_get_drvdata(dev);
+636-	int ret;
+637-
+638-	dev_dbg(dev, "OV5647 power off\n");
+639-
+640-	ret = regmap_multi_reg_write(sensor->regmap, sensor_oe_disable_regs,
+641-				     ARRAY_SIZE(sensor_oe_disable_regs));
+642-	if (ret < 0)
+643-		dev_dbg(dev, "disable oe failed\n");
+644-
+645-	/* Enter software standby */
+646-	ret = cci_update_bits(sensor->regmap, OV5647_SW_STANDBY, 0x01, 0x00, NULL);
+647-	if (ret < 0)
+648-		dev_dbg(dev, "software standby failed\n");
+649-
+650-	clk_disable_unprepare(sensor->xclk);
+651-	gpiod_set_value_cansleep(sensor->pwdn, 1);
+652-	regulator_bulk_disable(OV5647_NUM_SUPPLIES, sensor->supplies);
+653-
+654-	return 0;
+655-}
+656-
+657-#ifdef CONFIG_VIDEO_ADV_DEBUG
+658-static int ov5647_sensor_get_register(struct v4l2_subdev *sd,
+659-				      struct v4l2_dbg_register *reg)
+660-{
+661-	struct ov5647 *sensor = to_sensor(sd);
+662-	int ret;
+663-	u64 val;
+664-
+665-	ret = cci_read(sensor->regmap, reg->reg & 0xff, &val, NULL);
+666-	if (ret < 0)
+667-		return ret;
+668-
+669-	reg->val = val;
+670-	reg->size = 1;
+671-
+672-	return 0;
+673-}
+674-
+675-static int ov5647_sensor_set_register(struct v4l2_subdev *sd,
+676-				      const struct v4l2_dbg_register *reg)
+677-{
+678-	struct ov5647 *sensor = to_sensor(sd);
+679-
+680-	return cci_write(sensor->regmap, reg->reg & 0xff, reg->val & 0xff, NULL);
+681-}
+682-#endif
+683-
+684-/* Subdev core operations registration */
+685-static const struct v4l2_subdev_core_ops ov5647_subdev_core_ops = {
+--
+860-
+861-	case V4L2_SEL_TGT_CROP_DEFAULT:
+862-	case V4L2_SEL_TGT_CROP_BOUNDS:
+863-		sel->r.top = OV5647_PIXEL_ARRAY_TOP;
+864-		sel->r.left = OV5647_PIXEL_ARRAY_LEFT;
+865-		sel->r.width = OV5647_PIXEL_ARRAY_WIDTH;
+866-		sel->r.height = OV5647_PIXEL_ARRAY_HEIGHT;
+867-
+868-		return 0;
+869-	}
+870-
+871-	return -EINVAL;
+872-}
+873-
+874-static const struct v4l2_subdev_pad_ops ov5647_subdev_pad_ops = {
+875-	.enum_mbus_code		= ov5647_enum_mbus_code,
+876-	.enum_frame_size	= ov5647_enum_frame_size,
+877-	.set_fmt		= ov5647_set_pad_fmt,
+878-	.get_fmt		= ov5647_get_pad_fmt,
+879-	.get_selection		= ov5647_get_selection,
+880:	.enable_streams		= ov5647_enable_streams,
+881:	.disable_streams	= ov5647_disable_streams,
+882-};
+883-
+884-static const struct v4l2_subdev_ops ov5647_subdev_ops = {
+885-	.core		= &ov5647_subdev_core_ops,
+886-	.video		= &ov5647_subdev_video_ops,
+887-	.pad		= &ov5647_subdev_pad_ops,
+888-};
+889-
+890-static int ov5647_detect(struct v4l2_subdev *sd)
+891-{
+892-	struct ov5647 *sensor = to_sensor(sd);
+893-	struct i2c_client *client = v4l2_get_subdevdata(sd);
+894-	u64 read;
+895-	int ret;
+896-
+897-	ret = cci_write(sensor->regmap, OV5647_SW_RESET, 0x01, NULL);
+898-	if (ret < 0)
+899-		return ret;
+900-
+901-	ret = cci_read(sensor->regmap, OV5647_REG_CHIPID, &read, NULL);
+902-	if (ret < 0)
+903-		return dev_err_probe(&client->dev, ret,
+904-				     "failed to read chip id %x\n",
+905-				     OV5647_REG_CHIPID);
+906-
+907-	if (read != OV5647_CHIP_ID) {
+908-		dev_err(&client->dev, "Chip ID expected 0x5647 got 0x%llx", read);
+909-		return -ENODEV;
+910-	}
+911-
+912-	return cci_write(sensor->regmap, OV5647_SW_RESET, 0x00, NULL);
+913-}
+914-
+915-static int ov5647_open(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
+916-{
+917-	struct v4l2_mbus_framefmt *format =
+918-				v4l2_subdev_state_get_format(fh->state, 0);
+919-	struct v4l2_rect *crop = v4l2_subdev_state_get_crop(fh->state, 0);
+920-
+921-	crop->left = OV5647_PIXEL_ARRAY_LEFT;
+922-	crop->top = OV5647_PIXEL_ARRAY_TOP;
+923-	crop->width = OV5647_PIXEL_ARRAY_WIDTH;
+924-	crop->height = OV5647_PIXEL_ARRAY_HEIGHT;
+925-
+926-	*format = OV5647_DEFAULT_FORMAT;
+927-
+928-	return 0;
+929-}
+930-
+931-static const struct v4l2_subdev_internal_ops ov5647_subdev_internal_ops = {
+932-	.open = ov5647_open,
+933-};
+934-
+935-static int ov5647_s_ctrl(struct v4l2_ctrl *ctrl)
+936-{
+937-	struct ov5647 *sensor = container_of(ctrl->handler,
+938-					    struct ov5647, ctrls);
+939-	struct v4l2_subdev *sd = &sensor->sd;
+940-	struct i2c_client *client = v4l2_get_subdevdata(sd);
+941-	int ret = 0;
+942-
+943-	if (ctrl->id == V4L2_CID_VBLANK) {
+944-		int exposure_max, exposure_def;
+945-
+946-		/* Update max exposure while meeting expected vblanking */
+947-		exposure_max = sensor->mode->format.height + ctrl->val - 4;
+948-		exposure_def = min(exposure_max, OV5647_EXPOSURE_DEFAULT);
+949-		__v4l2_ctrl_modify_range(sensor->exposure,
+950-					 sensor->exposure->minimum,
+951-					 exposure_max, sensor->exposure->step,
+952-					 exposure_def);
+953-	}
+954-
+955-	/*
+956-	 * If the device is not powered up do not apply any controls
+957-	 * to H/W at this time. Instead the controls will be restored
+958-	 * at s_stream(1) time.
+959-	 */
+960-	if (pm_runtime_get_if_in_use(&client->dev) == 0)
+961-		return 0;
+962-
+963-	switch (ctrl->id) {
+964-	case V4L2_CID_AUTO_WHITE_BALANCE:
+965-		ret = cci_write(sensor->regmap, OV5647_REG_AWB,
+966-				ctrl->val ? 1 : 0, NULL);
+967-		break;
+968-	case V4L2_CID_AUTOGAIN:
+969-		/* Non-zero turns on AGC by clearing bit 1.*/
+970-		ret = cci_update_bits(sensor->regmap, OV5647_REG_AEC_AGC, BIT(1),
+971-				      ctrl->val ? 0 : BIT(1), NULL);
+972-		break;
+973-	case V4L2_CID_EXPOSURE_AUTO:
+974-		/*
+975-		 * Everything except V4L2_EXPOSURE_MANUAL turns on AEC by
+976-		 * clearing bit 0.
+977-		 */
+978-		ret = cci_update_bits(sensor->regmap, OV5647_REG_AEC_AGC, BIT(0),
+979-				      ctrl->val == V4L2_EXPOSURE_MANUAL ? BIT(0) : 0, NULL);
+980-		break;
+981-	case V4L2_CID_ANALOGUE_GAIN:
+982-		/* 10 bits of gain, 2 in the high register. */
+983-		ret = cci_write(sensor->regmap, OV5647_REG_GAIN,
+984-				ctrl->val & 0x3ff, NULL);
+985-		break;
+986-	case V4L2_CID_EXPOSURE:
+987-		/*
+988-		 * Sensor has 20 bits, but the bottom 4 bits are fractions of a line
+989-		 * which we leave as zero (and don't receive in "val").
+990-		 */
+991-		ret = cci_write(sensor->regmap, OV5647_REG_EXPOSURE,
+992-				ctrl->val << 4, NULL);
+993-		break;
+994-	case V4L2_CID_VBLANK:
+995-		ret = cci_write(sensor->regmap, OV5647_REG_VTS,
+996-				sensor->mode->format.height + ctrl->val, NULL);
+997-		break;
+998-	case V4L2_CID_HBLANK:
+999-		ret = cci_write(sensor->regmap, OV5647_REG_HTS,
+1000-				sensor->mode->format.width + ctrl->val, &ret);
+1001-		break;
