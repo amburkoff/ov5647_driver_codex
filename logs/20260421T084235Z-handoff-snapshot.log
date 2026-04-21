@@ -1,0 +1,36 @@
+Tue Apr 21 08:42:40 UTC 2026
+
+# git status --short
+?? artifacts/build/20260420T102259Z/
+?? artifacts/build/20260420T104714Z/
+?? artifacts/build/20260420T105421Z/
+?? artifacts/captures/
+?? artifacts/post-reboot/20260420T104550Z/
+?? logs/20260420T102259Z-build_module.log
+?? logs/20260420T103133Z-rmmod-live-dmesg.log
+?? logs/20260420T103133Z-rmmod-trace.log
+?? logs/20260420T103519Z-single-frame-trace.log
+?? logs/20260420T103519Z-stream-live-dmesg.log
+?? logs/20260420T103938Z-build_module.log
+?? logs/20260420T104550Z-collect_post_reboot.log
+?? logs/20260420T104714Z-build_module.log
+?? logs/20260420T105421Z-build_module.log
+?? logs/20260420T105700Z-git-push.log
+?? logs/20260420T110500Z-build_module.log
+?? logs/20260421T084235Z-handoff-snapshot.log
+
+# git log --oneline -n 8
+bd681fc debug: instrument ov5647 module exit and log fourth rmmod hang
+70326ba debug: flush manual rmmod trace markers
+45ca907 driver: align ov5647 vga mode with upstream timing
+f268826 debug: add manual single-frame trace helper
+3a91c93 debug: add manual rmmod trace helper
+f27a661 debug: instrument ov5647 remove hang path
+defe483 driver: harden ov5647 remove after reboot crash
+379c61d driver: reach first successful ov5647 probe
+
+# /proc/cmdline
+root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+
+# lsmod nv_ov5647
+nv_ov5647              24576  0
