@@ -752,7 +752,6 @@ static int ov5647_set_mode(struct tegracam_device *tc_dev)
 	struct camera_common_data *s_data = tc_dev->s_data;
 	struct ov5647 *priv = to_ov5647(tc_dev);
 	int mode = s_data ? s_data->mode : -1;
-	u8 standby;
 	u8 vc_ctrl;
 	int err;
 
@@ -770,10 +769,6 @@ static int ov5647_set_mode(struct tegracam_device *tc_dev)
 		 "%s: applying mode=%d name=%s %ux%u\n",
 		 __func__, mode, ov5647_modes[mode].name,
 		 ov5647_modes[mode].width, ov5647_modes[mode].height);
-
-	err = ov5647_read_reg(s_data, OV5647_REG_MODE_SELECT, &standby);
-	if (err)
-		return err;
 
 	err = ov5647_write_table(s_data, ov5647_common_regs);
 	if (err) {
@@ -798,13 +793,8 @@ static int ov5647_set_mode(struct tegracam_device *tc_dev)
 	if (err)
 		return err;
 
-	if (!(standby & OV5647_MODE_STREAMING)) {
-		err = ov5647_write_reg(s_data, OV5647_REG_MODE_SELECT,
-				       OV5647_MODE_STREAMING);
-		if (err)
-			return err;
-	}
-
+	dev_info(tc_dev->dev, "%s: mode applied, sensor remains in standby\n",
+		 __func__);
 	return 0;
 }
 

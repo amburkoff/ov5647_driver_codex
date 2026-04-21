@@ -60,7 +60,7 @@
 - Current OV5647 `set_mode()` still enables streaming:
   - NVIDIA r36.5 tegracam calls `set_mode()` before `start_streaming()`;
   - NVIDIA sample drivers keep `set_mode()` to register programming and start output from `start_streaming()`;
-  - this is the next focused code-side hypothesis for the VI timeout.
+  - code-side fix is prepared, but runtime validation requires a future module reload.
 - A likely zero-byte capture cause was found in the driver:
   - previous builds left OV5647 output-enable registers `0x3000/0x3001/0x3002` disabled after common reset;
   - upstream Linux enables those registers during power-on and disables them during power-off;

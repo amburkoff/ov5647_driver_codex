@@ -1,0 +1,14 @@
+[main 5a0c9b7] test: record ov5647 single frame timeout
+ 14 files changed, 2681 insertions(+)
+ create mode 100644 artifacts/captures/20260421T102646Z/ov5647-640x480-bg10.raw
+ create mode 100644 logs/20260421T102339Z-git-commit-split-insmod-query-checkpoint.log
+ create mode 100644 logs/20260421T102343Z-git-push-split-insmod-query-checkpoint.log
+ create mode 100644 logs/20260421T102429Z-git-commit-single-frame-trace-timeout.log
+ create mode 100644 logs/20260421T102432Z-git-push-single-frame-trace-timeout.log
+ create mode 100644 logs/20260421T102646Z-single-frame-post-dmesg-tail.log
+ create mode 100644 logs/20260421T102646Z-single-frame-trace.log
+ create mode 100644 logs/20260421T102646Z-stream-live-dmesg.log
+ create mode 100644 logs/20260421T102807Z-after-timeout-capture-dmesg-tail.log
+ create mode 100644 logs/20260421T102807Z-after-timeout-capture-module-holders.log
+ create mode 100644 logs/20260421T102807Z-capture-102646-analysis.log
+ create mode 100644 reports/2026-04-21-single-frame-timeout-after-output-enable.md
