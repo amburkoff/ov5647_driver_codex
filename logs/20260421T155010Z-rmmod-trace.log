@@ -1,0 +1,4 @@
+[20260421T155010Z] starting live dmesg capture
+[20260421T155010Z] collecting pre-rmmod state
+[20260421T155010Z] running: rmmod nv_ov5647
+[20260421T155010Z] rmmod rc=0

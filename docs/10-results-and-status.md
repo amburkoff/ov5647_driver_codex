@@ -177,6 +177,13 @@ Completed:
   - removed local-only `0x4837 = 0x16`;
   - kept Raspberry Pi 6.6.y-compatible `0x3821 = 0x01`;
   - rebuilt `.ko` has `srcversion=2F4050CDED69B8A5FF0C49F`.
+- runtime validation of the VGA table cleanup still timed out:
+  - loaded module `srcversion=2F4050CDED69B8A5FF0C49F`;
+  - `rmmod` and `insmod full-delay` completed cleanly;
+  - single-frame capture reached `VIDIOC_STREAMON`;
+  - capture returned `rc=124`;
+  - raw output `artifacts/captures/20260421T155031Z/ov5647-640x480-bg10.raw` is zero bytes;
+  - VI still logged repeated `uncorr_err: request timed out after 2500 ms`.
 
 Not completed yet:
 
@@ -189,6 +196,5 @@ Not completed yet:
 Next smallest safe step:
 
 - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
-- manually unload/load/capture the rebuilt VGA-table-cleanup module one command at a time;
-- if the capture still times out with zero bytes, prepare an alternate route-C overlay experiment instead of continuing route-A register guessing;
+- prepare an alternate route-C overlay experiment instead of continuing route-A register guessing;
 - keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.

@@ -1,0 +1,6 @@
+[20260421T155023Z] manual insmod profile=full-delay
+[20260421T155023Z] module=/home/cam/ov5647_driver_codex/src/nv_ov5647/nv_ov5647.ko
+[20260421T155023Z] params=register_i2c_driver=1 allow_hw_probe=1 unload_marker_delay_ms=500
+[20260421T155023Z] cmdline=root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+[20260421T155023Z] running insmod
+[20260421T155023Z] insmod rc=0

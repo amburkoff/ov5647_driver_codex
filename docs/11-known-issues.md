@@ -113,7 +113,17 @@
 - The local VGA mode table had two local-only writes not present in either mainline Linux or Raspberry Pi 6.6.y VGA arrays:
   - `0x5002 = 0x41`;
   - `0x4837 = 0x16`;
-  - these are now removed in source and need manual runtime validation.
+  - these are now removed in source.
+- Runtime validation of the VGA table cleanup still timed out:
+  - the loaded module matched the rebuilt cleanup `srcversion`;
+  - `VIDIOC_STREAMON` returned success;
+  - capture returned `rc=124`;
+  - raw output remained zero bytes;
+  - route-A VI still reported repeated `uncorr_err: request timed out after 2500 ms`.
+- Continuing to tune route-A sensor registers now has diminishing value until route-C is tested:
+  - route-A probe is real, but frame delivery is absent;
+  - the user has identical OV5647 modules in both physical CSI connectors;
+  - an alternate route-C overlay is the next clean single-variable test of physical connector routing.
 - Current OV5647 `set_mode()` no longer enables streaming in source:
   - NVIDIA r36.5 tegracam calls `set_mode()` before `start_streaming()`;
   - NVIDIA sample drivers keep `set_mode()` to register programming and start output from `start_streaming()`;

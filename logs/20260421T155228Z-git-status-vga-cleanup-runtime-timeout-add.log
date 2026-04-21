@@ -1,0 +1,9 @@
+A  artifacts/captures/20260421T155031Z/ov5647-640x480-bg10.raw
+M  docs/10-results-and-status.md
+M  docs/11-known-issues.md
+A  logs/20260421T155010Z-rmmod-trace.log
+A  logs/20260421T155023Z-manual-insmod-full-delay.log
+A  logs/20260421T155031Z-single-frame-trace.log
+A  logs/20260421T155141Z-after-vga-cleanup-capture-timeout-state.log
+A  reports/2026-04-21-vga-table-cleanup-runtime-timeout.md
+?? logs/20260421T155228Z-git-add-vga-cleanup-runtime-timeout.log
