@@ -1,0 +1,29 @@
+artifacts/reference/upstream-linux/ov5647.c:155:static const struct reg_sequence sensor_oe_disable_regs[] = {
+artifacts/reference/upstream-linux/ov5647.c:156:	{0x3000, 0x00},
+artifacts/reference/upstream-linux/ov5647.c:157:	{0x3001, 0x00},
+artifacts/reference/upstream-linux/ov5647.c:158:	{0x3002, 0x00},
+artifacts/reference/upstream-linux/ov5647.c:161:static const struct reg_sequence sensor_oe_enable_regs[] = {
+artifacts/reference/upstream-linux/ov5647.c:162:	{0x3000, 0x0f},
+artifacts/reference/upstream-linux/ov5647.c:163:	{0x3001, 0xff},
+artifacts/reference/upstream-linux/ov5647.c:164:	{0x3002, 0xe4},
+artifacts/reference/upstream-linux/ov5647.c:179:	{0x3000, 0x00},
+artifacts/reference/upstream-linux/ov5647.c:180:	{0x3001, 0x00},
+artifacts/reference/upstream-linux/ov5647.c:181:	{0x3002, 0x00},
+artifacts/reference/upstream-linux/ov5647.c:607:	ret = regmap_multi_reg_write(sensor->regmap, sensor_oe_enable_regs,
+artifacts/reference/upstream-linux/ov5647.c:608:				     ARRAY_SIZE(sensor_oe_enable_regs));
+artifacts/reference/upstream-linux/ov5647.c:610:		dev_err(dev, "write sensor_oe_enable_regs error\n");
+artifacts/reference/upstream-linux/ov5647.c:640:	ret = regmap_multi_reg_write(sensor->regmap, sensor_oe_disable_regs,
+artifacts/reference/upstream-linux/ov5647.c:641:				     ARRAY_SIZE(sensor_oe_disable_regs));
+src/nv_ov5647/nv_ov5647.c:161:	{0x3000, 0x00},
+src/nv_ov5647/nv_ov5647.c:162:	{0x3001, 0x00},
+src/nv_ov5647/nv_ov5647.c:163:	{0x3002, 0x00},
+src/nv_ov5647/nv_ov5647.c:204:static const struct reg_8 ov5647_sensor_oe_enable_regs[] = {
+src/nv_ov5647/nv_ov5647.c:205:	{0x3000, 0x0f},
+src/nv_ov5647/nv_ov5647.c:206:	{0x3001, 0xff},
+src/nv_ov5647/nv_ov5647.c:207:	{0x3002, 0xe4},
+src/nv_ov5647/nv_ov5647.c:211:static const struct reg_8 ov5647_sensor_oe_disable_regs[] = {
+src/nv_ov5647/nv_ov5647.c:212:	{0x3000, 0x00},
+src/nv_ov5647/nv_ov5647.c:213:	{0x3001, 0x00},
+src/nv_ov5647/nv_ov5647.c:214:	{0x3002, 0x00},
+src/nv_ov5647/nv_ov5647.c:626:	err = ov5647_write_table(s_data, ov5647_sensor_oe_enable_regs);
+src/nv_ov5647/nv_ov5647.c:681:	if (ov5647_write_table(s_data, ov5647_sensor_oe_disable_regs))

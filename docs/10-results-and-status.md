@@ -87,6 +87,7 @@ Completed:
 - direct `scripts/unload_module.sh` now refuses unsafe unload unless `OV5647_ALLOW_UNSAFE_RMMOD=1` is explicitly set.
 - added `scripts/run_manual_insmod_diag.sh` with `full-delay`, `skip-register`, `skip-unregister`, and `split-unregister` profiles.
 - fixed OV5647 power rail ownership to use framework-owned `s_data->power` instead of an embedded private object.
+- prepared upstream-aligned OV5647 sensor output-enable handling for power-on/power-off (`0x3000/0x3001/0x3002`), not runtime-tested yet.
 
 Not completed yet:
 

@@ -53,4 +53,8 @@
   - capture returns with zero-byte output files;
   - kernel logs show repeated `uncorr_err: request timed out after 2500 ms`;
   - this indicates mode/CSI timing is still incomplete even though probe and node registration succeed.
+- A likely zero-byte capture cause was found in the driver:
+  - previous builds left OV5647 output-enable registers `0x3000/0x3001/0x3002` disabled after common reset;
+  - upstream Linux enables those registers during power-on and disables them during power-off;
+  - code-side fix is prepared and built, but runtime validation is pending.
 - `/dev/video0` exists and `v4l2-compliance` has passed, but raw image delivery and preview are not yet validated.

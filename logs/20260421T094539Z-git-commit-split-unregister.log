@@ -1,0 +1,12 @@
+[main e9613a6] debug: split ov5647 v4l2 unregister diagnostics
+ 16 files changed, 234 insertions(+), 5 deletions(-)
+ create mode 100644 logs/20260421T094155Z-git-commit-power-ownership.log
+ create mode 100644 logs/20260421T094158Z-git-push-power-ownership.log
+ create mode 100644 logs/20260421T094330Z-kernel-config-v4l2-async-media.log
+ create mode 100644 logs/20260421T094354Z-build_module-split-unregister-is-enabled.log
+ create mode 100644 logs/20260421T094407Z-git-diff-check-split-unregister-is-enabled.log
+ create mode 100644 logs/20260421T094407Z-modinfo-split-unregister-is-enabled.log
+ create mode 100644 logs/20260421T094407Z-nm-undefined-split-unregister-is-enabled.log
+ create mode 100644 logs/20260421T094514Z-bash-n-run-manual-insmod-diag.log
+ create mode 100644 logs/20260421T094514Z-git-diff-check-split-unregister-final.log
+ create mode 100644 reports/2026-04-21-split-v4l2-unregister-diagnostics.md

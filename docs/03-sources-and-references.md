@@ -35,6 +35,7 @@ JetPack note:
 
 - Upstream Linux `ov5647.c` reference:
   - <https://github.com/torvalds/linux/blob/master/drivers/media/i2c/ov5647.c>
+  - local transient copy for diff/reference work: `artifacts/reference/upstream-linux/ov5647.c`
 - Upstream Linux `ovti,ov5647` DT binding:
   - <https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/media/i2c/ovti%2Cov5647.yaml>
 - Linux V4L2 userspace API:

@@ -201,6 +201,20 @@ static const struct reg_8 ov5647_common_regs[] = {
 	{ OV5647_TABLE_END, 0x00 },
 };
 
+static const struct reg_8 ov5647_sensor_oe_enable_regs[] = {
+	{0x3000, 0x0f},
+	{0x3001, 0xff},
+	{0x3002, 0xe4},
+	{ OV5647_TABLE_END, 0x00 },
+};
+
+static const struct reg_8 ov5647_sensor_oe_disable_regs[] = {
+	{0x3000, 0x00},
+	{0x3001, 0x00},
+	{0x3002, 0x00},
+	{ OV5647_TABLE_END, 0x00 },
+};
+
 static const struct reg_8 ov5647_mode0_640x480_10bpp[] = {
 	{0x3036, 0x46},
 	{0x3821, 0x01},
@@ -608,11 +622,21 @@ static int ov5647_power_on(struct camera_common_data *s_data)
 	}
 
 	usleep_range(5000, 6000);
+
+	err = ov5647_write_table(s_data, ov5647_sensor_oe_enable_regs);
+	if (err) {
+		dev_err(dev, "%s: sensor output-enable table failed err=%d\n",
+			__func__, err);
+		goto disable_mclk;
+	}
+
 	pw->state = true;
 
 	dev_info(dev, "%s: exit success\n", __func__);
 	return 0;
 
+disable_mclk:
+	camera_common_mclk_disable(s_data);
 disable_avdd:
 	if (pw->avdd)
 		regulator_disable(pw->avdd);
@@ -653,6 +677,10 @@ static int ov5647_power_off(struct camera_common_data *s_data)
 		dev_dbg(dev, "%s: already off\n", __func__);
 		return 0;
 	}
+
+	if (ov5647_write_table(s_data, ov5647_sensor_oe_disable_regs))
+		dev_warn(dev, "%s: sensor output-disable table failed\n",
+			 __func__);
 
 	if (gpio_is_valid((int)pw->pwdn_gpio))
 		gpio_set_value(pw->pwdn_gpio, 1);
