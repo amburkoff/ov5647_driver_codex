@@ -71,3 +71,13 @@ sudo env RMMOD_SYSRQ_DELAY_SEC=10 /home/cam/ov5647_driver_codex/scripts/run_manu
 ```
 
 The SysRq mode is useful only if the kernel remains alive after `rmmod` stalls. If the Jetson hard-locks immediately, no watchdog output may be written.
+
+## Manual Single-Frame Capture
+
+Use this only after query-only V4L2 checks pass:
+
+```bash
+sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_trace.sh
+```
+
+The helper records live dmesg, `v4l2-ctl` stderr/stdout, return code, raw file size, and a post-capture dmesg tail. It uses `CAPTURE_TIMEOUT_SEC=30` by default for userspace stalls; a hard kernel lock may still require manual reboot.
