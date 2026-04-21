@@ -60,5 +60,5 @@
 - A likely zero-byte capture cause was found in the driver:
   - previous builds left OV5647 output-enable registers `0x3000/0x3001/0x3002` disabled after common reset;
   - upstream Linux enables those registers during power-on and disables them during power-off;
-  - code-side fix is prepared and built, but runtime validation is pending.
+  - code-side fix is now loaded, but capture validation is pending.
 - `/dev/video0` exists and `v4l2-compliance` has passed, but raw image delivery and preview are not yet validated.

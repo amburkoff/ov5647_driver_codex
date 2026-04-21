@@ -1,0 +1,18 @@
+timestamp_utc=20260421T102127Z
+# lsmod
+nv_ov5647              24576  0
+# module refcnt
+0
+# module params
+/sys/module/nv_ov5647/parameters/allow_hw_probe
+/sys/module/nv_ov5647/parameters/allow_hw_probe=Y
+/sys/module/nv_ov5647/parameters/register_i2c_driver
+/sys/module/nv_ov5647/parameters/register_i2c_driver=Y
+/sys/module/nv_ov5647/parameters/skip_v4l2_register
+/sys/module/nv_ov5647/parameters/skip_v4l2_register=N
+/sys/module/nv_ov5647/parameters/skip_v4l2_unregister
+/sys/module/nv_ov5647/parameters/skip_v4l2_unregister=N
+/sys/module/nv_ov5647/parameters/split_v4l2_unregister
+/sys/module/nv_ov5647/parameters/split_v4l2_unregister=Y
+/sys/module/nv_ov5647/parameters/unload_marker_delay_ms
+/sys/module/nv_ov5647/parameters/unload_marker_delay_ms=500

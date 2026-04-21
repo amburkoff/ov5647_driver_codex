@@ -74,8 +74,10 @@ else
 fi
 echo "[${TS}] running: rmmod nv_ov5647" | tee -a "${RUN_LOG}"
 sync
-sudo rmmod nv_ov5647
-RC=$?
+set +e
+sudo rmmod nv_ov5647 2>&1 | tee -a "${RUN_LOG}"
+RC=${PIPESTATUS[0]}
+set -e
 echo "[${TS}] rmmod rc=${RC}" | tee -a "${RUN_LOG}"
 sync
 sleep 1

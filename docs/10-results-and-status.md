@@ -90,6 +90,7 @@ Completed:
 - prepared upstream-aligned OV5647 sensor output-enable handling for power-on/power-off (`0x3000/0x3001/0x3002`), not runtime-tested yet.
 - latest manual `rmmod` hang occurred with an older loaded module that did not contain the new split-unregister diagnostics or output-enable fix.
 - after user rebooted and accidentally ran a second `sudo reboot`, the system is clean with no `nv_ov5647` loaded; pstore contains only the later clean reboot trail.
+- manual `split-unregister` insmod succeeded with the rebuilt module; query-only V4L2/media checks show `/dev/video0`, `BG10 640x480`, and a linked media graph.
 
 Not completed yet:
 

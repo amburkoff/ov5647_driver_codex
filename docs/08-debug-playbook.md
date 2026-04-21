@@ -62,6 +62,8 @@ Basic trace:
 sudo /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh
 ```
 
+The helper records `rmmod` stderr and exit code even when `rmmod` fails without unloading the module.
+
 Trace with delayed SysRq task dumps:
 
 ```bash
