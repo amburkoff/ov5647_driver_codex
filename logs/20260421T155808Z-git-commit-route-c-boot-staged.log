@@ -1,0 +1,15 @@
+[main 33f41ff] boot: stage ov5647 route c dev profile
+ 15 files changed, 261 insertions(+), 13 deletions(-)
+ create mode 100644 artifacts/boot/20260421T155602Z/extlinux.conf.current
+ create mode 100644 artifacts/boot/20260421T155602Z/extlinux.conf.generated
+ create mode 100644 artifacts/boot/20260421T155611Z-route-c-applied/extlinux.conf.active
+ create mode 100644 artifacts/boot/20260421T155611Z-route-c-applied/extlinux.conf.before-route-c.bak
+ create mode 100644 artifacts/boot/20260421T155611Z-route-c-applied/extlinux.conf.generated
+ create mode 100644 logs/20260421T155602Z-apply-route-c-dev-boot-profile.log
+ create mode 100644 logs/20260421T155602Z-switch_boot_profile.log
+ create mode 100644 logs/20260421T155602Z-verify-route-c-dev-boot-profile.log
+ create mode 100644 logs/20260421T155611Z-copy-active-extlinux-route-c.log
+ create mode 100644 logs/20260421T155611Z-route-c-boot-artifact-list.log
+ create mode 100644 logs/20260421T155802Z-git-add-route-c-boot-staged.log
+ create mode 100644 logs/20260421T155802Z-git-status-route-c-boot-staged-add.log
+ create mode 100644 reports/2026-04-21-route-c-boot-staged.md
