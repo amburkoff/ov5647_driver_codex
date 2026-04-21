@@ -1,0 +1,15 @@
+[main 7173eec] test: record split ov5647 insmod query checkpoint
+ 17 files changed, 656 insertions(+), 3 deletions(-)
+ create mode 100644 logs/20260421T102053Z-manual-insmod-split-unregister.dmesg-tail.log
+ create mode 100644 logs/20260421T102053Z-manual-insmod-split-unregister.log
+ create mode 100644 logs/20260421T102053Z-manual-insmod-split-unregister.modinfo.log
+ create mode 100644 logs/20260421T102127Z-after-split-insmod-dmesg-tail.log
+ create mode 100644 logs/20260421T102127Z-after-split-insmod-modinfo.log
+ create mode 100644 logs/20260421T102127Z-after-split-insmod-module-state.log
+ create mode 100644 logs/20260421T102141Z-after-split-insmod-media-ctl-p.log
+ create mode 100644 logs/20260421T102141Z-after-split-insmod-v4l2-all.log
+ create mode 100644 logs/20260421T102141Z-after-split-insmod-v4l2-formats.log
+ create mode 100644 logs/20260421T102141Z-after-split-insmod-v4l2-list-devices.log
+ create mode 100644 logs/20260421T102221Z-git-diff-check-split-insmod-query-checkpoint.log
+ create mode 100644 logs/20260421T102258Z-bash-n-run-manual-rmmod-trace-rc-capture.log
+ create mode 100644 reports/2026-04-21-split-insmod-query-checkpoint.md

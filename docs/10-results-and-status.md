@@ -91,6 +91,7 @@ Completed:
 - latest manual `rmmod` hang occurred with an older loaded module that did not contain the new split-unregister diagnostics or output-enable fix.
 - after user rebooted and accidentally ran a second `sudo reboot`, the system is clean with no `nv_ov5647` loaded; pstore contains only the later clean reboot trail.
 - manual `split-unregister` insmod succeeded with the rebuilt module; query-only V4L2/media checks show `/dev/video0`, `BG10 640x480`, and a linked media graph.
+- first single-frame capture after the output-enable fix reached `VIDIOC_STREAMON` but timed out after 30 seconds with a zero-byte raw file; cleanup path ran `stop_streaming` and `power_off`.
 
 Not completed yet:
 

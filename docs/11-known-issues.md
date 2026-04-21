@@ -57,6 +57,10 @@
   - capture returns with zero-byte output files;
   - kernel logs show repeated `uncorr_err: request timed out after 2500 ms`;
   - this indicates mode/CSI timing is still incomplete even though probe and node registration succeed.
+- Current OV5647 `set_mode()` still enables streaming:
+  - NVIDIA r36.5 tegracam calls `set_mode()` before `start_streaming()`;
+  - NVIDIA sample drivers keep `set_mode()` to register programming and start output from `start_streaming()`;
+  - this is the next focused code-side hypothesis for the VI timeout.
 - A likely zero-byte capture cause was found in the driver:
   - previous builds left OV5647 output-enable registers `0x3000/0x3001/0x3002` disabled after common reset;
   - upstream Linux enables those registers during power-on and disables them during power-off;
