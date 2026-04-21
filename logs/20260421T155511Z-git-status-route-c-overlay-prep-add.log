@@ -1,0 +1,20 @@
+ M docs/01a-cbl-carrier-mapping.md
+ M docs/05-dt-overlay-design.md
+ M docs/10-results-and-status.md
+ M docs/11-known-issues.md
+?? artifacts/boot/20260421T155412Z/
+?? artifacts/dtbo/20260421T155351Z-ov5647-p3768-port-c-probe.dtbo
+?? logs/20260421T155338Z-build-overlay-route-c-probe-wrapper.log
+?? logs/20260421T155338Z-build_overlay-ov5647-p3768-port-c-probe.log
+?? logs/20260421T155351Z-build-overlay-route-c-probe-after-reg-wrapper.log
+?? logs/20260421T155351Z-build_overlay-ov5647-p3768-port-c-probe.log
+?? logs/20260421T155412Z-decompile-route-c-probe-warnings.log
+?? logs/20260421T155412Z-decompiled-route-c-probe-grep.log
+?? logs/20260421T155412Z-diff-route-c-probe-pre-docs.log
+?? logs/20260421T155412Z-render-boot-route-c-artifact-dir.log
+?? logs/20260421T155412Z-render-boot-route-c-dev.log
+?? logs/20260421T155412Z-switch_boot_profile.log
+?? logs/20260421T155419Z-rendered-route-c-extlinux-preview.log
+?? logs/20260421T155511Z-git-add-route-c-overlay-prep.log
+?? patches/ov5647-p3768-port-c-probe.dts
+?? reports/2026-04-21-route-c-overlay-prep.md

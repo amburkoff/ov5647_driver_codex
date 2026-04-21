@@ -184,6 +184,11 @@ Completed:
   - capture returned `rc=124`;
   - raw output `artifacts/captures/20260421T155031Z/ov5647-640x480-bg10.raw` is zero bytes;
   - VI still logged repeated `uncorr_err: request timed out after 2500 ms`.
+- alternate route-C overlay candidate is prepared and builds:
+  - source `patches/ov5647-p3768-port-c-probe.dts`;
+  - built artifact `artifacts/dtbo/20260421T155351Z-ov5647-p3768-port-c-probe.dtbo`;
+  - route fields: `cam_i2cmux/i2c@1`, `serial_c`, `port-index=2`, `bus-width=2`, `pwdn-gpios=<... 0xa0 ...>`, `lane_polarity="0"`;
+  - route-C boot config was rendered only under `artifacts/boot/20260421T155412Z/`; live `/boot` has not yet been modified for route C.
 
 Not completed yet:
 
@@ -196,5 +201,5 @@ Not completed yet:
 Next smallest safe step:
 
 - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
-- prepare an alternate route-C overlay experiment instead of continuing route-A register guessing;
-- keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.
+- stage route-C DTBO into `/boot`, apply dev boot profile with safe profile retained, then ask the user to run exactly `sudo reboot`;
+- after reboot, collect post-boot logs and check whether route C probes and whether `/dev/video0` appears.

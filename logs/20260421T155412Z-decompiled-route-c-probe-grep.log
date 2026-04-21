@@ -1,0 +1,29 @@
+4:	overlay-name = "OV5647 probe route C for p3768/p3767";
+14:				num-channels = <0x01>;
+24:							port-index = <0x02>;
+25:							bus-width = <0x02>;
+39:						badge = "probe_ov5647_route_c";
+45:							sysfs-device-tree = "/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36";
+56:						num-channels = <0x01>;
+60:						channel@1 {
+71:										port-index = <0x02>;
+72:										bus-width = <0x02>;
+105:						ov5647_a@36 {
+111:					i2c@1 {
+117:						ov5647_c@36 {
+119:							compatible = "ovti,ov5647";
+124:							sensor_model = "ov5647";
+132:							pwdn-gpios = <0xffffffff 0xa0 0x00>;
+137:								tegra_sinterface = "serial_c";
+138:								lane_polarity = "0";
+181:										port-index = <0x02>;
+182:										bus-width = <0x02>;
+196:		ov5647_probe_c_vi_in0 = "/fragment@0/__overlay__/tegra-capture-vi/ports/port@1/endpoint";
+197:		ov5647_probe_c_csi_in0 = "/fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000/channel@1/ports/port@0/endpoint@2";
+198:		ov5647_probe_c_csi_out0 = "/fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000/channel@1/ports/port@1/endpoint@3";
+199:		ov5647_probe_c_out0 = "/fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/ports/port@0/endpoint";
+205:		bpmp = "/fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@1/ov5647_c@36:clocks:0";
+206:		gpio = "/fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@1/ov5647_c@36:pwdn-gpios:0";
+234:							channel@1 {
+258:						i2c@1 {
+260:							ov5647_c@36 {

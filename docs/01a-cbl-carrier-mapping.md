@@ -109,6 +109,12 @@ Inference from these local references and the live successful probe:
   - reset GPIO token `0x3e`
   - `lane_polarity = 6`
 - route `C` remains plausible, but its lane-polarity handling is less uniform in the installed references.
+- after repeated route-A capture timeouts, route `C` is now the next controlled overlay experiment:
+  - `cam_i2cmux/i2c@1`;
+  - `serial_c`;
+  - `port-index = 2`;
+  - reset/PWDN GPIO token `0xa0`;
+  - lane polarity candidate `0`.
 
 ## Current Live Working Probe Facts
 
@@ -139,3 +145,4 @@ Inference from these local references and the live successful probe:
 3. Confirm whether the carrier exposes Jetson devkit-style 22-pin connectors or a custom route.
 4. Map the physical connector the user actually used to the now-confirmed live logical route `A`.
 5. Keep the bring-up focused on this one confirmed route while raw capture is established.
+6. If route-C is tested, treat it as a separate boot-profile experiment and compare probe, media graph, and capture behavior against route A.
