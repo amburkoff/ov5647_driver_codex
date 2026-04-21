@@ -111,19 +111,30 @@ Completed:
   - `s_data->priv`
   - `priv->tc_dev`
 - rebuilt `nv_ov5647.ko` contains the corrected remove lookup and additional probe/remove state markers.
+- manual full-probe unload after the corrected remove lookup succeeded with `rmmod rc=0`.
+- the successful unload completed:
+  - `v4l2_ctrl_handler_free`
+  - `v4l2_async_unregister_subdev`
+  - `media_entity_cleanup`
+  - `tegracam_device_unregister`
+  - `i2c_del_driver`
+- remove-time state is now valid:
+  - `s_data->priv` is non-NULL;
+  - `tc_dev->dev` is non-NULL;
+  - `v4l2_registered=1`.
 
 Not completed yet:
 
 - CBL carrier identity confirmation from hardware documentation or physical inspection;
 - verified OV5647 DT overlay;
 - verified OV5647 DT overlay for the actual physical connector used by the user;
-- stable `rmmod`;
+- stable normal-path `rmmod` without split-unregister diagnostics;
 - raw capture with non-empty frame data;
 - live preview.
 
 Next smallest safe step:
 
 - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
-- manually load the rebuilt module with the `split-unregister` diagnostic profile, then manually run one traced `rmmod` with the sysrq watchdog enabled; the expected validation is non-NULL `s_data->priv`, non-NULL `tc_dev->dev`, and `v4l2_registered=1` in remove.
+- manually validate one normal full load/unload cycle without `split_v4l2_unregister=1`; if clean, return to the zero-byte capture / VI timeout problem.
 - continue aligning the minimal mode table and CSI timing until VI receives real frames instead of timing out;
 - keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.

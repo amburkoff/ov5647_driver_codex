@@ -1,0 +1,17 @@
+timestamp=20260421T150411Z
+cmdline=root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+lsmod:
+nv_ov5647              24576  0
+module_params:
+allow_hw_probe=Y
+register_i2c_driver=Y
+skip_v4l2_register=N
+skip_v4l2_unregister=N
+split_v4l2_unregister=Y
+unload_marker_delay_ms=500
+refcnt=
+0
+holders=
+total 0
+drwxr-xr-x 2 root root 0 Apr 21 18:04 .
+drwxr-xr-x 7 root root 0 Apr 21 18:03 ..

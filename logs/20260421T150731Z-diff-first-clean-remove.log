@@ -1,0 +1,53 @@
+diff --git a/docs/10-results-and-status.md b/docs/10-results-and-status.md
+index ee2a60d..6a3f058 100644
+--- a/docs/10-results-and-status.md
++++ b/docs/10-results-and-status.md
+@@ -111,19 +111,30 @@ Completed:
+   - `s_data->priv`
+   - `priv->tc_dev`
+ - rebuilt `nv_ov5647.ko` contains the corrected remove lookup and additional probe/remove state markers.
++- manual full-probe unload after the corrected remove lookup succeeded with `rmmod rc=0`.
++- the successful unload completed:
++  - `v4l2_ctrl_handler_free`
++  - `v4l2_async_unregister_subdev`
++  - `media_entity_cleanup`
++  - `tegracam_device_unregister`
++  - `i2c_del_driver`
++- remove-time state is now valid:
++  - `s_data->priv` is non-NULL;
++  - `tc_dev->dev` is non-NULL;
++  - `v4l2_registered=1`.
+ 
+ Not completed yet:
+ 
+ - CBL carrier identity confirmation from hardware documentation or physical inspection;
+ - verified OV5647 DT overlay;
+ - verified OV5647 DT overlay for the actual physical connector used by the user;
+-- stable `rmmod`;
++- stable normal-path `rmmod` without split-unregister diagnostics;
+ - raw capture with non-empty frame data;
+ - live preview.
+ 
+ Next smallest safe step:
+ 
+ - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
+-- manually load the rebuilt module with the `split-unregister` diagnostic profile, then manually run one traced `rmmod` with the sysrq watchdog enabled; the expected validation is non-NULL `s_data->priv`, non-NULL `tc_dev->dev`, and `v4l2_registered=1` in remove.
++- manually validate one normal full load/unload cycle without `split_v4l2_unregister=1`; if clean, return to the zero-byte capture / VI timeout problem.
+ - continue aligning the minimal mode table and CSI timing until VI receives real frames instead of timing out;
+ - keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.
+diff --git a/docs/11-known-issues.md b/docs/11-known-issues.md
+index ff2a9c3..444e926 100644
+--- a/docs/11-known-issues.md
++++ b/docs/11-known-issues.md
+@@ -68,7 +68,10 @@
+   - `i2c_get_clientdata(client)` is not a stable `struct tegracam_device *` after V4L2 subdev registration;
+   - the driver was miscasting V4L2 subdev clientdata as tegracam device state;
+   - source-side fix now follows NVIDIA sample drivers and resolves remove state through `to_camera_common_data(&client->dev)` and `s_data->priv`.
+-- Runtime validation of the corrected remove lookup is still pending and must be manual.
++- Runtime validation of the corrected remove lookup passed once with split-unregister diagnostics:
++  - manual `rmmod` returned `rc=0`;
++  - V4L2 ctrl cleanup, async unregister, media cleanup, tegracam unregister, and i2c driver unregister all completed.
++- Normal `tegracam_v4l2subdev_unregister()` without split diagnostics still needs one manual validation cycle.
+ - Current OV5647 `set_mode()` no longer enables streaming in source:
+   - NVIDIA r36.5 tegracam calls `set_mode()` before `start_streaming()`;
+   - NVIDIA sample drivers keep `set_mode()` to register programming and start output from `start_streaming()`;

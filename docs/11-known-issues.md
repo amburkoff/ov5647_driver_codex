@@ -68,7 +68,10 @@
   - `i2c_get_clientdata(client)` is not a stable `struct tegracam_device *` after V4L2 subdev registration;
   - the driver was miscasting V4L2 subdev clientdata as tegracam device state;
   - source-side fix now follows NVIDIA sample drivers and resolves remove state through `to_camera_common_data(&client->dev)` and `s_data->priv`.
-- Runtime validation of the corrected remove lookup is still pending and must be manual.
+- Runtime validation of the corrected remove lookup passed once with split-unregister diagnostics:
+  - manual `rmmod` returned `rc=0`;
+  - V4L2 ctrl cleanup, async unregister, media cleanup, tegracam unregister, and i2c driver unregister all completed.
+- Normal `tegracam_v4l2subdev_unregister()` without split diagnostics still needs one manual validation cycle.
 - Current OV5647 `set_mode()` no longer enables streaming in source:
   - NVIDIA r36.5 tegracam calls `set_mode()` before `start_streaming()`;
   - NVIDIA sample drivers keep `set_mode()` to register programming and start output from `start_streaming()`;
