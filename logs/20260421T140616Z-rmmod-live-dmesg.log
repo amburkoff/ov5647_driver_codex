@@ -1,0 +1,5 @@
+[13925.935131] nv_ov5647: module exit enter driver_registered=1
+[13926.443833] nv_ov5647: before i2c_del_driver
+[13926.955890] nv_ov5647 9-0036: ov5647_remove: enter
+[13926.955903] nv_ov5647 9-0036: ov5647_remove: v4l2 subdev was not registered, skipping unregister
+[13926.955908] nv_ov5647 9-0036: ov5647_remove: before tegracam_device_unregister

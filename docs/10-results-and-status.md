@@ -93,6 +93,15 @@ Completed:
 - manual `split-unregister` insmod succeeded with the rebuilt module; query-only V4L2/media checks show `/dev/video0`, `BG10 640x480`, and a linked media graph.
 - first single-frame capture after the output-enable fix reached `VIDIOC_STREAMON` but timed out after 30 seconds with a zero-byte raw file; cleanup path ran `stop_streaming` and `power_off`.
 - prepared source-side fix so `ov5647_set_mode()` leaves the sensor in standby and only `ov5647_start_streaming()` writes `0x0100=STREAMING`.
+- latest manual `rmmod` hang is localized by live-dmesg to:
+  - `module exit enter`
+  - `before i2c_del_driver`
+  - `ov5647_remove: enter`
+  - skipped V4L2 unregister because the private `v4l2_registered` flag was false
+  - `before tegracam_device_unregister`
+- pstore after that hang is empty, so the live-dmesg boundary is the primary evidence.
+- source-side remove fix is prepared so full-probe remove forces V4L2 unregister whenever `s_data` exists and `skip_v4l2_register=0`, even if the private flag is inconsistent.
+- rebuilt `nv_ov5647.ko` contains the new forced-unregister warning and state dump markers.
 
 Not completed yet:
 
@@ -105,6 +114,7 @@ Not completed yet:
 
 Next smallest safe step:
 
-- do not unload the currently loaded module from Codex; next risky unload must be manual and use the new marker-delay diagnostics after a fresh module load;
+- do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
+- manually load the rebuilt module with the `split-unregister` diagnostic profile, then manually run one traced `rmmod` with the sysrq watchdog enabled;
 - continue aligning the minimal mode table and CSI timing until VI receives real frames instead of timing out;
 - keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.

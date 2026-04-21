@@ -1,0 +1,21 @@
+# latest rmmod logs
+-rw-rw-r-- 1 cam  cam      0 Apr 21 17:10 logs/20260421T141019Z-dmesg-tail-after-rmmod-hang-report.log
+-rw-rw-r-- 1 cam  cam     20 Apr 21 17:10 logs/20260421T141019Z-latest-rmmod-logs-after-hang-report.log
+-rw-r--r-- 1 root root  3241 Apr 21 17:06 logs/20260421T102034Z-rmmod-live-dmesg.log
+-rw-r--r-- 1 root root   348 Apr 21 17:06 logs/20260421T140616Z-rmmod-live-dmesg.log
+-rw-r--r-- 1 root root   188 Apr 21 17:06 logs/20260421T140616Z-rmmod-trace.log
+-rw-r--r-- 1 root root  8700 Apr 21 17:06 logs/20260421T140616Z-rmmod-pre-dmesg-tail.log
+-rw-r--r-- 1 root root   235 Apr 21 17:06 logs/20260421T140616Z-rmmod-lsof.log
+-rw-r--r-- 1 root root    58 Apr 21 17:06 logs/20260421T140616Z-rmmod-devnodes.log
+-rw-r--r-- 1 root root     0 Apr 21 17:06 logs/20260421T140616Z-rmmod-fuser.log
+-rw-rw-r-- 1 cam  cam      0 Apr 21 13:22 logs/20260421T102258Z-bash-n-run-manual-rmmod-trace-rc-capture.log
+-rw-r--r-- 1 root root   137 Apr 21 13:20 logs/20260421T102034Z-rmmod-trace.log
+-rw-r--r-- 1 root root    43 Apr 21 13:20 logs/20260421T102034Z-rmmod-sysrq-watchdog.log
+-rw-r--r-- 1 root root  8338 Apr 21 13:20 logs/20260421T102034Z-rmmod-pre-dmesg-tail.log
+-rw-r--r-- 1 root root   235 Apr 21 13:20 logs/20260421T102034Z-rmmod-lsof.log
+-rw-r--r-- 1 root root    12 Apr 21 13:20 logs/20260421T102034Z-rmmod-devnodes.log
+-rw-r--r-- 1 root root     0 Apr 21 13:20 logs/20260421T102034Z-rmmod-fuser.log
+-rw-rw-r-- 1 cam  cam     82 Apr 21 13:18 logs/20260421T101828Z-git-push-double-reboot-rmmod-hang.log
+-rw-rw-r-- 1 cam  cam   1811 Apr 21 13:18 logs/20260421T101824Z-git-commit-double-reboot-rmmod-hang.log
+-rw-rw-r-- 1 cam  cam   2808 Apr 21 13:17 logs/20260421T101712Z-rmmod-101016-grep.log
+-rw-rw-r-- 1 cam  cam   8949 Apr 21 13:17 logs/20260421T101712Z-rmmod-101016-analysis.log

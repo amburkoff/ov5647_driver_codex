@@ -1,0 +1,117 @@
+diff --git a/docs/10-results-and-status.md b/docs/10-results-and-status.md
+index 6e0060c..ddbea5b 100644
+--- a/docs/10-results-and-status.md
++++ b/docs/10-results-and-status.md
+@@ -93,6 +93,15 @@ Completed:
+ - manual `split-unregister` insmod succeeded with the rebuilt module; query-only V4L2/media checks show `/dev/video0`, `BG10 640x480`, and a linked media graph.
+ - first single-frame capture after the output-enable fix reached `VIDIOC_STREAMON` but timed out after 30 seconds with a zero-byte raw file; cleanup path ran `stop_streaming` and `power_off`.
+ - prepared source-side fix so `ov5647_set_mode()` leaves the sensor in standby and only `ov5647_start_streaming()` writes `0x0100=STREAMING`.
++- latest manual `rmmod` hang is localized by live-dmesg to:
++  - `module exit enter`
++  - `before i2c_del_driver`
++  - `ov5647_remove: enter`
++  - skipped V4L2 unregister because the private `v4l2_registered` flag was false
++  - `before tegracam_device_unregister`
++- pstore after that hang is empty, so the live-dmesg boundary is the primary evidence.
++- source-side remove fix is prepared so full-probe remove forces V4L2 unregister whenever `s_data` exists and `skip_v4l2_register=0`, even if the private flag is inconsistent.
++- rebuilt `nv_ov5647.ko` contains the new forced-unregister warning and state dump markers.
+ 
+ Not completed yet:
+ 
+@@ -105,6 +114,7 @@ Not completed yet:
+ 
+ Next smallest safe step:
+ 
+-- do not unload the currently loaded module from Codex; next risky unload must be manual and use the new marker-delay diagnostics after a fresh module load;
++- do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
++- manually load the rebuilt module with the `split-unregister` diagnostic profile, then manually run one traced `rmmod` with the sysrq watchdog enabled;
+ - continue aligning the minimal mode table and CSI timing until VI receives real frames instead of timing out;
+ - keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.
+diff --git a/docs/11-known-issues.md b/docs/11-known-issues.md
+index f8c881c..7981cbd 100644
+--- a/docs/11-known-issues.md
++++ b/docs/11-known-issues.md
+@@ -57,10 +57,17 @@
+   - capture returns with zero-byte output files;
+   - kernel logs show repeated `uncorr_err: request timed out after 2500 ms`;
+   - this indicates mode/CSI timing is still incomplete even though probe and node registration succeed.
+-- Current OV5647 `set_mode()` still enables streaming:
++- A later manual `rmmod` hang with live dmesg reached:
++  - `ov5647_remove: enter`;
++  - skipped V4L2 unregister because the private `v4l2_registered` flag was false;
++  - `before tegracam_device_unregister`.
++- The private V4L2 registration flag is therefore not reliable enough as the only remove-time guard:
++  - source-side fix now forces V4L2 unregister on the full-probe path when `s_data` exists and `skip_v4l2_register=0`;
++  - runtime validation still requires a future manual load/unload cycle.
++- Current OV5647 `set_mode()` no longer enables streaming in source:
+   - NVIDIA r36.5 tegracam calls `set_mode()` before `start_streaming()`;
+   - NVIDIA sample drivers keep `set_mode()` to register programming and start output from `start_streaming()`;
+-  - code-side fix is prepared, but runtime validation requires a future module reload.
++  - code-side fix is built, but runtime validation requires a future module reload.
+ - A likely zero-byte capture cause was found in the driver:
+   - previous builds left OV5647 output-enable registers `0x3000/0x3001/0x3002` disabled after common reset;
+   - upstream Linux enables those registers during power-on and disables them during power-off;
+diff --git a/src/nv_ov5647/nv_ov5647.c b/src/nv_ov5647/nv_ov5647.c
+index 8b73938..716e598 100644
+--- a/src/nv_ov5647/nv_ov5647.c
++++ b/src/nv_ov5647/nv_ov5647.c
+@@ -1063,7 +1063,9 @@ unregister_device:
+ static int ov5647_remove(struct i2c_client *client)
+ {
+ 	struct tegracam_device *tc_dev = i2c_get_clientdata(client);
++	struct camera_common_data *s_data;
+ 	struct ov5647 *priv;
++	bool should_unregister_v4l2;
+ 
+ 	dev_info(&client->dev, "%s: enter\n", __func__);
+ 
+@@ -1071,8 +1073,23 @@ static int ov5647_remove(struct i2c_client *client)
+ 		return 0;
+ 
+ 	priv = to_ov5647(tc_dev);
++	s_data = tc_dev->s_data;
++	should_unregister_v4l2 = s_data && !skip_v4l2_register;
++
++	dev_info(&client->dev,
++		 "%s: state tc_dev=%p priv=%p tc_dev->priv=%p s_data=%p s_data->priv=%p v4l2_registered=%d skip_v4l2_register=%d skip_v4l2_unregister=%d split_v4l2_unregister=%d\n",
++		 __func__, tc_dev, priv, tc_dev->priv, s_data,
++		 s_data ? s_data->priv : NULL,
++		 priv ? priv->v4l2_registered : -1,
++		 skip_v4l2_register, skip_v4l2_unregister,
++		 split_v4l2_unregister);
++
++	if (should_unregister_v4l2 && (!priv || !priv->v4l2_registered))
++		dev_warn(&client->dev,
++			 "%s: V4L2 registration flag is not set, but full probe path requires unregister; forcing V4L2 unregister before device cleanup\n",
++			 __func__);
+ 
+-	if (priv && priv->v4l2_registered) {
++	if (should_unregister_v4l2) {
+ 		dev_info(&client->dev,
+ 			 "%s: before tegracam_v4l2subdev_unregister\n",
+ 			 __func__);
+@@ -1086,18 +1103,20 @@ static int ov5647_remove(struct i2c_client *client)
+ 				 "%s: split_v4l2_unregister=1; diagnostic path, using inline unregister phases\n",
+ 				 __func__);
+ 			ov5647_split_v4l2subdev_unregister(tc_dev);
+-			priv->v4l2_registered = false;
++			if (priv)
++				priv->v4l2_registered = false;
+ 		} else {
+ 			tegracam_v4l2subdev_unregister(tc_dev);
+-			priv->v4l2_registered = false;
++			if (priv)
++				priv->v4l2_registered = false;
+ 		}
+ 		dev_info(&client->dev,
+ 			 "%s: after tegracam_v4l2subdev_unregister\n",
+ 			 __func__);
+ 	} else {
+ 		dev_info(&client->dev,
+-			 "%s: v4l2 subdev was not registered, skipping unregister\n",
+-			 __func__);
++			 "%s: skipping v4l2 unregister s_data=%p skip_v4l2_register=%d\n",
++			 __func__, s_data, skip_v4l2_register);
+ 	}
+ 
+ 	dev_info(&client->dev, "%s: before tegracam_device_unregister\n",

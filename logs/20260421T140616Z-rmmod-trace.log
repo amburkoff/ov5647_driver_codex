@@ -1,0 +1,4 @@
+[20260421T140616Z] starting live dmesg capture
+[20260421T140616Z] collecting pre-rmmod state
+[20260421T140616Z] arming sysrq watchdog delay=10s
+[20260421T140616Z] running: rmmod nv_ov5647

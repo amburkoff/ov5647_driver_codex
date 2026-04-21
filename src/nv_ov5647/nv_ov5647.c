@@ -1063,7 +1063,9 @@ unregister_device:
 static int ov5647_remove(struct i2c_client *client)
 {
 	struct tegracam_device *tc_dev = i2c_get_clientdata(client);
+	struct camera_common_data *s_data;
 	struct ov5647 *priv;
+	bool should_unregister_v4l2;
 
 	dev_info(&client->dev, "%s: enter\n", __func__);
 
@@ -1071,8 +1073,23 @@ static int ov5647_remove(struct i2c_client *client)
 		return 0;
 
 	priv = to_ov5647(tc_dev);
+	s_data = tc_dev->s_data;
+	should_unregister_v4l2 = s_data && !skip_v4l2_register;
 
-	if (priv && priv->v4l2_registered) {
+	dev_info(&client->dev,
+		 "%s: state tc_dev=%p priv=%p tc_dev->priv=%p s_data=%p s_data->priv=%p v4l2_registered=%d skip_v4l2_register=%d skip_v4l2_unregister=%d split_v4l2_unregister=%d\n",
+		 __func__, tc_dev, priv, tc_dev->priv, s_data,
+		 s_data ? s_data->priv : NULL,
+		 priv ? priv->v4l2_registered : -1,
+		 skip_v4l2_register, skip_v4l2_unregister,
+		 split_v4l2_unregister);
+
+	if (should_unregister_v4l2 && (!priv || !priv->v4l2_registered))
+		dev_warn(&client->dev,
+			 "%s: V4L2 registration flag is not set, but full probe path requires unregister; forcing V4L2 unregister before device cleanup\n",
+			 __func__);
+
+	if (should_unregister_v4l2) {
 		dev_info(&client->dev,
 			 "%s: before tegracam_v4l2subdev_unregister\n",
 			 __func__);
@@ -1086,18 +1103,20 @@ static int ov5647_remove(struct i2c_client *client)
 				 "%s: split_v4l2_unregister=1; diagnostic path, using inline unregister phases\n",
 				 __func__);
 			ov5647_split_v4l2subdev_unregister(tc_dev);
-			priv->v4l2_registered = false;
+			if (priv)
+				priv->v4l2_registered = false;
 		} else {
 			tegracam_v4l2subdev_unregister(tc_dev);
-			priv->v4l2_registered = false;
+			if (priv)
+				priv->v4l2_registered = false;
 		}
 		dev_info(&client->dev,
 			 "%s: after tegracam_v4l2subdev_unregister\n",
 			 __func__);
 	} else {
 		dev_info(&client->dev,
-			 "%s: v4l2 subdev was not registered, skipping unregister\n",
-			 __func__);
+			 "%s: skipping v4l2 unregister s_data=%p skip_v4l2_register=%d\n",
+			 __func__, s_data, skip_v4l2_register);
 	}
 
 	dev_info(&client->dev, "%s: before tegracam_device_unregister\n",

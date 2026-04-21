@@ -1,0 +1,54 @@
+# last -x
+cam      pts/0        192.168.55.100   Tue Apr 21 17:09   still logged in
+runlevel (to lvl 5)   5.15.185-tegra   Tue Apr 21 16:51   still running
+cam      :0           :0               Tue Apr 21 16:51    gone - no logout
+reboot   system boot  5.15.185-tegra   Tue Apr 21 16:51   still running
+cam      pts/0        192.168.55.100   Tue Apr 21 13:14 - crash  (03:36)
+runlevel (to lvl 5)   5.15.185-tegra   Tue Apr 21 13:14 - 16:51  (03:37)
+cam      :0           :0               Tue Apr 21 13:14 - crash  (03:37)
+reboot   system boot  5.15.185-tegra   Tue Apr 21 13:14   still running
+shutdown system down  5.15.185-tegra   Tue Apr 21 13:13 - 13:14  (00:00)
+cam      pts/0        192.168.55.100   Tue Apr 21 13:13 - 13:13  (00:00)
+runlevel (to lvl 5)   5.15.185-tegra   Tue Apr 21 12:58 - 13:13  (00:14)
+cam      :0           :0               Tue Apr 21 12:58 - down   (00:14)
+reboot   system boot  5.15.185-tegra   Tue Apr 21 12:58 - 13:13  (00:14)
+cam      pts/0        192.168.55.100   Tue Apr 21 11:59 - crash  (00:59)
+runlevel (to lvl 5)   5.15.185-tegra   Tue Apr 21 11:50 - 12:58  (01:08)
+cam      :0           :0               Tue Apr 21 11:50 - crash  (01:08)
+reboot   system boot  5.15.185-tegra   Tue Apr 21 11:50 - 13:13  (01:23)
+cam      pts/0        192.168.55.100   Tue Apr 21 11:39 - crash  (00:10)
+runlevel (to lvl 5)   5.15.185-tegra   Tue Apr 21 11:39 - 11:50  (00:10)
+cam      :0           :0               Tue Apr 21 11:39 - crash  (00:10)
+reboot   system boot  5.15.185-tegra   Tue Apr 21 11:39 - 13:13  (01:33)
+cam      pts/2        192.168.55.100   Mon Apr 20 15:31 - crash  (20:08)
+cam      pts/1        192.168.55.100   Mon Apr 20 14:18 - crash  (21:20)
+cam      pts/0        192.168.55.100   Mon Apr 20 13:46 - crash  (21:52)
+runlevel (to lvl 5)   5.15.185-tegra   Mon Apr 20 13:46 - 11:39  (21:53)
+cam      :0           :0               Mon Apr 20 13:46 - crash  (21:53)
+reboot   system boot  5.15.185-tegra   Mon Apr 20 13:46 - 13:13  (23:27)
+cam      pts/0        192.168.55.100   Mon Apr 20 13:42 - crash  (00:03)
+runlevel (to lvl 5)   5.15.185-tegra   Mon Apr 20 13:42 - 13:46  (00:04)
+cam      :0           :0               Mon Apr 20 13:42 - crash  (00:04)
+
+# journal reboot markers
+Apr 21 16:51:44 cam-desktop systemd[1]: Finished Record System Boot/Shutdown in UTMP.
+Apr 21 16:51:44 cam-desktop dbus-daemon[765]: dbus[765]: Unknown username "whoopsie" in message bus configuration file
+Apr 21 16:51:44 cam-desktop systemd[1]: Starting LSB: Execute the kexec -e command to reboot system...
+Apr 21 16:51:44 cam-desktop systemd[1]: Condition check resulted in Ubuntu Pro reboot cmds being skipped.
+Apr 21 16:51:44 cam-desktop systemd[1]: Started LSB: Execute the kexec -e command to reboot system.
+Apr 21 16:51:45 cam-desktop systemd[1]: Started ramoops module.
+Apr 21 16:51:45 cam-desktop systemd[1]: nvramoopsconfig.service: Deactivated successfully.
+Apr 21 16:51:45 cam-desktop kernel: printk: console [ramoops-1]: printing thread started
+Apr 21 16:51:45 cam-desktop kernel: printk: console [ramoops-1] enabled
+Apr 21 16:51:45 cam-desktop kernel: pstore: Registered ramoops as persistent store backend
+Apr 21 16:51:45 cam-desktop kernel: ramoops: using 0x200000@0x4725f0000, ecc: 0
+Apr 21 16:51:45 cam-desktop cron[1325]: (CRON) INFO (Running @reboot jobs)
+Apr 21 16:51:45 cam-desktop systemd[1]: kerneloops.service: Found left-over process 1355 (kerneloops) in control group while starting unit. Ignoring.
+Apr 21 16:51:47 cam-desktop rtkit-daemon[1562]: Watchdog thread running.
+Apr 21 16:51:47 cam-desktop /usr/libexec/gdm-x-session[1594]: Kernel command line: root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000
+Apr 21 17:10:19 cam-desktop sudo[3986]:      cam : PWD=/home/cam/ov5647_driver_codex ; USER=root ; COMMAND=/usr/bin/dmesg
+Apr 21 17:10:38 cam-desktop sudo[4037]:      cam : PWD=/home/cam/ov5647_driver_codex ; USER=root ; COMMAND=/usr/bin/ls -la /sys/fs/pstore
+Apr 21 17:10:38 cam-desktop sudo[4042]:      cam : PWD=/home/cam/ov5647_driver_codex ; USER=root ; COMMAND=/usr/bin/sh -c 'for f in /sys/fs/pstore/*; do echo "===== $f ====="; cat "$f"; done'
+Apr 21 17:10:38 cam-desktop sudo[4054]:      cam : PWD=/home/cam/ov5647_driver_codex ; USER=root ; COMMAND=/usr/bin/mkdir -p artifacts/post-reboot/20260421T141038Z-rmmod-hang/pstore
+Apr 21 17:10:38 cam-desktop sudo[4056]:      cam : PWD=/home/cam/ov5647_driver_codex ; USER=root ; COMMAND=/usr/bin/cp -a /sys/fs/pstore/. artifacts/post-reboot/20260421T141038Z-rmmod-hang/pstore/
+Apr 21 17:10:38 cam-desktop sudo[4035]:      cam : PWD=/home/cam/ov5647_driver_codex ; USER=root ; COMMAND=/usr/bin/chown -R 1000:1000 artifacts/post-reboot/20260421T141038Z-rmmod-hang

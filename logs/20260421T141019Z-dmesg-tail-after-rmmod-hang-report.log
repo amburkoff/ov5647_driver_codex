@@ -1,0 +1,240 @@
+[    8.615844] tegra194-pcie 140a0000.pcie: Detected iATU regions: 8 outbound, 2 inbound
+[    8.617758] tegra-dce d800000.dce: Adding to iommu group 49
+[    8.620722] dce: dce_ipc_channel_init:311  Invalid Channel State [0x0] for ch_type [2]
+[    8.621055] dce: tegra_dce_probe:247  Found display consumer device
+[    8.621473] dce: dce_mailbox_set_full_interrupt:157  Intr bit set multiple times for MB : [0x5]
+[    8.621480] dce: dce_mailbox_set_full_interrupt:157  Intr bit set multiple times for MB : [0x5]
+[    8.621738] dce: dce_admin_send_cmd_ver:456  version : [0x3] err : [0x0]
+[    8.621943] dce: dce_mailbox_set_full_interrupt:157  Intr bit set multiple times for MB : [0x1]
+[    8.621950] dce: dce_admin_setup_clients_ipc:585  Channel Reset Complete for Type [1] ...
+[    8.621951] dce: dce_admin_setup_clients_ipc:561  Get queue info failed for [2]
+[    8.622147] dce: dce_mailbox_set_full_interrupt:157  Intr bit set multiple times for MB : [0x2]
+[    8.622153] dce: dce_admin_setup_clients_ipc:585  Channel Reset Complete for Type [3] ...
+[    8.623119] dce: dce_start_boot_flow:166  DCE_BOOT_DONE
+[    8.640850] nvvrs_pseq 4-003c: NVVRS Vendor ID: 0x9
+[    8.641147] nvvrs_pseq 4-003c: NVVRS Model Rev: 0x82
+[    8.645254] nvvrs_pseq 4-003c: NVVRS PSEQ probe successful
+[    8.649622] systemd[1]: Finished Coldplug All udev Devices.
+[    8.650060] systemd[1]: Condition check resulted in Show Plymouth Boot Screen being skipped.
+[    8.650221] systemd[1]: Started Dispatch Password Requests to Console Directory Watch.
+[    8.650313] systemd[1]: Condition check resulted in Forward Password Requests to Plymouth Directory Watch being skipped.
+[    8.650338] systemd[1]: Reached target Local Encrypted Volumes.
+[    8.669442] nv_platform 13800000.display: Adding to iommu group 50
+[    8.681594] platform 13800000.display:nvdisplay-niso: Adding to iommu group 51
+[    8.726929] tegra194-pcie 140a0000.pcie: Link up
+[    8.728318] tegra194-pcie 140a0000.pcie: Link up
+[    8.728415] tegra194-pcie 140a0000.pcie: PCI host bridge to bus 0008:00
+[    8.728420] pci_bus 0008:00: root bus resource [bus 00-ff]
+[    8.728424] pci_bus 0008:00: root bus resource [mem 0x3240000000-0x3527ffffff pref]
+[    8.728426] pci_bus 0008:00: root bus resource [mem 0x3528000000-0x352fffffff] (bus address [0x40000000-0x47ffffff])
+[    8.728429] pci_bus 0008:00: root bus resource [io  0x300000-0x3fffff] (bus address [0x2a100000-0x2a1fffff])
+[    8.728477] pci 0008:00:00.0: [10de:229c] type 01 class 0x060400
+[    8.728630] pci 0008:00:00.0: PME# supported from D0 D3hot
+[    8.732117] pci 0008:01:00.0: [10ec:8168] type 00 class 0x020000
+[    8.732596] pci 0008:01:00.0: reg 0x10: [io  0x0000-0x00ff]
+[    8.732638] pci 0008:01:00.0: reg 0x18: [mem 0x00000000-0x00000fff 64bit]
+[    8.732666] pci 0008:01:00.0: reg 0x20: [mem 0x00000000-0x00003fff 64bit]
+[    8.733585] pci 0008:01:00.0: supports D1 D2
+[    8.733586] pci 0008:01:00.0: PME# supported from D0 D1 D2 D3hot D3cold
+[    8.749635] pci 0008:00:00.0: BAR 14: assigned [mem 0x3528000000-0x35280fffff]
+[    8.749640] pci 0008:00:00.0: BAR 13: assigned [io  0x300000-0x300fff]
+[    8.749643] pci 0008:01:00.0: BAR 4: assigned [mem 0x3528000000-0x3528003fff 64bit]
+[    8.749736] pci 0008:01:00.0: BAR 2: assigned [mem 0x3528004000-0x3528004fff 64bit]
+[    8.749827] pci 0008:01:00.0: BAR 0: assigned [io  0x300000-0x3000ff]
+[    8.749856] pci 0008:00:00.0: PCI bridge to [bus 01-ff]
+[    8.749860] pci 0008:00:00.0:   bridge window [io  0x300000-0x300fff]
+[    8.749864] pci 0008:00:00.0:   bridge window [mem 0x3528000000-0x35280fffff]
+[    8.749883] pci 0008:00:00.0: Max Payload Size set to  256/ 256 (was  128), Max Read Rq  256
+[    8.750015] pci 0008:01:00.0: Max Payload Size set to  128/ 128 (was  128), Max Read Rq  128
+[    8.750148] pcieport 0008:00:00.0: Adding to iommu group 48
+[    8.750251] pcieport 0008:00:00.0: PME: Signaling with IRQ 188
+[    8.750362] pcieport 0008:00:00.0: AER: enabled with IRQ 188
+[    8.762779] systemd[1]: Started Journal Service.
+[    8.780632] systemd-journald[275]: Received client request to flush runtime journal.
+[    8.805380] cfg80211: Loading compiled-in X.509 certificates for regulatory database
+[    8.805774] cfg80211: Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+[    8.805945] cfg80211: Loaded X.509 cert 'wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600'
+[    8.806155] spi-tegra114 3210000.spi: Adding to iommu group 1
+[    8.859029] tegra-hda 3510000.hda: Adding to iommu group 52
+[    8.867487] spi-tegra114 3230000.spi: Adding to iommu group 1
+[    8.872568] rtl88x2ce 0001:01:00.0: Adding to iommu group 3
+[    8.872714] rtl88x2ce 0001:01:00.0: enabling device (0000 -> 0003)
+[    8.878324] at24 0-0050: 256 byte 24c02 EEPROM, read-only
+[    8.889093] at24 0-0057: 256 byte 24c02 EEPROM, read-only
+[    8.930546] tegra234-aon c000000.aon: Adding to iommu group 53
+[    8.931171]  c000000.aon:hsp: probed
+[    8.932761] tegra234-aon c000000.aon: init done
+[    8.953349] input: NVIDIA Jetson Orin NX HDA HDMI/DP,pcm=3 as /devices/platform/bus@0/3510000.hda/sound/card0/input4
+[    8.961060] gic 2a41000.interrupt-controller: GIC IRQ controller registered
+[    8.961972] tegra-aconnect bus@0:aconnect@2900000: Tegra ACONNECT bus registered
+[    8.962285] input: NVIDIA Jetson Orin NX HDA HDMI/DP,pcm=7 as /devices/platform/bus@0/3510000.hda/sound/card0/input5
+[    8.967221] CAN device driver interface
+[    8.973187] input: NVIDIA Jetson Orin NX HDA HDMI/DP,pcm=8 as /devices/platform/bus@0/3510000.hda/sound/card0/input6
+[    8.979495] thermal-trip-event cpu-throttle-alert: cooling device registered.
+[    8.986205] thermal-trip-event gpu-throttle-alert: cooling device registered.
+[    8.989572] input: NVIDIA Jetson Orin NX HDA HDMI/DP,pcm=9 as /devices/platform/bus@0/3510000.hda/sound/card0/input7
+[    8.992728] TT CAN feature is not supported
+[    8.993283] 	 Message RAM Configuration
+               	| base addr   |0x0c312000|
+               	| sidfc_flssa |0x00000000|
+               	| xidfc_flesa |0x00000040|
+               	| rxf0c_f0sa  |0x000000c0|
+               	| rxf1c_f1sa  |0x000009c0|
+               	| rxbc_rbsa   |0x000009c0|
+               	| txefc_efsa  |0x000009c0|
+               	| txbc_tbsa   |0x00000a40|
+               	| tmc_tmsa    |0x00000ec0|
+               	| mram size   |0x00001000|
+[    8.994622] Release 3.2.3 from 09.06.2018
+[    8.996864] thermal-trip-event cv0-throttle-alert: cooling device registered.
+[    9.008052] thermal-trip-event cv1-throttle-alert: cooling device registered.
+[    9.015732] thermal-trip-event cv2-throttle-alert: cooling device registered.
+[    9.021535] thermal-trip-event soc0-throttle-alert: cooling device registered.
+[    9.025582] thermal-trip-event soc1-throttle-alert: cooling device registered.
+[    9.025725] net can0: mttcan device registered (regs=00000000883de767, irq=200)
+[    9.038868] thermal-trip-event soc2-throttle-alert: cooling device registered.
+[    9.049937] irq: IRQ255: trimming hierarchy from :bus@0:pmc@c360000
+[    9.050499] fusb301 1-0025: device id: 0x12
+[    9.052468] thermal-trip-event hot-surface-alert: cooling device registered.
+[    9.088322] fusb301 1-0025: toggle_time(0) is not updated
+[    9.088666] fusb301 1-0025: fusb301_set_mode: mode (32)(32)
+[    9.089003] fusb301 1-0025: fusb301_detach: type[0x00] chipstate[0x01]
+[    9.089009] fusb301 1-0025: fusb_update_state: 1
+[    9.090410] fusb301 1-0025: mode[0x20], host_cur[0x02], dttime[0x00]
+[    9.121266] Bluetooth: hci0: RTL: examining hci_ver=0a hci_rev=000c lmp_ver=0a lmp_subver=8822
+[    9.122246] Bluetooth: hci0: RTL: rom_version status=0 version=3
+[    9.122250] Bluetooth: hci0: RTL: loading rtl_bt/rtl8822cu_fw.bin
+[    9.122870] Bluetooth: hci0: RTL: loading rtl_bt/rtl8822cu_config.bin
+[    9.123038] Bluetooth: hci0: RTL: cfg_sz 6, total sz 35086
+[    9.123412] usbcore: registered new interface driver btusb
+[    9.128302] rtk_btusb: Realtek Bluetooth USB driver ver 3.1.65ab490.20240531-141726
+[    9.128309] rtk_btcoex: rtk_btcoex_init: version: 1.2
+[    9.128310] rtk_btcoex: create workqueue
+[    9.128379] rtk_btcoex: alloc buffers 1792, 2432 for ev and l2
+[    9.128426] usbcore: registered new interface driver rtk_btusb
+[    9.190378] loop0: detected capacity change from 0 to 8
+[    9.192891] loop1: detected capacity change from 0 to 373072
+[    9.195451] loop2: detected capacity change from 0 to 141232
+[    9.197662] loop3: detected capacity change from 0 to 126776
+[    9.199997] loop4: detected capacity change from 0 to 95512
+[    9.202249] loop5: detected capacity change from 0 to 1132440
+[    9.204295] loop6: detected capacity change from 0 to 187776
+[    9.206884] loop7: detected capacity change from 0 to 357512
+[    9.210838] loop8: detected capacity change from 0 to 85664
+[    9.257982] fusb301 1-0025: fusb301_work_handler: int_sts[0x05]
+[    9.258582] fusb301 1-0025: sts[0x2f], type[0x08]
+[    9.258586] fusb301 1-0025: fusb_update_state: 6
+[    9.279417] nvvrs-pseq-rtc nvvrs-pseq-rtc: registered as rtc0
+[    9.280522] nvvrs-pseq-rtc nvvrs-pseq-rtc: setting system clock to 1970-01-01T00:00:56 UTC (56)
+[    9.287773] r8168 0008:01:00.0: Adding to iommu group 48
+[    9.287870] r8168 Gigabit Ethernet driver 8.053.00-NAPI loaded
+[    9.287933] r8168 0008:01:00.0: enabling device (0000 -> 0003)
+[    9.326188] r8168: This product is covered by one or more of the following patents: US6,570,884, US6,115,776, and US6,327,625.
+[    9.326874] rtl88x2ce 0001:01:00.0 wlP1p1s0: renamed from wlan0
+[    9.329357] r8168  Copyright (C) 2024 Realtek NIC software team <nicfae@realtek.com> 
+                This program comes with ABSOLUTELY NO WARRANTY; for details, please see <http://www.gnu.org/licenses/>. 
+                This is free software, and you are welcome to redistribute it under certain conditions; see <http://www.gnu.org/licenses/>. 
+[    9.380392] tegra-adma 2930000.dma-controller: Tegra210 ADMA driver registered 32 channels
+[    9.407265] r8168 0008:01:00.0 enP8p1s0: renamed from eth0
+[    9.529214] tegra210-admaif 290f000.admaif: Adding to iommu group 54
+[    9.615259] Bluetooth: hci0: RTL: fw version 0x19b76d7d
+[   11.445134] using random self ethernet address
+[   11.445141] using random host ethernet address
+[   11.460081] Bluetooth: BNEP (Ethernet Emulation) ver 1.3
+[   11.460091] Bluetooth: BNEP filters: protocol multicast
+[   11.460108] Bluetooth: BNEP socket layer initialized
+[   11.476308] NET: Registered PF_ALG protocol family
+[   11.481757] loop9: detected capacity change from 0 to 32768
+[   11.567795] nv_nvsciipc_init.sh[943]: found /dev/nvsciipc
+[   11.596509] nvsciipc: set_db start
+[   11.596569] nvsciipc: set_db done
+[   11.638990] enP8p1s0: 0xffff800008ec5000, 3c:6d:66:0d:53:d9, IRQ 256
+[   11.691264] IRQ230: set affinity failed(-22).
+[   11.691297] IRQ254: set affinity failed(-22).
+[   11.691300] IRQ256: set affinity failed(-22).
+[   11.692373] psci: CPU4 killed (polled 0 ms)
+[   11.724098] Mass Storage Function, version: 2009/09/11
+[   11.724105] LUN: removable file: (no medium)
+[   11.775503] IRQ230: set affinity failed(-22).
+[   11.775541] IRQ254: set affinity failed(-22).
+[   11.775546] IRQ256: set affinity failed(-22).
+[   11.776639] psci: CPU5 killed (polled 0 ms)
+[   11.859373] IRQ230: set affinity failed(-22).
+[   11.859417] IRQ254: set affinity failed(-22).
+[   11.859424] IRQ256: set affinity failed(-22).
+[   11.859768] psci: CPU6 killed (polled 0 ms)
+[   11.883910] using random self ethernet address
+[   11.883916] using random host ethernet address
+[   11.932790] IRQ230: set affinity failed(-22).
+[   11.933511] psci: CPU7 killed (polled 0 ms)
+[   11.996316] pstore: Using crash dump compression: deflate
+[   11.996423] printk: console [ramoops-1]: printing thread started
+[   11.996433] printk: console [ramoops-1] enabled
+[   11.996435] pstore: Registered ramoops as persistent store backend
+[   11.996437] ramoops: using 0x200000@0x4725f0000, ecc: 0
+[   12.071371] bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your scripts to load br_netfilter if you need this.
+[   12.075953] usb0: HOST MAC c2:d6:da:8f:db:b0
+[   12.075961] usb0: MAC c2:d6:da:8f:db:b1
+[   12.092696] usb1: HOST MAC c2:d6:da:8f:db:b2
+[   12.092707] usb1: MAC c2:d6:da:8f:db:b3
+[   12.092730] tegra-xudc 3550000.usb: EP 0 (type: ctrl, dir: out) enabled
+[   12.097045] l4tbr0: port 1(usb0) entered blocking state
+[   12.097061] l4tbr0: port 1(usb0) entered disabled state
+[   12.098145] device usb0 entered promiscuous mode
+[   12.107214] l4tbr0: port 2(usb1) entered blocking state
+[   12.107232] l4tbr0: port 2(usb1) entered disabled state
+[   12.107625] device usb1 entered promiscuous mode
+[   12.117725] loop9: detected capacity change from 0 to 32768
+[   12.135925] nvgpu: 17000000.gpu                  gk20a_scale_init:541  [INFO]  enabled scaling for GPU
+
+[   12.256651] zram: Added device: zram0
+[   12.257749] zram: Added device: zram1
+[   12.257961] zram: Added device: zram2
+[   12.258099] zram: Added device: zram3
+[   12.325442] zram0: detected capacity change from 0 to 4004600
+[   12.346811] Adding 2002296k swap on /dev/zram0.  Priority:5 extents:1 across:2002296k SS
+[   12.352317] zram1: detected capacity change from 0 to 4004600
+[   12.365766] Adding 2002296k swap on /dev/zram1.  Priority:5 extents:1 across:2002296k SS
+[   12.388653] zram2: detected capacity change from 0 to 4004600
+[   12.399435] Adding 2002296k swap on /dev/zram2.  Priority:5 extents:1 across:2002296k SS
+[   12.406206] zram3: detected capacity change from 0 to 4004600
+[   12.421222] Adding 2002296k swap on /dev/zram3.  Priority:5 extents:1 across:2002296k SS
+[   12.619020] tegra-xudc 3550000.usb: EP 5 (type: intr, dir: in) enabled
+[   12.619043] tegra-xudc 3550000.usb: EP 3 (type: bulk, dir: in) enabled
+[   12.619055] tegra-xudc 3550000.usb: EP 2 (type: bulk, dir: out) enabled
+[   12.619138] tegra-xudc 3550000.usb: EP 9 (type: intr, dir: in) enabled
+[   12.619152] tegra-xudc 3550000.usb: EP 7 (type: bulk, dir: in) enabled
+[   12.619164] tegra-xudc 3550000.usb: EP 4 (type: bulk, dir: out) enabled
+[   12.619192] tegra-xudc 3550000.usb: EP 15 (type: intr, dir: in) enabled
+[   12.619248] IPv6: ADDRCONF(NETDEV_CHANGE): usb0: link becomes ready
+[   12.619426] tegra-xudc 3550000.usb: EP 11 (type: bulk, dir: in) enabled
+[   12.619440] tegra-xudc 3550000.usb: EP 6 (type: bulk, dir: out) enabled
+[   12.628134] tegra-xudc 3550000.usb: EP 13 (type: bulk, dir: in) enabled
+[   12.628153] tegra-xudc 3550000.usb: EP 8 (type: bulk, dir: out) enabled
+[   12.628249] IPv6: ADDRCONF(NETDEV_CHANGE): usb1: link becomes ready
+[   12.631135] tegra-xudc 3550000.usb: ep 13 disabled
+[   12.631219] tegra-xudc 3550000.usb: ep 8 disabled
+[   12.651646] tegra-xudc 3550000.usb: EP 13 (type: bulk, dir: in) enabled
+[   12.651669] tegra-xudc 3550000.usb: EP 8 (type: bulk, dir: out) enabled
+[   14.540593] l4tbr0: port 2(usb1) entered blocking state
+[   14.540607] l4tbr0: port 2(usb1) entered forwarding state
+[   14.540678] l4tbr0: port 1(usb0) entered blocking state
+[   14.540683] l4tbr0: port 1(usb0) entered forwarding state
+[   14.546721] IPv6: ADDRCONF(NETDEV_CHANGE): l4tbr0: link becomes ready
+[   14.714460] nvidia-modeset: Loading NVIDIA UNIX Open Kernel Mode Setting Driver for aarch64  540.5.0  Release Build  (buildbrain@239549d1-8639-491a-b9e7-120e21430986-l1eu-vqrkv)  Thu Jan 15 19:36:45 PST 2026
+[   14.722045] [drm] [nvidia-drm] [GPU ID 0x00020000] Loading driver
+[   15.017211] NVRM rpcRmApiControl_dce: NVRM_RPC_DCE: Failed RM ctrl call cmd:0x731341 result 0xffff:
+[   15.018329] NVRM rpcRmApiControl_dce: NVRM_RPC_DCE: Failed RM ctrl call cmd:0x730282 result 0x1f:
+[   15.070594] [drm] Initialized nvidia-drm 0.0.0 20160202 for 13800000.display on minor 1
+[   15.151902] Console: switching to colour frame buffer device 240x67
+[   15.151925] nv_platform 13800000.display: [drm] fb0: nvidia-drmdrmfb frame buffer device
+[   16.425829] ACK 04 d4
+[   16.426304] ACK 04 d4
+[   16.426615] ACK 04 d4
+[   16.428505] ACK 04 d4
+[   16.431138] IPv6: ADDRCONF(NETDEV_CHANGE): wlP1p1s0: link becomes ready
+[   19.487938] loop10: detected capacity change from 0 to 8
+[   21.099890] audit: type=1326 audit(1776779514.318:2): auid=4294967295 uid=0 gid=0 ses=4294967295 subj=kernel pid=2161 comm="cupsd" exe="/snap/cups/1184/sbin/cupsd" sig=0 arch=c00000b7 syscall=55 compat=0 ip=0xffff83e0ce0c code=0x50000
+[   21.593313] rfkill: input handler disabled
+[   21.720058] audit: type=1326 audit(1776779514.938:3): auid=4294967295 uid=0 gid=0 ses=4294967295 subj=kernel pid=2161 comm="cupsd" exe="/snap/cups/1184/sbin/cupsd" sig=0 arch=c00000b7 syscall=55 compat=0 ip=0xffff83e0ce0c code=0x50000
+[   21.792998] audit: type=1326 audit(1776779515.010:4): auid=4294967295 uid=0 gid=0 ses=4294967295 subj=kernel pid=2215 comm="cups-browsed" exe="/snap/cups/1184/sbin/cups-browsed" sig=0 arch=c00000b7 syscall=274 compat=0 ip=0xffffac375b68 code=0x50000

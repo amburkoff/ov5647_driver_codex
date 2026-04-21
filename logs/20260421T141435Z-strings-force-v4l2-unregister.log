@@ -1,0 +1,4 @@
+%s: state tc_dev=%p priv=%p tc_dev->priv=%p s_data=%p s_data->priv=%p v4l2_registered=%d skip_v4l2_register=%d skip_v4l2_unregister=%d split_v4l2_unregister=%d
+%s: V4L2 registration flag is not set, but full probe path requires unregister; forcing V4L2 unregister before device cleanup
+%s: before tegracam_v4l2subdev_unregister
+6%s: module exit enter driver_registered=%d

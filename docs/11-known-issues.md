@@ -57,10 +57,17 @@
   - capture returns with zero-byte output files;
   - kernel logs show repeated `uncorr_err: request timed out after 2500 ms`;
   - this indicates mode/CSI timing is still incomplete even though probe and node registration succeed.
-- Current OV5647 `set_mode()` still enables streaming:
+- A later manual `rmmod` hang with live dmesg reached:
+  - `ov5647_remove: enter`;
+  - skipped V4L2 unregister because the private `v4l2_registered` flag was false;
+  - `before tegracam_device_unregister`.
+- The private V4L2 registration flag is therefore not reliable enough as the only remove-time guard:
+  - source-side fix now forces V4L2 unregister on the full-probe path when `s_data` exists and `skip_v4l2_register=0`;
+  - runtime validation still requires a future manual load/unload cycle.
+- Current OV5647 `set_mode()` no longer enables streaming in source:
   - NVIDIA r36.5 tegracam calls `set_mode()` before `start_streaming()`;
   - NVIDIA sample drivers keep `set_mode()` to register programming and start output from `start_streaming()`;
-  - code-side fix is prepared, but runtime validation requires a future module reload.
+  - code-side fix is built, but runtime validation requires a future module reload.
 - A likely zero-byte capture cause was found in the driver:
   - previous builds left OV5647 output-enable registers `0x3000/0x3001/0x3002` disabled after common reset;
   - upstream Linux enables those registers during power-on and disables them during power-off;

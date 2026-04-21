@@ -1,0 +1,28 @@
+timestamp=20260421T141241Z
+cmdline=root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+uptime=297.75 1088.27
+uname=Linux cam-desktop 5.15.185-tegra #1 SMP PREEMPT Thu Jan 15 19:24:38 PST 2026 aarch64 aarch64 aarch64 GNU/Linux
+lsmod_nv_ov5647=
+last_reboots:
+cam      pts/0        192.168.55.100   Tue Apr 21 17:09   still logged in
+runlevel (to lvl 5)   5.15.185-tegra   Tue Apr 21 16:51   still running
+cam      :0           :0               Tue Apr 21 16:51    gone - no logout
+reboot   system boot  5.15.185-tegra   Tue Apr 21 16:51   still running
+cam      pts/0        192.168.55.100   Tue Apr 21 13:14 - crash  (03:36)
+runlevel (to lvl 5)   5.15.185-tegra   Tue Apr 21 13:14 - 16:51  (03:37)
+cam      :0           :0               Tue Apr 21 13:14 - crash  (03:37)
+reboot   system boot  5.15.185-tegra   Tue Apr 21 13:14   still running
+shutdown system down  5.15.185-tegra   Tue Apr 21 13:13 - 13:14  (00:00)
+cam      pts/0        192.168.55.100   Tue Apr 21 13:13 - 13:13  (00:00)
+runlevel (to lvl 5)   5.15.185-tegra   Tue Apr 21 12:58 - 13:13  (00:14)
+cam      :0           :0               Tue Apr 21 12:58 - down   (00:14)
+reboot   system boot  5.15.185-tegra   Tue Apr 21 12:58 - 13:13  (00:14)
+cam      pts/0        192.168.55.100   Tue Apr 21 11:59 - crash  (00:59)
+runlevel (to lvl 5)   5.15.185-tegra   Tue Apr 21 11:50 - 12:58  (01:08)
+cam      :0           :0               Tue Apr 21 11:50 - crash  (01:08)
+reboot   system boot  5.15.185-tegra   Tue Apr 21 11:50 - 13:13  (01:23)
+cam      pts/0        192.168.55.100   Tue Apr 21 11:39 - crash  (00:10)
+runlevel (to lvl 5)   5.15.185-tegra   Tue Apr 21 11:39 - 11:50  (00:10)
+cam      :0           :0               Tue Apr 21 11:39 - crash  (00:10)
+pstore:
+ls: cannot open directory '/sys/fs/pstore': Permission denied
