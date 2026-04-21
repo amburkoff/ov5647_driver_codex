@@ -1,0 +1,286 @@
+# local ov5647 mode table references
+34:#define OV5647_REG_MODE_SELECT		0x0100
+35:#define OV5647_REG_FRAME_OFF_NUMBER	0x4202
+36:#define OV5647_REG_MIPI_CTRL00		0x4800
+38:#define OV5640_REG_PAD_OUT		0x300d
+150:	{0x0100, 0x00},
+161:	{0x3000, 0x00},
+162:	{0x3001, 0x00},
+163:	{0x3002, 0x00},
+205:	{0x3000, 0x0f},
+206:	{0x3001, 0xff},
+207:	{0x3002, 0xe4},
+212:	{0x3000, 0x00},
+213:	{0x3001, 0x00},
+214:	{0x3002, 0x00},
+220:	{0x3821, 0x01},
+221:	{0x3820, 0x41},
+224:	{0x5002, 0x41},
+241:	{0x380c, 0x07}, /* HTS = 1852, upstream VGA timing */
+242:	{0x380d, 0x3c},
+243:	{0x380e, 0x01}, /* VTS = 0x01f8, upstream VGA timing */
+244:	{0x380f, 0xf8},
+251:	{0x4837, 0x16},
+252:	{0x4800, 0x34},
+
+# local mode table chunk
+#include <linux/delay.h>
+#include <linux/gpio.h>
+#include <linux/i2c.h>
+#include <linux/init.h>
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/moduleparam.h>
+#include <linux/mutex.h>
+#include <linux/of_device.h>
+#include <linux/of_gpio.h>
+#include <linux/regmap.h>
+
+#include <media/camera_common.h>
+#include <media/media-entity.h>
+#include <media/sensor_common.h>
+#include <media/tegra-v4l2-camera.h>
+#include <media/tegracam_core.h>
+#include <media/v4l2-async.h>
+#include <media/v4l2-ctrls.h>
+
+#define OV5647_NAME			"nv_ov5647"
+#define OV5647_DEFAULT_MCLK		"extperiph1"
+#define OV5647_DEFAULT_AVDD_SUPPLY	"vana"
+#define OV5647_DEFAULT_DVDD_SUPPLY	"vdig"
+#define OV5647_DEFAULT_IOVDD_SUPPLY	"vif"
+#define OV5647_GPIO_NOT_PRESENT		UINT_MAX
+
+#define OV5647_TABLE_WAIT_MS		0xfffe
+#define OV5647_TABLE_END		0xffff
+
+#define OV5647_REG_CHIP_ID_HIGH		0x300a
+#define OV5647_REG_CHIP_ID_LOW		0x300b
+#define OV5647_REG_SW_RESET		0x0103
+#define OV5647_REG_MODE_SELECT		0x0100
+#define OV5647_REG_FRAME_OFF_NUMBER	0x4202
+#define OV5647_REG_MIPI_CTRL00		0x4800
+#define OV5647_REG_MIPI_CTRL14		0x4814
+#define OV5640_REG_PAD_OUT		0x300d
+
+#define OV5647_MODE_STANDBY		0x00
+#define OV5647_MODE_STREAMING		0x01
+#define OV5647_CHIP_ID			0x5647
+
+#define OV5647_MIPI_CTRL00_CLOCK_LANE_GATE	BIT(5)
+#define OV5647_MIPI_CTRL00_LINE_SYNC_ENABLE	BIT(4)
+#define OV5647_MIPI_CTRL00_BUS_IDLE		BIT(2)
+#define OV5647_MIPI_CTRL00_CLOCK_LANE_DISABLE	BIT(0)
+
+struct ov5647_mode {
+	const char *name;
+	u32 width;
+	u32 height;
+	u32 code;
+	const struct reg_8 *table;
+};
+
+struct ov5647 {
+	struct i2c_client *client;
+	struct tegracam_device *tc_dev;
+	struct camera_common_data *s_data;
+	struct mutex lock;
+	u32 chip_id;
+	bool board_setup_done;
+	bool v4l2_registered;
+};
+
+static bool register_i2c_driver;
+module_param(register_i2c_driver, bool, 0644);
+MODULE_PARM_DESC(register_i2c_driver,
+		 "Register the OV5647 i2c driver on module load. Default: false");
+
+static bool allow_hw_probe;
+module_param(allow_hw_probe, bool, 0644);
+MODULE_PARM_DESC(allow_hw_probe,
+			 "Allow real OV5647 probe and board setup when a DT match exists. Default: false");
+
+static bool skip_v4l2_register;
+module_param(skip_v4l2_register, bool, 0644);
+MODULE_PARM_DESC(skip_v4l2_register,
+		 "Probe sensor and chip ID but skip tegracam_v4l2subdev_register(). Default: false");
+
+static bool skip_v4l2_unregister;
+module_param(skip_v4l2_unregister, bool, 0644);
+MODULE_PARM_DESC(skip_v4l2_unregister,
+		 "Diagnostic only: skip tegracam_v4l2subdev_unregister() in remove(). Default: false");
+
+static bool split_v4l2_unregister;
+module_param(split_v4l2_unregister, bool, 0644);
+MODULE_PARM_DESC(split_v4l2_unregister,
+		 "Diagnostic only: inline V4L2 unregister phases with markers. Default: false");
+
+static uint unload_marker_delay_ms;
+module_param(unload_marker_delay_ms, uint, 0644);
+MODULE_PARM_DESC(unload_marker_delay_ms,
+		 "Optional delay after unload markers to let userspace persist logs. Default: 0");
+
+static bool driver_registered;
+
+static void ov5647_unload_marker_delay(void)
+{
+	if (unload_marker_delay_ms)
+		msleep(unload_marker_delay_ms);
+}
+
+static void ov5647_split_v4l2subdev_unregister(struct tegracam_device *tc_dev)
+{
+	struct camera_common_data *s_data = tc_dev->s_data;
+	struct v4l2_subdev *sd;
+
+	if (!s_data) {
+		dev_warn(tc_dev->dev,
+			 "%s: s_data is NULL, skipping split unregister\n",
+			 __func__);
+		return;
+	}
+
+	sd = &s_data->subdev;
+
+	dev_info(tc_dev->dev, "%s: before v4l2_ctrl_handler_free\n",
+		 __func__);
+	ov5647_unload_marker_delay();
+	v4l2_ctrl_handler_free(s_data->ctrl_handler);
+	dev_info(tc_dev->dev, "%s: after v4l2_ctrl_handler_free\n",
+		 __func__);
+
+#if IS_ENABLED(CONFIG_V4L2_ASYNC)
+	dev_info(tc_dev->dev, "%s: before v4l2_async_unregister_subdev\n",
+		 __func__);
+	ov5647_unload_marker_delay();
+	v4l2_async_unregister_subdev(sd);
+	dev_info(tc_dev->dev, "%s: after v4l2_async_unregister_subdev\n",
+		 __func__);
+#else
+	dev_info(tc_dev->dev, "%s: CONFIG_V4L2_ASYNC is disabled\n",
+		 __func__);
+#endif
+
+#if IS_ENABLED(CONFIG_MEDIA_CONTROLLER)
+	dev_info(tc_dev->dev, "%s: before media_entity_cleanup\n", __func__);
+	ov5647_unload_marker_delay();
+	media_entity_cleanup(&sd->entity);
+	dev_info(tc_dev->dev, "%s: after media_entity_cleanup\n", __func__);
+#else
+	dev_info(tc_dev->dev, "%s: CONFIG_MEDIA_CONTROLLER is disabled\n",
+		 __func__);
+#endif
+}
+
+static const struct reg_8 ov5647_common_regs[] = {
+	{0x0100, 0x00},
+	{0x0103, 0x01},
+	{0x3034, 0x1a},
+	{0x3035, 0x21},
+	{0x303c, 0x11},
+	{0x3106, 0xf5},
+	{0x3827, 0xec},
+	{0x370c, 0x03},
+	{0x5000, 0x06},
+	{0x5003, 0x08},
+	{0x5a00, 0x08},
+	{0x3000, 0x00},
+	{0x3001, 0x00},
+	{0x3002, 0x00},
+	{0x3016, 0x08},
+	{0x3017, 0xe0},
+	{0x3018, 0x44},
+	{0x301c, 0xf8},
+	{0x301d, 0xf0},
+	{0x3a18, 0x00},
+	{0x3a19, 0xf8},
+	{0x3c01, 0x80},
+	{0x3b07, 0x0c},
+	{0x3630, 0x2e},
+	{0x3632, 0xe2},
+	{0x3633, 0x23},
+	{0x3634, 0x44},
+	{0x3636, 0x06},
+	{0x3620, 0x64},
+	{0x3621, 0xe0},
+	{0x3600, 0x37},
+	{0x3704, 0xa0},
+	{0x3703, 0x5a},
+	{0x3715, 0x78},
+	{0x3717, 0x01},
+	{0x3731, 0x02},
+	{0x370b, 0x60},
+	{0x3705, 0x1a},
+	{0x3f05, 0x02},
+	{0x3f06, 0x10},
+	{0x3f01, 0x0a},
+	{0x3a08, 0x01},
+	{0x3a0f, 0x58},
+	{0x3a10, 0x50},
+	{0x3a1b, 0x58},
+	{0x3a1e, 0x50},
+	{0x3a11, 0x60},
+	{0x3a1f, 0x28},
+	{0x4001, 0x02},
+	{0x4000, 0x09},
+	{0x3503, 0x03},
+	{ OV5647_TABLE_END, 0x00 },
+};
+
+static const struct reg_8 ov5647_sensor_oe_enable_regs[] = {
+	{0x3000, 0x0f},
+	{0x3001, 0xff},
+	{0x3002, 0xe4},
+	{ OV5647_TABLE_END, 0x00 },
+};
+
+static const struct reg_8 ov5647_sensor_oe_disable_regs[] = {
+	{0x3000, 0x00},
+	{0x3001, 0x00},
+	{0x3002, 0x00},
+	{ OV5647_TABLE_END, 0x00 },
+};
+
+static const struct reg_8 ov5647_mode0_640x480_10bpp[] = {
+	{0x3036, 0x46},
+	{0x3821, 0x01},
+	{0x3820, 0x41},
+	{0x3612, 0x59},
+	{0x3618, 0x00},
+	{0x5002, 0x41},
+	{0x3814, 0x35},
+	{0x3815, 0x35},
+	{0x3708, 0x64},
+	{0x3709, 0x52},
+	{0x3800, 0x00},
+	{0x3801, 0x10},
+	{0x3802, 0x00},
+	{0x3803, 0x00},
+	{0x3804, 0x0a},
+	{0x3805, 0x2f},
+	{0x3806, 0x07},
+	{0x3807, 0x9f},
+	{0x3808, 0x02},
+	{0x3809, 0x80},
+	{0x380a, 0x01},
+	{0x380b, 0xe0},
+	{0x380c, 0x07}, /* HTS = 1852, upstream VGA timing */
+	{0x380d, 0x3c},
+	{0x380e, 0x01}, /* VTS = 0x01f8, upstream VGA timing */
+	{0x380f, 0xf8},
+	{0x3a09, 0x2e},
+	{0x3a0a, 0x00},
+	{0x3a0b, 0xfb},
+	{0x3a0d, 0x02},
+	{0x3a0e, 0x01},
+	{0x4004, 0x02},
+	{0x4837, 0x16},
+	{0x4800, 0x34},
+	{ OV5647_TABLE_END, 0x00 },
+};
+
+static const int ov5647_30fps[] = {
+	30,
+};
+
+static const struct camera_common_frmfmt ov5647_frmfmt[] = {

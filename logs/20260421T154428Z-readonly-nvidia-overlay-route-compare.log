@@ -1,0 +1,275 @@
+# grep route fields
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:25:							port-index = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:26:							bus-width = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:40:						badge = "jakku_rear_RBP194";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:47:							sysfs-device-tree = "/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/rbpcv2_imx219_c@10";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:53:							sysfs-device-tree = "/sys/firmware/devicetree/base/bus@0/lens_imx219@RBPCV2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:82:										port-index = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:83:										bus-width = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:103:				cam_i2cmux {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:111:					i2c@0 {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:118:					i2c@1 {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:125:							reset-gpios = <0xffffffff 0xa0 0x00>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:135:								mclk_khz = "24000";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:136:								num_lanes = "2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:137:								tegra_sinterface = "serial_c";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:139:								discontinuous_clk = "yes";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:141:								cil_settletime = "0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:150:								mclk_multiplier = "9.33";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:173:								mclk_khz = "24000";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:174:								num_lanes = "2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:175:								tegra_sinterface = "serial_c";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:177:								discontinuous_clk = "yes";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:179:								cil_settletime = "0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:188:								mclk_multiplier = "9.33";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:211:								mclk_khz = "24000";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:212:								num_lanes = "2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:213:								tegra_sinterface = "serial_c";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:215:								discontinuous_clk = "yes";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:217:								cil_settletime = "0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:226:								mclk_multiplier = "9.33";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:249:								mclk_khz = "24000";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:250:								num_lanes = "2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:251:								tegra_sinterface = "serial_c";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:253:								discontinuous_clk = "yes";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:255:								cil_settletime = "0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:264:								mclk_multiplier = "9.33";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:287:								mclk_khz = "24000";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:288:								num_lanes = "2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:289:								tegra_sinterface = "serial_c";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:291:								discontinuous_clk = "yes";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:293:								cil_settletime = "0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:302:								mclk_multiplier = "9.33";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:333:										port-index = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:334:										bus-width = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:368:						label = "cam1-pwdn\0cam0-pwdn";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:386:		rbpcv2_imx219_out1 = "/fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@1/rbpcv2_imx219_c@10/ports/port@0/endpoint";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:390:		gpio_aon = "/fragment@0/__overlay__/bus@0/cam_i2cmux:mux-gpios:0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:391:		cam_i2c = "/fragment@0/__overlay__/bus@0/cam_i2cmux:i2c-parent:0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:392:		gpio = "/fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@1/rbpcv2_imx219_c@10:reset-gpios:0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:442:					cam_i2cmux {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-C.dts:444:						i2c@1 {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:25:							port-index = <0x01>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:26:							bus-width = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:37:							port-index = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:38:							bus-width = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:68:										port-index = <0x01>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:69:										bus-width = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:100:										port-index = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:101:										bus-width = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:121:				cam_i2cmux {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:123:					i2c@0 {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:137:								mclk_khz = "24000";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:138:								num_lanes = "2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:139:								tegra_sinterface = "serial_b";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:140:								lane_polarity = "6";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:142:								discontinuous_clk = "yes";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:144:								cil_settletime = "0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:153:								mclk_multiplier = "9.33";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:176:								mclk_khz = "24000";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:177:								num_lanes = "2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:178:								tegra_sinterface = "serial_b";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:179:								lane_polarity = "6";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:181:								discontinuous_clk = "yes";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:183:								cil_settletime = "0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:192:								mclk_multiplier = "9.33";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:215:								mclk_khz = "24000";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:216:								num_lanes = "2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:217:								tegra_sinterface = "serial_b";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:218:								lane_polarity = "6";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:220:								discontinuous_clk = "yes";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:222:								cil_settletime = "0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:231:								mclk_multiplier = "9.33";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:254:								mclk_khz = "24000";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:255:								num_lanes = "2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:256:								tegra_sinterface = "serial_b";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:257:								lane_polarity = "6";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:259:								discontinuous_clk = "yes";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:261:								cil_settletime = "0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:270:								mclk_multiplier = "9.33";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:293:								mclk_khz = "24000";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:294:								num_lanes = "2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:295:								tegra_sinterface = "serial_b";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:296:								lane_polarity = "6";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:298:								discontinuous_clk = "yes";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:300:								cil_settletime = "0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:309:								mclk_multiplier = "9.33";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:339:										port-index = <0x01>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:340:										bus-width = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:349:					i2c@1 {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:363:								mclk_khz = "24000";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:364:								num_lanes = "2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:365:								tegra_sinterface = "serial_c";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:367:								discontinuous_clk = "yes";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:369:								cil_settletime = "0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:378:								mclk_multiplier = "9.33";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:401:								mclk_khz = "24000";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:402:								num_lanes = "2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:403:								tegra_sinterface = "serial_c";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:405:								discontinuous_clk = "yes";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:407:								cil_settletime = "0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:416:								mclk_multiplier = "9.33";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:439:								mclk_khz = "24000";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:440:								num_lanes = "2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:441:								tegra_sinterface = "serial_c";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:443:								discontinuous_clk = "yes";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:445:								cil_settletime = "0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:454:								mclk_multiplier = "9.33";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:477:								mclk_khz = "24000";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:478:								num_lanes = "2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:479:								tegra_sinterface = "serial_c";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:481:								discontinuous_clk = "yes";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:483:								cil_settletime = "0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:492:								mclk_multiplier = "9.33";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:515:								mclk_khz = "24000";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:516:								num_lanes = "2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:517:								tegra_sinterface = "serial_c";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:519:								discontinuous_clk = "yes";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:521:								cil_settletime = "0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:530:								mclk_multiplier = "9.33";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:560:										port-index = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:561:										bus-width = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:587:						badge = "jakku_front_RBP194";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:594:							sysfs-device-tree = "/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/rbpcv2_imx219_a@10";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:600:							sysfs-device-tree = "/sys/firmware/devicetree/base/bus@0/lens_imx219@RBPCV2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:606:						badge = "jakku_rear_RBP194";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:613:							sysfs-device-tree = "/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/rbpcv2_imx219_c@10";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:619:							sysfs-device-tree = "/sys/firmware/devicetree/base/bus@0/lens_imx219@RBPCV2/";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:635:				cam_i2cmux {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:643:					i2c@0 {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:650:							reset-gpios = <0xffffffff 0x3e 0x00>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:654:					i2c@1 {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:661:							reset-gpios = <0xffffffff 0xa0 0x00>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:694:		i2c_0 = "/fragment-camera@0/__overlay__/bus@0/cam_i2cmux/i2c@0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:695:		imx219_cam0 = "/fragment-camera@0/__overlay__/bus@0/cam_i2cmux/i2c@0/rbpcv2_imx219_a@10";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:696:		rbpcv2_imx219_out0 = "/fragment-camera@0/__overlay__/bus@0/cam_i2cmux/i2c@0/rbpcv2_imx219_a@10/ports/port@0/endpoint";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:697:		i2c_1 = "/fragment-camera@0/__overlay__/bus@0/cam_i2cmux/i2c@1";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:698:		imx219_cam1 = "/fragment-camera@0/__overlay__/bus@0/cam_i2cmux/i2c@1/rbpcv2_imx219_c@10";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:699:		rbpcv2_imx219_out1 = "/fragment-camera@0/__overlay__/bus@0/cam_i2cmux/i2c@1/rbpcv2_imx219_c@10/ports/port@0/endpoint";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:710:		cam_i2c = "/fragment-camera-imx219@0/__overlay__/bus@0/cam_i2cmux:i2c-parent:0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:711:		gpio_aon = "/fragment-camera-imx219@0/__overlay__/bus@0/cam_i2cmux:mux-gpios:0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:712:		gpio = "/fragment-camera-imx219@0/__overlay__/bus@0/cam_i2cmux/i2c@0/rbpcv2_imx219_a@10:reset-gpios:0\0/fragment-camera-imx219@0/__overlay__/bus@0/cam_i2cmux/i2c@1/rbpcv2_imx219_c@10:reset-gpios:0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:789:					cam_i2cmux {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:791:						i2c@0 {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-dual.dts:807:						i2c@1 {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:25:							port-index = <0x01>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:26:							bus-width = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:40:						badge = "jakku_front_RBP194";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:47:							sysfs-device-tree = "/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/rbpcv2_imx219_a@10";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:53:							sysfs-device-tree = "/sys/firmware/devicetree/base/bus@0/lens_imx219@RBPCV2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:82:										port-index = <0x01>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:83:										bus-width = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:103:				cam_i2cmux {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:111:					i2c@0 {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:125:							reset-gpios = <0xffffffff 0x3e 0x00>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:128:								mclk_khz = "24000";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:129:								num_lanes = "2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:130:								tegra_sinterface = "serial_b";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:131:								lane_polarity = "6";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:133:								discontinuous_clk = "yes";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:135:								cil_settletime = "0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:144:								mclk_multiplier = "9.33";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:167:								mclk_khz = "24000";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:168:								num_lanes = "2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:169:								tegra_sinterface = "serial_b";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:170:								lane_polarity = "6";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:172:								discontinuous_clk = "yes";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:174:								cil_settletime = "0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:183:								mclk_multiplier = "9.33";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:206:								mclk_khz = "24000";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:207:								num_lanes = "2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:208:								tegra_sinterface = "serial_b";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:209:								lane_polarity = "6";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:211:								discontinuous_clk = "yes";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:213:								cil_settletime = "0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:222:								mclk_multiplier = "9.33";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:245:								mclk_khz = "24000";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:246:								num_lanes = "2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:247:								tegra_sinterface = "serial_b";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:248:								lane_polarity = "6";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:250:								discontinuous_clk = "yes";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:252:								cil_settletime = "0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:261:								mclk_multiplier = "9.33";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:284:								mclk_khz = "24000";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:285:								num_lanes = "2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:286:								tegra_sinterface = "serial_b";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:287:								lane_polarity = "6";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:289:								discontinuous_clk = "yes";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:291:								cil_settletime = "0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:300:								mclk_multiplier = "9.33";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:331:										port-index = <0x01>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:332:										bus-width = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:341:					i2c@1 {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:373:						label = "cam1-pwdn\0cam0-pwdn";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:391:		rbpcv2_imx219_out0 = "/fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@0/rbpcv2_imx219_a@10/ports/port@0/endpoint";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:395:		gpio_aon = "/fragment@0/__overlay__/bus@0/cam_i2cmux:mux-gpios:0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:396:		cam_i2c = "/fragment@0/__overlay__/bus@0/cam_i2cmux:i2c-parent:0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:397:		gpio = "/fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@0/rbpcv2_imx219_a@10:reset-gpios:0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:447:					cam_i2cmux {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx219-A.dts:449:						i2c@0 {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:24:							port-index = <0x01>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:25:							bus-width = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:39:						badge = "jakku_front_RBPCV3";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:45:							sysfs-device-tree = "/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/rbpcv3_imx477_a@1a";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:71:										port-index = <0x01>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:72:										bus-width = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:91:				cam_i2cmux {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:99:					i2c@0 {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:110:							reset-gpios = <0xffffffff 0x3e 0x00>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:120:								mclk_khz = "24000";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:121:								num_lanes = "2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:122:								tegra_sinterface = "serial_b";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:124:								discontinuous_clk = "no";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:126:								cil_settletime = "0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:127:								lane_polarity = "6";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:136:								mclk_multiplier = "80";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:159:								mclk_khz = "24000";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:160:								num_lanes = "2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:161:								tegra_sinterface = "serial_b";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:163:								discontinuous_clk = "no";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:165:								cil_settletime = "0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:166:								lane_polarity = "6";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:175:								mclk_multiplier = "80";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:205:										port-index = <0x01>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:206:										bus-width = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:215:					i2c@1 {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:229:						label = "cam1-pwdn\0cam0-pwdn";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:240:		rbpcv3_imx477_out0 = "/fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@0/rbpcv3_imx477_a@1a/ports/port@0/endpoint";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:244:		gpio_aon = "/fragment@0/__overlay__/bus@0/cam_i2cmux:mux-gpios:0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:245:		cam_i2c = "/fragment@0/__overlay__/bus@0/cam_i2cmux:i2c-parent:0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:246:		gpio = "/fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@0/rbpcv3_imx477_a@1a:reset-gpios:0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:296:					cam_i2cmux {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-A.dts:298:						i2c@0 {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:24:							port-index = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:25:							bus-width = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:39:						badge = "jakku_rear_RBPCV3";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:45:							sysfs-device-tree = "/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/rbpcv3_imx477_c@1a";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:71:										port-index = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:72:										bus-width = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:91:				cam_i2cmux {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:99:					i2c@0 {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:106:					i2c@1 {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:117:							reset-gpios = <0xffffffff 0xa0 0x00>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:127:								mclk_khz = "24000";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:128:								num_lanes = "2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:129:								tegra_sinterface = "serial_c";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:131:								discontinuous_clk = "no";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:133:								cil_settletime = "0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:134:								lane_polarity = "0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:143:								mclk_multiplier = "80";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:166:								mclk_khz = "24000";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:167:								num_lanes = "2";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:168:								tegra_sinterface = "serial_c";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:170:								discontinuous_clk = "no";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:172:								cil_settletime = "0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:173:								lane_polarity = "0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:182:								mclk_multiplier = "80";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:212:										port-index = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:213:										bus-width = <0x02>;
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:229:						label = "cam1-pwdn\0cam0-pwdn";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:240:		rbpcv3_imx477_out1 = "/fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@1/rbpcv3_imx477_c@1a/ports/port@0/endpoint";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:244:		gpio_aon = "/fragment@0/__overlay__/bus@0/cam_i2cmux:mux-gpios:0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:245:		cam_i2c = "/fragment@0/__overlay__/bus@0/cam_i2cmux:i2c-parent:0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:246:		gpio = "/fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@1/rbpcv3_imx477_c@1a:reset-gpios:0";
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:296:					cam_i2cmux {
+artifacts/dt/20260421T154428Z-nvidia-camera-overlays/tegra234-p3767-camera-p3768-imx477-C.dts:298:						i2c@1 {

@@ -1,0 +1,272 @@
+# upstream linux sensor_oe regs
+150-	0x80,	/* Color Bars */
+151-	0x82,	/* Color Squares */
+152-	0x81,	/* Random Data */
+153-};
+154-
+155:static const struct reg_sequence sensor_oe_disable_regs[] = {
+156-	{0x3000, 0x00},
+157-	{0x3001, 0x00},
+158-	{0x3002, 0x00},
+159-};
+160-
+161:static const struct reg_sequence sensor_oe_enable_regs[] = {
+162-	{0x3000, 0x0f},
+163-	{0x3001, 0xff},
+164-	{0x3002, 0xe4},
+165-};
+166-
+167-static const struct reg_sequence ov5647_common_regs[] = {
+168-	{0x0100, 0x00},
+169-	{0x0103, 0x01},
+170-	{0x3034, 0x1a},
+171-	{0x3035, 0x21},
+172-	{0x303c, 0x11},
+173-	{0x3106, 0xf5},
+174-	{0x3827, 0xec},
+175-	{0x370c, 0x03},
+176-	{0x5000, 0x06},
+177-	{0x5003, 0x08},
+178-	{0x5a00, 0x08},
+179-	{0x3000, 0x00},
+180-	{0x3001, 0x00},
+181-	{0x3002, 0x00},
+--
+602-	if (ret < 0) {
+603-		dev_err(dev, "clk prepare enable failed\n");
+604-		goto error_pwdn;
+605-	}
+606-
+607:	ret = regmap_multi_reg_write(sensor->regmap, sensor_oe_enable_regs,
+608:				     ARRAY_SIZE(sensor_oe_enable_regs));
+609-	if (ret < 0) {
+610:		dev_err(dev, "write sensor_oe_enable_regs error\n");
+611-		goto error_clk_disable;
+612-	}
+613-
+614-	/* Stream off to coax lanes into LP-11 state. */
+615-	ret = ov5647_stream_stop(sensor);
+616-	if (ret < 0) {
+617-		dev_err(dev, "camera not available, check power\n");
+618-		goto error_clk_disable;
+619-	}
+620-
+621-	return 0;
+622-
+623-error_clk_disable:
+624-	clk_disable_unprepare(sensor->xclk);
+625-error_pwdn:
+626-	gpiod_set_value_cansleep(sensor->pwdn, 1);
+627-error_reg_disable:
+628-	regulator_bulk_disable(OV5647_NUM_SUPPLIES, sensor->supplies);
+629-
+630-	return ret;
+--
+635-	struct ov5647 *sensor = dev_get_drvdata(dev);
+636-	int ret;
+637-
+638-	dev_dbg(dev, "OV5647 power off\n");
+639-
+640:	ret = regmap_multi_reg_write(sensor->regmap, sensor_oe_disable_regs,
+641:				     ARRAY_SIZE(sensor_oe_disable_regs));
+642-	if (ret < 0)
+643-		dev_dbg(dev, "disable oe failed\n");
+644-
+645-	/* Enter software standby */
+646-	ret = cci_update_bits(sensor->regmap, OV5647_SW_STANDBY, 0x01, 0x00, NULL);
+647-	if (ret < 0)
+648-		dev_dbg(dev, "software standby failed\n");
+649-
+650-	clk_disable_unprepare(sensor->xclk);
+651-	gpiod_set_value_cansleep(sensor->pwdn, 1);
+652-	regulator_bulk_disable(OV5647_NUM_SUPPLIES, sensor->supplies);
+653-
+654-	return 0;
+655-}
+656-
+657-#ifdef CONFIG_VIDEO_ADV_DEBUG
+658-static int ov5647_sensor_get_register(struct v4l2_subdev *sd,
+659-				      struct v4l2_dbg_register *reg)
+660-{
+661-	struct ov5647 *sensor = to_sensor(sd);
+
+# rpi 6.6 sensor_oe regs
+157-	0x80,	/* Color Bars */
+158-	0x82,	/* Color Squares */
+159-	0x81,	/* Random Data */
+160-};
+161-
+162:static const struct regval_list sensor_oe_disable_regs[] = {
+163-	{0x3000, 0x00},
+164-	{0x3001, 0x00},
+165-	{0x3002, 0x00},
+166-};
+167-
+168:static const struct regval_list sensor_oe_enable_regs[] = {
+169-	{0x3000, 0x0f},
+170-	{0x3001, 0xff},
+171-	{0x3002, 0xe4},
+172-};
+173-
+174-static struct regval_list ov5647_common_regs[] = {
+175-	{0x0100, 0x00},
+176-	{0x0103, 0x01},
+177-	{0x3034, 0x1a},
+178-	{0x3035, 0x21},
+179-	{0x303c, 0x11},
+180-	{0x3106, 0xf5},
+181-	{0x3827, 0xec},
+182-	{0x370c, 0x03},
+183-	{0x5000, 0x06},
+184-	{0x5003, 0x08},
+185-	{0x5a00, 0x08},
+186-	{0x3000, 0x00},
+187-	{0x3001, 0x00},
+188-	{0x3002, 0x00},
+--
+682-	if (ret < 0) {
+683-		dev_err(dev, "clk prepare enable failed\n");
+684-		goto error_pwdn;
+685-	}
+686-
+687:	ret = ov5647_write_array(&sensor->sd, sensor_oe_enable_regs,
+688:				 ARRAY_SIZE(sensor_oe_enable_regs));
+689-	if (ret < 0) {
+690:		dev_err(dev, "write sensor_oe_enable_regs error\n");
+691-		goto error_clk_disable;
+692-	}
+693-
+694-	/* Stream off to coax lanes into LP-11 state. */
+695-	ret = ov5647_stream_off(&sensor->sd);
+696-	if (ret < 0) {
+697-		dev_err(dev, "camera not available, check power\n");
+698-		goto error_clk_disable;
+699-	}
+700-
+701-	return 0;
+702-
+703-error_clk_disable:
+704-	clk_disable_unprepare(sensor->xclk);
+705-error_pwdn:
+706-	gpiod_set_value_cansleep(sensor->pwdn, 1);
+707-	regulator_bulk_disable(OV5647_NUM_SUPPLIES, sensor->supplies);
+708-
+709-	return ret;
+710-}
+--
+715-	u8 rdval;
+716-	int ret;
+717-
+718-	dev_dbg(dev, "OV5647 power off\n");
+719-
+720:	ret = ov5647_write_array(&sensor->sd, sensor_oe_disable_regs,
+721:				 ARRAY_SIZE(sensor_oe_disable_regs));
+722-	if (ret < 0)
+723-		dev_dbg(dev, "disable oe failed\n");
+724-
+725-	/* Enter software standby */
+726-	ret = ov5647_read(&sensor->sd, OV5647_SW_STANDBY, &rdval);
+727-	if (ret < 0)
+728-		dev_dbg(dev, "software standby failed\n");
+729-
+730-	rdval &= ~0x01;
+731-	ret = ov5647_write(&sensor->sd, OV5647_SW_STANDBY, rdval);
+732-	if (ret < 0)
+733-		dev_dbg(dev, "software standby failed\n");
+734-
+735-	clk_disable_unprepare(sensor->xclk);
+736-	gpiod_set_value_cansleep(sensor->pwdn, 1);
+737-	regulator_bulk_disable(OV5647_NUM_SUPPLIES, sensor->supplies);
+738-
+739-	return 0;
+740-}
+741-
+
+# local sensor_oe regs
+199-	{0x4000, 0x09},
+200-	{0x3503, 0x03},
+201-	{ OV5647_TABLE_END, 0x00 },
+202-};
+203-
+204:static const struct reg_8 ov5647_sensor_oe_enable_regs[] = {
+205-	{0x3000, 0x0f},
+206-	{0x3001, 0xff},
+207-	{0x3002, 0xe4},
+208-	{ OV5647_TABLE_END, 0x00 },
+209-};
+210-
+211:static const struct reg_8 ov5647_sensor_oe_disable_regs[] = {
+212-	{0x3000, 0x00},
+213-	{0x3001, 0x00},
+214-	{0x3002, 0x00},
+215-	{ OV5647_TABLE_END, 0x00 },
+216-};
+217-
+218-static const struct reg_8 ov5647_mode0_640x480_10bpp[] = {
+219-	{0x3036, 0x46},
+220-	{0x3821, 0x01},
+221-	{0x3820, 0x41},
+222-	{0x3612, 0x59},
+223-	{0x3618, 0x00},
+224-	{0x5002, 0x41},
+225-	{0x3814, 0x35},
+226-	{0x3815, 0x35},
+227-	{0x3708, 0x64},
+228-	{0x3709, 0x52},
+229-	{0x3800, 0x00},
+230-	{0x3801, 0x10},
+231-	{0x3802, 0x00},
+--
+652-		gpio_set_value(pw->reset_gpio, 1);
+653-	}
+654-
+655-	usleep_range(5000, 6000);
+656-
+657:	err = ov5647_write_table(s_data, ov5647_sensor_oe_enable_regs);
+658-	if (err) {
+659-		dev_err(dev, "%s: sensor output-enable table failed err=%d\n",
+660-			__func__, err);
+661-		goto disable_mclk;
+662-	}
+663-
+664-	/*
+665-	 * Upstream OV5647 forces stream-stop during power-on to put the CSI
+666-	 * lanes into LP-11 before the first real stream start.
+667-	 */
+668-	err = ov5647_write_stream_stop_regs(s_data, false);
+669-	if (err) {
+670-		dev_err(dev, "%s: stream-stop LP-11 setup failed err=%d\n",
+671-			__func__, err);
+672-		goto disable_mclk;
+673-	}
+674-	dev_info(dev, "%s: stream-stop LP-11 setup complete\n", __func__);
+675-
+676-	pw->state = true;
+677-
+--
+719-	if (!pw->state) {
+720-		dev_dbg(dev, "%s: already off\n", __func__);
+721-		return 0;
+722-	}
+723-
+724:	if (ov5647_write_table(s_data, ov5647_sensor_oe_disable_regs))
+725-		dev_warn(dev, "%s: sensor output-disable table failed\n",
+726-			 __func__);
+727-
+728-	if (gpio_is_valid((int)pw->pwdn_gpio))
+729-		gpio_set_value(pw->pwdn_gpio, 1);
+730-
+731-	if (gpio_is_valid((int)pw->reset_gpio))
+732-		gpio_set_value(pw->reset_gpio, 0);
+733-
+734-	camera_common_mclk_disable(s_data);
+735-
+736-	if (pw->avdd)
+737-		regulator_disable(pw->avdd);
+738-	if (pw->dvdd)
+739-		regulator_disable(pw->dvdd);
+740-	if (pw->iovdd)
+741-		regulator_disable(pw->iovdd);
+742-
+743-	pw->state = false;
+744-	dev_info(dev, "%s: exit success\n", __func__);

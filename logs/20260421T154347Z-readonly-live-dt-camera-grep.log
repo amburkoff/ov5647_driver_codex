@@ -1,0 +1,54 @@
+787:		i2c@3160000 {
+1173:			bus-width = <0x04>;
+4374:		i2c@31e0000 {
+4775:		cam_i2cmux {
+4783:			i2c@0 {
+4789:				ov5647_a@36 {
+4790:					sensor_model = "ov5647";
+4796:					compatible = "ovti,ov5647";
+4828:						lane_polarity = "6";
+4841:						tegra_sinterface = "serial_b";
+4853:								bus-width = <0x02>;
+4855:								port-index = <0x01>;
+4927:		i2c@31b0000 {
+5243:		i2c@c240000 {
+5369:		i2c@3180000 {
+5782:		i2c@31c0000 {
+6133:			nvcsi@15a00000 {
+6135:				clock-names = "nvcsi";
+6140:				compatible = "nvidia,tegra194-nvcsi";
+6143:				reset-names = "nvcsi";
+6156:								bus-width = <0x02>;
+6158:								port-index = <0x01>;
+6335:		i2c@c250000 {
+6381:		i2c@3190000 {
+7013:				badge = "probe_ov5647_route_a";
+7019:					sysfs-device-tree = "/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36";
+7667:	tegra-capture-vi {
+7685:					bus-width = <0x02>;
+7687:					port-index = <0x01>;
+7705:		i2c3 = "/bus@0/i2c@3190000";
+7707:		i2c1 = "/bus@0/i2c@c240000";
+7708:		i2c8 = "/bus@0/i2c@31e0000";
+7709:		i2c6 = "/bus@0/i2c@31c0000";
+7715:		i2c2 = "/bus@0/i2c@3180000";
+7717:		i2c0 = "/bus@0/i2c@3160000";
+7719:		i2c7 = "/bus@0/i2c@c250000";
+7722:		i2c5 = "/bus@0/i2c@31b0000";
+10416:		bootargs = "root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 ";
+10921:		dp_aux_ch2_i2c = "/bus@0/i2c@31c0000";
+10955:		gen2_i2c = "/bus@0/i2c@c240000";
+10966:		hdr40_i2c1 = "/bus@0/i2c@c250000";
+11165:		dp_aux_ch3_i2c = "/bus@0/i2c@31e0000";
+11201:		capture_vi = "/tegra-capture-vi";
+11202:		ov5647_probe_vi_in0 = "/tegra-capture-vi/ports/port@0/endpoint";
+11257:		ov5647_probe_csi_out0 = "/bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@1/endpoint@1";
+11303:		ov5647_probe_csi_in0 = "/bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@0/endpoint@0";
+11356:		dp_aux_ch0_i2c = "/bus@0/i2c@31b0000";
+11388:		cam_i2c = "/bus@0/i2c@3180000";
+11452:		gen8_i2c = "/bus@0/i2c@c250000";
+11522:		fusb_p0 = "/bus@0/i2c@c240000/fusb301@25/connector@0/port@0/endpoint";
+11586:		dp_aux_ch1_i2c = "/bus@0/i2c@3190000";
+11623:		gen1_i2c = "/bus@0/i2c@3160000";
+11649:		nvcsi = "/bus@0/host1x@13e00000/nvcsi@15a00000";
+11677:		ov5647_probe_out0 = "/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/endpoint";

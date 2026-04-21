@@ -1,0 +1,408 @@
+# overlay probe source
+/dts-v1/;
+/plugin/;
+
+/ {
+	overlay-name = "OV5647 probe route A for p3768/p3767";
+	jetson-header-name = "Jetson 22pin CSI Connector";
+	compatible =
+		"nvidia,p3768-0000+p3767-0000",
+		"nvidia,p3768-0000+p3767-0001",
+		"nvidia,p3768-0000+p3767-0003",
+		"nvidia,p3768-0000+p3767-0004",
+		"nvidia,p3768-0000+p3767-0005";
+
+	/*
+	 * Probe-oriented draft only.
+	 *
+	 * This is the first one-port, one-sensor candidate for an OV5647 chip-id
+	 * probe on the p3768-style route-A path. It must remain off the boot path
+	 * until there is an explicit decision to test it.
+	 *
+	 * Current assumptions:
+	 * - physical first test path is route A
+	 * - cam_i2cmux/i2c@0
+	 * - serial_b / port-index 1 / 2 lanes / lane_polarity 6
+	 * - OV5647 SCCB address 0x36
+	 * - no dedicated reset GPIO is modeled yet
+	 * - shared power-down GPIO token 0x3e is used as the first candidate
+	 * - supplies stay in string form for the local scaffold driver
+	 * - only one minimal 640x480 mode is described
+	 *
+	 * This file being compile-ready does not mean the wiring assumptions are
+	 * confirmed. Apply only for a controlled probe experiment.
+	 */
+
+	fragment@0 {
+		target-path = "/";
+
+		__overlay__ {
+			tegra-capture-vi {
+				num-channels = <1>;
+
+				ports {
+					#address-cells = <1>;
+					#size-cells = <0>;
+
+					port@0 {
+						reg = <0>;
+
+						ov5647_probe_vi_in0: endpoint {
+							port-index = <1>;
+							bus-width = <2>;
+							remote-endpoint = <&ov5647_probe_csi_out0>;
+						};
+					};
+				};
+			};
+
+			tegra-camera-platform {
+				compatible = "nvidia, tegra-camera-platform";
+
+				modules {
+					module0 {
+						badge = "probe_ov5647_route_a";
+						position = "front";
+						orientation = "1";
+
+						drivernode0 {
+							pcl_id = "v4l2_sensor";
+							sysfs-device-tree =
+								"/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36";
+						};
+					};
+				};
+			};
+
+			bus@0 {
+				host1x@13e00000 {
+					nvcsi@15a00000 {
+						num-channels = <1>;
+						#address-cells = <1>;
+						#size-cells = <0>;
+
+						channel@0 {
+							reg = <0>;
+
+							ports {
+								#address-cells = <1>;
+								#size-cells = <0>;
+
+								port@0 {
+									reg = <0>;
+
+									ov5647_probe_csi_in0: endpoint@0 {
+										port-index = <1>;
+										bus-width = <2>;
+										remote-endpoint = <&ov5647_probe_out0>;
+									};
+								};
+
+								port@1 {
+									reg = <1>;
+
+									ov5647_probe_csi_out0: endpoint@1 {
+										remote-endpoint = <&ov5647_probe_vi_in0>;
+									};
+								};
+							};
+						};
+					};
+				};
+
+				cam_i2cmux {
+					status = "okay";
+					compatible = "i2c-mux-gpio";
+					#address-cells = <1>;
+					#size-cells = <0>;
+					mux-gpios = <&gpio_aon 19 0>;
+					i2c-parent = <&cam_i2c>;
+
+					i2c@0 {
+						status = "okay";
+						reg = <0>;
+						#address-cells = <1>;
+						#size-cells = <0>;
+
+						ov5647_a@36 {
+							status = "okay";
+							compatible = "ovti,ov5647";
+							reg = <0x36>;
+							devnode = "video0";
+							physical_w = "3.674";
+							physical_h = "2.738";
+							sensor_model = "ov5647";
+							use_sensor_mode_id = "true";
+							mclk = "extperiph1";
+							clocks = <&bpmp 0x07>;
+							clock-names = "extperiph1";
+							avdd-reg = "vana";
+							dvdd-reg = "vdig";
+							iovdd-reg = "vif";
+							pwdn-gpios = <&gpio 0x3e 0>;
+
+							mode0 {
+								mclk_khz = "24000";
+								num_lanes = "2";
+								tegra_sinterface = "serial_b";
+								lane_polarity = "6";
+								phy_mode = "DPHY";
+								discontinuous_clk = "yes";
+								dpcm_enable = "false";
+								cil_settletime = "0";
+								active_w = "640";
+								active_h = "480";
+								mode_type = "bayer";
+								pixel_phase = "bggr";
+								csi_pixel_bit_depth = "10";
+								readout_orientation = "0";
+								line_length = "1852";
+								inherent_gain = "1";
+								mclk_multiplier = "2.43";
+								pix_clk_hz = "58333000";
+								gain_factor = "16";
+								framerate_factor = "1000000";
+								exposure_factor = "1000000";
+								min_gain_val = "16";
+								max_gain_val = "1023";
+								step_gain_val = "1";
+								default_gain = "32";
+								min_hdr_ratio = "1";
+								max_hdr_ratio = "1";
+								min_framerate = "5000000";
+								max_framerate = "60000000";
+								step_framerate = "1";
+								default_framerate = "60000000";
+								min_exp_time = "13";
+								max_exp_time = "16000";
+								step_exp_time = "1";
+								default_exp_time = "1000";
+								embedded_metadata_height = "0";
+							};
+
+							ports {
+								#address-cells = <1>;
+								#size-cells = <0>;
+
+								port@0 {
+									reg = <0>;
+
+									ov5647_probe_out0: endpoint {
+										port-index = <1>;
+										bus-width = <2>;
+										remote-endpoint = <&ov5647_probe_csi_in0>;
+									};
+								};
+							};
+						};
+					};
+				};
+			};
+		};
+	};
+};
+
+# overlay draft source
+/dts-v1/;
+/plugin/;
+
+/ {
+	overlay-name = "OV5647 draft route A for p3768/p3767";
+	jetson-header-name = "Jetson 22pin CSI Connector";
+	compatible =
+		"nvidia,p3768-0000+p3767-0000",
+		"nvidia,p3768-0000+p3767-0001",
+		"nvidia,p3768-0000+p3767-0003",
+		"nvidia,p3768-0000+p3767-0004",
+		"nvidia,p3768-0000+p3767-0005";
+
+	/*
+	 * Compile-ready draft only.
+	 *
+	 * This overlay is intentionally safe-by-default:
+	 * - sensor node stays disabled;
+	 * - it is not boot-applied;
+	 * - several hardware facts remain assumptions for the first probe path.
+	 *
+	 * Current assumption set:
+	 * - route A on p3768-style 22-pin connector family
+	 * - cam_i2cmux/i2c@0
+	 * - serial_b / port-index 1 / 2 lanes / lane_polarity 6
+	 * - OV5647 SCCB address 0x36
+	 * - no separate reset GPIO; only shared camera power-down line
+	 * - the first compile-ready draft keeps regulator references as strings
+	 *   for the local scaffold driver; final phandle-based supply binding is
+	 *   deferred until the active base-DT symbol map is verified
+	 * - one minimal mode0 kept aligned with the current driver placeholder:
+	 *   640x480 SBGGR10
+	 *
+	 * Do not enable this node until the physical connector, the sensor address,
+	 * and the real GPIO ownership are verified on the target carrier path.
+	 */
+
+	fragment@0 {
+		target-path = "/";
+
+		__overlay__ {
+			tegra-capture-vi {
+				num-channels = <1>;
+
+				ports {
+					#address-cells = <1>;
+					#size-cells = <0>;
+
+					port@0 {
+						reg = <0>;
+
+						ov5647_vi_in0: endpoint {
+							port-index = <1>;
+							bus-width = <2>;
+							remote-endpoint = <&ov5647_csi_out0>;
+						};
+					};
+				};
+			};
+
+			tegra-camera-platform {
+				compatible = "nvidia, tegra-camera-platform";
+
+				modules {
+					module0 {
+						badge = "draft_ov5647_route_a";
+						position = "front";
+						orientation = "1";
+
+						drivernode0 {
+							pcl_id = "v4l2_sensor";
+							sysfs-device-tree =
+								"/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36";
+						};
+					};
+				};
+			};
+
+			bus@0 {
+				host1x@13e00000 {
+					nvcsi@15a00000 {
+						num-channels = <1>;
+						#address-cells = <1>;
+						#size-cells = <0>;
+
+						channel@0 {
+							reg = <0>;
+
+							ports {
+								#address-cells = <1>;
+								#size-cells = <0>;
+
+								port@0 {
+									reg = <0>;
+
+									ov5647_csi_in0: endpoint@0 {
+										port-index = <1>;
+										bus-width = <2>;
+										remote-endpoint = <&ov5647_out0>;
+									};
+								};
+
+								port@1 {
+									reg = <1>;
+
+									ov5647_csi_out0: endpoint@1 {
+										remote-endpoint = <&ov5647_vi_in0>;
+									};
+								};
+							};
+						};
+					};
+				};
+
+				cam_i2cmux {
+					status = "okay";
+					compatible = "i2c-mux-gpio";
+					#address-cells = <1>;
+					#size-cells = <0>;
+					mux-gpios = <&gpio_aon 19 0>;
+					i2c-parent = <&cam_i2c>;
+
+					i2c@0 {
+						status = "okay";
+						reg = <0>;
+						#address-cells = <1>;
+						#size-cells = <0>;
+
+						ov5647_a@36 {
+							status = "disabled";
+							compatible = "ovti,ov5647";
+							reg = <0x36>;
+							devnode = "video0";
+							physical_w = "3.674";
+							physical_h = "2.738";
+							sensor_model = "ov5647";
+							use_sensor_mode_id = "true";
+							mclk = "extperiph1";
+							avdd-reg = "vana";
+							dvdd-reg = "vdig";
+							iovdd-reg = "vif";
+							pwdn-gpios = <&gpio 0x3e 0>;
+
+							mode0 {
+								mclk_khz = "24000";
+								num_lanes = "2";
+								tegra_sinterface = "serial_b";
+								lane_polarity = "6";
+								phy_mode = "DPHY";
+								discontinuous_clk = "yes";
+								dpcm_enable = "false";
+								cil_settletime = "0";
+								active_w = "640";
+								active_h = "480";
+								mode_type = "bayer";
+								pixel_phase = "bggr";
+								csi_pixel_bit_depth = "10";
+								readout_orientation = "0";
+								line_length = "1852";
+								inherent_gain = "1";
+								mclk_multiplier = "2.43";
+								pix_clk_hz = "58333000";
+								gain_factor = "16";
+								framerate_factor = "1000000";
+								exposure_factor = "1000000";
+								min_gain_val = "16";
+								max_gain_val = "1023";
+								step_gain_val = "1";
+								default_gain = "32";
+								min_hdr_ratio = "1";
+								max_hdr_ratio = "1";
+								min_framerate = "5000000";
+								max_framerate = "60000000";
+								step_framerate = "1";
+								default_framerate = "60000000";
+								min_exp_time = "13";
+								max_exp_time = "16000";
+								step_exp_time = "1";
+								default_exp_time = "1000";
+								embedded_metadata_height = "0";
+							};
+
+							ports {
+								#address-cells = <1>;
+								#size-cells = <0>;
+
+								port@0 {
+									reg = <0>;
+
+									ov5647_out0: endpoint {
+										port-index = <1>;
+										bus-width = <2>;
+										remote-endpoint = <&ov5647_csi_in0>;
+									};
+								};
+							};
+						};
+					};
+				};
+			};
+		};
+	};
+};

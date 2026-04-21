@@ -1,0 +1,76 @@
+# extlinux
+TIMEOUT 30
+DEFAULT ov5647-dev
+
+MENU TITLE L4T boot options
+
+LABEL ov5647-safe
+      MENU LABEL Jetson SAFE (no OV5647 auto-load)
+      LINUX /boot/Image
+      INITRD /boot/initrd
+      FDT /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb
+      APPEND ${cbootargs} root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-safe
+
+LABEL ov5647-dev
+      MENU LABEL Jetson DEV OV5647 auto-load
+      LINUX /boot/Image
+      INITRD /boot/initrd
+      FDT /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb
+      OVERLAYS /boot/ov5647-p3768-port-a-probe.dtbo
+      APPEND ${cbootargs} root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev
+
+# boot dtbo files
+-rw-r--r-- 1 root root  4863 Apr 20 11:20 /boot/ov5647-p3768-port-a-probe.dtbo
+-rw-r--r-- 1 root root  4863 Apr 20 11:20 /boot/ov5647-p3768-port-a-probe.dtbo
+-rw-r--r-- 1 root root   461 Jan 16 06:42 /boot/tegra-optee.dtbo
+-rw-r--r-- 1 root root  1317 Jan 16 06:42 /boot/tegra234-carveouts.dtbo
+-rw-r--r-- 1 root root   442 Jan 16 06:42 /boot/tegra234-p3737-0000+p3701-0000-as-p3701-0004.dtbo
+-rw-r--r-- 1 root root   727 Jan 16 06:42 /boot/tegra234-p3737-0000+p3701-0000-as-p3767-0000.dtbo
+-rw-r--r-- 1 root root   822 Jan 16 06:42 /boot/tegra234-p3737-0000+p3701-0000-as-p3767-0001.dtbo
+-rw-r--r-- 1 root root  1225 Jan 16 06:42 /boot/tegra234-p3737-0000+p3701-0000-as-p3767-0003.dtbo
+-rw-r--r-- 1 root root  1225 Jan 16 06:42 /boot/tegra234-p3737-0000+p3701-0000-as-p3767-0004.dtbo
+-rw-r--r-- 1 root root  1143 Jan 16 06:42 /boot/tegra234-p3737-0000+p3701-0000-audio-adafruit-sph0645lm4h.dtbo
+-rw-r--r-- 1 root root  1139 Jan 16 06:42 /boot/tegra234-p3737-0000+p3701-0000-audio-adafruit-uda1334a.dtbo
+-rw-r--r-- 1 root root  4043 Jan 16 06:42 /boot/tegra234-p3737-0000+p3701-0000-audio-fe-pi.dtbo
+-rw-r--r-- 1 root root  3239 Jan 16 06:42 /boot/tegra234-p3737-0000+p3701-0000-audio-respeaker-4-mic-array.dtbo
+-rw-r--r-- 1 root root  3275 Jan 16 06:42 /boot/tegra234-p3737-0000+p3701-0000-audio-respeaker-4-mic-lin-array.dtbo
+-rw-r--r-- 1 root root  2414 Jan 16 06:42 /boot/tegra234-p3737-0000+p3701-0000-csi.dtbo
+-rw-r--r-- 1 root root 70943 Jan 16 06:42 /boot/tegra234-p3737-0000+p3701-0000-dynamic.dtbo
+-rw-r--r-- 1 root root  4655 Jan 16 06:42 /boot/tegra234-p3737-0000+p3701-0000-hdr40.dtbo
+-rw-r--r-- 1 root root  1605 Jan 16 06:42 /boot/tegra234-p3737-0000+p3701-0000-m2ke.dtbo
+-rw-r--r-- 1 root root 12014 Jan 16 06:42 /boot/tegra234-p3737-camera-dual-hawk-ar0234-e3653-overlay.dtbo
+-rw-r--r-- 1 root root  7531 Jan 16 06:42 /boot/tegra234-p3737-camera-dual-imx274-overlay.dtbo
+-rw-r--r-- 1 root root  3316 Jan 16 06:42 /boot/tegra234-p3737-camera-e3331-overlay.dtbo
+-rw-r--r-- 1 root root 14557 Jan 16 06:42 /boot/tegra234-p3737-camera-e3333-overlay.dtbo
+-rw-r--r-- 1 root root 28479 Jan 16 06:42 /boot/tegra234-p3737-camera-eCAM130A-overlay.dtbo
+-rw-r--r-- 1 root root  4899 Jan 16 06:42 /boot/tegra234-p3737-camera-imx185-overlay.dtbo
+-rw-r--r-- 1 root root  3734 Jan 16 06:42 /boot/tegra234-p3737-camera-imx390-addr-0x21-overlay.dtbo
+-rw-r--r-- 1 root root  3722 Jan 16 06:42 /boot/tegra234-p3737-camera-imx390-overlay.dtbo
+-rw-r--r-- 1 root root 47457 Jan 16 06:42 /boot/tegra234-p3737-camera-p3762-a00-1Hawk-overlay.dtbo
+-rw-r--r-- 1 root root 47433 Jan 16 06:42 /boot/tegra234-p3737-camera-p3762-a00-2Hawk-overlay.dtbo
+-rw-r--r-- 1 root root 47373 Jan 16 06:42 /boot/tegra234-p3737-camera-p3762-a00-3Hawk-3Owl-overlay.dtbo
+-rw-r--r-- 1 root root 47385 Jan 16 06:42 /boot/tegra234-p3737-camera-p3762-a00-4Hawk-overlay.dtbo
+-rw-r--r-- 1 root root 47441 Jan 16 06:42 /boot/tegra234-p3737-camera-p3762-a00-4Owl-overlay.dtbo
+-rw-r--r-- 1 root root 46233 Jan 16 06:42 /boot/tegra234-p3737-camera-p3762-a00-overlay.dtbo
+-rw-r--r-- 1 root root  1362 Jan 16 06:42 /boot/tegra234-p3740-0002+p3701-0008-hdr20.dtbo
+-rw-r--r-- 1 root root  1566 Jan 16 06:42 /boot/tegra234-p3740-0002+p3701-0008-m2kb.dtbo
+-rw-r--r-- 1 root root  1525 Jan 16 06:42 /boot/tegra234-p3740-0002+p3701-0008-m2ke.dtbo
+-rw-r--r-- 1 root root 46209 Jan 16 06:42 /boot/tegra234-p3740-camera-p3783-a00-overlay.dtbo
+-rw-r--r-- 1 root root  1495 Jan 16 06:42 /boot/tegra234-p3767-0000+p3509-a02-audio-adafruit-sph0645lm4h.dtbo
+-rw-r--r-- 1 root root  1491 Jan 16 06:42 /boot/tegra234-p3767-0000+p3509-a02-audio-adafruit-uda1334a.dtbo
+-rw-r--r-- 1 root root  4395 Jan 16 06:42 /boot/tegra234-p3767-0000+p3509-a02-audio-fe-pi.dtbo
+-rw-r--r-- 1 root root  3591 Jan 16 06:42 /boot/tegra234-p3767-0000+p3509-a02-audio-respeaker-4-mic-array.dtbo
+-rw-r--r-- 1 root root  3627 Jan 16 06:42 /boot/tegra234-p3767-0000+p3509-a02-audio-respeaker-4-mic-lin-array.dtbo
+-rw-r--r-- 1 root root   876 Jan 16 06:42 /boot/tegra234-p3767-0000+p3509-a02-csi.dtbo
+-rw-r--r-- 1 root root  4938 Jan 16 06:42 /boot/tegra234-p3767-0000+p3509-a02-hdr40.dtbo
+-rw-r--r-- 1 root root  1949 Jan 16 06:42 /boot/tegra234-p3767-0000+p3509-a02-m2ke.dtbo
+-rw-r--r-- 1 root root  1048 Jan 16 06:42 /boot/tegra234-p3767-0000+p3768-0000-csi.dtbo
+-rw-r--r-- 1 root root  8974 Jan 16 06:42 /boot/tegra234-p3767-camera-p3768-imx219-A.dtbo
+-rw-r--r-- 1 root root  8880 Jan 16 06:42 /boot/tegra234-p3767-camera-p3768-imx219-C.dtbo
+-rw-r--r-- 1 root root 15834 Jan 16 06:42 /boot/tegra234-p3767-camera-p3768-imx219-dual.dtbo
+-rw-r--r-- 1 root root 12095 Jan 16 06:42 /boot/tegra234-p3767-camera-p3768-imx219-imx477.dtbo
+-rw-r--r-- 1 root root  5733 Jan 16 06:42 /boot/tegra234-p3767-camera-p3768-imx477-A.dtbo
+-rw-r--r-- 1 root root  5733 Jan 16 06:42 /boot/tegra234-p3767-camera-p3768-imx477-C.dtbo
+-rw-r--r-- 1 root root  9030 Jan 16 06:42 /boot/tegra234-p3767-camera-p3768-imx477-dual.dtbo
+-rw-r--r-- 1 root root 12183 Jan 16 06:42 /boot/tegra234-p3767-camera-p3768-imx477-imx219.dtbo
+-rw-r--r-- 1 root root  2775 Jan 16 06:42 /boot/tegra234-p3768-0000+p3767-0000-dynamic.dtbo

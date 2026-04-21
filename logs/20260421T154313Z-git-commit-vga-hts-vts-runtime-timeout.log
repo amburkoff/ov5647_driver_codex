@@ -1,0 +1,13 @@
+[main 6da38c2] test: record ov5647 hts vts capture timeout
+ 13 files changed, 3105 insertions(+), 4 deletions(-)
+ create mode 100644 artifacts/captures/20260421T153826Z/ov5647-640x480-bg10.raw
+ create mode 100644 logs/20260421T153826Z-single-frame-post-dmesg-tail.log
+ create mode 100644 logs/20260421T153826Z-single-frame-trace.log
+ create mode 100644 logs/20260421T153826Z-stream-live-dmesg.log
+ create mode 100644 logs/20260421T153949Z-after-vga-hts-vts-capture-timeout-dmesg.log
+ create mode 100644 logs/20260421T153949Z-after-vga-hts-vts-capture-timeout-state.log
+ create mode 100644 logs/20260421T153949Z-vga-hts-vts-capture-timeout-script-log-summary.log
+ create mode 100644 logs/20260421T154254Z-diff-vga-hts-vts-runtime-timeout-report.log
+ create mode 100644 logs/20260421T154307Z-git-add-vga-hts-vts-runtime-timeout.log
+ create mode 100644 logs/20260421T154307Z-git-status-vga-hts-vts-runtime-timeout-add.log
+ create mode 100644 reports/2026-04-21-vga-hts-vts-runtime-timeout.md

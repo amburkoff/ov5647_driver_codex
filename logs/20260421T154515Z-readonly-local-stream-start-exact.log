@@ -1,0 +1,91 @@
+
+	if (mode < 0 || mode >= ARRAY_SIZE(ov5647_modes)) {
+		dev_err(tc_dev->dev, "%s: invalid mode index %d\n", __func__, mode);
+		return -EINVAL;
+	}
+
+	if (!priv || !priv->board_setup_done) {
+		dev_err(tc_dev->dev, "%s: board setup not complete\n", __func__);
+		return -EIO;
+	}
+
+	dev_info(tc_dev->dev,
+		 "%s: applying mode=%d name=%s %ux%u\n",
+		 __func__, mode, ov5647_modes[mode].name,
+		 ov5647_modes[mode].width, ov5647_modes[mode].height);
+
+	err = ov5647_write_table(s_data, ov5647_common_regs);
+	if (err) {
+		dev_err(tc_dev->dev, "%s: common table failed err=%d\n",
+			__func__, err);
+		return err;
+	}
+
+	err = ov5647_write_table(s_data, ov5647_modes[mode].table);
+	if (err) {
+		dev_err(tc_dev->dev, "%s: mode table failed err=%d\n",
+			__func__, err);
+		return err;
+	}
+
+	err = ov5647_read_reg(s_data, OV5647_REG_MIPI_CTRL14, &vc_ctrl);
+	if (err)
+		return err;
+
+	vc_ctrl &= ~(3 << 6);
+	err = ov5647_write_reg(s_data, OV5647_REG_MIPI_CTRL14, vc_ctrl);
+	if (err)
+		return err;
+
+	dev_info(tc_dev->dev, "%s: mode applied, sensor remains in standby\n",
+		 __func__);
+	return 0;
+}
+
+static int ov5647_start_streaming(struct tegracam_device *tc_dev)
+{
+	struct camera_common_data *s_data = tc_dev->s_data;
+	u8 val = OV5647_MIPI_CTRL00_BUS_IDLE |
+		 OV5647_MIPI_CTRL00_CLOCK_LANE_GATE |
+		 OV5647_MIPI_CTRL00_LINE_SYNC_ENABLE;
+	int err;
+
+	dev_info(tc_dev->dev, "%s: enter\n", __func__);
+
+	err = ov5647_set_mode(tc_dev);
+	if (err) {
+		dev_err(tc_dev->dev, "%s: set_mode failed err=%d\n",
+			__func__, err);
+		return err;
+	}
+
+	err = ov5647_write_reg(s_data, OV5647_REG_MIPI_CTRL00, val);
+	if (err)
+		return err;
+
+	err = ov5647_write_reg(s_data, OV5647_REG_FRAME_OFF_NUMBER, 0x00);
+	if (err)
+		return err;
+
+	err = ov5647_write_reg(s_data, OV5647_REG_MODE_SELECT,
+			       OV5647_MODE_STREAMING);
+	if (err)
+		return err;
+
+	err = ov5647_write_reg(s_data, OV5640_REG_PAD_OUT, 0x00);
+	if (err)
+		return err;
+
+	dev_info(tc_dev->dev, "%s: exit success\n", __func__);
+	return 0;
+}
+
+static int ov5647_stop_streaming(struct tegracam_device *tc_dev)
+{
+	struct camera_common_data *s_data = tc_dev->s_data;
+	int err;
+
+	dev_info(tc_dev->dev, "%s: enter\n", __func__);
+
+	err = ov5647_write_stream_stop_regs(s_data, true);
+	if (err)

@@ -1,0 +1,4 @@
+# source file path candidates
+/usr/src/nvidia/nvidia-oot/include/uapi/media/imx219.h
+/usr/src/nvidia/nvidia-oot/include/media/imx219.h
+/lib/modules/5.15.185-tegra/updates/drivers/media/i2c/nv_imx219.ko

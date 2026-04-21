@@ -1,0 +1,303 @@
+# upstream mode chunks
+333:static const struct reg_sequence ov5647_640x480_10bpp[] = {
+451:		.reg_list	= ov5647_640x480_10bpp,
+452:		.num_regs	= ARRAY_SIZE(ov5647_640x480_10bpp)
+456:/* Default sensor mode is 2x2 binned 640x480 SBGGR10_1X10. */
+	cci_write(sensor->regmap, OV5647_REG_FRAME_OFF_NUMBER, 0x0f, &ret);
+	cci_write(sensor->regmap, OV5640_REG_PAD_OUT, 0x01, &ret);
+
+	return ret;
+}
+
+static int ov5647_enable_streams(struct v4l2_subdev *sd,
+				 struct v4l2_subdev_state *state, u32 pad,
+				 u64 streams_mask)
+{
+	struct i2c_client *client = v4l2_get_subdevdata(sd);
+	struct ov5647 *sensor = to_sensor(sd);
+	u8 val = MIPI_CTRL00_BUS_IDLE;
+	int ret;
+
+	ret = pm_runtime_resume_and_get(&client->dev);
+	if (ret < 0)
+		return ret;
+
+	ret = ov5647_set_mode(sd);
+	if (ret) {
+		dev_err(&client->dev, "Failed to program sensor mode: %d\n", ret);
+		goto done;
+	}
+
+	/* Apply customized values from user when stream starts. */
+	ret =  __v4l2_ctrl_handler_setup(sd->ctrl_handler);
+	if (ret)
+		goto done;
+
+	if (sensor->clock_ncont)
+		val |= MIPI_CTRL00_CLOCK_LANE_GATE |
+		       MIPI_CTRL00_LINE_SYNC_ENABLE;
+
+	cci_write(sensor->regmap, OV5647_REG_MIPI_CTRL00, val, &ret);
+	cci_write(sensor->regmap, OV5647_REG_FRAME_OFF_NUMBER, 0x00, &ret);
+	cci_write(sensor->regmap, OV5640_REG_PAD_OUT, 0x00, &ret);
+
+done:
+	if (ret)
+		pm_runtime_put(&client->dev);
+
+	return ret;
+}
+
+static int ov5647_disable_streams(struct v4l2_subdev *sd,
+				  struct v4l2_subdev_state *state, u32 pad,
+				  u64 streams_mask)
+{
+	struct i2c_client *client = v4l2_get_subdevdata(sd);
+	struct ov5647 *sensor = to_sensor(sd);
+	int ret;
+
+	ret = ov5647_stream_stop(sensor);
+
+	pm_runtime_put(&client->dev);
+
+	return ret;
+}
+
+static int ov5647_power_on(struct device *dev)
+{
+	struct ov5647 *sensor = dev_get_drvdata(dev);
+	int ret;
+
+	dev_dbg(dev, "OV5647 power on\n");
+
+	ret = regulator_bulk_enable(OV5647_NUM_SUPPLIES, sensor->supplies);
+	if (ret < 0) {
+		dev_err(dev, "Failed to enable regulators: %d\n", ret);
+		return ret;
+	}
+
+	ret = gpiod_set_value_cansleep(sensor->pwdn, 0);
+	if (ret < 0) {
+		dev_err(dev, "pwdn gpio set value failed: %d\n", ret);
+		goto error_reg_disable;
+	}
+
+	msleep(PWDN_ACTIVE_DELAY_MS);
+
+	ret = clk_prepare_enable(sensor->xclk);
+	if (ret < 0) {
+		dev_err(dev, "clk prepare enable failed\n");
+		goto error_pwdn;
+	}
+
+	ret = regmap_multi_reg_write(sensor->regmap, sensor_oe_enable_regs,
+				     ARRAY_SIZE(sensor_oe_enable_regs));
+	if (ret < 0) {
+		dev_err(dev, "write sensor_oe_enable_regs error\n");
+		goto error_clk_disable;
+	}
+
+	/* Stream off to coax lanes into LP-11 state. */
+	ret = ov5647_stream_stop(sensor);
+	if (ret < 0) {
+		dev_err(dev, "camera not available, check power\n");
+		goto error_clk_disable;
+	}
+
+	return 0;
+
+error_clk_disable:
+	clk_disable_unprepare(sensor->xclk);
+error_pwdn:
+	gpiod_set_value_cansleep(sensor->pwdn, 1);
+error_reg_disable:
+	regulator_bulk_disable(OV5647_NUM_SUPPLIES, sensor->supplies);
+
+	return ret;
+}
+
+static int ov5647_power_off(struct device *dev)
+{
+	struct ov5647 *sensor = dev_get_drvdata(dev);
+	int ret;
+
+	dev_dbg(dev, "OV5647 power off\n");
+
+	ret = regmap_multi_reg_write(sensor->regmap, sensor_oe_disable_regs,
+				     ARRAY_SIZE(sensor_oe_disable_regs));
+	if (ret < 0)
+		dev_dbg(dev, "disable oe failed\n");
+
+	/* Enter software standby */
+	ret = cci_update_bits(sensor->regmap, OV5647_SW_STANDBY, 0x01, 0x00, NULL);
+	if (ret < 0)
+		dev_dbg(dev, "software standby failed\n");
+
+	clk_disable_unprepare(sensor->xclk);
+
+# rpi mode chunks
+340:static struct regval_list ov5647_640x480_10bpp[] = {
+458:		.reg_list	= ov5647_640x480_10bpp,
+459:		.num_regs	= ARRAY_SIZE(ov5647_640x480_10bpp)
+463:/* Default sensor mode is 2x2 binned 640x480 SBGGR10_1X10. */
+	msg[0].flags = client->flags;
+	msg[0].buf = buf;
+	msg[0].len = sizeof(buf);
+
+	msg[1].addr = client->addr;
+	msg[1].flags = client->flags | I2C_M_RD;
+	msg[1].buf = buf;
+	msg[1].len = 1;
+
+	ret = i2c_transfer(client->adapter, msg, 2);
+	if (ret != 2) {
+		dev_err(&client->dev, "%s: i2c read error, reg: %x = %d\n",
+			__func__, reg, ret);
+		return ret >= 0 ? -EINVAL : ret;
+	}
+
+	*val = buf[0];
+
+	return 0;
+}
+
+static int ov5647_write_array(struct v4l2_subdev *sd,
+			      const struct regval_list *regs, int array_size)
+{
+	int i, ret;
+
+	for (i = 0; i < array_size; i++) {
+		ret = ov5647_write(sd, regs[i].addr, regs[i].data);
+		if (ret < 0)
+			return ret;
+	}
+
+	return 0;
+}
+
+static int ov5647_set_virtual_channel(struct v4l2_subdev *sd, int channel)
+{
+	u8 channel_id;
+	int ret;
+
+	ret = ov5647_read(sd, OV5647_REG_MIPI_CTRL14, &channel_id);
+	if (ret < 0)
+		return ret;
+
+	channel_id &= ~(3 << 6);
+
+	return ov5647_write(sd, OV5647_REG_MIPI_CTRL14,
+			    channel_id | (channel << 6));
+}
+
+static int ov5647_set_mode(struct v4l2_subdev *sd)
+{
+	struct i2c_client *client = v4l2_get_subdevdata(sd);
+	struct ov5647 *sensor = to_sensor(sd);
+	u8 resetval, rdval;
+	int ret;
+
+	ret = ov5647_read(sd, OV5647_SW_STANDBY, &rdval);
+	if (ret < 0)
+		return ret;
+
+	ret = ov5647_write_array(sd, ov5647_common_regs,
+				 ARRAY_SIZE(ov5647_common_regs));
+	if (ret < 0) {
+		dev_err(&client->dev, "write sensor common regs error\n");
+		return ret;
+	}
+
+	ret = ov5647_write_array(sd, sensor->mode->reg_list,
+				 sensor->mode->num_regs);
+	if (ret < 0) {
+		dev_err(&client->dev, "write sensor default regs error\n");
+		return ret;
+	}
+
+	ret = ov5647_set_virtual_channel(sd, 0);
+	if (ret < 0)
+		return ret;
+
+	ret = ov5647_read(sd, OV5647_SW_STANDBY, &resetval);
+	if (ret < 0)
+		return ret;
+
+	if (!(resetval & 0x01)) {
+		dev_err(&client->dev, "Device was in SW standby");
+		ret = ov5647_write(sd, OV5647_SW_STANDBY, 0x01);
+		if (ret < 0)
+			return ret;
+	}
+
+	return 0;
+}
+
+static int ov5647_stream_on(struct v4l2_subdev *sd)
+{
+	struct i2c_client *client = v4l2_get_subdevdata(sd);
+	struct ov5647 *sensor = to_sensor(sd);
+	u8 val = MIPI_CTRL00_BUS_IDLE;
+	int ret;
+
+	ret = ov5647_set_mode(sd);
+	if (ret) {
+		dev_err(&client->dev, "Failed to program sensor mode: %d\n", ret);
+		return ret;
+	}
+
+	/* Apply customized values from user when stream starts. */
+	ret =  __v4l2_ctrl_handler_setup(sd->ctrl_handler);
+	if (ret)
+		return ret;
+
+	if (sensor->clock_ncont)
+		val |= MIPI_CTRL00_CLOCK_LANE_GATE |
+		       MIPI_CTRL00_LINE_SYNC_ENABLE;
+
+	ret = ov5647_write(sd, OV5647_REG_MIPI_CTRL00, val);
+	if (ret < 0)
+		return ret;
+
+	ret = ov5647_write(sd, OV5647_REG_FRAME_OFF_NUMBER, 0x00);
+	if (ret < 0)
+		return ret;
+
+	return ov5647_write(sd, OV5640_REG_PAD_OUT, 0x00);
+}
+
+static int ov5647_stream_off(struct v4l2_subdev *sd)
+{
+	int ret;
+
+	ret = ov5647_write(sd, OV5647_REG_MIPI_CTRL00,
+			   MIPI_CTRL00_CLOCK_LANE_GATE | MIPI_CTRL00_BUS_IDLE |
+			   MIPI_CTRL00_CLOCK_LANE_DISABLE);
+	if (ret < 0)
+		return ret;
+
+	ret = ov5647_write(sd, OV5647_REG_FRAME_OFF_NUMBER, 0x0f);
+	if (ret < 0)
+		return ret;
+
+	return ov5647_write(sd, OV5640_REG_PAD_OUT, 0x01);
+}
+
+static int ov5647_power_on(struct device *dev)
+{
+	struct ov5647 *sensor = dev_get_drvdata(dev);
+	int ret;
+
+	dev_dbg(dev, "OV5647 power on\n");
+
+	ret = regulator_bulk_enable(OV5647_NUM_SUPPLIES, sensor->supplies);
+	if (ret < 0) {
+		dev_err(dev, "Failed to enable regulators\n");
+		return ret;
+	}
+
+	if (sensor->pwdn) {
+		gpiod_set_value_cansleep(sensor->pwdn, 0);
+		msleep(PWDN_ACTIVE_DELAY_MS);
+	}
+

@@ -165,6 +165,18 @@ Completed:
   - raw output `artifacts/captures/20260421T153826Z/ov5647-640x480-bg10.raw` is zero bytes;
   - VI still logged repeated `uncorr_err: request timed out after 2500 ms`;
   - driver cleanup logs show `stop_streaming` and `power_off` returned successfully.
+- read-only route analysis after the HTS/VTS timeout confirmed the current route-A overlay matches NVIDIA's installed p3768 `imx219-A`/`imx477-A` route fields:
+  - `cam_i2cmux/i2c@0`;
+  - `serial_b`;
+  - `port-index = 1`;
+  - `bus-width = 2`;
+  - `lane_polarity = 6`;
+  - GPIO token `0x3e`.
+- source-side VGA mode cleanup is prepared and builds:
+  - removed local-only `0x5002 = 0x41`;
+  - removed local-only `0x4837 = 0x16`;
+  - kept Raspberry Pi 6.6.y-compatible `0x3821 = 0x01`;
+  - rebuilt `.ko` has `srcversion=2F4050CDED69B8A5FF0C49F`.
 
 Not completed yet:
 
@@ -177,6 +189,6 @@ Not completed yet:
 Next smallest safe step:
 
 - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
-- inspect live DT/media graph read-only to compare all available camera route candidates against the active `serial_b` route;
-- decide whether the next single-variable experiment is a minimal mode-table cleanup or an alternate DT route/connector overlay;
+- manually unload/load/capture the rebuilt VGA-table-cleanup module one command at a time;
+- if the capture still times out with zero bytes, prepare an alternate route-C overlay experiment instead of continuing route-A register guessing;
 - keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.

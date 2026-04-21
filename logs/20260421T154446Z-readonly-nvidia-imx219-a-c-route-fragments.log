@@ -1,0 +1,303 @@
+# NVIDIA imx219 A route
+/dts-v1/;
+
+/ {
+	overlay-name = "Camera IMX219-A";
+	jetson-header-name = "Jetson 22pin CSI Connector";
+	compatible = "nvidia,p3768-0000+p3767-0000\0nvidia,p3768-0000+p3767-0001\0nvidia,p3768-0000+p3767-0003\0nvidia,p3768-0000+p3767-0004\0nvidia,p3768-0000+p3767-0005\0nvidia,p3768-0000+p3767-0000-super\0nvidia,p3768-0000+p3767-0001-super\0nvidia,p3768-0000+p3767-0003-super\0nvidia,p3768-0000+p3767-0004-super\0nvidia,p3768-0000+p3767-0005-super";
+
+	fragment@0 {
+		target-path = "/";
+
+		__overlay__ {
+
+			tegra-capture-vi {
+				num-channels = <0x01>;
+
+				ports {
+					#address-cells = <0x01>;
+					#size-cells = <0x00>;
+
+					port@0 {
+						reg = <0x00>;
+						phandle = <0x05>;
+
+						endpoint {
+							port-index = <0x01>;
+							bus-width = <0x02>;
+							remote-endpoint = <0x01>;
+							phandle = <0x03>;
+						};
+					};
+				};
+			};
+
+			tegra-camera-platform {
+				compatible = "nvidia, tegra-camera-platform";
+
+				modules {
+
+					module0 {
+						badge = "jakku_front_RBP194";
+						position = "front";
+						orientation = "1";
+						phandle = <0x06>;
+
+						drivernode0 {
+							pcl_id = "v4l2_sensor";
+							sysfs-device-tree = "/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/rbpcv2_imx219_a@10";
+							phandle = <0x07>;
+						};
+
+						drivernode1 {
+							pcl_id = "v4l2_lens";
+							sysfs-device-tree = "/sys/firmware/devicetree/base/bus@0/lens_imx219@RBPCV2";
+							phandle = <0x08>;
+						};
+					};
+				};
+			};
+
+			bus@0 {
+
+				host1x@13e00000 {
+
+					nvcsi@15a00000 {
+						num-channels = <0x01>;
+						#address-cells = <0x01>;
+						#size-cells = <0x00>;
+
+						channel@0 {
+							reg = <0x00>;
+							phandle = <0x09>;
+
+							ports {
+								#address-cells = <0x01>;
+								#size-cells = <0x00>;
+
+								port@0 {
+									reg = <0x00>;
+									phandle = <0x0a>;
+
+									endpoint@0 {
+										port-index = <0x01>;
+										bus-width = <0x02>;
+										remote-endpoint = <0x02>;
+										phandle = <0x04>;
+									};
+								};
+
+								port@1 {
+									reg = <0x01>;
+									phandle = <0x0b>;
+
+									endpoint@1 {
+										remote-endpoint = <0x03>;
+										phandle = <0x01>;
+									};
+								};
+							};
+						};
+					};
+				};
+
+				cam_i2cmux {
+					status = "okay";
+					compatible = "i2c-mux-gpio";
+					#address-cells = <0x01>;
+					#size-cells = <0x00>;
+					mux-gpios = <0xffffffff 0x13 0x00>;
+					i2c-parent = <0xffffffff>;
+
+					i2c@0 {
+						status = "okay";
+						reg = <0x00>;
+						#address-cells = <0x01>;
+						#size-cells = <0x00>;
+
+						rbpcv2_imx219_a@10 {
+							compatible = "sony,imx219";
+							reg = <0x10>;
+							devnode = "video0";
+							physical_w = "3.680";
+							physical_h = "2.760";
+							sensor_model = "imx219";
+							use_sensor_mode_id = "true";
+							reset-gpios = <0xffffffff 0x3e 0x00>;
+
+							mode0 {
+								mclk_khz = "24000";
+								num_lanes = "2";
+								tegra_sinterface = "serial_b";
+								lane_polarity = "6";
+								phy_mode = "DPHY";
+								discontinuous_clk = "yes";
+								dpcm_enable = "false";
+								cil_settletime = "0";
+								active_w = "3280";
+								active_h = "2464";
+								mode_type = "bayer";
+								pixel_phase = "rggb";
+								csi_pixel_bit_depth = "10";
+								readout_orientation = "90";
+								line_length = "3448";
+								inherent_gain = "1";
+								mclk_multiplier = "9.33";
+								pix_clk_hz = "182400000";
+								gain_factor = "16";
+								framerate_factor = "1000000";
+								exposure_factor = "1000000";
+								min_gain_val = "16";
+								max_gain_val = "170";
+
+# NVIDIA imx219 C route
+/dts-v1/;
+
+/ {
+	overlay-name = "Camera IMX219-C";
+	jetson-header-name = "Jetson 22pin CSI Connector";
+	compatible = "nvidia,p3768-0000+p3767-0000\0nvidia,p3768-0000+p3767-0001\0nvidia,p3768-0000+p3767-0003\0nvidia,p3768-0000+p3767-0004\0nvidia,p3768-0000+p3767-0005\0nvidia,p3768-0000+p3767-0000-super\0nvidia,p3768-0000+p3767-0001-super\0nvidia,p3768-0000+p3767-0003-super\0nvidia,p3768-0000+p3767-0004-super\0nvidia,p3768-0000+p3767-0005-super";
+
+	fragment@0 {
+		target-path = "/";
+
+		__overlay__ {
+
+			tegra-capture-vi {
+				num-channels = <0x01>;
+
+				ports {
+					#address-cells = <0x01>;
+					#size-cells = <0x00>;
+
+					port@1 {
+						reg = <0x00>;
+						phandle = <0x05>;
+
+						endpoint {
+							port-index = <0x02>;
+							bus-width = <0x02>;
+							remote-endpoint = <0x01>;
+							phandle = <0x03>;
+						};
+					};
+				};
+			};
+
+			tegra-camera-platform {
+				compatible = "nvidia, tegra-camera-platform";
+
+				modules {
+
+					module1 {
+						badge = "jakku_rear_RBP194";
+						position = "rear";
+						orientation = "1";
+						phandle = <0x06>;
+
+						drivernode0 {
+							pcl_id = "v4l2_sensor";
+							sysfs-device-tree = "/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/rbpcv2_imx219_c@10";
+							phandle = <0x07>;
+						};
+
+						drivernode1 {
+							pcl_id = "v4l2_lens";
+							sysfs-device-tree = "/sys/firmware/devicetree/base/bus@0/lens_imx219@RBPCV2";
+							phandle = <0x08>;
+						};
+					};
+				};
+			};
+
+			bus@0 {
+
+				host1x@13e00000 {
+
+					nvcsi@15a00000 {
+						num-channels = <0x01>;
+						#address-cells = <0x01>;
+						#size-cells = <0x00>;
+
+						channel@1 {
+							reg = <0x00>;
+							phandle = <0x09>;
+
+							ports {
+								#address-cells = <0x01>;
+								#size-cells = <0x00>;
+
+								port@0 {
+									reg = <0x00>;
+									phandle = <0x0a>;
+
+									endpoint@2 {
+										port-index = <0x02>;
+										bus-width = <0x02>;
+										remote-endpoint = <0x02>;
+										phandle = <0x04>;
+									};
+								};
+
+								port@1 {
+									reg = <0x01>;
+									phandle = <0x0b>;
+
+									endpoint@3 {
+										remote-endpoint = <0x03>;
+										phandle = <0x01>;
+									};
+								};
+							};
+						};
+					};
+				};
+
+				cam_i2cmux {
+					status = "okay";
+					compatible = "i2c-mux-gpio";
+					#address-cells = <0x01>;
+					#size-cells = <0x00>;
+					mux-gpios = <0xffffffff 0x13 0x00>;
+					i2c-parent = <0xffffffff>;
+
+					i2c@0 {
+
+						rbpcv2_imx219_a@10 {
+							status = "disabled";
+						};
+					};
+
+					i2c@1 {
+						status = "okay";
+						reg = <0x01>;
+						#address-cells = <0x01>;
+						#size-cells = <0x00>;
+
+						rbpcv2_imx219_c@10 {
+							reset-gpios = <0xffffffff 0xa0 0x00>;
+							compatible = "sony,imx219";
+							reg = <0x10>;
+							devnode = "video0";
+							physical_w = "3.680";
+							physical_h = "2.760";
+							sensor_model = "imx219";
+							use_sensor_mode_id = "true";
+
+							mode0 {
+								mclk_khz = "24000";
+								num_lanes = "2";
+								tegra_sinterface = "serial_c";
+								phy_mode = "DPHY";
+								discontinuous_clk = "yes";
+								dpcm_enable = "false";
+								cil_settletime = "0";
+								active_w = "3280";
+								active_h = "2464";
+								mode_type = "bayer";
+								pixel_phase = "rggb";
+								csi_pixel_bit_depth = "10";
+								readout_orientation = "90";
+								line_length = "3448";
+								inherent_gain = "1";
+								mclk_multiplier = "9.33";

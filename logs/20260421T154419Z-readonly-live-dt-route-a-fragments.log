@@ -1,0 +1,216 @@
+# live DT ov5647 node
+		cam_i2cmux {
+			#address-cells = <0x01>;
+			#size-cells = <0x00>;
+			mux-gpios = <0x105 0x13 0x00>;
+			compatible = "i2c-mux-gpio";
+			status = "okay";
+			i2c-parent = <0x222>;
+
+			i2c@0 {
+				#address-cells = <0x01>;
+				#size-cells = <0x00>;
+				status = "okay";
+				reg = <0x00>;
+
+				ov5647_a@36 {
+					sensor_model = "ov5647";
+					clock-names = "extperiph1";
+					devnode = "video0";
+					pwdn-gpios = <0xf3 0x3e 0x00>;
+					clocks = <0x03 0x07>;
+					mclk = "extperiph1";
+					compatible = "ovti,ov5647";
+					physical_h = "2.738";
+					use_sensor_mode_id = "true";
+					avdd-reg = "vana";
+					status = "okay";
+					reg = <0x36>;
+					physical_w = "3.674";
+					dvdd-reg = "vdig";
+					iovdd-reg = "vif";
+
+					mode0 {
+						discontinuous_clk = "yes";
+						readout_orientation = "0";
+						exposure_factor = "1000000";
+						mclk_khz = "24000";
+						phy_mode = "DPHY";
+						default_gain = "32";
+						dpcm_enable = "false";
+						max_gain_val = "1023";
+						framerate_factor = "1000000";
+						min_hdr_ratio = "1";
+						num_lanes = "2";
+						max_framerate = "60000000";
+						min_gain_val = "16";
+						pixel_phase = "bggr";
+						mode_type = "bayer";
+						pix_clk_hz = "58333000";
+						step_gain_val = "1";
+						cil_settletime = "0";
+						default_exp_time = "1000";
+						active_h = "480";
+						max_exp_time = "16000";
+						lane_polarity = "6";
+						active_w = "640";
+						min_exp_time = "13";
+						max_hdr_ratio = "1";
+						min_framerate = "5000000";
+						mclk_multiplier = "2.43";
+						step_exp_time = "1";
+						default_framerate = "60000000";
+						csi_pixel_bit_depth = "10";
+						step_framerate = "1";
+						inherent_gain = "1";
+						embedded_metadata_height = "0";
+						line_length = "1852";
+						tegra_sinterface = "serial_b";
+						gain_factor = "16";
+					};
+
+					ports {
+						#address-cells = <0x01>;
+						#size-cells = <0x00>;
+
+						port@0 {
+							reg = <0x00>;
+
+							endpoint {
+								bus-width = <0x02>;
+								remote-endpoint = <0x37b>;
+								port-index = <0x01>;
+								phandle = <0x379>;
+							};
+						};
+					};
+				};
+			};
+		};
+
+		pwm@32c0000 {
+			resets = <0x03 0x48>;
+
+# live DT nvcsi channel
+				phandle = <0x245>;
+			};
+
+			nvcsi@15a00000 {
+				#address-cells = <0x01>;
+				clock-names = "nvcsi";
+				resets = <0x03 0x2b>;
+				clocks = <0x03 0x51>;
+				#size-cells = <0x00>;
+				num-channels = <0x01>;
+				compatible = "nvidia,tegra194-nvcsi";
+				status = "okay";
+				phandle = <0x24f>;
+				reset-names = "nvcsi";
+
+				channel@0 {
+					reg = <0x00>;
+
+					ports {
+						#address-cells = <0x01>;
+						#size-cells = <0x00>;
+
+						port@0 {
+							reg = <0x00>;
+
+							endpoint@0 {
+								bus-width = <0x02>;
+								remote-endpoint = <0x379>;
+								port-index = <0x01>;
+								phandle = <0x37b>;
+							};
+						};
+
+						port@1 {
+							reg = <0x01>;
+
+							endpoint@1 {
+								remote-endpoint = <0x37a>;
+								phandle = <0x378>;
+							};
+						};
+
+# live DT vi endpoint
+	cv1-throttle-alert {
+		cdev-type = "cv1-throttle-alert";
+		compatible = "thermal-trip-event";
+		phandle = <0x1e2>;
+		#cooling-cells = <0x02>;
+	};
+
+	tegra-capture-vi {
+		nvidia,vi-max-channels = <0x48>;
+		nvidia,vi-mapping-size = <0x06>;
+		nvidia,vi-devices = <0x1fc 0x1fe>;
+		nvidia,vi-mapping = <0x00 0x00 0x01 0x00 0x02 0x01 0x03 0x01 0x04 0x00 0x05 0x01>;
+		num-channels = <0x01>;
+		compatible = "nvidia,tegra-camrtc-capture-vi";
+		nvidia,vi-mapping-names = "csi-stream-id\0vi-unit-id";
+		phandle = <0x374>;
+
+		ports {
+			#address-cells = <0x01>;
+			#size-cells = <0x00>;
+
+			port@0 {
+				reg = <0x00>;
+
+				endpoint {
+					bus-width = <0x02>;
+					remote-endpoint = <0x378>;
+					port-index = <0x01>;
+					phandle = <0x37a>;
+				};
+			};
+		};
+	};
+
+	regulator-vdd-1v8-ao {
+		regulator-max-microvolt = <0x1b7740>;
+
+# live DT tegra-camera-platform module
+					trip = <0x1e1>;
+					cooling-device = <0x1d7 0xffffffff 0xffffffff>;
+				};
+			};
+		};
+	};
+
+	tegra-camera-platform {
+		compatible = "nvidia, tegra-camera-platform";
+
+		modules {
+
+			module0 {
+				badge = "probe_ov5647_route_a";
+				position = "front";
+				orientation = "1";
+
+				drivernode0 {
+					pcl_id = "v4l2_sensor";
+					sysfs-device-tree = "/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36";
+				};
+			};
+		};
+	};
+
+	psci {
+		method = "smc";
+		compatible = "arm,psci-1.0";
+		status = "okay";
+	};
+
+	display@13800000 {
+		power-domains = <0x03 0x03>;
+		iommus = <0x109 0x01>;
+		interconnect-names = "dma-mem\0read-1";
+		nvidia,bpmp = <0x03>;
+		clock-names = "nvdisplayhub_clk\0nvdisplay_disp_clk\0nvdisplay_p0_clk\0nvdisplay_p1_clk\0dpaux0_clk\0fuse_clk\0dsipll_vco_clk\0dsipll_clkoutpn_clk\0dsipll_clkouta_clk\0sppll0_vco_clk\0sppll0_clkoutpn_clk\0sppll0_clkouta_clk\0sppll0_clkoutb_clk\0sppll0_div10_clk\0sppll0_div25_clk\0sppll0_div27_clk\0sppll1_vco_clk\0sppll1_clkoutpn_clk\0sppll1_div27_clk\0vpll0_ref_clk\0vpll0_clk\0vpll1_clk\0nvdisplay_p0_ref_clk\0rg0_clk\0rg1_clk\0disppll_clk\0disphubpll_clk\0dsi_lp_clk\0dsi_core_clk\0dsi_pixel_clk\0pre_sor0_clk\0pre_sor1_clk\0dp_link_ref_clk\0sor_linka_input_clk\0sor_linka_afifo_clk\0sor_linka_afifo_m_clk\0rg0_m_clk\0rg1_m_clk\0sor0_m_clk\0sor1_m_clk\0pllhub_clk\0sor0_clk\0sor1_clk\0sor_pad_input_clk\0pre_sf0_clk\0sf0_clk\0sf1_clk\0dsi_pad_input_clk\0pre_sor0_ref_clk\0pre_sor1_ref_clk\0sor0_ref_pll_clk\0sor1_ref_pll_clk\0sor0_ref_clk\0sor1_ref_clk\0osc_clk\0dsc_clk\0maud_clk\0aza_2xbit_clk\0aza_bit_clk\0mipi_cal_clk\0uart_fst_mipi_cal_clk\0sor0_div_clk";
+		interconnects = <0x57 0x92 0x58 0x57 0xa1 0x58>;
+		reg-names = "nvdisplay\0dpaux0\0hdacodec\0mipical";
+		resets = <0x03 0x10 0x03 0x08 0x03 0x03 0x03 0x25>;
+		os_gpio_hotplug_a = <0xf3 0x60 0x00>;

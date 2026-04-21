@@ -107,6 +107,13 @@
   - two identical OV5647 modules are installed in both physical CSI connectors;
   - I2C chip-ID success proves the sensor on `i2c-9` responds, but does not prove that valid CSI lanes are connected to the configured `serial_b` capture route;
   - the physical connector to DT route mapping remains unresolved and must be treated as a blocking hardware assumption before declaring the overlay correct.
+- Read-only route analysis confirms the active route-A overlay is consistent with NVIDIA p3768 `imx219-A` and `imx477-A` references:
+  - this reduces the probability of a route-A DT modeling typo;
+  - it does not prove the CBL physical connector/cable path or the Raspberry Pi-style adapter pinout.
+- The local VGA mode table had two local-only writes not present in either mainline Linux or Raspberry Pi 6.6.y VGA arrays:
+  - `0x5002 = 0x41`;
+  - `0x4837 = 0x16`;
+  - these are now removed in source and need manual runtime validation.
 - Current OV5647 `set_mode()` no longer enables streaming in source:
   - NVIDIA r36.5 tegracam calls `set_mode()` before `start_streaming()`;
   - NVIDIA sample drivers keep `set_mode()` to register programming and start output from `start_streaming()`;
