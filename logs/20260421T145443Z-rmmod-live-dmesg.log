@@ -1,0 +1,8 @@
+[ 2821.666827] nv_ov5647: module exit enter driver_registered=1
+[ 2822.186791] nv_ov5647: before i2c_del_driver
+[ 2822.698314] nv_ov5647 9-0036: ov5647_remove: enter
+[ 2822.698329] nv_ov5647 9-0036: ov5647_remove: state tc_dev=000000008ae84772 priv=000000002f06427b tc_dev->priv=000000002f06427b s_data=000000006cf1fda7 s_data->priv=0000000000000000 v4l2_registered=0 skip_v4l2_register=0 skip_v4l2_unregister=0 split_v4l2_unregister=1
+[ 2822.698347] nv_ov5647 9-0036: ov5647_remove: V4L2 registration flag is not set, but full probe path requires unregister; forcing V4L2 unregister before device cleanup
+[ 2822.698353] nv_ov5647 9-0036: ov5647_remove: before tegracam_v4l2subdev_unregister
+[ 2823.209708] nv_ov5647 9-0036: ov5647_remove: split_v4l2_unregister=1; diagnostic path, using inline unregister phases
+[ 2823.209720] (NULL device *): ov5647_split_v4l2subdev_unregister: before v4l2_ctrl_handler_free

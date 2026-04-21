@@ -1,0 +1,30 @@
+timestamp=20260421T145848Z
+rmmod 145443 live boundary:
+1:[ 2821.666827] nv_ov5647: module exit enter driver_registered=1
+2:[ 2822.186791] nv_ov5647: before i2c_del_driver
+3:[ 2822.698314] nv_ov5647 9-0036: ov5647_remove: enter
+4:[ 2822.698329] nv_ov5647 9-0036: ov5647_remove: state tc_dev=000000008ae84772 priv=000000002f06427b tc_dev->priv=000000002f06427b s_data=000000006cf1fda7 s_data->priv=0000000000000000 v4l2_registered=0 skip_v4l2_register=0 skip_v4l2_unregister=0 split_v4l2_unregister=1
+5:[ 2822.698347] nv_ov5647 9-0036: ov5647_remove: V4L2 registration flag is not set, but full probe path requires unregister; forcing V4L2 unregister before device cleanup
+6:[ 2822.698353] nv_ov5647 9-0036: ov5647_remove: before tegracam_v4l2subdev_unregister
+7:[ 2823.209708] nv_ov5647 9-0036: ov5647_remove: split_v4l2_unregister=1; diagnostic path, using inline unregister phases
+8:[ 2823.209720] (NULL device *): ov5647_split_v4l2subdev_unregister: before v4l2_ctrl_handler_free
+
+trace:
+[20260421T145443Z] starting live dmesg capture
+[20260421T145443Z] collecting pre-rmmod state
+[20260421T145443Z] arming sysrq watchdog delay=10s
+[20260421T145443Z] running: rmmod nv_ov5647
+
+devnodes:
+/dev/media0
+/dev/v4l-subdev0
+/dev/v4l-subdev1
+/dev/video0
+
+fuser:
+
+lsof:
+lsof: WARNING: can't stat() fuse.gvfsd-fuse file system /run/user/1000/gvfs
+      Output information may be incomplete.
+lsof: WARNING: can't stat() fuse.portal file system /run/user/1000/doc
+      Output information may be incomplete.

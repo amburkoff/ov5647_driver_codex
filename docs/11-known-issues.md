@@ -64,6 +64,11 @@
 - The private V4L2 registration flag is therefore not reliable enough as the only remove-time guard:
   - source-side fix now forces V4L2 unregister on the full-probe path when `s_data` exists and `skip_v4l2_register=0`;
   - runtime validation still requires a future manual load/unload cycle.
+- Root cause for the invalid remove-time state was found:
+  - `i2c_get_clientdata(client)` is not a stable `struct tegracam_device *` after V4L2 subdev registration;
+  - the driver was miscasting V4L2 subdev clientdata as tegracam device state;
+  - source-side fix now follows NVIDIA sample drivers and resolves remove state through `to_camera_common_data(&client->dev)` and `s_data->priv`.
+- Runtime validation of the corrected remove lookup is still pending and must be manual.
 - Current OV5647 `set_mode()` no longer enables streaming in source:
   - NVIDIA r36.5 tegracam calls `set_mode()` before `start_streaming()`;
   - NVIDIA sample drivers keep `set_mode()` to register programming and start output from `start_streaming()`;

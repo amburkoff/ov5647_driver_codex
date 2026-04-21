@@ -102,6 +102,15 @@ Completed:
 - pstore after that hang is empty, so the live-dmesg boundary is the primary evidence.
 - source-side remove fix is prepared so full-probe remove forces V4L2 unregister whenever `s_data` exists and `skip_v4l2_register=0`, even if the private flag is inconsistent.
 - rebuilt `nv_ov5647.ko` contains the new forced-unregister warning and state dump markers.
+- a follow-up manual split-unregister unload still hung, but the new state dump revealed the root cause:
+  - `ov5647_remove()` used `i2c_get_clientdata(client)` as `struct tegracam_device *`;
+  - after V4L2 subdev init, I2C clientdata points to the V4L2 subdev, not the tegracam device;
+  - remove was therefore operating on a miscast pointer.
+- source-side fix is prepared to use NVIDIA sample-style remove lookup:
+  - `to_camera_common_data(&client->dev)`
+  - `s_data->priv`
+  - `priv->tc_dev`
+- rebuilt `nv_ov5647.ko` contains the corrected remove lookup and additional probe/remove state markers.
 
 Not completed yet:
 
@@ -115,6 +124,6 @@ Not completed yet:
 Next smallest safe step:
 
 - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
-- manually load the rebuilt module with the `split-unregister` diagnostic profile, then manually run one traced `rmmod` with the sysrq watchdog enabled;
+- manually load the rebuilt module with the `split-unregister` diagnostic profile, then manually run one traced `rmmod` with the sysrq watchdog enabled; the expected validation is non-NULL `s_data->priv`, non-NULL `tc_dev->dev`, and `v4l2_registered=1` in remove.
 - continue aligning the minimal mode table and CSI timing until VI receives real frames instead of timing out;
 - keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.

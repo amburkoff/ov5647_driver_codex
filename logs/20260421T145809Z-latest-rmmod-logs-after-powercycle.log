@@ -1,0 +1,112 @@
+timestamp=20260421T145809Z
+latest rmmod logs:
+logs/20260421T145443Z-rmmod-live-dmesg.log
+logs/20260421T145443Z-rmmod-trace.log
+logs/20260421T145443Z-rmmod-pre-dmesg-tail.log
+logs/20260421T145443Z-rmmod-lsof.log
+logs/20260421T145443Z-rmmod-devnodes.log
+logs/20260421T145443Z-rmmod-fuser.log
+logs/20260421T141038Z-timeline-after-rmmod-hang.log
+logs/20260421T141038Z-copy-pstore-after-rmmod-hang.log
+logs/20260421T141038Z-pstore-after-rmmod-hang.log
+logs/20260421T141038Z-rmmod-140616-analysis.log
+logs/20260421T141038Z-pstore-list-after-rmmod-hang.log
+logs/20260421T141019Z-dmesg-tail-after-rmmod-hang-report.log
+logs/20260421T141019Z-after-rmmod-hang-reachability.log
+logs/20260421T141019Z-latest-rmmod-logs-after-hang-report.log
+logs/20260421T102034Z-rmmod-live-dmesg.log
+logs/20260421T140616Z-rmmod-live-dmesg.log
+logs/20260421T140616Z-rmmod-trace.log
+logs/20260421T140616Z-rmmod-pre-dmesg-tail.log
+logs/20260421T140616Z-rmmod-lsof.log
+logs/20260421T140616Z-rmmod-devnodes.log
+logs/20260421T140616Z-rmmod-fuser.log
+logs/20260421T102258Z-bash-n-run-manual-rmmod-trace-rc-capture.log
+logs/20260421T102034Z-rmmod-trace.log
+logs/20260421T102034Z-rmmod-sysrq-watchdog.log
+logs/20260421T102034Z-rmmod-pre-dmesg-tail.log
+logs/20260421T102034Z-rmmod-lsof.log
+logs/20260421T102034Z-rmmod-devnodes.log
+logs/20260421T102034Z-rmmod-fuser.log
+logs/20260421T101828Z-git-push-double-reboot-rmmod-hang.log
+logs/20260421T101824Z-git-commit-double-reboot-rmmod-hang.log
+
+--- logs/20260421T145443Z-rmmod-live-dmesg.log
+[ 2821.666827] nv_ov5647: module exit enter driver_registered=1
+[ 2822.186791] nv_ov5647: before i2c_del_driver
+[ 2822.698314] nv_ov5647 9-0036: ov5647_remove: enter
+[ 2822.698329] nv_ov5647 9-0036: ov5647_remove: state tc_dev=000000008ae84772 priv=000000002f06427b tc_dev->priv=000000002f06427b s_data=000000006cf1fda7 s_data->priv=0000000000000000 v4l2_registered=0 skip_v4l2_register=0 skip_v4l2_unregister=0 split_v4l2_unregister=1
+[ 2822.698347] nv_ov5647 9-0036: ov5647_remove: V4L2 registration flag is not set, but full probe path requires unregister; forcing V4L2 unregister before device cleanup
+[ 2822.698353] nv_ov5647 9-0036: ov5647_remove: before tegracam_v4l2subdev_unregister
+[ 2823.209708] nv_ov5647 9-0036: ov5647_remove: split_v4l2_unregister=1; diagnostic path, using inline unregister phases
+[ 2823.209720] (NULL device *): ov5647_split_v4l2subdev_unregister: before v4l2_ctrl_handler_free
+--- logs/20260421T145443Z-rmmod-trace.log
+[20260421T145443Z] starting live dmesg capture
+[20260421T145443Z] collecting pre-rmmod state
+[20260421T145443Z] arming sysrq watchdog delay=10s
+[20260421T145443Z] running: rmmod nv_ov5647
+--- logs/20260421T102034Z-rmmod-live-dmesg.log
+[  401.544574] nv_ov5647: module verification failed: signature and/or required key missing - tainting kernel
+[  401.545602] nv_ov5647: module init register_i2c_driver=1 allow_hw_probe=1 skip_v4l2_register=0 skip_v4l2_unregister=0 split_v4l2_unregister=1 unload_marker_delay_ms=500
+[  401.545855] nv_ov5647 9-0036: ov5647_probe: enter client=ov5647 addr=0x36
+[  401.545945] nv_ov5647 9-0036: ov5647_parse_dt: enter
+[  401.545969] nv_ov5647 9-0036: ov5647_parse_dt: pdata=000000009f976cc3 mclk=extperiph1 reset_gpio=-1 pwdn_gpio=397 avdd=vana dvdd=vdig iovdd=vif
+[  401.545974] nv_ov5647 9-0036: ov5647_power_get: enter priv=00000000b69235d7 s_data=0000000054b2caaa pdata=000000009f976cc3
+[  401.546000] nv_ov5647 9-0036: supply vana not found, using dummy regulator
+[  401.546128] nv_ov5647 9-0036: supply vdig not found, using dummy regulator
+[  401.546153] nv_ov5647 9-0036: supply vif not found, using dummy regulator
+[  401.546213] nv_ov5647 9-0036: ov5647_power_get: exit
+[  401.546261] nv_ov5647 9-0036: tegracam sensor driver:nv_ov5647_v2.0.6
+[  401.546281] nv_ov5647 9-0036: ov5647_board_setup: enter
+[  401.546283] nv_ov5647 9-0036: ov5647_power_on: enter
+[  401.555470] nv_ov5647 9-0036: ov5647_power_on: exit success
+[  401.555848] nv_ov5647 9-0036: ov5647_board_setup: detected chip_id=0x5647
+[  401.555852] nv_ov5647 9-0036: ov5647_power_off: enter
+[  401.556771] nv_ov5647 9-0036: ov5647_power_off: exit success
+[  401.556774] nv_ov5647 9-0036: ov5647_board_setup: exit success
+[  401.556861] tegra-camrtc-capture-vi tegra-capture-vi: subdev nv_ov5647 9-0036 bound
+[  401.557342] nv_ov5647 9-0036: ov5647_probe: exit success
+[  401.557495] nv_ov5647: i2c driver registered
+[  755.952409] nv_ov5647 9-0036: ov5647_power_on: enter
+[  755.962084] nv_ov5647 9-0036: ov5647_power_on: exit success
+[  755.974617] nv_ov5647 9-0036: ov5647_set_mode: applying mode=0 name=640x480-10bpp-30fps 640x480
+[  755.986875] nv_ov5647 9-0036: ov5647_start_streaming: enter
+[  755.986880] nv_ov5647 9-0036: ov5647_set_mode: applying mode=0 name=640x480-10bpp-30fps 640x480
+[  755.999304] nv_ov5647 9-0036: ov5647_start_streaming: exit success
+[  758.503236] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  761.063734] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  763.624218] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  766.184700] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  785.944748] nv_ov5647 9-0036: ov5647_stop_streaming: enter
+[  785.945347] nv_ov5647 9-0036: ov5647_stop_streaming: exit success
+[  785.947472] nv_ov5647 9-0036: ov5647_power_off: enter
+[  785.949040] nv_ov5647 9-0036: ov5647_power_off: exit success
+[12895.915613] ACK 04 d4
+[12895.918386] ACK 04 d4
+[12903.970732] ACK 04 d4
+[12903.971943] ACK 04 d4
+[13925.935131] nv_ov5647: module exit enter driver_registered=1
+[13926.443833] nv_ov5647: before i2c_del_driver
+[13926.955890] nv_ov5647 9-0036: ov5647_remove: enter
+[13926.955903] nv_ov5647 9-0036: ov5647_remove: v4l2 subdev was not registered, skipping unregister
+[13926.955908] nv_ov5647 9-0036: ov5647_remove: before tegracam_device_unregister
+--- logs/20260421T140616Z-rmmod-live-dmesg.log
+[13925.935131] nv_ov5647: module exit enter driver_registered=1
+[13926.443833] nv_ov5647: before i2c_del_driver
+[13926.955890] nv_ov5647 9-0036: ov5647_remove: enter
+[13926.955903] nv_ov5647 9-0036: ov5647_remove: v4l2 subdev was not registered, skipping unregister
+[13926.955908] nv_ov5647 9-0036: ov5647_remove: before tegracam_device_unregister
+--- logs/20260421T140616Z-rmmod-trace.log
+[20260421T140616Z] starting live dmesg capture
+[20260421T140616Z] collecting pre-rmmod state
+[20260421T140616Z] arming sysrq watchdog delay=10s
+[20260421T140616Z] running: rmmod nv_ov5647
+--- logs/20260421T102034Z-rmmod-trace.log
+[20260421T102034Z] starting live dmesg capture
+[20260421T102034Z] collecting pre-rmmod state
+[20260421T102034Z] running: rmmod nv_ov5647
+--- logs/20260421T101016Z-rmmod-trace.log
+[20260421T101016Z] starting live dmesg capture
+[20260421T101016Z] collecting pre-rmmod state
+[20260421T101016Z] running: rmmod nv_ov5647
+--- logs/20260421T101016Z-rmmod-live-dmesg.log

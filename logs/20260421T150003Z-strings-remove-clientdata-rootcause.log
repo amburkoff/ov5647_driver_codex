@@ -1,0 +1,5 @@
+%s: camera common data is NULL; refusing unsafe remove
+%s: state tc_dev=%p tc_dev->dev=%p priv=%p tc_dev->priv=%p s_data=%p s_data->priv=%p v4l2_registered=%d skip_v4l2_register=%d skip_v4l2_unregister=%d split_v4l2_unregister=%d
+%s: before v4l2_ctrl_handler_free
+%s: private data linked tc_dev=%p tc_dev->priv=%p s_data=%p s_data->priv=%p
+%s: v4l2 registered tc_dev=%p tc_dev->priv=%p s_data=%p s_data->priv=%p v4l2_registered=%d

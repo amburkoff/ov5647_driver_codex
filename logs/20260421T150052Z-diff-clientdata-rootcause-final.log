@@ -1,0 +1,117 @@
+diff --git a/docs/10-results-and-status.md b/docs/10-results-and-status.md
+index ddbea5b..ee2a60d 100644
+--- a/docs/10-results-and-status.md
++++ b/docs/10-results-and-status.md
+@@ -102,6 +102,15 @@ Completed:
+ - pstore after that hang is empty, so the live-dmesg boundary is the primary evidence.
+ - source-side remove fix is prepared so full-probe remove forces V4L2 unregister whenever `s_data` exists and `skip_v4l2_register=0`, even if the private flag is inconsistent.
+ - rebuilt `nv_ov5647.ko` contains the new forced-unregister warning and state dump markers.
++- a follow-up manual split-unregister unload still hung, but the new state dump revealed the root cause:
++  - `ov5647_remove()` used `i2c_get_clientdata(client)` as `struct tegracam_device *`;
++  - after V4L2 subdev init, I2C clientdata points to the V4L2 subdev, not the tegracam device;
++  - remove was therefore operating on a miscast pointer.
++- source-side fix is prepared to use NVIDIA sample-style remove lookup:
++  - `to_camera_common_data(&client->dev)`
++  - `s_data->priv`
++  - `priv->tc_dev`
++- rebuilt `nv_ov5647.ko` contains the corrected remove lookup and additional probe/remove state markers.
+ 
+ Not completed yet:
+ 
+@@ -115,6 +124,6 @@ Not completed yet:
+ Next smallest safe step:
+ 
+ - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
+-- manually load the rebuilt module with the `split-unregister` diagnostic profile, then manually run one traced `rmmod` with the sysrq watchdog enabled;
++- manually load the rebuilt module with the `split-unregister` diagnostic profile, then manually run one traced `rmmod` with the sysrq watchdog enabled; the expected validation is non-NULL `s_data->priv`, non-NULL `tc_dev->dev`, and `v4l2_registered=1` in remove.
+ - continue aligning the minimal mode table and CSI timing until VI receives real frames instead of timing out;
+ - keep all further work on this single confirmed route-A / 2-lane / `0x36` path only.
+diff --git a/docs/11-known-issues.md b/docs/11-known-issues.md
+index 7981cbd..ff2a9c3 100644
+--- a/docs/11-known-issues.md
++++ b/docs/11-known-issues.md
+@@ -64,6 +64,11 @@
+ - The private V4L2 registration flag is therefore not reliable enough as the only remove-time guard:
+   - source-side fix now forces V4L2 unregister on the full-probe path when `s_data` exists and `skip_v4l2_register=0`;
+   - runtime validation still requires a future manual load/unload cycle.
++- Root cause for the invalid remove-time state was found:
++  - `i2c_get_clientdata(client)` is not a stable `struct tegracam_device *` after V4L2 subdev registration;
++  - the driver was miscasting V4L2 subdev clientdata as tegracam device state;
++  - source-side fix now follows NVIDIA sample drivers and resolves remove state through `to_camera_common_data(&client->dev)` and `s_data->priv`.
++- Runtime validation of the corrected remove lookup is still pending and must be manual.
+ - Current OV5647 `set_mode()` no longer enables streaming in source:
+   - NVIDIA r36.5 tegracam calls `set_mode()` before `start_streaming()`;
+   - NVIDIA sample drivers keep `set_mode()` to register programming and start output from `start_streaming()`;
+diff --git a/src/nv_ov5647/nv_ov5647.c b/src/nv_ov5647/nv_ov5647.c
+index 716e598..a68779d 100644
+--- a/src/nv_ov5647/nv_ov5647.c
++++ b/src/nv_ov5647/nv_ov5647.c
+@@ -1007,7 +1007,11 @@ static int ov5647_probe(struct i2c_client *client,
+ 		goto unregister_device;
+ 	}
+ 
+-	priv->s_data->priv = priv;
++	tegracam_set_privdata(tc_dev, priv);
++	dev_info(dev,
++		 "%s: private data linked tc_dev=%p tc_dev->priv=%p s_data=%p s_data->priv=%p\n",
++		 __func__, tc_dev, tc_dev->priv, priv->s_data,
++		 priv->s_data->priv);
+ 
+ 	if (!sensor_common_parse_num_modes(dev))
+ 		dev_warn(dev, "%s: sensor_common_parse_num_modes returned 0\n",
+@@ -1051,6 +1055,11 @@ static int ov5647_probe(struct i2c_client *client,
+ 		goto unregister_device;
+ 	}
+ 	priv->v4l2_registered = true;
++	tegracam_set_privdata(tc_dev, priv);
++	dev_info(dev,
++		 "%s: v4l2 registered tc_dev=%p tc_dev->priv=%p s_data=%p s_data->priv=%p v4l2_registered=%d\n",
++		 __func__, tc_dev, tc_dev->priv, priv->s_data,
++		 priv->s_data->priv, priv->v4l2_registered);
+ 
+ 	dev_info(dev, "%s: exit success\n", __func__);
+ 	return 0;
+@@ -1062,23 +1071,34 @@ unregister_device:
+ 
+ static int ov5647_remove(struct i2c_client *client)
+ {
+-	struct tegracam_device *tc_dev = i2c_get_clientdata(client);
+-	struct camera_common_data *s_data;
++	struct camera_common_data *s_data = to_camera_common_data(&client->dev);
++	struct tegracam_device *tc_dev;
+ 	struct ov5647 *priv;
+ 	bool should_unregister_v4l2;
+ 
+ 	dev_info(&client->dev, "%s: enter\n", __func__);
+ 
+-	if (!tc_dev)
+-		return 0;
++	if (!s_data) {
++		dev_err(&client->dev,
++			"%s: camera common data is NULL; refusing unsafe remove\n",
++			__func__);
++		return -EINVAL;
++	}
++
++	priv = s_data->priv;
++	if (!priv || !priv->tc_dev) {
++		dev_err(&client->dev,
++			"%s: private data is invalid s_data=%p priv=%p; refusing unsafe remove\n",
++			__func__, s_data, priv);
++		return -EINVAL;
++	}
+ 
+-	priv = to_ov5647(tc_dev);
+-	s_data = tc_dev->s_data;
+-	should_unregister_v4l2 = s_data && !skip_v4l2_register;
++	tc_dev = priv->tc_dev;
++	should_unregister_v4l2 = !skip_v4l2_register;
+ 
+ 	dev_info(&client->dev,
+-		 "%s: state tc_dev=%p priv=%p tc_dev->priv=%p s_data=%p s_data->priv=%p v4l2_registered=%d skip_v4l2_register=%d skip_v4l2_unregister=%d split_v4l2_unregister=%d\n",
+-		 __func__, tc_dev, priv, tc_dev->priv, s_data,
++		 "%s: state tc_dev=%p tc_dev->dev=%p priv=%p tc_dev->priv=%p s_data=%p s_data->priv=%p v4l2_registered=%d skip_v4l2_register=%d skip_v4l2_unregister=%d split_v4l2_unregister=%d\n",
++		 __func__, tc_dev, tc_dev->dev, priv, tc_dev->priv, s_data,
+ 		 s_data ? s_data->priv : NULL,
+ 		 priv ? priv->v4l2_registered : -1,
+ 		 skip_v4l2_register, skip_v4l2_unregister,

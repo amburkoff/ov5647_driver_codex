@@ -1,0 +1,121 @@
+M  docs/10-results-and-status.md
+M  docs/11-known-issues.md
+A  logs/20260421T145300Z-manual-insmod-split-unregister.dmesg-tail.log
+A  logs/20260421T145300Z-manual-insmod-split-unregister.log
+A  logs/20260421T145300Z-manual-insmod-split-unregister.modinfo.log
+A  logs/20260421T145344Z-after-manual-insmod-split-unregister-state.log
+A  logs/20260421T145344Z-dmesg-tail-after-manual-insmod-ok.log
+A  logs/20260421T145344Z-latest-insmod-logs-after-user-ok.log
+A  logs/20260421T145443Z-rmmod-devnodes.log
+A  logs/20260421T145443Z-rmmod-fuser.log
+A  logs/20260421T145443Z-rmmod-live-dmesg.log
+A  logs/20260421T145443Z-rmmod-lsof.log
+A  logs/20260421T145443Z-rmmod-pre-dmesg-tail.log
+A  logs/20260421T145443Z-rmmod-trace.log
+A  logs/20260421T145809Z-latest-rmmod-logs-after-powercycle.log
+A  logs/20260421T145809Z-post-powercycle-after-rmmod-hang-state.log
+A  logs/20260421T145809Z-pstore-after-powercycle-rmmod-hang.log
+A  logs/20260421T145848Z-rmmod-145443-analysis.log
+A  logs/20260421T145951Z-build-remove-clientdata-rootcause.log
+A  logs/20260421T145951Z-build_module.log
+A  logs/20260421T145951Z-diff-remove-clientdata-rootcause.log
+A  logs/20260421T145951Z-git-diff-check-remove-clientdata-rootcause.log
+A  logs/20260421T150003Z-modinfo-remove-clientdata-rootcause.log
+A  logs/20260421T150003Z-post-build-remove-clientdata-no-runtime-load-state.log
+A  logs/20260421T150003Z-strings-remove-clientdata-rootcause.log
+A  logs/20260421T150052Z-diff-clientdata-rootcause-final.log
+A  logs/20260421T150052Z-git-diff-check-clientdata-rootcause-final.log
+A  reports/2026-04-21-rmmod-hang-clientdata-rootcause.md
+M  src/nv_ov5647/nv_ov5647.c
+?? artifacts/captures/20260420T0903Z/
+?? artifacts/captures/20260420T103519Z/
+?? artifacts/jetson-linux-r365-page.html
+?? artifacts/post-reboot/20260420T104550Z/
+?? logs/20260420T102259Z-build_module.log
+?? logs/20260420T103133Z-rmmod-live-dmesg.log
+?? logs/20260420T103133Z-rmmod-trace.log
+?? logs/20260420T103519Z-single-frame-trace.log
+?? logs/20260420T103519Z-stream-live-dmesg.log
+?? logs/20260420T103938Z-build_module.log
+?? logs/20260420T104550Z-collect_post_reboot.log
+?? logs/20260420T104714Z-build_module.log
+?? logs/20260420T105421Z-build_module.log
+?? logs/20260420T105700Z-git-push.log
+?? logs/20260420T110500Z-build_module.log
+?? logs/20260421T084300Z-git-push-handoff.log
+?? logs/20260421T084916Z-build_module.log
+?? logs/20260421T085449Z-build_module.log
+?? logs/20260421T090000Z-git-push-skip-v4l2.log
+?? logs/20260421T090055Z-collect_post_reboot.log
+?? logs/20260421T090932Z-build_module.log
+?? logs/20260421T091200Z-git-push-remove-order.log
+?? logs/20260421T092000Z-git-push-full-unload-hang.log
+?? logs/20260421T093000Z-git-push-holder-check.log
+?? logs/20260421T093958Z-build_module.log
+?? logs/20260421T094300Z-git-push-unload-diagnostics.log
+?? logs/20260421T094306Z-build_module-split-unregister.log
+?? logs/20260421T094306Z-build_module.log
+?? logs/20260421T094316Z-git-diff-check-split-unregister.log
+?? logs/20260421T094316Z-modinfo-split-unregister.log
+?? logs/20260421T094316Z-nm-undefined-split-unregister.log
+?? logs/20260421T094354Z-build_module.log
+?? logs/20260421T094600Z-git-push-rmmod-sysrq-watchdog.log
+?? logs/20260421T094755Z-build_module.log
+?? logs/20260421T094924Z-git-commit-output-enable.log
+?? logs/20260421T094927Z-git-push-output-enable.log
+?? logs/20260421T094951Z-git-log-after-output-enable.log
+?? logs/20260421T094951Z-git-status-after-output-enable.log
+?? logs/20260421T094951Z-loaded-module-state-after-output-enable.log
+?? logs/20260421T095200Z-git-push-guarded-module-diag.log
+?? logs/20260421T095500Z-git-push-nvidia-unload-reference.log
+?? logs/20260421T100000Z-public-sources-head.log
+?? logs/20260421T100100Z-download-public-sources.log
+?? logs/20260421T101824Z-git-commit-double-reboot-rmmod-hang.log
+?? logs/20260421T101828Z-git-push-double-reboot-rmmod-hang.log
+?? logs/20260421T101842Z-git-status-after-double-reboot-push.log
+?? logs/20260421T101842Z-module-state-after-double-reboot-push.log
+?? logs/20260421T102034Z-rmmod-devnodes.log
+?? logs/20260421T102034Z-rmmod-fuser.log
+?? logs/20260421T102034Z-rmmod-live-dmesg.log
+?? logs/20260421T102034Z-rmmod-lsof.log
+?? logs/20260421T102034Z-rmmod-pre-dmesg-tail.log
+?? logs/20260421T102034Z-rmmod-sysrq-watchdog.log
+?? logs/20260421T102034Z-rmmod-trace.log
+?? logs/20260421T103004Z-build_module.log
+?? logs/20260421T103113Z-git-commit-set-mode-standby.log
+?? logs/20260421T103116Z-git-push-set-mode-standby.log
+?? logs/20260421T141419Z-build_module.log
+?? logs/20260421T141550Z-git-commit-force-v4l2-unregister.log
+?? logs/20260421T141554Z-git-push-force-v4l2-unregister.log
+?? logs/20260421T141603Z-status-after-force-unregister-push.log
+?? logs/20260421T150111Z-git-staged-clientdata-rootcause.log
+ docs/10-results-and-status.md                      |  11 +-
+ docs/11-known-issues.md                            |   5 +
+ ...Z-manual-insmod-split-unregister.dmesg-tail.log | 160 +++++++++++++++
+ ...0421T145300Z-manual-insmod-split-unregister.log |   6 +
+ ...300Z-manual-insmod-split-unregister.modinfo.log |  18 ++
+ ...-after-manual-insmod-split-unregister-state.log |  17 ++
+ ...1T145344Z-dmesg-tail-after-manual-insmod-ok.log | 220 +++++++++++++++++++++
+ ...21T145344Z-latest-insmod-logs-after-user-ok.log | 146 ++++++++++++++
+ logs/20260421T145443Z-rmmod-devnodes.log           |   4 +
+ logs/20260421T145443Z-rmmod-fuser.log              |   0
+ logs/20260421T145443Z-rmmod-live-dmesg.log         |   8 +
+ logs/20260421T145443Z-rmmod-lsof.log               |   4 +
+ logs/20260421T145443Z-rmmod-pre-dmesg-tail.log     | 120 +++++++++++
+ logs/20260421T145443Z-rmmod-trace.log              |   4 +
+ ...T145809Z-latest-rmmod-logs-after-powercycle.log | 112 +++++++++++
+ ...809Z-post-powercycle-after-rmmod-hang-state.log |  36 ++++
+ ...T145809Z-pstore-after-powercycle-rmmod-hang.log |   7 +
+ logs/20260421T145848Z-rmmod-145443-analysis.log    |  30 +++
+ ...1T145951Z-build-remove-clientdata-rootcause.log |  14 ++
+ logs/20260421T145951Z-build_module.log             |  14 ++
+ ...21T145951Z-diff-remove-clientdata-rootcause.log |  73 +++++++
+ ...-git-diff-check-remove-clientdata-rootcause.log |   0
+ ...150003Z-modinfo-remove-clientdata-rootcause.log |  18 ++
+ ...ild-remove-clientdata-no-runtime-load-state.log |   4 +
+ ...150003Z-strings-remove-clientdata-rootcause.log |   5 +
+ ...421T150052Z-diff-clientdata-rootcause-final.log | 117 +++++++++++
+ ...Z-git-diff-check-clientdata-rootcause-final.log |   0
+ .../2026-04-21-rmmod-hang-clientdata-rootcause.md  | 120 +++++++++++
+ src/nv_ov5647/nv_ov5647.c                          |  40 +++-
+ 29 files changed, 1302 insertions(+), 11 deletions(-)
