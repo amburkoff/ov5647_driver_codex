@@ -246,6 +246,11 @@ Current blocking issue:
   - after `set_mode()`, output-enable registers are reset to `0x3000=0x00`, `0x3001=0x00`, `0x3002=0x00`;
   - after stream-on, `0x0100=0x01`, but `0x3000/0x3001/0x3002` remain disabled;
   - next source-side fix is to re-enable sensor output after mode programming / before stream start.
+- source-side output-enable restore fix is prepared and builds:
+  - `ov5647_set_mode()` now restores `0x3000/0x3001/0x3002` after mode programming;
+  - `ov5647_start_streaming()` restores the same output-enable table again before `0x0100=0x01`;
+  - rebuilt `.ko` `srcversion=96FCD7FB15E34D8DE37E4F2`;
+  - runtime validation is pending a manual reload with `full-delay-dump` and one capture attempt.
   - rebuilt module has `srcversion=E9CE1D1EF58B852F6484431`;
   - runtime validation is not run yet.
 

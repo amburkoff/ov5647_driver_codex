@@ -918,6 +918,17 @@ static int ov5647_set_mode(struct tegracam_device *tc_dev)
 	if (err)
 		return err;
 
+	err = ov5647_write_table(s_data, ov5647_sensor_oe_enable_regs);
+	if (err) {
+		dev_err(tc_dev->dev,
+			"%s: sensor output-enable restore failed err=%d\n",
+			__func__, err);
+		return err;
+	}
+	dev_info(tc_dev->dev,
+		 "%s: sensor output-enable restored after mode programming\n",
+		 __func__);
+
 	ov5647_dump_stream_regs(s_data, "after_set_mode");
 
 	dev_info(tc_dev->dev, "%s: mode applied, sensor remains in standby\n",
@@ -936,6 +947,17 @@ static int ov5647_start_streaming(struct tegracam_device *tc_dev)
 	dev_info(tc_dev->dev, "%s: enter\n", __func__);
 	dev_info(tc_dev->dev,
 		 "%s: using mode already applied by tegracam set_mode\n",
+		 __func__);
+
+	err = ov5647_write_table(s_data, ov5647_sensor_oe_enable_regs);
+	if (err) {
+		dev_err(tc_dev->dev,
+			"%s: sensor output-enable before stream failed err=%d\n",
+			__func__, err);
+		return err;
+	}
+	dev_info(tc_dev->dev,
+		 "%s: sensor output-enable restored before stream\n",
 		 __func__);
 
 	err = ov5647_write_reg(s_data, OV5647_REG_MIPI_CTRL00, val);

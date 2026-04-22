@@ -1,0 +1,5 @@
+%s: sensor output-enable table failed err=%d
+%s: sensor output-enable before stream failed err=%d
+%s: sensor output-enable restored before stream
+%s: sensor output-enable restore failed err=%d
+%s: sensor output-enable restored after mode programming

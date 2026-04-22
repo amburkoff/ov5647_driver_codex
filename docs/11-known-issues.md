@@ -167,4 +167,5 @@
   - `power_on()` enables sensor output;
   - `ov5647_common_regs` later disables `0x3000/0x3001/0x3002`;
   - `start_streaming()` sets `0x0100=0x01`, but does not restore output-enable;
-  - this is now the strongest driver-side explanation for zero-byte capture.
+  - this is now the strongest driver-side explanation for zero-byte capture;
+  - source-side restore fix is built but not runtime-tested yet.

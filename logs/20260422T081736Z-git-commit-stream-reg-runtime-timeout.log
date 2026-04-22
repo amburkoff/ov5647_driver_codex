@@ -1,0 +1,16 @@
+[main 887415d] test: record ov5647 stream register dump timeout
+ 16 files changed, 2890 insertions(+), 2 deletions(-)
+ create mode 100644 artifacts/captures/20260422T081515Z/ov5647-640x480-bg10.raw
+ create mode 100644 logs/20260422T081451Z-rmmod-trace.log
+ create mode 100644 logs/20260422T081507Z-manual-insmod-full-delay-dump.dmesg-tail.log
+ create mode 100644 logs/20260422T081507Z-manual-insmod-full-delay-dump.log
+ create mode 100644 logs/20260422T081507Z-manual-insmod-full-delay-dump.modinfo.log
+ create mode 100644 logs/20260422T081515Z-single-frame-post-dmesg-tail.log
+ create mode 100644 logs/20260422T081515Z-single-frame-trace.log
+ create mode 100644 logs/20260422T081515Z-stream-live-dmesg.log
+ create mode 100644 logs/20260422T081650Z-capture-artifact-size.log
+ create mode 100644 logs/20260422T081650Z-grep-dump-run-identity.log
+ create mode 100644 logs/20260422T081650Z-grep-stream-dump-capture.log
+ create mode 100644 logs/20260422T081650Z-list-081x-logs.log
+ create mode 100644 logs/20260422T081735Z-git-add-stream-reg-runtime-timeout.log
+ create mode 100644 reports/2026-04-22-stream-register-dump-runtime-timeout.md
