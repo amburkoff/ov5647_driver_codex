@@ -173,3 +173,7 @@
   - `after_set_mode` and `after_stream_on` now show restored `0x3000=0x0f`, `0x3001=0xff`, `0x3002=0xe4`;
   - capture still times out with zero bytes;
   - the remaining blocker is now more likely MIPI stream-start details, DT timing, lane polarity/physical wiring, or a mode-table gap outside the current register dump.
+- MIPI clock mode remains unproven:
+  - current default stream-on value is `0x4800=0x34`;
+  - upstream Linux OV5647 uses `0x4800=0x04` unless non-continuous clock is requested;
+  - a gated `continuous_mipi_clock=1` experiment is built but not runtime-tested yet.

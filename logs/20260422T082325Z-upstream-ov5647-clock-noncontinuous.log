@@ -1,0 +1,23 @@
+39- */
+40-#define PWDN_ACTIVE_DELAY_MS	20
+41-
+42:#define MIPI_CTRL00_CLOCK_LANE_GATE		BIT(5)
+43-#define MIPI_CTRL00_LINE_SYNC_ENABLE		BIT(4)
+44-#define MIPI_CTRL00_BUS_IDLE			BIT(2)
+45-#define MIPI_CTRL00_CLOCK_LANE_DISABLE		BIT(0)
+--
+515-	int ret = 0;
+516-
+517-	cci_write(sensor->regmap, OV5647_REG_MIPI_CTRL00,
+518:		  MIPI_CTRL00_CLOCK_LANE_GATE | MIPI_CTRL00_BUS_IDLE |
+519-		  MIPI_CTRL00_CLOCK_LANE_DISABLE, &ret);
+520-	cci_write(sensor->regmap, OV5647_REG_FRAME_OFF_NUMBER, 0x0f, &ret);
+521-	cci_write(sensor->regmap, OV5640_REG_PAD_OUT, 0x01, &ret);
+--
+548-		goto done;
+549-
+550-	if (sensor->clock_ncont)
+551:		val |= MIPI_CTRL00_CLOCK_LANE_GATE |
+552-		       MIPI_CTRL00_LINE_SYNC_ENABLE;
+553-
+554-	cci_write(sensor->regmap, OV5647_REG_MIPI_CTRL00, val, &ret);

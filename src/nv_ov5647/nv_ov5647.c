@@ -99,6 +99,11 @@ module_param(dump_stream_regs, bool, 0644);
 MODULE_PARM_DESC(dump_stream_regs,
 		 "Diagnostic only: read back key OV5647 registers around stream start. Default: false");
 
+static bool continuous_mipi_clock;
+module_param(continuous_mipi_clock, bool, 0644);
+MODULE_PARM_DESC(continuous_mipi_clock,
+		 "Diagnostic only: use upstream default continuous MIPI clock stream-on value 0x04 instead of 0x34. Default: false");
+
 static bool driver_registered;
 
 struct ov5647_reg_dump {
@@ -939,15 +944,20 @@ static int ov5647_set_mode(struct tegracam_device *tc_dev)
 static int ov5647_start_streaming(struct tegracam_device *tc_dev)
 {
 	struct camera_common_data *s_data = tc_dev->s_data;
-	u8 val = OV5647_MIPI_CTRL00_BUS_IDLE |
-		 OV5647_MIPI_CTRL00_CLOCK_LANE_GATE |
-		 OV5647_MIPI_CTRL00_LINE_SYNC_ENABLE;
+	u8 val = OV5647_MIPI_CTRL00_BUS_IDLE;
 	int err;
 
 	dev_info(tc_dev->dev, "%s: enter\n", __func__);
 	dev_info(tc_dev->dev,
 		 "%s: using mode already applied by tegracam set_mode\n",
 		 __func__);
+
+	if (!continuous_mipi_clock)
+		val |= OV5647_MIPI_CTRL00_CLOCK_LANE_GATE |
+		       OV5647_MIPI_CTRL00_LINE_SYNC_ENABLE;
+
+	dev_info(tc_dev->dev, "%s: mipi_ctrl00 stream value=0x%02x continuous_mipi_clock=%d\n",
+		 __func__, val, continuous_mipi_clock);
 
 	err = ov5647_write_table(s_data, ov5647_sensor_oe_enable_regs);
 	if (err) {
@@ -1316,6 +1326,8 @@ static int __init nv_ov5647_init(void)
 		unload_marker_delay_ms);
 	pr_info("%s: diagnostics dump_stream_regs=%d\n",
 		OV5647_NAME, dump_stream_regs);
+	pr_info("%s: diagnostics continuous_mipi_clock=%d\n",
+		OV5647_NAME, continuous_mipi_clock);
 
 	if (!register_i2c_driver) {
 		pr_info("%s: safety gate active; i2c driver registration skipped\n",

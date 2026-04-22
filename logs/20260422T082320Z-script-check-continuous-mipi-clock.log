@@ -1,0 +1,2 @@
+22:	full-delay-dump-contclk)
+35:		echo "usage: $0 [full-delay|full-delay-dump|full-delay-dump-contclk|skip-register|skip-unregister|split-unregister]" >&2

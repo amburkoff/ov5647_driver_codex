@@ -1,0 +1,8 @@
+/sys/firmware/devicetree/base/bus@0/mmc@3400000/bus-width=00000004
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/mode0/lane_polarity=3000
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/ports/port@0/endpoint/bus-width=00000002
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/ports/port@0/endpoint/port-index=00000002
+/sys/firmware/devicetree/base/bus@0/host1x@13e00000/nvcsi@15a00000/channel@1/ports/port@0/endpoint@2/bus-width=00000002
+/sys/firmware/devicetree/base/bus@0/host1x@13e00000/nvcsi@15a00000/channel@1/ports/port@0/endpoint@2/port-index=00000002
+/sys/firmware/devicetree/base/tegra-capture-vi/ports/port@1/endpoint/bus-width=00000002
+/sys/firmware/devicetree/base/tegra-capture-vi/ports/port@1/endpoint/port-index=00000002

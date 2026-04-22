@@ -1,0 +1,14 @@
+%s: mipi_ctrl00 stream value=0x%02x continuous_mipi_clock=%d
+6%s: diagnostics continuous_mipi_clock=%d
+continuous_mipi_clock
+parm=continuous_mipi_clock:Diagnostic only: use upstream default continuous MIPI clock stream-on value 0x04 instead of 0x34. Default: false
+parmtype=continuous_mipi_clock:bool
+__param_continuous_mipi_clock
+__UNIQUE_ID_continuous_mipi_clock518
+__UNIQUE_ID_continuous_mipi_clocktype517
+continuous_mipi_clock
+__param_str_continuous_mipi_clock
+__param_str_continuous_mipi_clock
+__UNIQUE_ID_continuous_mipi_clock518
+__UNIQUE_ID_continuous_mipi_clocktype517
+__param_continuous_mipi_clock

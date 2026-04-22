@@ -1,0 +1,15 @@
+42:#define MIPI_CTRL00_CLOCK_LANE_GATE		BIT(5)
+43:#define MIPI_CTRL00_LINE_SYNC_ENABLE		BIT(4)
+44:#define MIPI_CTRL00_BUS_IDLE			BIT(2)
+45:#define MIPI_CTRL00_CLOCK_LANE_DISABLE		BIT(0)
+59:#define OV5647_REG_MIPI_CTRL00		CCI_REG8(0x4800)
+513:static int ov5647_stream_stop(struct ov5647 *sensor)
+517:	cci_write(sensor->regmap, OV5647_REG_MIPI_CTRL00,
+518:		  MIPI_CTRL00_CLOCK_LANE_GATE | MIPI_CTRL00_BUS_IDLE |
+519:		  MIPI_CTRL00_CLOCK_LANE_DISABLE, &ret);
+532:	u8 val = MIPI_CTRL00_BUS_IDLE;
+551:		val |= MIPI_CTRL00_CLOCK_LANE_GATE |
+552:		       MIPI_CTRL00_LINE_SYNC_ENABLE;
+554:	cci_write(sensor->regmap, OV5647_REG_MIPI_CTRL00, val, &ret);
+573:	ret = ov5647_stream_stop(sensor);
+615:	ret = ov5647_stream_stop(sensor);

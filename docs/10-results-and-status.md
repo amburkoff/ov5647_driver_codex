@@ -263,6 +263,13 @@ Current next focus:
 
 - output-enable is no longer the primary blocker;
 - continue with one-variable analysis of MIPI stream-start sequencing and DT timing before larger DT/hardware-route changes.
+- continuous MIPI clock diagnostic experiment is prepared and builds:
+  - upstream Linux OV5647 writes `0x4800=0x04` by default and uses `0x34` only for non-continuous clock;
+  - current local driver default remains `0x34`;
+  - new gated module parameter `continuous_mipi_clock=1` selects `0x4800=0x04`;
+  - new manual profile `full-delay-dump-contclk` is available;
+  - rebuilt `.ko` `srcversion=92FD1291C5FC74E28DC6E26`;
+  - runtime validation is pending manual reload and capture.
   - rebuilt module has `srcversion=E9CE1D1EF58B852F6484431`;
   - runtime validation is not run yet.
 
