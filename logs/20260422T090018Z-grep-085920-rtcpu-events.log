@@ -1,0 +1,24 @@
+$ grep key trace events
+grep: artifacts/traces/20260422T085920Z/after-trace.log: Permission denied
+grep: artifacts/traces/20260422T085920Z/final-trace.log: Permission denied
+logs/20260422T085920Z-single-frame-rtcpu-live-dmesg.log:[    6.662350] platform 13e00000.host1x:nvcsi@15a00000: Fixing up cyclic dependency with 9-0036
+logs/20260422T085920Z-single-frame-rtcpu-live-dmesg.log:[    6.662367] platform 13e00000.host1x:nvcsi@15a00000: Fixing up cyclic dependency with tegra-capture-vi
+logs/20260422T085920Z-single-frame-rtcpu-live-dmesg.log:[    7.487000] tegra186-cam-rtcpu bc00000.rtcpu: Adding to iommu group 44
+logs/20260422T085920Z-single-frame-rtcpu-live-dmesg.log:[    7.488953] tegra186-cam-rtcpu bc00000.rtcpu: Trace buffer configured at IOVA=0xbff00000
+logs/20260422T085920Z-single-frame-rtcpu-live-dmesg.log:[    7.496347] tegra-ivc-bus bc00000.rtcpu:ivc-bus: region 0: iova=0xbfec0000-0xbfee027f size=131712
+logs/20260422T085920Z-single-frame-rtcpu-live-dmesg.log:[    7.498384] tegra-ivc-bus bc00000.rtcpu:ivc-bus:echo@0: echo: ver=0 grp=1 RX[16x64]=0x1000-0x1480 TX[16x64]=0x1480-0x1900
+logs/20260422T085920Z-single-frame-rtcpu-live-dmesg.log:[    7.498460] tegra-ivc-bus bc00000.rtcpu:ivc-bus:dbg@1: dbg: ver=0 grp=1 RX[1x512]=0x1900-0x1b80 TX[1x512]=0x1b80-0x1e00
+logs/20260422T085920Z-single-frame-rtcpu-live-dmesg.log:[    7.498489] tegra-ivc-bus bc00000.rtcpu:ivc-bus:dbg@2: dbg: ver=0 grp=1 RX[1x8192]=0x1e00-0x3e80 TX[1x8192]=0x3e80-0x5f00
+logs/20260422T085920Z-single-frame-rtcpu-live-dmesg.log:[    7.498564] tegra-ivc-bus bc00000.rtcpu:ivc-bus:ivccontrol@3: ivccontrol: ver=0 grp=1 RX[64x320]=0x5f00-0xaf80 TX[64x320]=0xaf80-0x10000
+logs/20260422T085920Z-single-frame-rtcpu-live-dmesg.log:[    7.498623] tegra-ivc-bus bc00000.rtcpu:ivc-bus:ivccapture@4: ivccapture: ver=0 grp=1 RX[512x64]=0x10000-0x18080 TX[512x64]=0x18080-0x20100
+logs/20260422T085920Z-single-frame-rtcpu-live-dmesg.log:[    7.498688] tegra-ivc-bus bc00000.rtcpu:ivc-bus:diag@5: diag: ver=0 grp=1 RX[1x64]=0x20100-0x201c0 TX[1x64]=0x201c0-0x20280
+logs/20260422T085920Z-single-frame-rtcpu-live-dmesg.log:[    7.499131] tegra186-cam-rtcpu bc00000.rtcpu: using cam RTCPU IRQ (218)
+logs/20260422T085920Z-single-frame-rtcpu-live-dmesg.log:[    7.499136] tegra186-cam-rtcpu bc00000.rtcpu: tegra_camrtc_mon_create is successful
+logs/20260422T085920Z-single-frame-rtcpu-live-dmesg.log:[    7.499422] tegra186-cam-rtcpu bc00000.rtcpu: firmware version cpu=rce cmd=6 sha1=04ea869968864dcb132a50cad9712bd529a09ee2
+logs/20260422T085920Z-single-frame-rtcpu-live-dmesg.log:[    7.499556] tegra-ivc-bus bc00000.rtcpu:ivc-bus:echo@0: ivc channel driver missing
+logs/20260422T085920Z-single-frame-rtcpu-live-dmesg.log:[    7.499559] tegra-ivc-bus bc00000.rtcpu:ivc-bus:dbg@1: ivc channel driver missing
+logs/20260422T085920Z-single-frame-rtcpu-live-dmesg.log:[    7.499561] tegra-ivc-bus bc00000.rtcpu:ivc-bus:dbg@2: ivc channel driver missing
+logs/20260422T085920Z-single-frame-rtcpu-live-dmesg.log:[    7.499563] tegra-ivc-bus bc00000.rtcpu:ivc-bus:ivccontrol@3: ivc channel driver missing
+logs/20260422T085920Z-single-frame-rtcpu-live-dmesg.log:[    7.499566] tegra-ivc-bus bc00000.rtcpu:ivc-bus:ivccapture@4: ivc channel driver missing
+logs/20260422T085920Z-single-frame-rtcpu-live-dmesg.log:[    7.499568] tegra-ivc-bus bc00000.rtcpu:ivc-bus:diag@5: ivc channel driver missing
+logs/20260422T085920Z-single-frame-rtcpu-live-dmesg.log:[    7.623877] tegra-camrtc-capture-vi tegra-capture-vi: subdev 13e00000.host1x:nvcsi@15a00000- bound

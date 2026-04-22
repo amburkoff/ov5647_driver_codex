@@ -315,6 +315,12 @@ Current next focus:
 - RTCPU/NVCSI trace tooling is prepared for the next manual capture attempt:
   - `scripts/run_manual_single_frame_rtcpu_trace.sh`;
   - expected artifacts under `artifacts/traces/<timestamp>/`.
+- RTCPU/NVCSI traced capture was tested manually:
+  - raw output `artifacts/captures/20260422T085920Z/ov5647-640x480-bg10.raw` is zero bytes;
+  - trace contains power-on, capture setup, IVC submit, CSI stream enable, and sensor stream enable events;
+  - trace contains no `vi_frame_begin`, no `vi_frame_end`, no `rtcpu_vinotify_error`, no `rtcpu_nvcsi_intr`, no `capture_event_sof`, and no `capture_event_error`;
+  - RTCPU `last_exception` is empty and stats show `Exceptions: 0`;
+  - current evidence points to no CSI frame start reaching NVCSI/VI, not to frames arriving with a reported NVCSI decode error.
 
 Not completed yet:
 
@@ -328,4 +334,4 @@ Next smallest safe step:
 
 - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
 - ask the user to manually run one RTCPU/NVCSI traced capture on the already loaded route-C continuous-clock module;
-- inspect `rtcpu_vinotify_error`, `rtcpu_nvcsi_intr`, `vi_frame_begin/end`, and `tegra_capture` trace output before changing DT or sensor mode again.
+- do not tune more simple stream-start bits until the physical CSI path, lane mapping/polarity, and adapter compatibility are re-checked against this no-SOF evidence.

@@ -1,0 +1,17 @@
+$ ls current 085920/0900/0901 logs
+logs/20260422T085920Z-single-frame-rtcpu-live-dmesg.log
+logs/20260422T085920Z-single-frame-rtcpu-post-dmesg-tail.log
+logs/20260422T085920Z-single-frame-rtcpu-trace.log
+logs/20260422T090018Z-grep-085920-rtcpu-events.log
+logs/20260422T090018Z-inspect-085920-run-log-and-trace-sizes.log
+logs/20260422T090018Z-inspect-085920-trace-config.log
+logs/20260422T090018Z-list-085920-rtcpu-trace-files.log
+logs/20260422T090034Z-cat-085920-after-trace.log
+logs/20260422T090034Z-cat-085920-pre-capture-state.log
+logs/20260422T090034Z-grep-085920-dmesg.log
+logs/20260422T090034Z-grep-085920-final-trace.log
+logs/20260422T090056Z-confirm-085920-no-sof-error-events.log
+logs/20260422T090056Z-dmesg-slice-085920-capture.log
+logs/20260422T090056Z-stat-085920-raw-trace.log
+logs/20260422T090056Z-summarize-085920-trace-event-types.log
+logs/20260422T090149Z-chmod-existing-085920-trace-artifacts.log

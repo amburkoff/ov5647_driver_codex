@@ -1,0 +1,13 @@
+$ sudo grep trace event categories in final
+      1 #                              ||||| / _-=> migrate-disable
+      1 #                              |||||| /     delay
+      1 #              | |         |   |||||||      |         |
+      1 #           TASK-PID     CPU#  |||||||  TIMESTAMP  FUNCTION
+      4 13e00000.host1x
+      4 class_id
+      6 enable 
+     14 ivc
+      4 nv_ov5647 9-0036 
+      2 status 
+      1 tegra_channel_capture_setup
+      1 tracing_mark_write

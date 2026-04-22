@@ -1,0 +1,41 @@
+$ sed run log
+[20260422T085920Z] starting RTCPU/NVCSI traced single-frame capture
+[20260422T085920Z] trace dir=/home/cam/ov5647_driver_codex/artifacts/traces/20260422T085920Z
+[20260422T085920Z] raw out=/home/cam/ov5647_driver_codex/artifacts/captures/20260422T085920Z/ov5647-640x480-bg10.raw
+[20260422T085920Z] timeout=30s
+[20260422T085920Z] running v4l2 single-frame capture
+		VIDIOC_REQBUFS returned 0 (Success)
+		VIDIOC_QUERYBUF returned 0 (Success)
+		VIDIOC_QUERYBUF returned 0 (Success)
+		VIDIOC_QUERYBUF returned 0 (Success)
+		VIDIOC_QUERYBUF returned 0 (Success)
+		VIDIOC_QBUF returned 0 (Success)
+		VIDIOC_QBUF returned 0 (Success)
+		VIDIOC_QBUF returned 0 (Success)
+		VIDIOC_QBUF returned 0 (Success)
+		VIDIOC_STREAMON returned 0 (Success)
+[20260422T085920Z] capture rc=124
+[20260422T085920Z] raw size=0 bytes path=/home/cam/ov5647_driver_codex/artifacts/captures/20260422T085920Z/ov5647-640x480-bg10.raw
+[20260422T085920Z] saved trace dir=/home/cam/ov5647_driver_codex/artifacts/traces/20260422T085920Z
+[20260422T085920Z] saved dmesg log=/home/cam/ov5647_driver_codex/logs/20260422T085920Z-single-frame-rtcpu-live-dmesg.log
+
+$ wc trace files
+wc: artifacts/traces/20260422T085920Z/after-set_event.log: Permission denied
+wc: artifacts/traces/20260422T085920Z/after-trace.log: Permission denied
+wc: artifacts/traces/20260422T085920Z/after-trace_clock.log: Permission denied
+wc: artifacts/traces/20260422T085920Z/after-tracing_on.log: Permission denied
+wc: artifacts/traces/20260422T085920Z/before-set_event.log: Permission denied
+wc: artifacts/traces/20260422T085920Z/before-trace.log: Permission denied
+wc: artifacts/traces/20260422T085920Z/before-trace_clock.log: Permission denied
+wc: artifacts/traces/20260422T085920Z/before-tracing_on.log: Permission denied
+   22 artifacts/traces/20260422T085920Z/enabled-events.log
+wc: artifacts/traces/20260422T085920Z/final-set_event.log: Permission denied
+wc: artifacts/traces/20260422T085920Z/final-trace.log: Permission denied
+wc: artifacts/traces/20260422T085920Z/final-trace_clock.log: Permission denied
+wc: artifacts/traces/20260422T085920Z/final-tracing_on.log: Permission denied
+    4 artifacts/traces/20260422T085920Z/last_event
+    0 artifacts/traces/20260422T085920Z/last_exception
+    0 artifacts/traces/20260422T085920Z/missing-events.log
+  140 artifacts/traces/20260422T085920Z/pre-capture-state.log
+    2 artifacts/traces/20260422T085920Z/stats
+  168 total

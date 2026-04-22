@@ -92,6 +92,15 @@ copy_trace_state() {
 	fi
 }
 
+fix_artifact_permissions() {
+	chmod -R a+rX "${TRACE_DIR}" "${CAP_DIR}" 2>/dev/null || true
+	chmod a+r "${RUN_LOG}" "${DMESG_LOG}" "${POST_DMESG_LOG}" 2>/dev/null || true
+	if [[ -n "${SUDO_UID:-}" && -n "${SUDO_GID:-}" ]]; then
+		chown -R "${SUDO_UID}:${SUDO_GID}" "${TRACE_DIR}" "${CAP_DIR}" 2>/dev/null || true
+		chown "${SUDO_UID}:${SUDO_GID}" "${RUN_LOG}" "${DMESG_LOG}" "${POST_DMESG_LOG}" 2>/dev/null || true
+	fi
+}
+
 DMESG_PID=""
 cleanup() {
 	local rc=$?
@@ -105,6 +114,7 @@ cleanup() {
 		kill "${DMESG_PID}" >/dev/null 2>&1 || true
 		wait "${DMESG_PID}" 2>/dev/null || true
 	fi
+	fix_artifact_permissions
 	sync
 	exit "${rc}"
 }

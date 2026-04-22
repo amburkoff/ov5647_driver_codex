@@ -1,0 +1,23 @@
+$ find trace/capture/log files 085920
+artifacts/captures/20260422T085920Z/ov5647-640x480-bg10.raw 0 bytes
+artifacts/traces/20260422T085920Z/after-set_event.log 748 bytes
+artifacts/traces/20260422T085920Z/after-trace.log 4509 bytes
+artifacts/traces/20260422T085920Z/after-trace_clock.log 54 bytes
+artifacts/traces/20260422T085920Z/after-tracing_on.log 2 bytes
+artifacts/traces/20260422T085920Z/before-set_event.log 748 bytes
+artifacts/traces/20260422T085920Z/before-trace.log 645 bytes
+artifacts/traces/20260422T085920Z/before-trace_clock.log 54 bytes
+artifacts/traces/20260422T085920Z/before-tracing_on.log 2 bytes
+artifacts/traces/20260422T085920Z/enabled-events.log 748 bytes
+artifacts/traces/20260422T085920Z/final-set_event.log 748 bytes
+artifacts/traces/20260422T085920Z/final-trace.log 4509 bytes
+artifacts/traces/20260422T085920Z/final-trace_clock.log 54 bytes
+artifacts/traces/20260422T085920Z/final-tracing_on.log 2 bytes
+artifacts/traces/20260422T085920Z/last_event 52 bytes
+artifacts/traces/20260422T085920Z/last_exception 0 bytes
+artifacts/traces/20260422T085920Z/missing-events.log 0 bytes
+artifacts/traces/20260422T085920Z/pre-capture-state.log 6412 bytes
+artifacts/traces/20260422T085920Z/stats 24 bytes
+logs/20260422T085920Z-single-frame-rtcpu-live-dmesg.log 95302 bytes
+logs/20260422T085920Z-single-frame-rtcpu-post-dmesg-tail.log 23481 bytes
+logs/20260422T085920Z-single-frame-rtcpu-trace.log 1120 bytes

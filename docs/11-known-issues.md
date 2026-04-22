@@ -196,6 +196,10 @@
   - `VIDIOC_STREAMON` returns success;
   - raw file remains zero bytes;
   - VI reports timeout, so the next diagnostic level is RTCPU/NVCSI trace rather than another blind mode-table change.
+- RTCPU/NVCSI trace now shows a no-SOF condition:
+  - selected frame/error tracepoints were enabled;
+  - no `vi_frame_begin`, `vi_frame_end`, `rtcpu_vinotify_error`, `rtcpu_nvcsi_intr`, `capture_event_sof`, or `capture_event_error` appeared during the 30 second capture window;
+  - this increases the probability of physical lane/cable/adapter/route mismatch or sensor MIPI electrical non-output over a simple VI software registration problem.
 - pstore after the route-C continuous-clock reboot contains `console-ramoops-0`:
   - the captured head is early boot output from the current boot, including the expected `boot_profile=ov5647-dev` cmdline;
   - no new panic/oops conclusion should be drawn from this file without inspecting the full content around crash markers.

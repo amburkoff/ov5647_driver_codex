@@ -1,0 +1,67 @@
+$ git diff docs/report/script
+diff --git a/docs/10-results-and-status.md b/docs/10-results-and-status.md
+index 593c3c7..c4560a0 100644
+--- a/docs/10-results-and-status.md
++++ b/docs/10-results-and-status.md
+@@ -315,6 +315,12 @@ Current next focus:
+ - RTCPU/NVCSI trace tooling is prepared for the next manual capture attempt:
+   - `scripts/run_manual_single_frame_rtcpu_trace.sh`;
+   - expected artifacts under `artifacts/traces/<timestamp>/`.
++- RTCPU/NVCSI traced capture was tested manually:
++  - raw output `artifacts/captures/20260422T085920Z/ov5647-640x480-bg10.raw` is zero bytes;
++  - trace contains power-on, capture setup, IVC submit, CSI stream enable, and sensor stream enable events;
++  - trace contains no `vi_frame_begin`, no `vi_frame_end`, no `rtcpu_vinotify_error`, no `rtcpu_nvcsi_intr`, no `capture_event_sof`, and no `capture_event_error`;
++  - RTCPU `last_exception` is empty and stats show `Exceptions: 0`;
++  - current evidence points to no CSI frame start reaching NVCSI/VI, not to frames arriving with a reported NVCSI decode error.
+ 
+ Not completed yet:
+ 
+@@ -328,4 +334,4 @@ Next smallest safe step:
+ 
+ - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
+ - ask the user to manually run one RTCPU/NVCSI traced capture on the already loaded route-C continuous-clock module;
+-- inspect `rtcpu_vinotify_error`, `rtcpu_nvcsi_intr`, `vi_frame_begin/end`, and `tegra_capture` trace output before changing DT or sensor mode again.
++- do not tune more simple stream-start bits until the physical CSI path, lane mapping/polarity, and adapter compatibility are re-checked against this no-SOF evidence.
+diff --git a/docs/11-known-issues.md b/docs/11-known-issues.md
+index 1499833..7d64599 100644
+--- a/docs/11-known-issues.md
++++ b/docs/11-known-issues.md
+@@ -196,6 +196,10 @@
+   - `VIDIOC_STREAMON` returns success;
+   - raw file remains zero bytes;
+   - VI reports timeout, so the next diagnostic level is RTCPU/NVCSI trace rather than another blind mode-table change.
++- RTCPU/NVCSI trace now shows a no-SOF condition:
++  - selected frame/error tracepoints were enabled;
++  - no `vi_frame_begin`, `vi_frame_end`, `rtcpu_vinotify_error`, `rtcpu_nvcsi_intr`, `capture_event_sof`, or `capture_event_error` appeared during the 30 second capture window;
++  - this increases the probability of physical lane/cable/adapter/route mismatch or sensor MIPI electrical non-output over a simple VI software registration problem.
+ - pstore after the route-C continuous-clock reboot contains `console-ramoops-0`:
+   - the captured head is early boot output from the current boot, including the expected `boot_profile=ov5647-dev` cmdline;
+   - no new panic/oops conclusion should be drawn from this file without inspecting the full content around crash markers.
+diff --git a/scripts/run_manual_single_frame_rtcpu_trace.sh b/scripts/run_manual_single_frame_rtcpu_trace.sh
+index 0bc3d78..436d62d 100755
+--- a/scripts/run_manual_single_frame_rtcpu_trace.sh
++++ b/scripts/run_manual_single_frame_rtcpu_trace.sh
+@@ -92,6 +92,15 @@ copy_trace_state() {
+ 	fi
+ }
+ 
++fix_artifact_permissions() {
++	chmod -R a+rX "${TRACE_DIR}" "${CAP_DIR}" 2>/dev/null || true
++	chmod a+r "${RUN_LOG}" "${DMESG_LOG}" "${POST_DMESG_LOG}" 2>/dev/null || true
++	if [[ -n "${SUDO_UID:-}" && -n "${SUDO_GID:-}" ]]; then
++		chown -R "${SUDO_UID}:${SUDO_GID}" "${TRACE_DIR}" "${CAP_DIR}" 2>/dev/null || true
++		chown "${SUDO_UID}:${SUDO_GID}" "${RUN_LOG}" "${DMESG_LOG}" "${POST_DMESG_LOG}" 2>/dev/null || true
++	fi
++}
++
+ DMESG_PID=""
+ cleanup() {
+ 	local rc=$?
+@@ -105,6 +114,7 @@ cleanup() {
+ 		kill "${DMESG_PID}" >/dev/null 2>&1 || true
+ 		wait "${DMESG_PID}" 2>/dev/null || true
+ 	fi
++	fix_artifact_permissions
+ 	sync
+ 	exit "${rc}"
+ }
