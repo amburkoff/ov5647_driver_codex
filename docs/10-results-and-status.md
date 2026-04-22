@@ -386,3 +386,31 @@ Next manual runtime test:
 - manually run `sudo /home/cam/ov5647_driver_codex/scripts/run_manual_insmod_diag.sh full-delay-dump-contclk-mclk24`;
 - then manually run `sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_rtcpu_trace.sh`;
 - report whether `insmod` succeeded, whether capture timed out, and whether the raw file size is still zero.
+
+Update after MCLK24 manual capture:
+
+- manual `insmod full-delay-dump-contclk-mclk24` returned `rc=0`;
+- manual RTCPU/NVCSI traced capture still returned `rc=124`;
+- raw output `artifacts/captures/20260422T134034Z/ov5647-640x480-bg10.raw` is zero bytes;
+- trace again shows capture setup and CSI/sensor stream enable, but no SOF/EOF/NVCSI interrupt/vinotify error;
+- the new MCLK logs exposed a DT clock binding bug:
+  - live DT uses `clocks = <&bpmp 0x07>`;
+  - Tegra234 clock binding defines `TEGRA234_CLK_AUD_MCLK = 7`;
+  - Tegra234 clock binding defines `TEGRA234_CLK_EXTPERIPH1 = 36`;
+  - the driver logged effective enabled MCLK `22579199 Hz`, consistent with audio MCLK, not the intended 24 MHz `extperiph1` path.
+
+Clock-ID fix prepared:
+
+- `patches/ov5647-p3768-port-c-probe.dts` now uses `clocks = <&bpmp 0x24>`;
+- `patches/ov5647-p3768-port-a-probe.dts` was updated the same way to avoid carrying the same bug in the route-A candidate;
+- built DTBO `artifacts/dtbo/20260422T134331Z-ov5647-p3768-port-c-probe.dtbo`;
+- staged boot DTBO `/boot/ov5647-p3768-port-c-extperiph1.dtbo`;
+- dev boot profile now uses `OVERLAYS /boot/ov5647-p3768-port-c-extperiph1.dtbo`;
+- safe boot profile remains present;
+- current live DT still shows old `0x07` until reboot.
+
+Next required reboot:
+
+- default boot profile is already `ov5647-dev`;
+- safe profile remains available as `Jetson SAFE (no OV5647 auto-load)`;
+- reboot is required because the DT overlay changed.

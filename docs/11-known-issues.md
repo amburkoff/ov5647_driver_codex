@@ -7,8 +7,9 @@
 - The running system currently boots with `boot_profile=ov5647-dev`, while the carrier hardware still needs independent CLB-specific camera-route documentation beyond what the base DT exposes.
 - The active no-SOF problem is not yet explained by register stream-start state:
   - RTCPU/NVCSI tracing showed no frame-start or NVCSI interrupt events during capture;
-  - the next diagnostic checkpoint is to log the active MCLK rate during power-on and retest with an explicit 24 MHz override;
-  - if that still produces no SOF, physical connector/cable/adapter mapping becomes the main suspect.
+  - MCLK diagnostics showed the active overlay was binding `clock-names = "extperiph1"` to BPMP clock ID `0x07`, which is `TEGRA234_CLK_AUD_MCLK`, not `TEGRA234_CLK_EXTPERIPH1`;
+  - the prepared fix uses BPMP clock ID `0x24` / decimal `36`, but requires reboot before live DT changes;
+  - if the corrected MCLK route still produces no SOF, physical connector/cable/adapter mapping becomes the main suspect.
 - The safe boot entry still exists, but the on-disk default is currently set to `ov5647-dev` for the next controlled overlay-validation reboot cycle.
 - The active dev overlay is now a route-C continuous-clock candidate from the physical-connector point of view; it is logically validated by successful probe and `/dev/video0`, but not by SOF/frame delivery.
 - The physical camera modules are present on both 22-pin connectors, but the exact mapping from physical connector to route `A` or `C` is still unverified.
@@ -20,7 +21,10 @@
 - The probe-oriented route-A OV5647 overlay now applies at boot and probes far enough to request regulators and clock resources, but it still relies on unresolved hardware assumptions.
 - The first rebooted dev attempt proved that `FDTOVERLAYS` was not the correct overlay mechanism for this UEFI-based boot path; the corrected path now uses `FDT + OVERLAYS`.
 - A previous manual `insmod` of `nv_ov5647` triggered a kernel panic due to `tegracam_set_privdata()` being called too early; that ordering bug is fixed, but the panic history remains relevant for regression checking.
-- The earlier `mclk get failed err=-2` blocker is fixed by the explicit live DT clock binding `clocks = <&bpmp 0x07>`, but this needs to stay documented because it was a real bring-up gate.
+- The earlier `mclk get failed err=-2` blocker was fixed by adding an explicit DT clock binding, but the first binding used the wrong Tegra234 BPMP clock ID:
+  - wrong live binding before reboot: `clocks = <&bpmp 0x07>` / `TEGRA234_CLK_AUD_MCLK`;
+  - corrected staged binding: `clocks = <&bpmp 0x24>` / `TEGRA234_CLK_EXTPERIPH1`;
+  - live DT verification after reboot is required.
 - The current path confirms a responder at `0x36` and a correct chip ID `0x5647`, but the observed `pwdn` semantics differ from the original assumption:
   - chip-ID failed when the driver drove GPIO 397 low on power-on;
   - chip-ID succeeded when GPIO 397 stayed high on power-on;
