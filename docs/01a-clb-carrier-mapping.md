@@ -61,6 +61,30 @@ The official NVIDIA Jetson Orin Nano Developer Kit carrier board specification i
 
 The user's bundled booklet instruction to use the official Jetson Developer Kit image explains why the running software identifies as NVIDIA `p3768` rather than a CLB-specific DT. It does not remove the need to verify the physical CLB CSI connector routing, because the camera connector wiring can still differ from the reference carrier or depend on cable orientation/adapters.
 
+## 22-Pin Connector Compatibility Risk
+
+The current camera modules are Raspberry Pi-market OV5647 modules with visible marking `JT-ZERO-V2.0 YH`. The official reference pinouts show that a Jetson developer-kit 22-pin camera connector and a Raspberry Pi Zero/CM-style 22-pin camera connector are not directly pin-compatible by same-numbered pins:
+
+| Pin group | NVIDIA Orin Nano developer carrier reference | Raspberry Pi official 22-pin CSI reference |
+| --- | --- | --- |
+| Power | pin 1 is `+3.3V` | pin 22 is `3V3`, pin 1 is `GND` |
+| I2C | pins 2/3 are `CAM_I2C_SDA/SCL` | pins 21/20 are `SDA/SCL` |
+| Control/clock | pins 5/6 are `CAM0_MCLK/CAM0_PWDN` on J20 | pins 18/17 are `CAM_IO1/CAM_IO0` |
+| CSI lanes | Jetson reference places CSI pairs across pins 8-15 and 17-21 depending connector/route | Raspberry Pi reference places D0/D1/CLK on pins 2-9 for the first two-lane path |
+
+Implication:
+
+- A correct cable/adaptor can intentionally reverse or remap the flex so these signals line up.
+- A wrong same-side 22-pin FFC orientation can leave power/I2C partially plausible while CSI data/clock lanes are wrong.
+- Successful I2C chip-ID on `0x36` therefore does not prove the MIPI CSI lane mapping is correct.
+- The current no-SOF trace is consistent with a wrong physical CSI lane path, even though probe and `VIDIOC_STREAMON` succeed.
+
+Reference sources:
+
+- NVIDIA Jetson Orin Nano Developer Kit carrier board specification, camera connector pin descriptions.
+- NVIDIA Jetson Orin Nano Developer Kit User Guide, CSI camera hardware connection and bottom-contact note.
+- Raspberry Pi official 22-pin camera connector pinout.
+
 ## Additional Physical Facts From User
 
 - both Jetson 22-pin CSI connectors are populated with identical OV5647 modules;

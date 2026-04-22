@@ -22,6 +22,12 @@ Primary documentation for this project:
   - <https://developer.nvidia.com/downloads/assets/embedded/secure/jetson/orin_nano/docs/jetson_orin_nano_devkit_carrier_board_specification_sp.pdf>
   - used only as a p3768 developer-carrier reference for 22-pin camera connector routing;
   - not treated as proof that the physical CLB Developer Kit carrier has identical camera wiring.
+- NVIDIA Jetson Orin Nano Developer Kit User Guide, CSI camera hardware connection:
+  - <https://developer.nvidia.com/embedded/learn/jetson-orin-nano-devkit-user-guide/howto.html>
+  - used for the official Jetson-side note that Raspberry Pi Camera Module v2 requires a 15-pin to 22-pin conversion cable and that the 22-pin Jetson-side cable contacts must face the bottom side.
+- NVIDIA Jetson Orin Nano Developer Kit User Guide, hardware specs:
+  - <https://developer.nvidia.com/embedded/learn/jetson-orin-nano-devkit-user-guide/hardware_spec.html>
+  - used for the official statement that the reference developer carrier has two bottom-contact, 22-position, 0.5 mm-pitch CSI connectors.
 - Jetson Linux `r36.5` public BSP sources:
   - <https://developer.nvidia.com/downloads/embedded/l4t/r36_release_v5.0/sources/public_sources.tbz2>
   - local unpacked reference subset: `artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/`;
@@ -44,6 +50,9 @@ JetPack note:
   - <https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/media/i2c/ovti%2Cov5647.yaml>
 - Linux V4L2 userspace API:
   - <https://www.kernel.org/doc/html/latest/userspace-api/media/v4l/v4l2.html>
+- Raspberry Pi official camera connector documentation:
+  - <https://www.raspberrypi.com/documentation/usage/camera/computers/compute-module.html>
+  - used only to compare Raspberry Pi Zero/CM-style 22-pin CSI pin numbering against the Jetson 22-pin reference connector.
 
 ## Local Installed References On The Target
 
