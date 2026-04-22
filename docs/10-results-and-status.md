@@ -424,3 +424,20 @@ Post-reboot result after clock-ID fix:
 - `nv_ov5647` is not auto-loaded after reboot;
 - `/dev/video0` is absent before manual module load, as expected;
 - next step is manual `insmod full-delay-dump-contclk-mclk24` only, to confirm effective MCLK rate before capture.
+
+Manual insmod after clock-ID fix:
+
+- manual `insmod full-delay-dump-contclk-mclk24` returned `rc=0`;
+- driver logs now confirm the corrected clock path:
+  - `ov5647_power_get: mclk get ok name=extperiph1 current_rate=51000000`;
+  - `ov5647_power_on: enabling mclk def_clk_freq=24000000 current_rate=51000000`;
+  - `ov5647_power_on: mclk enabled rate=24000000`;
+- BPMP debugfs also reports `extperiph1 rate=24000000`;
+- `aud_mclk` remains separate at `45158398`, confirming the DT binding no longer targets audio MCLK;
+- `/dev/video0` is present;
+- `media-ctl -p` shows the enabled route `nv_ov5647 9-0036 -> nvcsi -> vi-output`.
+
+Next manual runtime test:
+
+- run one RTCPU/NVCSI traced single-frame capture manually;
+- if it still returns no SOF and zero bytes with MCLK fixed, the remaining leading suspects are physical CSI lane path/cable/adapter mapping or sensor module electrical compatibility.
