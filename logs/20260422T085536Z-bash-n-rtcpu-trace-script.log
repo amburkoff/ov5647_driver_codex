@@ -1,0 +1,2 @@
+$ bash -n scripts/run_manual_single_frame_rtcpu_trace.sh
+bash_n_rc=0

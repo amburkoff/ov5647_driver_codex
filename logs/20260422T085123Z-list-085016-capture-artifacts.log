@@ -1,0 +1,5 @@
+$ ls -l logs/*085016* artifacts/captures/20260422T085016Z/*
+-rw-r--r-- 1 root root     0 Apr 22 11:50 artifacts/captures/20260422T085016Z/ov5647-640x480-bg10.raw
+-rw-r--r-- 1 root root 17234 Apr 22 11:50 logs/20260422T085016Z-single-frame-post-dmesg-tail.log
+-rw-r--r-- 1 root root   757 Apr 22 11:50 logs/20260422T085016Z-single-frame-trace.log
+-rw-r--r-- 1 root root 84192 Apr 22 11:50 logs/20260422T085016Z-stream-live-dmesg.log

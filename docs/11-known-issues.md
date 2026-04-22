@@ -189,7 +189,13 @@
   - active cmdline contains `boot_profile=ov5647-dev`;
   - live DT confirms `discontinuous_clk = "no"`;
   - the module is not auto-loaded and `/dev/video0` is absent before manual `insmod`;
-  - streaming result for this matched sensor/receiver continuous-clock state is still not tested after reboot.
+  - streaming result for this matched sensor/receiver continuous-clock state has now been tested and still times out.
+- The matched route-C continuous-clock runtime test still produced no frames:
+  - sensor-side `0x4800=0x04`;
+  - DT-side `discontinuous_clk = "no"`;
+  - `VIDIOC_STREAMON` returns success;
+  - raw file remains zero bytes;
+  - VI reports timeout, so the next diagnostic level is RTCPU/NVCSI trace rather than another blind mode-table change.
 - pstore after the route-C continuous-clock reboot contains `console-ramoops-0`:
   - the captured head is early boot output from the current boot, including the expected `boot_profile=ov5647-dev` cmdline;
   - no new panic/oops conclusion should be drawn from this file without inspecting the full content around crash markers.

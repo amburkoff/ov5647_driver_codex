@@ -1,0 +1,12 @@
+$ stat capture raw
+  File: artifacts/captures/20260422T085016Z/ov5647-640x480-bg10.raw
+  Size: 0         	Blocks: 0          IO Block: 4096   regular empty file
+Device: 10301h/66305d	Inode: 266068      Links: 1
+Access: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)
+Access: 2026-04-22 11:50:17.694813766 +0300
+Modify: 2026-04-22 11:50:17.694813766 +0300
+Change: 2026-04-22 11:50:17.694813766 +0300
+ Birth: 2026-04-22 11:50:17.694813766 +0300
+
+$ wc -c capture raw
+0 artifacts/captures/20260422T085016Z/ov5647-640x480-bg10.raw

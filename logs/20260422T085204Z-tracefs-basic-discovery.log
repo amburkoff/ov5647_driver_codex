@@ -1,0 +1,42 @@
+$ ls /sys/kernel/debug/tracing
+total 0
+drwx------   6 root root 0 Jan  1  1970 .
+drwx------  73 root root 0 Jan  1  1970 ..
+-r--r-----   1 root root 0 Jan  1  1970 README
+-r--r-----   1 root root 0 Jan  1  1970 available_events
+-r--r-----   1 root root 0 Jan  1  1970 available_tracers
+-rw-r-----   1 root root 0 Jan  1  1970 buffer_percent
+-rw-r-----   1 root root 0 Jan  1  1970 buffer_size_kb
+-r--r-----   1 root root 0 Jan  1  1970 buffer_total_size_kb
+-rw-r-----   1 root root 0 Jan  1  1970 current_tracer
+-rw-r-----   1 root root 0 Jan  1  1970 dynamic_events
+-rw-r-----   1 root root 0 Jan  1  1970 error_log
+drwxr-x--- 128 root root 0 Jan  1  1970 events
+--w-------   1 root root 0 Jan  1  1970 free_buffer
+drwxr-x---   2 root root 0 Jan  1  1970 instances
+drwxr-x---   2 root root 0 Jan  1  1970 options
+drwxr-x---  10 root root 0 Jan  1  1970 per_cpu
+-r--r-----   1 root root 0 Jan  1  1970 printk_formats
+-r--r-----   1 root root 0 Jan  1  1970 saved_cmdlines
+-rw-r-----   1 root root 0 Jan  1  1970 saved_cmdlines_size
+-r--r-----   1 root root 0 Jan  1  1970 saved_tgids
+-rw-r-----   1 root root 0 Jan  1  1970 set_event
+-rw-r-----   1 root root 0 Jan  1  1970 set_event_notrace_pid
+-rw-r-----   1 root root 0 Jan  1  1970 set_event_pid
+-rw-r-----   1 root root 0 Jan  1  1970 set_ftrace_notrace_pid
+-rw-r-----   1 root root 0 Jan  1  1970 set_ftrace_pid
+-r--r-----   1 root root 0 Jan  1  1970 timestamp_mode
+-rw-r-----   1 root root 0 Jan  1  1970 trace
+-rw-r-----   1 root root 0 Jan  1  1970 trace_clock
+--w--w----   1 root root 0 Jan  1  1970 trace_marker
+--w--w----   1 root root 0 Jan  1  1970 trace_marker_raw
+-rw-r-----   1 root root 0 Jan  1  1970 trace_options
+-r--r-----   1 root root 0 Jan  1  1970 trace_pipe
+-rw-r-----   1 root root 0 Jan  1  1970 tracing_cpumask
+-rw-r-----   1 root root 0 Jan  1  1970 tracing_on
+-rw-r-----   1 root root 0 Jan  1  1970 tracing_thresh
+-rw-r-----   1 root root 0 Jan  1  1970 uprobe_events
+-r--r-----   1 root root 0 Jan  1  1970 uprobe_profile
+
+$ grep available tracers
+function nop

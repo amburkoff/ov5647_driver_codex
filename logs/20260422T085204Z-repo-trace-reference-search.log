@@ -1,0 +1,10 @@
+$ grep trace docs/scripts
+docs/10-results-and-status.md:62:  - `tegra-camrtc-capture-vi tegra-capture-vi: subdev nv_ov5647 9-0036 bound`
+docs/10-results-and-status.md:81:- current media graph is linked as `nv_ov5647 -> nvcsi -> vi-output`, with `/dev/video0` at `BG10 640x480`.
+docs/10-results-and-status.md:210:  - media graph links are enabled from `nv_ov5647 9-0036` to `nvcsi` to `vi-output`;
+docs/05-dt-overlay-design.md:29:- one `nvcsi` channel;
+docs/01-platform-inventory.md:31:- `tegra_camera`, `nvhost_vi5`, `nvhost_nvcsi_t194`, and related camera framework modules are loaded.
+patches/ov5647-p3768-port-a-draft.dts:81:					nvcsi@15a00000 {
+patches/ov5647-p3768-port-c-probe.dts:74:					nvcsi@15a00000 {
+patches/ov5647-p3768-port-a-probe.dts:78:					nvcsi@15a00000 {
+patches/ov5647-p3768-port-a-reference.dts.in:80:					nvcsi@15a00000 {

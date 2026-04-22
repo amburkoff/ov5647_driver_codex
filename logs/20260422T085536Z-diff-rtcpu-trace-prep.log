@@ -1,0 +1,66 @@
+$ git diff -- scripts/run_manual_single_frame_rtcpu_trace.sh docs/08-debug-playbook.md docs/10-results-and-status.md docs/11-known-issues.md reports/2026-04-22-route-c-continuous-clock-runtime-timeout.md
+diff --git a/docs/08-debug-playbook.md b/docs/08-debug-playbook.md
+index 6809460..bf304ed 100644
+--- a/docs/08-debug-playbook.md
++++ b/docs/08-debug-playbook.md
+@@ -81,3 +81,11 @@ sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_trace.sh
+ ```
+ 
+ The helper records live dmesg, `v4l2-ctl` stderr/stdout, return code, raw file size, and a post-capture dmesg tail. It uses `CAPTURE_TIMEOUT_SEC=30` by default for userspace stalls; a hard kernel lock may still require manual reboot.
++
++RTCPU/NVCSI traced capture for STREAMON timeouts:
++
++```bash
++sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_rtcpu_trace.sh
++```
++
++This enables selected `camera_common`, `tegra_capture`, and `tegra_rtcpu` tracepoints only for the duration of one capture attempt and saves trace artifacts under `artifacts/traces/<timestamp>/`.
+diff --git a/docs/10-results-and-status.md b/docs/10-results-and-status.md
+index a606630..593c3c7 100644
+--- a/docs/10-results-and-status.md
++++ b/docs/10-results-and-status.md
+@@ -304,6 +304,17 @@ Current next focus:
+   - `/dev/video0` is absent before manual LKM load, as expected;
+   - `/dev/media0` is present;
+   - pstore contains `console-ramoops-0`, but the captured head is an early boot log for the current `boot_profile=ov5647-dev` boot and is not, by itself, evidence of a new panic.
++- route-C continuous-clock runtime capture was tested manually after reboot:
++  - loaded module `srcversion=92FD1291C5FC74E28DC6E26`;
++  - module parameters confirmed `continuous_mipi_clock=Y` and `dump_stream_regs=Y`;
++  - `VIDIOC_STREAMON` returned success;
++  - after stream-on, readback showed `0x0100=0x01`, `0x4800=0x04`, and output-enable registers `0x3000=0x0f`, `0x3001=0xff`, `0x3002=0xe4`;
++  - capture still timed out with `rc=124`;
++  - raw output `artifacts/captures/20260422T085016Z/ov5647-640x480-bg10.raw` is zero bytes;
++  - VI still reports repeated `uncorr_err: request timed out after 2500 ms`.
++- RTCPU/NVCSI trace tooling is prepared for the next manual capture attempt:
++  - `scripts/run_manual_single_frame_rtcpu_trace.sh`;
++  - expected artifacts under `artifacts/traces/<timestamp>/`.
+ 
+ Not completed yet:
+ 
+@@ -316,5 +327,5 @@ Not completed yet:
+ Next smallest safe step:
+ 
+ - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
+-- ask the user to manually run `scripts/run_manual_insmod_diag.sh full-delay-dump-contclk` on the current route-C continuous-clock boot;
+-- if manual `insmod` succeeds, ask the user to manually run one single-frame capture and then inspect the new stream register dump and VI/NVCSI logs.
++- ask the user to manually run one RTCPU/NVCSI traced capture on the already loaded route-C continuous-clock module;
++- inspect `rtcpu_vinotify_error`, `rtcpu_nvcsi_intr`, `vi_frame_begin/end`, and `tegra_capture` trace output before changing DT or sensor mode again.
+diff --git a/docs/11-known-issues.md b/docs/11-known-issues.md
+index 073db99..1499833 100644
+--- a/docs/11-known-issues.md
++++ b/docs/11-known-issues.md
+@@ -189,7 +189,13 @@
+   - active cmdline contains `boot_profile=ov5647-dev`;
+   - live DT confirms `discontinuous_clk = "no"`;
+   - the module is not auto-loaded and `/dev/video0` is absent before manual `insmod`;
+-  - streaming result for this matched sensor/receiver continuous-clock state is still not tested after reboot.
++  - streaming result for this matched sensor/receiver continuous-clock state has now been tested and still times out.
++- The matched route-C continuous-clock runtime test still produced no frames:
++  - sensor-side `0x4800=0x04`;
++  - DT-side `discontinuous_clk = "no"`;
++  - `VIDIOC_STREAMON` returns success;
++  - raw file remains zero bytes;
++  - VI reports timeout, so the next diagnostic level is RTCPU/NVCSI trace rather than another blind mode-table change.
+ - pstore after the route-C continuous-clock reboot contains `console-ramoops-0`:
+   - the captured head is early boot output from the current boot, including the expected `boot_profile=ov5647-dev` cmdline;
+   - no new panic/oops conclusion should be drawn from this file without inspecting the full content around crash markers.

@@ -1,0 +1,31 @@
+$ live DT route C fields
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/compatible
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/compatible= 6f 76 74 69 2c 6f 76 35 36 34 37 00
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/status
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/status= 6f 6b 61 79 00
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/ports/port@0/reg
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/ports/port@0/reg= 00 00 00 00
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/reg
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/reg= 00 00 00 36
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/mclk
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/mclk= 65 78 74 70 65 72 69 70 68 31 00
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/mode0/tegra_sinterface
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/mode0/tegra_sinterface= 73 65 72 69 61 6c 5f 63 00
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/mode0/discontinuous_clk
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/mode0/discontinuous_clk= 6e 6f 00
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/mode0/num_lanes
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/mode0/num_lanes= 32 00
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/mode0/tegra_sinterface
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/mode0/tegra_sinterface= 73 65 72 69 61 6c 5f 63 00
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/mode0/phy_mode
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/mode0/phy_mode= 44 50 48 59 00
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/mode0/active_w
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/mode0/active_w= 36 34 30 00
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/mode0/active_h
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/mode0/active_h= 34 38 30 00
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/ports/port@0/endpoint/port-index
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/ports/port@0/endpoint/port-index= 00 00 00 02
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/ports/port@0/endpoint/bus-width
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/ports/port@0/endpoint/bus-width= 00 00 00 02
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/mode0/lane_polarity
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/mode0/lane_polarity= 30 00

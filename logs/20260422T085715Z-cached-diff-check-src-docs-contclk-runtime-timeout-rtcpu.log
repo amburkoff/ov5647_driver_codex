@@ -1,0 +1,2 @@
+$ git diff --cached --check excluding raw logs
+diff_check_src_docs_rc=0

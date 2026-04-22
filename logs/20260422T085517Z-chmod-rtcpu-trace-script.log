@@ -1,0 +1,2 @@
+$ chmod +x scripts/run_manual_single_frame_rtcpu_trace.sh
+chmod_rc=0

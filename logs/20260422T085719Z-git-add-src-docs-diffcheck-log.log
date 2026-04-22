@@ -1,0 +1,3 @@
+$ git add src/docs diffcheck log
+fatal: pathspec 'logs/20260422T085710Z-cached-diff-check-src-docs-contclk-runtime-timeout-rtcpu.log' did not match any files
+git add rc=128

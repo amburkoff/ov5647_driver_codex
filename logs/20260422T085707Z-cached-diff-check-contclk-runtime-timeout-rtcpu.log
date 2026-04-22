@@ -1,0 +1,77 @@
+$ git diff --cached --check
+logs/20260422T084917Z-manual-insmod-full-delay-dump-contclk.log:4: trailing whitespace.
++[20260422T084917Z] cmdline=root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+logs/20260422T085016Z-stream-live-dmesg.log:5: trailing whitespace.
++[    0.000000] efi: RTPROP=0x46de1e698 TPMFinalLog=0x45e8f0000 SMBIOS=0xffff0000 SMBIOS 3.0=0x46da40000 MEMATTR=0x467efe018 ESRT=0x468420518 TPMEventLog=0x45e0cc018 RNG=0x45e900018 MEMRESERVE=0x45e901f98 
+logs/20260422T085016Z-stream-live-dmesg.log:54: trailing whitespace.
++[    0.000000] pcpu-alloc: [0] 0 [0] 1 [0] 2 [0] 3 [0] 4 [0] 5 [0] 6 [0] 7 
+logs/20260422T085016Z-stream-live-dmesg.log:65: trailing whitespace.
++[    0.000000] mminit::zonelist general 0:DMA = 0:DMA 
+logs/20260422T085016Z-stream-live-dmesg.log:66: trailing whitespace.
++[    0.000000] mminit::zonelist general 0:Normal = 0:Normal 0:DMA 
+logs/20260422T085016Z-stream-live-dmesg.log:67: trailing whitespace.
++[    0.000000] mminit::zonelist thisnode 0:DMA = 0:DMA 
+logs/20260422T085016Z-stream-live-dmesg.log:68: trailing whitespace.
++[    0.000000] mminit::zonelist thisnode 0:Normal = 0:Normal 0:DMA 
+logs/20260422T085016Z-stream-live-dmesg.log:71: trailing whitespace.
++[    0.000000] Kernel command line: root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+logs/20260422T085016Z-stream-live-dmesg.log:178: trailing whitespace.
++[    0.087984] iommu: Default domain type: Translated 
+logs/20260422T085016Z-stream-live-dmesg.log:179: trailing whitespace.
++[    0.087987] iommu: DMA domain TLB invalidation policy: strict mode 
+logs/20260422T085016Z-stream-live-dmesg.log:779: space before tab in indent.
++               	| base addr   |0x0c312000|
+logs/20260422T085016Z-stream-live-dmesg.log:780: space before tab in indent.
++               	| sidfc_flssa |0x00000000|
+logs/20260422T085016Z-stream-live-dmesg.log:781: space before tab in indent.
++               	| xidfc_flesa |0x00000040|
+logs/20260422T085016Z-stream-live-dmesg.log:782: space before tab in indent.
++               	| rxf0c_f0sa  |0x000000c0|
+logs/20260422T085016Z-stream-live-dmesg.log:783: space before tab in indent.
++               	| rxf1c_f1sa  |0x000009c0|
+logs/20260422T085016Z-stream-live-dmesg.log:784: space before tab in indent.
++               	| rxbc_rbsa   |0x000009c0|
+logs/20260422T085016Z-stream-live-dmesg.log:785: space before tab in indent.
++               	| txefc_efsa  |0x000009c0|
+logs/20260422T085016Z-stream-live-dmesg.log:786: space before tab in indent.
++               	| txbc_tbsa   |0x00000a40|
+logs/20260422T085016Z-stream-live-dmesg.log:787: space before tab in indent.
++               	| tmc_tmsa    |0x00000ec0|
+logs/20260422T085016Z-stream-live-dmesg.log:788: space before tab in indent.
++               	| mram size   |0x00001000|
+logs/20260422T085016Z-stream-live-dmesg.log:824: trailing whitespace.
++[    8.657592] r8168  Copyright (C) 2024 Realtek NIC software team <nicfae@realtek.com> 
+logs/20260422T085016Z-stream-live-dmesg.log:825: trailing whitespace.
++                This program comes with ABSOLUTELY NO WARRANTY; for details, please see <http://www.gnu.org/licenses/>. 
+logs/20260422T085016Z-stream-live-dmesg.log:826: trailing whitespace.
++                This is free software, and you are welcome to redistribute it under certain conditions; see <http://www.gnu.org/licenses/>. 
+logs/20260422T085123Z-inspect-085016-capture.log:19: trailing whitespace.
++[    0.000000] Kernel command line: root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+logs/20260422T085147Z-media-ctl-after-085016-contclk-timeout.log:8: trailing whitespace.
++serial          
+logs/20260422T085147Z-media-ctl-after-085016-contclk-timeout.log:9: trailing whitespace.
++bus info        
+logs/20260422T085147Z-media-ctl-after-085016-contclk-timeout.log:34: new blank line at EOF.
+logs/20260422T085147Z-v4l2-query-after-085016-contclk-timeout.log:27: trailing whitespace.
++	Serial           : 
+logs/20260422T085147Z-v4l2-query-after-085016-contclk-timeout.log:28: trailing whitespace.
++	Bus info         : 
+logs/20260422T085147Z-v4l2-query-after-085016-contclk-timeout.log:53: trailing whitespace.
++	Flags             : 
+logs/20260422T085536Z-diff-rtcpu-trace-prep.log:8: trailing whitespace.
++ 
+logs/20260422T085536Z-diff-rtcpu-trace-prep.log:37: trailing whitespace.
++ 
+logs/20260422T085536Z-diff-rtcpu-trace-prep.log:39: trailing whitespace.
++ 
+logs/20260422T085536Z-diff-rtcpu-trace-prep.log:42: trailing whitespace.
++ 
+logs/20260422T085559Z-diff-rtcpu-trace-prep-final.log:8: trailing whitespace.
++ 
+logs/20260422T085559Z-diff-rtcpu-trace-prep-final.log:37: trailing whitespace.
++ 
+logs/20260422T085559Z-diff-rtcpu-trace-prep-final.log:39: trailing whitespace.
++ 
+logs/20260422T085559Z-diff-rtcpu-trace-prep-final.log:42: trailing whitespace.
++ 
+diff_check_rc=2

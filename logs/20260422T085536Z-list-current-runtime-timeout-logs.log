@@ -1,0 +1,12 @@
+$ ls relevant 0850/0851 logs
+logs/20260422T085016Z-single-frame-post-dmesg-tail.log
+logs/20260422T085016Z-single-frame-trace.log
+logs/20260422T085016Z-stream-live-dmesg.log
+logs/20260422T085123Z-capture-size-085016.log
+logs/20260422T085123Z-inspect-085016-capture.log
+logs/20260422T085123Z-list-085016-capture-artifacts.log
+logs/20260422T085123Z-module-state-after-085016-capture.log
+logs/20260422T085147Z-dmesg-tail-after-085016-contclk-timeout.log
+logs/20260422T085147Z-live-dt-fields-after-085016-contclk-timeout.log
+logs/20260422T085147Z-media-ctl-after-085016-contclk-timeout.log
+logs/20260422T085147Z-v4l2-query-after-085016-contclk-timeout.log

@@ -1,0 +1,90 @@
+$ git diff --cached --stat
+ .../20260422T085016Z/ov5647-640x480-bg10.raw       |    0
+ docs/08-debug-playbook.md                          |    8 +
+ docs/10-results-and-status.md                      |   15 +-
+ docs/11-known-issues.md                            |    8 +-
+ ...l-insmod-full-delay-dump-contclk.dmesg-tail.log |  160 +++
+ ...4917Z-manual-insmod-full-delay-dump-contclk.log |    6 +
+ ...nual-insmod-full-delay-dump-contclk.modinfo.log |   20 +
+ ...260422T085016Z-single-frame-post-dmesg-tail.log |  160 +++
+ logs/20260422T085016Z-single-frame-trace.log       |   15 +
+ logs/20260422T085016Z-stream-live-dmesg.log        | 1097 ++++++++++++++++++++
+ logs/20260422T085123Z-capture-size-085016.log      |   12 +
+ logs/20260422T085123Z-inspect-085016-capture.log   |  207 ++++
+ ...60422T085123Z-list-085016-capture-artifacts.log |    5 +
+ ...2T085123Z-module-state-after-085016-capture.log |   37 +
+ ...47Z-dmesg-tail-after-085016-contclk-timeout.log |  261 +++++
+ ...live-dt-fields-after-085016-contclk-timeout.log |   31 +
+ ...147Z-media-ctl-after-085016-contclk-timeout.log |   34 +
+ ...47Z-v4l2-query-after-085016-contclk-timeout.log |   96 ++
+ logs/20260422T085204Z-debugfs-camera-discovery.log |  140 +++
+ ...0260422T085204Z-repo-trace-reference-search.log |   10 +
+ logs/20260422T085204Z-trace-event-discovery.log    |   68 ++
+ logs/20260422T085204Z-tracefs-basic-discovery.log  |   42 +
+ logs/20260422T085220Z-read-doc-trace-context.log   |  102 ++
+ ...ad-single-frame-script-before-rtcpu-wrapper.log |   52 +
+ ...085220Z-tegra-rtcpu-trace-debugfs-discovery.log |   13 +
+ logs/20260422T085220Z-trace-event-enable-files.log |   62 ++
+ ...heck-rtcpu-script-absent-after-failed-patch.log |    2 +
+ ...52Z-read-debug-playbook-before-rtcpu-script.log |   84 ++
+ ...-read-status-known-tail-before-rtcpu-script.log |   83 ++
+ logs/20260422T085517Z-chmod-rtcpu-trace-script.log |    2 +
+ .../20260422T085536Z-bash-n-rtcpu-trace-script.log |    2 +
+ logs/20260422T085536Z-diff-rtcpu-trace-prep.log    |   66 ++
+ ...85536Z-git-status-before-rtcpu-trace-commit.log |  248 +++++
+ ...2T085536Z-list-current-runtime-timeout-logs.log |   12 +
+ ...0260422T085559Z-diff-rtcpu-trace-prep-final.log |   66 ++
+ ...60422T085559Z-read-rtcpu-trace-script-final.log |  196 ++++
+ ...5616Z-list-current-checkpoint-files-for-add.log |   32 +
+ ...git-add-contclk-runtime-timeout-rtcpu-trace.log |    3 +
+ ...2T085640Z-git-status-after-failed-rtcpu-add.log |  254 +++++
+ ...422T085640Z-list-0856-logs-after-failed-add.log |    3 +
+ ...d-contclk-runtime-timeout-rtcpu-trace-retry.log |    2 +
+ ...-22-route-c-continuous-clock-runtime-timeout.md |  104 ++
+ scripts/run_manual_single_frame_rtcpu_trace.sh     |  192 ++++
+ 43 files changed, 4009 insertions(+), 3 deletions(-)
+
+$ git diff --cached --name-only | tail -n 80
+artifacts/captures/20260422T085016Z/ov5647-640x480-bg10.raw
+docs/08-debug-playbook.md
+docs/10-results-and-status.md
+docs/11-known-issues.md
+logs/20260422T084917Z-manual-insmod-full-delay-dump-contclk.dmesg-tail.log
+logs/20260422T084917Z-manual-insmod-full-delay-dump-contclk.log
+logs/20260422T084917Z-manual-insmod-full-delay-dump-contclk.modinfo.log
+logs/20260422T085016Z-single-frame-post-dmesg-tail.log
+logs/20260422T085016Z-single-frame-trace.log
+logs/20260422T085016Z-stream-live-dmesg.log
+logs/20260422T085123Z-capture-size-085016.log
+logs/20260422T085123Z-inspect-085016-capture.log
+logs/20260422T085123Z-list-085016-capture-artifacts.log
+logs/20260422T085123Z-module-state-after-085016-capture.log
+logs/20260422T085147Z-dmesg-tail-after-085016-contclk-timeout.log
+logs/20260422T085147Z-live-dt-fields-after-085016-contclk-timeout.log
+logs/20260422T085147Z-media-ctl-after-085016-contclk-timeout.log
+logs/20260422T085147Z-v4l2-query-after-085016-contclk-timeout.log
+logs/20260422T085204Z-debugfs-camera-discovery.log
+logs/20260422T085204Z-repo-trace-reference-search.log
+logs/20260422T085204Z-trace-event-discovery.log
+logs/20260422T085204Z-tracefs-basic-discovery.log
+logs/20260422T085220Z-read-doc-trace-context.log
+logs/20260422T085220Z-read-single-frame-script-before-rtcpu-wrapper.log
+logs/20260422T085220Z-tegra-rtcpu-trace-debugfs-discovery.log
+logs/20260422T085220Z-trace-event-enable-files.log
+logs/20260422T085352Z-check-rtcpu-script-absent-after-failed-patch.log
+logs/20260422T085352Z-read-debug-playbook-before-rtcpu-script.log
+logs/20260422T085352Z-read-status-known-tail-before-rtcpu-script.log
+logs/20260422T085517Z-chmod-rtcpu-trace-script.log
+logs/20260422T085536Z-bash-n-rtcpu-trace-script.log
+logs/20260422T085536Z-diff-rtcpu-trace-prep.log
+logs/20260422T085536Z-git-status-before-rtcpu-trace-commit.log
+logs/20260422T085536Z-list-current-runtime-timeout-logs.log
+logs/20260422T085559Z-diff-rtcpu-trace-prep-final.log
+logs/20260422T085559Z-read-rtcpu-trace-script-final.log
+logs/20260422T085616Z-list-current-checkpoint-files-for-add.log
+logs/20260422T085632Z-git-add-contclk-runtime-timeout-rtcpu-trace.log
+logs/20260422T085640Z-git-status-after-failed-rtcpu-add.log
+logs/20260422T085640Z-list-0856-logs-after-failed-add.log
+logs/20260422T085649Z-git-add-contclk-runtime-timeout-rtcpu-trace-retry.log
+reports/2026-04-22-route-c-continuous-clock-runtime-timeout.md
+scripts/run_manual_single_frame_rtcpu_trace.sh

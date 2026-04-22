@@ -1,0 +1,102 @@
+$ find docs reports trace mentions
+docs/10-results-and-status.md:81:- current media graph is linked as `nv_ov5647 -> nvcsi -> vi-output`, with `/dev/video0` at `BG10 640x480`.
+docs/10-results-and-status.md:210:  - media graph links are enabled from `nv_ov5647 9-0036` to `nvcsi` to `vi-output`;
+docs/11-known-issues.md:28:  - the latest preserved unload trace stops before any visible `ov5647_remove()` marker, so the exact stall boundary is still being narrowed.
+docs/11-known-issues.md:29:- The latest preserved unload trace also stops before the newly added `module exit enter` marker:
+docs/11-known-issues.md:37:  - the `dmesg -W` live trace for the failed run was empty;
+docs/11-known-issues.md:49:- The previous `devm_kfree` warning in isolated unload was traced to wrong `s_data->power` ownership:
+docs/11-known-issues.md:53:  - `logs/20260421T101016Z-rmmod-trace.log` stopped at `running: rmmod nv_ov5647`;
+docs/08-debug-playbook.md:59:Basic trace:
+docs/08-debug-playbook.md:62:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh
+docs/08-debug-playbook.md:70:sudo env RMMOD_SYSRQ_DELAY_SEC=10 /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh
+docs/08-debug-playbook.md:80:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_trace.sh
+docs/05-dt-overlay-design.md:29:- one `nvcsi` channel;
+docs/01-platform-inventory.md:31:- `tegra_camera`, `nvhost_vi5`, `nvhost_nvcsi_t194`, and related camera framework modules are loaded.
+reports/2026-04-21-rmmod-hang-clientdata-rootcause.md:8:- User then manually ran the traced unload and reported a hard hang.
+reports/2026-04-21-rmmod-hang-clientdata-rootcause.md:112:sudo env RMMOD_SYSRQ_DELAY_SEC=10 /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh
+reports/2026-04-21-rmmod-hang-before-device-unregister.md:6:  - `sudo env RMMOD_SYSRQ_DELAY_SEC=10 /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh`
+reports/2026-04-21-rmmod-hang-before-device-unregister.md:18:- `logs/20260421T140616Z-rmmod-trace.log`
+reports/2026-04-21-rmmod-hang-before-device-unregister.md:35:The trace never reached:
+reports/2026-04-21-rmmod-hang-before-device-unregister.md:90:sudo env RMMOD_SYSRQ_DELAY_SEC=10 /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh
+reports/2026-04-22-stream-register-dump-prep.md:82:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh
+reports/2026-04-22-stream-register-dump-prep.md:84:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_trace.sh
+reports/2026-04-21-single-frame-timeout-after-output-enable.md:10:  - `sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_trace.sh`
+reports/2026-04-21-single-frame-timeout-after-output-enable.md:48:- `logs/20260421T102646Z-single-frame-trace.log`
+reports/2026-04-21-split-insmod-query-checkpoint.md:65:  - `nv_ov5647 9-0036` -> `nvcsi` -> `vi-output`;
+reports/2026-04-22-output-enable-restore-fix.md:60:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh
+reports/2026-04-22-output-enable-restore-fix.md:62:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_trace.sh
+reports/2026-04-22-output-enable-restore-runtime-timeout.md:12:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh
+reports/2026-04-22-output-enable-restore-runtime-timeout.md:14:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_trace.sh
+reports/2026-04-22-output-enable-restore-runtime-timeout.md:86:- `logs/20260422T081932Z-rmmod-trace.log`
+reports/2026-04-22-output-enable-restore-runtime-timeout.md:90:- `logs/20260422T081948Z-single-frame-trace.log`
+reports/2026-04-20-second-reboot-rmmod-crash.md:21:- call trace includes:
+reports/2026-04-20-second-reboot-rmmod-crash.md:39:  - `sudo grep -nE 'Unable to handle|Internal error|Kernel panic|ov5647_remove|ov5647_power_off|nv_ov5647_exit|Call trace|panic' /sys/fs/pstore/...`
+reports/2026-04-22-route-c-capture-timeout.md:12:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_trace.sh
+reports/2026-04-22-route-c-capture-timeout.md:69:- `logs/20260422T080247Z-single-frame-trace.log`
+reports/2026-04-21-single-frame-timeout-after-clean-remove.md:21:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_trace.sh
+reports/2026-04-21-single-frame-timeout-after-clean-remove.md:34:Kernel trace shows the driver power and streaming lifecycle returned cleanly:
+reports/2026-04-21-single-frame-timeout-after-clean-remove.md:55:- `logs/20260421T151642Z-single-frame-trace.log`
+reports/2026-04-21-rmmod-hang-before-module-exit.md:6:  - `sudo /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh`
+reports/2026-04-21-rmmod-hang-before-module-exit.md:17:  - `logs/20260421T084418Z-rmmod-trace.log`
+reports/2026-04-21-rmmod-hang-before-module-exit.md:51:- `run_manual_rmmod_trace.sh` now uses `dmesg -W` so the live trace file contains only new messages after helper startup.
+reports/2026-04-21-next-unload-diagnostics-prep.md:36:- extended `run_manual_rmmod_trace.sh` with optional sysrq watchdog:
+reports/2026-04-21-next-unload-diagnostics-prep.md:63:sudo env RMMOD_SYSRQ_DELAY_SEC=10 /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh
+reports/2026-04-21-full-v4l2-unload-hang-after-remove-order.md:8:  - `sudo /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh`
+reports/2026-04-21-full-v4l2-unload-hang-after-remove-order.md:15:  - `logs/20260421T085648Z-rmmod-trace.log`
+reports/2026-04-21-full-v4l2-unload-hang-after-remove-order.md:31:- the live `dmesg -W` trace for the failing full unload is empty;
+reports/2026-04-21-full-v4l2-unload-hang-after-remove-order.md:48:- updated `run_manual_rmmod_trace.sh` to:
+reports/2026-04-21-full-v4l2-unload-hang-after-remove-order.md:66:  - `nv_ov5647 9-0036 -> nvcsi -> vi-output`
+reports/2026-04-22-route-c-continuous-clock-dt-prep.md:121:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_trace.sh
+reports/2026-04-21-lp11-power-on-fix.md:60:1. User manually unloads the currently loaded module with the rmmod trace helper.
+reports/2026-04-21-lp11-power-on-fix.md:62:3. If load returns cleanly, user manually runs the single-frame trace helper again.
+reports/2026-04-22-continuous-mipi-clock-runtime-timeout.md:12:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh
+reports/2026-04-22-continuous-mipi-clock-runtime-timeout.md:14:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_trace.sh
+reports/2026-04-22-continuous-mipi-clock-runtime-timeout.md:80:- `logs/20260422T082504Z-rmmod-trace.log`
+reports/2026-04-22-continuous-mipi-clock-runtime-timeout.md:84:- `logs/20260422T082520Z-single-frame-trace.log`
+reports/2026-04-21-handoff-summary.md:64:- `scripts/run_manual_rmmod_trace.sh`
+reports/2026-04-21-handoff-summary.md:66:- `scripts/run_manual_single_frame_trace.sh`
+reports/2026-04-22-route-c-continuous-clock-boot-staged.md:67:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_trace.sh
+reports/2026-04-21-first-clean-full-remove.md:32:- `logs/20260421T150531Z-rmmod-trace.log`
+reports/2026-04-22-route-c-insmod-success.md:64:- `nv_ov5647 9-0036 -> nvcsi -> vi-output`;
+reports/2026-04-22-route-c-insmod-success.md:91:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_trace.sh
+reports/2026-04-22-route-c-continuous-clock-post-reboot.md:50:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_trace.sh
+reports/2026-04-21-split-v4l2-unregister-diagnostics.md:53:Then, if load succeeds, run exactly one unload trace manually:
+reports/2026-04-21-split-v4l2-unregister-diagnostics.md:56:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh
+reports/2026-04-20-fourth-reboot-rmmod-hang.md:6:  - `sudo /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh`
+reports/2026-04-20-fourth-reboot-rmmod-hang.md:15:- pre-unload trace files survived:
+reports/2026-04-20-fourth-reboot-rmmod-hang.md:16:  - `logs/20260420T104858Z-rmmod-trace.log`
+reports/2026-04-20-fourth-reboot-rmmod-hang.md:33:- no `ov5647_remove` markers appeared in the preserved live-dmesg trace.
+reports/2026-04-21-lp11-runtime-timeout.md:17:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_trace.sh
+reports/2026-04-21-lp11-runtime-timeout.md:38:Kernel trace still shows repeated VI timeouts:
+reports/2026-04-21-lp11-runtime-timeout.md:53:- `logs/20260421T152756Z-rmmod-trace.log`
+reports/2026-04-21-lp11-runtime-timeout.md:59:- `logs/20260421T153049Z-single-frame-trace.log`
+reports/2026-04-21-normal-full-remove-success.md:33:- `logs/20260421T151139Z-rmmod-trace.log`
+reports/2026-04-22-continuous-mipi-clock-prep.md:79:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh
+reports/2026-04-22-continuous-mipi-clock-prep.md:81:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_trace.sh
+reports/2026-04-21-route-a-analysis-and-vga-table-cleanup.md:20:- media graph: `nv_ov5647 9-0036 -> nvcsi -> vi-output`.
+reports/2026-04-21-route-a-analysis-and-vga-table-cleanup.md:84:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh
+reports/2026-04-21-route-a-analysis-and-vga-table-cleanup.md:86:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_trace.sh
+reports/2026-04-21-vga-hts-vts-runtime-timeout.md:22:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh
+reports/2026-04-21-vga-hts-vts-runtime-timeout.md:24:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_trace.sh
+reports/2026-04-21-vga-hts-vts-runtime-timeout.md:55:- `logs/20260421T153826Z-single-frame-trace.log`
+reports/2026-04-21-double-reboot-after-rmmod-hang.md:31:- no `nv_ov5647`, oops, panic, or stack trace appears in the preserved ramoops content.
+reports/2026-04-21-double-reboot-after-rmmod-hang.md:56:Latest rmmod trace:
+reports/2026-04-21-double-reboot-after-rmmod-hang.md:58:- `logs/20260421T101016Z-rmmod-trace.log`
+reports/2026-04-21-vga-table-cleanup-runtime-timeout.md:26:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh
+reports/2026-04-21-vga-table-cleanup-runtime-timeout.md:28:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_trace.sh
+reports/2026-04-21-vga-table-cleanup-runtime-timeout.md:59:- `logs/20260421T155010Z-rmmod-trace.log`
+reports/2026-04-21-vga-table-cleanup-runtime-timeout.md:63:- `logs/20260421T155031Z-single-frame-trace.log`
+reports/2026-04-22-stream-register-dump-runtime-timeout.md:12:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh
+reports/2026-04-22-stream-register-dump-runtime-timeout.md:14:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_trace.sh
+reports/2026-04-22-stream-register-dump-runtime-timeout.md:97:- `logs/20260422T081451Z-rmmod-trace.log`
+reports/2026-04-22-stream-register-dump-runtime-timeout.md:101:- `logs/20260422T081515Z-single-frame-trace.log`
+reports/2026-04-22-no-duplicate-set-mode-prep.md:73:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh
+reports/2026-04-22-no-duplicate-set-mode-prep.md:75:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_trace.sh
+reports/2026-04-20-driver-panic-and-mclk-blocker.md:64:- `pstore` preserved the panic trace and tied it to `nv_ov5647` during `insmod`;
+reports/2026-04-22-no-duplicate-set-mode-runtime-timeout.md:14:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh
+reports/2026-04-22-no-duplicate-set-mode-runtime-timeout.md:16:sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_trace.sh
+reports/2026-04-22-no-duplicate-set-mode-runtime-timeout.md:84:- `logs/20260422T080729Z-rmmod-trace.log`
+reports/2026-04-22-no-duplicate-set-mode-runtime-timeout.md:88:- `logs/20260422T080757Z-single-frame-trace.log`
+reports/2026-04-21-skip-v4l2-unload-success.md:8:  - `sudo /home/cam/ov5647_driver_codex/scripts/run_manual_rmmod_trace.sh`
+reports/2026-04-21-skip-v4l2-unload-success.md:14:- `logs/20260421T085230Z-rmmod-trace.log`
+reports/2026-04-21-skip-v4l2-unload-success.md:62:- if it still hangs, the live trace should now identify whether the last visible marker is before or after `tegracam_v4l2subdev_unregister()`.

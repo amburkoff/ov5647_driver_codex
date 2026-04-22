@@ -304,6 +304,17 @@ Current next focus:
   - `/dev/video0` is absent before manual LKM load, as expected;
   - `/dev/media0` is present;
   - pstore contains `console-ramoops-0`, but the captured head is an early boot log for the current `boot_profile=ov5647-dev` boot and is not, by itself, evidence of a new panic.
+- route-C continuous-clock runtime capture was tested manually after reboot:
+  - loaded module `srcversion=92FD1291C5FC74E28DC6E26`;
+  - module parameters confirmed `continuous_mipi_clock=Y` and `dump_stream_regs=Y`;
+  - `VIDIOC_STREAMON` returned success;
+  - after stream-on, readback showed `0x0100=0x01`, `0x4800=0x04`, and output-enable registers `0x3000=0x0f`, `0x3001=0xff`, `0x3002=0xe4`;
+  - capture still timed out with `rc=124`;
+  - raw output `artifacts/captures/20260422T085016Z/ov5647-640x480-bg10.raw` is zero bytes;
+  - VI still reports repeated `uncorr_err: request timed out after 2500 ms`.
+- RTCPU/NVCSI trace tooling is prepared for the next manual capture attempt:
+  - `scripts/run_manual_single_frame_rtcpu_trace.sh`;
+  - expected artifacts under `artifacts/traces/<timestamp>/`.
 
 Not completed yet:
 
@@ -316,5 +327,5 @@ Not completed yet:
 Next smallest safe step:
 
 - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
-- ask the user to manually run `scripts/run_manual_insmod_diag.sh full-delay-dump-contclk` on the current route-C continuous-clock boot;
-- if manual `insmod` succeeds, ask the user to manually run one single-frame capture and then inspect the new stream register dump and VI/NVCSI logs.
+- ask the user to manually run one RTCPU/NVCSI traced capture on the already loaded route-C continuous-clock module;
+- inspect `rtcpu_vinotify_error`, `rtcpu_nvcsi_intr`, `vi_frame_begin/end`, and `tegra_capture` trace output before changing DT or sensor mode again.
