@@ -28,6 +28,7 @@ Start here:
 - [docs/01a-clb-carrier-mapping.md](docs/01a-clb-carrier-mapping.md)
 - [docs/03-sources-and-references.md](docs/03-sources-and-references.md)
 - [docs/09-boot-profiles-and-recovery.md](docs/09-boot-profiles-and-recovery.md)
+- [docs/12-physical-csi-validation.md](docs/12-physical-csi-validation.md)
 
 Useful scripts:
 

@@ -1,0 +1,16 @@
+[20260422T143300Z] commit NXCLB public reference docs
+[main 9315976] docs: add nxclb public carrier reference
+ 16 files changed, 1494 insertions(+), 16 deletions(-)
+ create mode 100644 logs/20260422T142500Z-git-commit-route-a-timeout.log
+ create mode 100644 logs/20260422T142520Z-git-push-route-a-timeout.log
+ create mode 100644 logs/20260422T142545Z-post-push-route-a-timeout-state.log
+ create mode 100644 logs/20260422T142900Z-read-clb-mapping-before-nxclb-fcc-doc.log
+ create mode 100644 logs/20260422T142900Z-read-hardware-assumptions-before-nxclb-fcc-doc.log
+ create mode 100644 logs/20260422T142900Z-read-sources-before-nxclb-fcc-doc.log
+ create mode 100644 logs/20260422T143100Z-nxclb-public-reference-search-summary.log
+ create mode 100644 logs/20260422T143130Z-diff-nxclb-public-reference-docs.log
+ create mode 100644 logs/20260422T143130Z-stale-route-c-current-check.log
+ create mode 100644 logs/20260422T143130Z-status-before-nxclb-public-reference-commit.log
+ create mode 100644 logs/20260422T143200Z-stale-route-c-current-recheck.log
+ create mode 100644 logs/20260422T143230Z-cached-check-nxclb-public-reference.log
+ create mode 100644 reports/2026-04-22-nxclb-public-reference.md
