@@ -28,6 +28,16 @@ When a reboot is needed:
 - keep the safe profile available;
 - after reconnect, read `/proc/cmdline` before anything else.
 
+## Read-Only Route Snapshot
+
+Use this when Codex context may be lost or before any risky module/capture command:
+
+```bash
+/home/cam/ov5647_driver_codex/scripts/collect_camera_route_state.sh
+```
+
+This helper is intentionally read-only. It does not load/unload modules, start streaming, or reboot. It saves cmdline, extlinux, I2C bus list, module state, media graph, and live OV5647 DT route fields under `artifacts/camera-route-state/<timestamp>/`.
+
 ## Manual Unload Hang Capture
 
 Use manual-only unload tests. Do not run these from Codex when a hard hang is plausible.

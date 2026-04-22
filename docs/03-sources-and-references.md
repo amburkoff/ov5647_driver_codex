@@ -18,6 +18,10 @@ Primary documentation for this project:
   - <https://docs.nvidia.com/jetson/archives/r36.5/DeveloperGuide/SO/JetsonOrinSeries.html>
 - Jetson Linux `r36.5` Kernel guide:
   - <https://docs.nvidia.com/jetson/archives/r36.5/DeveloperGuide/SD/Kernel.html>
+- NVIDIA Jetson Orin Nano Developer Kit carrier board specification:
+  - <https://developer.nvidia.com/downloads/assets/embedded/secure/jetson/orin_nano/docs/jetson_orin_nano_devkit_carrier_board_specification_sp.pdf>
+  - used only as a p3768 developer-carrier reference for 22-pin camera connector routing;
+  - not treated as proof that the physical CLB Developer Kit carrier has identical camera wiring.
 - Jetson Linux `r36.5` public BSP sources:
   - <https://developer.nvidia.com/downloads/embedded/l4t/r36_release_v5.0/sources/public_sources.tbz2>
   - local unpacked reference subset: `artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/`;

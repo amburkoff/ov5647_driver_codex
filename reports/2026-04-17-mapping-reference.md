@@ -9,7 +9,7 @@
 
 ## Files Changed
 
-- `docs/01a-cbl-carrier-mapping.md`
+- `docs/01a-clb-carrier-mapping.md`
 - `docs/05-dt-overlay-design.md`
 - `patches/ov5647-p3768-port-a-reference.dts.in`
 
@@ -23,7 +23,7 @@
   - `dtc -I dtb -O dts /boot/tegra234-p3767-camera-p3768-imx477-A.dtbo | grep ...`
   - `dtc -I dtb -O dts /boot/tegra234-p3767-camera-p3768-imx477-C.dtbo | grep ...`
 - web research:
-  - targeted searches for `CBL Developer Kit` Jetson carrier docs
+  - targeted searches for `CLB Developer Kit` Jetson carrier docs
 
 ## Findings
 
@@ -41,11 +41,11 @@
 ## Current Root-Cause Hypotheses
 
 - if the physical camera is plugged into the p3768-style `A` connector path, the first OV5647 DT attempt should most likely target route `A`;
-- if the CBL carrier deviates from p3768 routing, the installed NVIDIA overlays will still only be a partial reference and must not be treated as final truth.
+- if the CLB carrier deviates from p3768 routing, the installed NVIDIA overlays will still only be a partial reference and must not be treated as final truth.
 
 ## Blocking Unknowns
 
-- physical connector actually used on the CBL carrier;
+- physical connector actually used on the CLB carrier;
 - cable and adapter orientation between the carrier and OV5647;
 - real OV5647 control address;
 - reset and PWDN GPIO ownership;

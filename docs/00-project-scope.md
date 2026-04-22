@@ -27,7 +27,7 @@ Hard constraints:
 
 - no boot hangs;
 - no `insmod` or `rmmod` hangs;
-- no silent assumptions about CBL-specific wiring;
+- no silent assumptions about CLB-specific wiring;
 - no undocumented experiments;
 - no removal of the safe boot path.
 

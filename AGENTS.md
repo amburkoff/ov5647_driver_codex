@@ -27,12 +27,12 @@ The final outcome is not just code. It is a reproducible engineering result:
 ## Target hardware profile
 
 Primary target hardware for this repository:
-- **Jetson Orin NX on CBL Developer Kit carrier**
+- **Jetson Orin NX on CLB Developer Kit carrier**
 - **L4T R36.5 / JetPack 6.2.2**
 - **OV5647 over MIPI CSI-2**
 
 Carrier-specific rule:
-Treat the **CBL Developer Kit as a carrier-specific bring-up target**, not as a generic Jetson board.
+Treat the **CLB Developer Kit as a carrier-specific bring-up target**, not as a generic Jetson board.
 Do not assume GPIO, regulator, I2C, CSI-port, or connector details until verified from:
 - the live system DT / procfs / sysfs state;
 - the active boot configuration;
@@ -46,7 +46,7 @@ Known practical bias for Orin NX developer-carrier style bring-up:
 - if the carrier exposes Raspberry Pi style camera connectivity through 22-pin Jetson CSI connectors, verify the exact cable/adaptor orientation before power and stream tests.
 
 Mandatory early deliverable:
-Create `docs/01a-cbl-carrier-mapping.md` with the verified mapping for:
+Create `docs/01a-clb-carrier-mapping.md` with the verified mapping for:
 - carrier board identity and revision;
 - CSI connector name actually used;
 - sensor-side connector/cable/adaptor path;
@@ -296,7 +296,7 @@ After reconnect / return from reboot, immediately:
 ## Hardware discovery policy
 
 Do not silently assume hardware facts.
-For the **CBL Developer Kit** specifically, the first hardware-discovery pass must explicitly determine whether the camera path is wired like the NVIDIA Orin Nx developer carrier or requires carrier-specific DT/overlay routing. Do not assume CAM0/CAM1 mapping until verified.
+For the **CLB Developer Kit** specifically, the first hardware-discovery pass must explicitly determine whether the camera path is wired like the NVIDIA Orin Nx developer carrier or requires carrier-specific DT/overlay routing. Do not assume CAM0/CAM1 mapping until verified.
 
 
 You must determine and document:
@@ -332,7 +332,7 @@ Use NVIDIA sample camera drivers as structural templates and upstream OV5647 as 
 Use community Jetson OV5647 code only as a cross-check.
 
 ### Initial scope
-For the first milestone on the CBL Developer Kit, scope the target to **one OV5647 sensor on one verified CSI connector** only.
+For the first milestone on the CLB Developer Kit, scope the target to **one OV5647 sensor on one verified CSI connector** only.
 
 Start with the minimal useful implementation:
 - safe probe

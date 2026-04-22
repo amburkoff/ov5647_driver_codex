@@ -1,9 +1,12 @@
 # Known Issues
 
-- The user target is described as a CBL Developer Kit carrier, but the running DT identifies NVIDIA reference carrier `p3768-0000`.
-- The running system currently boots with `boot_profile=ov5647-dev`, while the carrier hardware still needs independent CBL-specific documentation beyond what the base DT exposes.
+- The user target is corrected to a CLB Developer Kit carrier; earlier project notes used a mistyped carrier name.
+- The box identifies the board as a partner board from `makerobo`.
+- The included booklet says to install the official Jetson Developer Kit image.
+- The running DT identifies NVIDIA reference carrier `p3768-0000`, which is consistent with the official Developer Kit image instruction but still does not prove CLB camera connector wiring.
+- The running system currently boots with `boot_profile=ov5647-dev`, while the carrier hardware still needs independent CLB-specific camera-route documentation beyond what the base DT exposes.
 - The safe boot entry still exists, but the on-disk default is currently set to `ov5647-dev` for the next controlled overlay-validation reboot cycle.
-- The active dev overlay is still an assumption-driven route-A candidate from the physical-connector point of view, even though it is now logically validated by successful probe and `/dev/video0`.
+- The active dev overlay is now a route-C continuous-clock candidate from the physical-connector point of view; it is logically validated by successful probe and `/dev/video0`, but not by SOF/frame delivery.
 - The physical camera modules are present on both 22-pin connectors, but the exact mapping from physical connector to route `A` or `C` is still unverified.
 - The visible camera marking `JT-ZERO-V2.0 YH` suggests Raspberry Pi-market OV5647 hardware, but the exact FFC/adaptor topology is not yet documented.
 - Local `nvidia-oot` headers are present, but full local sample sensor source files are not installed under `/usr/src/nvidia/`.
@@ -109,7 +112,7 @@
   - the physical connector to DT route mapping remains unresolved and must be treated as a blocking hardware assumption before declaring the overlay correct.
 - Read-only route analysis confirms the active route-A overlay is consistent with NVIDIA p3768 `imx219-A` and `imx477-A` references:
   - this reduces the probability of a route-A DT modeling typo;
-  - it does not prove the CBL physical connector/cable path or the Raspberry Pi-style adapter pinout.
+  - it does not prove the CLB physical connector/cable path or the Raspberry Pi-style adapter pinout.
 - The local VGA mode table had two local-only writes not present in either mainline Linux or Raspberry Pi 6.6.y VGA arrays:
   - `0x5002 = 0x41`;
   - `0x4837 = 0x16`;

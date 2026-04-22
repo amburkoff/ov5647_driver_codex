@@ -24,7 +24,7 @@ NVIDIA reference overlays in `/boot` show:
 - `imx219-A` and `imx477-A`: `cam_i2cmux/i2c@0`, `serial_b`, `port-index=1`, `bus-width=2`, GPIO token `0x3e`, `lane_polarity=6`;
 - `imx219-C` and `imx477-C`: `cam_i2cmux/i2c@1`, `serial_c`, `port-index=2`, GPIO token `0xa0`.
 
-Interpretation: the current overlay is consistent with NVIDIA p3768 route A. I2C/probe success plus NVIDIA route consistency reduce the likelihood of a simple DT route-A modeling error, but they do not prove the physical CBL connector/cable CSI lane path.
+Interpretation: the current overlay is consistent with NVIDIA p3768 route A. I2C/probe success plus NVIDIA route consistency reduce the likelihood of a simple DT route-A modeling error, but they do not prove the physical CLB connector/cable CSI lane path.
 
 ## Source Change
 

@@ -13,9 +13,11 @@ Current checkpoint:
 
 Current blockers:
 
-- the running system identifies itself as NVIDIA reference carrier `p3768`, not yet as a verified CBL-specific carrier;
-- physical CBL connector to DT route mapping is still not independently verified;
-- the Raspberry Pi-style camera/cable path marked `JT-ZERO-V2.0 YH` may not be CSI-compatible with the current CBL/Jetson 22-pin route;
+- the physical kit is now corrected to `CLB Developer Kit`; earlier project notes used a mistyped carrier name;
+- the box identifies the board as a `makerobo` partner board;
+- the included booklet says to install the official Jetson Developer Kit image, so the live `p3768` DT identity is expected but still not proof of the exact CLB camera wiring;
+- physical CLB connector to DT route mapping is still not independently verified;
+- the Raspberry Pi-style camera/cable path marked `JT-ZERO-V2.0 YH` may not be CSI-compatible with the current CLB/Jetson 22-pin route;
 - route-A and route-C both create `/dev/video0` after manual LKM load, but raw captures still time out with zero-byte files;
 - live preview is not validated.
 
@@ -23,13 +25,14 @@ Start here:
 
 - [docs/00-project-scope.md](docs/00-project-scope.md)
 - [docs/01-platform-inventory.md](docs/01-platform-inventory.md)
-- [docs/01a-cbl-carrier-mapping.md](docs/01a-cbl-carrier-mapping.md)
+- [docs/01a-clb-carrier-mapping.md](docs/01a-clb-carrier-mapping.md)
 - [docs/03-sources-and-references.md](docs/03-sources-and-references.md)
 - [docs/09-boot-profiles-and-recovery.md](docs/09-boot-profiles-and-recovery.md)
 
 Useful scripts:
 
 - `scripts/collect_env.sh`
+- `scripts/collect_camera_route_state.sh`
 - `scripts/capture_kernel_logs.sh`
 - `scripts/build_module.sh`
 - `scripts/switch_boot_profile.sh`

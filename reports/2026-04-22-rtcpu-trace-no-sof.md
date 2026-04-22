@@ -68,7 +68,7 @@ The trace does not look like a stream with bad frames. It looks like no SOF reac
 Most likely next areas:
 
 - physical FFC/cable/adapter compatibility for the Raspberry Pi-style `JT-ZERO-V2.0 YH` modules;
-- actual CBL connector to Jetson CSI route mapping;
+- actual CLB connector to Jetson CSI route mapping;
 - lane polarity or lane order;
 - sensor MIPI output not actually present despite successful I2C/chip-ID;
 - wrong assumptions in carrier-specific wiring, not just a missing V4L2 registration step.

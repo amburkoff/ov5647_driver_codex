@@ -70,7 +70,7 @@
 ## Next Smallest Step
 
 1. Verify `insmod` and `rmmod` of the gated scaffold using local root access.
-2. Confirm the physical CBL connector and adapter path.
+2. Confirm the physical CLB connector and adapter path.
 3. Draft the first minimal OV5647 overlay for the verified connector only.
 4. Attempt the first controlled chip-ID probe.
 

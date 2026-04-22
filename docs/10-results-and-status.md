@@ -324,7 +324,7 @@ Current next focus:
 
 Not completed yet:
 
-- CBL carrier identity confirmation from hardware documentation or physical inspection;
+- CLB carrier schematic/revision confirmation beyond user-reported kit name, makerobo box marking, and official Developer Kit flashing booklet;
 - verified OV5647 DT overlay;
 - verified OV5647 DT overlay for the actual physical connector used by the user;
 - raw capture with non-empty frame data;
@@ -335,3 +335,31 @@ Next smallest safe step:
 - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
 - ask the user to manually run one RTCPU/NVCSI traced capture on the already loaded route-C continuous-clock module;
 - do not tune more simple stream-start bits until the physical CSI path, lane mapping/polarity, and adapter compatibility are re-checked against this no-SOF evidence.
+
+Update after read-only route snapshot work:
+
+- current safe state after later reboot/manual operations:
+  - `/proc/cmdline` still contains `boot_profile=ov5647-dev`;
+  - `nv_ov5647` is currently not loaded;
+  - `/dev/video0` is absent before manual LKM load;
+  - route-C overlay remains live in DT;
+- new read-only helper added:
+  - `scripts/collect_camera_route_state.sh`;
+  - it saves cmdline, extlinux, I2C bus list, module state, media graph, live DT route fields, and a live DT dump without loading/unloading the module or starting streaming;
+- latest safe route snapshot:
+  - `artifacts/camera-route-state/20260422T132108Z/`;
+  - confirms active `ov5647_c@36` with `serial_c`, endpoint `port-index = <2>`, endpoint `bus-width = <2>`, `lane_polarity = "0"`, and `discontinuous_clk = "no"`;
+  - confirms stale `ov5647_a@36` is present but `status = "disabled"`;
+  - confirms `i2c-9` is `i2c-2-mux (chan_id 1)` and `i2c-10` is `chan_id 0`.
+
+Revised next smallest safe step:
+
+- keep runtime tests manual-only;
+- prioritize physical route validation or a known-good Jetson camera cross-check before more DT/register variants.
+
+Hardware naming correction:
+
+- User corrected the carrier name to `CLB Developer Kit`; earlier project notes used a mistyped carrier name.
+- User reports the box identifies it as a partner board from `makerobo`.
+- User reports the included booklet says to install the Jetson image from the official Developer Kit site.
+- Reasoning update: the live NVIDIA `p3768` DT identity is now expected for this installed image, but still does not prove that the CLB camera connector, adapter, lane polarity, and cable orientation match the p3768 reference carrier electrically.

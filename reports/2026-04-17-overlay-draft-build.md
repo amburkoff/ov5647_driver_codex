@@ -15,7 +15,7 @@
 ## Files Changed
 
 - `src/nv_ov5647/nv_ov5647.c`
-- `docs/01a-cbl-carrier-mapping.md`
+- `docs/01a-clb-carrier-mapping.md`
 - `docs/05-dt-overlay-design.md`
 - `patches/ov5647-p3768-port-a-draft.dts`
 

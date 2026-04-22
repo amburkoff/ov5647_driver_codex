@@ -2,10 +2,12 @@
 
 Current blocking assumption set:
 
-- The project target is described by the user as a CBL Developer Kit carrier.
-- The running software image still identifies the platform as NVIDIA `p3768-0000+p3767-0000`.
-- The active dev boot currently applies an OV5647 route-A overlay that matches NVIDIA p3768 camera route-A conventions.
-- The active route-A overlay proves a logical I2C/probe path, but it still does not prove the physical CBL connector/cable CSI lane path.
+- The project target is described by the user as a CLB Developer Kit carrier.
+- The box identifies the board as a partner board from `makerobo`.
+- The included booklet instructs installing the official Jetson Developer Kit image.
+- The running software image identifies the platform as NVIDIA `p3768-0000+p3767-0000`, which is consistent with that booklet instruction but not proof of CLB camera wiring.
+- The active dev boot currently applies an OV5647 route-C continuous-clock overlay.
+- Route-A and route-C overlays both prove logical I2C/probe paths, but neither proves the physical CLB connector/cable CSI lane path because both still produce no CSI SOF.
 
 Assumptions that are intentionally not promoted to facts:
 
@@ -21,8 +23,8 @@ Risk register:
 | Risk | Impact | Current mitigation |
 | --- | --- | --- |
 | Wrong carrier identity in DT or docs | Incorrect overlay and GPIO routing | Use live DT and physical inspection before enabling sensor nodes |
-| Wrong CSI connector assumption | No image or unstable stream | Current route-A overlay is logically valid, but physical CBL connector mapping remains unresolved |
-| Wrong I2C bus or address | Probe failure or false debugging path | Current route-A I2C path is confirmed as `i2c-9` / `0x36`, but route-C is still untested |
+| Wrong CSI connector assumption | No image or unstable stream | Route-A and route-C are logically valid enough to probe, but physical CLB connector mapping remains unresolved |
+| Wrong I2C bus or address | Probe failure or false debugging path | Current route-C I2C path is confirmed as `i2c-9` / `0x36`; route-A also probed earlier |
 | Wrong reset or PWDN GPIO | Sensor never responds or enters undefined state | Implement power logic only after GPIO source is verified |
 | Wrong regulator mapping | Unsafe power-up sequence | Keep regulator names unresolved until verified |
 | Missing tool dependencies | Incomplete validation | Document missing `v4l-utils` and `media-ctl` early |

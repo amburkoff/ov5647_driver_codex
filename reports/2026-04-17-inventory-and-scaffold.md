@@ -4,7 +4,7 @@
 
 - created the required repository layout: `docs/`, `reports/`, `logs/`, `artifacts/`, `scripts/`, `patches/`, `src/`, `tools/`;
 - replaced the placeholder `README.md` with a project status overview;
-- added baseline project documents `docs/00` through `docs/11`, including the required `docs/01a-cbl-carrier-mapping.md`;
+- added baseline project documents `docs/00` through `docs/11`, including the required `docs/01a-clb-carrier-mapping.md`;
 - added log collection, build, boot-profile, and baseline test scripts under `scripts/`;
 - added a non-probing external kernel module skeleton at `src/nv_ov5647/`;
 - captured the first live environment, boot, DT, and kernel-log artifacts under `logs/` and `artifacts/`.
@@ -90,11 +90,11 @@ Key log groups:
 - full `dmesg` buffer access is blocked for the current unprivileged user and only the permission failure text was captured;
 - `v4l2-ctl`, `media-ctl`, and `v4l2-compliance` are not installed, so V4L2 validation is blocked;
 - no camera overlay is active and no `/dev/video*` nodes exist yet;
-- physical CBL carrier mapping is still unresolved.
+- physical CLB carrier mapping is still unresolved.
 
 ## Findings
 
-- the running system identifies itself as NVIDIA reference carrier `p3768-0000+p3767-0000`, not yet as a verified CBL-specific carrier;
+- the running system identifies itself as NVIDIA reference carrier `p3768-0000+p3767-0000`, not yet as a verified CLB-specific carrier;
 - current `extlinux.conf` has only one live label, `primary`, and no `boot_profile=*` token;
 - generated safe/dev entries are ready for review and remain non-applied;
 - the camera base I2C alias in the live DT points to `i2c@3180000`, which is Linux bus `i2c-2`;
@@ -105,7 +105,7 @@ Key log groups:
 
 ## Current Root-Cause Hypotheses
 
-- The board is either actually running a stock `p3768` device-tree image, or the supposed CBL carrier does not yet provide a DT-level identity override.
+- The board is either actually running a stock `p3768` device-tree image, or the supposed CLB carrier does not yet provide a DT-level identity override.
 - Camera wiring is not discoverable from the current live DT because no sensor overlay is active.
 - The fastest safe next blocker is physical and carrier-document verification, not immediate driver probe code.
 

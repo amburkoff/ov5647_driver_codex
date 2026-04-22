@@ -73,7 +73,7 @@ The remaining highest-risk area is no longer a single stream-start bit. It is no
 - DT timing values seen by the Jetson camera framework;
 - CSI lane polarity / lane ordering / physical FFC adapter compatibility;
 - missing sensor registers outside the current 640x480 minimal table;
-- mismatch between active DT route C and the actual MIPI lane path on the CBL carrier.
+- mismatch between active DT route C and the actual MIPI lane path on the CLB carrier.
 
 ## Logs
 

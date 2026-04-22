@@ -2,7 +2,7 @@
 
 ## Goal
 
-Develop and validate a reproducible OV5647 MIPI CSI-2 camera driver bring-up for Jetson Orin NX on L4T R36.5 / JetPack 6.2.2, using the CBL Developer Kit as a carrier-specific target.
+Develop and validate a reproducible OV5647 MIPI CSI-2 camera driver bring-up for Jetson Orin NX on L4T R36.5 / JetPack 6.2.2, using the CLB Developer Kit as a carrier-specific target.
 
 The practical first milestone remains:
 
@@ -82,7 +82,7 @@ The practical first milestone remains:
 - Continue mode/CSI timing work because current capture reaches STREAMON but VI times out.
 - Produce a non-empty raw frame and validate file size/statistics/Bayer plausibility.
 - Build a stable preview path only after raw capture is real and repeatable.
-- Complete CBL carrier-specific physical mapping documentation beyond the live DT route.
+- Complete CLB carrier-specific physical mapping documentation beyond the live DT route.
 - Clean up or intentionally commit remaining untracked artifacts from previous build/capture/log runs.
 
 ## Current Risks
@@ -93,7 +93,7 @@ The practical first milestone remains:
 - Stream-on currently does not deliver frames to VI:
   - prior raw output was zero bytes;
   - kernel logged `uncorr_err: request timed out after 2500 ms`.
-- Physical connector mapping on the CBL Developer Kit is still not independently verified.
+- Physical connector mapping on the CLB Developer Kit is still not independently verified.
 - Two identical Raspberry Pi-market OV5647 cameras are connected, so the live route is validated electrically/logically but not yet mapped confidently to a physical connector label.
 
 ## Next Best Step

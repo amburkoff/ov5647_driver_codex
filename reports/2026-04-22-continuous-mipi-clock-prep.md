@@ -13,7 +13,7 @@ The current driver has been writing `0x4800 = 0x34` on stream start. Upstream Li
 - `0x4800 = 0x04` by default;
 - `0x4800 = 0x34` only when non-continuous clock mode is enabled.
 
-The current DT does not establish that non-continuous clock mode is required for this CBL route. This experiment tests the upstream default continuous-clock stream-on value without changing the default driver behavior.
+The current DT does not establish that non-continuous clock mode is required for this CLB route. This experiment tests the upstream default continuous-clock stream-on value without changing the default driver behavior.
 
 Reference fetched and stored locally:
 

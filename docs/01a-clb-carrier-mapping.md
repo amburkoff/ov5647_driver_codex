@@ -1,6 +1,6 @@
-# CBL Carrier Mapping
+# CLB Carrier Mapping
 
-Status: `partially verified, still carrier-identity blocked`
+Status: `partially verified, route-C live, still carrier-identity blocked`
 
 This document tracks only hardware facts that are confirmed for the actual target. Anything not verified from the running system, carrier documentation, or direct physical inspection stays marked as unresolved.
 
@@ -13,19 +13,23 @@ This document tracks only hardware facts that are confirmed for the actual targe
 | Camera base I2C alias | Confirmed | `cam_i2c -> /bus@0/i2c@3180000` |
 | Linux-visible base camera I2C bus | Confirmed | `i2c-2` maps to `3180000.i2c` |
 | Active boot profile | Confirmed | `/proc/cmdline` contains `boot_profile=ov5647-dev` |
-| Running camera overlay | Confirmed present | Live DT contains `cam_i2cmux` and `ov5647_a@36` |
+| Running camera overlay | Confirmed present | Live DT contains `cam_i2cmux` and active `ov5647_c@36` |
 | Reference 22-pin camera overlay family on disk | Confirmed | `imx219-A/C`, `imx477-A/C`, dual combinations in `/boot/` |
 | Physical camera population | Confirmed | User reports identical OV5647 modules inserted into both Jetson 22-pin CSI connectors |
 | Camera flex/module marking | Confirmed | User-reported marking: `JT-ZERO-V2.0 YH` |
-| Live camera mux bus | Confirmed | `i2c-9` appears as downstream `i2c-2-mux (chan_id 0)` |
+| Corrected carrier name | Confirmed from user physical inspection | User corrected the kit name to `CLB Developer Kit`; earlier project notes used a mistyped carrier name |
+| Partner/vendor marking | Confirmed from user physical inspection | User reports the box says the board is from partner `makerobo` |
+| Bundled booklet flashing instruction | Confirmed from user physical inspection | User reports the booklet says to install the Jetson image from the official Developer Kit site |
+| Live camera mux bus | Confirmed | `i2c-9` appears as downstream `i2c-2-mux`; current route-C boot maps it to `chan_id 1` |
 | Sensor I2C address | Confirmed | `i2cdetect -y 9` and `i2ctransfer` both see `0x36` |
 | Sensor identity | Confirmed | Direct `i2ctransfer` returns chip ID `0x56 0x47` => `0x5647` |
-| Live CSI route | Confirmed for current test path | Live sensor node uses `tegra_sinterface = "serial_b"` |
-| Live CSI port index | Confirmed for current test path | Live endpoint graph uses route-A style `port-index = 1` |
+| Live CSI route | Confirmed for current test path | Live sensor node uses `tegra_sinterface = "serial_c"` |
+| Live CSI port index | Confirmed for current test path | Live endpoint graph uses route-C style `port-index = 2` |
 | Live lane count | Confirmed for current test path | Live DT mode uses `num_lanes = "2"` and endpoint `bus-width = <2>` |
-| Live lane polarity | Confirmed for current test path | Live DT mode uses `lane_polarity = "6"` |
-| Live sensor node | Confirmed | `/bus@0/cam_i2cmux/i2c@0/ov5647_a@36` |
-| Live PWDN GPIO | Confirmed from live DT | `pwdn-gpios = <... 0x3e 0>` => Linux GPIO `397` (`PH.06`) |
+| Live lane polarity | Confirmed for current test path | Live DT mode uses `lane_polarity = "0"` |
+| Live discontinuous clock mode | Confirmed for current test path | Live DT mode uses `discontinuous_clk = "no"` |
+| Live sensor node | Confirmed | `/bus@0/cam_i2cmux/i2c@1/ov5647_c@36` |
+| Live PWDN GPIO | Confirmed from live DT and driver logs | `pwdn-gpios = <... 0xa0 0>` => Linux GPIO `486` |
 | Live reset GPIO | Confirmed absent in current node | No `reset-gpios` property on the active OV5647 probe node |
 | Live MCLK source | Confirmed | Active OV5647 node carries `mclk = "extperiph1"` and `clocks = <&bpmp 0x07>` |
 | Live regulators bound in DT | Confirmed names only | `avdd=vana`, `dvdd=vdig`, `iovdd=vif` |
@@ -34,7 +38,7 @@ This document tracks only hardware facts that are confirmed for the actual targe
 
 | Field | Current state | Why it matters |
 | --- | --- | --- |
-| CBL carrier board identity and revision | Unresolved | The running system still identifies as NVIDIA `p3768`; this must be cross-checked against the physical board and any carrier EEPROM override |
+| CLB carrier board identity and revision | Partially resolved | User confirms CLB Developer Kit and `makerobo` partner box; board revision and schematic-level camera routing remain unresolved |
 | Physical CSI connector in use | Unresolved | Needed before choosing A vs C vs any carrier-specific route |
 | Exact adapter/cable type behind `JT-ZERO-V2.0 YH` | Unresolved | The marking suggests Raspberry Pi-market OV5647 hardware, but the exact Jetson-side cable/adaptor chain is still not verified |
 | Physical CSI connector label on the carrier | Unresolved | Live DT confirms the logical route, but not the silkscreened connector name the user physically used |
@@ -51,12 +55,19 @@ The NVIDIA p3768 reference overlays on disk imply two common 22-pin connector ro
 - connector `A`: `serial_b`, `port-index = 1`, `cam_i2cmux/i2c@0`
 - connector `C`: `serial_c`, `port-index = 2`, `cam_i2cmux/i2c@1`
 
-These are useful design references for an OV5647 overlay skeleton, but they are not accepted as carrier truth until the actual CBL wiring is verified.
+These are useful design references for an OV5647 overlay skeleton, but they are not accepted as carrier truth until the actual CLB wiring is verified.
+
+The official NVIDIA Jetson Orin Nano Developer Kit carrier board specification is also used as reference only: it documents two 22-pin camera connectors, with J20 on the first CAM I2C mux output and J21 on the second CAM I2C mux output. That supports the local p3768 overlay interpretation, but it still does not prove that the CLB Developer Kit carrier, cable, and Raspberry Pi-style module path are electrically identical.
+
+The user's bundled booklet instruction to use the official Jetson Developer Kit image explains why the running software identifies as NVIDIA `p3768` rather than a CLB-specific DT. It does not remove the need to verify the physical CLB CSI connector routing, because the camera connector wiring can still differ from the reference carrier or depend on cable orientation/adapters.
 
 ## Additional Physical Facts From User
 
 - both Jetson 22-pin CSI connectors are populated with identical OV5647 modules;
 - the visible marking on the camera flex/module is `JT-ZERO-V2.0 YH`;
+- the kit name is `CLB Developer Kit`;
+- the box identifies the board as a partner board from `makerobo`;
+- the included booklet instructs installing the official Jetson Developer Kit image;
 - this is consistent with Raspberry Pi-market OV5647 hardware, but it does not by itself identify:
   - the exact FFC pinout presented to the carrier,
   - whether any adapter board is inline,
@@ -100,39 +111,43 @@ From the locally installed NVIDIA p3768 overlays:
   - `reset-gpios = <... 0xa0 ...>`
   - `lane_polarity = "0"`
 
-Inference from these local references and the live successful probe:
+Inference from these local references and the live successful probes:
 
-- route `A` is the cleaner first candidate because two separate NVIDIA overlays agree on:
+- route `A` was the cleaner first candidate because two separate NVIDIA overlays agree on:
   - the mux leg
   - `serial_b`
   - `port-index = 1`
   - reset GPIO token `0x3e`
   - `lane_polarity = 6`
-- route `C` remains plausible, but its lane-polarity handling is less uniform in the installed references.
-- after repeated route-A capture timeouts, route `C` is now the next controlled overlay experiment:
+- route `C` became the second controlled overlay experiment after repeated route-A capture timeouts:
   - `cam_i2cmux/i2c@1`;
   - `serial_c`;
   - `port-index = 2`;
   - reset/PWDN GPIO token `0xa0`;
   - lane polarity candidate `0`.
-- route `C` has now probe-validated:
+- route `C` has now probe-validated and stream-attempted:
   - Linux downstream bus `i2c-9`;
   - sensor address `0x36`;
   - chip ID `0x5647`;
   - Linux PWDN GPIO `486`;
   - VI route `platform:tegra-capture-vi:2`;
   - `/dev/video0` created.
+- route `C` still does not deliver frames:
+  - `VIDIOC_STREAMON` returns success;
+  - raw output remains zero bytes;
+  - RTCPU/NVCSI tracing shows no SOF, no EOF, no NVCSI interrupt, and no vinotify error in the capture window.
 
 ## Current Live Working Probe Facts
 
 - active sensor path in live DT:
-  - `cam_i2cmux/i2c@0/ov5647_a@36`
+  - `cam_i2cmux/i2c@1/ov5647_c@36`
 - active logical camera route:
-  - route `A`
-  - `serial_b`
-  - `port-index = 1`
+  - route `C`
+  - `serial_c`
+  - `port-index = 2`
   - `bus-width = <2>`
-  - `lane_polarity = "6"`
+  - `lane_polarity = "0"`
+  - `discontinuous_clk = "no"`
 - active I2C path:
   - base controller `3180000.i2c` as Linux `i2c-2`
   - muxed downstream bus `i2c-9`
@@ -141,15 +156,28 @@ Inference from these local references and the live successful probe:
   - `sudo i2ctransfer -f -y 9 w2@0x36 0x30 0x0a r1` -> `0x56`
   - `sudo i2ctransfer -f -y 9 w2@0x36 0x30 0x0b r1` -> `0x47`
 - current driver-specific power observation:
-  - with the current camera path, chip-ID reads failed when `ov5647_power_on()` drove `pwdn_gpio=397` low;
+  - with the earlier route-A path, chip-ID reads failed when `ov5647_power_on()` drove `pwdn_gpio=397` low;
   - chip-ID reads succeeded when `ov5647_power_on()` kept `pwdn_gpio=397` high;
+  - route-C uses `pwdn_gpio=486` with the same deassert-high driver policy;
   - this means the present path should currently be treated as `pwdn deasserted high` until carrier wiring proves otherwise.
+
+## Current No-SOF Evidence
+
+The latest route-C continuous-clock runtime test proves that the Linux/V4L2 path reaches stream start but no frame start reaches NVCSI/VI:
+
+- `VIDIOC_STREAMON` returns success;
+- register readback after stream-on confirms `0x0100 = 0x01`;
+- output-enable readback confirms `0x3000 = 0x0f`, `0x3001 = 0xff`, `0x3002 = 0xe4`;
+- MIPI clock register readback confirms the continuous-clock diagnostic value `0x4800 = 0x04`;
+- RTCPU/NVCSI trace contains no `vi_frame_begin`, `vi_frame_end`, `rtcpu_nvcsi_intr`, `rtcpu_vinotify_error`, `capture_event_sof`, or `capture_event_error`.
+
+This does not prove the sensor is incapable of output. It proves that the current DT route, physical lane path, cable/adapter path, or MIPI electrical output state is still not producing an observable SOF at the Jetson receiver.
 
 ## Blocking Next Checks
 
 1. Inspect the physical carrier board silkscreen and connector labels.
 2. Record the exact FFC cable and any adapter board between the carrier and OV5647 module.
 3. Confirm whether the carrier exposes Jetson devkit-style 22-pin connectors or a custom route.
-4. Map the physical connector the user actually used to the now-confirmed live logical route `A`.
-5. Keep the bring-up focused on this one confirmed route while raw capture is established.
-6. If route-C is tested, treat it as a separate boot-profile experiment and compare probe, media graph, and capture behavior against route A.
+4. Map each physical connector to the observed route-A and route-C logical paths.
+5. Verify whether the `JT-ZERO-V2.0 YH` Raspberry Pi-style OV5647 flex/module path is pin-compatible with the CLB/Jetson 22-pin connector orientation.
+6. Do not continue blind stream-register tuning until the physical CSI lane path or a known-good Jetson camera module cross-check is available.

@@ -8,7 +8,7 @@ Result: this checkpoint does not fix the zero-byte capture problem.
 
 ## Context
 
-- Target: Jetson Orin NX on CBL Developer Kit carrier.
+- Target: Jetson Orin NX on CLB Developer Kit carrier.
 - Active boot profile: previously confirmed `boot_profile=ov5647-dev`.
 - Active logical camera route: `serial_b`, `port-index = 1`, `bus-width = <2>`, `lane_polarity = "6"`.
 - Sensor: OV5647 on `i2c-9`, address `0x36`, chip ID `0x5647`.
