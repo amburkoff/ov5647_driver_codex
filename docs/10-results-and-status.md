@@ -218,6 +218,20 @@ Completed:
 - source-side no-duplicate-set-mode experiment is prepared and builds:
   - removed duplicate `ov5647_set_mode()` from `ov5647_start_streaming()`;
   - this avoids re-applying common/mode tables and software reset `0x0103` immediately before stream enable;
+- runtime validation of the no-duplicate-set-mode experiment still timed out:
+  - manual `rmmod` returned cleanly;
+  - manual `insmod full-delay` loaded module `srcversion=E9CE1D1EF58B852F6484431`;
+  - the new `ov5647_start_streaming: using mode already applied by tegracam set_mode` marker executed;
+  - single-frame capture reached `VIDIOC_STREAMON`;
+  - capture returned `rc=124`;
+  - raw output `artifacts/captures/20260422T080757Z/ov5647-640x480-bg10.raw` is zero bytes;
+  - VI still logged repeated `uncorr_err: request timed out after 2500 ms`;
+  - driver cleanup logs show `stop_streaming` and `power_off` returned successfully.
+
+Current blocking issue:
+
+- `/dev/video0` exists and the module lifecycle is now stable enough for manual testing, but no CSI frames are delivered on route A or route C.
+- The next safest source-side step is a diagnostic register readback dump around mode programming and stream enable, to verify the sensor's actual register state before changing more timing or DT assumptions.
   - rebuilt module has `srcversion=E9CE1D1EF58B852F6484431`;
   - runtime validation is not run yet.
 

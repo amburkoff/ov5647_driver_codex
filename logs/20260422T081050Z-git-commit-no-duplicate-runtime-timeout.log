@@ -1,0 +1,16 @@
+[main 544f4f6] test: record no-duplicate stream timeout
+ 16 files changed, 2190 insertions(+), 2 deletions(-)
+ create mode 100644 artifacts/captures/20260422T080757Z/ov5647-640x480-bg10.raw
+ create mode 100644 logs/20260422T080729Z-rmmod-trace.log
+ create mode 100644 logs/20260422T080740Z-manual-insmod-full-delay.dmesg-tail.log
+ create mode 100644 logs/20260422T080740Z-manual-insmod-full-delay.log
+ create mode 100644 logs/20260422T080740Z-manual-insmod-full-delay.modinfo.log
+ create mode 100644 logs/20260422T080757Z-single-frame-post-dmesg-tail.log
+ create mode 100644 logs/20260422T080757Z-single-frame-trace.log
+ create mode 100644 logs/20260422T080757Z-stream-live-dmesg.log
+ create mode 100644 logs/20260422T080903Z-after-no-duplicate-set-mode-capture-state.log
+ create mode 100644 logs/20260422T080903Z-no-duplicate-set-mode-capture-live-dmesg-summary.log
+ create mode 100644 logs/20260422T080903Z-no-duplicate-set-mode-capture-post-dmesg-summary.log
+ create mode 100644 logs/20260422T080903Z-no-duplicate-set-mode-reload-log-summary.log
+ create mode 100644 logs/20260422T081050Z-git-add-no-duplicate-runtime-timeout.log
+ create mode 100644 reports/2026-04-22-no-duplicate-set-mode-runtime-timeout.md

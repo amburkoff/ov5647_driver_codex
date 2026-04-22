@@ -143,13 +143,22 @@
   - tegracam called `set_mode()` before `start_streaming()`;
   - the driver also called `ov5647_set_mode()` inside `start_streaming()`;
   - because common regs include software reset `0x0103`, this could disrupt stream start timing;
-  - source fix is built but not runtime-tested yet.
+  - source fix is runtime-tested and the new marker executed.
+- Runtime validation of the no-duplicate-set-mode fix still timed out:
+  - loaded module `srcversion=E9CE1D1EF58B852F6484431`;
+  - `VIDIOC_STREAMON` returned success;
+  - raw output remained zero bytes;
+  - VI still reported repeated `uncorr_err: request timed out after 2500 ms`;
+  - therefore duplicate mode programming was a defect but not the complete root cause.
 - Current OV5647 `set_mode()` no longer enables streaming in source:
   - NVIDIA r36.5 tegracam calls `set_mode()` before `start_streaming()`;
   - NVIDIA sample drivers keep `set_mode()` to register programming and start output from `start_streaming()`;
-  - code-side fix is built, but runtime validation requires a future module reload.
+  - code-side fix is built and runtime-tested.
 - A likely zero-byte capture cause was found in the driver:
   - previous builds left OV5647 output-enable registers `0x3000/0x3001/0x3002` disabled after common reset;
   - upstream Linux enables those registers during power-on and disables them during power-off;
   - code-side fix is now loaded, but capture validation is pending.
 - `/dev/video0` exists and `v4l2-compliance` has passed, but raw image delivery and preview are not yet validated.
+- The next diagnostic gap is actual sensor register state during stream start:
+  - current logs prove callbacks execute, but do not prove key OV5647 registers remain configured after software reset and stream enable;
+  - add gated readbacks before further mode/DT changes.
