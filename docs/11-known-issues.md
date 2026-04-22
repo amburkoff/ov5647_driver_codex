@@ -5,6 +5,10 @@
 - The included booklet says to install the official Jetson Developer Kit image.
 - The running DT identifies NVIDIA reference carrier `p3768-0000`, which is consistent with the official Developer Kit image instruction but still does not prove CLB camera connector wiring.
 - The running system currently boots with `boot_profile=ov5647-dev`, while the carrier hardware still needs independent CLB-specific camera-route documentation beyond what the base DT exposes.
+- The active no-SOF problem is not yet explained by register stream-start state:
+  - RTCPU/NVCSI tracing showed no frame-start or NVCSI interrupt events during capture;
+  - the next diagnostic checkpoint is to log the active MCLK rate during power-on and retest with an explicit 24 MHz override;
+  - if that still produces no SOF, physical connector/cable/adapter mapping becomes the main suspect.
 - The safe boot entry still exists, but the on-disk default is currently set to `ov5647-dev` for the next controlled overlay-validation reboot cycle.
 - The active dev overlay is now a route-C continuous-clock candidate from the physical-connector point of view; it is logically validated by successful probe and `/dev/video0`, but not by SOF/frame delivery.
 - The physical camera modules are present on both 22-pin connectors, but the exact mapping from physical connector to route `A` or `C` is still unverified.

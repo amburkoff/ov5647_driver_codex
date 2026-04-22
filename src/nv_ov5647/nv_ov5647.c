@@ -1,3 +1,4 @@
+#include <linux/clk.h>
 #include <linux/delay.h>
 #include <linux/gpio.h>
 #include <linux/i2c.h>
@@ -103,6 +104,11 @@ static bool continuous_mipi_clock;
 module_param(continuous_mipi_clock, bool, 0644);
 MODULE_PARM_DESC(continuous_mipi_clock,
 		 "Diagnostic only: use upstream default continuous MIPI clock stream-on value 0x04 instead of 0x34. Default: false");
+
+static uint mclk_override_hz;
+module_param(mclk_override_hz, uint, 0644);
+MODULE_PARM_DESC(mclk_override_hz,
+		 "Diagnostic only: override tegracam DT-derived MCLK rate in Hz before power-on. Default: 0");
 
 static bool driver_registered;
 
@@ -650,6 +656,9 @@ static int ov5647_power_get(struct tegracam_device *tc_dev)
 		pw->mclk = NULL;
 		return err;
 	}
+	dev_info(dev, "%s: mclk get ok name=%s current_rate=%lu def_clk_freq=%d\n",
+		 __func__, pdata->mclk_name ?: OV5647_DEFAULT_MCLK,
+		 clk_get_rate(pw->mclk), s_data->def_clk_freq);
 
 	if (gpio_is_valid((int)pw->reset_gpio)) {
 		err = devm_gpio_request_one(dev, pw->reset_gpio,
@@ -721,11 +730,22 @@ static int ov5647_power_on(struct camera_common_data *s_data)
 		}
 	}
 
+	if (mclk_override_hz) {
+		dev_warn(dev, "%s: overriding def_clk_freq %d -> %u Hz\n",
+			 __func__, s_data->def_clk_freq, mclk_override_hz);
+		s_data->def_clk_freq = mclk_override_hz;
+	}
+
+	dev_info(dev, "%s: enabling mclk def_clk_freq=%d current_rate=%lu\n",
+		 __func__, s_data->def_clk_freq,
+		 pw->mclk ? clk_get_rate(pw->mclk) : 0);
 	err = camera_common_mclk_enable(s_data);
 	if (err) {
 		dev_err(dev, "%s: mclk enable failed err=%d\n", __func__, err);
 		goto disable_avdd;
 	}
+	dev_info(dev, "%s: mclk enabled rate=%lu\n",
+		 __func__, pw->mclk ? clk_get_rate(pw->mclk) : 0);
 
 	usleep_range(1000, 1500);
 
@@ -818,6 +838,8 @@ static int ov5647_power_off(struct camera_common_data *s_data)
 	if (gpio_is_valid((int)pw->reset_gpio))
 		gpio_set_value(pw->reset_gpio, 0);
 
+	dev_info(dev, "%s: disabling mclk rate=%lu\n",
+		 __func__, pw->mclk ? clk_get_rate(pw->mclk) : 0);
 	camera_common_mclk_disable(s_data);
 
 	if (pw->avdd)

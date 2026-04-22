@@ -363,3 +363,26 @@ Hardware naming correction:
 - User reports the box identifies it as a partner board from `makerobo`.
 - User reports the included booklet says to install the Jetson image from the official Developer Kit site.
 - Reasoning update: the live NVIDIA `p3768` DT identity is now expected for this installed image, but still does not prove that the CLB camera connector, adapter, lane polarity, and cable orientation match the p3768 reference carrier electrically.
+
+Update after MCLK diagnostic patch:
+
+- NVIDIA r36.5 `camera_common_mclk_enable()` sets the sensor clock to `s_data->def_clk_freq`;
+- `tegracam_core` derives `s_data->def_clk_freq` from DT `mclk_khz * 1000`;
+- the live route-C DT mode currently has `mclk_khz = "24000"`, so the expected enabled MCLK is 24 MHz;
+- the external `extperiph1` clock shows 51 MHz while the module is not loaded, but that idle clock-summary state does not prove the active sensor power-on rate;
+- driver-side diagnostic logs were added for:
+  - MCLK rate after `devm_clk_get()`;
+  - DT-derived `def_clk_freq` before power-on;
+  - effective MCLK rate after `camera_common_mclk_enable()`;
+  - MCLK rate before power-off;
+- diagnostic-only module parameter `mclk_override_hz` was added, default `0`;
+- manual insmod profile `full-delay-dump-contclk-mclk24` was added and passes `mclk_override_hz=24000000`;
+- module build passed after the patch;
+- no risky runtime command was run from Codex after this patch.
+
+Next manual runtime test:
+
+- if `nv_ov5647` is loaded, unload only if the current session can tolerate a hang; otherwise reboot/power-cycle first and keep Codex CLI context intact;
+- manually run `sudo /home/cam/ov5647_driver_codex/scripts/run_manual_insmod_diag.sh full-delay-dump-contclk-mclk24`;
+- then manually run `sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_rtcpu_trace.sh`;
+- report whether `insmod` succeeded, whether capture timed out, and whether the raw file size is still zero.
