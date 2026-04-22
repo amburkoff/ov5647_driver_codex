@@ -139,6 +139,11 @@
   - raw output remains zero bytes;
   - VI reports repeated `uncorr_err: request timed out after 2500 ms`;
   - this makes a simple A/C route selection error unlikely.
+- The capture path currently showed duplicate mode programming before the no-duplicate-set-mode fix:
+  - tegracam called `set_mode()` before `start_streaming()`;
+  - the driver also called `ov5647_set_mode()` inside `start_streaming()`;
+  - because common regs include software reset `0x0103`, this could disrupt stream start timing;
+  - source fix is built but not runtime-tested yet.
 - Current OV5647 `set_mode()` no longer enables streaming in source:
   - NVIDIA r36.5 tegracam calls `set_mode()` before `start_streaming()`;
   - NVIDIA sample drivers keep `set_mode()` to register programming and start output from `start_streaming()`;

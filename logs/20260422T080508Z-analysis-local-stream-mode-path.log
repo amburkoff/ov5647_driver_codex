@@ -1,0 +1,152 @@
+# local stream path
+		__func__, val);
+	return 0;
+}
+
+static int ov5647_set_frame_rate(struct tegracam_device *tc_dev, s64 val)
+{
+	dev_dbg(tc_dev->dev, "%s: frame_rate=%lld not applied yet\n",
+		__func__, val);
+	return 0;
+}
+
+static int ov5647_set_mode(struct tegracam_device *tc_dev)
+{
+	struct camera_common_data *s_data = tc_dev->s_data;
+	struct ov5647 *priv = to_ov5647(tc_dev);
+	int mode = s_data ? s_data->mode : -1;
+	u8 vc_ctrl;
+	int err;
+
+	if (mode < 0 || mode >= ARRAY_SIZE(ov5647_modes)) {
+		dev_err(tc_dev->dev, "%s: invalid mode index %d\n", __func__, mode);
+		return -EINVAL;
+	}
+
+	if (!priv || !priv->board_setup_done) {
+		dev_err(tc_dev->dev, "%s: board setup not complete\n", __func__);
+		return -EIO;
+	}
+
+	dev_info(tc_dev->dev,
+		 "%s: applying mode=%d name=%s %ux%u\n",
+		 __func__, mode, ov5647_modes[mode].name,
+		 ov5647_modes[mode].width, ov5647_modes[mode].height);
+
+	err = ov5647_write_table(s_data, ov5647_common_regs);
+	if (err) {
+		dev_err(tc_dev->dev, "%s: common table failed err=%d\n",
+			__func__, err);
+		return err;
+	}
+
+	err = ov5647_write_table(s_data, ov5647_modes[mode].table);
+	if (err) {
+		dev_err(tc_dev->dev, "%s: mode table failed err=%d\n",
+			__func__, err);
+		return err;
+	}
+
+	err = ov5647_read_reg(s_data, OV5647_REG_MIPI_CTRL14, &vc_ctrl);
+	if (err)
+		return err;
+
+	vc_ctrl &= ~(3 << 6);
+	err = ov5647_write_reg(s_data, OV5647_REG_MIPI_CTRL14, vc_ctrl);
+	if (err)
+		return err;
+
+	dev_info(tc_dev->dev, "%s: mode applied, sensor remains in standby\n",
+		 __func__);
+	return 0;
+}
+
+static int ov5647_start_streaming(struct tegracam_device *tc_dev)
+{
+	struct camera_common_data *s_data = tc_dev->s_data;
+	u8 val = OV5647_MIPI_CTRL00_BUS_IDLE |
+		 OV5647_MIPI_CTRL00_CLOCK_LANE_GATE |
+		 OV5647_MIPI_CTRL00_LINE_SYNC_ENABLE;
+	int err;
+
+	dev_info(tc_dev->dev, "%s: enter\n", __func__);
+
+	err = ov5647_set_mode(tc_dev);
+	if (err) {
+		dev_err(tc_dev->dev, "%s: set_mode failed err=%d\n",
+			__func__, err);
+		return err;
+	}
+
+	err = ov5647_write_reg(s_data, OV5647_REG_MIPI_CTRL00, val);
+	if (err)
+		return err;
+
+	err = ov5647_write_reg(s_data, OV5647_REG_FRAME_OFF_NUMBER, 0x00);
+	if (err)
+		return err;
+
+	err = ov5647_write_reg(s_data, OV5647_REG_MODE_SELECT,
+			       OV5647_MODE_STREAMING);
+	if (err)
+		return err;
+
+	err = ov5647_write_reg(s_data, OV5640_REG_PAD_OUT, 0x00);
+	if (err)
+		return err;
+
+	dev_info(tc_dev->dev, "%s: exit success\n", __func__);
+	return 0;
+}
+
+static int ov5647_stop_streaming(struct tegracam_device *tc_dev)
+{
+	struct camera_common_data *s_data = tc_dev->s_data;
+	int err;
+
+	dev_info(tc_dev->dev, "%s: enter\n", __func__);
+
+	err = ov5647_write_stream_stop_regs(s_data, true);
+	if (err)
+		return err;
+
+
+# local mode table
+static const struct reg_8 ov5647_mode0_640x480_10bpp[] = {
+	{0x3036, 0x46},
+	{0x3821, 0x01},
+	{0x3820, 0x41},
+	{0x3612, 0x59},
+	{0x3618, 0x00},
+	{0x3814, 0x35},
+	{0x3815, 0x35},
+	{0x3708, 0x64},
+	{0x3709, 0x52},
+	{0x3800, 0x00},
+	{0x3801, 0x10},
+	{0x3802, 0x00},
+	{0x3803, 0x00},
+	{0x3804, 0x0a},
+	{0x3805, 0x2f},
+	{0x3806, 0x07},
+	{0x3807, 0x9f},
+	{0x3808, 0x02},
+	{0x3809, 0x80},
+	{0x380a, 0x01},
+	{0x380b, 0xe0},
+	{0x380c, 0x07}, /* HTS = 1852, upstream VGA timing */
+	{0x380d, 0x3c},
+	{0x380e, 0x01}, /* VTS = 0x01f8, upstream VGA timing */
+	{0x380f, 0xf8},
+	{0x3a09, 0x2e},
+	{0x3a0a, 0x00},
+	{0x3a0b, 0xfb},
+	{0x3a0d, 0x02},
+	{0x3a0e, 0x01},
+	{0x4004, 0x02},
+	{0x4800, 0x34},
+	{ OV5647_TABLE_END, 0x00 },
+};
+
+static const int ov5647_30fps[] = {
+	30,

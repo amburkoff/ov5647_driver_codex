@@ -1,0 +1,12 @@
+ M docs/10-results-and-status.md
+ M docs/11-known-issues.md
+ M src/nv_ov5647/nv_ov5647.c
+?? logs/20260422T080508Z-analysis-local-stream-mode-path.log
+?? logs/20260422T080508Z-analysis-route-c-dt-mode-fields.log
+?? logs/20260422T080508Z-analysis-upstream-rpi-mode-metadata.log
+?? logs/20260422T080508Z-analysis-upstream-rpi-stream-path.log
+?? logs/20260422T080524Z-analysis-nvidia-sample-start-streaming-search.log
+?? logs/20260422T080544Z-build-module-no-duplicate-set-mode.log
+?? logs/20260422T080544Z-build_module.log
+?? logs/20260422T080639Z-git-add-no-duplicate-set-mode.log
+?? reports/2026-04-22-no-duplicate-set-mode-prep.md

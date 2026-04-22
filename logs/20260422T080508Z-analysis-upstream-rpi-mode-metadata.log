@@ -1,0 +1,161 @@
+# upstream mode metadata
+328-	{0x3502, 0xf0},
+329-	{0x3212, 0xa0},
+330-	{0x0100, 0x01},
+331-};
+332-
+333:static const struct reg_sequence ov5647_640x480_10bpp[] = {
+334-	{0x3036, 0x46},
+335-	{0x3821, 0x03},
+336-	{0x3820, 0x41},
+337-	{0x3612, 0x59},
+338-	{0x3618, 0x00},
+339-	{0x3814, 0x35},
+340-	{0x3815, 0x35},
+341-	{0x3708, 0x64},
+342-	{0x3709, 0x52},
+343-	{0x3800, 0x00},
+344-	{0x3801, 0x10},
+345-	{0x3802, 0x00},
+346-	{0x3803, 0x00},
+347-	{0x3804, 0x0a},
+348-	{0x3805, 0x2f},
+349-	{0x3806, 0x07},
+350-	{0x3807, 0x9f},
+351-	{0x3808, 0x02},
+352-	{0x3809, 0x80},
+353-	{0x380a, 0x01},
+354-	{0x380b, 0xe0},
+355-	{0x3a09, 0x2e},
+356-	{0x3a0a, 0x00},
+357-	{0x3a0b, 0xfb},
+358-	{0x3a0d, 0x02},
+359-	{0x3a0e, 0x01},
+360-	{0x4004, 0x02},
+361-	{0x4800, 0x34},
+362-	{0x0100, 0x01},
+363-};
+--
+446-		},
+447-		.pixel_rate	= 58333000,
+448-		.link_freq_index = FREQ_INDEX_VGA,
+449-		.hts		= 1852,
+450-		.vts		= 0x1f8,
+451:		.reg_list	= ov5647_640x480_10bpp,
+452:		.num_regs	= ARRAY_SIZE(ov5647_640x480_10bpp)
+453-	},
+454-};
+455-
+456-/* Default sensor mode is 2x2 binned 640x480 SBGGR10_1X10. */
+457-#define OV5647_DEFAULT_MODE	(&ov5647_modes[3])
+458-#define OV5647_DEFAULT_FORMAT	(ov5647_modes[3].format)
+459-
+460-static int ov5647_set_virtual_channel(struct v4l2_subdev *sd, int channel)
+461-{
+462-	struct ov5647 *sensor = to_sensor(sd);
+463-
+464-	return cci_update_bits(sensor->regmap, OV5647_REG_MIPI_CTRL14,
+465-			       OV5647_REG_MIPI_CTRL14_CHANNEL_MASK,
+466-			       channel << OV5647_REG_MIPI_CTRL14_CHANNEL_SHIFT,
+467-			       NULL);
+468-}
+469-
+470-static int ov5647_set_mode(struct v4l2_subdev *sd)
+471-{
+472-	struct i2c_client *client = v4l2_get_subdevdata(sd);
+473-	struct ov5647 *sensor = to_sensor(sd);
+474-	u64 resetval, rdval;
+475-	int ret;
+476-
+477-	ret = cci_read(sensor->regmap, OV5647_SW_STANDBY, &rdval, NULL);
+478-	if (ret < 0)
+479-		return ret;
+480-
+481-	ret = regmap_multi_reg_write(sensor->regmap, ov5647_common_regs,
+482-				     ARRAY_SIZE(ov5647_common_regs));
+
+# rpi mode metadata
+335-	{0x3502, 0xf0},
+336-	{0x3212, 0xa0},
+337-	{0x0100, 0x01},
+338-};
+339-
+340:static struct regval_list ov5647_640x480_10bpp[] = {
+341-	{0x3036, 0x46},
+342-	{0x3821, 0x01},
+343-	{0x3820, 0x41},
+344-	{0x3612, 0x59},
+345-	{0x3618, 0x00},
+346-	{0x3814, 0x35},
+347-	{0x3815, 0x35},
+348-	{0x3708, 0x64},
+349-	{0x3709, 0x52},
+350-	{0x3800, 0x00},
+351-	{0x3801, 0x10},
+352-	{0x3802, 0x00},
+353-	{0x3803, 0x00},
+354-	{0x3804, 0x0a},
+355-	{0x3805, 0x2f},
+356-	{0x3806, 0x07},
+357-	{0x3807, 0x9f},
+358-	{0x3808, 0x02},
+359-	{0x3809, 0x80},
+360-	{0x380a, 0x01},
+361-	{0x380b, 0xe0},
+362-	{0x3a09, 0x2e},
+363-	{0x3a0a, 0x00},
+364-	{0x3a0b, 0xfb},
+365-	{0x3a0d, 0x02},
+366-	{0x3a0e, 0x01},
+367-	{0x4004, 0x02},
+368-	{0x4800, 0x34},
+369-	{0x0100, 0x01},
+370-};
+371-
+372-static const struct ov5647_mode ov5647_modes[] = {
+373-	/* 2592x1944 full resolution full FOV 10-bit mode. */
+374-	{
+375-		.format = {
+--
+453-		},
+454-		.pixel_rate	= 55000000,
+455-		.link_freq_index = FREQ_INDEX_VGA,
+456-		.hts		= 1852,
+457-		.vts		= 0x1f8,
+458:		.reg_list	= ov5647_640x480_10bpp,
+459:		.num_regs	= ARRAY_SIZE(ov5647_640x480_10bpp)
+460-	},
+461-};
+462-
+463-/* Default sensor mode is 2x2 binned 640x480 SBGGR10_1X10. */
+464-#define OV5647_DEFAULT_MODE	(&ov5647_modes[3])
+465-#define OV5647_DEFAULT_FORMAT	(ov5647_modes[3].format)
+466-
+467-static int ov5647_write16(struct v4l2_subdev *sd, u16 reg, u16 val)
+468-{
+469-	unsigned char data[4] = { reg >> 8, reg & 0xff, val >> 8, val & 0xff};
+470-	struct i2c_client *client = v4l2_get_subdevdata(sd);
+471-	int ret;
+472-
+473-	ret = i2c_master_send(client, data, 4);
+474-	/*
+475-	 * Writing the wrong number of bytes also needs to be flagged as an
+476-	 * error. Success needs to produce a 0 return code.
+477-	 */
+478-	if (ret == 4) {
+479-		ret = 0;
+480-	} else {
+481-		dev_dbg(&client->dev, "%s: i2c write error, reg: %x\n",
+482-			__func__, reg);
+483-		return ret;
+484-	}
+485-
+486-	return 0;
+487-}
+488-
+489-static int ov5647_write(struct v4l2_subdev *sd, u16 reg, u8 val)
+490-{
+491-	unsigned char data[3] = { reg >> 8, reg & 0xff, val};
+492-	struct i2c_client *client = v4l2_get_subdevdata(sd);
+493-	int ret;
+494-

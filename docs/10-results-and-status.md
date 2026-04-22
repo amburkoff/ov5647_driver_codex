@@ -215,6 +215,11 @@ Completed:
   - raw output `artifacts/captures/20260422T080247Z/ov5647-640x480-bg10.raw` is zero bytes;
   - VI still logged repeated `uncorr_err: request timed out after 2500 ms`;
   - driver cleanup logs show `stop_streaming` and `power_off` returned successfully.
+- source-side no-duplicate-set-mode experiment is prepared and builds:
+  - removed duplicate `ov5647_set_mode()` from `ov5647_start_streaming()`;
+  - this avoids re-applying common/mode tables and software reset `0x0103` immediately before stream enable;
+  - rebuilt module has `srcversion=E9CE1D1EF58B852F6484431`;
+  - runtime validation is not run yet.
 
 Not completed yet:
 
@@ -227,5 +232,5 @@ Not completed yet:
 Next smallest safe step:
 
 - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
-- prepare one source-side experiment focused on stream-start/mode timing consistency, then rebuild;
-- after rebuild, ask the user to manually unload/load/capture again.
+- ask the user to manually unload/load/capture the rebuilt no-duplicate-set-mode module;
+- verify the new dmesg marker appears during route-C `STREAMON`.

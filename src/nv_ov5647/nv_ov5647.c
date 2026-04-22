@@ -848,13 +848,9 @@ static int ov5647_start_streaming(struct tegracam_device *tc_dev)
 	int err;
 
 	dev_info(tc_dev->dev, "%s: enter\n", __func__);
-
-	err = ov5647_set_mode(tc_dev);
-	if (err) {
-		dev_err(tc_dev->dev, "%s: set_mode failed err=%d\n",
-			__func__, err);
-		return err;
-	}
+	dev_info(tc_dev->dev,
+		 "%s: using mode already applied by tegracam set_mode\n",
+		 __func__);
 
 	err = ov5647_write_reg(s_data, OV5647_REG_MIPI_CTRL00, val);
 	if (err)

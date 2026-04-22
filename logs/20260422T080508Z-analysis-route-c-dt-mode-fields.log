@@ -1,0 +1,163 @@
+# local DT route C mode
+4793-			};
+4794-
+4795-			i2c@1 {
+4796-				#address-cells = <0x01>;
+4797-				#size-cells = <0x00>;
+4798-				status = "okay";
+4799-				reg = <0x01>;
+4800-
+4801:				ov5647_c@36 {
+4802-					sensor_model = "ov5647";
+4803-					clock-names = "extperiph1";
+4804-					devnode = "video0";
+4805-					pwdn-gpios = <0xf3 0xa0 0x00>;
+4806-					clocks = <0x03 0x07>;
+4807-					mclk = "extperiph1";
+4808-					compatible = "ovti,ov5647";
+4809-					physical_h = "2.738";
+4810-					use_sensor_mode_id = "true";
+4811-					avdd-reg = "vana";
+4812-					status = "okay";
+4813-					reg = <0x36>;
+4814-					physical_w = "3.674";
+4815-					dvdd-reg = "vdig";
+4816-					iovdd-reg = "vif";
+4817-
+4818-					mode0 {
+4819-						discontinuous_clk = "yes";
+4820-						readout_orientation = "0";
+4821-						exposure_factor = "1000000";
+4822-						mclk_khz = "24000";
+4823-						phy_mode = "DPHY";
+4824-						default_gain = "32";
+4825-						dpcm_enable = "false";
+4826-						max_gain_val = "1023";
+4827-						framerate_factor = "1000000";
+4828-						min_hdr_ratio = "1";
+4829-						num_lanes = "2";
+4830-						max_framerate = "60000000";
+4831-						min_gain_val = "16";
+4832-						pixel_phase = "bggr";
+4833-						mode_type = "bayer";
+4834-						pix_clk_hz = "58333000";
+4835-						step_gain_val = "1";
+4836-						cil_settletime = "0";
+4837-						default_exp_time = "1000";
+4838-						active_h = "480";
+4839-						max_exp_time = "16000";
+4840-						lane_polarity = "0";
+4841-						active_w = "640";
+4842-						min_exp_time = "13";
+4843-						max_hdr_ratio = "1";
+4844-						min_framerate = "5000000";
+4845-						mclk_multiplier = "2.43";
+4846-						step_exp_time = "1";
+4847-						default_framerate = "60000000";
+4848-						csi_pixel_bit_depth = "10";
+4849-						step_framerate = "1";
+--
+7023-
+7024-			module1 {
+7025-				badge = "probe_ov5647_route_c";
+7026-				position = "rear";
+7027-				orientation = "1";
+7028-
+7029-				drivernode0 {
+7030-					pcl_id = "v4l2_sensor";
+7031:					sysfs-device-tree = "/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36";
+7032-				};
+7033-			};
+7034-		};
+7035-	};
+7036-
+7037-	psci {
+7038-		method = "smc";
+7039-		compatible = "arm,psci-1.0";
+7040-		status = "okay";
+7041-	};
+7042-
+7043-	display@13800000 {
+7044-		power-domains = <0x03 0x03>;
+7045-		iommus = <0x109 0x01>;
+7046-		interconnect-names = "dma-mem\0read-1";
+7047-		nvidia,bpmp = <0x03>;
+7048-		clock-names = "nvdisplayhub_clk\0nvdisplay_disp_clk\0nvdisplay_p0_clk\0nvdisplay_p1_clk\0dpaux0_clk\0fuse_clk\0dsipll_vco_clk\0dsipll_clkoutpn_clk\0dsipll_clkouta_clk\0sppll0_vco_clk\0sppll0_clkoutpn_clk\0sppll0_clkouta_clk\0sppll0_clkoutb_clk\0sppll0_div10_clk\0sppll0_div25_clk\0sppll0_div27_clk\0sppll1_vco_clk\0sppll1_clkoutpn_clk\0sppll1_div27_clk\0vpll0_ref_clk\0vpll0_clk\0vpll1_clk\0nvdisplay_p0_ref_clk\0rg0_clk\0rg1_clk\0disppll_clk\0disphubpll_clk\0dsi_lp_clk\0dsi_core_clk\0dsi_pixel_clk\0pre_sor0_clk\0pre_sor1_clk\0dp_link_ref_clk\0sor_linka_input_clk\0sor_linka_afifo_clk\0sor_linka_afifo_m_clk\0rg0_m_clk\0rg1_m_clk\0sor0_m_clk\0sor1_m_clk\0pllhub_clk\0sor0_clk\0sor1_clk\0sor_pad_input_clk\0pre_sf0_clk\0sf0_clk\0sf1_clk\0dsi_pad_input_clk\0pre_sor0_ref_clk\0pre_sor1_ref_clk\0sor0_ref_pll_clk\0sor1_ref_pll_clk\0sor0_ref_clk\0sor1_ref_clk\0osc_clk\0dsc_clk\0maud_clk\0aza_2xbit_clk\0aza_bit_clk\0mipi_cal_clk\0uart_fst_mipi_cal_clk\0sor0_div_clk";
+7049-		interconnects = <0x57 0x92 0x58 0x57 0xa1 0x58>;
+7050-		reg-names = "nvdisplay\0dpaux0\0hdacodec\0mipical";
+7051-		resets = <0x03 0x10 0x03 0x08 0x03 0x03 0x03 0x25>;
+7052-		os_gpio_hotplug_a = <0xf3 0x60 0x00>;
+7053-		memory-region = <0x1f4>;
+7054-		interrupts = <0x00 0x1a0 0x04 0x00 0x1a3 0x04 0x00 0x3d 0x04>;
+
+# overlay source route C mode
+141-							sensor_model = "ov5647";
+142-							use_sensor_mode_id = "true";
+143-							mclk = "extperiph1";
+144-							clocks = <&bpmp 0x07>;
+145-							clock-names = "extperiph1";
+146-							avdd-reg = "vana";
+147-							dvdd-reg = "vdig";
+148-							iovdd-reg = "vif";
+149-							pwdn-gpios = <&gpio 0xa0 0>;
+150-
+151:							mode0 {
+152-								mclk_khz = "24000";
+153-								num_lanes = "2";
+154-								tegra_sinterface = "serial_c";
+155-								lane_polarity = "0";
+156-								phy_mode = "DPHY";
+157-								discontinuous_clk = "yes";
+158-								dpcm_enable = "false";
+159-								cil_settletime = "0";
+160-								active_w = "640";
+161-								active_h = "480";
+162-								mode_type = "bayer";
+163-								pixel_phase = "bggr";
+164-								csi_pixel_bit_depth = "10";
+165-								readout_orientation = "0";
+166-								line_length = "1852";
+167-								inherent_gain = "1";
+168-								mclk_multiplier = "2.43";
+169-								pix_clk_hz = "58333000";
+170-								gain_factor = "16";
+171-								framerate_factor = "1000000";
+172-								exposure_factor = "1000000";
+173-								min_gain_val = "16";
+174-								max_gain_val = "1023";
+175-								step_gain_val = "1";
+176-								default_gain = "32";
+177-								min_hdr_ratio = "1";
+178-								max_hdr_ratio = "1";
+179-								min_framerate = "5000000";
+180-								max_framerate = "60000000";
+181-								step_framerate = "1";
+182-								default_framerate = "60000000";
+183-								min_exp_time = "13";
+184-								max_exp_time = "16000";
+185-								step_exp_time = "1";
+186-								default_exp_time = "1000";
+187-								embedded_metadata_height = "0";
+188-							};
+189-
+190-							ports {
+191-								#address-cells = <1>;
+192-								#size-cells = <0>;
+193-
+194-								port@0 {
+195-									reg = <0>;
+196-
+197-									ov5647_probe_c_out0: endpoint {
+198-										port-index = <2>;
+199-										bus-width = <2>;
+200-										remote-endpoint = <&ov5647_probe_c_csi_in0>;
+201-									};
+202-								};
+203-							};
+204-						};
+205-					};
+206-				};
+207-			};
+208-		};
+209-	};
+210-};

@@ -1,0 +1,26 @@
+# local NVIDIA sample availability
+/usr/src/nvidia/nvidia-oot/include/uapi/media/camera_device.h
+/usr/src/nvidia/nvidia-oot/include/uapi/media/tegra_camera_platform.h
+/usr/src/nvidia/nvidia-oot/include/uapi/media/imx219.h
+/usr/src/nvidia/nvidia-oot/include/media/camera_version_utils.h
+/usr/src/nvidia/nvidia-oot/include/media/tegra_v4l2_camera.h
+/usr/src/nvidia/nvidia-oot/include/media/tegra_camera_platform.h
+/usr/src/nvidia/nvidia-oot/include/media/tegra_camera_core.h
+/usr/src/nvidia/nvidia-oot/include/media/imx477.h
+/usr/src/nvidia/nvidia-oot/include/media/camera_common.h
+/usr/src/nvidia/nvidia-oot/include/media/tegra-v4l2-camera.h
+/usr/src/nvidia/nvidia-oot/include/media/imx219.h
+/usr/src/nvidia/nvidia-oot/include/media/tegra_camera_dev_mfi.h
+/usr/src/nvidia/nvidia-oot/include/linux/tegra-camera-rtcpu.h
+/usr/src/nvidia/nvidia-oot/include/trace/events/imx185.h
+/usr/src/nvidia/nvidia-oot/include/trace/events/camera_common.h
+
+# sample start_streaming strings in installed objects/sources
+/usr/src/nvidia/nvidia-oot/include/media/csi.h:144:int tegra_csi_start_streaming(struct tegra_csi_channel *chan, int port_idx);
+/usr/src/nvidia/nvidia-oot/include/media/mc_common.h:423:	int (*vi_start_streaming)(struct vb2_queue *vq, u32 count);
+/usr/src/nvidia/nvidia-oot/include/media/mc_common.h:441:	int (*csi_start_streaming)(struct tegra_csi_channel *chan,
+/usr/src/nvidia/nvidia-oot/include/media/max9296.h:109:int max9296_start_streaming(struct device *dev, struct device *s_dev);
+/usr/src/nvidia/nvidia-oot/include/media/max9296.h:116: * @note  Both @c max9296_start_streaming and @c max9296_stop_streaming
+/usr/src/nvidia/nvidia-oot/include/media/camera_common.h:169:	int (*start_streaming)(struct tegracam_device *tc_dev);
+/usr/src/nvidia/nvidia-oot/Module.symvers:297:0xa165114a	max9296_start_streaming	/dvs/git/dirty/git-master_linux/out/nvidia/kernel-gvs_kernel_variant/kernel-nvidia-oot/nvidia-oot/drivers/media/i2c/max9296	EXPORT_SYMBOL	
+/usr/src/nvidia/nvidia-oot/Module.symvers:550:0x49c1f2a6	tegra_csi_start_streaming	/dvs/git/dirty/git-master_linux/out/nvidia/kernel-gvs_kernel_variant/kernel-nvidia-oot/nvidia-oot/drivers/media/platform/tegra/camera/tegra-camera	EXPORT_SYMBOL	
