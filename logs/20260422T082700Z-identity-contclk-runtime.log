@@ -1,0 +1,15 @@
+logs/20260422T082504Z-rmmod-trace.log:[20260422T082504Z] rmmod rc=0
+logs/20260422T082514Z-manual-insmod-full-delay-dump-contclk.dmesg-tail.log:[ 1845.309489] nv_ov5647: diagnostics dump_stream_regs=1
+logs/20260422T082514Z-manual-insmod-full-delay-dump-contclk.dmesg-tail.log:[ 1845.309490] nv_ov5647: diagnostics continuous_mipi_clock=1
+logs/20260422T082514Z-manual-insmod-full-delay-dump-contclk.log:[20260422T082514Z] params=register_i2c_driver=1 allow_hw_probe=1 dump_stream_regs=1 continuous_mipi_clock=1 unload_marker_delay_ms=500
+logs/20260422T082514Z-manual-insmod-full-delay-dump-contclk.log:[20260422T082514Z] insmod rc=0
+logs/20260422T082514Z-manual-insmod-full-delay-dump-contclk.modinfo.log:srcversion:     92FD1291C5FC74E28DC6E26
+logs/20260422T082514Z-manual-insmod-full-delay-dump-contclk.modinfo.log:parm:           continuous_mipi_clock:Diagnostic only: use upstream default continuous MIPI clock stream-on value 0x04 instead of 0x34. Default: false (bool)
+logs/20260422T082520Z-single-frame-post-dmesg-tail.log:[ 1845.309489] nv_ov5647: diagnostics dump_stream_regs=1
+logs/20260422T082520Z-single-frame-post-dmesg-tail.log:[ 1845.309490] nv_ov5647: diagnostics continuous_mipi_clock=1
+logs/20260422T082520Z-single-frame-post-dmesg-tail.log:[ 1852.867041] nv_ov5647 9-0036: ov5647_start_streaming: mipi_ctrl00 stream value=0x04 continuous_mipi_clock=1
+logs/20260422T082520Z-stream-live-dmesg.log:[ 1238.573132] nv_ov5647: diagnostics dump_stream_regs=1
+logs/20260422T082520Z-stream-live-dmesg.log:[ 1513.863793] nv_ov5647: diagnostics dump_stream_regs=1
+logs/20260422T082520Z-stream-live-dmesg.log:[ 1845.309489] nv_ov5647: diagnostics dump_stream_regs=1
+logs/20260422T082520Z-stream-live-dmesg.log:[ 1845.309490] nv_ov5647: diagnostics continuous_mipi_clock=1
+logs/20260422T082520Z-stream-live-dmesg.log:[ 1852.867041] nv_ov5647 9-0036: ov5647_start_streaming: mipi_ctrl00 stream value=0x04 continuous_mipi_clock=1

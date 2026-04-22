@@ -1,0 +1,15 @@
+[20260422T082520Z] starting live dmesg capture
+[20260422T082520Z] running single-frame capture to /home/cam/ov5647_driver_codex/artifacts/captures/20260422T082520Z/ov5647-640x480-bg10.raw
+[20260422T082520Z] timeout=30s
+		VIDIOC_REQBUFS returned 0 (Success)
+		VIDIOC_QUERYBUF returned 0 (Success)
+		VIDIOC_QUERYBUF returned 0 (Success)
+		VIDIOC_QUERYBUF returned 0 (Success)
+		VIDIOC_QUERYBUF returned 0 (Success)
+		VIDIOC_QBUF returned 0 (Success)
+		VIDIOC_QBUF returned 0 (Success)
+		VIDIOC_QBUF returned 0 (Success)
+		VIDIOC_QBUF returned 0 (Success)
+		VIDIOC_STREAMON returned 0 (Success)
+[20260422T082520Z] capture rc=124
+[20260422T082520Z] raw size=0 bytes path=/home/cam/ov5647_driver_codex/artifacts/captures/20260422T082520Z/ov5647-640x480-bg10.raw

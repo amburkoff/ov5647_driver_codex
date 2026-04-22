@@ -269,7 +269,21 @@ Current next focus:
   - new gated module parameter `continuous_mipi_clock=1` selects `0x4800=0x04`;
   - new manual profile `full-delay-dump-contclk` is available;
   - rebuilt `.ko` `srcversion=92FD1291C5FC74E28DC6E26`;
-  - runtime validation is pending manual reload and capture.
+  - runtime validation has now been run.
+- runtime validation of the continuous MIPI clock experiment still timed out:
+  - manual `rmmod` returned `rc=0`;
+  - manual `insmod full-delay-dump-contclk` returned `rc=0`;
+  - loaded `.ko` `srcversion=92FD1291C5FC74E28DC6E26`;
+  - `continuous_mipi_clock=1`;
+  - `ov5647_start_streaming` used `mipi_ctrl00 stream value=0x04`;
+  - readback confirmed `after_stream_on 0x4800=0x04`;
+  - readback also confirmed `0x0100=0x01` and output-enable registers remain restored;
+  - capture still returned `rc=124`, raw output is zero bytes, and VI still logged timeout errors.
+
+Current next focus:
+
+- simple stream-start bit fixes are not enough;
+- focus must shift to DT timing, lane polarity/ordering, physical adapter compatibility, or missing mode-table registers.
   - rebuilt module has `srcversion=E9CE1D1EF58B852F6484431`;
   - runtime validation is not run yet.
 

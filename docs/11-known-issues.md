@@ -176,4 +176,9 @@
 - MIPI clock mode remains unproven:
   - current default stream-on value is `0x4800=0x34`;
   - upstream Linux OV5647 uses `0x4800=0x04` unless non-continuous clock is requested;
-  - a gated `continuous_mipi_clock=1` experiment is built but not runtime-tested yet.
+  - gated `continuous_mipi_clock=1` runtime test also timed out.
+- Stream-start register state is now internally consistent but still no frames:
+  - `0x0100=0x01`;
+  - `0x3000=0x0f`, `0x3001=0xff`, `0x3002=0xe4`;
+  - both `0x4800=0x34` and `0x4800=0x04` have been tried;
+  - VI still times out, so the remaining blocker is likely outside these simple stream-start fields.
