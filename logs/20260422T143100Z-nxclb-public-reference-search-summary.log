@@ -1,0 +1,17 @@
+[20260422T143100Z] public NXCLB/CLB reference search summary
+Search queries:
+- makerobo CLB Developer Kit Jetson Orin NX camera CSI connector pinout
+- CLB Developer Kit Jetson Orin NX makerobo
+- JT-ZERO-V2.0 YH OV5647 camera cable pinout
+
+Relevant sources found:
+- https://fccid.io/2BE7C-NXCLB
+  FCC listing identifies FCC ID 2BE7C-NXCLB as Hunan Chuang Le Bo Intelligent Technology Co., Ltd. Embedded development board NXCLB.
+- https://fccid.io/2BE7C-NXCLB/User-Manual/User-Manual-7157074.pdf
+  FCC-hosted user manual for NXCLB, with camera connector tables J20/J21.
+- https://developer.nvidia.com/embedded/learn/jetson-orin-nano-devkit-user-guide/howto.html
+  NVIDIA official guide: Raspberry Pi Camera Module v2 needs 15-pin to 22-pin conversion cable; Jetson-side 22-pin contacts face bottom side.
+- https://developer.nvidia.com/downloads/assets/embedded/secure/jetson/orin_nano/docs/jetson_orin_nano_devkit_carrier_board_specification_sp.pdf
+  NVIDIA official carrier spec: J20/J21 22-pin camera connector reference.
+
+No stable authoritative source was found for JT-ZERO-V2.0 YH pinout in this search pass.

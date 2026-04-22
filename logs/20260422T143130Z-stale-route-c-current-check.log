@@ -1,0 +1,2 @@
+[20260422T143130Z] stale active route checks
+docs/01a-clb-carrier-mapping.md:16:| Running camera overlay | Confirmed present | Live DT contains `cam_i2cmux` and active `ov5647_c@36` |

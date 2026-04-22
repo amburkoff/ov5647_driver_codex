@@ -1,0 +1,51 @@
+[20260422T143230Z] stage NXCLB public reference docs
+ docs/01a-clb-carrier-mapping.md                    |  38 +-
+ docs/02-hardware-assumptions.md                    |   4 +-
+ docs/03-sources-and-references.md                  |  11 +
+ ...20260422T142500Z-git-commit-route-a-timeout.log |  47 ++
+ logs/20260422T142520Z-git-push-route-a-timeout.log |   3 +
+ ...422T142545Z-post-push-route-a-timeout-state.log | 473 ++++++++++++++++++++
+ ...2900Z-read-clb-mapping-before-nxclb-fcc-doc.log | 120 ++++++
+ ...d-hardware-assumptions-before-nxclb-fcc-doc.log |  30 ++
+ ...2T142900Z-read-sources-before-nxclb-fcc-doc.log |  78 ++++
+ ...3100Z-nxclb-public-reference-search-summary.log |  17 +
+ ...22T143130Z-diff-nxclb-public-reference-docs.log | 132 ++++++
+ ...0260422T143130Z-stale-route-c-current-check.log |   2 +
+ ...status-before-nxclb-public-reference-commit.log | 476 +++++++++++++++++++++
+ ...60422T143200Z-stale-route-c-current-recheck.log |   1 +
+ reports/2026-04-22-nxclb-public-reference.md       |  27 ++
+ 15 files changed, 1443 insertions(+), 16 deletions(-)
+## cached check
+logs/20260422T142900Z-read-clb-mapping-before-nxclb-fcc-doc.log:120: new blank line at EOF.
+logs/20260422T143130Z-diff-nxclb-public-reference-docs.log:8: trailing whitespace.
++ 
+logs/20260422T143130Z-diff-nxclb-public-reference-docs.log:11: trailing whitespace.
++ 
+logs/20260422T143130Z-diff-nxclb-public-reference-docs.log:13: trailing whitespace.
++ 
+logs/20260422T143130Z-diff-nxclb-public-reference-docs.log:41: trailing whitespace.
++ 
+logs/20260422T143130Z-diff-nxclb-public-reference-docs.log:44: trailing whitespace.
++ 
+logs/20260422T143130Z-diff-nxclb-public-reference-docs.log:46: trailing whitespace.
++ 
+logs/20260422T143130Z-diff-nxclb-public-reference-docs.log:57: trailing whitespace.
++ 
+logs/20260422T143130Z-diff-nxclb-public-reference-docs.log:62: trailing whitespace.
++ 
+logs/20260422T143130Z-diff-nxclb-public-reference-docs.log:65: trailing whitespace.
++ 
+logs/20260422T143130Z-diff-nxclb-public-reference-docs.log:81: trailing whitespace.
++ 
+logs/20260422T143130Z-diff-nxclb-public-reference-docs.log:83: trailing whitespace.
++ 
+logs/20260422T143130Z-diff-nxclb-public-reference-docs.log:86: trailing whitespace.
++ 
+logs/20260422T143130Z-diff-nxclb-public-reference-docs.log:88: trailing whitespace.
++ 
+logs/20260422T143130Z-diff-nxclb-public-reference-docs.log:100: trailing whitespace.
++ 
+logs/20260422T143130Z-diff-nxclb-public-reference-docs.log:118: trailing whitespace.
++ 
+logs/20260422T143130Z-diff-nxclb-public-reference-docs.log:131: trailing whitespace.
++ 

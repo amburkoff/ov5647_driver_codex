@@ -1,0 +1,47 @@
+[20260422T142500Z] commit route-A corrected-MCLK capture timeout
+[main 8a17ce6] test: record route a corrected mclk no-sof
+ 48 files changed, 5441 insertions(+), 8 deletions(-)
+ create mode 100644 artifacts/captures/20260422T140936Z/ov5647-640x480-bg10.raw
+ create mode 100644 artifacts/traces/20260422T140936Z/after-set_event.log
+ create mode 100644 artifacts/traces/20260422T140936Z/after-trace.log
+ create mode 100644 artifacts/traces/20260422T140936Z/after-trace_clock.log
+ create mode 100644 artifacts/traces/20260422T140936Z/after-tracing_on.log
+ create mode 100644 artifacts/traces/20260422T140936Z/before-set_event.log
+ create mode 100644 artifacts/traces/20260422T140936Z/before-trace.log
+ create mode 100644 artifacts/traces/20260422T140936Z/before-trace_clock.log
+ create mode 100644 artifacts/traces/20260422T140936Z/before-tracing_on.log
+ create mode 100644 artifacts/traces/20260422T140936Z/enabled-events.log
+ create mode 100644 artifacts/traces/20260422T140936Z/final-set_event.log
+ create mode 100644 artifacts/traces/20260422T140936Z/final-trace.log
+ create mode 100644 artifacts/traces/20260422T140936Z/final-trace_clock.log
+ create mode 100644 artifacts/traces/20260422T140936Z/final-tracing_on.log
+ create mode 100644 artifacts/traces/20260422T140936Z/last_event
+ create mode 100644 artifacts/traces/20260422T140936Z/last_exception
+ create mode 100644 artifacts/traces/20260422T140936Z/missing-events.log
+ create mode 100644 artifacts/traces/20260422T140936Z/pre-capture-state.log
+ create mode 100644 artifacts/traces/20260422T140936Z/stats
+ create mode 100644 logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log
+ create mode 100644 logs/20260422T140936Z-single-frame-rtcpu-post-dmesg-tail.log
+ create mode 100644 logs/20260422T140936Z-single-frame-rtcpu-trace.log
+ create mode 100644 logs/20260422T141045Z-analyze-route-a-capture-timeout-logs.log
+ create mode 100644 logs/20260422T141045Z-analyze-route-a-rtcpu-trace.log
+ create mode 100644 logs/20260422T141045Z-current-kernel-state-after-route-a-capture-timeout.log
+ create mode 100644 logs/20260422T141045Z-runtime-state-after-route-a-capture-timeout.log
+ create mode 100644 logs/20260422T141200Z-read-clb-mapping-before-route-a-timeout-doc.log
+ create mode 100644 logs/20260422T141200Z-read-sources-before-route-a-timeout-doc.log
+ create mode 100644 logs/20260422T141200Z-tail-known-issues-before-route-a-timeout-doc.log
+ create mode 100644 logs/20260422T141200Z-tail-status-before-route-a-timeout-doc.log
+ create mode 100644 logs/20260422T142000Z-route-a-capture-timeout-evidence.log
+ create mode 100644 logs/20260422T142105Z-check-no-cbl-naming-grep.log
+ create mode 100644 logs/20260422T142130Z-grep-clb-mapping-route-a-sections.log
+ create mode 100644 logs/20260422T142130Z-grep-known-route-a-sections.log
+ create mode 100644 logs/20260422T142130Z-grep-status-route-a-sections.log
+ create mode 100644 logs/20260422T142130Z-latest-reports-list.log
+ create mode 100644 logs/20260422T142150Z-read-readme-before-route-a-timeout-doc.log
+ create mode 100644 logs/20260422T142300Z-diff-route-a-timeout-docs.log
+ create mode 100644 logs/20260422T142300Z-grep-stale-cbl-docs-reports.log
+ create mode 100644 logs/20260422T142300Z-status-before-route-a-timeout-commit.log
+ create mode 100644 logs/20260422T142330Z-size-route-a-timeout-artifacts.log
+ create mode 100644 logs/20260422T142400Z-git-add-route-a-timeout.log
+ create mode 100644 logs/20260422T142430Z-cached-check-route-a-timeout.log
+ create mode 100644 reports/2026-04-22-route-a-extperiph1-capture-timeout.md

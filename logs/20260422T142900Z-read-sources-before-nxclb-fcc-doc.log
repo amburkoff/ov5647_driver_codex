@@ -54,17 +54,6 @@ JetPack note:
   - <https://www.raspberrypi.com/documentation/usage/camera/computers/compute-module.html>
   - used only to compare Raspberry Pi Zero/CM-style 22-pin CSI pin numbering against the Jetson 22-pin reference connector.
 
-## CLB / Vendor-Specific Public References
-
-- FCC ID `2BE7C-NXCLB` listing:
-  - <https://fccid.io/2BE7C-NXCLB>
-  - identifies `Hunan Chuang Le Bo Intelligent Technology Co., Ltd.` and product/model `Embedded development board NXCLB`;
-  - treated as secondary evidence for the `CLB` / `NXCLB` carrier identity.
-- FCC-hosted `NXCLB` user manual:
-  - <https://fccid.io/2BE7C-NXCLB/User-Manual/User-Manual-7157074.pdf>
-  - contains camera connector tables for `J20` and `J21`;
-  - used only as supporting carrier documentation, not as proof of the installed camera cable/adaptor orientation.
-
 ## Local Installed References On The Target
 
 - base DTB in use by this software image:

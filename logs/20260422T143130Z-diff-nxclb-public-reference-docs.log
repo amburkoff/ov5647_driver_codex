@@ -1,0 +1,132 @@
+[20260422T143130Z] diff NXCLB reference docs
+diff --git a/docs/01a-clb-carrier-mapping.md b/docs/01a-clb-carrier-mapping.md
+index 5db4904..28dfe42 100644
+--- a/docs/01a-clb-carrier-mapping.md
++++ b/docs/01a-clb-carrier-mapping.md
+@@ -1,6 +1,6 @@
+ # CLB Carrier Mapping
+ 
+-Status: `partially verified, route-C live, still carrier-identity blocked`
++Status: `partially verified, route-A live, physical CSI path still blocked`
+ 
+ This document tracks only hardware facts that are confirmed for the actual target. Anything not verified from the running system, carrier documentation, or direct physical inspection stays marked as unresolved.
+ 
+@@ -19,19 +19,20 @@ This document tracks only hardware facts that are confirmed for the actual targe
+ | Camera flex/module marking | Confirmed | User-reported marking: `JT-ZERO-V2.0 YH` |
+ | Corrected carrier name | Confirmed from user physical inspection | User corrected the kit name to `CLB Developer Kit`; earlier project notes used a mistyped carrier name |
+ | Partner/vendor marking | Confirmed from user physical inspection | User reports the box says the board is from partner `makerobo` |
++| Public certification identity | Confirmed from public FCC listing | FCC ID `2BE7C-NXCLB` lists `Hunan Chuang Le Bo Intelligent Technology Co., Ltd.` and product/model `NXCLB`; this matches the `CLB` naming pattern |
+ | Bundled booklet flashing instruction | Confirmed from user physical inspection | User reports the booklet says to install the Jetson image from the official Developer Kit site |
+-| Live camera mux bus | Confirmed | `i2c-9` appears as downstream `i2c-2-mux`; current route-C boot maps it to `chan_id 1` |
++| Live camera mux bus | Confirmed | `i2c-9` appears as downstream `i2c-2-mux`; current route-A boot maps the active node to `cam_i2cmux/i2c@0` |
+ | Sensor I2C address | Confirmed | `i2cdetect -y 9` and `i2ctransfer` both see `0x36` |
+ | Sensor identity | Confirmed | Direct `i2ctransfer` returns chip ID `0x56 0x47` => `0x5647` |
+-| Live CSI route | Confirmed for current test path | Live sensor node uses `tegra_sinterface = "serial_c"` |
+-| Live CSI port index | Confirmed for current test path | Live endpoint graph uses route-C style `port-index = 2` |
++| Live CSI route | Confirmed for current test path | Live sensor node uses `tegra_sinterface = "serial_b"` |
++| Live CSI port index | Confirmed for current test path | Live endpoint graph uses route-A style `port-index = 1` |
+ | Live lane count | Confirmed for current test path | Live DT mode uses `num_lanes = "2"` and endpoint `bus-width = <2>` |
+-| Live lane polarity | Confirmed for current test path | Live DT mode uses `lane_polarity = "0"` |
+-| Live discontinuous clock mode | Confirmed for current test path | Live DT mode uses `discontinuous_clk = "no"` |
+-| Live sensor node | Confirmed | `/bus@0/cam_i2cmux/i2c@1/ov5647_c@36` |
+-| Live PWDN GPIO | Confirmed from live DT and driver logs | `pwdn-gpios = <... 0xa0 0>` => Linux GPIO `486` |
++| Live lane polarity | Confirmed for current test path | Live DT mode uses `lane_polarity = "6"` |
++| Live discontinuous clock mode | Confirmed for current test path | Live DT mode uses `discontinuous_clk = "yes"` while the diagnostic module parameter can force sensor-side continuous clock |
++| Live sensor node | Confirmed | `/bus@0/cam_i2cmux/i2c@0/ov5647_a@36` |
++| Live PWDN GPIO | Confirmed from live DT and driver logs | `pwdn-gpios = <... 0x3e 0>` => Linux GPIO `397` |
+ | Live reset GPIO | Confirmed absent in current node | No `reset-gpios` property on the active OV5647 probe node |
+-| Live MCLK source | Confirmed | Active OV5647 node carries `mclk = "extperiph1"` and `clocks = <&bpmp 0x07>` |
++| Live MCLK source | Confirmed | Active OV5647 node carries `mclk = "extperiph1"` and corrected `clocks = <&bpmp 0x24>` |
+ | Live regulators bound in DT | Confirmed names only | `avdd=vana`, `dvdd=vdig`, `iovdd=vif` |
+ 
+ ## Not Yet Verified
+@@ -61,6 +62,15 @@ The official NVIDIA Jetson Orin Nano Developer Kit carrier board specification i
+ 
+ The user's bundled booklet instruction to use the official Jetson Developer Kit image explains why the running software identifies as NVIDIA `p3768` rather than a CLB-specific DT. It does not remove the need to verify the physical CLB CSI connector routing, because the camera connector wiring can still differ from the reference carrier or depend on cable orientation/adapters.
+ 
++Public FCC evidence provides a second, non-runtime identity reference:
++
++- FCC ID page `2BE7C-NXCLB` identifies an `Embedded development board NXCLB`;
++- applicant/manufacturer listed there is `Hunan Chuang Le Bo Intelligent Technology Co., Ltd.`;
++- the page exposes a user manual for `NXCLB`;
++- the user manual's camera connector tables match the NVIDIA developer-carrier style `J20` and `J21` 22-pin camera connector descriptions.
++
++This is useful supporting evidence that `CLB` maps to `Chuang Le Bo / NXCLB`, but it still does not prove the exact physical cable/adaptor path from the currently installed `JT-ZERO-V2.0 YH` OV5647 modules to the CLB carrier connectors.
++
+ ## 22-Pin Connector Compatibility Risk
+ 
+ The current camera modules are Raspberry Pi-market OV5647 modules with visible marking `JT-ZERO-V2.0 YH`. The official reference pinouts show that a Jetson developer-kit 22-pin camera connector and a Raspberry Pi Zero/CM-style 22-pin camera connector are not directly pin-compatible by same-numbered pins:
+@@ -161,9 +171,9 @@ Inference from these local references and the live successful probes:
+   - raw output remains zero bytes;
+   - RTCPU/NVCSI tracing shows no SOF, no EOF, no NVCSI interrupt, and no vinotify error in the capture window.
+ 
+-## Current Live Working Probe Facts
++## Route-C Working Probe Facts
+ 
+-- active sensor path in live DT:
++- previous route-C sensor path in live DT:
+   - `cam_i2cmux/i2c@1/ov5647_c@36`
+ - active logical camera route:
+   - route `C`
+@@ -179,7 +189,7 @@ Inference from these local references and the live successful probes:
+ - direct hardware confirmation:
+   - `sudo i2ctransfer -f -y 9 w2@0x36 0x30 0x0a r1` -> `0x56`
+   - `sudo i2ctransfer -f -y 9 w2@0x36 0x30 0x0b r1` -> `0x47`
+-- current driver-specific power observation:
++- route-C driver-specific power observation:
+   - with the earlier route-A path, chip-ID reads failed when `ov5647_power_on()` drove `pwdn_gpio=397` low;
+   - chip-ID reads succeeded when `ov5647_power_on()` kept `pwdn_gpio=397` high;
+   - route-C uses `pwdn_gpio=486` with the same deassert-high driver policy;
+@@ -198,7 +208,7 @@ The latest route-C continuous-clock runtime test proves that the Linux/V4L2 path
+ 
+ This does not prove the sensor is incapable of output. It proves that the current DT route, physical lane path, cable/adapter path, or MIPI electrical output state is still not producing an observable SOF at the Jetson receiver. Because the earlier route-A test used the old wrong BPMP clock binding, one corrected-MCLK route-A retest is still a valid controlled software experiment before treating the issue as purely physical.
+ 
+-## Current Route-A Retest State
++## Current Route-A State
+ 
+ After rebooting the staged route-A corrected-MCLK overlay, the live DT now maps the single active OV5647 node to:
+ 
+diff --git a/docs/02-hardware-assumptions.md b/docs/02-hardware-assumptions.md
+index 0354035..71deea4 100644
+--- a/docs/02-hardware-assumptions.md
++++ b/docs/02-hardware-assumptions.md
+@@ -6,7 +6,7 @@ Current blocking assumption set:
+ - The box identifies the board as a partner board from `makerobo`.
+ - The included booklet instructs installing the official Jetson Developer Kit image.
+ - The running software image identifies the platform as NVIDIA `p3768-0000+p3767-0000`, which is consistent with that booklet instruction but not proof of CLB camera wiring.
+-- The active dev boot currently applies an OV5647 route-C continuous-clock overlay.
++- The active dev boot currently applies an OV5647 route-A corrected-MCLK overlay.
+ - Route-A and route-C overlays both prove logical I2C/probe paths, but neither proves the physical CLB connector/cable CSI lane path because both still produce no CSI SOF.
+ 
+ Assumptions that are intentionally not promoted to facts:
+@@ -24,7 +24,7 @@ Risk register:
+ | --- | --- | --- |
+ | Wrong carrier identity in DT or docs | Incorrect overlay and GPIO routing | Use live DT and physical inspection before enabling sensor nodes |
+ | Wrong CSI connector assumption | No image or unstable stream | Route-A and route-C are logically valid enough to probe, but physical CLB connector mapping remains unresolved |
+-| Wrong I2C bus or address | Probe failure or false debugging path | Current route-C I2C path is confirmed as `i2c-9` / `0x36`; route-A also probed earlier |
++| Wrong I2C bus or address | Probe failure or false debugging path | Current route-A path is confirmed as `i2c-9` / `0x36`; route-C also probed earlier |
+ | Wrong reset or PWDN GPIO | Sensor never responds or enters undefined state | Implement power logic only after GPIO source is verified |
+ | Wrong regulator mapping | Unsafe power-up sequence | Keep regulator names unresolved until verified |
+ | Missing tool dependencies | Incomplete validation | Document missing `v4l-utils` and `media-ctl` early |
+diff --git a/docs/03-sources-and-references.md b/docs/03-sources-and-references.md
+index 730f83b..300b696 100644
+--- a/docs/03-sources-and-references.md
++++ b/docs/03-sources-and-references.md
+@@ -54,6 +54,17 @@ JetPack note:
+   - <https://www.raspberrypi.com/documentation/usage/camera/computers/compute-module.html>
+   - used only to compare Raspberry Pi Zero/CM-style 22-pin CSI pin numbering against the Jetson 22-pin reference connector.
+ 
++## CLB / Vendor-Specific Public References
++
++- FCC ID `2BE7C-NXCLB` listing:
++  - <https://fccid.io/2BE7C-NXCLB>
++  - identifies `Hunan Chuang Le Bo Intelligent Technology Co., Ltd.` and product/model `Embedded development board NXCLB`;
++  - treated as secondary evidence for the `CLB` / `NXCLB` carrier identity.
++- FCC-hosted `NXCLB` user manual:
++  - <https://fccid.io/2BE7C-NXCLB/User-Manual/User-Manual-7157074.pdf>
++  - contains camera connector tables for `J20` and `J21`;
++  - used only as supporting carrier documentation, not as proof of the installed camera cable/adaptor orientation.
++
+ ## Local Installed References On The Target
+ 
+ - base DTB in use by this software image:
