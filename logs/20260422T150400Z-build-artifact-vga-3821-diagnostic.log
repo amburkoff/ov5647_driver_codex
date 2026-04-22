@@ -1,0 +1,11 @@
+[20260422T150400Z] build artifact listing 0x3821 diagnostic
+-rw-rw-r-- 1 cam cam 102448 Apr 22 17:28 src/nv_ov5647/nv_ov5647.ko
+
+artifacts/build/20260422T142847Z:
+total 112
+-rw-rw-r-- 1 cam cam      0 Apr 22 17:28 Module.symvers
+-rw-rw-r-- 1 cam cam     57 Apr 22 17:28 modules.order
+-rw-rw-r-- 1 cam cam 102448 Apr 22 17:28 nv_ov5647.ko
+-rw-rw-r-- 1 cam cam   1637 Apr 22 17:28 nv_ov5647.modinfo.txt
+23190d13c34a252469369bfb42560c8e952e0d1333f48b4389578cc55ee426ae  src/nv_ov5647/nv_ov5647.ko
+23190d13c34a252469369bfb42560c8e952e0d1333f48b4389578cc55ee426ae  artifacts/build/20260422T142847Z/nv_ov5647.ko

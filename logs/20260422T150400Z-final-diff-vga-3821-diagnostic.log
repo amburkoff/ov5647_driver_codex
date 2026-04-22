@@ -1,0 +1,58 @@
+[20260422T150400Z] final diff after 0x3821 diagnostic build
+diff --git a/docs/01a-clb-carrier-mapping.md b/docs/01a-clb-carrier-mapping.md
+index 1ec73f7..9b27714 100644
+--- a/docs/01a-clb-carrier-mapping.md
++++ b/docs/01a-clb-carrier-mapping.md
+@@ -17,6 +17,7 @@ This document tracks only hardware facts that are confirmed for the actual targe
+ | Reference 22-pin camera overlay family on disk | Confirmed | `imx219-A/C`, `imx477-A/C`, dual combinations in `/boot/` |
+ | Physical camera population | Confirmed | User reports identical OV5647 modules inserted into both Jetson 22-pin CSI connectors |
+ | Camera flex/module marking | Confirmed | User-reported marking: `JT-ZERO-V2.0 YH` |
++| Camera connector family | Confirmed from user physical inspection | User confirms the cameras are Raspberry Pi Zero camera modules with 22-pin connectors |
+ | Corrected carrier name | Confirmed from user physical inspection | User corrected the kit name to `CLB Developer Kit`; earlier project notes used a mistyped carrier name |
+ | Partner/vendor marking | Confirmed from user physical inspection | User reports the box says the board is from partner `makerobo` |
+ | Public certification identity | Confirmed from public FCC listing | FCC ID `2BE7C-NXCLB` lists `Hunan Chuang Le Bo Intelligent Technology Co., Ltd.` and product/model `NXCLB`; this matches the `CLB` naming pattern |
+diff --git a/docs/10-results-and-status.md b/docs/10-results-and-status.md
+index db5810c..aaa2d25 100644
+--- a/docs/10-results-and-status.md
++++ b/docs/10-results-and-status.md
+@@ -578,3 +578,13 @@ Next smallest safe step:
+ - do not run more blind stream-register tuning or repeated captures until the physical CSI path is verified;
+ - collect physical evidence for both camera connectors: carrier silkscreen labels, cable orientation, contact side, any adapter board, camera module front/back, and the full FFC marking;
+ - if available, test a known-good Jetson-compatible camera/cable kit with a stock NVIDIA overlay to prove the CLB CSI connector path independently of this OV5647 driver.
++
++Update after user confirmed Raspberry Pi Zero 22-pin cameras:
++
++- user confirms the cameras are Raspberry Pi Zero-style 22-pin OV5647 modules;
++- this makes the cable family more specific, but does not by itself prove MIPI lane delivery because I2C success can coexist with a CSI lane mismatch;
++- a source-side timing/register variant was found in the current 640x480 mode table:
++  - mainline upstream Linux OV5647 VGA table uses `0x3821 = 0x03`;
++  - Raspberry Pi downstream 6.6.y OV5647 VGA table uses `0x3821 = 0x01`;
++  - the local driver previously matched the Raspberry Pi downstream value;
++- next safe software step is to test the mainline upstream `0x3821 = 0x03` variant as a single controlled variable, rebuild only, and ask the user to perform one manual load/capture cycle.
+diff --git a/docs/11-known-issues.md b/docs/11-known-issues.md
+index 2111dfe..567a7dc 100644
+--- a/docs/11-known-issues.md
++++ b/docs/11-known-issues.md
+@@ -14,7 +14,8 @@
+ - The safe boot entry still exists, but the on-disk default is currently set to `ov5647-dev` with the route-A corrected-MCLK overlay.
+ - The active dev overlay is now a route-A corrected-`extperiph1` candidate from the physical-connector point of view; it is logically validated by successful probe and `/dev/video0`, but not by SOF/frame delivery.
+ - The physical camera modules are present on both 22-pin connectors, but the exact mapping from physical connector to route `A` or `C` is still unverified.
+-- The visible camera marking `JT-ZERO-V2.0 YH` suggests Raspberry Pi-market OV5647 hardware, but the exact FFC/adaptor topology is not yet documented.
++- The visible camera marking `JT-ZERO-V2.0 YH` and user confirmation identify the modules as Raspberry Pi Zero-style 22-pin OV5647 cameras, but the exact FFC/adaptor topology is not yet documented.
++- The previous local 640x480 mode table used `0x3821 = 0x01`; mainline upstream Linux OV5647 VGA mode uses `0x3821 = 0x03`, while Raspberry Pi downstream 6.6.y uses `0x01`. Source now stages the mainline `0x03` variant as a controlled diagnostic and needs manual runtime validation.
+ - Local `nvidia-oot` headers are present, but full local sample sensor source files are not installed under `/usr/src/nvidia/`.
+ - Unprivileged `dmesg` access is restricted, so full kernel-buffer capture requires elevated privileges.
+ - `journalctl --list-boots` and `uptime -s` disagree about the current boot start time, so timestamp interpretation needs care.
+diff --git a/src/nv_ov5647/nv_ov5647.c b/src/nv_ov5647/nv_ov5647.c
+index 537677c..be72128 100644
+--- a/src/nv_ov5647/nv_ov5647.c
++++ b/src/nv_ov5647/nv_ov5647.c
+@@ -267,7 +267,7 @@ static const struct reg_8 ov5647_sensor_oe_disable_regs[] = {
+ 
+ static const struct reg_8 ov5647_mode0_640x480_10bpp[] = {
+ 	{0x3036, 0x46},
+-	{0x3821, 0x01},
++	{0x3821, 0x03},
+ 	{0x3820, 0x41},
+ 	{0x3612, 0x59},
+ 	{0x3618, 0x00},

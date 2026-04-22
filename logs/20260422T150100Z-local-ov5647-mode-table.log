@@ -1,0 +1,107 @@
+[20260422T150100Z] current local ov5647 mode code
+	{0x3f01, 0x0a},
+	{0x3a08, 0x01},
+	{0x3a0f, 0x58},
+	{0x3a10, 0x50},
+	{0x3a1b, 0x58},
+	{0x3a1e, 0x50},
+	{0x3a11, 0x60},
+	{0x3a1f, 0x28},
+	{0x4001, 0x02},
+	{0x4000, 0x09},
+	{0x3503, 0x03},
+	{ OV5647_TABLE_END, 0x00 },
+};
+
+static const struct reg_8 ov5647_sensor_oe_enable_regs[] = {
+	{0x3000, 0x0f},
+	{0x3001, 0xff},
+	{0x3002, 0xe4},
+	{ OV5647_TABLE_END, 0x00 },
+};
+
+static const struct reg_8 ov5647_sensor_oe_disable_regs[] = {
+	{0x3000, 0x00},
+	{0x3001, 0x00},
+	{0x3002, 0x00},
+	{ OV5647_TABLE_END, 0x00 },
+};
+
+static const struct reg_8 ov5647_mode0_640x480_10bpp[] = {
+	{0x3036, 0x46},
+	{0x3821, 0x01},
+	{0x3820, 0x41},
+	{0x3612, 0x59},
+	{0x3618, 0x00},
+	{0x3814, 0x35},
+	{0x3815, 0x35},
+	{0x3708, 0x64},
+	{0x3709, 0x52},
+	{0x3800, 0x00},
+	{0x3801, 0x10},
+	{0x3802, 0x00},
+	{0x3803, 0x00},
+	{0x3804, 0x0a},
+	{0x3805, 0x2f},
+	{0x3806, 0x07},
+	{0x3807, 0x9f},
+	{0x3808, 0x02},
+	{0x3809, 0x80},
+	{0x380a, 0x01},
+	{0x380b, 0xe0},
+	{0x380c, 0x07}, /* HTS = 1852, upstream VGA timing */
+	{0x380d, 0x3c},
+	{0x380e, 0x01}, /* VTS = 0x01f8, upstream VGA timing */
+	{0x380f, 0xf8},
+	{0x3a09, 0x2e},
+	{0x3a0a, 0x00},
+	{0x3a0b, 0xfb},
+	{0x3a0d, 0x02},
+	{0x3a0e, 0x01},
+	{0x4004, 0x02},
+	{0x4800, 0x34},
+	{ OV5647_TABLE_END, 0x00 },
+};
+
+static const int ov5647_30fps[] = {
+	30,
+};
+
+static const struct camera_common_frmfmt ov5647_frmfmt[] = {
+	{
+		.size = {
+			.width = 640,
+			.height = 480,
+		},
+		.framerates = ov5647_30fps,
+		.num_framerates = ARRAY_SIZE(ov5647_30fps),
+		.hdr_en = false,
+		.mode = 0,
+	},
+};
+
+static const struct ov5647_mode ov5647_modes[] = {
+	{
+		.name = "640x480-10bpp-30fps",
+		.width = 640,
+		.height = 480,
+		.code = MEDIA_BUS_FMT_SBGGR10_1X10,
+		.table = ov5647_mode0_640x480_10bpp,
+	},
+};
+
+static const u32 ov5647_ctrl_cid_list[] = {
+	TEGRA_CAMERA_CID_GAIN,
+	TEGRA_CAMERA_CID_EXPOSURE,
+	TEGRA_CAMERA_CID_FRAME_RATE,
+	TEGRA_CAMERA_CID_SENSOR_MODE_ID,
+};
+
+static const struct regmap_config ov5647_regmap_config = {
+	.reg_bits = 16,
+	.val_bits = 8,
+	.cache_type = REGCACHE_RBTREE,
+	.max_register = 0xffff,
+};
+
+static inline struct ov5647 *to_ov5647(struct tegracam_device *tc_dev)

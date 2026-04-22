@@ -578,3 +578,13 @@ Next smallest safe step:
 - do not run more blind stream-register tuning or repeated captures until the physical CSI path is verified;
 - collect physical evidence for both camera connectors: carrier silkscreen labels, cable orientation, contact side, any adapter board, camera module front/back, and the full FFC marking;
 - if available, test a known-good Jetson-compatible camera/cable kit with a stock NVIDIA overlay to prove the CLB CSI connector path independently of this OV5647 driver.
+
+Update after user confirmed Raspberry Pi Zero 22-pin cameras:
+
+- user confirms the cameras are Raspberry Pi Zero-style 22-pin OV5647 modules;
+- this makes the cable family more specific, but does not by itself prove MIPI lane delivery because I2C success can coexist with a CSI lane mismatch;
+- a source-side timing/register variant was found in the current 640x480 mode table:
+  - mainline upstream Linux OV5647 VGA table uses `0x3821 = 0x03`;
+  - Raspberry Pi downstream 6.6.y OV5647 VGA table uses `0x3821 = 0x01`;
+  - the local driver previously matched the Raspberry Pi downstream value;
+- next safe software step is to test the mainline upstream `0x3821 = 0x03` variant as a single controlled variable, rebuild only, and ask the user to perform one manual load/capture cycle.

@@ -1,0 +1,22 @@
+[20260422T150400Z] modinfo after 0x3821 diagnostic build
+filename:       /home/cam/ov5647_driver_codex/src/nv_ov5647/nv_ov5647.ko
+version:        0.1.0
+license:        GPL v2
+description:    OV5647 Jetson bring-up scaffold for Jetson Linux r36.5
+author:         OpenAI Codex
+srcversion:     632487CC0794D5D198269C9
+alias:          of:N*T*Covti,ov5647C*
+alias:          of:N*T*Covti,ov5647
+alias:          i2c:ov5647
+depends:        tegra-camera,v4l2-async,videodev
+name:           nv_ov5647
+vermagic:       5.15.185-tegra SMP preempt mod_unload modversions aarch64
+parm:           register_i2c_driver:Register the OV5647 i2c driver on module load. Default: false (bool)
+parm:           allow_hw_probe:Allow real OV5647 probe and board setup when a DT match exists. Default: false (bool)
+parm:           skip_v4l2_register:Probe sensor and chip ID but skip tegracam_v4l2subdev_register(). Default: false (bool)
+parm:           skip_v4l2_unregister:Diagnostic only: skip tegracam_v4l2subdev_unregister() in remove(). Default: false (bool)
+parm:           split_v4l2_unregister:Diagnostic only: inline V4L2 unregister phases with markers. Default: false (bool)
+parm:           unload_marker_delay_ms:Optional delay after unload markers to let userspace persist logs. Default: 0 (uint)
+parm:           dump_stream_regs:Diagnostic only: read back key OV5647 registers around stream start. Default: false (bool)
+parm:           continuous_mipi_clock:Diagnostic only: use upstream default continuous MIPI clock stream-on value 0x04 instead of 0x34. Default: false (bool)
+parm:           mclk_override_hz:Diagnostic only: override tegracam DT-derived MCLK rate in Hz before power-on. Default: 0 (uint)

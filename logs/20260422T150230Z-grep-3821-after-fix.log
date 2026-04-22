@@ -1,0 +1,13 @@
+[20260422T150230Z] grep 0x3821 local/upstream
+src/nv_ov5647/nv_ov5647.c:143:	{ 0x3821, "timing_format2" },
+src/nv_ov5647/nv_ov5647.c:270:	{0x3821, 0x03},
+artifacts/reference/upstream-linux/ov5647.c:57:#define OV5647_REG_TIMING_TC_H		CCI_REG8(0x3821)
+artifacts/reference/upstream-linux/ov5647.c:223:	{0x3821, 0x02},
+artifacts/reference/upstream-linux/ov5647.c:259:	{0x3821, 0x02},
+artifacts/reference/upstream-linux/ov5647.c:295:	{0x3821, 0x03},
+artifacts/reference/upstream-linux/ov5647.c:335:	{0x3821, 0x03},
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:61:#define OV5647_REG_HFLIP		0x3821
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:230:	{0x3821, 0x00},
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:266:	{0x3821, 0x00},
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:302:	{0x3821, 0x01},
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:342:	{0x3821, 0x01},

@@ -1,0 +1,223 @@
+[20260422T150000Z] inspect local upstream ov5647 references
+artifacts/reference/nvidia-r36.5/kernel_oot_modules_filelist.txt:640:nvgpu/drivers/gpu/nvgpu/common/nvlink/link_mode_transitions.c
+artifacts/reference/nvidia-r36.5/kernel_oot_modules_filelist.txt:1037:nvgpu/drivers/gpu/nvgpu/include/nvgpu/nvlink_link_mode_transitions.h
+artifacts/reference/nvidia-r36.5/kernel_oot_modules_filelist.txt:1147:nvgpu/drivers/gpu/nvgpu/include/nvgpu/hw/gv11b/hw_usermode_gv11b.h
+artifacts/reference/nvidia-r36.5/kernel_oot_modules_filelist.txt:1157:nvgpu/drivers/gpu/nvgpu/include/nvgpu/hw/tu104/hw_usermode_tu104.h
+artifacts/reference/nvidia-r36.5/kernel_oot_modules_filelist.txt:1298:nvgpu/drivers/gpu/nvgpu/include/nvgpu/hw/gv100/hw_usermode_gv100.h
+artifacts/reference/nvidia-r36.5/kernel_oot_modules_filelist.txt:1885:nvgpu/drivers/gpu/nvgpu/hal/fifo/usermode_tu104.c
+artifacts/reference/nvidia-r36.5/kernel_oot_modules_filelist.txt:1907:nvgpu/drivers/gpu/nvgpu/hal/fifo/usermode_gv11b_fusa.c
+artifacts/reference/nvidia-r36.5/kernel_oot_modules_filelist.txt:1918:nvgpu/drivers/gpu/nvgpu/hal/fifo/usermode_tu104.h
+artifacts/reference/nvidia-r36.5/kernel_oot_modules_filelist.txt:1930:nvgpu/drivers/gpu/nvgpu/hal/fifo/usermode_ga10b.h
+artifacts/reference/nvidia-r36.5/kernel_oot_modules_filelist.txt:1944:nvgpu/drivers/gpu/nvgpu/hal/fifo/usermode_gv11b.h
+artifacts/reference/nvidia-r36.5/kernel_oot_modules_filelist.txt:1989:nvgpu/drivers/gpu/nvgpu/hal/fifo/usermode_ga10b_fusa.c
+artifacts/reference/nvidia-r36.5/kernel_oot_modules_filelist.txt:2243:nvgpu/drivers/gpu/nvgpu/hal/nvlink/link_mode_transitions_gv100.h
+artifacts/reference/nvidia-r36.5/kernel_oot_modules_filelist.txt:2245:nvgpu/drivers/gpu/nvgpu/hal/nvlink/link_mode_transitions_tu104.c
+artifacts/reference/nvidia-r36.5/kernel_oot_modules_filelist.txt:2247:nvgpu/drivers/gpu/nvgpu/hal/nvlink/link_mode_transitions_tu104.h
+artifacts/reference/nvidia-r36.5/kernel_oot_modules_filelist.txt:2251:nvgpu/drivers/gpu/nvgpu/hal/nvlink/link_mode_transitions_gv100.c
+artifacts/reference/nvidia-r36.5/kernel_oot_modules_filelist.txt:3981:nvidia-oot/drivers/net/wireless/realtek/rtl8852ce/phl/hal_g6/phy/bb/halbb_la_mode_ex.h
+artifacts/reference/nvidia-r36.5/kernel_oot_modules_filelist.txt:5306:nvidia-oot/drivers/media/i2c/imx219_mode_tbls.h
+artifacts/reference/nvidia-r36.5/kernel_oot_modules_filelist.txt:5308:nvidia-oot/drivers/media/i2c/imx274_mode_tbls.h
+artifacts/reference/nvidia-r36.5/kernel_oot_modules_filelist.txt:5310:nvidia-oot/drivers/media/i2c/imx477_mode_tbls.h
+artifacts/reference/nvidia-r36.5/kernel_oot_modules_filelist.txt:5312:nvidia-oot/drivers/media/i2c/hawk_owl_mode_tbls.h
+artifacts/reference/nvidia-r36.5/kernel_oot_modules_filelist.txt:5313:nvidia-oot/drivers/media/i2c/imx185_mode_tbls.h
+artifacts/reference/nvidia-r36.5/kernel_oot_modules_filelist.txt:5314:nvidia-oot/drivers/media/i2c/imx390_mode_tbls.h
+artifacts/reference/nvidia-r36.5/kernel_oot_modules_filelist.txt:5316:nvidia-oot/drivers/media/i2c/ov5693_mode_tbls.h
+artifacts/reference/nvidia-r36.5/kernel_oot_modules_filelist.txt:5317:nvidia-oot/drivers/media/i2c/ar0234_mode_tbls.h
+artifacts/reference/nvidia-r36.5/kernel_oot_modules_filelist.txt:5319:nvidia-oot/drivers/media/i2c/imx318_mode_tbls.h
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/include/media/camera_common.h:174:	struct sensor_blob mode_blob;
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/include/media/camera_common.h:239:	int 	mode_prop_idx;
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/include/media/camera_common.h:244:	int	sensor_mode_id;
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/include/media/camera_common.h:245:	bool	use_sensor_mode_id;
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/tegracam_v4l2.c:22:	struct sensor_blob *mode_blob;
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/tegracam_v4l2.c:34:	mode_blob = &sensor_data->mode_blob;
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/tegracam_v4l2.c:38:	memset(mode_blob, 0, sizeof(struct sensor_blob));
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/tegracam_v4l2.c:79:		prepare_done_cmd(mode_blob);
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/tegracam_v4l2.c:129:	ival->interval.denominator = s_data->frmfmt[s_data->mode_prop_idx].framerates[0];
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/tegracam_core.c:86:	struct sensor_mode_properties *sensor_mode = NULL;
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/tegracam_core.c:89:	u32 mode_idx = 0;
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/tegracam_core.c:140:	mode_idx = s_data->mode_prop_idx = 0;
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/tegracam_core.c:145:	sensor_mode = &s_data->sensor_props.sensor_modes[mode_idx];
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/tegracam_core.c:149:	s_data->def_mode = s_data->frmfmt[mode_idx].mode;
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/tegracam_core.c:153:		s_data->frmfmt[mode_idx].size.width;
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/tegracam_core.c:155:		s_data->frmfmt[mode_idx].size.height;
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/camera_common.c:326:	s_data->use_sensor_mode_id = false;
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/camera_common.c:327:	err = of_property_read_string(np, "use_sensor_mode_id",	&str);
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/camera_common.c:330:			s_data->use_sensor_mode_id = true;
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/camera_common.c:569:			unsigned int mode_type)
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/camera_common.c:576:		if (mode_type & HDR_ENABLE)
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/camera_common.c:586:			s_data->mode_prop_idx = i;
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/camera_common.c:600:	unsigned int mode_type = 0;
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/camera_common.c:615:	/* mode_type can be filled in sensor driver */
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/camera_common.c:617:		mode_type |=
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/camera_common.c:621:	s_data->mode_prop_idx = 0;
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/camera_common.c:625:	if (s_data->use_sensor_mode_id &&
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/camera_common.c:626:		s_data->sensor_mode_id >= 0 &&
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/camera_common.c:627:		s_data->sensor_mode_id < s_data->numfmts) {
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/camera_common.c:628:		dev_dbg(sd->dev, "%s: use_sensor_mode_id %d\n",
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/camera_common.c:629:				__func__, s_data->use_sensor_mode_id);
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/camera_common.c:630:		s_data->mode = frmfmt[s_data->sensor_mode_id].mode;
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/camera_common.c:631:		s_data->mode_prop_idx = s_data->sensor_mode_id;
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/camera_common.c:632:		if (mf->width == frmfmt[s_data->sensor_mode_id].size.width &&
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/camera_common.c:633:		    mf->height == frmfmt[s_data->sensor_mode_id].size.height) {
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/camera_common.c:652:				s_data->mode_prop_idx = i;
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/camera_common.c:670:		if (mode_type)
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/platform/tegra/camera/camera_common.c:671:			select_mode(s_data, mf, mode_type);
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/i2c/nv_imx219.c:24:#include "imx219_mode_tbls.h"
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/i2c/nv_imx219.c:167:	const struct sensor_mode_properties *mode =
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/i2c/nv_imx219.c:168:		&s_data->sensor_props.sensor_modes[s_data->mode_prop_idx];
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/i2c/nv_imx219.c:206:	const struct sensor_mode_properties *mode =
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/i2c/nv_imx219.c:207:		&s_data->sensor_props.sensor_modes[s_data->mode_prop_idx];
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/i2c/nv_imx219.c:249:	const struct sensor_mode_properties *mode =
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/i2c/nv_imx219.c:250:		&s_data->sensor_props.sensor_modes[s_data->mode_prop_idx];
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/i2c/nv_imx219.c:584:	err = imx219_write_table(priv, mode_table[IMX219_MODE_COMMON]);
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/i2c/nv_imx219.c:590:	err = imx219_write_table(priv, mode_table[s_data->mode]);
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/i2c/nv_imx219.c:601:	return imx219_write_table(priv, mode_table[IMX219_START_STREAM]);
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/i2c/nv_imx219.c:608:	return imx219_write_table(priv, mode_table[IMX219_STOP_STREAM]);
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/i2c/nv_imx185.c:22:#include "imx185_mode_tbls.h"
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/i2c/nv_imx185.c:193:	const struct sensor_mode_properties *mode =
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/i2c/nv_imx185.c:194:		&s_data->sensor_props.sensor_modes[s_data->mode_prop_idx];
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/i2c/nv_imx185.c:221:	const struct sensor_mode_properties *mode =
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/i2c/nv_imx185.c:272:	const struct sensor_mode_properties *mode =
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/i2c/nv_imx185.c:348:	const struct sensor_mode_properties *mode =
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/i2c/nv_imx185.c:349:		&s_data->sensor_props.sensor_modes[s_data->mode_prop_idx];
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/i2c/nv_imx185.c:638:	if (s_data->mode_prop_idx < 0)
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/i2c/nv_imx185.c:640:	err = imx185_write_table(priv, mode_table[s_data->mode_prop_idx]);
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/i2c/nv_imx185.c:662:			mode_table[IMX185_MODE_TEST_PATTERN]);
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/i2c/nv_imx185.c:668:		mode_table[IMX185_MODE_START_STREAM]);
+artifacts/reference/nvidia-r36.5/kernel_oot/nvidia-oot/drivers/media/i2c/nv_imx185.c:681:	err = imx185_write_table(priv, mode_table[IMX185_MODE_STOP_STREAM]);
+artifacts/reference/tegra234-p3767-camera-p3768-imx219-C.dts:132:							use_sensor_mode_id = "true";
+artifacts/reference/tegra234-p3767-camera-p3768-imx219-C.dts:144:								mode_type = "bayer";
+artifacts/reference/tegra234-p3767-camera-p3768-imx219-C.dts:182:								mode_type = "bayer";
+artifacts/reference/tegra234-p3767-camera-p3768-imx219-C.dts:220:								mode_type = "bayer";
+artifacts/reference/tegra234-p3767-camera-p3768-imx219-C.dts:258:								mode_type = "bayer";
+artifacts/reference/tegra234-p3767-camera-p3768-imx219-C.dts:296:								mode_type = "bayer";
+artifacts/reference/upstream-linux/ov5647.c:77:#define OV5647_PIXEL_ARRAY_WIDTH	2592U
+artifacts/reference/upstream-linux/ov5647.c:78:#define OV5647_PIXEL_ARRAY_HEIGHT	1944U
+artifacts/reference/upstream-linux/ov5647.c:100:#define FREQ_INDEX_VGA		1
+artifacts/reference/upstream-linux/ov5647.c:103:	[FREQ_INDEX_VGA]	= 145833300,
+artifacts/reference/upstream-linux/ov5647.c:106:struct ov5647_mode {
+artifacts/reference/upstream-linux/ov5647.c:126:	const struct ov5647_mode	*mode;
+artifacts/reference/upstream-linux/ov5647.c:221:static const struct reg_sequence ov5647_2592x1944_10bpp[] = {
+artifacts/reference/upstream-linux/ov5647.c:333:static const struct reg_sequence ov5647_640x480_10bpp[] = {
+artifacts/reference/upstream-linux/ov5647.c:365:static const struct ov5647_mode ov5647_modes[] = {
+artifacts/reference/upstream-linux/ov5647.c:366:	/* 2592x1944 full resolution full FOV 10-bit mode. */
+artifacts/reference/upstream-linux/ov5647.c:372:			.width		= 2592,
+artifacts/reference/upstream-linux/ov5647.c:373:			.height		= 1944
+artifacts/reference/upstream-linux/ov5647.c:378:			.width		= 2592,
+artifacts/reference/upstream-linux/ov5647.c:379:			.height		= 1944
+artifacts/reference/upstream-linux/ov5647.c:385:		.reg_list	= ov5647_2592x1944_10bpp,
+artifacts/reference/upstream-linux/ov5647.c:386:		.num_regs	= ARRAY_SIZE(ov5647_2592x1944_10bpp)
+artifacts/reference/upstream-linux/ov5647.c:422:			.width		= 2592,
+artifacts/reference/upstream-linux/ov5647.c:423:			.height		= 1944,
+artifacts/reference/upstream-linux/ov5647.c:432:	/* 10-bit VGA full FOV 60fps. 2x2 binned and subsampled down to VGA. */
+artifacts/reference/upstream-linux/ov5647.c:448:		.link_freq_index = FREQ_INDEX_VGA,
+artifacts/reference/upstream-linux/ov5647.c:451:		.reg_list	= ov5647_640x480_10bpp,
+artifacts/reference/upstream-linux/ov5647.c:452:		.num_regs	= ARRAY_SIZE(ov5647_640x480_10bpp)
+artifacts/reference/upstream-linux/ov5647.c:456:/* Default sensor mode is 2x2 binned 640x480 SBGGR10_1X10. */
+artifacts/reference/upstream-linux/ov5647.c:457:#define OV5647_DEFAULT_MODE	(&ov5647_modes[3])
+artifacts/reference/upstream-linux/ov5647.c:458:#define OV5647_DEFAULT_FORMAT	(ov5647_modes[3].format)
+artifacts/reference/upstream-linux/ov5647.c:470:static int ov5647_set_mode(struct v4l2_subdev *sd)
+artifacts/reference/upstream-linux/ov5647.c:539:	ret = ov5647_set_mode(sd);
+artifacts/reference/upstream-linux/ov5647.c:752:	    fse->index >= ARRAY_SIZE(ov5647_modes))
+artifacts/reference/upstream-linux/ov5647.c:755:	fmt = &ov5647_modes[fse->index].format;
+artifacts/reference/upstream-linux/ov5647.c:795:	const struct ov5647_mode *mode;
+artifacts/reference/upstream-linux/ov5647.c:797:	mode = v4l2_find_nearest_size(ov5647_modes, ARRAY_SIZE(ov5647_modes),
+artifacts/reference/tegra234-p3767-camera-p3768-imx219-A.dts:124:							use_sensor_mode_id = "true";
+artifacts/reference/tegra234-p3767-camera-p3768-imx219-A.dts:138:								mode_type = "bayer";
+artifacts/reference/tegra234-p3767-camera-p3768-imx219-A.dts:177:								mode_type = "bayer";
+artifacts/reference/tegra234-p3767-camera-p3768-imx219-A.dts:216:								mode_type = "bayer";
+artifacts/reference/tegra234-p3767-camera-p3768-imx219-A.dts:255:								mode_type = "bayer";
+artifacts/reference/tegra234-p3767-camera-p3768-imx219-A.dts:294:								mode_type = "bayer";
+artifacts/reference/20260417T115700Z-imx477-A.dts:117:							use_sensor_mode_id = "true";
+artifacts/reference/20260417T115700Z-imx477-A.dts:130:								mode_type = "bayer";
+artifacts/reference/20260417T115700Z-imx477-A.dts:169:								mode_type = "bayer";
+artifacts/reference/upstream-linux-ov5647.c:77:#define OV5647_PIXEL_ARRAY_WIDTH	2592U
+artifacts/reference/upstream-linux-ov5647.c:78:#define OV5647_PIXEL_ARRAY_HEIGHT	1944U
+artifacts/reference/upstream-linux-ov5647.c:100:#define FREQ_INDEX_VGA		1
+artifacts/reference/upstream-linux-ov5647.c:103:	[FREQ_INDEX_VGA]	= 145833300,
+artifacts/reference/upstream-linux-ov5647.c:106:struct ov5647_mode {
+artifacts/reference/upstream-linux-ov5647.c:126:	const struct ov5647_mode	*mode;
+artifacts/reference/upstream-linux-ov5647.c:221:static const struct reg_sequence ov5647_2592x1944_10bpp[] = {
+artifacts/reference/upstream-linux-ov5647.c:333:static const struct reg_sequence ov5647_640x480_10bpp[] = {
+artifacts/reference/upstream-linux-ov5647.c:365:static const struct ov5647_mode ov5647_modes[] = {
+artifacts/reference/upstream-linux-ov5647.c:366:	/* 2592x1944 full resolution full FOV 10-bit mode. */
+artifacts/reference/upstream-linux-ov5647.c:372:			.width		= 2592,
+artifacts/reference/upstream-linux-ov5647.c:373:			.height		= 1944
+artifacts/reference/upstream-linux-ov5647.c:378:			.width		= 2592,
+artifacts/reference/upstream-linux-ov5647.c:379:			.height		= 1944
+artifacts/reference/upstream-linux-ov5647.c:385:		.reg_list	= ov5647_2592x1944_10bpp,
+artifacts/reference/upstream-linux-ov5647.c:386:		.num_regs	= ARRAY_SIZE(ov5647_2592x1944_10bpp)
+artifacts/reference/upstream-linux-ov5647.c:422:			.width		= 2592,
+artifacts/reference/upstream-linux-ov5647.c:423:			.height		= 1944,
+artifacts/reference/upstream-linux-ov5647.c:432:	/* 10-bit VGA full FOV 60fps. 2x2 binned and subsampled down to VGA. */
+artifacts/reference/upstream-linux-ov5647.c:448:		.link_freq_index = FREQ_INDEX_VGA,
+artifacts/reference/upstream-linux-ov5647.c:451:		.reg_list	= ov5647_640x480_10bpp,
+artifacts/reference/upstream-linux-ov5647.c:452:		.num_regs	= ARRAY_SIZE(ov5647_640x480_10bpp)
+artifacts/reference/upstream-linux-ov5647.c:456:/* Default sensor mode is 2x2 binned 640x480 SBGGR10_1X10. */
+artifacts/reference/upstream-linux-ov5647.c:457:#define OV5647_DEFAULT_MODE	(&ov5647_modes[3])
+artifacts/reference/upstream-linux-ov5647.c:458:#define OV5647_DEFAULT_FORMAT	(ov5647_modes[3].format)
+artifacts/reference/upstream-linux-ov5647.c:470:static int ov5647_set_mode(struct v4l2_subdev *sd)
+artifacts/reference/upstream-linux-ov5647.c:539:	ret = ov5647_set_mode(sd);
+artifacts/reference/upstream-linux-ov5647.c:752:	    fse->index >= ARRAY_SIZE(ov5647_modes))
+artifacts/reference/upstream-linux-ov5647.c:755:	fmt = &ov5647_modes[fse->index].format;
+artifacts/reference/upstream-linux-ov5647.c:795:	const struct ov5647_mode *mode;
+artifacts/reference/upstream-linux-ov5647.c:797:	mode = v4l2_find_nearest_size(ov5647_modes, ARRAY_SIZE(ov5647_modes),
+artifacts/reference/tegra234-p3767-camera-p3768-imx477-A.dts:117:							use_sensor_mode_id = "true";
+artifacts/reference/tegra234-p3767-camera-p3768-imx477-A.dts:130:								mode_type = "bayer";
+artifacts/reference/tegra234-p3767-camera-p3768-imx477-A.dts:169:								mode_type = "bayer";
+artifacts/reference/tegra234-p3767-camera-p3768-imx477-C.dts:124:							use_sensor_mode_id = "true";
+artifacts/reference/tegra234-p3767-camera-p3768-imx477-C.dts:137:								mode_type = "bayer";
+artifacts/reference/tegra234-p3767-camera-p3768-imx477-C.dts:176:								mode_type = "bayer";
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:78:#define OV5647_PIXEL_ARRAY_WIDTH	2592U
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:79:#define OV5647_PIXEL_ARRAY_HEIGHT	1944U
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:101:#define FREQ_INDEX_VGA		1
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:104:	[FREQ_INDEX_VGA]	= 208333000,
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:112:struct ov5647_mode {
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:132:	const struct ov5647_mode	*mode;
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:228:static struct regval_list ov5647_2592x1944_10bpp[] = {
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:340:static struct regval_list ov5647_640x480_10bpp[] = {
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:372:static const struct ov5647_mode ov5647_modes[] = {
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:373:	/* 2592x1944 full resolution full FOV 10-bit mode. */
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:379:			.width		= 2592,
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:380:			.height		= 1944
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:385:			.width		= 2592,
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:386:			.height		= 1944
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:392:		.reg_list	= ov5647_2592x1944_10bpp,
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:393:		.num_regs	= ARRAY_SIZE(ov5647_2592x1944_10bpp)
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:429:			.width		= 2592,
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:430:			.height		= 1944,
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:439:	/* 10-bit VGA full FOV 60fps. 2x2 binned and subsampled down to VGA. */
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:455:		.link_freq_index = FREQ_INDEX_VGA,
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:458:		.reg_list	= ov5647_640x480_10bpp,
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:459:		.num_regs	= ARRAY_SIZE(ov5647_640x480_10bpp)
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:463:/* Default sensor mode is 2x2 binned 640x480 SBGGR10_1X10. */
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:464:#define OV5647_DEFAULT_MODE	(&ov5647_modes[3])
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:465:#define OV5647_DEFAULT_FORMAT	(ov5647_modes[3].format)
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:570:static int ov5647_set_mode(struct v4l2_subdev *sd)
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:588:	ret = ov5647_write_array(sd, sensor->mode->reg_list,
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:620:	ret = ov5647_set_mode(sd);
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:879:	    fse->index >= ARRAY_SIZE(ov5647_modes))
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:882:	fmt = &ov5647_modes[fse->index].format;
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:924:	const struct ov5647_mode *mode;
+artifacts/reference/upstream/20260420T0905Z-ov5647-rpi-6.6.y.c:926:	mode = v4l2_find_nearest_size(ov5647_modes, ARRAY_SIZE(ov5647_modes),
+artifacts/reference/20260417T115700Z-imx219-A.dts:124:							use_sensor_mode_id = "true";
+artifacts/reference/20260417T115700Z-imx219-A.dts:138:								mode_type = "bayer";
+artifacts/reference/20260417T115700Z-imx219-A.dts:177:								mode_type = "bayer";
+artifacts/reference/20260417T115700Z-imx219-A.dts:216:								mode_type = "bayer";
+artifacts/reference/20260417T115700Z-imx219-A.dts:255:								mode_type = "bayer";
+artifacts/reference/20260417T115700Z-imx219-A.dts:294:								mode_type = "bayer";
+src/nv_ov5647/nv_ov5647.c:50:struct ov5647_mode {
+src/nv_ov5647/nv_ov5647.c:121:	{ OV5647_REG_MODE_SELECT, "mode_select" },
+src/nv_ov5647/nv_ov5647.c:268:static const struct reg_8 ov5647_mode0_640x480_10bpp[] = {
+src/nv_ov5647/nv_ov5647.c:290:	{0x380c, 0x07}, /* HTS = 1852, upstream VGA timing */
+src/nv_ov5647/nv_ov5647.c:292:	{0x380e, 0x01}, /* VTS = 0x01f8, upstream VGA timing */
+src/nv_ov5647/nv_ov5647.c:321:static const struct ov5647_mode ov5647_modes[] = {
+src/nv_ov5647/nv_ov5647.c:323:		.name = "640x480-10bpp-30fps",
+src/nv_ov5647/nv_ov5647.c:327:		.table = ov5647_mode0_640x480_10bpp,
+src/nv_ov5647/nv_ov5647.c:902:static int ov5647_set_mode(struct tegracam_device *tc_dev)
+src/nv_ov5647/nv_ov5647.c:910:	if (mode < 0 || mode >= ARRAY_SIZE(ov5647_modes)) {
+src/nv_ov5647/nv_ov5647.c:922:		 __func__, mode, ov5647_modes[mode].name,
+src/nv_ov5647/nv_ov5647.c:923:		 ov5647_modes[mode].width, ov5647_modes[mode].height);
+src/nv_ov5647/nv_ov5647.c:932:	err = ov5647_write_table(s_data, ov5647_modes[mode].table);
+src/nv_ov5647/nv_ov5647.c:959:	ov5647_dump_stream_regs(s_data, "after_set_mode");
+src/nv_ov5647/nv_ov5647.c:1102:	.set_mode = ov5647_set_mode,

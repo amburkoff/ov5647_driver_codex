@@ -17,6 +17,7 @@ This document tracks only hardware facts that are confirmed for the actual targe
 | Reference 22-pin camera overlay family on disk | Confirmed | `imx219-A/C`, `imx477-A/C`, dual combinations in `/boot/` |
 | Physical camera population | Confirmed | User reports identical OV5647 modules inserted into both Jetson 22-pin CSI connectors |
 | Camera flex/module marking | Confirmed | User-reported marking: `JT-ZERO-V2.0 YH` |
+| Camera connector family | Confirmed from user physical inspection | User confirms the cameras are Raspberry Pi Zero camera modules with 22-pin connectors |
 | Corrected carrier name | Confirmed from user physical inspection | User corrected the kit name to `CLB Developer Kit`; earlier project notes used a mistyped carrier name |
 | Partner/vendor marking | Confirmed from user physical inspection | User reports the box says the board is from partner `makerobo` |
 | Public certification identity | Confirmed from public FCC listing | FCC ID `2BE7C-NXCLB` lists `Hunan Chuang Le Bo Intelligent Technology Co., Ltd.` and product/model `NXCLB`; this matches the `CLB` naming pattern |

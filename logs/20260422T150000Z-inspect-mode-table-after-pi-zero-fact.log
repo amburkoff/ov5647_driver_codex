@@ -1,0 +1,33 @@
+[20260422T150000Z] inspect ov5647 mode tables
+src/nv_ov5647/nv_ov5647.c:50:struct ov5647_mode {
+src/nv_ov5647/nv_ov5647.c:268:static const struct reg_8 ov5647_mode0_640x480_10bpp[] = {
+src/nv_ov5647/nv_ov5647.c:321:static const struct ov5647_mode ov5647_modes[] = {
+src/nv_ov5647/nv_ov5647.c:323:		.name = "640x480-10bpp-30fps",
+src/nv_ov5647/nv_ov5647.c:327:		.table = ov5647_mode0_640x480_10bpp,
+src/nv_ov5647/nv_ov5647.c:902:static int ov5647_set_mode(struct tegracam_device *tc_dev)
+src/nv_ov5647/nv_ov5647.c:910:	if (mode < 0 || mode >= ARRAY_SIZE(ov5647_modes)) {
+src/nv_ov5647/nv_ov5647.c:922:		 __func__, mode, ov5647_modes[mode].name,
+src/nv_ov5647/nv_ov5647.c:923:		 ov5647_modes[mode].width, ov5647_modes[mode].height);
+src/nv_ov5647/nv_ov5647.c:932:	err = ov5647_write_table(s_data, ov5647_modes[mode].table);
+src/nv_ov5647/nv_ov5647.c:959:	ov5647_dump_stream_regs(s_data, "after_set_mode");
+src/nv_ov5647/nv_ov5647.c:1102:	.set_mode = ov5647_set_mode,
+patches/ov5647-p3768-port-a-draft.dts:31:	 * - one minimal mode0 kept aligned with the current driver placeholder:
+patches/ov5647-p3768-port-a-draft.dts:32:	 *   640x480 SBGGR10
+patches/ov5647-p3768-port-a-draft.dts:144:							mode0 {
+patches/ov5647-p3768-port-a-draft.dts:146:								num_lanes = "2";
+patches/ov5647-p3768-port-a-draft.dts:156:								pixel_phase = "bggr";
+patches/ov5647-p3768-port-a-draft.dts:157:								csi_pixel_bit_depth = "10";
+patches/ov5647-p3768-port-c-probe.dts:152:							mode0 {
+patches/ov5647-p3768-port-c-probe.dts:154:								num_lanes = "2";
+patches/ov5647-p3768-port-c-probe.dts:164:								pixel_phase = "bggr";
+patches/ov5647-p3768-port-c-probe.dts:165:								csi_pixel_bit_depth = "10";
+patches/ov5647-p3768-port-a-probe.dts:29:	 * - only one minimal 640x480 mode is described
+patches/ov5647-p3768-port-a-probe.dts:144:							mode0 {
+patches/ov5647-p3768-port-a-probe.dts:146:								num_lanes = "2";
+patches/ov5647-p3768-port-a-probe.dts:156:								pixel_phase = "bggr";
+patches/ov5647-p3768-port-a-probe.dts:157:								csi_pixel_bit_depth = "10";
+patches/ov5647-p3768-port-a-reference.dts.in:137:							mode0 {
+patches/ov5647-p3768-port-a-reference.dts.in:139:								num_lanes = "2";
+patches/ov5647-p3768-port-a-reference.dts.in:150:								pixel_phase = "__MODE0_PIXEL_PHASE__";
+patches/ov5647-p3768-port-a-reference.dts.in:151:								csi_pixel_bit_depth = "10";
+docs/05-dt-overlay-design.md:33:- one `mode0` only;

@@ -1,0 +1,40 @@
+[20260422T150500Z] stage vga 0x3821 diagnostic
+ docs/01a-clb-carrier-mapping.md                    |   1 +
+ docs/10-results-and-status.md                      |  10 +
+ docs/11-known-issues.md                            |   3 +-
+ ...2T150000Z-git-state-before-pi-zero-fact-doc.log | 126 +++++++++++
+ ...0000Z-inspect-mode-table-after-pi-zero-fact.log |  33 +++
+ ...upstream-mode-references-after-pi-zero-fact.log | 223 +++++++++++++++++++
+ ...60422T150100Z-current-route-a-overlay-mode0.log |  75 +++++++
+ logs/20260422T150100Z-local-ov5647-mode-table.log  | 107 +++++++++
+ ...422T150100Z-upstream-ov5647-mode-properties.log | 241 +++++++++++++++++++++
+ .../20260422T150230Z-diff-pi-zero-vga-3821-fix.log |  57 +++++
+ logs/20260422T150230Z-grep-3821-after-fix.log      |  13 ++
+ ...22T150330Z-build-module-vga-3821-diagnostic.log |  15 ++
+ ...T150400Z-build-artifact-vga-3821-diagnostic.log |  11 +
+ ...0422T150400Z-final-diff-vga-3821-diagnostic.log |  58 +++++
+ ...0260422T150400Z-modinfo-vga-3821-diagnostic.log |  22 ++
+ ...6-04-22-pi-zero-camera-fact-and-vga-3821-fix.md |  38 ++++
+ src/nv_ov5647/nv_ov5647.c                          |   2 +-
+ 17 files changed, 1033 insertions(+), 2 deletions(-)
+## cached check
+logs/20260422T150230Z-diff-pi-zero-vga-3821-fix.log:50: trailing whitespace.
++ 
+logs/20260422T150230Z-diff-pi-zero-vga-3821-fix.log:52: space before tab in indent.
++ 	{0x3036, 0x46},
+logs/20260422T150230Z-diff-pi-zero-vga-3821-fix.log:55: space before tab in indent.
++ 	{0x3820, 0x41},
+logs/20260422T150230Z-diff-pi-zero-vga-3821-fix.log:56: space before tab in indent.
++ 	{0x3612, 0x59},
+logs/20260422T150230Z-diff-pi-zero-vga-3821-fix.log:57: space before tab in indent.
++ 	{0x3618, 0x00},
+logs/20260422T150400Z-final-diff-vga-3821-diagnostic.log:51: trailing whitespace.
++ 
+logs/20260422T150400Z-final-diff-vga-3821-diagnostic.log:53: space before tab in indent.
++ 	{0x3036, 0x46},
+logs/20260422T150400Z-final-diff-vga-3821-diagnostic.log:56: space before tab in indent.
++ 	{0x3820, 0x41},
+logs/20260422T150400Z-final-diff-vga-3821-diagnostic.log:57: space before tab in indent.
++ 	{0x3612, 0x59},
+logs/20260422T150400Z-final-diff-vga-3821-diagnostic.log:58: space before tab in indent.
++ 	{0x3618, 0x00},
