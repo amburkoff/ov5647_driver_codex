@@ -414,3 +414,13 @@ Next required reboot:
 - default boot profile is already `ov5647-dev`;
 - safe profile remains available as `Jetson SAFE (no OV5647 auto-load)`;
 - reboot is required because the DT overlay changed.
+
+Post-reboot result after clock-ID fix:
+
+- system booted successfully into `boot_profile=ov5647-dev`;
+- safe profile remains present in `/boot/extlinux/extlinux.conf`;
+- dev profile now uses `/boot/ov5647-p3768-port-c-extperiph1.dtbo`;
+- live DT for `ov5647_c@36` now confirms `clocks = <&bpmp 0x24>`;
+- `nv_ov5647` is not auto-loaded after reboot;
+- `/dev/video0` is absent before manual module load, as expected;
+- next step is manual `insmod full-delay-dump-contclk-mclk24` only, to confirm effective MCLK rate before capture.
