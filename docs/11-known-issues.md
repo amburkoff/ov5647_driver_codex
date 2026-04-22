@@ -161,4 +161,5 @@
 - `/dev/video0` exists and `v4l2-compliance` has passed, but raw image delivery and preview are not yet validated.
 - The next diagnostic gap is actual sensor register state during stream start:
   - current logs prove callbacks execute, but do not prove key OV5647 registers remain configured after software reset and stream enable;
-  - add gated readbacks before further mode/DT changes.
+  - gated readbacks are now implemented behind `dump_stream_regs=1`;
+  - runtime validation still requires a manual reload with `full-delay-dump` and one capture attempt.

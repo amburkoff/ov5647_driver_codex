@@ -1,0 +1,21 @@
+after_stream_on
+power_on_lp11
+after_set_mode
+6%s: diagnostics dump_stream_regs=%d
+ov5647_dump_stream_regs
+dump_stream_regs
+parm=dump_stream_regs:Diagnostic only: read back key OV5647 registers around stream start. Default: false
+parmtype=dump_stream_regs:bool
+__param_dump_stream_regs
+dump_stream_regs
+__param_str_dump_stream_regs
+__UNIQUE_ID_dump_stream_regstype515
+__UNIQUE_ID_dump_stream_regs516
+ov5647_dump_stream_regs
+ov5647_dump_stream_regs
+__param_str_dump_stream_regs
+__UNIQUE_ID_dump_stream_regs516
+__UNIQUE_ID_dump_stream_regstype515
+__param_dump_stream_regs
+19:	full-delay-dump)
+32:		echo "usage: $0 [full-delay|full-delay-dump|skip-register|skip-unregister|split-unregister]" >&2

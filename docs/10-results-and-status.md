@@ -232,6 +232,11 @@ Current blocking issue:
 
 - `/dev/video0` exists and the module lifecycle is now stable enough for manual testing, but no CSI frames are delivered on route A or route C.
 - The next safest source-side step is a diagnostic register readback dump around mode programming and stream enable, to verify the sensor's actual register state before changing more timing or DT assumptions.
+- diagnostic stream-register readback is now prepared and builds:
+  - new module parameter `dump_stream_regs`, default `false`;
+  - new manual insmod profile `full-delay-dump`;
+  - rebuilt `.ko` `srcversion=E6D2A445F8276648D752078`;
+  - runtime validation is pending a manual reload and capture.
   - rebuilt module has `srcversion=E9CE1D1EF58B852F6484431`;
   - runtime validation is not run yet.
 

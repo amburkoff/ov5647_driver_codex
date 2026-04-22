@@ -16,6 +16,9 @@ case "${PROFILE}" in
 	full-delay)
 		PARAMS=(register_i2c_driver=1 allow_hw_probe=1 unload_marker_delay_ms=500)
 		;;
+	full-delay-dump)
+		PARAMS=(register_i2c_driver=1 allow_hw_probe=1 dump_stream_regs=1 unload_marker_delay_ms=500)
+		;;
 	skip-register)
 		PARAMS=(register_i2c_driver=1 allow_hw_probe=1 skip_v4l2_register=1 unload_marker_delay_ms=500)
 		;;
@@ -26,7 +29,7 @@ case "${PROFILE}" in
 		PARAMS=(register_i2c_driver=1 allow_hw_probe=1 split_v4l2_unregister=1 unload_marker_delay_ms=500)
 		;;
 	*)
-		echo "usage: $0 [full-delay|skip-register|skip-unregister|split-unregister]" >&2
+		echo "usage: $0 [full-delay|full-delay-dump|skip-register|skip-unregister|split-unregister]" >&2
 		exit 2
 		;;
 esac

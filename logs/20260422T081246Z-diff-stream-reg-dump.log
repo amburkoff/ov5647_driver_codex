@@ -1,0 +1,161 @@
+diff --git a/scripts/run_manual_insmod_diag.sh b/scripts/run_manual_insmod_diag.sh
+index 2619705..d1c1643 100755
+--- a/scripts/run_manual_insmod_diag.sh
++++ b/scripts/run_manual_insmod_diag.sh
+@@ -16,6 +16,9 @@ case "${PROFILE}" in
+ 	full-delay)
+ 		PARAMS=(register_i2c_driver=1 allow_hw_probe=1 unload_marker_delay_ms=500)
+ 		;;
++	full-delay-dump)
++		PARAMS=(register_i2c_driver=1 allow_hw_probe=1 dump_stream_regs=1 unload_marker_delay_ms=500)
++		;;
+ 	skip-register)
+ 		PARAMS=(register_i2c_driver=1 allow_hw_probe=1 skip_v4l2_register=1 unload_marker_delay_ms=500)
+ 		;;
+@@ -26,7 +29,7 @@ case "${PROFILE}" in
+ 		PARAMS=(register_i2c_driver=1 allow_hw_probe=1 split_v4l2_unregister=1 unload_marker_delay_ms=500)
+ 		;;
+ 	*)
+-		echo "usage: $0 [full-delay|skip-register|skip-unregister|split-unregister]" >&2
++		echo "usage: $0 [full-delay|full-delay-dump|skip-register|skip-unregister|split-unregister]" >&2
+ 		exit 2
+ 		;;
+ esac
+diff --git a/src/nv_ov5647/nv_ov5647.c b/src/nv_ov5647/nv_ov5647.c
+index 22b6b62..9fb83a1 100644
+--- a/src/nv_ov5647/nv_ov5647.c
++++ b/src/nv_ov5647/nv_ov5647.c
+@@ -94,8 +94,47 @@ module_param(unload_marker_delay_ms, uint, 0644);
+ MODULE_PARM_DESC(unload_marker_delay_ms,
+ 		 "Optional delay after unload markers to let userspace persist logs. Default: 0");
+ 
++static bool dump_stream_regs;
++module_param(dump_stream_regs, bool, 0644);
++MODULE_PARM_DESC(dump_stream_regs,
++		 "Diagnostic only: read back key OV5647 registers around stream start. Default: false");
++
+ static bool driver_registered;
+ 
++struct ov5647_reg_dump {
++	u16 addr;
++	const char *name;
++};
++
++static const struct ov5647_reg_dump ov5647_stream_reg_dump[] = {
++	{ OV5647_REG_MODE_SELECT, "mode_select" },
++	{ OV5647_REG_SW_RESET, "sw_reset" },
++	{ 0x3000, "sys_ctrl0" },
++	{ 0x3001, "sys_ctrl1" },
++	{ 0x3002, "sys_ctrl2" },
++	{ OV5640_REG_PAD_OUT, "pad_out" },
++	{ 0x3016, "mipi_ctrl16" },
++	{ 0x3017, "mipi_ctrl17" },
++	{ 0x3018, "mipi_ctrl18" },
++	{ 0x3034, "pll_ctrl34" },
++	{ 0x3035, "pll_ctrl35" },
++	{ 0x3036, "pll_ctrl36" },
++	{ 0x303c, "pll_ctrl3c" },
++	{ 0x3808, "x_output_size_h" },
++	{ 0x3809, "x_output_size_l" },
++	{ 0x380a, "y_output_size_h" },
++	{ 0x380b, "y_output_size_l" },
++	{ 0x380c, "hts_h" },
++	{ 0x380d, "hts_l" },
++	{ 0x380e, "vts_h" },
++	{ 0x380f, "vts_l" },
++	{ 0x3820, "timing_format1" },
++	{ 0x3821, "timing_format2" },
++	{ OV5647_REG_FRAME_OFF_NUMBER, "frame_off_number" },
++	{ OV5647_REG_MIPI_CTRL00, "mipi_ctrl00" },
++	{ OV5647_REG_MIPI_CTRL14, "mipi_ctrl14" },
++};
++
+ static void ov5647_unload_marker_delay(void)
+ {
+ 	if (unload_marker_delay_ms)
+@@ -389,6 +428,50 @@ static int ov5647_read_reg(struct camera_common_data *s_data, u16 addr, u8 *val)
+ 	return 0;
+ }
+ 
++static void ov5647_dump_stream_regs(struct camera_common_data *s_data,
++				    const char *phase)
++{
++	struct device *dev;
++	u8 val = 0;
++	int i;
++	int err;
++
++	if (!dump_stream_regs)
++		return;
++
++	if (!s_data || !s_data->dev) {
++		pr_warn("%s: missing s_data/dev for phase=%s\n", __func__,
++			phase ?: "unknown");
++		return;
++	}
++
++	dev = s_data->dev;
++	dev_info(dev, "%s: begin phase=%s\n", __func__,
++		 phase ?: "unknown");
++
++	for (i = 0; i < ARRAY_SIZE(ov5647_stream_reg_dump); i++) {
++		err = ov5647_read_reg(s_data, ov5647_stream_reg_dump[i].addr,
++				      &val);
++		if (err) {
++			dev_warn(dev,
++				 "%s: phase=%s reg=0x%04x name=%s read failed err=%d\n",
++				 __func__, phase ?: "unknown",
++				 ov5647_stream_reg_dump[i].addr,
++				 ov5647_stream_reg_dump[i].name, err);
++			continue;
++		}
++
++		dev_info(dev,
++			 "%s: phase=%s reg=0x%04x name=%s val=0x%02x\n",
++			 __func__, phase ?: "unknown",
++			 ov5647_stream_reg_dump[i].addr,
++			 ov5647_stream_reg_dump[i].name, val);
++	}
++
++	dev_info(dev, "%s: end phase=%s\n", __func__,
++		 phase ?: "unknown");
++}
++
+ static int ov5647_write_table(struct camera_common_data *s_data,
+ 			      const struct reg_8 *table)
+ {
+@@ -670,6 +753,7 @@ static int ov5647_power_on(struct camera_common_data *s_data)
+ 		goto disable_mclk;
+ 	}
+ 	dev_info(dev, "%s: stream-stop LP-11 setup complete\n", __func__);
++	ov5647_dump_stream_regs(s_data, "power_on_lp11");
+ 
+ 	pw->state = true;
+ 
+@@ -834,6 +918,8 @@ static int ov5647_set_mode(struct tegracam_device *tc_dev)
+ 	if (err)
+ 		return err;
+ 
++	ov5647_dump_stream_regs(s_data, "after_set_mode");
++
+ 	dev_info(tc_dev->dev, "%s: mode applied, sensor remains in standby\n",
+ 		 __func__);
+ 	return 0;
+@@ -869,6 +955,8 @@ static int ov5647_start_streaming(struct tegracam_device *tc_dev)
+ 	if (err)
+ 		return err;
+ 
++	ov5647_dump_stream_regs(s_data, "after_stream_on");
++
+ 	dev_info(tc_dev->dev, "%s: exit success\n", __func__);
+ 	return 0;
+ }
+@@ -1204,6 +1292,8 @@ static int __init nv_ov5647_init(void)
+ 		OV5647_NAME, register_i2c_driver, allow_hw_probe,
+ 		skip_v4l2_register, skip_v4l2_unregister, split_v4l2_unregister,
+ 		unload_marker_delay_ms);
++	pr_info("%s: diagnostics dump_stream_regs=%d\n",
++		OV5647_NAME, dump_stream_regs);
+ 
+ 	if (!register_i2c_driver) {
+ 		pr_info("%s: safety gate active; i2c driver registration skipped\n",
