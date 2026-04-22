@@ -1,0 +1,2 @@
+patches/ov5647-p3768-port-c-probe.dts:157:								discontinuous_clk = "yes";
+patches/ov5647-p3768-port-a-probe.dts:149:								discontinuous_clk = "yes";

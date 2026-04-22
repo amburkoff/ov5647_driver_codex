@@ -1,0 +1,13 @@
+diff --git a/patches/ov5647-p3768-port-c-probe.dts b/patches/ov5647-p3768-port-c-probe.dts
+index 477286c..9fa0ab6 100644
+--- a/patches/ov5647-p3768-port-c-probe.dts
++++ b/patches/ov5647-p3768-port-c-probe.dts
+@@ -154,7 +154,7 @@
+ 								tegra_sinterface = "serial_c";
+ 								lane_polarity = "0";
+ 								phy_mode = "DPHY";
+-								discontinuous_clk = "yes";
++								discontinuous_clk = "no";
+ 								dpcm_enable = "false";
+ 								cil_settletime = "0";
+ 								active_w = "640";

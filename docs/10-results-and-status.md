@@ -284,6 +284,13 @@ Current next focus:
 
 - simple stream-start bit fixes are not enough;
 - focus must shift to DT timing, lane polarity/ordering, physical adapter compatibility, or missing mode-table registers.
+- route-C continuous-clock DT experiment is prepared:
+  - `patches/ov5647-p3768-port-c-probe.dts` now sets `discontinuous_clk = "no"`;
+  - built DTBO artifact `artifacts/dtbo/20260422T082931Z-ov5647-p3768-port-c-probe.dtbo`;
+  - staged separate boot DTBO `/boot/ov5647-p3768-port-c-contclk.dtbo`;
+  - current live `/boot/extlinux/extlinux.conf` is not modified yet;
+  - rendered candidate boot config exists at `artifacts/boot/20260422T082942Z/extlinux.conf.generated`;
+  - safe profile remains present in the current and rendered boot configs.
   - rebuilt module has `srcversion=E9CE1D1EF58B852F6484431`;
   - runtime validation is not run yet.
 

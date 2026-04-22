@@ -154,7 +154,7 @@
 								tegra_sinterface = "serial_c";
 								lane_polarity = "0";
 								phy_mode = "DPHY";
-								discontinuous_clk = "no";
+								discontinuous_clk = "yes";
 								dpcm_enable = "false";
 								cil_settletime = "0";
 								active_w = "640";

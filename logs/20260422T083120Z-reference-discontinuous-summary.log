@@ -1,0 +1,7 @@
+artifacts/reference/tegra234-p3767-camera-p3768-imx219-C.dts:139:								discontinuous_clk = "yes";
+artifacts/reference/tegra234-p3767-camera-p3768-imx219-C.dts:177:								discontinuous_clk = "yes";
+artifacts/reference/tegra234-p3767-camera-p3768-imx219-C.dts:215:								discontinuous_clk = "yes";
+artifacts/reference/tegra234-p3767-camera-p3768-imx219-C.dts:253:								discontinuous_clk = "yes";
+artifacts/reference/tegra234-p3767-camera-p3768-imx219-C.dts:291:								discontinuous_clk = "yes";
+artifacts/reference/tegra234-p3767-camera-p3768-imx477-C.dts:131:								discontinuous_clk = "no";
+artifacts/reference/tegra234-p3767-camera-p3768-imx477-C.dts:170:								discontinuous_clk = "no";
