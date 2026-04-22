@@ -61,7 +61,8 @@ Fields that remain blocked until hardware verification:
 ## Safe Boot Interaction
 
 - the generated `ov5647-safe` profile will not reference any OV5647 overlay;
-- the generated `ov5647-dev` profile currently uses `OVERLAYS /boot/ov5647-p3768-port-c-contclk.dtbo`;
+- the generated `ov5647-dev` profile is staged for the next reboot with `OVERLAYS /boot/ov5647-p3768-port-a-extperiph1.dtbo`;
+- the currently running live DT remains whatever was loaded at boot until the next reboot;
 - `FDTOVERLAYS` did not apply correctly on this UEFI boot path; the working syntax is `FDT` plus `OVERLAYS`.
 
 ## Draft Overlay Artifact
@@ -102,19 +103,28 @@ Status:
 - `artifacts/dtbo/20260421T155351Z-ov5647-p3768-port-c-probe.dtbo` builds;
 - `artifacts/boot/20260421T155412Z/extlinux.conf.generated` renders a dev profile using `/boot/ov5647-p3768-port-c-probe.dtbo`;
 - `artifacts/dtbo/20260422T082931Z-ov5647-p3768-port-c-probe.dtbo` builds with `discontinuous_clk = "no"`;
-- the live `/boot` dev profile now uses `/boot/ov5647-p3768-port-c-contclk.dtbo`;
+- the live `/boot` dev profile now uses `/boot/ov5647-p3768-port-c-extperiph1.dtbo`;
 - live DT confirms route-C fields after reboot;
-- route-C continuous-clock capture still times out with zero-byte output;
+- route-C corrected-`extperiph1` continuous-clock capture still times out with zero-byte output;
 - RTCPU/NVCSI trace shows no SOF or NVCSI receiver interrupt during the capture window.
+
+## Route-A Corrected-MCLK Retest
+
+The route-A overlay has been rebuilt after the Tegra234 BPMP clock-ID fix:
+
+- source: `patches/ov5647-p3768-port-a-probe.dts`;
+- artifact: `artifacts/dtbo/20260422T135929Z-ov5647-p3768-port-a-probe.dtbo`;
+- boot copy: `/boot/ov5647-p3768-port-a-extperiph1.dtbo`;
+- route: `cam_i2cmux/i2c@0`, `serial_b`, `port-index=1`, `lane_polarity="6"`;
+- clock: `clocks = <&bpmp 0x24>`, `clock-names = "extperiph1"`;
+- dev profile default is staged for this overlay, but live DT validation still requires reboot.
 
 ## Current DT Conclusion
 
 The DT overlay is good enough to bind the sensor, register `/dev/video0`, and execute stream start on route C. It is not proven electrically correct because neither route A nor route C produces SOF.
 
-The next DT work should be driven by hardware evidence, not blind edits:
+The next DT work should be tightly bounded:
 
-- confirmed CLB connector label to p3768 route mapping;
-- confirmed whether the makerobo CLB board follows the NVIDIA Developer Kit camera connector wiring exactly;
-- confirmed cable/adapter pinout for the `JT-ZERO-V2.0 YH` Raspberry Pi-style OV5647 module;
-- known-good Jetson camera cross-check on the same connector, if available;
-- only then a one-variable lane polarity or route variant.
+- first, reboot into the staged route-A corrected-`TEGRA234_CLK_EXTPERIPH1` overlay and retest route A once because earlier route-A captures used the old wrong BPMP clock ID;
+- after that, prefer hardware evidence over blind edits: confirmed CLB connector label to p3768 route mapping, makerobo CLB camera connector wiring, cable/adapter pinout for the `JT-ZERO-V2.0 YH` module, or a known-good Jetson camera cross-check;
+- only then consider a one-variable lane-polarity or route variant.

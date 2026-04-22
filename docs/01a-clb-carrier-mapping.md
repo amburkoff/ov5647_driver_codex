@@ -193,9 +193,10 @@ The latest route-C continuous-clock runtime test proves that the Linux/V4L2 path
 - register readback after stream-on confirms `0x0100 = 0x01`;
 - output-enable readback confirms `0x3000 = 0x0f`, `0x3001 = 0xff`, `0x3002 = 0xe4`;
 - MIPI clock register readback confirms the continuous-clock diagnostic value `0x4800 = 0x04`;
+- after the clock-ID fix, driver logs confirm `extperiph1` MCLK is enabled at `24000000` Hz;
 - RTCPU/NVCSI trace contains no `vi_frame_begin`, `vi_frame_end`, `rtcpu_nvcsi_intr`, `rtcpu_vinotify_error`, `capture_event_sof`, or `capture_event_error`.
 
-This does not prove the sensor is incapable of output. It proves that the current DT route, physical lane path, cable/adapter path, or MIPI electrical output state is still not producing an observable SOF at the Jetson receiver.
+This does not prove the sensor is incapable of output. It proves that the current DT route, physical lane path, cable/adapter path, or MIPI electrical output state is still not producing an observable SOF at the Jetson receiver. Because the earlier route-A test used the old wrong BPMP clock binding, one corrected-MCLK route-A retest is still a valid controlled software experiment before treating the issue as purely physical.
 
 ## Blocking Next Checks
 

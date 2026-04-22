@@ -441,3 +441,48 @@ Next manual runtime test:
 
 - run one RTCPU/NVCSI traced single-frame capture manually;
 - if it still returns no SOF and zero bytes with MCLK fixed, the remaining leading suspects are physical CSI lane path/cable/adapter mapping or sensor module electrical compatibility.
+
+Manual capture after confirmed extperiph1 MCLK:
+
+- manual RTCPU/NVCSI traced capture `20260422T135523Z` returned `rc=124`;
+- raw output `artifacts/captures/20260422T135523Z/ov5647-640x480-bg10.raw` is zero bytes;
+- driver logs still confirm corrected active MCLK during capture:
+  - `ov5647_power_on: mclk enabled rate=24000000`;
+  - `ov5647_set_stream: continuous_mipi_clock=1`;
+  - stream-on readback showed `0x0100=0x01` and `0x4800=0x04`;
+- VI still logged repeated `uncorr_err: request timed out after 2500 ms`;
+- RTCPU trace again shows channel setup and stream enable, but no runtime `vi_frame_begin`, `vi_frame_end`, `rtcpu_nvcsi_intr`, `rtcpu_vinotify_error`, or capture SOF/error events.
+
+Current interpretation:
+
+- the wrong BPMP clock ID was a real bug and is fixed for route C;
+- the no-SOF failure remains after the sensor is clocked at 24 MHz;
+- because the earlier route-A tests were also performed before the clock-ID fix, route A is not fully ruled out yet;
+- the next controlled DT-only software experiment is route A with the corrected `TEGRA234_CLK_EXTPERIPH1` clock binding;
+- if route A with corrected MCLK also has no SOF, the highest-probability cause becomes physical CLB/makerobo connector routing, FFC/adaptor pinout/orientation, or Raspberry Pi-style OV5647 electrical compatibility.
+
+Route-A corrected-MCLK boot staged:
+
+- built route-A DTBO from `patches/ov5647-p3768-port-a-probe.dts`;
+- artifact: `artifacts/dtbo/20260422T135929Z-ov5647-p3768-port-a-probe.dtbo`;
+- installed boot overlay: `/boot/ov5647-p3768-port-a-extperiph1.dtbo`;
+- checksum matches between artifact and `/boot` copy;
+- `/boot/extlinux/extlinux.conf` now has:
+  - `DEFAULT ov5647-dev`;
+  - safe entry `ov5647-safe` with `boot_profile=ov5647-safe`;
+  - dev entry `ov5647-dev` with `OVERLAYS /boot/ov5647-p3768-port-a-extperiph1.dtbo`;
+- DTBO decompile confirms route-A fields:
+  - `i2c@0`;
+  - `ov5647_a@36`;
+  - `clocks = <... 0x24>`;
+  - `tegra_sinterface = "serial_b"`;
+  - `port-index = <1>`;
+  - `lane_polarity = "6"`;
+  - `pwdn-gpios = <... 0x3e 0>`.
+
+Next required reboot:
+
+- reboot is required because the overlay changed;
+- the default boot profile is already `ov5647-dev`;
+- safe boot remains available as `Jetson SAFE (no OV5647 auto-load)`;
+- after reboot, first verify `/proc/cmdline` and live DT before any module or capture command.

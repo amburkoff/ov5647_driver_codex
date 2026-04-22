@@ -5,13 +5,14 @@
 - The included booklet says to install the official Jetson Developer Kit image.
 - The running DT identifies NVIDIA reference carrier `p3768-0000`, which is consistent with the official Developer Kit image instruction but still does not prove CLB camera connector wiring.
 - The running system currently boots with `boot_profile=ov5647-dev`, while the carrier hardware still needs independent CLB-specific camera-route documentation beyond what the base DT exposes.
-- The active no-SOF problem is not yet explained by register stream-start state:
+- The active no-SOF problem is not explained by register stream-start state or by the previously wrong BPMP clock ID alone:
   - RTCPU/NVCSI tracing showed no frame-start or NVCSI interrupt events during capture;
-  - MCLK diagnostics showed the active overlay was binding `clock-names = "extperiph1"` to BPMP clock ID `0x07`, which is `TEGRA234_CLK_AUD_MCLK`, not `TEGRA234_CLK_EXTPERIPH1`;
-  - the prepared fix uses BPMP clock ID `0x24` / decimal `36`, but requires reboot before live DT changes;
-  - if the corrected MCLK route still produces no SOF, physical connector/cable/adapter mapping becomes the main suspect.
-- The safe boot entry still exists, but the on-disk default is currently set to `ov5647-dev` for the next controlled overlay-validation reboot cycle.
-- The active dev overlay is now a route-C continuous-clock candidate from the physical-connector point of view; it is logically validated by successful probe and `/dev/video0`, but not by SOF/frame delivery.
+  - MCLK diagnostics showed the older active overlay was binding `clock-names = "extperiph1"` to BPMP clock ID `0x07`, which is `TEGRA234_CLK_AUD_MCLK`, not `TEGRA234_CLK_EXTPERIPH1`;
+  - route C now boots with BPMP clock ID `0x24` / decimal `36` and driver logs confirm `mclk enabled rate=24000000`;
+  - route C still produces zero-byte capture timeout and no SOF with corrected MCLK;
+  - physical connector/cable/adapter mapping is now a leading suspect, but route A still needs one corrected-MCLK retest because earlier route-A tests used the old clock binding.
+- The safe boot entry still exists, but the on-disk default is currently set to `ov5647-dev` with the route-A corrected-MCLK overlay for the next controlled overlay-validation reboot cycle.
+- The active dev overlay is now a route-C corrected-`extperiph1` continuous-clock candidate from the physical-connector point of view; it is logically validated by successful probe and `/dev/video0`, but not by SOF/frame delivery.
 - The physical camera modules are present on both 22-pin connectors, but the exact mapping from physical connector to route `A` or `C` is still unverified.
 - The visible camera marking `JT-ZERO-V2.0 YH` suggests Raspberry Pi-market OV5647 hardware, but the exact FFC/adaptor topology is not yet documented.
 - Local `nvidia-oot` headers are present, but full local sample sensor source files are not installed under `/usr/src/nvidia/`.
