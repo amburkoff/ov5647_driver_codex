@@ -288,9 +288,14 @@ Current next focus:
   - `patches/ov5647-p3768-port-c-probe.dts` now sets `discontinuous_clk = "no"`;
   - built DTBO artifact `artifacts/dtbo/20260422T082931Z-ov5647-p3768-port-c-probe.dtbo`;
   - staged separate boot DTBO `/boot/ov5647-p3768-port-c-contclk.dtbo`;
-  - current live `/boot/extlinux/extlinux.conf` is not modified yet;
   - rendered candidate boot config exists at `artifacts/boot/20260422T082942Z/extlinux.conf.generated`;
   - safe profile remains present in the current and rendered boot configs.
+- route-C continuous-clock dev boot is now staged:
+  - current `/boot/extlinux/extlinux.conf` uses `DEFAULT ov5647-dev`;
+  - dev entry uses `OVERLAYS /boot/ov5647-p3768-port-c-contclk.dtbo`;
+  - safe profile remains present with `boot_profile=ov5647-safe`;
+  - previous extlinux was backed up as `/boot/extlinux/extlinux.conf.20260422T083143Z.bak`;
+  - reboot is required to validate this DT change.
   - rebuilt module has `srcversion=E9CE1D1EF58B852F6484431`;
   - runtime validation is not run yet.
 

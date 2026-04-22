@@ -184,4 +184,4 @@
   - VI still times out, so the remaining blocker is likely outside these simple stream-start fields.
 - The continuous-clock sensor test did not also change DT:
   - live route-C DT still had `discontinuous_clk = "yes"` during the `0x4800=0x04` capture attempt;
-  - a matched receiver-side DT experiment with `discontinuous_clk = "no"` is prepared but requires reboot to validate.
+  - a matched receiver-side DT experiment with `discontinuous_clk = "no"` is staged in the dev boot profile but requires reboot to validate.
