@@ -134,6 +134,11 @@
   - chip ID `0x5647` is confirmed on route C;
   - `/dev/video0` appears on `platform:tegra-capture-vi:2`;
   - the remaining question is whether route C delivers CSI frames during `STREAMON`.
+- Route-C streaming has now been tested and still times out:
+  - `VIDIOC_STREAMON` returns success;
+  - raw output remains zero bytes;
+  - VI reports repeated `uncorr_err: request timed out after 2500 ms`;
+  - this makes a simple A/C route selection error unlikely.
 - Current OV5647 `set_mode()` no longer enables streaming in source:
   - NVIDIA r36.5 tegracam calls `set_mode()` before `start_streaming()`;
   - NVIDIA sample drivers keep `set_mode()` to register programming and start output from `start_streaming()`;

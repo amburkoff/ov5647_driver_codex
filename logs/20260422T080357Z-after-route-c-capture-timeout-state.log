@@ -1,0 +1,37 @@
+# capture script
+[20260422T080247Z] starting live dmesg capture
+[20260422T080247Z] running single-frame capture to /home/cam/ov5647_driver_codex/artifacts/captures/20260422T080247Z/ov5647-640x480-bg10.raw
+[20260422T080247Z] timeout=30s
+		VIDIOC_REQBUFS returned 0 (Success)
+		VIDIOC_QUERYBUF returned 0 (Success)
+		VIDIOC_QUERYBUF returned 0 (Success)
+		VIDIOC_QUERYBUF returned 0 (Success)
+		VIDIOC_QUERYBUF returned 0 (Success)
+		VIDIOC_QBUF returned 0 (Success)
+		VIDIOC_QBUF returned 0 (Success)
+		VIDIOC_QBUF returned 0 (Success)
+		VIDIOC_QBUF returned 0 (Success)
+		VIDIOC_STREAMON returned 0 (Success)
+[20260422T080247Z] capture rc=124
+[20260422T080247Z] raw size=0 bytes path=/home/cam/ov5647_driver_codex/artifacts/captures/20260422T080247Z/ov5647-640x480-bg10.raw
+
+# raw artifact
+total 0
+-rw-r--r-- 1 root root 0 Apr 22 11:02 ov5647-640x480-bg10.raw
+
+# module srcversion
+2F4050CDED69B8A5FF0C49F
+
+# module params
+/sys/module/nv_ov5647/parameters/allow_hw_probe
+/sys/module/nv_ov5647/parameters/split_v4l2_unregister
+/sys/module/nv_ov5647/parameters/unload_marker_delay_ms
+/sys/module/nv_ov5647/parameters/skip_v4l2_register
+/sys/module/nv_ov5647/parameters/skip_v4l2_unregister
+/sys/module/nv_ov5647/parameters/register_i2c_driver
+/sys/module/nv_ov5647/parameters/allow_hw_probe=Y
+/sys/module/nv_ov5647/parameters/split_v4l2_unregister=N
+/sys/module/nv_ov5647/parameters/unload_marker_delay_ms=500
+/sys/module/nv_ov5647/parameters/skip_v4l2_register=N
+/sys/module/nv_ov5647/parameters/skip_v4l2_unregister=N
+/sys/module/nv_ov5647/parameters/register_i2c_driver=Y

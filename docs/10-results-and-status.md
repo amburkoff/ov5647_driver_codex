@@ -209,6 +209,12 @@ Completed:
   - `/dev/video0`, `/dev/v4l-subdev0`, and `/dev/v4l-subdev1` appeared;
   - media graph links are enabled from `nv_ov5647 9-0036` to `nvcsi` to `vi-output`;
   - V4L2 reports `BG10 640x480` on `platform:tegra-capture-vi:2`.
+- route-C manual single-frame capture still timed out:
+  - capture reached `VIDIOC_STREAMON`;
+  - capture returned `rc=124`;
+  - raw output `artifacts/captures/20260422T080247Z/ov5647-640x480-bg10.raw` is zero bytes;
+  - VI still logged repeated `uncorr_err: request timed out after 2500 ms`;
+  - driver cleanup logs show `stop_streaming` and `power_off` returned successfully.
 
 Not completed yet:
 
@@ -221,5 +227,5 @@ Not completed yet:
 Next smallest safe step:
 
 - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
-- ask the user to manually run route-C single-frame capture with `scripts/run_manual_single_frame_trace.sh`;
-- if capture succeeds, analyze raw size and image statistics; if it times out, compare route-C VI errors against route-A.
+- prepare one source-side experiment focused on stream-start/mode timing consistency, then rebuild;
+- after rebuild, ask the user to manually unload/load/capture again.
