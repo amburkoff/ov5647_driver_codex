@@ -1,0 +1,148 @@
+1-# Results And Status
+2-
+3:Current overall status: `route-A corrected-MCLK dev overlay booted, manual LKM-only workflow retained, route-A and route-C probes work, remove path fixed, route-C still no-SOF, route-A corrected-MCLK capture not yet tested`
+4-
+5-Completed:
+6-
+--
+26-- `DEFAULT` now points to `ov5647-safe` on disk;
+27-- base camera I2C bus inventory confirms `i2c-2` exists, but no downstream camera devices are currently visible without an active camera overlay.
+28-- reusable overlay build pipeline added through `scripts/build_overlay.sh`;
+29:- route-A probe-oriented overlay candidate compiles under `artifacts/dtbo/20260417T124633Z-ov5647-p3768-port-a-probe.dtbo`.
+30:- route-A probe overlay staged into `/boot/ov5647-p3768-port-a-probe.dtbo`;
+31-- first dev reboot completed successfully and confirmed `boot_profile=ov5647-dev`;
+32-- first dev reboot showed that `FDTOVERLAYS` did not apply the custom camera overlay on this target;
+33-- boot tooling was corrected to UEFI-style `FDT + OVERLAYS`;
+--
+41-- current controlled probe reaches regulator and clock acquisition, then fails cleanly at `mclk get` with `err=-2`;
+42-- the probe overlay source was updated to add an explicit `clocks = <&bpmp 0x07>` binding for `extperiph1`;
+43-- the updated probe overlay has been rebuilt and staged to `/boot/ov5647-p3768-port-a-probe.dtbo` for the next reboot.
+44:- the current dev boot now exposes a live route-A OV5647 path on:
+45-  - `serial_b`
+46-  - `port-index = 1`
+47-  - `bus-width = <2>`
+--
+165-  - raw output `artifacts/captures/20260421T153826Z/ov5647-640x480-bg10.raw` is zero bytes;
+166-  - VI still logged repeated `uncorr_err: request timed out after 2500 ms`;
+167-  - driver cleanup logs show `stop_streaming` and `power_off` returned successfully.
+168:- read-only route analysis after the HTS/VTS timeout confirmed the current route-A overlay matches NVIDIA's installed p3768 `imx219-A`/`imx477-A` route fields:
+169-  - `cam_i2cmux/i2c@0`;
+170-  - `serial_b`;
+171-  - `port-index = 1`;
+--
+230-
+231-Current blocking issue:
+232-
+233:- `/dev/video0` exists and the module lifecycle is now stable enough for manual testing, but no CSI frames are delivered on route A or route C.
+234-- The next safest source-side step is a diagnostic register readback dump around mode programming and stream enable, to verify the sensor's actual register state before changing more timing or DT assumptions.
+235-- diagnostic stream-register readback is now prepared and builds:
+236-  - new module parameter `dump_stream_regs`, default `false`;
+--
+330-- raw capture with non-empty frame data;
+331-- live preview.
+332-
+333:Next smallest safe step:
+334-
+335-- do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
+336-- ask the user to manually run one RTCPU/NVCSI traced capture on the already loaded route-C continuous-clock module;
+337:- do not tune more simple stream-start bits until the physical CSI path, lane mapping/polarity, and adapter compatibility are re-checked against this no-SOF evidence.
+338-
+339-Update after read-only route snapshot work:
+340-
+--
+380-- module build passed after the patch;
+381-- no risky runtime command was run from Codex after this patch.
+382-
+383:Next manual runtime test:
+384-
+385-- if `nv_ov5647` is loaded, unload only if the current session can tolerate a hang; otherwise reboot/power-cycle first and keep Codex CLI context intact;
+386-- manually run `sudo /home/cam/ov5647_driver_codex/scripts/run_manual_insmod_diag.sh full-delay-dump-contclk-mclk24`;
+--
+402-Clock-ID fix prepared:
+403-
+404-- `patches/ov5647-p3768-port-c-probe.dts` now uses `clocks = <&bpmp 0x24>`;
+405:- `patches/ov5647-p3768-port-a-probe.dts` was updated the same way to avoid carrying the same bug in the route-A candidate;
+406-- built DTBO `artifacts/dtbo/20260422T134331Z-ov5647-p3768-port-c-probe.dtbo`;
+407-- staged boot DTBO `/boot/ov5647-p3768-port-c-extperiph1.dtbo`;
+408-- dev boot profile now uses `OVERLAYS /boot/ov5647-p3768-port-c-extperiph1.dtbo`;
+409-- safe boot profile remains present;
+410-- current live DT still shows old `0x07` until reboot.
+411-
+412:Next required reboot:
+413-
+414-- default boot profile is already `ov5647-dev`;
+415-- safe profile remains available as `Jetson SAFE (no OV5647 auto-load)`;
+--
+437-- `/dev/video0` is present;
+438-- `media-ctl -p` shows the enabled route `nv_ov5647 9-0036 -> nvcsi -> vi-output`.
+439-
+440:Next manual runtime test:
+441-
+442-- run one RTCPU/NVCSI traced single-frame capture manually;
+443-- if it still returns no SOF and zero bytes with MCLK fixed, the remaining leading suspects are physical CSI lane path/cable/adapter mapping or sensor module electrical compatibility.
+--
+456-Current interpretation:
+457-
+458-- the wrong BPMP clock ID was a real bug and is fixed for route C;
+459:- the no-SOF failure remains after the sensor is clocked at 24 MHz;
+460:- because the earlier route-A tests were also performed before the clock-ID fix, route A is not fully ruled out yet;
+461:- the next controlled DT-only software experiment is route A with the corrected `TEGRA234_CLK_EXTPERIPH1` clock binding;
+462:- if route A with corrected MCLK also has no SOF, the highest-probability cause becomes physical CLB/makerobo connector routing, FFC/adaptor pinout/orientation, or Raspberry Pi-style OV5647 electrical compatibility.
+463-
+464-Route-A corrected-MCLK boot staged:
+465-
+466:- built route-A DTBO from `patches/ov5647-p3768-port-a-probe.dts`;
+467-- artifact: `artifacts/dtbo/20260422T135929Z-ov5647-p3768-port-a-probe.dtbo`;
+468-- installed boot overlay: `/boot/ov5647-p3768-port-a-extperiph1.dtbo`;
+469-- checksum matches between artifact and `/boot` copy;
+--
+471-  - `DEFAULT ov5647-dev`;
+472-  - safe entry `ov5647-safe` with `boot_profile=ov5647-safe`;
+473-  - dev entry `ov5647-dev` with `OVERLAYS /boot/ov5647-p3768-port-a-extperiph1.dtbo`;
+474:- DTBO decompile confirms route-A fields:
+475-  - `i2c@0`;
+476-  - `ov5647_a@36`;
+477-  - `clocks = <... 0x24>`;
+--
+480-  - `lane_polarity = "6"`;
+481-  - `pwdn-gpios = <... 0x3e 0>`.
+482-
+483:Next required reboot:
+484-
+485-- reboot is required because the overlay changed;
+486-- the default boot profile is already `ov5647-dev`;
+487-- safe boot remains available as `Jetson SAFE (no OV5647 auto-load)`;
+488-- after reboot, first verify `/proc/cmdline` and live DT before any module or capture command.
+489-
+490:Post-reboot result for route-A corrected-MCLK overlay:
+491-
+492-- system booted into `boot_profile=ov5647-dev`;
+493-- `/boot/extlinux/extlinux.conf` still contains both safe and dev profiles;
+494-- dev profile points to `/boot/ov5647-p3768-port-a-extperiph1.dtbo`;
+495-- `nv_ov5647` is not auto-loaded;
+496-- `/dev/video0` and `/dev/v4l-subdev*` are absent before manual module load, as expected;
+497:- live DT now contains route-A node:
+498-  - `/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36`;
+499-  - `status = "okay"`;
+500-  - `compatible = "ovti,ov5647"`;
+--
+509-- `media-ctl -p` currently shows only the base `nvcsi` entity with no sensor link before module load;
+510-- pstore contains `console-ramoops-0` from the previous boot, including the earlier route-C capture timeout and a normal `reboot: Restarting system` tail; no panic/oops/NULL dereference signature was found in that pstore scan.
+511-
+512:Next manual test:
+513-
+514:- run only manual route-A insmod diagnostics first;
+515:- do not run capture until route-A probe/chip-ID/MCLK are confirmed after this reboot.
+516-
+517:Manual route-A insmod after corrected-MCLK reboot:
+518-
+519-- user ran `sudo /home/cam/ov5647_driver_codex/scripts/run_manual_insmod_diag.sh full-delay-dump-contclk-mclk24`;
+520-- command returned `insmod rc=0`;
+--
+544-  - `30 fps`;
+545-  - `sensor_modes = 1`.
+546-
+547:Next manual runtime test:
+548-
+549:- run the RTCPU/NVCSI traced single-frame capture on this route-A corrected-MCLK setup;
+550:- if this still gives `rc=124`, zero bytes, and no SOF, both route A and route C will have failed after the clock-ID fix and physical CLB/makerobo connector/cable/adaptor compatibility becomes the dominant root-cause track.

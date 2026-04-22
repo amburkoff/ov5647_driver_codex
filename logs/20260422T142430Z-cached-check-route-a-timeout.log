@@ -1,0 +1,172 @@
+[20260422T142430Z] staged route-A timeout validation
+ README.md                                          |    8 +-
+ .../20260422T140936Z/ov5647-640x480-bg10.raw       |    0
+ .../traces/20260422T140936Z/after-set_event.log    |   22 +
+ artifacts/traces/20260422T140936Z/after-trace.log  |   50 +
+ .../traces/20260422T140936Z/after-trace_clock.log  |    1 +
+ .../traces/20260422T140936Z/after-tracing_on.log   |    1 +
+ .../traces/20260422T140936Z/before-set_event.log   |   22 +
+ artifacts/traces/20260422T140936Z/before-trace.log |   14 +
+ .../traces/20260422T140936Z/before-trace_clock.log |    1 +
+ .../traces/20260422T140936Z/before-tracing_on.log  |    1 +
+ .../traces/20260422T140936Z/enabled-events.log     |   22 +
+ .../traces/20260422T140936Z/final-set_event.log    |   22 +
+ artifacts/traces/20260422T140936Z/final-trace.log  |   50 +
+ .../traces/20260422T140936Z/final-trace_clock.log  |    1 +
+ .../traces/20260422T140936Z/final-tracing_on.log   |    1 +
+ artifacts/traces/20260422T140936Z/last_event       |    4 +
+ artifacts/traces/20260422T140936Z/last_exception   |    0
+ .../traces/20260422T140936Z/missing-events.log     |    0
+ .../traces/20260422T140936Z/pre-capture-state.log  |  141 +++
+ artifacts/traces/20260422T140936Z/stats            |    2 +
+ docs/01a-clb-carrier-mapping.md                    |   12 +
+ docs/10-results-and-status.md                      |   32 +-
+ docs/11-known-issues.md                            |    7 +-
+ ...60422T140936Z-single-frame-rtcpu-live-dmesg.log | 1092 ++++++++++++++++++++
+ ...T140936Z-single-frame-rtcpu-post-dmesg-tail.log |  220 ++++
+ logs/20260422T140936Z-single-frame-rtcpu-trace.log |   19 +
+ ...41045Z-analyze-route-a-capture-timeout-logs.log |  563 ++++++++++
+ ...0260422T141045Z-analyze-route-a-rtcpu-trace.log |  476 +++++++++
+ ...-kernel-state-after-route-a-capture-timeout.log |  216 ++++
+ ...runtime-state-after-route-a-capture-timeout.log |  121 +++
+ ...read-clb-mapping-before-route-a-timeout-doc.log |   49 +
+ ...00Z-read-sources-before-route-a-timeout-doc.log |   78 ++
+ ...ail-known-issues-before-route-a-timeout-doc.log |   80 ++
+ ...200Z-tail-status-before-route-a-timeout-doc.log |  120 +++
+ ...22T142000Z-route-a-capture-timeout-evidence.log |  308 ++++++
+ logs/20260422T142105Z-check-no-cbl-naming-grep.log |    3 +
+ ...2T142130Z-grep-clb-mapping-route-a-sections.log |   31 +
+ ...0260422T142130Z-grep-known-route-a-sections.log |   56 +
+ ...260422T142130Z-grep-status-route-a-sections.log |  148 +++
+ logs/20260422T142130Z-latest-reports-list.log      |   30 +
+ ...150Z-read-readme-before-route-a-timeout-doc.log |   48 +
+ .../20260422T142300Z-diff-route-a-timeout-docs.log |  123 +++
+ ...0260422T142300Z-grep-stale-cbl-docs-reports.log |    1 +
+ ...42300Z-status-before-route-a-timeout-commit.log |  490 +++++++++
+ ...0422T142330Z-size-route-a-timeout-artifacts.log |   26 +
+ logs/20260422T142400Z-git-add-route-a-timeout.log  |  509 +++++++++
+ ...026-04-22-route-a-extperiph1-capture-timeout.md |   56 +
+ 47 files changed, 5269 insertions(+), 8 deletions(-)
+## whitespace check
+artifacts/traces/20260422T140936Z/pre-capture-state.log:2: trailing whitespace.
++root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+artifacts/traces/20260422T140936Z/pre-capture-state.log:45: trailing whitespace.
++	Serial           : 
+artifacts/traces/20260422T140936Z/pre-capture-state.log:46: trailing whitespace.
++	Bus info         : 
+artifacts/traces/20260422T140936Z/pre-capture-state.log:71: trailing whitespace.
++	Flags             : 
+artifacts/traces/20260422T140936Z/pre-capture-state.log:115: trailing whitespace.
++serial          
+artifacts/traces/20260422T140936Z/pre-capture-state.log:116: trailing whitespace.
++bus info        
+artifacts/traces/20260422T140936Z/pre-capture-state.log:141: new blank line at EOF.
+logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log:5: trailing whitespace.
++[    0.000000] efi: RTPROP=0x46de1e698 TPMFinalLog=0x45e8f0000 SMBIOS=0xffff0000 SMBIOS 3.0=0x46da40000 MEMATTR=0x467efe018 ESRT=0x468420518 TPMEventLog=0x45e0cc018 RNG=0x45e900018 MEMRESERVE=0x45e901f98 
+logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log:54: trailing whitespace.
++[    0.000000] pcpu-alloc: [0] 0 [0] 1 [0] 2 [0] 3 [0] 4 [0] 5 [0] 6 [0] 7 
+logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log:65: trailing whitespace.
++[    0.000000] mminit::zonelist general 0:DMA = 0:DMA 
+logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log:66: trailing whitespace.
++[    0.000000] mminit::zonelist general 0:Normal = 0:Normal 0:DMA 
+logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log:67: trailing whitespace.
++[    0.000000] mminit::zonelist thisnode 0:DMA = 0:DMA 
+logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log:68: trailing whitespace.
++[    0.000000] mminit::zonelist thisnode 0:Normal = 0:Normal 0:DMA 
+logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log:71: trailing whitespace.
++[    0.000000] Kernel command line: root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log:178: trailing whitespace.
++[    0.087815] iommu: Default domain type: Translated 
+logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log:179: trailing whitespace.
++[    0.087821] iommu: DMA domain TLB invalidation policy: strict mode 
+logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log:779: space before tab in indent.
++               	| base addr   |0x0c312000|
+logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log:780: space before tab in indent.
++               	| sidfc_flssa |0x00000000|
+logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log:781: space before tab in indent.
++               	| xidfc_flesa |0x00000040|
+logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log:782: space before tab in indent.
++               	| rxf0c_f0sa  |0x000000c0|
+logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log:783: space before tab in indent.
++               	| rxf1c_f1sa  |0x000009c0|
+logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log:784: space before tab in indent.
++               	| rxbc_rbsa   |0x000009c0|
+logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log:785: space before tab in indent.
++               	| txefc_efsa  |0x000009c0|
+logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log:786: space before tab in indent.
++               	| txbc_tbsa   |0x00000a40|
+logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log:787: space before tab in indent.
++               	| tmc_tmsa    |0x00000ec0|
+logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log:788: space before tab in indent.
++               	| mram size   |0x00001000|
+logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log:818: trailing whitespace.
++[    8.543879] r8168  Copyright (C) 2024 Realtek NIC software team <nicfae@realtek.com> 
+logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log:819: trailing whitespace.
++                This program comes with ABSOLUTELY NO WARRANTY; for details, please see <http://www.gnu.org/licenses/>. 
+logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log:820: trailing whitespace.
++                This is free software, and you are welcome to redistribute it under certain conditions; see <http://www.gnu.org/licenses/>. 
+logs/20260422T141045Z-analyze-route-a-capture-timeout-logs.log:27: trailing whitespace.
++[    0.000000] efi: RTPROP=0x46de1e698 TPMFinalLog=0x45e8f0000 SMBIOS=0xffff0000 SMBIOS 3.0=0x46da40000 MEMATTR=0x467efe018 ESRT=0x468420518 TPMEventLog=0x45e0cc018 RNG=0x45e900018 MEMRESERVE=0x45e901f98 
+logs/20260422T141045Z-analyze-route-a-capture-timeout-logs.log:76: trailing whitespace.
++[    0.000000] pcpu-alloc: [0] 0 [0] 1 [0] 2 [0] 3 [0] 4 [0] 5 [0] 6 [0] 7 
+logs/20260422T141045Z-analyze-route-a-capture-timeout-logs.log:87: trailing whitespace.
++[    0.000000] mminit::zonelist general 0:DMA = 0:DMA 
+logs/20260422T141045Z-analyze-route-a-capture-timeout-logs.log:88: trailing whitespace.
++[    0.000000] mminit::zonelist general 0:Normal = 0:Normal 0:DMA 
+logs/20260422T141045Z-analyze-route-a-capture-timeout-logs.log:89: trailing whitespace.
++[    0.000000] mminit::zonelist thisnode 0:DMA = 0:DMA 
+logs/20260422T141045Z-analyze-route-a-capture-timeout-logs.log:90: trailing whitespace.
++[    0.000000] mminit::zonelist thisnode 0:Normal = 0:Normal 0:DMA 
+logs/20260422T141045Z-analyze-route-a-capture-timeout-logs.log:93: trailing whitespace.
++[    0.000000] Kernel command line: root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+logs/20260422T141045Z-analyze-route-a-capture-timeout-logs.log:200: trailing whitespace.
++[    0.087815] iommu: Default domain type: Translated 
+logs/20260422T141045Z-analyze-route-a-capture-timeout-logs.log:201: trailing whitespace.
++[    0.087821] iommu: DMA domain TLB invalidation policy: strict mode 
+logs/20260422T141045Z-analyze-route-a-rtcpu-trace.log:334: trailing whitespace.
++root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+logs/20260422T141045Z-analyze-route-a-rtcpu-trace.log:377: trailing whitespace.
++	Serial           : 
+logs/20260422T141045Z-analyze-route-a-rtcpu-trace.log:378: trailing whitespace.
++	Bus info         : 
+logs/20260422T141045Z-analyze-route-a-rtcpu-trace.log:403: trailing whitespace.
++	Flags             : 
+logs/20260422T141045Z-analyze-route-a-rtcpu-trace.log:447: trailing whitespace.
++serial          
+logs/20260422T141045Z-analyze-route-a-rtcpu-trace.log:448: trailing whitespace.
++bus info        
+logs/20260422T141045Z-current-kernel-state-after-route-a-capture-timeout.log:3: trailing whitespace.
++[    0.000000] Kernel command line: root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+logs/20260422T141045Z-runtime-state-after-route-a-capture-timeout.log:27: trailing whitespace.
++	Serial           : 
+logs/20260422T141045Z-runtime-state-after-route-a-capture-timeout.log:28: trailing whitespace.
++	Bus info         : 
+logs/20260422T141045Z-runtime-state-after-route-a-capture-timeout.log:53: trailing whitespace.
++	Flags             : 
+logs/20260422T141045Z-runtime-state-after-route-a-capture-timeout.log:95: trailing whitespace.
++serial          
+logs/20260422T141045Z-runtime-state-after-route-a-capture-timeout.log:96: trailing whitespace.
++bus info        
+logs/20260422T141045Z-runtime-state-after-route-a-capture-timeout.log:121: new blank line at EOF.
+logs/20260422T142300Z-diff-route-a-timeout-docs.log:8: trailing whitespace.
++ 
+logs/20260422T142300Z-diff-route-a-timeout-docs.log:18: trailing whitespace.
++ 
+logs/20260422T142300Z-diff-route-a-timeout-docs.log:20: trailing whitespace.
++ 
+logs/20260422T142300Z-diff-route-a-timeout-docs.log:28: trailing whitespace.
++ 
+logs/20260422T142300Z-diff-route-a-timeout-docs.log:35: trailing whitespace.
++ 
+logs/20260422T142300Z-diff-route-a-timeout-docs.log:37: trailing whitespace.
++ 
+logs/20260422T142300Z-diff-route-a-timeout-docs.log:51: trailing whitespace.
++ 
+logs/20260422T142300Z-diff-route-a-timeout-docs.log:59: trailing whitespace.
++ 
+logs/20260422T142300Z-diff-route-a-timeout-docs.log:62: trailing whitespace.
++ 
+logs/20260422T142300Z-diff-route-a-timeout-docs.log:64: trailing whitespace.
++ 
+logs/20260422T142300Z-diff-route-a-timeout-docs.log:66: trailing whitespace.
++ 

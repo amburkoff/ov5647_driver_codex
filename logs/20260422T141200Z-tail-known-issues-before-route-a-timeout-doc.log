@@ -1,0 +1,80 @@
+  - an alternate route-C overlay is the next clean single-variable test of physical connector routing.
+- Route-C overlay/probe state:
+  - route-C maps to `i2c-9` after reboot;
+  - route-C PWDN GPIO token `0xa0` resolves to Linux GPIO `486`;
+  - `lane_polarity = "0"` is live in DT;
+  - OV5647 responds at `0x36`;
+  - `/dev/video0` appears after manual LKM load.
+- Route-C probe now succeeds, but route-C streaming is not yet tested:
+  - chip ID `0x5647` is confirmed on route C;
+  - `/dev/video0` appears on `platform:tegra-capture-vi:2`;
+  - the remaining question is whether route C delivers CSI frames during `STREAMON`.
+- Route-C streaming has now been tested and still times out:
+  - `VIDIOC_STREAMON` returns success;
+  - raw output remains zero bytes;
+  - VI reports repeated `uncorr_err: request timed out after 2500 ms`;
+  - this makes a simple A/C route selection error unlikely.
+- The capture path currently showed duplicate mode programming before the no-duplicate-set-mode fix:
+  - tegracam called `set_mode()` before `start_streaming()`;
+  - the driver also called `ov5647_set_mode()` inside `start_streaming()`;
+  - because common regs include software reset `0x0103`, this could disrupt stream start timing;
+  - source fix is runtime-tested and the new marker executed.
+- Runtime validation of the no-duplicate-set-mode fix still timed out:
+  - loaded module `srcversion=E9CE1D1EF58B852F6484431`;
+  - `VIDIOC_STREAMON` returned success;
+  - raw output remained zero bytes;
+  - VI still reported repeated `uncorr_err: request timed out after 2500 ms`;
+  - therefore duplicate mode programming was a defect but not the complete root cause.
+- Current OV5647 `set_mode()` no longer enables streaming in source:
+  - NVIDIA r36.5 tegracam calls `set_mode()` before `start_streaming()`;
+  - NVIDIA sample drivers keep `set_mode()` to register programming and start output from `start_streaming()`;
+  - code-side fix is built and runtime-tested.
+- A likely zero-byte capture cause was found in the driver:
+  - previous builds left OV5647 output-enable registers `0x3000/0x3001/0x3002` disabled after common reset;
+  - upstream Linux enables those registers during power-on and disables them during power-off;
+  - code-side fix is now loaded, but capture validation is pending.
+- `/dev/video0` exists and `v4l2-compliance` has passed, but raw image delivery and preview are not yet validated.
+- The next diagnostic gap is actual sensor register state during stream start:
+  - current logs prove callbacks execute, but do not prove key OV5647 registers remain configured after software reset and stream enable;
+  - gated readbacks are now implemented behind `dump_stream_regs=1`;
+  - runtime validation has now shown that `0x3000/0x3001/0x3002` are disabled after `set_mode()` and remain disabled after `STREAMON`.
+- The previous output-enable fix is incomplete:
+  - `power_on()` enables sensor output;
+  - `ov5647_common_regs` later disables `0x3000/0x3001/0x3002`;
+  - `start_streaming()` sets `0x0100=0x01`, but does not restore output-enable;
+  - this is now the strongest driver-side explanation for zero-byte capture;
+  - source-side restore fix is built and runtime-tested.
+- The output-enable defect is fixed but not sufficient:
+  - `after_set_mode` and `after_stream_on` now show restored `0x3000=0x0f`, `0x3001=0xff`, `0x3002=0xe4`;
+  - capture still times out with zero bytes;
+  - the remaining blocker is now more likely MIPI stream-start details, DT timing, lane polarity/physical wiring, or a mode-table gap outside the current register dump.
+- MIPI clock mode remains unproven:
+  - current default stream-on value is `0x4800=0x34`;
+  - upstream Linux OV5647 uses `0x4800=0x04` unless non-continuous clock is requested;
+  - gated `continuous_mipi_clock=1` runtime test also timed out.
+- Stream-start register state is now internally consistent but still no frames:
+  - `0x0100=0x01`;
+  - `0x3000=0x0f`, `0x3001=0xff`, `0x3002=0xe4`;
+  - both `0x4800=0x34` and `0x4800=0x04` have been tried;
+  - VI still times out, so the remaining blocker is likely outside these simple stream-start fields.
+- The continuous-clock sensor test did not also change DT:
+  - live route-C DT still had `discontinuous_clk = "yes"` during the `0x4800=0x04` capture attempt;
+  - a matched receiver-side DT experiment with `discontinuous_clk = "no"` is staged in the dev boot profile but requires reboot to validate.
+- The route-C continuous-clock DT experiment now booted successfully:
+  - active cmdline contains `boot_profile=ov5647-dev`;
+  - live DT confirms `discontinuous_clk = "no"`;
+  - the module is not auto-loaded and `/dev/video0` is absent before manual `insmod`;
+  - streaming result for this matched sensor/receiver continuous-clock state has now been tested and still times out.
+- The matched route-C continuous-clock runtime test still produced no frames:
+  - sensor-side `0x4800=0x04`;
+  - DT-side `discontinuous_clk = "no"`;
+  - `VIDIOC_STREAMON` returns success;
+  - raw file remains zero bytes;
+  - VI reports timeout, so the next diagnostic level is RTCPU/NVCSI trace rather than another blind mode-table change.
+- RTCPU/NVCSI trace now shows a no-SOF condition:
+  - selected frame/error tracepoints were enabled;
+  - no `vi_frame_begin`, `vi_frame_end`, `rtcpu_vinotify_error`, `rtcpu_nvcsi_intr`, `capture_event_sof`, or `capture_event_error` appeared during the 30 second capture window;
+  - this increases the probability of physical lane/cable/adapter/route mismatch or sensor MIPI electrical non-output over a simple VI software registration problem.
+- pstore after the route-C continuous-clock reboot contains `console-ramoops-0`:
+  - the captured head is early boot output from the current boot, including the expected `boot_profile=ov5647-dev` cmdline;
+  - no new panic/oops conclusion should be drawn from this file without inspecting the full content around crash markers.

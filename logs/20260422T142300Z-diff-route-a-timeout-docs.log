@@ -1,0 +1,123 @@
+[20260422T142300Z] git diff route-A timeout docs
+diff --git a/README.md b/README.md
+index bab54e6..9221adc 100644
+--- a/README.md
++++ b/README.md
+@@ -5,11 +5,11 @@ This repository is the working area for a clean-room OV5647 MIPI CSI-2 bring-up
+ Current checkpoint:
+ 
+ - safe/dev boot profiles are active; the current boot is `boot_profile=ov5647-dev`;
+-- the dev boot profile applies the route-C continuous-clock overlay `/boot/ov5647-p3768-port-c-contclk.dtbo`;
+-- live DT confirms `ov5647_c@36`, `serial_c`, `port-index = <2>`, `bus-width = <2>`, `lane_polarity = "0"`, and `discontinuous_clk = "no"`;
++- the dev boot profile applies the route-A corrected-MCLK overlay `/boot/ov5647-p3768-port-a-extperiph1.dtbo`;
++- live DT confirms `ov5647_a@36`, `serial_b`, `port-index = <1>`, `bus-width = <2>`, `lane_polarity = "6"`, and `clocks = <&bpmp 0x24>`;
+ - manual route-A and route-C probes have both read OV5647 chip ID `0x5647`;
+ - module load/unload is no longer blocked by the earlier remove-path crash after fixing the I2C clientdata misuse;
+-- route-C manual streaming reaches `VIDIOC_STREAMON`, but no CSI frames are delivered yet.
++- route-A and route-C manual streaming reach `VIDIOC_STREAMON`, but no CSI frames are delivered yet.
+ 
+ Current blockers:
+ 
+@@ -18,7 +18,7 @@ Current blockers:
+ - the included booklet says to install the official Jetson Developer Kit image, so the live `p3768` DT identity is expected but still not proof of the exact CLB camera wiring;
+ - physical CLB connector to DT route mapping is still not independently verified;
+ - the Raspberry Pi-style camera/cable path marked `JT-ZERO-V2.0 YH` may not be CSI-compatible with the current CLB/Jetson 22-pin route;
+-- route-A and route-C both create `/dev/video0` after manual LKM load, but raw captures still time out with zero-byte files;
++- route-A and route-C both create `/dev/video0` after manual LKM load, but RTCPU/NVCSI traced raw captures still time out with zero-byte files and no SOF/NVCSI interrupt events;
+ - live preview is not validated.
+ 
+ Start here:
+diff --git a/docs/01a-clb-carrier-mapping.md b/docs/01a-clb-carrier-mapping.md
+index 03adfcf..5db4904 100644
+--- a/docs/01a-clb-carrier-mapping.md
++++ b/docs/01a-clb-carrier-mapping.md
+@@ -226,6 +226,18 @@ The first manual module-load test on this route-A state succeeded:
+ 
+ This proves route A has a working I2C/probe path. It still does not prove the route-A physical CSI lane path until a frame or SOF is observed.
+ 
++The first corrected-MCLK route-A capture test also failed to observe CSI frame delivery:
++
++- timestamp: `20260422T140936Z`;
++- `VIDIOC_STREAMON` returned success;
++- capture returned `rc=124`;
++- raw output was zero bytes;
++- VI reported repeated request timeouts;
++- RTCPU/NVCSI tracepoints were enabled but showed no `vi_frame_begin`, `vi_frame_end`, `rtcpu_nvcsi_intr`, `rtcpu_vinotify_error`, `capture_event_sof`, `capture_event_eof`, or `capture_event_error`;
++- driver readback confirmed stream-on state with `0x0100 = 0x01`, output-enable restored, continuous MIPI clock diagnostic active, and MCLK at `24000000`.
++
++This means both route A and route C have now failed after the corrected `TEGRA234_CLK_EXTPERIPH1` binding. The current blocker should be treated as physical CSI-path validation until disproven.
++
+ ## Blocking Next Checks
+ 
+ 1. Inspect the physical carrier board silkscreen and connector labels.
+diff --git a/docs/10-results-and-status.md b/docs/10-results-and-status.md
+index 81d1f3f..db5810c 100644
+--- a/docs/10-results-and-status.md
++++ b/docs/10-results-and-status.md
+@@ -1,6 +1,6 @@
+ # Results And Status
+ 
+-Current overall status: `route-A corrected-MCLK dev overlay booted, manual LKM-only workflow retained, route-A and route-C probes work, remove path fixed, route-C still no-SOF, route-A corrected-MCLK capture not yet tested`
++Current overall status: `route-A corrected-MCLK capture also no-SOF, manual LKM-only workflow retained, route-A and route-C probes work, remove path fixed, physical CLB/makerobo CSI path now the dominant blocker`
+ 
+ Completed:
+ 
+@@ -548,3 +548,33 @@ Next manual runtime test:
+ 
+ - run the RTCPU/NVCSI traced single-frame capture on this route-A corrected-MCLK setup;
+ - if this still gives `rc=124`, zero bytes, and no SOF, both route A and route C will have failed after the clock-ID fix and physical CLB/makerobo connector/cable/adaptor compatibility becomes the dominant root-cause track.
++
++Manual route-A corrected-MCLK capture result:
++
++- user ran `sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_rtcpu_trace.sh`;
++- timestamp: `20260422T140936Z`;
++- capture setup reached `VIDIOC_STREAMON returned 0 (Success)`;
++- capture returned `rc=124`;
++- raw output `artifacts/captures/20260422T140936Z/ov5647-640x480-bg10.raw` is zero bytes;
++- dmesg log: `logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log`;
++- RTCPU/NVCSI trace dir: `artifacts/traces/20260422T140936Z`;
++- driver readback during stream-on remained internally consistent:
++  - MCLK enabled at `24000000`;
++  - `0x0100 = 0x01`;
++  - output-enable registers restored: `0x3000 = 0x0f`, `0x3001 = 0xff`, `0x3002 = 0xe4`;
++  - continuous-clock diagnostic value active: `0x4800 = 0x04`;
++- VI logged repeated `uncorr_err: request timed out after 2500 ms`;
++- trace events were enabled, but the trace contained no runtime `vi_frame_begin`, `vi_frame_end`, `rtcpu_nvcsi_intr`, `rtcpu_vinotify_error`, `capture_event_sof`, `capture_event_eof`, or `capture_event_error`.
++
++Current interpretation after route-A and route-C corrected-MCLK tests:
++
++- the original wrong BPMP clock-ID binding was a real bug and is fixed;
++- output-enable, duplicate set-mode, LP-11 setup, HTS/VTS, and continuous-clock experiments did not produce SOF;
++- route A and route C both probe and both fail to deliver any observable CSI SOF after corrected 24 MHz `extperiph1` MCLK;
++- the highest-probability blocker is now the physical CLB/makerobo camera path: exact connector route, FFC/adaptor pinout/orientation, Raspberry Pi-style `JT-ZERO-V2.0 YH` module compatibility, or lane wiring/polarity not represented by the NVIDIA p3768 reference overlays.
++
++Next smallest safe step:
++
++- do not run more blind stream-register tuning or repeated captures until the physical CSI path is verified;
++- collect physical evidence for both camera connectors: carrier silkscreen labels, cable orientation, contact side, any adapter board, camera module front/back, and the full FFC marking;
++- if available, test a known-good Jetson-compatible camera/cable kit with a stock NVIDIA overlay to prove the CLB CSI connector path independently of this OV5647 driver.
+diff --git a/docs/11-known-issues.md b/docs/11-known-issues.md
+index 66556c7..2111dfe 100644
+--- a/docs/11-known-issues.md
++++ b/docs/11-known-issues.md
+@@ -10,9 +10,9 @@
+   - MCLK diagnostics showed the older active overlay was binding `clock-names = "extperiph1"` to BPMP clock ID `0x07`, which is `TEGRA234_CLK_AUD_MCLK`, not `TEGRA234_CLK_EXTPERIPH1`;
+   - route C now boots with BPMP clock ID `0x24` / decimal `36` and driver logs confirm `mclk enabled rate=24000000`;
+   - route C still produces zero-byte capture timeout and no SOF with corrected MCLK;
+-  - route A now probes successfully with corrected MCLK, but corrected-MCLK route-A capture is not tested yet.
+-- The safe boot entry still exists, but the on-disk default is currently set to `ov5647-dev` with the route-A corrected-MCLK overlay for the next controlled overlay-validation reboot cycle.
+-- The active dev overlay is now a route-C corrected-`extperiph1` continuous-clock candidate from the physical-connector point of view; it is logically validated by successful probe and `/dev/video0`, but not by SOF/frame delivery.
++  - route A also probes successfully with corrected MCLK and still produces zero-byte capture timeout with no SOF/NVCSI interrupt events.
++- The safe boot entry still exists, but the on-disk default is currently set to `ov5647-dev` with the route-A corrected-MCLK overlay.
++- The active dev overlay is now a route-A corrected-`extperiph1` candidate from the physical-connector point of view; it is logically validated by successful probe and `/dev/video0`, but not by SOF/frame delivery.
+ - The physical camera modules are present on both 22-pin connectors, but the exact mapping from physical connector to route `A` or `C` is still unverified.
+ - The visible camera marking `JT-ZERO-V2.0 YH` suggests Raspberry Pi-market OV5647 hardware, but the exact FFC/adaptor topology is not yet documented.
+ - Local `nvidia-oot` headers are present, but full local sample sensor source files are not installed under `/usr/src/nvidia/`.
+@@ -20,6 +20,7 @@
+ - `journalctl --list-boots` and `uptime -s` disagree about the current boot start time, so timestamp interpretation needs care.
+ - The draft route-A OV5647 overlay compiles locally, but it still relies on unresolved hardware assumptions and keeps the sensor node disabled.
+ - The probe-oriented route-A OV5647 overlay now applies at boot, reads chip ID, enables 24 MHz `extperiph1`, registers `/dev/video0`, and builds the media graph, but it still relies on unresolved hardware assumptions until capture proves SOF/frame delivery.
++- Route-A corrected-MCLK capture was tested at `20260422T140936Z` and still failed with `VIDIOC_STREAMON` success, `rc=124`, zero-byte raw output, repeated VI timeouts, and no RTCPU/NVCSI SOF/error events.
+ - The first rebooted dev attempt proved that `FDTOVERLAYS` was not the correct overlay mechanism for this UEFI-based boot path; the corrected path now uses `FDT + OVERLAYS`.
+ - A previous manual `insmod` of `nv_ov5647` triggered a kernel panic due to `tegracam_set_privdata()` being called too early; that ordering bug is fixed, but the panic history remains relevant for regression checking.
+ - The earlier `mclk get failed err=-2` blocker was fixed by adding an explicit DT clock binding, but the first binding used the wrong Tegra234 BPMP clock ID:

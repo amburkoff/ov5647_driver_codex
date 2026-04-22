@@ -1,0 +1,216 @@
+timestamp=20260422T141045Z
+--- dmesg filtered current
+[    0.000000] Kernel command line: root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+[    0.000000] Unknown kernel command line parameters "boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000", will be passed to user space.
+[    0.145927] kvm [1]: vgic interrupt IRQ9
+[    0.193789] arm-smmu 8000000.iommu: 	stream matching with 128 register groups
+[    0.194824] arm-smmu 10000000.iommu: 	stream matching with 128 register groups
+[    0.195205] arm-smmu 12000000.iommu: 	stream matching with 128 register groups
+[    0.221758] sdhci: Copyright(c) Pierre Ossman
+[    1.888582] irq: IRQ228: trimming hierarchy from :bus@0:interrupt-controller@f400000-1
+[    1.939730]     boot_profile=ov5647-dev
+[    5.480200] irq: IRQ229: trimming hierarchy from :bus@0:interrupt-controller@f400000-1
+[    6.517511] platform 13e00000.host1x:nvcsi@15a00000: Fixing up cyclic dependency with 9-0036
+[    6.517528] platform 13e00000.host1x:nvcsi@15a00000: Fixing up cyclic dependency with tegra-capture-vi
+[    7.327825] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx0: initialized (streamid=18, iommu=smmu.0x0000000008000000)
+[    7.337407] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx1: initialized (streamid=19, iommu=smmu.0x0000000008000000)
+[    7.338996] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx2: initialized (streamid=20, iommu=smmu.0x0000000008000000)
+[    7.339519] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx3: initialized (streamid=21, iommu=smmu.0x0000000008000000)
+[    7.339880] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx4: initialized (streamid=22, iommu=smmu.0x0000000008000000)
+[    7.340219] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx5: initialized (streamid=23, iommu=smmu.0x0000000008000000)
+[    7.340553] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx6: initialized (streamid=24, iommu=smmu.0x0000000008000000)
+[    7.359247] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx7: initialized (streamid=25, iommu=smmu.0x0000000008000000)
+[    7.404626] tegra186-cam-rtcpu bc00000.rtcpu: Adding to iommu group 46
+[    7.409149] tegra186-cam-rtcpu bc00000.rtcpu: Trace buffer configured at IOVA=0xbff00000
+[    7.414541] tegra-ivc-bus bc00000.rtcpu:ivc-bus: region 0: iova=0xbfec0000-0xbfee027f size=131712
+[    7.417339] tegra-ivc-bus bc00000.rtcpu:ivc-bus:echo@0: echo: ver=0 grp=1 RX[16x64]=0x1000-0x1480 TX[16x64]=0x1480-0x1900
+[    7.417849] tegra-ivc-bus bc00000.rtcpu:ivc-bus:dbg@1: dbg: ver=0 grp=1 RX[1x512]=0x1900-0x1b80 TX[1x512]=0x1b80-0x1e00
+[    7.419724] tegra-ivc-bus bc00000.rtcpu:ivc-bus:dbg@2: dbg: ver=0 grp=1 RX[1x8192]=0x1e00-0x3e80 TX[1x8192]=0x3e80-0x5f00
+[    7.421075] tegra-ivc-bus bc00000.rtcpu:ivc-bus:ivccontrol@3: ivccontrol: ver=0 grp=1 RX[64x320]=0x5f00-0xaf80 TX[64x320]=0xaf80-0x10000
+[    7.422119] tegra-ivc-bus bc00000.rtcpu:ivc-bus:ivccapture@4: ivccapture: ver=0 grp=1 RX[512x64]=0x10000-0x18080 TX[512x64]=0x18080-0x20100
+[    7.423659] tegra-ivc-bus bc00000.rtcpu:ivc-bus:diag@5: diag: ver=0 grp=1 RX[1x64]=0x20100-0x201c0 TX[1x64]=0x201c0-0x20280
+[    7.425533] tegra186-cam-rtcpu bc00000.rtcpu: using cam RTCPU IRQ (218)
+[    7.425537] tegra186-cam-rtcpu bc00000.rtcpu: tegra_camrtc_mon_create is successful
+[    7.426656] tegra186-cam-rtcpu bc00000.rtcpu: firmware version cpu=rce cmd=6 sha1=04ea869968864dcb132a50cad9712bd529a09ee2
+[    7.426807] tegra-ivc-bus bc00000.rtcpu:ivc-bus:echo@0: ivc channel driver missing
+[    7.426809] tegra-ivc-bus bc00000.rtcpu:ivc-bus:dbg@1: ivc channel driver missing
+[    7.426812] tegra-ivc-bus bc00000.rtcpu:ivc-bus:dbg@2: ivc channel driver missing
+[    7.426814] tegra-ivc-bus bc00000.rtcpu:ivc-bus:ivccontrol@3: ivc channel driver missing
+[    7.426816] tegra-ivc-bus bc00000.rtcpu:ivc-bus:ivccapture@4: ivc channel driver missing
+[    7.426817] tegra-ivc-bus bc00000.rtcpu:ivc-bus:diag@5: ivc channel driver missing
+[    7.556038] tegra-camrtc-capture-vi tegra-capture-vi: subdev 13e00000.host1x:nvcsi@15a00000- bound
+[    7.964886] dce: dce_mailbox_set_full_interrupt:157  Intr bit set multiple times for MB : [0x5]
+[    7.964893] dce: dce_mailbox_set_full_interrupt:157  Intr bit set multiple times for MB : [0x5]
+[    7.965165] dce: dce_admin_send_cmd_ver:456  version : [0x3] err : [0x0]
+[    7.965374] dce: dce_mailbox_set_full_interrupt:157  Intr bit set multiple times for MB : [0x1]
+[    7.965581] dce: dce_mailbox_set_full_interrupt:157  Intr bit set multiple times for MB : [0x2]
+[    8.256946] gic 2a41000.interrupt-controller: GIC IRQ controller registered
+[  237.002340] nv_ov5647: module verification failed: signature and/or required key missing - tainting kernel
+[  237.002994] nv_ov5647: module init register_i2c_driver=1 allow_hw_probe=1 skip_v4l2_register=0 skip_v4l2_unregister=0 split_v4l2_unregister=0 unload_marker_delay_ms=500
+[  237.003000] nv_ov5647: diagnostics dump_stream_regs=1
+[  237.003001] nv_ov5647: diagnostics continuous_mipi_clock=1
+[  237.003254] nv_ov5647 9-0036: ov5647_probe: enter client=ov5647 addr=0x36
+[  237.003333] nv_ov5647 9-0036: ov5647_parse_dt: enter
+[  237.003353] nv_ov5647 9-0036: ov5647_parse_dt: pdata=00000000b492252f mclk=extperiph1 reset_gpio=-1 pwdn_gpio=397 avdd=vana dvdd=vdig iovdd=vif
+[  237.003358] nv_ov5647 9-0036: ov5647_power_get: enter priv=00000000711f4175 s_data=0000000018b0c86d pdata=00000000b492252f
+[  237.003383] nv_ov5647 9-0036: supply vana not found, using dummy regulator
+[  237.003513] nv_ov5647 9-0036: supply vdig not found, using dummy regulator
+[  237.003540] nv_ov5647 9-0036: supply vif not found, using dummy regulator
+[  237.003578] nv_ov5647 9-0036: ov5647_power_get: mclk get ok name=extperiph1 current_rate=51000000 def_clk_freq=0
+[  237.003609] nv_ov5647 9-0036: ov5647_power_get: exit
+[  237.003657] nv_ov5647 9-0036: tegracam sensor driver:nv_ov5647_v2.0.6
+[  237.003659] nv_ov5647 9-0036: ov5647_probe: private data linked tc_dev=000000005ac88147 tc_dev->priv=00000000711f4175 s_data=0000000018b0c86d s_data->priv=00000000711f4175
+[  237.003680] nv_ov5647 9-0036: ov5647_board_setup: enter
+[  237.003681] nv_ov5647 9-0036: ov5647_power_on: enter
+[  237.003686] nv_ov5647 9-0036: ov5647_power_on: overriding def_clk_freq 24000000 -> 24000000 Hz
+[  237.003689] nv_ov5647 9-0036: ov5647_power_on: enabling mclk def_clk_freq=24000000 current_rate=51000000
+[  237.005516] nv_ov5647 9-0036: ov5647_power_on: mclk enabled rate=24000000
+[  237.013056] nv_ov5647 9-0036: ov5647_power_on: stream-stop LP-11 setup complete
+[  237.013060] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=power_on_lp11
+[  237.013251] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x0100 name=mode_select val=0x00
+[  237.013445] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x0103 name=sw_reset val=0x00
+[  237.013634] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3000 name=sys_ctrl0 val=0x0f
+[  237.013824] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3001 name=sys_ctrl1 val=0xff
+[  237.014013] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3002 name=sys_ctrl2 val=0xe4
+[  237.014202] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x300d name=pad_out val=0x01
+[  237.014391] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3016 name=mipi_ctrl16 val=0x00
+[  237.014580] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3017 name=mipi_ctrl17 val=0x10
+[  237.014769] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3018 name=mipi_ctrl18 val=0x58
+[  237.014958] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3034 name=pll_ctrl34 val=0x1a
+[  237.015146] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3035 name=pll_ctrl35 val=0x11
+[  237.015335] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3036 name=pll_ctrl36 val=0x69
+[  237.015524] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x303c name=pll_ctrl3c val=0x11
+[  237.015712] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3808 name=x_output_size_h val=0x0a
+[  237.015900] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3809 name=x_output_size_l val=0x20
+[  237.016142] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380a name=y_output_size_h val=0x07
+[  237.016335] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380b name=y_output_size_l val=0x98
+[  237.016524] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380c name=hts_h val=0x0a
+[  237.016713] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380d name=hts_l val=0x8c
+[  237.016901] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380e name=vts_h val=0x07
+[  237.017090] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380f name=vts_l val=0xb0
+[  237.017278] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3820 name=timing_format1 val=0x40
+[  237.017466] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3821 name=timing_format2 val=0x00
+[  237.017654] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4202 name=frame_off_number val=0x0f
+[  237.017843] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4800 name=mipi_ctrl00 val=0x25
+[  237.018031] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4814 name=mipi_ctrl14 val=0x2a
+[  237.018033] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=power_on_lp11
+[  237.018034] nv_ov5647 9-0036: ov5647_power_on: exit success
+[  237.018408] nv_ov5647 9-0036: ov5647_board_setup: detected chip_id=0x5647
+[  237.018410] nv_ov5647 9-0036: ov5647_power_off: enter
+[  237.018821] nv_ov5647 9-0036: ov5647_power_off: disabling mclk rate=24000000
+[  237.019040] nv_ov5647 9-0036: ov5647_power_off: exit success
+[  237.019041] nv_ov5647 9-0036: ov5647_board_setup: exit success
+[  237.019101] tegra-camrtc-capture-vi tegra-capture-vi: subdev nv_ov5647 9-0036 bound
+[  237.020361] nv_ov5647 9-0036: ov5647_probe: v4l2 registered tc_dev=000000005ac88147 tc_dev->priv=00000000711f4175 s_data=0000000018b0c86d s_data->priv=00000000711f4175 v4l2_registered=1
+[  237.020368] nv_ov5647 9-0036: ov5647_probe: exit success
+[  237.025378] nv_ov5647: i2c driver registered
+[  365.070362] nv_ov5647 9-0036: ov5647_power_on: enter
+[  365.070377] nv_ov5647 9-0036: ov5647_power_on: overriding def_clk_freq 24000000 -> 24000000 Hz
+[  365.070383] nv_ov5647 9-0036: ov5647_power_on: enabling mclk def_clk_freq=24000000 current_rate=24000000
+[  365.071561] nv_ov5647 9-0036: ov5647_power_on: mclk enabled rate=24000000
+[  365.079993] nv_ov5647 9-0036: ov5647_power_on: stream-stop LP-11 setup complete
+[  365.079999] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=power_on_lp11
+[  365.080200] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x0100 name=mode_select val=0x00
+[  365.080391] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x0103 name=sw_reset val=0x00
+[  365.080579] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3000 name=sys_ctrl0 val=0x0f
+[  365.080767] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3001 name=sys_ctrl1 val=0xff
+[  365.080955] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3002 name=sys_ctrl2 val=0xe4
+[  365.081142] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x300d name=pad_out val=0x01
+[  365.081330] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3016 name=mipi_ctrl16 val=0x00
+[  365.081517] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3017 name=mipi_ctrl17 val=0x10
+[  365.081704] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3018 name=mipi_ctrl18 val=0x58
+[  365.081891] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3034 name=pll_ctrl34 val=0x1a
+[  365.082168] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3035 name=pll_ctrl35 val=0x11
+[  365.082381] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3036 name=pll_ctrl36 val=0x69
+[  365.082583] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x303c name=pll_ctrl3c val=0x11
+[  365.082783] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3808 name=x_output_size_h val=0x0a
+[  365.082979] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3809 name=x_output_size_l val=0x20
+[  365.083171] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380a name=y_output_size_h val=0x07
+[  365.083367] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380b name=y_output_size_l val=0x98
+[  365.083562] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380c name=hts_h val=0x0a
+[  365.083756] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380d name=hts_l val=0x8c
+[  365.083950] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380e name=vts_h val=0x07
+[  365.084144] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380f name=vts_l val=0xb0
+[  365.084334] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3820 name=timing_format1 val=0x40
+[  365.084522] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3821 name=timing_format2 val=0x00
+[  365.084709] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4202 name=frame_off_number val=0x0f
+[  365.084897] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4800 name=mipi_ctrl00 val=0x25
+[  365.085084] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4814 name=mipi_ctrl14 val=0x2a
+[  365.085086] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=power_on_lp11
+[  365.085087] nv_ov5647 9-0036: ov5647_power_on: exit success
+[  365.097051] nv_ov5647 9-0036: ov5647_set_mode: applying mode=0 name=640x480-10bpp-30fps 640x480
+[  365.109157] nv_ov5647 9-0036: ov5647_set_mode: sensor output-enable restored after mode programming
+[  365.109161] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=after_set_mode
+[  365.109348] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x0100 name=mode_select val=0x00
+[  365.109536] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x0103 name=sw_reset val=0x00
+[  365.109723] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3000 name=sys_ctrl0 val=0x0f
+[  365.109910] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3001 name=sys_ctrl1 val=0xff
+[  365.110251] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3002 name=sys_ctrl2 val=0xe4
+[  365.110450] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x300d name=pad_out val=0x00
+[  365.110646] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3016 name=mipi_ctrl16 val=0x08
+[  365.110847] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3017 name=mipi_ctrl17 val=0xe0
+[  365.111042] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3018 name=mipi_ctrl18 val=0x44
+[  365.111236] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3034 name=pll_ctrl34 val=0x1a
+[  365.111426] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3035 name=pll_ctrl35 val=0x21
+[  365.111615] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3036 name=pll_ctrl36 val=0x46
+[  365.111804] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x303c name=pll_ctrl3c val=0x11
+[  365.111994] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3808 name=x_output_size_h val=0x02
+[  365.112183] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3809 name=x_output_size_l val=0x80
+[  365.112380] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380a name=y_output_size_h val=0x01
+[  365.112568] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380b name=y_output_size_l val=0xe0
+[  365.112755] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380c name=hts_h val=0x07
+[  365.112943] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380d name=hts_l val=0x3c
+[  365.113131] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380e name=vts_h val=0x01
+[  365.113320] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380f name=vts_l val=0xf8
+[  365.113507] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3820 name=timing_format1 val=0x41
+[  365.113694] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3821 name=timing_format2 val=0x01
+[  365.113882] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4202 name=frame_off_number val=0x00
+[  365.114069] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4800 name=mipi_ctrl00 val=0x34
+[  365.114314] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4814 name=mipi_ctrl14 val=0x2a
+[  365.114321] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=after_set_mode
+[  365.114325] nv_ov5647 9-0036: ov5647_set_mode: mode applied, sensor remains in standby
+[  365.114333] nv_ov5647 9-0036: ov5647_start_streaming: enter
+[  365.114336] nv_ov5647 9-0036: ov5647_start_streaming: using mode already applied by tegracam set_mode
+[  365.114339] nv_ov5647 9-0036: ov5647_start_streaming: mipi_ctrl00 stream value=0x04 continuous_mipi_clock=1
+[  365.114789] nv_ov5647 9-0036: ov5647_start_streaming: sensor output-enable restored before stream
+[  365.115351] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=after_stream_on
+[  365.115541] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x0100 name=mode_select val=0x01
+[  365.115731] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x0103 name=sw_reset val=0x00
+[  365.115920] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3000 name=sys_ctrl0 val=0x0f
+[  365.116109] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3001 name=sys_ctrl1 val=0xff
+[  365.116299] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3002 name=sys_ctrl2 val=0xe4
+[  365.116488] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x300d name=pad_out val=0x00
+[  365.116676] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3016 name=mipi_ctrl16 val=0x08
+[  365.116864] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3017 name=mipi_ctrl17 val=0xe0
+[  365.117052] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3018 name=mipi_ctrl18 val=0x44
+[  365.117241] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3034 name=pll_ctrl34 val=0x1a
+[  365.117430] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3035 name=pll_ctrl35 val=0x21
+[  365.117618] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3036 name=pll_ctrl36 val=0x46
+[  365.117806] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x303c name=pll_ctrl3c val=0x11
+[  365.117994] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3808 name=x_output_size_h val=0x02
+[  365.118259] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3809 name=x_output_size_l val=0x80
+[  365.118460] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380a name=y_output_size_h val=0x01
+[  365.118651] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380b name=y_output_size_l val=0xe0
+[  365.118840] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380c name=hts_h val=0x07
+[  365.119029] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380d name=hts_l val=0x3c
+[  365.119217] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380e name=vts_h val=0x01
+[  365.119407] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380f name=vts_l val=0xf8
+[  365.119595] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3820 name=timing_format1 val=0x41
+[  365.119783] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3821 name=timing_format2 val=0x01
+[  365.119971] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4202 name=frame_off_number val=0x00
+[  365.120160] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4800 name=mipi_ctrl00 val=0x04
+[  365.120347] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4814 name=mipi_ctrl14 val=0x2a
+[  365.120349] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=after_stream_on
+[  365.120351] nv_ov5647 9-0036: ov5647_start_streaming: exit success
+[  367.834322] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  370.394229] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  372.954148] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  375.513927] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  395.057691] nv_ov5647 9-0036: ov5647_stop_streaming: enter
+[  395.058278] nv_ov5647 9-0036: ov5647_stop_streaming: exit success
+[  395.060369] nv_ov5647 9-0036: ov5647_power_off: enter
+[  395.060843] nv_ov5647 9-0036: ov5647_power_off: disabling mclk rate=24000000
+[  395.061063] nv_ov5647 9-0036: ov5647_power_off: exit success
+--- clocks
+            aud_mclk                                   0   45158398    0    0
+            extperiph1                                 0   24000000    0    0

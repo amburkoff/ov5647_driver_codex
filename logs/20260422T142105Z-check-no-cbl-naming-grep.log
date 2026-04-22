@@ -1,0 +1,3 @@
+[20260422T142105Z] check CLB naming with grep fallback
+src/nv_ov5647/.nv_ov5647.o.cmd:493:  include/linux/rcu_segcblist.h \
+src/nv_ov5647/.nv_ov5647.mod.o.cmd:731:  include/linux/rcu_segcblist.h \

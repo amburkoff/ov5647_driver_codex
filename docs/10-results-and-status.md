@@ -1,6 +1,6 @@
 # Results And Status
 
-Current overall status: `route-A corrected-MCLK dev overlay booted, manual LKM-only workflow retained, route-A and route-C probes work, remove path fixed, route-C still no-SOF, route-A corrected-MCLK capture not yet tested`
+Current overall status: `route-A corrected-MCLK capture also no-SOF, manual LKM-only workflow retained, route-A and route-C probes work, remove path fixed, physical CLB/makerobo CSI path now the dominant blocker`
 
 Completed:
 
@@ -548,3 +548,33 @@ Next manual runtime test:
 
 - run the RTCPU/NVCSI traced single-frame capture on this route-A corrected-MCLK setup;
 - if this still gives `rc=124`, zero bytes, and no SOF, both route A and route C will have failed after the clock-ID fix and physical CLB/makerobo connector/cable/adaptor compatibility becomes the dominant root-cause track.
+
+Manual route-A corrected-MCLK capture result:
+
+- user ran `sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_rtcpu_trace.sh`;
+- timestamp: `20260422T140936Z`;
+- capture setup reached `VIDIOC_STREAMON returned 0 (Success)`;
+- capture returned `rc=124`;
+- raw output `artifacts/captures/20260422T140936Z/ov5647-640x480-bg10.raw` is zero bytes;
+- dmesg log: `logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log`;
+- RTCPU/NVCSI trace dir: `artifacts/traces/20260422T140936Z`;
+- driver readback during stream-on remained internally consistent:
+  - MCLK enabled at `24000000`;
+  - `0x0100 = 0x01`;
+  - output-enable registers restored: `0x3000 = 0x0f`, `0x3001 = 0xff`, `0x3002 = 0xe4`;
+  - continuous-clock diagnostic value active: `0x4800 = 0x04`;
+- VI logged repeated `uncorr_err: request timed out after 2500 ms`;
+- trace events were enabled, but the trace contained no runtime `vi_frame_begin`, `vi_frame_end`, `rtcpu_nvcsi_intr`, `rtcpu_vinotify_error`, `capture_event_sof`, `capture_event_eof`, or `capture_event_error`.
+
+Current interpretation after route-A and route-C corrected-MCLK tests:
+
+- the original wrong BPMP clock-ID binding was a real bug and is fixed;
+- output-enable, duplicate set-mode, LP-11 setup, HTS/VTS, and continuous-clock experiments did not produce SOF;
+- route A and route C both probe and both fail to deliver any observable CSI SOF after corrected 24 MHz `extperiph1` MCLK;
+- the highest-probability blocker is now the physical CLB/makerobo camera path: exact connector route, FFC/adaptor pinout/orientation, Raspberry Pi-style `JT-ZERO-V2.0 YH` module compatibility, or lane wiring/polarity not represented by the NVIDIA p3768 reference overlays.
+
+Next smallest safe step:
+
+- do not run more blind stream-register tuning or repeated captures until the physical CSI path is verified;
+- collect physical evidence for both camera connectors: carrier silkscreen labels, cable orientation, contact side, any adapter board, camera module front/back, and the full FFC marking;
+- if available, test a known-good Jetson-compatible camera/cable kit with a stock NVIDIA overlay to prove the CLB CSI connector path independently of this OV5647 driver.

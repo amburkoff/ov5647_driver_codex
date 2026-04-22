@@ -1,0 +1,50 @@
+# tracer: nop
+#
+# entries-in-buffer/entries-written: 36/36   #P:4
+#
+#                                _-------=> irqs-off
+#                               / _------=> need-resched
+#                              | / _-----=> need-resched-lazy
+#                              || / _----=> hardirq/softirq
+#                              ||| / _---=> preempt-depth
+#                              |||| / _--=> preempt-lazy-depth
+#                              ||||| / _-=> migrate-disable
+#                              |||||| /     delay
+#           TASK-PID     CPU#  |||||||  TIMESTAMP  FUNCTION
+#              | |         |   |||||||      |         |
+        v4l2-ctl-4820    [001] .......   365.072275: tegra_channel_set_power: nv_ov5647 9-0036 : 0x1
+        v4l2-ctl-4820    [001] .......   365.072283: camera_common_s_power: status : 0x1
+        v4l2-ctl-4820    [001] .......   365.087192: tegra_channel_set_power: 13e00000.host1x:nvcsi@15a00000- : 0x1
+        v4l2-ctl-4820    [001] .......   365.087195: csi_s_power: enable : 0x1
+        v4l2-ctl-4820    [001] .......   365.087705: tegra_channel_capture_setup: vnc_id 0 W 640 H 480 fmt c4
+        v4l2-ctl-4820    [001] .......   365.095608: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x1e ch:0x58
+ capture-control-445     [002] .......   365.096017: capture_ivc_recv: ivc:"bc00000.rtcpu:i" msg:0x11 ch:0x58
+ vi-output, nv_o-4821    [000] .......   365.096089: vi_task_submit: class_id:48 ch:0 syncpt_id:37 syncpt_thresh:0 pid:4821 tid:4821
+ vi-output, nv_o-4821    [000] .......   365.096100: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x01 ch:0x00
+ vi-output, nv_o-4821    [000] .......   365.096102: vi_task_submit: class_id:48 ch:0 syncpt_id:37 syncpt_thresh:0 pid:4821 tid:4821
+ vi-output, nv_o-4821    [000] .......   365.096102: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x01 ch:0x00
+ vi-output, nv_o-4821    [000] .......   365.096103: vi_task_submit: class_id:48 ch:0 syncpt_id:37 syncpt_thresh:0 pid:4821 tid:4821
+ vi-output, nv_o-4821    [000] .......   365.096104: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x01 ch:0x00
+ vi-output, nv_o-4821    [000] .......   365.096105: vi_task_submit: class_id:48 ch:0 syncpt_id:37 syncpt_thresh:0 pid:4821 tid:4821
+ vi-output, nv_o-4821    [000] .......   365.096105: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x01 ch:0x00
+        v4l2-ctl-4820    [001] .......   365.096119: tegra_channel_set_stream: enable : 0x1
+        v4l2-ctl-4820    [001] .......   365.098618: tegra_channel_set_stream: 13e00000.host1x:nvcsi@15a00000- : 0x1
+        v4l2-ctl-4820    [001] .......   365.098620: csi_s_stream: enable : 0x1
+        v4l2-ctl-4820    [001] .......   365.098627: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x40 ch:0x00
+ capture-control-445     [002] .......   365.098665: capture_ivc_recv: ivc:"bc00000.rtcpu:i" msg:0x41 ch:0x00
+        v4l2-ctl-4820    [001] .......   365.098673: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x36 ch:0x00
+ capture-control-445     [002] .......   365.098967: capture_ivc_recv: ivc:"bc00000.rtcpu:i" msg:0x37 ch:0x00
+        v4l2-ctl-4820    [001] .......   365.098971: tegra_channel_set_stream: nv_ov5647 9-0036 : 0x1
+        v4l2-ctl-4820    [000] .......   395.060131: tegra_channel_set_stream: enable : 0x0
+        v4l2-ctl-4820    [000] .......   395.060134: tegra_channel_set_stream: nv_ov5647 9-0036 : 0x0
+        v4l2-ctl-4820    [000] .......   395.060739: tegra_channel_set_stream: 13e00000.host1x:nvcsi@15a00000- : 0x0
+        v4l2-ctl-4820    [000] .......   395.060742: csi_s_stream: enable : 0x0
+        v4l2-ctl-4820    [000] .......   395.060767: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x38 ch:0x00
+ capture-control-445     [002] .......   395.061018: capture_ivc_recv: ivc:"bc00000.rtcpu:i" msg:0x39 ch:0x00
+        v4l2-ctl-4820    [000] .......   395.061849: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x14 ch:0x00
+ capture-control-445     [002] .......   395.062717: capture_ivc_recv: ivc:"bc00000.rtcpu:i" msg:0x15 ch:0x00
+        v4l2-ctl-4820    [000] .......   395.062804: tegra_channel_set_power: nv_ov5647 9-0036 : 0x0
+        v4l2-ctl-4820    [000] .......   395.062814: camera_common_s_power: status : 0x0
+        v4l2-ctl-4820    [000] .......   395.063524: tegra_channel_set_power: 13e00000.host1x:nvcsi@15a00000- : 0x0
+        v4l2-ctl-4820    [000] .......   395.063527: csi_s_power: enable : 0x0
+            bash-4781    [002] .......   395.064644: tracing_mark_write: ov5647_rtcpu_trace_capture_end 20260422T140936Z rc=124

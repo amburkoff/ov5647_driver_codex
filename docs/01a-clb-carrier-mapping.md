@@ -226,6 +226,18 @@ The first manual module-load test on this route-A state succeeded:
 
 This proves route A has a working I2C/probe path. It still does not prove the route-A physical CSI lane path until a frame or SOF is observed.
 
+The first corrected-MCLK route-A capture test also failed to observe CSI frame delivery:
+
+- timestamp: `20260422T140936Z`;
+- `VIDIOC_STREAMON` returned success;
+- capture returned `rc=124`;
+- raw output was zero bytes;
+- VI reported repeated request timeouts;
+- RTCPU/NVCSI tracepoints were enabled but showed no `vi_frame_begin`, `vi_frame_end`, `rtcpu_nvcsi_intr`, `rtcpu_vinotify_error`, `capture_event_sof`, `capture_event_eof`, or `capture_event_error`;
+- driver readback confirmed stream-on state with `0x0100 = 0x01`, output-enable restored, continuous MIPI clock diagnostic active, and MCLK at `24000000`.
+
+This means both route A and route C have now failed after the corrected `TEGRA234_CLK_EXTPERIPH1` binding. The current blocker should be treated as physical CSI-path validation until disproven.
+
 ## Blocking Next Checks
 
 1. Inspect the physical carrier board silkscreen and connector labels.

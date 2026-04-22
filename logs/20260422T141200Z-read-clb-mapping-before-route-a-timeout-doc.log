@@ -1,0 +1,49 @@
+## Current No-SOF Evidence
+
+The latest route-C continuous-clock runtime test proves that the Linux/V4L2 path reaches stream start but no frame start reaches NVCSI/VI:
+
+- `VIDIOC_STREAMON` returns success;
+- register readback after stream-on confirms `0x0100 = 0x01`;
+- output-enable readback confirms `0x3000 = 0x0f`, `0x3001 = 0xff`, `0x3002 = 0xe4`;
+- MIPI clock register readback confirms the continuous-clock diagnostic value `0x4800 = 0x04`;
+- after the clock-ID fix, driver logs confirm `extperiph1` MCLK is enabled at `24000000` Hz;
+- RTCPU/NVCSI trace contains no `vi_frame_begin`, `vi_frame_end`, `rtcpu_nvcsi_intr`, `rtcpu_vinotify_error`, `capture_event_sof`, or `capture_event_error`.
+
+This does not prove the sensor is incapable of output. It proves that the current DT route, physical lane path, cable/adapter path, or MIPI electrical output state is still not producing an observable SOF at the Jetson receiver. Because the earlier route-A test used the old wrong BPMP clock binding, one corrected-MCLK route-A retest is still a valid controlled software experiment before treating the issue as purely physical.
+
+## Current Route-A Retest State
+
+After rebooting the staged route-A corrected-MCLK overlay, the live DT now maps the single active OV5647 node to:
+
+- `cam_i2cmux/i2c@0`;
+- `ov5647_a@36`;
+- `mclk = "extperiph1"`;
+- `clocks = <&bpmp 0x24>`;
+- `mode0.tegra_sinterface = "serial_b"`;
+- `mode0.num_lanes = "2"`;
+- `mode0.lane_polarity = "6"`;
+- endpoint `port-index = 1`;
+- endpoint `bus-width = 2`;
+- `pwdn-gpios` token `0x3e`.
+
+This confirms that the next manual module-load test will exercise route A, not route C.
+
+The first manual module-load test on this route-A state succeeded:
+
+- I2C client is `nv_ov5647 9-0036`;
+- `pwdn_gpio = 397`;
+- MCLK enabled at `24000000` Hz;
+- chip ID is `0x5647`;
+- `/dev/video0` appears;
+- media graph links `nv_ov5647 9-0036 -> nvcsi -> vi-output` are enabled.
+
+This proves route A has a working I2C/probe path. It still does not prove the route-A physical CSI lane path until a frame or SOF is observed.
+
+## Blocking Next Checks
+
+1. Inspect the physical carrier board silkscreen and connector labels.
+2. Record the exact FFC cable and any adapter board between the carrier and OV5647 module.
+3. Confirm whether the carrier exposes Jetson devkit-style 22-pin connectors or a custom route.
+4. Map each physical connector to the observed route-A and route-C logical paths.
+5. Verify whether the `JT-ZERO-V2.0 YH` Raspberry Pi-style OV5647 flex/module path is pin-compatible with the CLB/Jetson 22-pin connector orientation.
+6. Do not continue blind stream-register tuning until the physical CSI lane path or a known-good Jetson camera module cross-check is available.

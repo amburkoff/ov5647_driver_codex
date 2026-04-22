@@ -1,0 +1,56 @@
+5-- The included booklet says to install the official Jetson Developer Kit image.
+6-- The running DT identifies NVIDIA reference carrier `p3768-0000`, which is consistent with the official Developer Kit image instruction but still does not prove CLB camera connector wiring.
+7-- The running system currently boots with `boot_profile=ov5647-dev`, while the carrier hardware still needs independent CLB-specific camera-route documentation beyond what the base DT exposes.
+8:- The active no-SOF problem is not explained by register stream-start state or by the previously wrong BPMP clock ID alone:
+9-  - RTCPU/NVCSI tracing showed no frame-start or NVCSI interrupt events during capture;
+10-  - MCLK diagnostics showed the older active overlay was binding `clock-names = "extperiph1"` to BPMP clock ID `0x07`, which is `TEGRA234_CLK_AUD_MCLK`, not `TEGRA234_CLK_EXTPERIPH1`;
+11-  - route C now boots with BPMP clock ID `0x24` / decimal `36` and driver logs confirm `mclk enabled rate=24000000`;
+12-  - route C still produces zero-byte capture timeout and no SOF with corrected MCLK;
+13:  - route A now probes successfully with corrected MCLK, but corrected-MCLK route-A capture is not tested yet.
+14:- The safe boot entry still exists, but the on-disk default is currently set to `ov5647-dev` with the route-A corrected-MCLK overlay for the next controlled overlay-validation reboot cycle.
+15-- The active dev overlay is now a route-C corrected-`extperiph1` continuous-clock candidate from the physical-connector point of view; it is logically validated by successful probe and `/dev/video0`, but not by SOF/frame delivery.
+16-- The physical camera modules are present on both 22-pin connectors, but the exact mapping from physical connector to route `A` or `C` is still unverified.
+17-- The visible camera marking `JT-ZERO-V2.0 YH` suggests Raspberry Pi-market OV5647 hardware, but the exact FFC/adaptor topology is not yet documented.
+18-- Local `nvidia-oot` headers are present, but full local sample sensor source files are not installed under `/usr/src/nvidia/`.
+19-- Unprivileged `dmesg` access is restricted, so full kernel-buffer capture requires elevated privileges.
+20-- `journalctl --list-boots` and `uptime -s` disagree about the current boot start time, so timestamp interpretation needs care.
+21:- The draft route-A OV5647 overlay compiles locally, but it still relies on unresolved hardware assumptions and keeps the sensor node disabled.
+22:- The probe-oriented route-A OV5647 overlay now applies at boot, reads chip ID, enables 24 MHz `extperiph1`, registers `/dev/video0`, and builds the media graph, but it still relies on unresolved hardware assumptions until capture proves SOF/frame delivery.
+23-- The first rebooted dev attempt proved that `FDTOVERLAYS` was not the correct overlay mechanism for this UEFI-based boot path; the corrected path now uses `FDT + OVERLAYS`.
+24-- A previous manual `insmod` of `nv_ov5647` triggered a kernel panic due to `tegracam_set_privdata()` being called too early; that ordering bug is fixed, but the panic history remains relevant for regression checking.
+25-- The earlier `mclk get failed err=-2` blocker was fixed by adding an explicit DT clock binding, but the first binding used the wrong Tegra234 BPMP clock ID:
+--
+119-  - two identical OV5647 modules are installed in both physical CSI connectors;
+120-  - I2C chip-ID success proves the sensor on `i2c-9` responds, but does not prove that valid CSI lanes are connected to the configured `serial_b` capture route;
+121-  - the physical connector to DT route mapping remains unresolved and must be treated as a blocking hardware assumption before declaring the overlay correct.
+122:- Read-only route analysis confirms the active route-A overlay is consistent with NVIDIA p3768 `imx219-A` and `imx477-A` references:
+123:  - this reduces the probability of a route-A DT modeling typo;
+124-  - it does not prove the CLB physical connector/cable path or the Raspberry Pi-style adapter pinout.
+125-- The local VGA mode table had two local-only writes not present in either mainline Linux or Raspberry Pi 6.6.y VGA arrays:
+126-  - `0x5002 = 0x41`;
+--
+131-  - `VIDIOC_STREAMON` returned success;
+132-  - capture returned `rc=124`;
+133-  - raw output remained zero bytes;
+134:  - route-A VI still reported repeated `uncorr_err: request timed out after 2500 ms`.
+135:- Continuing to tune route-A sensor registers now has diminishing value until route-C is tested:
+136:  - route-A probe is real, but frame delivery is absent;
+137-  - the user has identical OV5647 modules in both physical CSI connectors;
+138-  - an alternate route-C overlay is the next clean single-variable test of physical connector routing.
+139-- Route-C overlay/probe state:
+--
+162-  - raw output remained zero bytes;
+163-  - VI still reported repeated `uncorr_err: request timed out after 2500 ms`;
+164-  - therefore duplicate mode programming was a defect but not the complete root cause.
+165:- Current OV5647 `set_mode()` no longer enables streaming in source:
+166-  - NVIDIA r36.5 tegracam calls `set_mode()` before `start_streaming()`;
+167-  - NVIDIA sample drivers keep `set_mode()` to register programming and start output from `start_streaming()`;
+168-  - code-side fix is built and runtime-tested.
+--
+208-  - `VIDIOC_STREAMON` returns success;
+209-  - raw file remains zero bytes;
+210-  - VI reports timeout, so the next diagnostic level is RTCPU/NVCSI trace rather than another blind mode-table change.
+211:- RTCPU/NVCSI trace now shows a no-SOF condition:
+212-  - selected frame/error tracepoints were enabled;
+213-  - no `vi_frame_begin`, `vi_frame_end`, `rtcpu_vinotify_error`, `rtcpu_nvcsi_intr`, `capture_event_sof`, or `capture_event_error` appeared during the 30 second capture window;
+214-  - this increases the probability of physical lane/cable/adapter/route mismatch or sensor MIPI electrical non-output over a simple VI software registration problem.

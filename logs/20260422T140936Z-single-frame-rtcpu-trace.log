@@ -1,0 +1,19 @@
+[20260422T140936Z] starting RTCPU/NVCSI traced single-frame capture
+[20260422T140936Z] trace dir=/home/cam/ov5647_driver_codex/artifacts/traces/20260422T140936Z
+[20260422T140936Z] raw out=/home/cam/ov5647_driver_codex/artifacts/captures/20260422T140936Z/ov5647-640x480-bg10.raw
+[20260422T140936Z] timeout=30s
+[20260422T140936Z] running v4l2 single-frame capture
+		VIDIOC_REQBUFS returned 0 (Success)
+		VIDIOC_QUERYBUF returned 0 (Success)
+		VIDIOC_QUERYBUF returned 0 (Success)
+		VIDIOC_QUERYBUF returned 0 (Success)
+		VIDIOC_QUERYBUF returned 0 (Success)
+		VIDIOC_QBUF returned 0 (Success)
+		VIDIOC_QBUF returned 0 (Success)
+		VIDIOC_QBUF returned 0 (Success)
+		VIDIOC_QBUF returned 0 (Success)
+		VIDIOC_STREAMON returned 0 (Success)
+[20260422T140936Z] capture rc=124
+[20260422T140936Z] raw size=0 bytes path=/home/cam/ov5647_driver_codex/artifacts/captures/20260422T140936Z/ov5647-640x480-bg10.raw
+[20260422T140936Z] saved trace dir=/home/cam/ov5647_driver_codex/artifacts/traces/20260422T140936Z
+[20260422T140936Z] saved dmesg log=/home/cam/ov5647_driver_codex/logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log

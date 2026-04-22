@@ -1,0 +1,476 @@
+timestamp=20260422T141045Z
+--- trace files
+artifacts/traces/20260422T140936Z/after-set_event.log 748 bytes
+artifacts/traces/20260422T140936Z/after-trace.log 4509 bytes
+artifacts/traces/20260422T140936Z/after-trace_clock.log 54 bytes
+artifacts/traces/20260422T140936Z/after-tracing_on.log 2 bytes
+artifacts/traces/20260422T140936Z/before-set_event.log 748 bytes
+artifacts/traces/20260422T140936Z/before-trace.log 645 bytes
+artifacts/traces/20260422T140936Z/before-trace_clock.log 54 bytes
+artifacts/traces/20260422T140936Z/before-tracing_on.log 2 bytes
+artifacts/traces/20260422T140936Z/enabled-events.log 748 bytes
+artifacts/traces/20260422T140936Z/final-set_event.log 748 bytes
+artifacts/traces/20260422T140936Z/final-trace.log 4509 bytes
+artifacts/traces/20260422T140936Z/final-trace_clock.log 54 bytes
+artifacts/traces/20260422T140936Z/final-tracing_on.log 2 bytes
+artifacts/traces/20260422T140936Z/last_event 52 bytes
+artifacts/traces/20260422T140936Z/last_exception 0 bytes
+artifacts/traces/20260422T140936Z/missing-events.log 0 bytes
+artifacts/traces/20260422T140936Z/pre-capture-state.log 6471 bytes
+artifacts/traces/20260422T140936Z/stats 24 bytes
+--- grep trace event words
+artifacts/traces/20260422T140936Z/pre-capture-state.log:6:tegra_camera          221184  4 nvhost_isp5,nvhost_nvcsi_t194,nv_ov5647,nvhost_vi5
+artifacts/traces/20260422T140936Z/pre-capture-state.log:13:/sys/module/nv_ov5647/parameters/dump_stream_regs=Y
+artifacts/traces/20260422T140936Z/pre-capture-state.log:58:	  Link 0x0200000c: from remote pad 0x1000003 of entity '13e00000.host1x:nvcsi@15a00000-' (Unknown sub-device (0002000a)): Data, Enabled
+artifacts/traces/20260422T140936Z/pre-capture-state.log:73:	Capabilities     : timeperframe
+artifacts/traces/20260422T140936Z/pre-capture-state.log:83:                     frame_rate 0x009a200b (int64)  : min=5000000 max=60000000 step=1 default=60000000 value=5000000 flags=slider
+artifacts/traces/20260422T140936Z/pre-capture-state.log:105:    override_capture_timeout_ms 0x009a206f (int)    : min=-1 max=2147483647 step=1 default=2500 value=2500
+artifacts/traces/20260422T140936Z/pre-capture-state.log:121:- entity 1: 13e00000.host1x:nvcsi@15a00000- (2 pads, 2 links)
+artifacts/traces/20260422T140936Z/pre-capture-state.log:134:		-> "13e00000.host1x:nvcsi@15a00000-":0 [ENABLED]
+artifacts/traces/20260422T140936Z/pre-capture-state.log:140:		<- "13e00000.host1x:nvcsi@15a00000-":1 [ENABLED]
+artifacts/traces/20260422T140936Z/before-set_event.log:2:camera_common:tegra_channel_set_stream
+artifacts/traces/20260422T140936Z/before-set_event.log:3:camera_common:csi_s_stream
+artifacts/traces/20260422T140936Z/before-set_event.log:8:camera_common:tegra_channel_capture_frame
+artifacts/traces/20260422T140936Z/before-set_event.log:11:tegra_rtcpu:rtcpu_vinotify_event_ts64
+artifacts/traces/20260422T140936Z/before-set_event.log:12:tegra_rtcpu:rtcpu_vinotify_event
+artifacts/traces/20260422T140936Z/before-set_event.log:13:tegra_rtcpu:rtcpu_vinotify_error
+artifacts/traces/20260422T140936Z/before-set_event.log:14:tegra_rtcpu:vi_frame_begin
+artifacts/traces/20260422T140936Z/before-set_event.log:15:tegra_rtcpu:vi_frame_end
+artifacts/traces/20260422T140936Z/before-set_event.log:16:tegra_rtcpu:rtcpu_nvcsi_intr
+artifacts/traces/20260422T140936Z/before-set_event.log:19:tegra_capture:capture_event_sof
+artifacts/traces/20260422T140936Z/before-set_event.log:20:tegra_capture:capture_event_eof
+artifacts/traces/20260422T140936Z/before-set_event.log:21:tegra_capture:capture_event_error
+artifacts/traces/20260422T140936Z/before-set_event.log:22:tegra_capture:capture_event_wdt
+artifacts/traces/20260422T140936Z/enabled-events.log:3:camera_common/csi_s_stream
+artifacts/traces/20260422T140936Z/enabled-events.log:5:camera_common/tegra_channel_capture_frame
+artifacts/traces/20260422T140936Z/enabled-events.log:9:camera_common/tegra_channel_set_stream
+artifacts/traces/20260422T140936Z/enabled-events.log:11:tegra_capture/capture_event_eof
+artifacts/traces/20260422T140936Z/enabled-events.log:12:tegra_capture/capture_event_error
+artifacts/traces/20260422T140936Z/enabled-events.log:13:tegra_capture/capture_event_sof
+artifacts/traces/20260422T140936Z/enabled-events.log:14:tegra_capture/capture_event_wdt
+artifacts/traces/20260422T140936Z/enabled-events.log:17:tegra_rtcpu/rtcpu_nvcsi_intr
+artifacts/traces/20260422T140936Z/enabled-events.log:18:tegra_rtcpu/rtcpu_vinotify_error
+artifacts/traces/20260422T140936Z/enabled-events.log:19:tegra_rtcpu/rtcpu_vinotify_event
+artifacts/traces/20260422T140936Z/enabled-events.log:20:tegra_rtcpu/rtcpu_vinotify_event_ts64
+artifacts/traces/20260422T140936Z/enabled-events.log:21:tegra_rtcpu/vi_frame_begin
+artifacts/traces/20260422T140936Z/enabled-events.log:22:tegra_rtcpu/vi_frame_end
+artifacts/traces/20260422T140936Z/after-set_event.log:2:camera_common:tegra_channel_set_stream
+artifacts/traces/20260422T140936Z/after-set_event.log:3:camera_common:csi_s_stream
+artifacts/traces/20260422T140936Z/after-set_event.log:8:camera_common:tegra_channel_capture_frame
+artifacts/traces/20260422T140936Z/after-set_event.log:11:tegra_rtcpu:rtcpu_vinotify_event_ts64
+artifacts/traces/20260422T140936Z/after-set_event.log:12:tegra_rtcpu:rtcpu_vinotify_event
+artifacts/traces/20260422T140936Z/after-set_event.log:13:tegra_rtcpu:rtcpu_vinotify_error
+artifacts/traces/20260422T140936Z/after-set_event.log:14:tegra_rtcpu:vi_frame_begin
+artifacts/traces/20260422T140936Z/after-set_event.log:15:tegra_rtcpu:vi_frame_end
+artifacts/traces/20260422T140936Z/after-set_event.log:16:tegra_rtcpu:rtcpu_nvcsi_intr
+artifacts/traces/20260422T140936Z/after-set_event.log:19:tegra_capture:capture_event_sof
+artifacts/traces/20260422T140936Z/after-set_event.log:20:tegra_capture:capture_event_eof
+artifacts/traces/20260422T140936Z/after-set_event.log:21:tegra_capture:capture_event_error
+artifacts/traces/20260422T140936Z/after-set_event.log:22:tegra_capture:capture_event_wdt
+artifacts/traces/20260422T140936Z/after-trace.log:17:        v4l2-ctl-4820    [001] .......   365.087192: tegra_channel_set_power: 13e00000.host1x:nvcsi@15a00000- : 0x1
+artifacts/traces/20260422T140936Z/after-trace.log:30:        v4l2-ctl-4820    [001] .......   365.096119: tegra_channel_set_stream: enable : 0x1
+artifacts/traces/20260422T140936Z/after-trace.log:31:        v4l2-ctl-4820    [001] .......   365.098618: tegra_channel_set_stream: 13e00000.host1x:nvcsi@15a00000- : 0x1
+artifacts/traces/20260422T140936Z/after-trace.log:32:        v4l2-ctl-4820    [001] .......   365.098620: csi_s_stream: enable : 0x1
+artifacts/traces/20260422T140936Z/after-trace.log:37:        v4l2-ctl-4820    [001] .......   365.098971: tegra_channel_set_stream: nv_ov5647 9-0036 : 0x1
+artifacts/traces/20260422T140936Z/after-trace.log:38:        v4l2-ctl-4820    [000] .......   395.060131: tegra_channel_set_stream: enable : 0x0
+artifacts/traces/20260422T140936Z/after-trace.log:39:        v4l2-ctl-4820    [000] .......   395.060134: tegra_channel_set_stream: nv_ov5647 9-0036 : 0x0
+artifacts/traces/20260422T140936Z/after-trace.log:40:        v4l2-ctl-4820    [000] .......   395.060739: tegra_channel_set_stream: 13e00000.host1x:nvcsi@15a00000- : 0x0
+artifacts/traces/20260422T140936Z/after-trace.log:41:        v4l2-ctl-4820    [000] .......   395.060742: csi_s_stream: enable : 0x0
+artifacts/traces/20260422T140936Z/after-trace.log:48:        v4l2-ctl-4820    [000] .......   395.063524: tegra_channel_set_power: 13e00000.host1x:nvcsi@15a00000- : 0x0
+artifacts/traces/20260422T140936Z/final-trace.log:17:        v4l2-ctl-4820    [001] .......   365.087192: tegra_channel_set_power: 13e00000.host1x:nvcsi@15a00000- : 0x1
+artifacts/traces/20260422T140936Z/final-trace.log:30:        v4l2-ctl-4820    [001] .......   365.096119: tegra_channel_set_stream: enable : 0x1
+artifacts/traces/20260422T140936Z/final-trace.log:31:        v4l2-ctl-4820    [001] .......   365.098618: tegra_channel_set_stream: 13e00000.host1x:nvcsi@15a00000- : 0x1
+artifacts/traces/20260422T140936Z/final-trace.log:32:        v4l2-ctl-4820    [001] .......   365.098620: csi_s_stream: enable : 0x1
+artifacts/traces/20260422T140936Z/final-trace.log:37:        v4l2-ctl-4820    [001] .......   365.098971: tegra_channel_set_stream: nv_ov5647 9-0036 : 0x1
+artifacts/traces/20260422T140936Z/final-trace.log:38:        v4l2-ctl-4820    [000] .......   395.060131: tegra_channel_set_stream: enable : 0x0
+artifacts/traces/20260422T140936Z/final-trace.log:39:        v4l2-ctl-4820    [000] .......   395.060134: tegra_channel_set_stream: nv_ov5647 9-0036 : 0x0
+artifacts/traces/20260422T140936Z/final-trace.log:40:        v4l2-ctl-4820    [000] .......   395.060739: tegra_channel_set_stream: 13e00000.host1x:nvcsi@15a00000- : 0x0
+artifacts/traces/20260422T140936Z/final-trace.log:41:        v4l2-ctl-4820    [000] .......   395.060742: csi_s_stream: enable : 0x0
+artifacts/traces/20260422T140936Z/final-trace.log:48:        v4l2-ctl-4820    [000] .......   395.063524: tegra_channel_set_power: 13e00000.host1x:nvcsi@15a00000- : 0x0
+artifacts/traces/20260422T140936Z/final-set_event.log:2:camera_common:tegra_channel_set_stream
+artifacts/traces/20260422T140936Z/final-set_event.log:3:camera_common:csi_s_stream
+artifacts/traces/20260422T140936Z/final-set_event.log:8:camera_common:tegra_channel_capture_frame
+artifacts/traces/20260422T140936Z/final-set_event.log:11:tegra_rtcpu:rtcpu_vinotify_event_ts64
+artifacts/traces/20260422T140936Z/final-set_event.log:12:tegra_rtcpu:rtcpu_vinotify_event
+artifacts/traces/20260422T140936Z/final-set_event.log:13:tegra_rtcpu:rtcpu_vinotify_error
+artifacts/traces/20260422T140936Z/final-set_event.log:14:tegra_rtcpu:vi_frame_begin
+artifacts/traces/20260422T140936Z/final-set_event.log:15:tegra_rtcpu:vi_frame_end
+artifacts/traces/20260422T140936Z/final-set_event.log:16:tegra_rtcpu:rtcpu_nvcsi_intr
+artifacts/traces/20260422T140936Z/final-set_event.log:19:tegra_capture:capture_event_sof
+artifacts/traces/20260422T140936Z/final-set_event.log:20:tegra_capture:capture_event_eof
+artifacts/traces/20260422T140936Z/final-set_event.log:21:tegra_capture:capture_event_error
+artifacts/traces/20260422T140936Z/final-set_event.log:22:tegra_capture:capture_event_wdt
+--- trace heads
+### artifacts/traces/20260422T140936Z/after-set_event.log
+camera_common:tegra_channel_notify_status_callback
+camera_common:tegra_channel_set_stream
+camera_common:csi_s_stream
+camera_common:tegra_channel_set_power
+camera_common:camera_common_s_power
+camera_common:csi_s_power
+camera_common:tegra_channel_capture_setup
+camera_common:tegra_channel_capture_frame
+camera_common:tegra_channel_capture_done
+camera_common:vi_task_submit
+tegra_rtcpu:rtcpu_vinotify_event_ts64
+tegra_rtcpu:rtcpu_vinotify_event
+tegra_rtcpu:rtcpu_vinotify_error
+tegra_rtcpu:vi_frame_begin
+tegra_rtcpu:vi_frame_end
+tegra_rtcpu:rtcpu_nvcsi_intr
+tegra_capture:capture_ivc_recv
+tegra_capture:capture_ivc_send
+tegra_capture:capture_event_sof
+tegra_capture:capture_event_eof
+tegra_capture:capture_event_error
+tegra_capture:capture_event_wdt
+### artifacts/traces/20260422T140936Z/after-trace.log
+# tracer: nop
+#
+# entries-in-buffer/entries-written: 36/36   #P:4
+#
+#                                _-------=> irqs-off
+#                               / _------=> need-resched
+#                              | / _-----=> need-resched-lazy
+#                              || / _----=> hardirq/softirq
+#                              ||| / _---=> preempt-depth
+#                              |||| / _--=> preempt-lazy-depth
+#                              ||||| / _-=> migrate-disable
+#                              |||||| /     delay
+#           TASK-PID     CPU#  |||||||  TIMESTAMP  FUNCTION
+#              | |         |   |||||||      |         |
+        v4l2-ctl-4820    [001] .......   365.072275: tegra_channel_set_power: nv_ov5647 9-0036 : 0x1
+        v4l2-ctl-4820    [001] .......   365.072283: camera_common_s_power: status : 0x1
+        v4l2-ctl-4820    [001] .......   365.087192: tegra_channel_set_power: 13e00000.host1x:nvcsi@15a00000- : 0x1
+        v4l2-ctl-4820    [001] .......   365.087195: csi_s_power: enable : 0x1
+        v4l2-ctl-4820    [001] .......   365.087705: tegra_channel_capture_setup: vnc_id 0 W 640 H 480 fmt c4
+        v4l2-ctl-4820    [001] .......   365.095608: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x1e ch:0x58
+ capture-control-445     [002] .......   365.096017: capture_ivc_recv: ivc:"bc00000.rtcpu:i" msg:0x11 ch:0x58
+ vi-output, nv_o-4821    [000] .......   365.096089: vi_task_submit: class_id:48 ch:0 syncpt_id:37 syncpt_thresh:0 pid:4821 tid:4821
+ vi-output, nv_o-4821    [000] .......   365.096100: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x01 ch:0x00
+ vi-output, nv_o-4821    [000] .......   365.096102: vi_task_submit: class_id:48 ch:0 syncpt_id:37 syncpt_thresh:0 pid:4821 tid:4821
+ vi-output, nv_o-4821    [000] .......   365.096102: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x01 ch:0x00
+ vi-output, nv_o-4821    [000] .......   365.096103: vi_task_submit: class_id:48 ch:0 syncpt_id:37 syncpt_thresh:0 pid:4821 tid:4821
+ vi-output, nv_o-4821    [000] .......   365.096104: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x01 ch:0x00
+ vi-output, nv_o-4821    [000] .......   365.096105: vi_task_submit: class_id:48 ch:0 syncpt_id:37 syncpt_thresh:0 pid:4821 tid:4821
+ vi-output, nv_o-4821    [000] .......   365.096105: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x01 ch:0x00
+        v4l2-ctl-4820    [001] .......   365.096119: tegra_channel_set_stream: enable : 0x1
+        v4l2-ctl-4820    [001] .......   365.098618: tegra_channel_set_stream: 13e00000.host1x:nvcsi@15a00000- : 0x1
+        v4l2-ctl-4820    [001] .......   365.098620: csi_s_stream: enable : 0x1
+        v4l2-ctl-4820    [001] .......   365.098627: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x40 ch:0x00
+ capture-control-445     [002] .......   365.098665: capture_ivc_recv: ivc:"bc00000.rtcpu:i" msg:0x41 ch:0x00
+        v4l2-ctl-4820    [001] .......   365.098673: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x36 ch:0x00
+ capture-control-445     [002] .......   365.098967: capture_ivc_recv: ivc:"bc00000.rtcpu:i" msg:0x37 ch:0x00
+        v4l2-ctl-4820    [001] .......   365.098971: tegra_channel_set_stream: nv_ov5647 9-0036 : 0x1
+        v4l2-ctl-4820    [000] .......   395.060131: tegra_channel_set_stream: enable : 0x0
+        v4l2-ctl-4820    [000] .......   395.060134: tegra_channel_set_stream: nv_ov5647 9-0036 : 0x0
+        v4l2-ctl-4820    [000] .......   395.060739: tegra_channel_set_stream: 13e00000.host1x:nvcsi@15a00000- : 0x0
+        v4l2-ctl-4820    [000] .......   395.060742: csi_s_stream: enable : 0x0
+        v4l2-ctl-4820    [000] .......   395.060767: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x38 ch:0x00
+ capture-control-445     [002] .......   395.061018: capture_ivc_recv: ivc:"bc00000.rtcpu:i" msg:0x39 ch:0x00
+        v4l2-ctl-4820    [000] .......   395.061849: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x14 ch:0x00
+ capture-control-445     [002] .......   395.062717: capture_ivc_recv: ivc:"bc00000.rtcpu:i" msg:0x15 ch:0x00
+        v4l2-ctl-4820    [000] .......   395.062804: tegra_channel_set_power: nv_ov5647 9-0036 : 0x0
+        v4l2-ctl-4820    [000] .......   395.062814: camera_common_s_power: status : 0x0
+        v4l2-ctl-4820    [000] .......   395.063524: tegra_channel_set_power: 13e00000.host1x:nvcsi@15a00000- : 0x0
+        v4l2-ctl-4820    [000] .......   395.063527: csi_s_power: enable : 0x0
+            bash-4781    [002] .......   395.064644: tracing_mark_write: ov5647_rtcpu_trace_capture_end 20260422T140936Z rc=124
+### artifacts/traces/20260422T140936Z/after-trace_clock.log
+local global counter uptime perf [mono] mono_raw boot
+### artifacts/traces/20260422T140936Z/after-tracing_on.log
+0
+### artifacts/traces/20260422T140936Z/before-set_event.log
+camera_common:tegra_channel_notify_status_callback
+camera_common:tegra_channel_set_stream
+camera_common:csi_s_stream
+camera_common:tegra_channel_set_power
+camera_common:camera_common_s_power
+camera_common:csi_s_power
+camera_common:tegra_channel_capture_setup
+camera_common:tegra_channel_capture_frame
+camera_common:tegra_channel_capture_done
+camera_common:vi_task_submit
+tegra_rtcpu:rtcpu_vinotify_event_ts64
+tegra_rtcpu:rtcpu_vinotify_event
+tegra_rtcpu:rtcpu_vinotify_error
+tegra_rtcpu:vi_frame_begin
+tegra_rtcpu:vi_frame_end
+tegra_rtcpu:rtcpu_nvcsi_intr
+tegra_capture:capture_ivc_recv
+tegra_capture:capture_ivc_send
+tegra_capture:capture_event_sof
+tegra_capture:capture_event_eof
+tegra_capture:capture_event_error
+tegra_capture:capture_event_wdt
+### artifacts/traces/20260422T140936Z/before-trace.log
+# tracer: nop
+#
+# entries-in-buffer/entries-written: 0/0   #P:4
+#
+#                                _-------=> irqs-off
+#                               / _------=> need-resched
+#                              | / _-----=> need-resched-lazy
+#                              || / _----=> hardirq/softirq
+#                              ||| / _---=> preempt-depth
+#                              |||| / _--=> preempt-lazy-depth
+#                              ||||| / _-=> migrate-disable
+#                              |||||| /     delay
+#           TASK-PID     CPU#  |||||||  TIMESTAMP  FUNCTION
+#              | |         |   |||||||      |         |
+### artifacts/traces/20260422T140936Z/before-trace_clock.log
+local global counter uptime perf [mono] mono_raw boot
+### artifacts/traces/20260422T140936Z/before-tracing_on.log
+0
+### artifacts/traces/20260422T140936Z/enabled-events.log
+camera_common/camera_common_s_power
+camera_common/csi_s_power
+camera_common/csi_s_stream
+camera_common/tegra_channel_capture_done
+camera_common/tegra_channel_capture_frame
+camera_common/tegra_channel_capture_setup
+camera_common/tegra_channel_notify_status_callback
+camera_common/tegra_channel_set_power
+camera_common/tegra_channel_set_stream
+camera_common/vi_task_submit
+tegra_capture/capture_event_eof
+tegra_capture/capture_event_error
+tegra_capture/capture_event_sof
+tegra_capture/capture_event_wdt
+tegra_capture/capture_ivc_recv
+tegra_capture/capture_ivc_send
+tegra_rtcpu/rtcpu_nvcsi_intr
+tegra_rtcpu/rtcpu_vinotify_error
+tegra_rtcpu/rtcpu_vinotify_event
+tegra_rtcpu/rtcpu_vinotify_event_ts64
+tegra_rtcpu/vi_frame_begin
+tegra_rtcpu/vi_frame_end
+### artifacts/traces/20260422T140936Z/final-set_event.log
+camera_common:tegra_channel_notify_status_callback
+camera_common:tegra_channel_set_stream
+camera_common:csi_s_stream
+camera_common:tegra_channel_set_power
+camera_common:camera_common_s_power
+camera_common:csi_s_power
+camera_common:tegra_channel_capture_setup
+camera_common:tegra_channel_capture_frame
+camera_common:tegra_channel_capture_done
+camera_common:vi_task_submit
+tegra_rtcpu:rtcpu_vinotify_event_ts64
+tegra_rtcpu:rtcpu_vinotify_event
+tegra_rtcpu:rtcpu_vinotify_error
+tegra_rtcpu:vi_frame_begin
+tegra_rtcpu:vi_frame_end
+tegra_rtcpu:rtcpu_nvcsi_intr
+tegra_capture:capture_ivc_recv
+tegra_capture:capture_ivc_send
+tegra_capture:capture_event_sof
+tegra_capture:capture_event_eof
+tegra_capture:capture_event_error
+tegra_capture:capture_event_wdt
+### artifacts/traces/20260422T140936Z/final-trace.log
+# tracer: nop
+#
+# entries-in-buffer/entries-written: 36/36   #P:4
+#
+#                                _-------=> irqs-off
+#                               / _------=> need-resched
+#                              | / _-----=> need-resched-lazy
+#                              || / _----=> hardirq/softirq
+#                              ||| / _---=> preempt-depth
+#                              |||| / _--=> preempt-lazy-depth
+#                              ||||| / _-=> migrate-disable
+#                              |||||| /     delay
+#           TASK-PID     CPU#  |||||||  TIMESTAMP  FUNCTION
+#              | |         |   |||||||      |         |
+        v4l2-ctl-4820    [001] .......   365.072275: tegra_channel_set_power: nv_ov5647 9-0036 : 0x1
+        v4l2-ctl-4820    [001] .......   365.072283: camera_common_s_power: status : 0x1
+        v4l2-ctl-4820    [001] .......   365.087192: tegra_channel_set_power: 13e00000.host1x:nvcsi@15a00000- : 0x1
+        v4l2-ctl-4820    [001] .......   365.087195: csi_s_power: enable : 0x1
+        v4l2-ctl-4820    [001] .......   365.087705: tegra_channel_capture_setup: vnc_id 0 W 640 H 480 fmt c4
+        v4l2-ctl-4820    [001] .......   365.095608: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x1e ch:0x58
+ capture-control-445     [002] .......   365.096017: capture_ivc_recv: ivc:"bc00000.rtcpu:i" msg:0x11 ch:0x58
+ vi-output, nv_o-4821    [000] .......   365.096089: vi_task_submit: class_id:48 ch:0 syncpt_id:37 syncpt_thresh:0 pid:4821 tid:4821
+ vi-output, nv_o-4821    [000] .......   365.096100: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x01 ch:0x00
+ vi-output, nv_o-4821    [000] .......   365.096102: vi_task_submit: class_id:48 ch:0 syncpt_id:37 syncpt_thresh:0 pid:4821 tid:4821
+ vi-output, nv_o-4821    [000] .......   365.096102: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x01 ch:0x00
+ vi-output, nv_o-4821    [000] .......   365.096103: vi_task_submit: class_id:48 ch:0 syncpt_id:37 syncpt_thresh:0 pid:4821 tid:4821
+ vi-output, nv_o-4821    [000] .......   365.096104: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x01 ch:0x00
+ vi-output, nv_o-4821    [000] .......   365.096105: vi_task_submit: class_id:48 ch:0 syncpt_id:37 syncpt_thresh:0 pid:4821 tid:4821
+ vi-output, nv_o-4821    [000] .......   365.096105: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x01 ch:0x00
+        v4l2-ctl-4820    [001] .......   365.096119: tegra_channel_set_stream: enable : 0x1
+        v4l2-ctl-4820    [001] .......   365.098618: tegra_channel_set_stream: 13e00000.host1x:nvcsi@15a00000- : 0x1
+        v4l2-ctl-4820    [001] .......   365.098620: csi_s_stream: enable : 0x1
+        v4l2-ctl-4820    [001] .......   365.098627: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x40 ch:0x00
+ capture-control-445     [002] .......   365.098665: capture_ivc_recv: ivc:"bc00000.rtcpu:i" msg:0x41 ch:0x00
+        v4l2-ctl-4820    [001] .......   365.098673: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x36 ch:0x00
+ capture-control-445     [002] .......   365.098967: capture_ivc_recv: ivc:"bc00000.rtcpu:i" msg:0x37 ch:0x00
+        v4l2-ctl-4820    [001] .......   365.098971: tegra_channel_set_stream: nv_ov5647 9-0036 : 0x1
+        v4l2-ctl-4820    [000] .......   395.060131: tegra_channel_set_stream: enable : 0x0
+        v4l2-ctl-4820    [000] .......   395.060134: tegra_channel_set_stream: nv_ov5647 9-0036 : 0x0
+        v4l2-ctl-4820    [000] .......   395.060739: tegra_channel_set_stream: 13e00000.host1x:nvcsi@15a00000- : 0x0
+        v4l2-ctl-4820    [000] .......   395.060742: csi_s_stream: enable : 0x0
+        v4l2-ctl-4820    [000] .......   395.060767: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x38 ch:0x00
+ capture-control-445     [002] .......   395.061018: capture_ivc_recv: ivc:"bc00000.rtcpu:i" msg:0x39 ch:0x00
+        v4l2-ctl-4820    [000] .......   395.061849: capture_ivc_send: ivc:"bc00000.rtcpu:i" msg:0x14 ch:0x00
+ capture-control-445     [002] .......   395.062717: capture_ivc_recv: ivc:"bc00000.rtcpu:i" msg:0x15 ch:0x00
+        v4l2-ctl-4820    [000] .......   395.062804: tegra_channel_set_power: nv_ov5647 9-0036 : 0x0
+        v4l2-ctl-4820    [000] .......   395.062814: camera_common_s_power: status : 0x0
+        v4l2-ctl-4820    [000] .......   395.063524: tegra_channel_set_power: 13e00000.host1x:nvcsi@15a00000- : 0x0
+        v4l2-ctl-4820    [000] .......   395.063527: csi_s_power: enable : 0x0
+            bash-4781    [002] .......   395.064644: tracing_mark_write: ov5647_rtcpu_trace_capture_end 20260422T140936Z rc=124
+### artifacts/traces/20260422T140936Z/final-trace_clock.log
+local global counter uptime perf [mono] mono_raw boot
+### artifacts/traces/20260422T140936Z/final-tracing_on.log
+0
+### artifacts/traces/20260422T140936Z/last_event
+Len: 16
+ID: 0x03010000
+Timestamp: 1659817073
+Start.
+### artifacts/traces/20260422T140936Z/last_exception
+### artifacts/traces/20260422T140936Z/missing-events.log
+### artifacts/traces/20260422T140936Z/pre-capture-state.log
+# cmdline
+root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+
+# module state
+nv_ov5647              36864  0
+tegra_camera          221184  4 nvhost_isp5,nvhost_nvcsi_t194,nv_ov5647,nvhost_vi5
+v4l2_async             20480  3 v4l2_fwnode,nv_ov5647,tegra_camera
+videodev              249856  5 v4l2_async,videobuf2_v4l2,nv_ov5647,tegra_camera,videobuf2_common
+
+# module params
+/sys/module/nv_ov5647/parameters/allow_hw_probe=Y
+/sys/module/nv_ov5647/parameters/continuous_mipi_clock=Y
+/sys/module/nv_ov5647/parameters/dump_stream_regs=Y
+/sys/module/nv_ov5647/parameters/mclk_override_hz=24000000
+/sys/module/nv_ov5647/parameters/register_i2c_driver=Y
+/sys/module/nv_ov5647/parameters/skip_v4l2_register=N
+/sys/module/nv_ov5647/parameters/skip_v4l2_unregister=N
+/sys/module/nv_ov5647/parameters/split_v4l2_unregister=N
+/sys/module/nv_ov5647/parameters/unload_marker_delay_ms=500
+
+# video nodes
+crw-rw----+ 1 root video 504, 0 авг 26  2025 /dev/media0
+crw-rw----+ 1 root video  81, 1 апр 22 17:07 /dev/v4l-subdev0
+crw-rw----+ 1 root video  81, 2 апр 22 17:07 /dev/v4l-subdev1
+crw-rw----+ 1 root video  81, 0 апр 22 17:07 /dev/video0
+
+# v4l2
+Driver Info:
+	Driver name      : tegra-video
+	Card type        : vi-output, nv_ov5647 9-0036
+	Bus info         : platform:tegra-capture-vi:1
+	Driver version   : 5.15.185
+	Capabilities     : 0x84200001
+		Video Capture
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x04200001
+		Video Capture
+		Streaming
+		Extended Pix Format
+Media Driver Info:
+	Driver name      : tegra-camrtc-ca
+	Model            : NVIDIA Tegra Video Input Device
+	Serial           : 
+	Bus info         : 
+	Media version    : 5.15.185
+	Hardware revision: 0x00000003 (3)
+	Driver version   : 5.15.185
+Interface Info:
+	ID               : 0x03000008
+	Type             : V4L Video
+Entity Info:
+	ID               : 0x00000006 (6)
+	Name             : vi-output, nv_ov5647 9-0036
+	Function         : V4L2 I/O
+	Pad 0x01000007   : 0: Sink
+	  Link 0x0200000c: from remote pad 0x1000003 of entity '13e00000.host1x:nvcsi@15a00000-' (Unknown sub-device (0002000a)): Data, Enabled
+Priority: 2
+Video input : 0 (Camera 1: ok)
+Format Video Capture:
+	Width/Height      : 640/480
+	Pixel Format      : 'BG10' (10-bit Bayer BGBG/GRGR)
+	Field             : None
+	Bytes per Line    : 1280
+	Size Image        : 614400
+	Colorspace        : sRGB
+	Transfer Function : Default (maps to sRGB)
+	YCbCr/HSV Encoding: Default (maps to ITU-R 601)
+	Quantization      : Default (maps to Full Range)
+	Flags             : 
+Streaming Parameters Video Capture:
+	Capabilities     : timeperframe
+	Frames per second: 30.000 (30/1)
+	Read buffers     : 0
+
+Camera Controls
+
+                     group_hold 0x009a2003 (bool)   : default=0 value=0 flags=execute-on-write
+                    sensor_mode 0x009a2008 (int64)  : min=0 max=1 step=1 default=0 value=0 flags=slider
+                           gain 0x009a2009 (int64)  : min=16 max=1024 step=1 default=32 value=16 flags=slider
+                       exposure 0x009a200a (int64)  : min=13 max=16001 step=1 default=1000 value=13 flags=slider
+                     frame_rate 0x009a200b (int64)  : min=5000000 max=60000000 step=1 default=60000000 value=5000000 flags=slider
+           sensor_configuration 0x009a2032 (u32)    : min=0 max=4294967295 step=1 default=0 dims=[22] flags=read-only, volatile, has-payload
+         sensor_mode_i2c_packet 0x009a2033 (u32)    : min=0 max=4294967295 step=1 default=0 dims=[1026] flags=read-only, volatile, has-payload
+      sensor_control_i2c_packet 0x009a2034 (u32)    : min=0 max=4294967295 step=1 default=0 dims=[1026] flags=read-only, volatile, has-payload
+                    bypass_mode 0x009a2064 (intmenu): min=0 max=1 default=0 value=0 (0 0x0)
+				0: 0 (0x0)
+				1: 1 (0x1)
+                override_enable 0x009a2065 (intmenu): min=0 max=1 default=0 value=0 (0 0x0)
+				0: 0 (0x0)
+				1: 1 (0x1)
+                   height_align 0x009a2066 (int)    : min=1 max=16 step=1 default=1 value=1
+                     size_align 0x009a2067 (intmenu): min=0 max=2 default=0 value=0 (1 0x1)
+				0: 1 (0x1)
+				1: 65536 (0x10000)
+				2: 131072 (0x20000)
+               write_isp_format 0x009a2068 (int)    : min=1 max=1 step=1 default=1 value=1
+       sensor_signal_properties 0x009a2069 (u32)    : min=0 max=4294967295 step=1 default=0 dims=[30][18] flags=read-only, has-payload
+        sensor_image_properties 0x009a206a (u32)    : min=0 max=4294967295 step=1 default=0 dims=[30][16] flags=read-only, has-payload
+      sensor_control_properties 0x009a206b (u32)    : min=0 max=4294967295 step=1 default=0 dims=[30][36] flags=read-only, has-payload
+              sensor_dv_timings 0x009a206c (u32)    : min=0 max=4294967295 step=1 default=0 dims=[30][16] flags=read-only, has-payload
+               low_latency_mode 0x009a206d (bool)   : default=0 value=0
+               preferred_stride 0x009a206e (int)    : min=0 max=65535 step=1 default=0 value=0
+    override_capture_timeout_ms 0x009a206f (int)    : min=-1 max=2147483647 step=1 default=2500 value=2500
+                   sensor_modes 0x009a2082 (int)    : min=0 max=30 step=1 default=30 value=1 flags=read-only
+
+# media
+Media controller API version 5.15.185
+
+Media device information
+------------------------
+driver          tegra-camrtc-ca
+model           NVIDIA Tegra Video Input Device
+serial          
+bus info        
+hw revision     0x3
+driver version  5.15.185
+
+Device topology
+- entity 1: 13e00000.host1x:nvcsi@15a00000- (2 pads, 2 links)
+            type V4L2 subdev subtype Unknown flags 0
+            device node name /dev/v4l-subdev0
+	pad0: Sink
+		<- "nv_ov5647 9-0036":0 [ENABLED]
+	pad1: Source
+		-> "vi-output, nv_ov5647 9-0036":0 [ENABLED]
+
+- entity 4: nv_ov5647 9-0036 (1 pad, 1 link)
+            type V4L2 subdev subtype Sensor flags 0
+            device node name /dev/v4l-subdev1
+	pad0: Source
+		[fmt:SBGGR10_1X10/640x480@1/30 field:none colorspace:srgb]
+		-> "13e00000.host1x:nvcsi@15a00000-":0 [ENABLED]
+
+- entity 6: vi-output, nv_ov5647 9-0036 (1 pad, 1 link)
+            type Node subtype V4L flags 0
+            device node name /dev/video0
+	pad0: Sink
+		<- "13e00000.host1x:nvcsi@15a00000-":1 [ENABLED]
+
+### artifacts/traces/20260422T140936Z/stats
+Exceptions: 0
+Events: 3

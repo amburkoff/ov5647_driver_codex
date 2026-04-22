@@ -1,0 +1,120 @@
+- driver logs now confirm the corrected clock path:
+  - `ov5647_power_get: mclk get ok name=extperiph1 current_rate=51000000`;
+  - `ov5647_power_on: enabling mclk def_clk_freq=24000000 current_rate=51000000`;
+  - `ov5647_power_on: mclk enabled rate=24000000`;
+- BPMP debugfs also reports `extperiph1 rate=24000000`;
+- `aud_mclk` remains separate at `45158398`, confirming the DT binding no longer targets audio MCLK;
+- `/dev/video0` is present;
+- `media-ctl -p` shows the enabled route `nv_ov5647 9-0036 -> nvcsi -> vi-output`.
+
+Next manual runtime test:
+
+- run one RTCPU/NVCSI traced single-frame capture manually;
+- if it still returns no SOF and zero bytes with MCLK fixed, the remaining leading suspects are physical CSI lane path/cable/adapter mapping or sensor module electrical compatibility.
+
+Manual capture after confirmed extperiph1 MCLK:
+
+- manual RTCPU/NVCSI traced capture `20260422T135523Z` returned `rc=124`;
+- raw output `artifacts/captures/20260422T135523Z/ov5647-640x480-bg10.raw` is zero bytes;
+- driver logs still confirm corrected active MCLK during capture:
+  - `ov5647_power_on: mclk enabled rate=24000000`;
+  - `ov5647_set_stream: continuous_mipi_clock=1`;
+  - stream-on readback showed `0x0100=0x01` and `0x4800=0x04`;
+- VI still logged repeated `uncorr_err: request timed out after 2500 ms`;
+- RTCPU trace again shows channel setup and stream enable, but no runtime `vi_frame_begin`, `vi_frame_end`, `rtcpu_nvcsi_intr`, `rtcpu_vinotify_error`, or capture SOF/error events.
+
+Current interpretation:
+
+- the wrong BPMP clock ID was a real bug and is fixed for route C;
+- the no-SOF failure remains after the sensor is clocked at 24 MHz;
+- because the earlier route-A tests were also performed before the clock-ID fix, route A is not fully ruled out yet;
+- the next controlled DT-only software experiment is route A with the corrected `TEGRA234_CLK_EXTPERIPH1` clock binding;
+- if route A with corrected MCLK also has no SOF, the highest-probability cause becomes physical CLB/makerobo connector routing, FFC/adaptor pinout/orientation, or Raspberry Pi-style OV5647 electrical compatibility.
+
+Route-A corrected-MCLK boot staged:
+
+- built route-A DTBO from `patches/ov5647-p3768-port-a-probe.dts`;
+- artifact: `artifacts/dtbo/20260422T135929Z-ov5647-p3768-port-a-probe.dtbo`;
+- installed boot overlay: `/boot/ov5647-p3768-port-a-extperiph1.dtbo`;
+- checksum matches between artifact and `/boot` copy;
+- `/boot/extlinux/extlinux.conf` now has:
+  - `DEFAULT ov5647-dev`;
+  - safe entry `ov5647-safe` with `boot_profile=ov5647-safe`;
+  - dev entry `ov5647-dev` with `OVERLAYS /boot/ov5647-p3768-port-a-extperiph1.dtbo`;
+- DTBO decompile confirms route-A fields:
+  - `i2c@0`;
+  - `ov5647_a@36`;
+  - `clocks = <... 0x24>`;
+  - `tegra_sinterface = "serial_b"`;
+  - `port-index = <1>`;
+  - `lane_polarity = "6"`;
+  - `pwdn-gpios = <... 0x3e 0>`.
+
+Next required reboot:
+
+- reboot is required because the overlay changed;
+- the default boot profile is already `ov5647-dev`;
+- safe boot remains available as `Jetson SAFE (no OV5647 auto-load)`;
+- after reboot, first verify `/proc/cmdline` and live DT before any module or capture command.
+
+Post-reboot result for route-A corrected-MCLK overlay:
+
+- system booted into `boot_profile=ov5647-dev`;
+- `/boot/extlinux/extlinux.conf` still contains both safe and dev profiles;
+- dev profile points to `/boot/ov5647-p3768-port-a-extperiph1.dtbo`;
+- `nv_ov5647` is not auto-loaded;
+- `/dev/video0` and `/dev/v4l-subdev*` are absent before manual module load, as expected;
+- live DT now contains route-A node:
+  - `/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36`;
+  - `status = "okay"`;
+  - `compatible = "ovti,ov5647"`;
+  - `mclk = "extperiph1"`;
+  - `clocks_hex = 00 00 00 03 00 00 00 24`;
+  - `pwdn-gpios = <... 0x3e 0>`;
+  - `mode0.tegra_sinterface = "serial_b"`;
+  - `mode0.lane_polarity = "6"`;
+  - endpoint `port-index = 1`;
+  - endpoint `bus-width = 2`;
+- route-C `ov5647_c@36` node is absent;
+- `media-ctl -p` currently shows only the base `nvcsi` entity with no sensor link before module load;
+- pstore contains `console-ramoops-0` from the previous boot, including the earlier route-C capture timeout and a normal `reboot: Restarting system` tail; no panic/oops/NULL dereference signature was found in that pstore scan.
+
+Next manual test:
+
+- run only manual route-A insmod diagnostics first;
+- do not run capture until route-A probe/chip-ID/MCLK are confirmed after this reboot.
+
+Manual route-A insmod after corrected-MCLK reboot:
+
+- user ran `sudo /home/cam/ov5647_driver_codex/scripts/run_manual_insmod_diag.sh full-delay-dump-contclk-mclk24`;
+- command returned `insmod rc=0`;
+- module parameters:
+  - `register_i2c_driver=Y`;
+  - `allow_hw_probe=Y`;
+  - `dump_stream_regs=Y`;
+  - `continuous_mipi_clock=Y`;
+  - `mclk_override_hz=24000000`;
+- probe path:
+  - `ov5647_parse_dt`: `mclk=extperiph1`, `reset_gpio=-1`, `pwdn_gpio=397`;
+  - supplies are dummy regulators for `vana`, `vdig`, `vif`;
+  - `ov5647_power_on`: enabled MCLK at `24000000`;
+  - `ov5647_board_setup`: detected `chip_id=0x5647`;
+  - V4L2 registration succeeded;
+- active BPMP clocks after probe:
+  - `extperiph1 = 24000000`;
+  - `aud_mclk = 45158398`;
+- media graph after probe:
+  - `nv_ov5647 9-0036` sensor entity exists;
+  - `/dev/video0` exists as `vi-output, nv_ov5647 9-0036`;
+  - sensor -> nvcsi -> vi links are enabled;
+- `v4l2-ctl --all` shows:
+  - format `BG10`;
+  - `640x480`;
+  - `Size Image = 614400`;
+  - `30 fps`;
+  - `sensor_modes = 1`.
+
+Next manual runtime test:
+
+- run the RTCPU/NVCSI traced single-frame capture on this route-A corrected-MCLK setup;
+- if this still gives `rc=124`, zero bytes, and no SOF, both route A and route C will have failed after the clock-ID fix and physical CLB/makerobo connector/cable/adaptor compatibility becomes the dominant root-cause track.
