@@ -1,0 +1,15 @@
+M  docs/01a-cbl-carrier-mapping.md
+M  docs/10-results-and-status.md
+M  docs/11-known-issues.md
+A  logs/20260422T080020Z-manual-insmod-full-delay.dmesg-tail.log
+A  logs/20260422T080020Z-manual-insmod-full-delay.log
+A  logs/20260422T080020Z-manual-insmod-full-delay.modinfo.log
+A  logs/20260422T080050Z-after-route-c-manual-insmod-dmesg-tail.log
+A  logs/20260422T080050Z-after-route-c-manual-insmod-media-ctl.log
+A  logs/20260422T080050Z-after-route-c-manual-insmod-script-log-summary.log
+A  logs/20260422T080050Z-after-route-c-manual-insmod-state.log
+A  logs/20260422T080050Z-after-route-c-manual-insmod-v4l2.log
+A  logs/20260422T080149Z-git-add-route-c-insmod-success.log
+A  logs/20260422T080149Z-git-status-route-c-insmod-success-add.log
+A  reports/2026-04-22-route-c-insmod-success.md
+?? logs/20260422T080205Z-git-add-route-c-insmod-success-retry.log

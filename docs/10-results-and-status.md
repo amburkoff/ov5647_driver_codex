@@ -202,6 +202,13 @@ Completed:
   - `i2c-9` now maps to mux `chan_id 1`, route C;
   - pstore is empty;
   - `nv_ov5647` is not loaded and `/dev/video0` is absent before manual LKM load, as expected.
+- route-C manual `insmod full-delay` succeeded:
+  - loaded module `srcversion=2F4050CDED69B8A5FF0C49F`;
+  - probe read chip ID `0x5647`;
+  - route-C `pwdn_gpio` resolved to Linux GPIO `486`;
+  - `/dev/video0`, `/dev/v4l-subdev0`, and `/dev/v4l-subdev1` appeared;
+  - media graph links are enabled from `nv_ov5647 9-0036` to `nvcsi` to `vi-output`;
+  - V4L2 reports `BG10 640x480` on `platform:tegra-capture-vi:2`.
 
 Not completed yet:
 
@@ -214,5 +221,5 @@ Not completed yet:
 Next smallest safe step:
 
 - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
-- ask the user to manually run route-C `insmod` using `scripts/run_manual_insmod_diag.sh full-delay`;
-- if route-C probe succeeds and `/dev/video0` appears, run the capture test manually; if probe fails, inspect chip-ID/power/GPIO behavior on route C.
+- ask the user to manually run route-C single-frame capture with `scripts/run_manual_single_frame_trace.sh`;
+- if capture succeeds, analyze raw size and image statistics; if it times out, compare route-C VI errors against route-A.

@@ -115,6 +115,13 @@ Inference from these local references and the live successful probe:
   - `port-index = 2`;
   - reset/PWDN GPIO token `0xa0`;
   - lane polarity candidate `0`.
+- route `C` has now probe-validated:
+  - Linux downstream bus `i2c-9`;
+  - sensor address `0x36`;
+  - chip ID `0x5647`;
+  - Linux PWDN GPIO `486`;
+  - VI route `platform:tegra-capture-vi:2`;
+  - `/dev/video0` created.
 
 ## Current Live Working Probe Facts
 

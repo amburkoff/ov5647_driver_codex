@@ -1,0 +1,45 @@
+# module state
+nv_ov5647              24576  0
+tegra_camera          221184  4 nvhost_isp5,nvhost_nvcsi_t194,nv_ov5647,nvhost_vi5
+v4l2_dv_timings        36864  1 tegra_camera
+nvhost_nvcsi           24576  1 tegra_camera
+tegra_camera_platform    24576  4 nvhost_isp5,nvhost_nvcsi_t194,tegra_camera,nvhost_vi5
+capture_ivc            28672  1 tegra_camera
+tegra_camera_rtcpu    176128  2 capture_ivc,tegra_camera
+ivc_bus                24576  2 capture_ivc,tegra_camera_rtcpu
+hsp_mailbox_client     20480  2 ivc_bus,tegra_camera_rtcpu
+v4l2_fwnode            20480  1 tegra_camera
+v4l2_async             20480  3 v4l2_fwnode,nv_ov5647,tegra_camera
+videobuf2_dma_contig    24576  1 tegra_camera
+videobuf2_v4l2         28672  1 tegra_camera
+videobuf2_common       61440  4 videobuf2_dma_contig,videobuf2_v4l2,tegra_camera,videobuf2_memops
+videodev              249856  5 v4l2_async,videobuf2_v4l2,nv_ov5647,tegra_camera,videobuf2_common
+mc                     57344  4 videodev,videobuf2_v4l2,tegra_camera,videobuf2_common
+host1x_nvhost          40960  10 nvhost_isp5,nvhost_nvcsi_t194,nvidia,tegra_camera,nvhost_nvdla,nvhost_capture,nvhost_nvcsi,nvhost_pva,nvhost_vi5,nvidia_modeset
+mc_utils               16384  3 nvidia,nvgpu,tegra_camera_platform
+
+# module srcversion
+2F4050CDED69B8A5FF0C49F
+
+# built srcversion
+2F4050CDED69B8A5FF0C49F
+
+# params
+/sys/module/nv_ov5647/parameters/allow_hw_probe
+/sys/module/nv_ov5647/parameters/split_v4l2_unregister
+/sys/module/nv_ov5647/parameters/unload_marker_delay_ms
+/sys/module/nv_ov5647/parameters/skip_v4l2_register
+/sys/module/nv_ov5647/parameters/skip_v4l2_unregister
+/sys/module/nv_ov5647/parameters/register_i2c_driver
+/sys/module/nv_ov5647/parameters/allow_hw_probe=Y
+/sys/module/nv_ov5647/parameters/split_v4l2_unregister=N
+/sys/module/nv_ov5647/parameters/unload_marker_delay_ms=500
+/sys/module/nv_ov5647/parameters/skip_v4l2_register=N
+/sys/module/nv_ov5647/parameters/skip_v4l2_unregister=N
+/sys/module/nv_ov5647/parameters/register_i2c_driver=Y
+
+# devnodes
+crw-rw----+ 1 root video 498, 0 Aug 26  2025 /dev/media0
+crw-rw----+ 1 root video  81, 1 Apr 22 11:00 /dev/v4l-subdev0
+crw-rw----+ 1 root video  81, 2 Apr 22 11:00 /dev/v4l-subdev1
+crw-rw----+ 1 root video  81, 0 Apr 22 11:00 /dev/video0
