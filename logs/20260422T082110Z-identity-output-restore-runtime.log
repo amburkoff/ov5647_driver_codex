@@ -1,0 +1,8 @@
+logs/20260422T081932Z-rmmod-trace.log:[20260422T081932Z] rmmod rc=0
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1513.863793] nv_ov5647: diagnostics dump_stream_regs=1
+logs/20260422T081942Z-manual-insmod-full-delay-dump.log:[20260422T081942Z] params=register_i2c_driver=1 allow_hw_probe=1 dump_stream_regs=1 unload_marker_delay_ms=500
+logs/20260422T081942Z-manual-insmod-full-delay-dump.log:[20260422T081942Z] insmod rc=0
+logs/20260422T081942Z-manual-insmod-full-delay-dump.modinfo.log:srcversion:     96FCD7FB15E34D8DE37E4F2
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1513.863793] nv_ov5647: diagnostics dump_stream_regs=1
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1238.573132] nv_ov5647: diagnostics dump_stream_regs=1
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1513.863793] nv_ov5647: diagnostics dump_stream_regs=1

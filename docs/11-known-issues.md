@@ -168,4 +168,8 @@
   - `ov5647_common_regs` later disables `0x3000/0x3001/0x3002`;
   - `start_streaming()` sets `0x0100=0x01`, but does not restore output-enable;
   - this is now the strongest driver-side explanation for zero-byte capture;
-  - source-side restore fix is built but not runtime-tested yet.
+  - source-side restore fix is built and runtime-tested.
+- The output-enable defect is fixed but not sufficient:
+  - `after_set_mode` and `after_stream_on` now show restored `0x3000=0x0f`, `0x3001=0xff`, `0x3002=0xe4`;
+  - capture still times out with zero bytes;
+  - the remaining blocker is now more likely MIPI stream-start details, DT timing, lane polarity/physical wiring, or a mode-table gap outside the current register dump.

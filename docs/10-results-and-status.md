@@ -250,7 +250,19 @@ Current blocking issue:
   - `ov5647_set_mode()` now restores `0x3000/0x3001/0x3002` after mode programming;
   - `ov5647_start_streaming()` restores the same output-enable table again before `0x0100=0x01`;
   - rebuilt `.ko` `srcversion=96FCD7FB15E34D8DE37E4F2`;
-  - runtime validation is pending a manual reload with `full-delay-dump` and one capture attempt.
+  - runtime validation has now been run.
+- runtime validation of the output-enable restore fix still timed out, but the register defect is confirmed fixed:
+  - manual `rmmod` returned `rc=0`;
+  - manual `insmod full-delay-dump` returned `rc=0`;
+  - loaded `.ko` `srcversion=96FCD7FB15E34D8DE37E4F2`;
+  - after `set_mode()`, `0x3000=0x0f`, `0x3001=0xff`, `0x3002=0xe4`;
+  - after stream-on, `0x0100=0x01` and `0x3000/0x3001/0x3002` remain restored;
+  - capture still returned `rc=124`, raw output is zero bytes, and VI still logged timeout errors.
+
+Current next focus:
+
+- output-enable is no longer the primary blocker;
+- continue with one-variable analysis of MIPI stream-start sequencing and DT timing before larger DT/hardware-route changes.
   - rebuilt module has `srcversion=E9CE1D1EF58B852F6484431`;
   - runtime validation is not run yet.
 

@@ -1,0 +1,562 @@
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.975529] nv_ov5647 9-0036: ov5647_set_mode: sensor output-enable restored after mode programming
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.975533] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=after_set_mode
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.975725] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x0100 name=mode_select val=0x00
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.975917] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x0103 name=sw_reset val=0x00
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.976109] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3000 name=sys_ctrl0 val=0x0f
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.976299] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3001 name=sys_ctrl1 val=0xff
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.976489] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3002 name=sys_ctrl2 val=0xe4
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.976679] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x300d name=pad_out val=0x00
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.976868] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3016 name=mipi_ctrl16 val=0x08
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.977058] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3017 name=mipi_ctrl17 val=0xe0
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.977247] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3018 name=mipi_ctrl18 val=0x44
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.977437] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3034 name=pll_ctrl34 val=0x1a
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.977627] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3035 name=pll_ctrl35 val=0x21
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.977817] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3036 name=pll_ctrl36 val=0x46
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.978005] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x303c name=pll_ctrl3c val=0x11
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.978193] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3808 name=x_output_size_h val=0x02
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.978381] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3809 name=x_output_size_l val=0x80
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.978570] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380a name=y_output_size_h val=0x01
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.978758] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380b name=y_output_size_l val=0xe0
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.978945] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380c name=hts_h val=0x07
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.979133] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380d name=hts_l val=0x3c
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.979321] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380e name=vts_h val=0x01
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.979506] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380f name=vts_l val=0xf8
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.983779] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3820 name=timing_format1 val=0x41
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.984012] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3821 name=timing_format2 val=0x01
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.984226] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4202 name=frame_off_number val=0x00
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.984436] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4800 name=mipi_ctrl00 val=0x34
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.984645] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4814 name=mipi_ctrl14 val=0x2a
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.984649] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=after_set_mode
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.984660] nv_ov5647 9-0036: ov5647_start_streaming: enter
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.984662] nv_ov5647 9-0036: ov5647_start_streaming: using mode already applied by tegracam set_mode
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.985102] nv_ov5647 9-0036: ov5647_start_streaming: sensor output-enable restored before stream
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.985700] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=after_stream_on
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.985914] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x0100 name=mode_select val=0x01
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.986112] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x0103 name=sw_reset val=0x00
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.986304] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3000 name=sys_ctrl0 val=0x0f
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.986493] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3001 name=sys_ctrl1 val=0xff
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.986683] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3002 name=sys_ctrl2 val=0xe4
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.986871] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x300d name=pad_out val=0x00
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.987059] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3016 name=mipi_ctrl16 val=0x08
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.987247] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3017 name=mipi_ctrl17 val=0xe0
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.987435] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3018 name=mipi_ctrl18 val=0x44
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.987758] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3034 name=pll_ctrl34 val=0x1a
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.987991] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3035 name=pll_ctrl35 val=0x21
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.988202] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3036 name=pll_ctrl36 val=0x46
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.988412] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x303c name=pll_ctrl3c val=0x11
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.988807] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3808 name=x_output_size_h val=0x02
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.989020] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3809 name=x_output_size_l val=0x80
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.989226] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380a name=y_output_size_h val=0x01
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.989431] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380b name=y_output_size_l val=0xe0
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.989634] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380c name=hts_h val=0x07
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.989840] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380d name=hts_l val=0x3c
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.990030] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380e name=vts_h val=0x01
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.990219] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380f name=vts_l val=0xf8
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.990407] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3820 name=timing_format1 val=0x41
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.990595] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3821 name=timing_format2 val=0x01
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.990783] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4202 name=frame_off_number val=0x00
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.990972] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4800 name=mipi_ctrl00 val=0x34
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.991160] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4814 name=mipi_ctrl14 val=0x2a
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.991161] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=after_stream_on
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.991163] nv_ov5647 9-0036: ov5647_start_streaming: exit success
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1523.682115] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1526.244480] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1528.806773] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1531.369007] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1550.947320] nv_ov5647 9-0036: ov5647_stop_streaming: enter
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1550.948035] nv_ov5647 9-0036: ov5647_stop_streaming: exit success
+logs/20260422T081948Z-stream-live-dmesg.log:[  499.844961] nv_ov5647 9-0036: ov5647_start_streaming: enter
+logs/20260422T081948Z-stream-live-dmesg.log:[  499.857195] nv_ov5647 9-0036: ov5647_start_streaming: exit success
+logs/20260422T081948Z-stream-live-dmesg.log:[  502.479830] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[  505.039713] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[  507.599849] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[  510.159639] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[  529.800595] nv_ov5647 9-0036: ov5647_stop_streaming: enter
+logs/20260422T081948Z-stream-live-dmesg.log:[  529.801195] nv_ov5647 9-0036: ov5647_stop_streaming: exit success
+logs/20260422T081948Z-stream-live-dmesg.log:[  809.370486] nv_ov5647 9-0036: ov5647_start_streaming: enter
+logs/20260422T081948Z-stream-live-dmesg.log:[  809.370488] nv_ov5647 9-0036: ov5647_start_streaming: using mode already applied by tegracam set_mode
+logs/20260422T081948Z-stream-live-dmesg.log:[  809.371031] nv_ov5647 9-0036: ov5647_start_streaming: exit success
+logs/20260422T081948Z-stream-live-dmesg.log:[  811.973806] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[  814.533474] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[  817.093606] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[  819.653457] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[  839.324206] nv_ov5647 9-0036: ov5647_stop_streaming: enter
+logs/20260422T081948Z-stream-live-dmesg.log:[  839.325393] nv_ov5647 9-0036: ov5647_stop_streaming: exit success
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.842846] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=after_set_mode
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.843035] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x0100 name=mode_select val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.843223] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x0103 name=sw_reset val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.843444] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3000 name=sys_ctrl0 val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.843661] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3001 name=sys_ctrl1 val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.843920] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3002 name=sys_ctrl2 val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.844115] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x300d name=pad_out val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.844306] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3016 name=mipi_ctrl16 val=0x08
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.844497] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3017 name=mipi_ctrl17 val=0xe0
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.844686] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3018 name=mipi_ctrl18 val=0x44
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.844875] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3034 name=pll_ctrl34 val=0x1a
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.845064] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3035 name=pll_ctrl35 val=0x21
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.845252] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3036 name=pll_ctrl36 val=0x46
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.845442] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x303c name=pll_ctrl3c val=0x11
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.845631] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3808 name=x_output_size_h val=0x02
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.845819] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3809 name=x_output_size_l val=0x80
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.846008] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380a name=y_output_size_h val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.846196] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380b name=y_output_size_l val=0xe0
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.846386] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380c name=hts_h val=0x07
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.846576] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380d name=hts_l val=0x3c
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.846764] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380e name=vts_h val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.846952] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380f name=vts_l val=0xf8
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.847140] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3820 name=timing_format1 val=0x41
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.847651] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3821 name=timing_format2 val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.847859] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4202 name=frame_off_number val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.848062] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4800 name=mipi_ctrl00 val=0x34
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.848258] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4814 name=mipi_ctrl14 val=0x2a
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.848261] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=after_set_mode
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.848270] nv_ov5647 9-0036: ov5647_start_streaming: enter
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.848271] nv_ov5647 9-0036: ov5647_start_streaming: using mode already applied by tegracam set_mode
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.848823] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=after_stream_on
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.849012] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x0100 name=mode_select val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.849201] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x0103 name=sw_reset val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.849391] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3000 name=sys_ctrl0 val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.849581] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3001 name=sys_ctrl1 val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.849771] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3002 name=sys_ctrl2 val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.849960] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x300d name=pad_out val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.850148] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3016 name=mipi_ctrl16 val=0x08
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.850336] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3017 name=mipi_ctrl17 val=0xe0
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.850524] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3018 name=mipi_ctrl18 val=0x44
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.850714] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3034 name=pll_ctrl34 val=0x1a
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.850902] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3035 name=pll_ctrl35 val=0x21
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.851089] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3036 name=pll_ctrl36 val=0x46
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.851278] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x303c name=pll_ctrl3c val=0x11
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.851472] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3808 name=x_output_size_h val=0x02
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.851663] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3809 name=x_output_size_l val=0x80
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.851857] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380a name=y_output_size_h val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.852051] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380b name=y_output_size_l val=0xe0
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.852241] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380c name=hts_h val=0x07
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.852431] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380d name=hts_l val=0x3c
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.852620] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380e name=vts_h val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.852809] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380f name=vts_l val=0xf8
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.852998] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3820 name=timing_format1 val=0x41
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.853187] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3821 name=timing_format2 val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.853375] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4202 name=frame_off_number val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.853564] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4800 name=mipi_ctrl00 val=0x34
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.853752] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4814 name=mipi_ctrl14 val=0x2a
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.853754] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=after_stream_on
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.853756] nv_ov5647 9-0036: ov5647_start_streaming: exit success
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1250.487480] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1253.047186] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1255.607326] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1258.167049] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1277.793940] nv_ov5647 9-0036: ov5647_stop_streaming: enter
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1277.794628] nv_ov5647 9-0036: ov5647_stop_streaming: exit success
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.975529] nv_ov5647 9-0036: ov5647_set_mode: sensor output-enable restored after mode programming
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.975533] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=after_set_mode
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.975725] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x0100 name=mode_select val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.975917] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x0103 name=sw_reset val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.976109] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3000 name=sys_ctrl0 val=0x0f
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.976299] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3001 name=sys_ctrl1 val=0xff
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.976489] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3002 name=sys_ctrl2 val=0xe4
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.976679] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x300d name=pad_out val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.976868] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3016 name=mipi_ctrl16 val=0x08
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.977058] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3017 name=mipi_ctrl17 val=0xe0
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.977247] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3018 name=mipi_ctrl18 val=0x44
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.977437] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3034 name=pll_ctrl34 val=0x1a
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.977627] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3035 name=pll_ctrl35 val=0x21
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.977817] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3036 name=pll_ctrl36 val=0x46
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.978005] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x303c name=pll_ctrl3c val=0x11
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.978193] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3808 name=x_output_size_h val=0x02
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.978381] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3809 name=x_output_size_l val=0x80
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.978570] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380a name=y_output_size_h val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.978758] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380b name=y_output_size_l val=0xe0
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.978945] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380c name=hts_h val=0x07
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.979133] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380d name=hts_l val=0x3c
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.979321] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380e name=vts_h val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.979506] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380f name=vts_l val=0xf8
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.983779] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3820 name=timing_format1 val=0x41
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.984012] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3821 name=timing_format2 val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.984226] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4202 name=frame_off_number val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.984436] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4800 name=mipi_ctrl00 val=0x34
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.984645] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4814 name=mipi_ctrl14 val=0x2a
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.984649] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=after_set_mode
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.984660] nv_ov5647 9-0036: ov5647_start_streaming: enter
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.984662] nv_ov5647 9-0036: ov5647_start_streaming: using mode already applied by tegracam set_mode
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.985102] nv_ov5647 9-0036: ov5647_start_streaming: sensor output-enable restored before stream
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.985700] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=after_stream_on
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.985914] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x0100 name=mode_select val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.986112] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x0103 name=sw_reset val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.986304] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3000 name=sys_ctrl0 val=0x0f
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.986493] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3001 name=sys_ctrl1 val=0xff
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.986683] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3002 name=sys_ctrl2 val=0xe4
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.986871] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x300d name=pad_out val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.987059] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3016 name=mipi_ctrl16 val=0x08
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.987247] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3017 name=mipi_ctrl17 val=0xe0
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.987435] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3018 name=mipi_ctrl18 val=0x44
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.987758] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3034 name=pll_ctrl34 val=0x1a
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.987991] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3035 name=pll_ctrl35 val=0x21
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.988202] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3036 name=pll_ctrl36 val=0x46
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.988412] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x303c name=pll_ctrl3c val=0x11
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.988807] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3808 name=x_output_size_h val=0x02
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.989020] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3809 name=x_output_size_l val=0x80
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.989226] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380a name=y_output_size_h val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.989431] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380b name=y_output_size_l val=0xe0
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.989634] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380c name=hts_h val=0x07
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.989840] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380d name=hts_l val=0x3c
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.990030] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380e name=vts_h val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.990219] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380f name=vts_l val=0xf8
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.990407] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3820 name=timing_format1 val=0x41
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.990595] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3821 name=timing_format2 val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.990783] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4202 name=frame_off_number val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.990972] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4800 name=mipi_ctrl00 val=0x34
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.991160] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4814 name=mipi_ctrl14 val=0x2a
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.991161] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=after_stream_on
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.991163] nv_ov5647 9-0036: ov5647_start_streaming: exit success
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1523.682115] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1526.244480] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1528.806773] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1531.369007] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1550.947320] nv_ov5647 9-0036: ov5647_stop_streaming: enter
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1550.948035] nv_ov5647 9-0036: ov5647_stop_streaming: exit success
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.842846] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=after_set_mode
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.843035] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x0100 name=mode_select val=0x00
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.843223] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x0103 name=sw_reset val=0x00
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.843444] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3000 name=sys_ctrl0 val=0x00
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.843661] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3001 name=sys_ctrl1 val=0x00
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.843920] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3002 name=sys_ctrl2 val=0x00
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.844115] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x300d name=pad_out val=0x00
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.844306] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3016 name=mipi_ctrl16 val=0x08
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.844497] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3017 name=mipi_ctrl17 val=0xe0
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.844686] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3018 name=mipi_ctrl18 val=0x44
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.844875] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3034 name=pll_ctrl34 val=0x1a
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.845064] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3035 name=pll_ctrl35 val=0x21
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.845252] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3036 name=pll_ctrl36 val=0x46
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.845442] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x303c name=pll_ctrl3c val=0x11
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.845631] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3808 name=x_output_size_h val=0x02
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.845819] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3809 name=x_output_size_l val=0x80
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.846008] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380a name=y_output_size_h val=0x01
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.846196] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380b name=y_output_size_l val=0xe0
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.846386] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380c name=hts_h val=0x07
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.846576] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380d name=hts_l val=0x3c
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.846764] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380e name=vts_h val=0x01
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.846952] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380f name=vts_l val=0xf8
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.847140] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3820 name=timing_format1 val=0x41
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.847651] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3821 name=timing_format2 val=0x01
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.847859] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4202 name=frame_off_number val=0x00
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.848062] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4800 name=mipi_ctrl00 val=0x34
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.848258] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4814 name=mipi_ctrl14 val=0x2a
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.848261] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=after_set_mode
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.848270] nv_ov5647 9-0036: ov5647_start_streaming: enter
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.848271] nv_ov5647 9-0036: ov5647_start_streaming: using mode already applied by tegracam set_mode
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.848823] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=after_stream_on
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.849012] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x0100 name=mode_select val=0x01
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.849201] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x0103 name=sw_reset val=0x00
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.849391] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3000 name=sys_ctrl0 val=0x00
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.849581] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3001 name=sys_ctrl1 val=0x00
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.849771] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3002 name=sys_ctrl2 val=0x00
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.849960] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x300d name=pad_out val=0x00
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.850148] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3016 name=mipi_ctrl16 val=0x08
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.850336] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3017 name=mipi_ctrl17 val=0xe0
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.850524] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3018 name=mipi_ctrl18 val=0x44
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.850714] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3034 name=pll_ctrl34 val=0x1a
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.850902] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3035 name=pll_ctrl35 val=0x21
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.851089] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3036 name=pll_ctrl36 val=0x46
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.851278] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x303c name=pll_ctrl3c val=0x11
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.851472] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3808 name=x_output_size_h val=0x02
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.851663] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3809 name=x_output_size_l val=0x80
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.851857] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380a name=y_output_size_h val=0x01
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.852051] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380b name=y_output_size_l val=0xe0
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.852241] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380c name=hts_h val=0x07
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.852431] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380d name=hts_l val=0x3c
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.852620] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380e name=vts_h val=0x01
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.852809] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380f name=vts_l val=0xf8
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.852998] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3820 name=timing_format1 val=0x41
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.853187] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3821 name=timing_format2 val=0x01
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.853375] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4202 name=frame_off_number val=0x00
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.853564] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4800 name=mipi_ctrl00 val=0x34
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.853752] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4814 name=mipi_ctrl14 val=0x2a
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.853754] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=after_stream_on
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1247.853756] nv_ov5647 9-0036: ov5647_start_streaming: exit success
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1250.487480] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1253.047186] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1255.607326] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1258.167049] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1277.793940] nv_ov5647 9-0036: ov5647_stop_streaming: enter
+logs/20260422T081932Z-rmmod-pre-dmesg-tail.log:[ 1277.794628] nv_ov5647 9-0036: ov5647_stop_streaming: exit success
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.842846] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=after_set_mode
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.843035] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x0100 name=mode_select val=0x00
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.843223] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x0103 name=sw_reset val=0x00
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.843444] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3000 name=sys_ctrl0 val=0x00
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.843661] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3001 name=sys_ctrl1 val=0x00
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.843920] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3002 name=sys_ctrl2 val=0x00
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.844115] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x300d name=pad_out val=0x00
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.844306] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3016 name=mipi_ctrl16 val=0x08
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.844497] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3017 name=mipi_ctrl17 val=0xe0
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.844686] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3018 name=mipi_ctrl18 val=0x44
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.844875] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3034 name=pll_ctrl34 val=0x1a
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.845064] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3035 name=pll_ctrl35 val=0x21
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.845252] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3036 name=pll_ctrl36 val=0x46
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.845442] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x303c name=pll_ctrl3c val=0x11
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.845631] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3808 name=x_output_size_h val=0x02
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.845819] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3809 name=x_output_size_l val=0x80
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.846008] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380a name=y_output_size_h val=0x01
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.846196] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380b name=y_output_size_l val=0xe0
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.846386] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380c name=hts_h val=0x07
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.846576] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380d name=hts_l val=0x3c
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.846764] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380e name=vts_h val=0x01
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.846952] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380f name=vts_l val=0xf8
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.847140] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3820 name=timing_format1 val=0x41
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.847651] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3821 name=timing_format2 val=0x01
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.847859] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4202 name=frame_off_number val=0x00
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.848062] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4800 name=mipi_ctrl00 val=0x34
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.848258] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4814 name=mipi_ctrl14 val=0x2a
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.848261] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=after_set_mode
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.848270] nv_ov5647 9-0036: ov5647_start_streaming: enter
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.848271] nv_ov5647 9-0036: ov5647_start_streaming: using mode already applied by tegracam set_mode
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.848823] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=after_stream_on
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.849012] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x0100 name=mode_select val=0x01
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.849201] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x0103 name=sw_reset val=0x00
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.849391] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3000 name=sys_ctrl0 val=0x00
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.849581] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3001 name=sys_ctrl1 val=0x00
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.849771] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3002 name=sys_ctrl2 val=0x00
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.849960] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x300d name=pad_out val=0x00
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.850148] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3016 name=mipi_ctrl16 val=0x08
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.850336] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3017 name=mipi_ctrl17 val=0xe0
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.850524] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3018 name=mipi_ctrl18 val=0x44
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.850714] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3034 name=pll_ctrl34 val=0x1a
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.850902] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3035 name=pll_ctrl35 val=0x21
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.851089] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3036 name=pll_ctrl36 val=0x46
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.851278] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x303c name=pll_ctrl3c val=0x11
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.851472] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3808 name=x_output_size_h val=0x02
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.851663] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3809 name=x_output_size_l val=0x80
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.851857] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380a name=y_output_size_h val=0x01
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.852051] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380b name=y_output_size_l val=0xe0
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.852241] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380c name=hts_h val=0x07
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.852431] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380d name=hts_l val=0x3c
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.852620] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380e name=vts_h val=0x01
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.852809] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380f name=vts_l val=0xf8
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.852998] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3820 name=timing_format1 val=0x41
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.853187] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3821 name=timing_format2 val=0x01
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.853375] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4202 name=frame_off_number val=0x00
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.853564] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4800 name=mipi_ctrl00 val=0x34
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.853752] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4814 name=mipi_ctrl14 val=0x2a
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.853754] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=after_stream_on
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1247.853756] nv_ov5647 9-0036: ov5647_start_streaming: exit success
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1250.487480] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1253.047186] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1255.607326] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1258.167049] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1277.793940] nv_ov5647 9-0036: ov5647_stop_streaming: enter
+logs/20260422T081942Z-manual-insmod-full-delay-dump.dmesg-tail.log:[ 1277.794628] nv_ov5647 9-0036: ov5647_stop_streaming: exit success
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.975529] nv_ov5647 9-0036: ov5647_set_mode: sensor output-enable restored after mode programming
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.975533] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=after_set_mode
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.975725] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x0100 name=mode_select val=0x00
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.975917] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x0103 name=sw_reset val=0x00
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.976109] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3000 name=sys_ctrl0 val=0x0f
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.976299] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3001 name=sys_ctrl1 val=0xff
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.976489] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3002 name=sys_ctrl2 val=0xe4
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.976679] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x300d name=pad_out val=0x00
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.976868] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3016 name=mipi_ctrl16 val=0x08
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.977058] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3017 name=mipi_ctrl17 val=0xe0
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.977247] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3018 name=mipi_ctrl18 val=0x44
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.977437] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3034 name=pll_ctrl34 val=0x1a
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.977627] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3035 name=pll_ctrl35 val=0x21
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.977817] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3036 name=pll_ctrl36 val=0x46
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.978005] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x303c name=pll_ctrl3c val=0x11
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.978193] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3808 name=x_output_size_h val=0x02
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.978381] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3809 name=x_output_size_l val=0x80
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.978570] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380a name=y_output_size_h val=0x01
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.978758] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380b name=y_output_size_l val=0xe0
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.978945] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380c name=hts_h val=0x07
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.979133] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380d name=hts_l val=0x3c
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.979321] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380e name=vts_h val=0x01
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.979506] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380f name=vts_l val=0xf8
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.983779] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3820 name=timing_format1 val=0x41
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.984012] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3821 name=timing_format2 val=0x01
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.984226] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4202 name=frame_off_number val=0x00
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.984436] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4800 name=mipi_ctrl00 val=0x34
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.984645] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4814 name=mipi_ctrl14 val=0x2a
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.984649] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=after_set_mode
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.984660] nv_ov5647 9-0036: ov5647_start_streaming: enter
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.984662] nv_ov5647 9-0036: ov5647_start_streaming: using mode already applied by tegracam set_mode
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.985102] nv_ov5647 9-0036: ov5647_start_streaming: sensor output-enable restored before stream
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.985700] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=after_stream_on
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.985914] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x0100 name=mode_select val=0x01
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.986112] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x0103 name=sw_reset val=0x00
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.986304] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3000 name=sys_ctrl0 val=0x0f
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.986493] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3001 name=sys_ctrl1 val=0xff
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.986683] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3002 name=sys_ctrl2 val=0xe4
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.986871] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x300d name=pad_out val=0x00
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.987059] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3016 name=mipi_ctrl16 val=0x08
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.987247] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3017 name=mipi_ctrl17 val=0xe0
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.987435] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3018 name=mipi_ctrl18 val=0x44
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.987758] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3034 name=pll_ctrl34 val=0x1a
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.987991] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3035 name=pll_ctrl35 val=0x21
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.988202] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3036 name=pll_ctrl36 val=0x46
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.988412] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x303c name=pll_ctrl3c val=0x11
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.988807] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3808 name=x_output_size_h val=0x02
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.989020] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3809 name=x_output_size_l val=0x80
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.989226] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380a name=y_output_size_h val=0x01
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.989431] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380b name=y_output_size_l val=0xe0
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.989634] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380c name=hts_h val=0x07
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.989840] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380d name=hts_l val=0x3c
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.990030] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380e name=vts_h val=0x01
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.990219] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380f name=vts_l val=0xf8
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.990407] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3820 name=timing_format1 val=0x41
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.990595] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3821 name=timing_format2 val=0x01
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.990783] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4202 name=frame_off_number val=0x00
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.990972] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4800 name=mipi_ctrl00 val=0x34
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.991160] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4814 name=mipi_ctrl14 val=0x2a
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.991161] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=after_stream_on
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1520.991163] nv_ov5647 9-0036: ov5647_start_streaming: exit success
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1523.682115] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1526.244480] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1528.806773] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1531.369007] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1550.947320] nv_ov5647 9-0036: ov5647_stop_streaming: enter
+logs/20260422T081948Z-single-frame-post-dmesg-tail.log:[ 1550.948035] nv_ov5647 9-0036: ov5647_stop_streaming: exit success
+logs/20260422T081948Z-stream-live-dmesg.log:[  499.844961] nv_ov5647 9-0036: ov5647_start_streaming: enter
+logs/20260422T081948Z-stream-live-dmesg.log:[  499.857195] nv_ov5647 9-0036: ov5647_start_streaming: exit success
+logs/20260422T081948Z-stream-live-dmesg.log:[  502.479830] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[  505.039713] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[  507.599849] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[  510.159639] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[  529.800595] nv_ov5647 9-0036: ov5647_stop_streaming: enter
+logs/20260422T081948Z-stream-live-dmesg.log:[  529.801195] nv_ov5647 9-0036: ov5647_stop_streaming: exit success
+logs/20260422T081948Z-stream-live-dmesg.log:[  809.370486] nv_ov5647 9-0036: ov5647_start_streaming: enter
+logs/20260422T081948Z-stream-live-dmesg.log:[  809.370488] nv_ov5647 9-0036: ov5647_start_streaming: using mode already applied by tegracam set_mode
+logs/20260422T081948Z-stream-live-dmesg.log:[  809.371031] nv_ov5647 9-0036: ov5647_start_streaming: exit success
+logs/20260422T081948Z-stream-live-dmesg.log:[  811.973806] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[  814.533474] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[  817.093606] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[  819.653457] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[  839.324206] nv_ov5647 9-0036: ov5647_stop_streaming: enter
+logs/20260422T081948Z-stream-live-dmesg.log:[  839.325393] nv_ov5647 9-0036: ov5647_stop_streaming: exit success
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.842846] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=after_set_mode
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.843035] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x0100 name=mode_select val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.843223] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x0103 name=sw_reset val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.843444] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3000 name=sys_ctrl0 val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.843661] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3001 name=sys_ctrl1 val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.843920] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3002 name=sys_ctrl2 val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.844115] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x300d name=pad_out val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.844306] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3016 name=mipi_ctrl16 val=0x08
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.844497] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3017 name=mipi_ctrl17 val=0xe0
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.844686] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3018 name=mipi_ctrl18 val=0x44
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.844875] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3034 name=pll_ctrl34 val=0x1a
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.845064] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3035 name=pll_ctrl35 val=0x21
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.845252] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3036 name=pll_ctrl36 val=0x46
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.845442] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x303c name=pll_ctrl3c val=0x11
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.845631] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3808 name=x_output_size_h val=0x02
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.845819] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3809 name=x_output_size_l val=0x80
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.846008] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380a name=y_output_size_h val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.846196] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380b name=y_output_size_l val=0xe0
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.846386] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380c name=hts_h val=0x07
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.846576] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380d name=hts_l val=0x3c
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.846764] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380e name=vts_h val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.846952] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380f name=vts_l val=0xf8
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.847140] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3820 name=timing_format1 val=0x41
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.847651] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3821 name=timing_format2 val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.847859] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4202 name=frame_off_number val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.848062] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4800 name=mipi_ctrl00 val=0x34
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.848258] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4814 name=mipi_ctrl14 val=0x2a
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.848261] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=after_set_mode
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.848270] nv_ov5647 9-0036: ov5647_start_streaming: enter
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.848271] nv_ov5647 9-0036: ov5647_start_streaming: using mode already applied by tegracam set_mode
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.848823] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=after_stream_on
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.849012] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x0100 name=mode_select val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.849201] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x0103 name=sw_reset val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.849391] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3000 name=sys_ctrl0 val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.849581] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3001 name=sys_ctrl1 val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.849771] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3002 name=sys_ctrl2 val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.849960] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x300d name=pad_out val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.850148] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3016 name=mipi_ctrl16 val=0x08
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.850336] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3017 name=mipi_ctrl17 val=0xe0
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.850524] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3018 name=mipi_ctrl18 val=0x44
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.850714] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3034 name=pll_ctrl34 val=0x1a
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.850902] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3035 name=pll_ctrl35 val=0x21
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.851089] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3036 name=pll_ctrl36 val=0x46
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.851278] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x303c name=pll_ctrl3c val=0x11
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.851472] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3808 name=x_output_size_h val=0x02
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.851663] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3809 name=x_output_size_l val=0x80
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.851857] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380a name=y_output_size_h val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.852051] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380b name=y_output_size_l val=0xe0
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.852241] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380c name=hts_h val=0x07
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.852431] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380d name=hts_l val=0x3c
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.852620] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380e name=vts_h val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.852809] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380f name=vts_l val=0xf8
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.852998] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3820 name=timing_format1 val=0x41
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.853187] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3821 name=timing_format2 val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.853375] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4202 name=frame_off_number val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.853564] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4800 name=mipi_ctrl00 val=0x34
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.853752] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4814 name=mipi_ctrl14 val=0x2a
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.853754] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=after_stream_on
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1247.853756] nv_ov5647 9-0036: ov5647_start_streaming: exit success
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1250.487480] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1253.047186] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1255.607326] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1258.167049] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1277.793940] nv_ov5647 9-0036: ov5647_stop_streaming: enter
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1277.794628] nv_ov5647 9-0036: ov5647_stop_streaming: exit success
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.975529] nv_ov5647 9-0036: ov5647_set_mode: sensor output-enable restored after mode programming
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.975533] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=after_set_mode
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.975725] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x0100 name=mode_select val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.975917] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x0103 name=sw_reset val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.976109] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3000 name=sys_ctrl0 val=0x0f
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.976299] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3001 name=sys_ctrl1 val=0xff
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.976489] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3002 name=sys_ctrl2 val=0xe4
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.976679] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x300d name=pad_out val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.976868] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3016 name=mipi_ctrl16 val=0x08
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.977058] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3017 name=mipi_ctrl17 val=0xe0
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.977247] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3018 name=mipi_ctrl18 val=0x44
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.977437] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3034 name=pll_ctrl34 val=0x1a
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.977627] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3035 name=pll_ctrl35 val=0x21
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.977817] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3036 name=pll_ctrl36 val=0x46
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.978005] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x303c name=pll_ctrl3c val=0x11
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.978193] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3808 name=x_output_size_h val=0x02
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.978381] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3809 name=x_output_size_l val=0x80
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.978570] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380a name=y_output_size_h val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.978758] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380b name=y_output_size_l val=0xe0
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.978945] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380c name=hts_h val=0x07
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.979133] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380d name=hts_l val=0x3c
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.979321] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380e name=vts_h val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.979506] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380f name=vts_l val=0xf8
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.983779] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3820 name=timing_format1 val=0x41
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.984012] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3821 name=timing_format2 val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.984226] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4202 name=frame_off_number val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.984436] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4800 name=mipi_ctrl00 val=0x34
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.984645] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4814 name=mipi_ctrl14 val=0x2a
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.984649] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=after_set_mode
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.984660] nv_ov5647 9-0036: ov5647_start_streaming: enter
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.984662] nv_ov5647 9-0036: ov5647_start_streaming: using mode already applied by tegracam set_mode
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.985102] nv_ov5647 9-0036: ov5647_start_streaming: sensor output-enable restored before stream
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.985700] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=after_stream_on
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.985914] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x0100 name=mode_select val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.986112] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x0103 name=sw_reset val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.986304] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3000 name=sys_ctrl0 val=0x0f
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.986493] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3001 name=sys_ctrl1 val=0xff
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.986683] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3002 name=sys_ctrl2 val=0xe4
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.986871] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x300d name=pad_out val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.987059] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3016 name=mipi_ctrl16 val=0x08
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.987247] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3017 name=mipi_ctrl17 val=0xe0
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.987435] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3018 name=mipi_ctrl18 val=0x44
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.987758] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3034 name=pll_ctrl34 val=0x1a
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.987991] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3035 name=pll_ctrl35 val=0x21
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.988202] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3036 name=pll_ctrl36 val=0x46
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.988412] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x303c name=pll_ctrl3c val=0x11
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.988807] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3808 name=x_output_size_h val=0x02
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.989020] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3809 name=x_output_size_l val=0x80
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.989226] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380a name=y_output_size_h val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.989431] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380b name=y_output_size_l val=0xe0
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.989634] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380c name=hts_h val=0x07
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.989840] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380d name=hts_l val=0x3c
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.990030] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380e name=vts_h val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.990219] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380f name=vts_l val=0xf8
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.990407] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3820 name=timing_format1 val=0x41
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.990595] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3821 name=timing_format2 val=0x01
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.990783] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4202 name=frame_off_number val=0x00
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.990972] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4800 name=mipi_ctrl00 val=0x34
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.991160] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4814 name=mipi_ctrl14 val=0x2a
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.991161] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=after_stream_on
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1520.991163] nv_ov5647 9-0036: ov5647_start_streaming: exit success
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1523.682115] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1526.244480] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1528.806773] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1531.369007] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1550.947320] nv_ov5647 9-0036: ov5647_stop_streaming: enter
+logs/20260422T081948Z-stream-live-dmesg.log:[ 1550.948035] nv_ov5647 9-0036: ov5647_stop_streaming: exit success
