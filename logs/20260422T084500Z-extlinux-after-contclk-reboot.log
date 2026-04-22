@@ -1,0 +1,20 @@
+$ sudo cat /boot/extlinux/extlinux.conf
+TIMEOUT 30
+DEFAULT ov5647-dev
+
+MENU TITLE L4T boot options
+
+LABEL ov5647-safe
+      MENU LABEL Jetson SAFE (no OV5647 auto-load)
+      LINUX /boot/Image
+      INITRD /boot/initrd
+      FDT /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb
+      APPEND ${cbootargs} root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-safe
+
+LABEL ov5647-dev
+      MENU LABEL Jetson DEV OV5647 auto-load
+      LINUX /boot/Image
+      INITRD /boot/initrd
+      FDT /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb
+      OVERLAYS /boot/ov5647-p3768-port-c-contclk.dtbo
+      APPEND ${cbootargs} root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev

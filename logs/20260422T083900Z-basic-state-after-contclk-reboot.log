@@ -1,0 +1,8 @@
+# pstore
+ls: cannot open directory '/sys/fs/pstore': Permission denied
+# module
+# video
+Cannot open device /dev/video0, exiting.
+NVIDIA Tegra Video Input Device (platform:tegra-camrtc-ca):
+	/dev/media0
+

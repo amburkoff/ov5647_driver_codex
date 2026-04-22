@@ -1,0 +1,19 @@
+$ find artifacts/post-reboot/20260422T084327Z -maxdepth 2 -type f -printf %p\\n
+artifacts/post-reboot/20260422T084327Z/cmdline.log
+artifacts/post-reboot/20260422T084327Z/dmesg.log
+artifacts/post-reboot/20260422T084327Z/journalctl-k-b.log
+artifacts/post-reboot/20260422T084327Z/lsmod.log
+artifacts/post-reboot/20260422T084327Z/pstore-find.log
+artifacts/post-reboot/20260422T084327Z/pstore-ls.log
+artifacts/post-reboot/20260422T084327Z/uname.log
+artifacts/post-reboot/20260422T084327Z/video-nodes.log
+
+$ find artifacts/post-reboot/20260422T084327Z -maxdepth 2 -type f -printf %p %s bytes\\n
+artifacts/post-reboot/20260422T084327Z/cmdline.log 396 bytes
+artifacts/post-reboot/20260422T084327Z/dmesg.log 67743 bytes
+artifacts/post-reboot/20260422T084327Z/journalctl-k-b.log 86874 bytes
+artifacts/post-reboot/20260422T084327Z/lsmod.log 5949 bytes
+artifacts/post-reboot/20260422T084327Z/pstore-find.log 123 bytes
+artifacts/post-reboot/20260422T084327Z/pstore-ls.log 232 bytes
+artifacts/post-reboot/20260422T084327Z/uname.log 148 bytes
+artifacts/post-reboot/20260422T084327Z/video-nodes.log 196 bytes

@@ -1,6 +1,6 @@
 # Results And Status
 
-Current overall status: `inventory, safe scaffold, corrected dev overlay boot, successful single-sensor probe, first /dev/video0, passing v4l2-compliance, capture path reaches STREAMON but no frames yet, full unload hang isolated to V4L2 subdev/media graph path`
+Current overall status: `route-C continuous-clock dev overlay booted, manual LKM-only workflow retained, route-A and route-C probes work, remove path fixed, STREAMON succeeds but no CSI frames yet`
 
 Completed:
 
@@ -296,8 +296,14 @@ Current next focus:
   - safe profile remains present with `boot_profile=ov5647-safe`;
   - previous extlinux was backed up as `/boot/extlinux/extlinux.conf.20260422T083143Z.bak`;
   - reboot is required to validate this DT change.
-  - rebuilt module has `srcversion=E9CE1D1EF58B852F6484431`;
-  - runtime validation is not run yet.
+- route-C continuous-clock post-reboot validation passed:
+  - `/proc/cmdline` contains `boot_profile=ov5647-dev`;
+  - live DT contains `discontinuous_clk = "no"` under `ov5647_c@36/mode0`;
+  - `/boot/extlinux/extlinux.conf` still retains the safe profile and uses `DEFAULT ov5647-dev`;
+  - `nv_ov5647` is not auto-loaded;
+  - `/dev/video0` is absent before manual LKM load, as expected;
+  - `/dev/media0` is present;
+  - pstore contains `console-ramoops-0`, but the captured head is an early boot log for the current `boot_profile=ov5647-dev` boot and is not, by itself, evidence of a new panic.
 
 Not completed yet:
 
@@ -310,5 +316,5 @@ Not completed yet:
 Next smallest safe step:
 
 - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
-- ask the user to manually unload/load/capture the rebuilt no-duplicate-set-mode module;
-- verify the new dmesg marker appears during route-C `STREAMON`.
+- ask the user to manually run `scripts/run_manual_insmod_diag.sh full-delay-dump-contclk` on the current route-C continuous-clock boot;
+- if manual `insmod` succeeds, ask the user to manually run one single-frame capture and then inspect the new stream register dump and VI/NVCSI logs.

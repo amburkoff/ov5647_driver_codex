@@ -1,0 +1,9 @@
+$ grep -aEi "panic|oops|BUG:|Unable to handle|Call trace|soft lockup|hard lockup" logs/20260422T084330Z-pstore-after-contclk-reboot.log
+-r--r--r--  1 root root 12781 Apr 22 11:34 console-ramoops-0
+--- /sys/fs/pstore/console-ramoops-0
+
+$ grep -aEi "panic|oops|BUG:|Unable to handle|Call trace|soft lockup|hard lockup" artifacts/post-reboot/20260422T084327Z/journalctl-k-b.log
+Apr 22 11:34:21 cam-desktop kernel: printk: console [ramoops-1]: printing thread started
+Apr 22 11:34:21 cam-desktop kernel: printk: console [ramoops-1] enabled
+Apr 22 11:34:21 cam-desktop kernel: pstore: Registered ramoops as persistent store backend
+Apr 22 11:34:21 cam-desktop kernel: ramoops: using 0x200000@0x4725f0000, ecc: 0

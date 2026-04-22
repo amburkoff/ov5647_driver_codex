@@ -1,0 +1,1 @@
+$ sudo sh -c grep crash markers in /sys/fs/pstore/*

@@ -1,0 +1,2 @@
+[2026-04-22T08:43:27Z] CMD: bash -lc find /sys/fs/pstore -maxdepth 1 -type f 2>&1 || true
+/sys/fs/pstore/console-ramoops-0

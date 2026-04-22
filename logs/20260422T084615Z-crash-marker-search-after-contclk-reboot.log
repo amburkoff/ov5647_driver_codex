@@ -1,0 +1,10 @@
+$ sudo grep -aEi "panic|oops|BUG:|Unable to handle|Call trace|watchdog|soft lockup|hard lockup" /sys/fs/pstore/*
+grep: /sys/fs/pstore/*: No such file or directory
+
+$ grep -aEi "panic|oops|BUG:|Unable to handle|Call trace|watchdog|soft lockup|hard lockup" artifacts/post-reboot/20260422T084327Z/dmesg.log
+[    6.286655] systemd[1]: Using hardware watchdog 'NVIDIA Tegra186 WDT', version 0, device /dev/watchdog
+[    6.286672] systemd[1]: Set hardware watchdog to 2min.
+[   11.554922] printk: console [ramoops-1]: printing thread started
+[   11.554942] printk: console [ramoops-1] enabled
+[   11.554944] pstore: Registered ramoops as persistent store backend
+[   11.554946] ramoops: using 0x200000@0x4725f0000, ecc: 0

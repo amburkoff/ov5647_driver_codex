@@ -1,0 +1,16 @@
+$ sudo ls -la /sys/fs/pstore
+total 0
+drwxr-x---  2 root root     0 Aug 26  2025 .
+drwxr-xr-x 11 root root     0 Jan  1  1970 ..
+-r--r--r--  1 root root 12781 Apr 22 11:34 console-ramoops-0
+
+$ cat artifacts/post-reboot/20260422T084327Z/pstore-ls.log
+[2026-04-22T08:43:27Z] CMD: bash -lc ls -la /sys/fs/pstore 2>&1 || true
+total 0
+drwxr-x---  2 root root     0 Aug 26  2025 .
+drwxr-xr-x 11 root root     0 Jan  1  1970 ..
+-r--r--r--  1 root root 12781 Apr 22 11:34 console-ramoops-0
+
+$ cat artifacts/post-reboot/20260422T084327Z/pstore-find.log
+[2026-04-22T08:43:27Z] CMD: bash -lc find /sys/fs/pstore -maxdepth 1 -type f 2>&1 || true
+/sys/fs/pstore/console-ramoops-0

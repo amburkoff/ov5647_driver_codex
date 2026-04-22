@@ -185,3 +185,11 @@
 - The continuous-clock sensor test did not also change DT:
   - live route-C DT still had `discontinuous_clk = "yes"` during the `0x4800=0x04` capture attempt;
   - a matched receiver-side DT experiment with `discontinuous_clk = "no"` is staged in the dev boot profile but requires reboot to validate.
+- The route-C continuous-clock DT experiment now booted successfully:
+  - active cmdline contains `boot_profile=ov5647-dev`;
+  - live DT confirms `discontinuous_clk = "no"`;
+  - the module is not auto-loaded and `/dev/video0` is absent before manual `insmod`;
+  - streaming result for this matched sensor/receiver continuous-clock state is still not tested after reboot.
+- pstore after the route-C continuous-clock reboot contains `console-ramoops-0`:
+  - the captured head is early boot output from the current boot, including the expected `boot_profile=ov5647-dev` cmdline;
+  - no new panic/oops conclusion should be drawn from this file without inspecting the full content around crash markers.

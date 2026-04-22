@@ -1,0 +1,1 @@
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/mode0/discontinuous_clk=no
