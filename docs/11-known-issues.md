@@ -124,11 +124,16 @@
   - route-A probe is real, but frame delivery is absent;
   - the user has identical OV5647 modules in both physical CSI connectors;
   - an alternate route-C overlay is the next clean single-variable test of physical connector routing.
-- Route-C overlay is prepared but not yet boot-tested:
+- Route-C overlay still carries unverified probe assumptions:
   - it assumes OV5647 responds at `0x36` on `cam_i2cmux/i2c@1`;
   - it assumes route-C PWDN GPIO token `0xa0`;
   - it assumes `lane_polarity = "0"`;
   - if route-C does not probe, the next evidence to collect is live DT, muxed I2C bus enumeration, and direct chip-ID read on the new downstream bus.
+- Route-C overlay is now boot-applied and visible in live DT, but not yet probe-tested:
+  - route-C maps to `i2c-9` after reboot;
+  - `nv_ov5647` is not loaded;
+  - `/dev/video0` is absent until manual LKM load;
+  - the next risk is route-C `insmod`, which must be run manually by the user.
 - Current OV5647 `set_mode()` no longer enables streaming in source:
   - NVIDIA r36.5 tegracam calls `set_mode()` before `start_streaming()`;
   - NVIDIA sample drivers keep `set_mode()` to register programming and start output from `start_streaming()`;

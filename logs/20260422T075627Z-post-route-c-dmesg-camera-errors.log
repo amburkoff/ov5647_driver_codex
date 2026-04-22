@@ -1,0 +1,22 @@
+[    0.000000] Kernel command line: root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+[    0.000000] Unknown kernel command line parameters "boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000", will be passed to user space.
+[    0.206603] i2c_dev: i2c /dev entries driver
+[    3.492705] tegra-i2c 3160000.i2c: Adding to iommu group 1
+[    3.496119] tegra-i2c 3180000.i2c: Adding to iommu group 1
+[    3.497613] tegra-i2c 31b0000.i2c: Adding to iommu group 1
+[    3.498988] tegra-i2c c240000.i2c: Adding to iommu group 1
+[    3.500240] i2c 1-0025: Fixing up cyclic dependency with 3520000.padctl
+[    3.500745] tegra-i2c c250000.i2c: Adding to iommu group 1
+[    3.502554] i2c i2c-2: Added multiplexed i2c bus 9
+[    3.502709] i2c i2c-2: Added multiplexed i2c bus 10
+[    3.502714] i2c-mux-gpio bus@0:cam_i2cmux: 2 port mux on 3180000.i2c adapter
+[    3.594839]     boot_profile=ov5647-dev
+[    3.609980] Checking overlayfs setting...
+[    3.618972] Overlayfs is disabled...
+[    8.230110] platform 13e00000.host1x:nvcsi@15a00000: Fixing up cyclic dependency with 9-0036
+[    8.230128] platform 13e00000.host1x:nvcsi@15a00000: Fixing up cyclic dependency with tegra-capture-vi
+[    9.218590] tegra-camrtc-capture-vi tegra-capture-vi: subdev 13e00000.host1x:nvcsi@15a00000- bound
+[   13.279244] printk: console [ramoops-1]: printing thread started
+[   13.279250] printk: console [ramoops-1] enabled
+[   13.279251] pstore: Registered ramoops as persistent store backend
+[   13.279253] ramoops: using 0x200000@0x4725f0000, ecc: 0

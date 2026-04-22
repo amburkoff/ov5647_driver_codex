@@ -1,0 +1,48 @@
+# lsmod ov5647
+tegra_camera          221184  3 nvhost_isp5,nvhost_nvcsi_t194,nvhost_vi5
+v4l2_dv_timings        36864  1 tegra_camera
+nvhost_nvcsi           24576  1 tegra_camera
+tegra_camera_platform    24576  4 nvhost_isp5,nvhost_nvcsi_t194,tegra_camera,nvhost_vi5
+capture_ivc            28672  1 tegra_camera
+tegra_camera_rtcpu    176128  2 capture_ivc,tegra_camera
+ivc_bus                24576  2 capture_ivc,tegra_camera_rtcpu
+hsp_mailbox_client     20480  2 ivc_bus,tegra_camera_rtcpu
+v4l2_fwnode            20480  1 tegra_camera
+v4l2_async             20480  2 v4l2_fwnode,tegra_camera
+videobuf2_dma_contig    24576  1 tegra_camera
+videobuf2_v4l2         28672  1 tegra_camera
+videobuf2_common       61440  4 videobuf2_dma_contig,videobuf2_v4l2,tegra_camera,videobuf2_memops
+videodev              249856  4 v4l2_async,videobuf2_v4l2,tegra_camera,videobuf2_common
+mc                     57344  4 videodev,videobuf2_v4l2,tegra_camera,videobuf2_common
+host1x_nvhost          40960  10 nvhost_isp5,nvhost_nvcsi_t194,nvidia,tegra_camera,nvhost_nvdla,nvhost_capture,nvhost_nvcsi,nvhost_pva,nvhost_vi5,nvidia_modeset
+mc_utils               16384  3 nvidia,nvgpu,tegra_camera_platform
+
+# dev nodes
+ls: cannot access '/dev/video*': No such file or directory
+ls: cannot access '/dev/v4l-subdev*': No such file or directory
+crw-rw----+ 1 root video 498, 0 Aug 26  2025 /dev/media0
+
+# v4l2 devices
+Cannot open device /dev/video0, exiting.
+NVIDIA Tegra Video Input Device (platform:tegra-camrtc-ca):
+	/dev/media0
+
+
+# media graph
+Media controller API version 5.15.185
+
+Media device information
+------------------------
+driver          tegra-camrtc-ca
+model           NVIDIA Tegra Video Input Device
+serial          
+bus info        
+hw revision     0x3
+driver version  5.15.185
+
+Device topology
+- entity 1: 13e00000.host1x:nvcsi@15a00000- (2 pads, 0 link)
+            type V4L2 subdev subtype Unknown flags 0
+	pad0: Sink
+	pad1: Source
+

@@ -195,6 +195,13 @@ Completed:
   - dev entry uses `OVERLAYS /boot/ov5647-p3768-port-c-probe.dtbo`;
   - safe entry remains available and has no OV5647 overlay;
   - previous extlinux backed up as `/boot/extlinux/extlinux.conf.20260421T155602Z.bak`.
+- route-C post-reboot validation passed:
+  - system booted with `boot_profile=ov5647-dev`;
+  - live DT contains `ov5647_c@36` under `cam_i2cmux/i2c@1`;
+  - live route uses `serial_c`, `port-index=2`, `bus-width=2`, and `lane_polarity="0"`;
+  - `i2c-9` now maps to mux `chan_id 1`, route C;
+  - pstore is empty;
+  - `nv_ov5647` is not loaded and `/dev/video0` is absent before manual LKM load, as expected.
 
 Not completed yet:
 
@@ -207,5 +214,5 @@ Not completed yet:
 Next smallest safe step:
 
 - do not run `insmod`, `rmmod`, capture, stream, or reboot from Codex; next risky runtime test must be manual to preserve Codex CLI context if the Jetson hangs;
-- ask the user to run exactly `sudo reboot`;
-- after reboot, collect post-boot logs and check whether route C overlay appears in live DT before any module operation.
+- ask the user to manually run route-C `insmod` using `scripts/run_manual_insmod_diag.sh full-delay`;
+- if route-C probe succeeds and `/dev/video0` appears, run the capture test manually; if probe fails, inspect chip-ID/power/GPIO behavior on route C.

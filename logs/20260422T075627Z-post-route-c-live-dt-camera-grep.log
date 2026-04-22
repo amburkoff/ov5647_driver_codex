@@ -1,0 +1,33 @@
+# route-c live dt grep
+1173:			bus-width = <0x04>;
+4775:		cam_i2cmux {
+4789:				ov5647_a@36 {
+4795:			i2c@1 {
+4801:				ov5647_c@36 {
+4802:					sensor_model = "ov5647";
+4805:					pwdn-gpios = <0xf3 0xa0 0x00>;
+4808:					compatible = "ovti,ov5647";
+4840:						lane_polarity = "0";
+4853:						tegra_sinterface = "serial_c";
+4865:								bus-width = <0x02>;
+4867:								port-index = <0x02>;
+6145:			nvcsi@15a00000 {
+6147:				clock-names = "nvcsi";
+6152:				compatible = "nvidia,tegra194-nvcsi";
+6155:				reset-names = "nvcsi";
+6168:								bus-width = <0x02>;
+6170:								port-index = <0x02>;
+7019:	tegra-camera-platform {
+7020:		compatible = "nvidia, tegra-camera-platform";
+7025:				badge = "probe_ov5647_route_c";
+7031:					sysfs-device-tree = "/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36";
+7679:	tegra-capture-vi {
+7697:					bus-width = <0x02>;
+7699:					port-index = <0x02>;
+10428:		bootargs = "root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 ";
+10885:		ov5647_probe_c_vi_in0 = "/tegra-capture-vi/ports/port@1/endpoint";
+11141:		ov5647_probe_c_out0 = "/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/ports/port@0/endpoint";
+11215:		capture_vi = "/tegra-capture-vi";
+11276:		ov5647_probe_c_csi_in0 = "/bus@0/host1x@13e00000/nvcsi@15a00000/channel@1/ports/port@0/endpoint@2";
+11642:		ov5647_probe_c_csi_out0 = "/bus@0/host1x@13e00000/nvcsi@15a00000/channel@1/ports/port@1/endpoint@3";
+11662:		nvcsi = "/bus@0/host1x@13e00000/nvcsi@15a00000";

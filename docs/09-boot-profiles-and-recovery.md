@@ -23,6 +23,13 @@ Expected marker:
 boot_profile=ov5647-dev
 ```
 
+Route-C post-reboot check on 2026-04-22 confirmed:
+
+- active marker: `boot_profile=ov5647-dev`;
+- live DT route: `cam_i2cmux/i2c@1/ov5647_c@36`;
+- route fields: `serial_c`, `port-index=2`, `bus-width=2`, `lane_polarity="0"`;
+- pstore: empty.
+
 ## Prepared Workflow
 
 The repository now includes `scripts/switch_boot_profile.sh`, which:
