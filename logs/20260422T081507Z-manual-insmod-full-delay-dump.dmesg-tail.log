@@ -1,0 +1,160 @@
+[   24.129947] audit: type=1326 audit(1776787332.332:3): auid=4294967295 uid=0 gid=0 ses=4294967295 subj=kernel pid=2468 comm="cupsd" exe="/snap/cups/1184/sbin/cupsd" sig=0 arch=c00000b7 syscall=55 compat=0 ip=0xffffb738ce0c code=0x50000
+[   24.196333] audit: type=1326 audit(1776787332.400:4): auid=4294967295 uid=0 gid=0 ses=4294967295 subj=kernel pid=2517 comm="cups-browsed" exe="/snap/cups/1184/sbin/cups-browsed" sig=0 arch=c00000b7 syscall=274 compat=0 ip=0xffff8e875b68 code=0x50000
+[  352.004866] nv_ov5647: module verification failed: signature and/or required key missing - tainting kernel
+[  352.005496] nv_ov5647: module init register_i2c_driver=1 allow_hw_probe=1 skip_v4l2_register=0 skip_v4l2_unregister=0 split_v4l2_unregister=0 unload_marker_delay_ms=500
+[  352.005740] nv_ov5647 9-0036: ov5647_probe: enter client=ov5647 addr=0x36
+[  352.005816] nv_ov5647 9-0036: ov5647_parse_dt: enter
+[  352.005838] nv_ov5647 9-0036: ov5647_parse_dt: pdata=000000006c8c262d mclk=extperiph1 reset_gpio=-1 pwdn_gpio=486 avdd=vana dvdd=vdig iovdd=vif
+[  352.005843] nv_ov5647 9-0036: ov5647_power_get: enter priv=0000000085018f56 s_data=000000004b5b170c pdata=000000006c8c262d
+[  352.005869] nv_ov5647 9-0036: supply vana not found, using dummy regulator
+[  352.006006] nv_ov5647 9-0036: supply vdig not found, using dummy regulator
+[  352.006035] nv_ov5647 9-0036: supply vif not found, using dummy regulator
+[  352.006101] nv_ov5647 9-0036: ov5647_power_get: exit
+[  352.006149] nv_ov5647 9-0036: tegracam sensor driver:nv_ov5647_v2.0.6
+[  352.006151] nv_ov5647 9-0036: ov5647_probe: private data linked tc_dev=0000000011cab912 tc_dev->priv=0000000085018f56 s_data=000000004b5b170c s_data->priv=0000000085018f56
+[  352.006172] nv_ov5647 9-0036: ov5647_board_setup: enter
+[  352.006173] nv_ov5647 9-0036: ov5647_power_on: enter
+[  352.015546] nv_ov5647 9-0036: ov5647_power_on: stream-stop LP-11 setup complete
+[  352.015550] nv_ov5647 9-0036: ov5647_power_on: exit success
+[  352.015930] nv_ov5647 9-0036: ov5647_board_setup: detected chip_id=0x5647
+[  352.015933] nv_ov5647 9-0036: ov5647_power_off: enter
+[  352.016789] nv_ov5647 9-0036: ov5647_power_off: exit success
+[  352.016791] nv_ov5647 9-0036: ov5647_board_setup: exit success
+[  352.016848] tegra-camrtc-capture-vi tegra-capture-vi: subdev nv_ov5647 9-0036 bound
+[  352.017359] nv_ov5647 9-0036: ov5647_probe: v4l2 registered tc_dev=0000000011cab912 tc_dev->priv=0000000085018f56 s_data=000000004b5b170c s_data->priv=0000000085018f56 v4l2_registered=1
+[  352.017366] nv_ov5647 9-0036: ov5647_probe: exit success
+[  352.017533] nv_ov5647: i2c driver registered
+[  499.813315] nv_ov5647 9-0036: ov5647_power_on: enter
+[  499.822627] nv_ov5647 9-0036: ov5647_power_on: stream-stop LP-11 setup complete
+[  499.822631] nv_ov5647 9-0036: ov5647_power_on: exit success
+[  499.833228] nv_ov5647 9-0036: ov5647_set_mode: applying mode=0 name=640x480-10bpp-30fps 640x480
+[  499.844952] nv_ov5647 9-0036: ov5647_set_mode: mode applied, sensor remains in standby
+[  499.844961] nv_ov5647 9-0036: ov5647_start_streaming: enter
+[  499.844963] nv_ov5647 9-0036: ov5647_set_mode: applying mode=0 name=640x480-10bpp-30fps 640x480
+[  499.856646] nv_ov5647 9-0036: ov5647_set_mode: mode applied, sensor remains in standby
+[  499.857195] nv_ov5647 9-0036: ov5647_start_streaming: exit success
+[  502.479830] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  505.039713] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  507.599849] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  510.159639] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  529.800595] nv_ov5647 9-0036: ov5647_stop_streaming: enter
+[  529.801195] nv_ov5647 9-0036: ov5647_stop_streaming: exit success
+[  529.803233] nv_ov5647 9-0036: ov5647_power_off: enter
+[  529.804189] nv_ov5647 9-0036: ov5647_power_off: exit success
+[  782.339008] nv_ov5647: module exit enter driver_registered=1
+[  782.854955] nv_ov5647: before i2c_del_driver
+[  783.366997] nv_ov5647 9-0036: ov5647_remove: enter
+[  783.367008] nv_ov5647 9-0036: ov5647_remove: state tc_dev=0000000011cab912 tc_dev->dev=00000000034f3b87 priv=0000000085018f56 tc_dev->priv=0000000085018f56 s_data=000000004b5b170c s_data->priv=0000000085018f56 v4l2_registered=1 skip_v4l2_register=0 skip_v4l2_unregister=0 split_v4l2_unregister=0
+[  783.367021] nv_ov5647 9-0036: ov5647_remove: before tegracam_v4l2subdev_unregister
+[  783.880415] tegra-camrtc-capture-vi tegra-capture-vi: subdev nv_ov5647 9-0036 unbind
+[  783.880780] nv_ov5647 9-0036: ov5647_remove: after tegracam_v4l2subdev_unregister
+[  783.880787] nv_ov5647 9-0036: ov5647_remove: before tegracam_device_unregister
+[  784.391138] nv_ov5647 9-0036: ov5647_power_put: power rail references cleared
+[  784.391208] nv_ov5647 9-0036: ov5647_remove: after tegracam_device_unregister
+[  784.391214] nv_ov5647 9-0036: ov5647_remove: exit success
+[  784.391737] nv_ov5647: after i2c_del_driver
+[  784.391741] nv_ov5647: i2c driver unregistered
+[  791.554358] nv_ov5647: module init register_i2c_driver=1 allow_hw_probe=1 skip_v4l2_register=0 skip_v4l2_unregister=0 split_v4l2_unregister=0 unload_marker_delay_ms=500
+[  791.554467] nv_ov5647 9-0036: ov5647_probe: enter client=ov5647 addr=0x36
+[  791.554624] nv_ov5647 9-0036: ov5647_parse_dt: enter
+[  791.554645] nv_ov5647 9-0036: ov5647_parse_dt: pdata=000000008c8eaa9e mclk=extperiph1 reset_gpio=-1 pwdn_gpio=486 avdd=vana dvdd=vdig iovdd=vif
+[  791.554650] nv_ov5647 9-0036: ov5647_power_get: enter priv=00000000afcb4477 s_data=000000005842fe1a pdata=000000008c8eaa9e
+[  791.554673] nv_ov5647 9-0036: supply vana not found, using dummy regulator
+[  791.555194] nv_ov5647 9-0036: supply vdig not found, using dummy regulator
+[  791.555243] nv_ov5647 9-0036: supply vif not found, using dummy regulator
+[  791.555319] nv_ov5647 9-0036: ov5647_power_get: exit
+[  791.555369] nv_ov5647 9-0036: tegracam sensor driver:nv_ov5647_v2.0.6
+[  791.555372] nv_ov5647 9-0036: ov5647_probe: private data linked tc_dev=00000000e868f303 tc_dev->priv=00000000afcb4477 s_data=000000005842fe1a s_data->priv=00000000afcb4477
+[  791.555392] nv_ov5647 9-0036: ov5647_board_setup: enter
+[  791.555394] nv_ov5647 9-0036: ov5647_power_on: enter
+[  791.564887] nv_ov5647 9-0036: ov5647_power_on: stream-stop LP-11 setup complete
+[  791.564890] nv_ov5647 9-0036: ov5647_power_on: exit success
+[  791.565267] nv_ov5647 9-0036: ov5647_board_setup: detected chip_id=0x5647
+[  791.565269] nv_ov5647 9-0036: ov5647_power_off: enter
+[  791.566137] nv_ov5647 9-0036: ov5647_power_off: exit success
+[  791.566139] nv_ov5647 9-0036: ov5647_board_setup: exit success
+[  791.566195] tegra-camrtc-capture-vi tegra-capture-vi: subdev nv_ov5647 9-0036 bound
+[  791.566877] nv_ov5647 9-0036: ov5647_probe: v4l2 registered tc_dev=00000000e868f303 tc_dev->priv=00000000afcb4477 s_data=000000005842fe1a s_data->priv=00000000afcb4477 v4l2_registered=1
+[  791.566882] nv_ov5647 9-0036: ov5647_probe: exit success
+[  791.566972] nv_ov5647: i2c driver registered
+[  809.337700] nv_ov5647 9-0036: ov5647_power_on: enter
+[  809.346572] nv_ov5647 9-0036: ov5647_power_on: stream-stop LP-11 setup complete
+[  809.346578] nv_ov5647 9-0036: ov5647_power_on: exit success
+[  809.358762] nv_ov5647 9-0036: ov5647_set_mode: applying mode=0 name=640x480-10bpp-30fps 640x480
+[  809.370477] nv_ov5647 9-0036: ov5647_set_mode: mode applied, sensor remains in standby
+[  809.370486] nv_ov5647 9-0036: ov5647_start_streaming: enter
+[  809.370488] nv_ov5647 9-0036: ov5647_start_streaming: using mode already applied by tegracam set_mode
+[  809.371031] nv_ov5647 9-0036: ov5647_start_streaming: exit success
+[  811.973806] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  814.533474] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  817.093606] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  819.653457] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  839.324206] nv_ov5647 9-0036: ov5647_stop_streaming: enter
+[  839.325393] nv_ov5647 9-0036: ov5647_stop_streaming: exit success
+[  839.328198] nv_ov5647 9-0036: ov5647_power_off: enter
+[  839.330037] nv_ov5647 9-0036: ov5647_power_off: exit success
+[ 1223.658971] nv_ov5647: module exit enter driver_registered=1
+[ 1224.184006] nv_ov5647: before i2c_del_driver
+[ 1224.696063] nv_ov5647 9-0036: ov5647_remove: enter
+[ 1224.696075] nv_ov5647 9-0036: ov5647_remove: state tc_dev=00000000e868f303 tc_dev->dev=00000000034f3b87 priv=00000000afcb4477 tc_dev->priv=00000000afcb4477 s_data=000000005842fe1a s_data->priv=00000000afcb4477 v4l2_registered=1 skip_v4l2_register=0 skip_v4l2_unregister=0 split_v4l2_unregister=0
+[ 1224.696093] nv_ov5647 9-0036: ov5647_remove: before tegracam_v4l2subdev_unregister
+[ 1225.208713] tegra-camrtc-capture-vi tegra-capture-vi: subdev nv_ov5647 9-0036 unbind
+[ 1225.208820] nv_ov5647 9-0036: ov5647_remove: after tegracam_v4l2subdev_unregister
+[ 1225.208825] nv_ov5647 9-0036: ov5647_remove: before tegracam_device_unregister
+[ 1225.719958] nv_ov5647 9-0036: ov5647_power_put: power rail references cleared
+[ 1225.720027] nv_ov5647 9-0036: ov5647_remove: after tegracam_device_unregister
+[ 1225.720033] nv_ov5647 9-0036: ov5647_remove: exit success
+[ 1225.720512] nv_ov5647: after i2c_del_driver
+[ 1225.720515] nv_ov5647: i2c driver unregistered
+[ 1238.573120] nv_ov5647: module init register_i2c_driver=1 allow_hw_probe=1 skip_v4l2_register=0 skip_v4l2_unregister=0 split_v4l2_unregister=0 unload_marker_delay_ms=500
+[ 1238.573132] nv_ov5647: diagnostics dump_stream_regs=1
+[ 1238.573226] nv_ov5647 9-0036: ov5647_probe: enter client=ov5647 addr=0x36
+[ 1238.573297] nv_ov5647 9-0036: ov5647_parse_dt: enter
+[ 1238.573315] nv_ov5647 9-0036: ov5647_parse_dt: pdata=00000000852c7868 mclk=extperiph1 reset_gpio=-1 pwdn_gpio=486 avdd=vana dvdd=vdig iovdd=vif
+[ 1238.573320] nv_ov5647 9-0036: ov5647_power_get: enter priv=00000000ab4fbdeb s_data=00000000410c650a pdata=00000000852c7868
+[ 1238.573346] nv_ov5647 9-0036: supply vana not found, using dummy regulator
+[ 1238.573471] nv_ov5647 9-0036: supply vdig not found, using dummy regulator
+[ 1238.573497] nv_ov5647 9-0036: supply vif not found, using dummy regulator
+[ 1238.573559] nv_ov5647 9-0036: ov5647_power_get: exit
+[ 1238.573605] nv_ov5647 9-0036: tegracam sensor driver:nv_ov5647_v2.0.6
+[ 1238.573607] nv_ov5647 9-0036: ov5647_probe: private data linked tc_dev=0000000041ede36f tc_dev->priv=00000000ab4fbdeb s_data=00000000410c650a s_data->priv=00000000ab4fbdeb
+[ 1238.573628] nv_ov5647 9-0036: ov5647_board_setup: enter
+[ 1238.573629] nv_ov5647 9-0036: ov5647_power_on: enter
+[ 1238.582511] nv_ov5647 9-0036: ov5647_power_on: stream-stop LP-11 setup complete
+[ 1238.582515] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=power_on_lp11
+[ 1238.582710] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x0100 name=mode_select val=0x00
+[ 1238.582902] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x0103 name=sw_reset val=0x00
+[ 1238.583092] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3000 name=sys_ctrl0 val=0x0f
+[ 1238.583283] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3001 name=sys_ctrl1 val=0xff
+[ 1238.583472] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3002 name=sys_ctrl2 val=0xe4
+[ 1238.583668] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x300d name=pad_out val=0x01
+[ 1238.583862] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3016 name=mipi_ctrl16 val=0x08
+[ 1238.584054] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3017 name=mipi_ctrl17 val=0xe0
+[ 1238.584245] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3018 name=mipi_ctrl18 val=0x44
+[ 1238.584436] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3034 name=pll_ctrl34 val=0x1a
+[ 1238.584626] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3035 name=pll_ctrl35 val=0x21
+[ 1238.584815] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3036 name=pll_ctrl36 val=0x46
+[ 1238.585003] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x303c name=pll_ctrl3c val=0x11
+[ 1238.585190] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3808 name=x_output_size_h val=0x02
+[ 1238.585380] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3809 name=x_output_size_l val=0x80
+[ 1238.585567] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380a name=y_output_size_h val=0x01
+[ 1238.585755] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380b name=y_output_size_l val=0xe0
+[ 1238.585942] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380c name=hts_h val=0x07
+[ 1238.586130] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380d name=hts_l val=0x3c
+[ 1238.586318] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380e name=vts_h val=0x01
+[ 1238.586512] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380f name=vts_l val=0xf8
+[ 1238.586701] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3820 name=timing_format1 val=0x41
+[ 1238.586890] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3821 name=timing_format2 val=0x01
+[ 1238.587080] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4202 name=frame_off_number val=0x0f
+[ 1238.587270] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4800 name=mipi_ctrl00 val=0x25
+[ 1238.587463] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4814 name=mipi_ctrl14 val=0x2a
+[ 1238.587465] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=power_on_lp11
+[ 1238.587467] nv_ov5647 9-0036: ov5647_power_on: exit success
+[ 1238.587943] nv_ov5647 9-0036: ov5647_board_setup: detected chip_id=0x5647
+[ 1238.587946] nv_ov5647 9-0036: ov5647_power_off: enter
+[ 1238.588877] nv_ov5647 9-0036: ov5647_power_off: exit success
+[ 1238.588879] nv_ov5647 9-0036: ov5647_board_setup: exit success
+[ 1238.588935] tegra-camrtc-capture-vi tegra-capture-vi: subdev nv_ov5647 9-0036 bound
+[ 1238.590847] nv_ov5647 9-0036: ov5647_probe: v4l2 registered tc_dev=0000000041ede36f tc_dev->priv=00000000ab4fbdeb s_data=00000000410c650a s_data->priv=00000000ab4fbdeb v4l2_registered=1
+[ 1238.590856] nv_ov5647 9-0036: ov5647_probe: exit success
+[ 1238.594599] nv_ov5647: i2c driver registered

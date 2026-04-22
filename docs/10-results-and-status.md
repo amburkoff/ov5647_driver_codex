@@ -236,7 +236,16 @@ Current blocking issue:
   - new module parameter `dump_stream_regs`, default `false`;
   - new manual insmod profile `full-delay-dump`;
   - rebuilt `.ko` `srcversion=E6D2A445F8276648D752078`;
-  - runtime validation is pending a manual reload and capture.
+  - runtime validation has now been run.
+- diagnostic stream-register runtime validation still timed out, but exposed a concrete driver defect:
+  - manual `rmmod` returned `rc=0`;
+  - manual `insmod full-delay-dump` returned `rc=0`;
+  - capture reached `VIDIOC_STREAMON`;
+  - capture returned `rc=124` and raw output is zero bytes;
+  - at `power_on_lp11`, output-enable registers are `0x3000=0x0f`, `0x3001=0xff`, `0x3002=0xe4`;
+  - after `set_mode()`, output-enable registers are reset to `0x3000=0x00`, `0x3001=0x00`, `0x3002=0x00`;
+  - after stream-on, `0x0100=0x01`, but `0x3000/0x3001/0x3002` remain disabled;
+  - next source-side fix is to re-enable sensor output after mode programming / before stream start.
   - rebuilt module has `srcversion=E9CE1D1EF58B852F6484431`;
   - runtime validation is not run yet.
 

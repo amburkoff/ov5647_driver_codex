@@ -162,4 +162,9 @@
 - The next diagnostic gap is actual sensor register state during stream start:
   - current logs prove callbacks execute, but do not prove key OV5647 registers remain configured after software reset and stream enable;
   - gated readbacks are now implemented behind `dump_stream_regs=1`;
-  - runtime validation still requires a manual reload with `full-delay-dump` and one capture attempt.
+  - runtime validation has now shown that `0x3000/0x3001/0x3002` are disabled after `set_mode()` and remain disabled after `STREAMON`.
+- The previous output-enable fix is incomplete:
+  - `power_on()` enables sensor output;
+  - `ov5647_common_regs` later disables `0x3000/0x3001/0x3002`;
+  - `start_streaming()` sets `0x0100=0x01`, but does not restore output-enable;
+  - this is now the strongest driver-side explanation for zero-byte capture.
