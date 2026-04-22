@@ -119,6 +119,14 @@ The route-A overlay has been rebuilt after the Tegra234 BPMP clock-ID fix:
 - clock: `clocks = <&bpmp 0x24>`, `clock-names = "extperiph1"`;
 - dev profile default is staged for this overlay, but live DT validation still requires reboot.
 
+Post-reboot validation:
+
+- active boot profile is `boot_profile=ov5647-dev`;
+- live DT contains `bus@0/cam_i2cmux/i2c@0/ov5647_a@36`;
+- live DT does not contain the route-C `ov5647_c@36` node;
+- live route-A clock binding is `clocks_hex = 00 00 00 03 00 00 00 24`;
+- media graph has no sensor entity until the manual module load, which is expected because the driver is not auto-loaded.
+
 ## Current DT Conclusion
 
 The DT overlay is good enough to bind the sensor, register `/dev/video0`, and execute stream start on route C. It is not proven electrically correct because neither route A nor route C produces SOF.

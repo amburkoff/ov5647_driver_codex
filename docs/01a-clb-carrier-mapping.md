@@ -198,6 +198,23 @@ The latest route-C continuous-clock runtime test proves that the Linux/V4L2 path
 
 This does not prove the sensor is incapable of output. It proves that the current DT route, physical lane path, cable/adapter path, or MIPI electrical output state is still not producing an observable SOF at the Jetson receiver. Because the earlier route-A test used the old wrong BPMP clock binding, one corrected-MCLK route-A retest is still a valid controlled software experiment before treating the issue as purely physical.
 
+## Current Route-A Retest State
+
+After rebooting the staged route-A corrected-MCLK overlay, the live DT now maps the single active OV5647 node to:
+
+- `cam_i2cmux/i2c@0`;
+- `ov5647_a@36`;
+- `mclk = "extperiph1"`;
+- `clocks = <&bpmp 0x24>`;
+- `mode0.tegra_sinterface = "serial_b"`;
+- `mode0.num_lanes = "2"`;
+- `mode0.lane_polarity = "6"`;
+- endpoint `port-index = 1`;
+- endpoint `bus-width = 2`;
+- `pwdn-gpios` token `0x3e`.
+
+This confirms that the next manual module-load test will exercise route A, not route C.
+
 ## Blocking Next Checks
 
 1. Inspect the physical carrier board silkscreen and connector labels.

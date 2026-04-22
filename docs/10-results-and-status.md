@@ -486,3 +486,30 @@ Next required reboot:
 - the default boot profile is already `ov5647-dev`;
 - safe boot remains available as `Jetson SAFE (no OV5647 auto-load)`;
 - after reboot, first verify `/proc/cmdline` and live DT before any module or capture command.
+
+Post-reboot result for route-A corrected-MCLK overlay:
+
+- system booted into `boot_profile=ov5647-dev`;
+- `/boot/extlinux/extlinux.conf` still contains both safe and dev profiles;
+- dev profile points to `/boot/ov5647-p3768-port-a-extperiph1.dtbo`;
+- `nv_ov5647` is not auto-loaded;
+- `/dev/video0` and `/dev/v4l-subdev*` are absent before manual module load, as expected;
+- live DT now contains route-A node:
+  - `/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36`;
+  - `status = "okay"`;
+  - `compatible = "ovti,ov5647"`;
+  - `mclk = "extperiph1"`;
+  - `clocks_hex = 00 00 00 03 00 00 00 24`;
+  - `pwdn-gpios = <... 0x3e 0>`;
+  - `mode0.tegra_sinterface = "serial_b"`;
+  - `mode0.lane_polarity = "6"`;
+  - endpoint `port-index = 1`;
+  - endpoint `bus-width = 2`;
+- route-C `ov5647_c@36` node is absent;
+- `media-ctl -p` currently shows only the base `nvcsi` entity with no sensor link before module load;
+- pstore contains `console-ramoops-0` from the previous boot, including the earlier route-C capture timeout and a normal `reboot: Restarting system` tail; no panic/oops/NULL dereference signature was found in that pstore scan.
+
+Next manual test:
+
+- run only manual route-A insmod diagnostics first;
+- do not run capture until route-A probe/chip-ID/MCLK are confirmed after this reboot.
