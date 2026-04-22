@@ -215,6 +215,17 @@ After rebooting the staged route-A corrected-MCLK overlay, the live DT now maps 
 
 This confirms that the next manual module-load test will exercise route A, not route C.
 
+The first manual module-load test on this route-A state succeeded:
+
+- I2C client is `nv_ov5647 9-0036`;
+- `pwdn_gpio = 397`;
+- MCLK enabled at `24000000` Hz;
+- chip ID is `0x5647`;
+- `/dev/video0` appears;
+- media graph links `nv_ov5647 9-0036 -> nvcsi -> vi-output` are enabled.
+
+This proves route A has a working I2C/probe path. It still does not prove the route-A physical CSI lane path until a frame or SOF is observed.
+
 ## Blocking Next Checks
 
 1. Inspect the physical carrier board silkscreen and connector labels.

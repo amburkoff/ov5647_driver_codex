@@ -1,6 +1,6 @@
 # Results And Status
 
-Current overall status: `route-C continuous-clock dev overlay booted, manual LKM-only workflow retained, route-A and route-C probes work, remove path fixed, STREAMON succeeds but no CSI frames yet`
+Current overall status: `route-A corrected-MCLK dev overlay booted, manual LKM-only workflow retained, route-A and route-C probes work, remove path fixed, route-C still no-SOF, route-A corrected-MCLK capture not yet tested`
 
 Completed:
 
@@ -513,3 +513,38 @@ Next manual test:
 
 - run only manual route-A insmod diagnostics first;
 - do not run capture until route-A probe/chip-ID/MCLK are confirmed after this reboot.
+
+Manual route-A insmod after corrected-MCLK reboot:
+
+- user ran `sudo /home/cam/ov5647_driver_codex/scripts/run_manual_insmod_diag.sh full-delay-dump-contclk-mclk24`;
+- command returned `insmod rc=0`;
+- module parameters:
+  - `register_i2c_driver=Y`;
+  - `allow_hw_probe=Y`;
+  - `dump_stream_regs=Y`;
+  - `continuous_mipi_clock=Y`;
+  - `mclk_override_hz=24000000`;
+- probe path:
+  - `ov5647_parse_dt`: `mclk=extperiph1`, `reset_gpio=-1`, `pwdn_gpio=397`;
+  - supplies are dummy regulators for `vana`, `vdig`, `vif`;
+  - `ov5647_power_on`: enabled MCLK at `24000000`;
+  - `ov5647_board_setup`: detected `chip_id=0x5647`;
+  - V4L2 registration succeeded;
+- active BPMP clocks after probe:
+  - `extperiph1 = 24000000`;
+  - `aud_mclk = 45158398`;
+- media graph after probe:
+  - `nv_ov5647 9-0036` sensor entity exists;
+  - `/dev/video0` exists as `vi-output, nv_ov5647 9-0036`;
+  - sensor -> nvcsi -> vi links are enabled;
+- `v4l2-ctl --all` shows:
+  - format `BG10`;
+  - `640x480`;
+  - `Size Image = 614400`;
+  - `30 fps`;
+  - `sensor_modes = 1`.
+
+Next manual runtime test:
+
+- run the RTCPU/NVCSI traced single-frame capture on this route-A corrected-MCLK setup;
+- if this still gives `rc=124`, zero bytes, and no SOF, both route A and route C will have failed after the clock-ID fix and physical CLB/makerobo connector/cable/adaptor compatibility becomes the dominant root-cause track.

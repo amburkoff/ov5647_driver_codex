@@ -10,7 +10,7 @@
   - MCLK diagnostics showed the older active overlay was binding `clock-names = "extperiph1"` to BPMP clock ID `0x07`, which is `TEGRA234_CLK_AUD_MCLK`, not `TEGRA234_CLK_EXTPERIPH1`;
   - route C now boots with BPMP clock ID `0x24` / decimal `36` and driver logs confirm `mclk enabled rate=24000000`;
   - route C still produces zero-byte capture timeout and no SOF with corrected MCLK;
-  - physical connector/cable/adapter mapping is now a leading suspect, but route A still needs one corrected-MCLK retest because earlier route-A tests used the old clock binding.
+  - route A now probes successfully with corrected MCLK, but corrected-MCLK route-A capture is not tested yet.
 - The safe boot entry still exists, but the on-disk default is currently set to `ov5647-dev` with the route-A corrected-MCLK overlay for the next controlled overlay-validation reboot cycle.
 - The active dev overlay is now a route-C corrected-`extperiph1` continuous-clock candidate from the physical-connector point of view; it is logically validated by successful probe and `/dev/video0`, but not by SOF/frame delivery.
 - The physical camera modules are present on both 22-pin connectors, but the exact mapping from physical connector to route `A` or `C` is still unverified.
@@ -19,7 +19,7 @@
 - Unprivileged `dmesg` access is restricted, so full kernel-buffer capture requires elevated privileges.
 - `journalctl --list-boots` and `uptime -s` disagree about the current boot start time, so timestamp interpretation needs care.
 - The draft route-A OV5647 overlay compiles locally, but it still relies on unresolved hardware assumptions and keeps the sensor node disabled.
-- The probe-oriented route-A OV5647 overlay now applies at boot and probes far enough to request regulators and clock resources, but it still relies on unresolved hardware assumptions.
+- The probe-oriented route-A OV5647 overlay now applies at boot, reads chip ID, enables 24 MHz `extperiph1`, registers `/dev/video0`, and builds the media graph, but it still relies on unresolved hardware assumptions until capture proves SOF/frame delivery.
 - The first rebooted dev attempt proved that `FDTOVERLAYS` was not the correct overlay mechanism for this UEFI-based boot path; the corrected path now uses `FDT + OVERLAYS`.
 - A previous manual `insmod` of `nv_ov5647` triggered a kernel panic due to `tegracam_set_privdata()` being called too early; that ordering bug is fixed, but the panic history remains relevant for regression checking.
 - The earlier `mclk get failed err=-2` blocker was fixed by adding an explicit DT clock binding, but the first binding used the wrong Tegra234 BPMP clock ID:
