@@ -1,0 +1,24 @@
+[20260423T080300Z] bash syntax and profile grep
+17-		PARAMS=(register_i2c_driver=1 allow_hw_probe=1 unload_marker_delay_ms=500)
+18-		;;
+19:	full-delay-dump)
+20-		PARAMS=(register_i2c_driver=1 allow_hw_probe=1 dump_stream_regs=1 unload_marker_delay_ms=500)
+21-		;;
+22:	full-delay-dump-mclk24)
+23-		PARAMS=(
+24-			register_i2c_driver=1
+--
+29-		)
+30-		;;
+31:	full-delay-dump-contclk)
+32-		PARAMS=(register_i2c_driver=1 allow_hw_probe=1 dump_stream_regs=1 continuous_mipi_clock=1 unload_marker_delay_ms=500)
+33-		;;
+34:	full-delay-dump-contclk-mclk24)
+35-		PARAMS=(
+36-			register_i2c_driver=1
+--
+52-		;;
+53-	*)
+54:		echo "usage: $0 [full-delay|full-delay-dump|full-delay-dump-mclk24|full-delay-dump-contclk|full-delay-dump-contclk-mclk24|skip-register|skip-unregister|split-unregister]" \
+55-			>&2
+56-		exit 2

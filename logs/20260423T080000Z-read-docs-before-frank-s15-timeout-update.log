@@ -1,0 +1,122 @@
+[20260423T080000Z] inspect current docs before frank-s15 timeout update
+  - `mclk_override_hz=24000000`;
+- probe path:
+  - `ov5647_parse_dt`: `mclk=extperiph1`, `reset_gpio=-1`, `pwdn_gpio=397`;
+  - supplies are dummy regulators for `vana`, `vdig`, `vif`;
+  - `ov5647_power_on`: enabled MCLK at `24000000`;
+  - `ov5647_board_setup`: detected `chip_id=0x5647`;
+  - V4L2 registration succeeded;
+- active BPMP clocks after probe:
+  - `extperiph1 = 24000000`;
+  - `aud_mclk = 45158398`;
+- media graph after probe:
+  - `nv_ov5647 9-0036` sensor entity exists;
+  - `/dev/video0` exists as `vi-output, nv_ov5647 9-0036`;
+  - sensor -> nvcsi -> vi links are enabled;
+- `v4l2-ctl --all` shows:
+  - format `BG10`;
+  - `640x480`;
+  - `Size Image = 614400`;
+  - `30 fps`;
+  - `sensor_modes = 1`.
+
+Next manual runtime test:
+
+- run the RTCPU/NVCSI traced single-frame capture on this route-A corrected-MCLK setup;
+- if this still gives `rc=124`, zero bytes, and no SOF, both route A and route C will have failed after the clock-ID fix and physical CLB/makerobo connector/cable/adaptor compatibility becomes the dominant root-cause track.
+
+Manual route-A corrected-MCLK capture result:
+
+- user ran `sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_rtcpu_trace.sh`;
+- timestamp: `20260422T140936Z`;
+- capture setup reached `VIDIOC_STREAMON returned 0 (Success)`;
+- capture returned `rc=124`;
+- raw output `artifacts/captures/20260422T140936Z/ov5647-640x480-bg10.raw` is zero bytes;
+- dmesg log: `logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log`;
+- RTCPU/NVCSI trace dir: `artifacts/traces/20260422T140936Z`;
+- driver readback during stream-on remained internally consistent:
+  - MCLK enabled at `24000000`;
+  - `0x0100 = 0x01`;
+  - output-enable registers restored: `0x3000 = 0x0f`, `0x3001 = 0xff`, `0x3002 = 0xe4`;
+  - continuous-clock diagnostic value active: `0x4800 = 0x04`;
+- VI logged repeated `uncorr_err: request timed out after 2500 ms`;
+- trace events were enabled, but the trace contained no runtime `vi_frame_begin`, `vi_frame_end`, `rtcpu_nvcsi_intr`, `rtcpu_vinotify_error`, `capture_event_sof`, `capture_event_eof`, or `capture_event_error`.
+
+Current interpretation after route-A and route-C corrected-MCLK tests:
+
+- the original wrong BPMP clock-ID binding was a real bug and is fixed;
+- output-enable, duplicate set-mode, LP-11 setup, HTS/VTS, and continuous-clock experiments did not produce SOF;
+- route A and route C both probe and both fail to deliver any observable CSI SOF after corrected 24 MHz `extperiph1` MCLK;
+- the highest-probability blocker is now the physical CLB/makerobo camera path: exact connector route, FFC/adaptor pinout/orientation, Raspberry Pi-style `JT-ZERO-V2.0 YH` module compatibility, or lane wiring/polarity not represented by the NVIDIA p3768 reference overlays.
+
+Next smallest safe step:
+
+- do not run more blind stream-register tuning or repeated captures until the physical CSI path is verified;
+- collect physical evidence for both camera connectors: carrier silkscreen labels, cable orientation, contact side, any adapter board, camera module front/back, and the full FFC marking;
+- if available, test a known-good Jetson-compatible camera/cable kit with a stock NVIDIA overlay to prove the CLB CSI connector path independently of this OV5647 driver.
+
+Update after user confirmed Raspberry Pi Zero 22-pin cameras:
+
+- user confirms the cameras are Raspberry Pi Zero-style 22-pin OV5647 modules;
+- this makes the cable family more specific, but does not by itself prove MIPI lane delivery because I2C success can coexist with a CSI lane mismatch;
+- a source-side timing/register variant was found in the current 640x480 mode table:
+  - mainline upstream Linux OV5647 VGA table uses `0x3821 = 0x03`;
+  - Raspberry Pi downstream 6.6.y OV5647 VGA table uses `0x3821 = 0x01`;
+  - the local driver previously matched the Raspberry Pi downstream value;
+- next safe software step is to test the mainline upstream `0x3821 = 0x03` variant as a single controlled variable, rebuild only, and ask the user to perform one manual load/capture cycle.
+
+Post-reboot checkpoint on 2026-04-23:
+
+- system booted cleanly into `boot_profile=ov5647-dev`;
+- `pstore` is empty after reboot;
+- live DT still exposes route A on `cam_i2cmux/i2c@0/ov5647_a@36`;
+- `nv_ov5647` is not loaded and `/dev/video0` is absent before manual load;
+- the user replaced the previous camera on Jetson `cam0` with another OV5647 and a longer ribbon marked `Frank-s15-v1.0`;
+- attempted `run_manual_rmmod_trace.sh` returned `rmmod rc=1` because the module was not loaded, which is expected and not a fault.
+
+Next smallest safe step:
+
+- skip `rmmod`;
+- manually run one fresh `insmod` of the new `0x3821 = 0x03` diagnostic build on the new `Frank-s15-v1.0` camera/ribbon;
+- only if probe succeeds, run one traced single-frame capture.
+## known
+- The previous output-enable fix is incomplete:
+  - `power_on()` enables sensor output;
+  - `ov5647_common_regs` later disables `0x3000/0x3001/0x3002`;
+  - `start_streaming()` sets `0x0100=0x01`, but does not restore output-enable;
+  - this is now the strongest driver-side explanation for zero-byte capture;
+  - source-side restore fix is built and runtime-tested.
+- The output-enable defect is fixed but not sufficient:
+  - `after_set_mode` and `after_stream_on` now show restored `0x3000=0x0f`, `0x3001=0xff`, `0x3002=0xe4`;
+  - capture still times out with zero bytes;
+  - the remaining blocker is now more likely MIPI stream-start details, DT timing, lane polarity/physical wiring, or a mode-table gap outside the current register dump.
+- MIPI clock mode remains unproven:
+  - current default stream-on value is `0x4800=0x34`;
+  - upstream Linux OV5647 uses `0x4800=0x04` unless non-continuous clock is requested;
+  - gated `continuous_mipi_clock=1` runtime test also timed out.
+- Stream-start register state is now internally consistent but still no frames:
+  - `0x0100=0x01`;
+  - `0x3000=0x0f`, `0x3001=0xff`, `0x3002=0xe4`;
+  - both `0x4800=0x34` and `0x4800=0x04` have been tried;
+  - VI still times out, so the remaining blocker is likely outside these simple stream-start fields.
+- The continuous-clock sensor test did not also change DT:
+  - live route-C DT still had `discontinuous_clk = "yes"` during the `0x4800=0x04` capture attempt;
+  - a matched receiver-side DT experiment with `discontinuous_clk = "no"` is staged in the dev boot profile but requires reboot to validate.
+- The route-C continuous-clock DT experiment now booted successfully:
+  - active cmdline contains `boot_profile=ov5647-dev`;
+  - live DT confirms `discontinuous_clk = "no"`;
+  - the module is not auto-loaded and `/dev/video0` is absent before manual `insmod`;
+  - streaming result for this matched sensor/receiver continuous-clock state has now been tested and still times out.
+- The matched route-C continuous-clock runtime test still produced no frames:
+  - sensor-side `0x4800=0x04`;
+  - DT-side `discontinuous_clk = "no"`;
+  - `VIDIOC_STREAMON` returns success;
+  - raw file remains zero bytes;
+  - VI reports timeout, so the next diagnostic level is RTCPU/NVCSI trace rather than another blind mode-table change.
+- RTCPU/NVCSI trace now shows a no-SOF condition:
+  - selected frame/error tracepoints were enabled;
+  - no `vi_frame_begin`, `vi_frame_end`, `rtcpu_vinotify_error`, `rtcpu_nvcsi_intr`, `capture_event_sof`, or `capture_event_error` appeared during the 30 second capture window;
+  - this increases the probability of physical lane/cable/adapter/route mismatch or sensor MIPI electrical non-output over a simple VI software registration problem.
+- pstore after the route-C continuous-clock reboot contains `console-ramoops-0`:
+  - the captured head is early boot output from the current boot, including the expected `boot_profile=ov5647-dev` cmdline;
+  - no new panic/oops conclusion should be drawn from this file without inspecting the full content around crash markers.

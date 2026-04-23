@@ -603,3 +603,21 @@ Next smallest safe step:
 - skip `rmmod`;
 - manually run one fresh `insmod` of the new `0x3821 = 0x03` diagnostic build on the new `Frank-s15-v1.0` camera/ribbon;
 - only if probe succeeds, run one traced single-frame capture.
+
+Frank-s15 route-A runtime result:
+
+- user loaded `srcversion=632487CC0794D5D198269C9` with profile `full-delay-dump-contclk-mclk24`;
+- probe succeeded on `nv_ov5647 9-0036`;
+- chip ID remained `0x5647`;
+- capture `20260423T075323Z` reached `VIDIOC_STREAMON returned 0`;
+- readback confirmed the new diagnostic mode bit was active: `0x3821 = 0x03`;
+- readback confirmed sensor-side continuous clock diagnostic was active: `0x4800 = 0x04`;
+- raw output remained zero bytes and capture returned `rc=124`;
+- RTCPU trace still showed no `vi_frame_begin`, `vi_frame_end`, `rtcpu_nvcsi_intr`, `rtcpu_vinotify_error`, `capture_event_sof`, or `capture_event_error`.
+
+Next smallest safe step:
+
+- current route-A DT still says `discontinuous_clk = "yes"`;
+- the last manual profile forced sensor-side continuous clock with `0x4800 = 0x04`;
+- add and use a non-continuous-clock manual profile with MCLK override: `full-delay-dump-mclk24`;
+- after manual `rmmod`, load that profile and run one traced single-frame capture.

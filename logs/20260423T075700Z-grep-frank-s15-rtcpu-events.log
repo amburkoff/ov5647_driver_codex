@@ -1,0 +1,66 @@
+[20260423T075700Z] grep frank-s15 rtcpu trace events
+artifacts/traces/20260423T075323Z/pre-capture-state.log:6:tegra_camera          221184  4 nvhost_isp5,nvhost_nvcsi_t194,nv_ov5647,nvhost_vi5
+artifacts/traces/20260423T075323Z/pre-capture-state.log:58:	  Link 0x0200000c: from remote pad 0x1000003 of entity '13e00000.host1x:nvcsi@15a00000-' (Unknown sub-device (0002000a)): Data, Enabled
+artifacts/traces/20260423T075323Z/pre-capture-state.log:121:- entity 1: 13e00000.host1x:nvcsi@15a00000- (2 pads, 2 links)
+artifacts/traces/20260423T075323Z/pre-capture-state.log:134:		-> "13e00000.host1x:nvcsi@15a00000-":0 [ENABLED]
+artifacts/traces/20260423T075323Z/pre-capture-state.log:140:		<- "13e00000.host1x:nvcsi@15a00000-":1 [ENABLED]
+artifacts/traces/20260423T075323Z/before-trace.log:8:#                              || / _----=> hardirq/softirq
+artifacts/traces/20260423T075323Z/before-set_event.log:11:tegra_rtcpu:rtcpu_vinotify_event_ts64
+artifacts/traces/20260423T075323Z/before-set_event.log:12:tegra_rtcpu:rtcpu_vinotify_event
+artifacts/traces/20260423T075323Z/before-set_event.log:13:tegra_rtcpu:rtcpu_vinotify_error
+artifacts/traces/20260423T075323Z/before-set_event.log:14:tegra_rtcpu:vi_frame_begin
+artifacts/traces/20260423T075323Z/before-set_event.log:15:tegra_rtcpu:vi_frame_end
+artifacts/traces/20260423T075323Z/before-set_event.log:16:tegra_rtcpu:rtcpu_nvcsi_intr
+artifacts/traces/20260423T075323Z/before-set_event.log:19:tegra_capture:capture_event_sof
+artifacts/traces/20260423T075323Z/before-set_event.log:20:tegra_capture:capture_event_eof
+artifacts/traces/20260423T075323Z/before-set_event.log:21:tegra_capture:capture_event_error
+artifacts/traces/20260423T075323Z/before-set_event.log:22:tegra_capture:capture_event_wdt
+artifacts/traces/20260423T075323Z/enabled-events.log:11:tegra_capture/capture_event_eof
+artifacts/traces/20260423T075323Z/enabled-events.log:12:tegra_capture/capture_event_error
+artifacts/traces/20260423T075323Z/enabled-events.log:13:tegra_capture/capture_event_sof
+artifacts/traces/20260423T075323Z/enabled-events.log:14:tegra_capture/capture_event_wdt
+artifacts/traces/20260423T075323Z/enabled-events.log:17:tegra_rtcpu/rtcpu_nvcsi_intr
+artifacts/traces/20260423T075323Z/enabled-events.log:18:tegra_rtcpu/rtcpu_vinotify_error
+artifacts/traces/20260423T075323Z/enabled-events.log:19:tegra_rtcpu/rtcpu_vinotify_event
+artifacts/traces/20260423T075323Z/enabled-events.log:20:tegra_rtcpu/rtcpu_vinotify_event_ts64
+artifacts/traces/20260423T075323Z/enabled-events.log:21:tegra_rtcpu/vi_frame_begin
+artifacts/traces/20260423T075323Z/enabled-events.log:22:tegra_rtcpu/vi_frame_end
+artifacts/traces/20260423T075323Z/after-set_event.log:11:tegra_rtcpu:rtcpu_vinotify_event_ts64
+artifacts/traces/20260423T075323Z/after-set_event.log:12:tegra_rtcpu:rtcpu_vinotify_event
+artifacts/traces/20260423T075323Z/after-set_event.log:13:tegra_rtcpu:rtcpu_vinotify_error
+artifacts/traces/20260423T075323Z/after-set_event.log:14:tegra_rtcpu:vi_frame_begin
+artifacts/traces/20260423T075323Z/after-set_event.log:15:tegra_rtcpu:vi_frame_end
+artifacts/traces/20260423T075323Z/after-set_event.log:16:tegra_rtcpu:rtcpu_nvcsi_intr
+artifacts/traces/20260423T075323Z/after-set_event.log:19:tegra_capture:capture_event_sof
+artifacts/traces/20260423T075323Z/after-set_event.log:20:tegra_capture:capture_event_eof
+artifacts/traces/20260423T075323Z/after-set_event.log:21:tegra_capture:capture_event_error
+artifacts/traces/20260423T075323Z/after-set_event.log:22:tegra_capture:capture_event_wdt
+artifacts/traces/20260423T075323Z/after-trace.log:8:#                              || / _----=> hardirq/softirq
+artifacts/traces/20260423T075323Z/after-trace.log:17:        v4l2-ctl-5962    [003] .......   529.670030: tegra_channel_set_power: 13e00000.host1x:nvcsi@15a00000- : 0x1
+artifacts/traces/20260423T075323Z/after-trace.log:31:        v4l2-ctl-5962    [000] .......   529.681535: tegra_channel_set_stream: 13e00000.host1x:nvcsi@15a00000- : 0x1
+artifacts/traces/20260423T075323Z/after-trace.log:40:        v4l2-ctl-5962    [003] .......   559.643481: tegra_channel_set_stream: 13e00000.host1x:nvcsi@15a00000- : 0x0
+artifacts/traces/20260423T075323Z/after-trace.log:48:        v4l2-ctl-5962    [003] .......   559.646847: tegra_channel_set_power: 13e00000.host1x:nvcsi@15a00000- : 0x0
+artifacts/traces/20260423T075323Z/final-trace.log:8:#                              || / _----=> hardirq/softirq
+artifacts/traces/20260423T075323Z/final-trace.log:17:        v4l2-ctl-5962    [003] .......   529.670030: tegra_channel_set_power: 13e00000.host1x:nvcsi@15a00000- : 0x1
+artifacts/traces/20260423T075323Z/final-trace.log:31:        v4l2-ctl-5962    [000] .......   529.681535: tegra_channel_set_stream: 13e00000.host1x:nvcsi@15a00000- : 0x1
+artifacts/traces/20260423T075323Z/final-trace.log:40:        v4l2-ctl-5962    [003] .......   559.643481: tegra_channel_set_stream: 13e00000.host1x:nvcsi@15a00000- : 0x0
+artifacts/traces/20260423T075323Z/final-trace.log:48:        v4l2-ctl-5962    [003] .......   559.646847: tegra_channel_set_power: 13e00000.host1x:nvcsi@15a00000- : 0x0
+artifacts/traces/20260423T075323Z/final-set_event.log:11:tegra_rtcpu:rtcpu_vinotify_event_ts64
+artifacts/traces/20260423T075323Z/final-set_event.log:12:tegra_rtcpu:rtcpu_vinotify_event
+artifacts/traces/20260423T075323Z/final-set_event.log:13:tegra_rtcpu:rtcpu_vinotify_error
+artifacts/traces/20260423T075323Z/final-set_event.log:14:tegra_rtcpu:vi_frame_begin
+artifacts/traces/20260423T075323Z/final-set_event.log:15:tegra_rtcpu:vi_frame_end
+artifacts/traces/20260423T075323Z/final-set_event.log:16:tegra_rtcpu:rtcpu_nvcsi_intr
+artifacts/traces/20260423T075323Z/final-set_event.log:19:tegra_capture:capture_event_sof
+artifacts/traces/20260423T075323Z/final-set_event.log:20:tegra_capture:capture_event_eof
+artifacts/traces/20260423T075323Z/final-set_event.log:21:tegra_capture:capture_event_error
+artifacts/traces/20260423T075323Z/final-set_event.log:22:tegra_capture:capture_event_wdt
+## stats
+Exceptions: 0
+Events: 3
+## last_exception
+## last_event
+Len: 16
+ID: 0x03010000
+Timestamp: 1695112203
+Start.

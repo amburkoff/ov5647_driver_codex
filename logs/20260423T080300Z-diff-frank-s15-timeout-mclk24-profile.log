@@ -1,0 +1,68 @@
+[20260423T080300Z] diff frank-s15 timeout and mclk24 profile
+diff --git a/docs/10-results-and-status.md b/docs/10-results-and-status.md
+index 8f0d9a6..9d0f9b8 100644
+--- a/docs/10-results-and-status.md
++++ b/docs/10-results-and-status.md
+@@ -603,3 +603,21 @@ Next smallest safe step:
+ - skip `rmmod`;
+ - manually run one fresh `insmod` of the new `0x3821 = 0x03` diagnostic build on the new `Frank-s15-v1.0` camera/ribbon;
+ - only if probe succeeds, run one traced single-frame capture.
++
++Frank-s15 route-A runtime result:
++
++- user loaded `srcversion=632487CC0794D5D198269C9` with profile `full-delay-dump-contclk-mclk24`;
++- probe succeeded on `nv_ov5647 9-0036`;
++- chip ID remained `0x5647`;
++- capture `20260423T075323Z` reached `VIDIOC_STREAMON returned 0`;
++- readback confirmed the new diagnostic mode bit was active: `0x3821 = 0x03`;
++- readback confirmed sensor-side continuous clock diagnostic was active: `0x4800 = 0x04`;
++- raw output remained zero bytes and capture returned `rc=124`;
++- RTCPU trace still showed no `vi_frame_begin`, `vi_frame_end`, `rtcpu_nvcsi_intr`, `rtcpu_vinotify_error`, `capture_event_sof`, or `capture_event_error`.
++
++Next smallest safe step:
++
++- current route-A DT still says `discontinuous_clk = "yes"`;
++- the last manual profile forced sensor-side continuous clock with `0x4800 = 0x04`;
++- add and use a non-continuous-clock manual profile with MCLK override: `full-delay-dump-mclk24`;
++- after manual `rmmod`, load that profile and run one traced single-frame capture.
+diff --git a/docs/11-known-issues.md b/docs/11-known-issues.md
+index 945172b..3f38f5c 100644
+--- a/docs/11-known-issues.md
++++ b/docs/11-known-issues.md
+@@ -17,6 +17,7 @@
+ - The visible camera marking `JT-ZERO-V2.0 YH` and user confirmation identify the modules as Raspberry Pi Zero-style 22-pin OV5647 cameras, but the exact FFC/adaptor topology is not yet documented.
+ - A new route-A retest now uses a different OV5647 on Jetson `cam0` with longer ribbon marking `Frank-s15-v1.0`; this changes the physical camera/ribbon variable without changing the current route-A overlay.
+ - The previous local 640x480 mode table used `0x3821 = 0x01`; mainline upstream Linux OV5647 VGA mode uses `0x3821 = 0x03`, while Raspberry Pi downstream 6.6.y uses `0x01`. Source now stages the mainline `0x03` variant as a controlled diagnostic and needs manual runtime validation.
++- The `Frank-s15-v1.0` route-A capture with `0x3821 = 0x03` still timed out with no SOF while using sensor-side continuous clock `0x4800 = 0x04`; because live route-A DT has `discontinuous_clk = "yes"`, a matched non-continuous sensor-side retest is still pending.
+ - Local `nvidia-oot` headers are present, but full local sample sensor source files are not installed under `/usr/src/nvidia/`.
+ - Unprivileged `dmesg` access is restricted, so full kernel-buffer capture requires elevated privileges.
+ - `journalctl --list-boots` and `uptime -s` disagree about the current boot start time, so timestamp interpretation needs care.
+diff --git a/scripts/run_manual_insmod_diag.sh b/scripts/run_manual_insmod_diag.sh
+index 9c9e0aa..769ea7b 100755
+--- a/scripts/run_manual_insmod_diag.sh
++++ b/scripts/run_manual_insmod_diag.sh
+@@ -19,6 +19,15 @@ case "${PROFILE}" in
+ 	full-delay-dump)
+ 		PARAMS=(register_i2c_driver=1 allow_hw_probe=1 dump_stream_regs=1 unload_marker_delay_ms=500)
+ 		;;
++	full-delay-dump-mclk24)
++		PARAMS=(
++			register_i2c_driver=1
++			allow_hw_probe=1
++			dump_stream_regs=1
++			mclk_override_hz=24000000
++			unload_marker_delay_ms=500
++		)
++		;;
+ 	full-delay-dump-contclk)
+ 		PARAMS=(register_i2c_driver=1 allow_hw_probe=1 dump_stream_regs=1 continuous_mipi_clock=1 unload_marker_delay_ms=500)
+ 		;;
+@@ -42,7 +51,7 @@ case "${PROFILE}" in
+ 		PARAMS=(register_i2c_driver=1 allow_hw_probe=1 split_v4l2_unregister=1 unload_marker_delay_ms=500)
+ 		;;
+ 	*)
+-		echo "usage: $0 [full-delay|full-delay-dump|full-delay-dump-contclk|full-delay-dump-contclk-mclk24|skip-register|skip-unregister|split-unregister]" \
++		echo "usage: $0 [full-delay|full-delay-dump|full-delay-dump-mclk24|full-delay-dump-contclk|full-delay-dump-contclk-mclk24|skip-register|skip-unregister|split-unregister]" \
+ 			>&2
+ 		exit 2
+ 		;;

@@ -1,0 +1,42 @@
+ .../20260423T075323Z/ov5647-640x480-bg10.raw       |    0
+ .../traces/20260423T075323Z/after-set_event.log    |   22 +
+ artifacts/traces/20260423T075323Z/after-trace.log  |   50 +
+ .../traces/20260423T075323Z/after-trace_clock.log  |    1 +
+ .../traces/20260423T075323Z/after-tracing_on.log   |    1 +
+ .../traces/20260423T075323Z/before-set_event.log   |   22 +
+ artifacts/traces/20260423T075323Z/before-trace.log |   14 +
+ .../traces/20260423T075323Z/before-trace_clock.log |    1 +
+ .../traces/20260423T075323Z/before-tracing_on.log  |    1 +
+ .../traces/20260423T075323Z/enabled-events.log     |   22 +
+ .../traces/20260423T075323Z/final-set_event.log    |   22 +
+ artifacts/traces/20260423T075323Z/final-trace.log  |   50 +
+ .../traces/20260423T075323Z/final-trace_clock.log  |    1 +
+ .../traces/20260423T075323Z/final-tracing_on.log   |    1 +
+ artifacts/traces/20260423T075323Z/last_event       |    4 +
+ artifacts/traces/20260423T075323Z/last_exception   |    0
+ .../traces/20260423T075323Z/missing-events.log     |    0
+ .../traces/20260423T075323Z/pre-capture-state.log  |  141 +++
+ artifacts/traces/20260423T075323Z/stats            |    2 +
+ docs/10-results-and-status.md                      |   18 +
+ docs/11-known-issues.md                            |    1 +
+ ...d-full-delay-dump-contclk-mclk24.dmesg-tail.log |  160 +++
+ ...anual-insmod-full-delay-dump-contclk-mclk24.log |    6 +
+ ...smod-full-delay-dump-contclk-mclk24.modinfo.log |   21 +
+ ...60423T075323Z-single-frame-rtcpu-live-dmesg.log | 1097 ++++++++++++++++++++
+ ...T075323Z-single-frame-rtcpu-post-dmesg-tail.log |  220 ++++
+ logs/20260423T075323Z-single-frame-rtcpu-trace.log |   19 +
+ ...423T075700Z-analyze-frank-s15-capture-trace.log |   48 +
+ ...urrent-module-state-after-frank-s15-capture.log |  204 ++++
+ ...260423T075700Z-grep-frank-s15-capture-dmesg.log |  205 ++++
+ ...0260423T075700Z-grep-frank-s15-rtcpu-events.log |   66 ++
+ ...Z-git-state-before-frank-s15-timeout-update.log |  166 +++
+ ...ual-insmod-profiles-after-frank-s15-timeout.log |   82 ++
+ ...Z-read-docs-before-frank-s15-timeout-update.log |  122 +++
+ ...080100Z-latest-manual-insmod-logs-frank-s15.log |  178 ++++
+ ...0260423T080300Z-bashn-insmod-profile-mclk24.log |   24 +
+ ...0300Z-diff-frank-s15-timeout-mclk24-profile.log |   68 ++
+ ...23T080300Z-size-frank-s15-timeout-artifacts.log |   25 +
+ ...ched-check-frank-s15-timeout-mclk24-profile.log |  130 +++
+ reports/2026-04-23-frank-s15-route-a-timeout.md    |   53 +
+ scripts/run_manual_insmod_diag.sh                  |   11 +-
+ 41 files changed, 3278 insertions(+), 1 deletion(-)

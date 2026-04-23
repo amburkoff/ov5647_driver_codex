@@ -1,0 +1,130 @@
+[20260423T080400Z] stage frank-s15 timeout and mclk24 profile
+ .../20260423T075323Z/ov5647-640x480-bg10.raw       |    0
+ .../traces/20260423T075323Z/after-set_event.log    |   22 +
+ artifacts/traces/20260423T075323Z/after-trace.log  |   50 +
+ .../traces/20260423T075323Z/after-trace_clock.log  |    1 +
+ .../traces/20260423T075323Z/after-tracing_on.log   |    1 +
+ .../traces/20260423T075323Z/before-set_event.log   |   22 +
+ artifacts/traces/20260423T075323Z/before-trace.log |   14 +
+ .../traces/20260423T075323Z/before-trace_clock.log |    1 +
+ .../traces/20260423T075323Z/before-tracing_on.log  |    1 +
+ .../traces/20260423T075323Z/enabled-events.log     |   22 +
+ .../traces/20260423T075323Z/final-set_event.log    |   22 +
+ artifacts/traces/20260423T075323Z/final-trace.log  |   50 +
+ .../traces/20260423T075323Z/final-trace_clock.log  |    1 +
+ .../traces/20260423T075323Z/final-tracing_on.log   |    1 +
+ artifacts/traces/20260423T075323Z/last_event       |    4 +
+ artifacts/traces/20260423T075323Z/last_exception   |    0
+ .../traces/20260423T075323Z/missing-events.log     |    0
+ .../traces/20260423T075323Z/pre-capture-state.log  |  141 +++
+ artifacts/traces/20260423T075323Z/stats            |    2 +
+ docs/10-results-and-status.md                      |   18 +
+ docs/11-known-issues.md                            |    1 +
+ ...d-full-delay-dump-contclk-mclk24.dmesg-tail.log |  160 +++
+ ...anual-insmod-full-delay-dump-contclk-mclk24.log |    6 +
+ ...smod-full-delay-dump-contclk-mclk24.modinfo.log |   21 +
+ ...60423T075323Z-single-frame-rtcpu-live-dmesg.log | 1097 ++++++++++++++++++++
+ ...T075323Z-single-frame-rtcpu-post-dmesg-tail.log |  220 ++++
+ logs/20260423T075323Z-single-frame-rtcpu-trace.log |   19 +
+ ...423T075700Z-analyze-frank-s15-capture-trace.log |   48 +
+ ...urrent-module-state-after-frank-s15-capture.log |  204 ++++
+ ...260423T075700Z-grep-frank-s15-capture-dmesg.log |  205 ++++
+ ...0260423T075700Z-grep-frank-s15-rtcpu-events.log |   66 ++
+ ...Z-git-state-before-frank-s15-timeout-update.log |  166 +++
+ ...ual-insmod-profiles-after-frank-s15-timeout.log |   82 ++
+ ...Z-read-docs-before-frank-s15-timeout-update.log |  122 +++
+ ...080100Z-latest-manual-insmod-logs-frank-s15.log |  178 ++++
+ ...0260423T080300Z-bashn-insmod-profile-mclk24.log |   24 +
+ ...0300Z-diff-frank-s15-timeout-mclk24-profile.log |   68 ++
+ ...23T080300Z-size-frank-s15-timeout-artifacts.log |   25 +
+ reports/2026-04-23-frank-s15-route-a-timeout.md    |   53 +
+ scripts/run_manual_insmod_diag.sh                  |   11 +-
+ 40 files changed, 3148 insertions(+), 1 deletion(-)
+## cached check
+artifacts/traces/20260423T075323Z/pre-capture-state.log:2: trailing whitespace.
++root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+artifacts/traces/20260423T075323Z/pre-capture-state.log:45: trailing whitespace.
++	Serial           : 
+artifacts/traces/20260423T075323Z/pre-capture-state.log:46: trailing whitespace.
++	Bus info         : 
+artifacts/traces/20260423T075323Z/pre-capture-state.log:71: trailing whitespace.
++	Flags             : 
+artifacts/traces/20260423T075323Z/pre-capture-state.log:115: trailing whitespace.
++serial          
+artifacts/traces/20260423T075323Z/pre-capture-state.log:116: trailing whitespace.
++bus info        
+artifacts/traces/20260423T075323Z/pre-capture-state.log:141: new blank line at EOF.
+logs/20260423T075314Z-manual-insmod-full-delay-dump-contclk-mclk24.log:4: trailing whitespace.
++[20260423T075314Z] cmdline=root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+logs/20260423T075323Z-single-frame-rtcpu-live-dmesg.log:5: trailing whitespace.
++[    0.000000] efi: RTPROP=0x46de1e698 TPMFinalLog=0x45e8f0000 SMBIOS=0xffff0000 SMBIOS 3.0=0x46da40000 MEMATTR=0x467efe018 ESRT=0x468420518 TPMEventLog=0x45e0cc018 RNG=0x45e900018 MEMRESERVE=0x45e901f98 
+logs/20260423T075323Z-single-frame-rtcpu-live-dmesg.log:54: trailing whitespace.
++[    0.000000] pcpu-alloc: [0] 0 [0] 1 [0] 2 [0] 3 [0] 4 [0] 5 [0] 6 [0] 7 
+logs/20260423T075323Z-single-frame-rtcpu-live-dmesg.log:65: trailing whitespace.
++[    0.000000] mminit::zonelist general 0:DMA = 0:DMA 
+logs/20260423T075323Z-single-frame-rtcpu-live-dmesg.log:66: trailing whitespace.
++[    0.000000] mminit::zonelist general 0:Normal = 0:Normal 0:DMA 
+logs/20260423T075323Z-single-frame-rtcpu-live-dmesg.log:67: trailing whitespace.
++[    0.000000] mminit::zonelist thisnode 0:DMA = 0:DMA 
+logs/20260423T075323Z-single-frame-rtcpu-live-dmesg.log:68: trailing whitespace.
++[    0.000000] mminit::zonelist thisnode 0:Normal = 0:Normal 0:DMA 
+logs/20260423T075323Z-single-frame-rtcpu-live-dmesg.log:71: trailing whitespace.
++[    0.000000] Kernel command line: root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+logs/20260423T075323Z-single-frame-rtcpu-live-dmesg.log:178: trailing whitespace.
++[    0.085176] iommu: Default domain type: Translated 
+logs/20260423T075323Z-single-frame-rtcpu-live-dmesg.log:179: trailing whitespace.
++[    0.085178] iommu: DMA domain TLB invalidation policy: strict mode 
+logs/20260423T075323Z-single-frame-rtcpu-live-dmesg.log:763: space before tab in indent.
++               	| base addr   |0x0c312000|
+logs/20260423T075323Z-single-frame-rtcpu-live-dmesg.log:764: space before tab in indent.
++               	| sidfc_flssa |0x00000000|
+logs/20260423T075323Z-single-frame-rtcpu-live-dmesg.log:765: space before tab in indent.
++               	| xidfc_flesa |0x00000040|
+logs/20260423T075323Z-single-frame-rtcpu-live-dmesg.log:766: space before tab in indent.
++               	| rxf0c_f0sa  |0x000000c0|
+logs/20260423T075323Z-single-frame-rtcpu-live-dmesg.log:767: space before tab in indent.
++               	| rxf1c_f1sa  |0x000009c0|
+logs/20260423T075323Z-single-frame-rtcpu-live-dmesg.log:768: space before tab in indent.
++               	| rxbc_rbsa   |0x000009c0|
+logs/20260423T075323Z-single-frame-rtcpu-live-dmesg.log:769: space before tab in indent.
++               	| txefc_efsa  |0x000009c0|
+logs/20260423T075323Z-single-frame-rtcpu-live-dmesg.log:770: space before tab in indent.
++               	| txbc_tbsa   |0x00000a40|
+logs/20260423T075323Z-single-frame-rtcpu-live-dmesg.log:771: space before tab in indent.
++               	| tmc_tmsa    |0x00000ec0|
+logs/20260423T075323Z-single-frame-rtcpu-live-dmesg.log:772: space before tab in indent.
++               	| mram size   |0x00001000|
+logs/20260423T075323Z-single-frame-rtcpu-live-dmesg.log:828: trailing whitespace.
++[    8.625176] r8168  Copyright (C) 2024 Realtek NIC software team <nicfae@realtek.com> 
+logs/20260423T075323Z-single-frame-rtcpu-live-dmesg.log:829: trailing whitespace.
++                This program comes with ABSOLUTELY NO WARRANTY; for details, please see <http://www.gnu.org/licenses/>. 
+logs/20260423T075323Z-single-frame-rtcpu-live-dmesg.log:830: trailing whitespace.
++                This is free software, and you are welcome to redistribute it under certain conditions; see <http://www.gnu.org/licenses/>. 
+logs/20260423T075700Z-grep-frank-s15-capture-dmesg.log:2: trailing whitespace.
++[    0.000000] Kernel command line: root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+logs/20260423T080100Z-latest-manual-insmod-logs-frank-s15.log:131: trailing whitespace.
++[20260423T075314Z] cmdline=root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+logs/20260423T080300Z-diff-frank-s15-timeout-mclk24-profile.log:45: space before tab in indent.
++ 	full-delay-dump)
+logs/20260423T080300Z-diff-frank-s15-timeout-mclk24-profile.log:46: space before tab in indent.
++ 		PARAMS=(register_i2c_driver=1 allow_hw_probe=1 dump_stream_regs=1 unload_marker_delay_ms=500)
+logs/20260423T080300Z-diff-frank-s15-timeout-mclk24-profile.log:47: space before tab in indent.
++ 		;;
+logs/20260423T080300Z-diff-frank-s15-timeout-mclk24-profile.log:57: space before tab in indent.
++ 	full-delay-dump-contclk)
+logs/20260423T080300Z-diff-frank-s15-timeout-mclk24-profile.log:58: space before tab in indent.
++ 		PARAMS=(register_i2c_driver=1 allow_hw_probe=1 dump_stream_regs=1 continuous_mipi_clock=1 unload_marker_delay_ms=500)
+logs/20260423T080300Z-diff-frank-s15-timeout-mclk24-profile.log:59: space before tab in indent.
++ 		;;
+logs/20260423T080300Z-diff-frank-s15-timeout-mclk24-profile.log:61: space before tab in indent.
++ 		PARAMS=(register_i2c_driver=1 allow_hw_probe=1 split_v4l2_unregister=1 unload_marker_delay_ms=500)
+logs/20260423T080300Z-diff-frank-s15-timeout-mclk24-profile.log:62: space before tab in indent.
++ 		;;
+logs/20260423T080300Z-diff-frank-s15-timeout-mclk24-profile.log:63: space before tab in indent.
++ 	*)
+logs/20260423T080300Z-diff-frank-s15-timeout-mclk24-profile.log:66: space before tab in indent.
++ 			>&2
+logs/20260423T080300Z-diff-frank-s15-timeout-mclk24-profile.log:67: space before tab in indent.
++ 		exit 2
+logs/20260423T080300Z-diff-frank-s15-timeout-mclk24-profile.log:68: space before tab in indent.
++ 		;;
