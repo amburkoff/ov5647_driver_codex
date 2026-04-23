@@ -1,0 +1,16 @@
+[20260423T075200Z] inspect collected route state files
+cmdline.log
+devnodes.log
+dtc.stderr.log
+extlinux.conf
+git-status.log
+i2c-buses.log
+live-device-tree.dts
+live-dt-ov5647-route-summary.log
+lsmod-nv-ov5647.log
+media-ctl.log
+module-params.log
+nv_tegra_release.log
+uname.log
+v4l2-list-devices.log
+## summary

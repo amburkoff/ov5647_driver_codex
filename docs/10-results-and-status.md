@@ -588,3 +588,18 @@ Update after user confirmed Raspberry Pi Zero 22-pin cameras:
   - Raspberry Pi downstream 6.6.y OV5647 VGA table uses `0x3821 = 0x01`;
   - the local driver previously matched the Raspberry Pi downstream value;
 - next safe software step is to test the mainline upstream `0x3821 = 0x03` variant as a single controlled variable, rebuild only, and ask the user to perform one manual load/capture cycle.
+
+Post-reboot checkpoint on 2026-04-23:
+
+- system booted cleanly into `boot_profile=ov5647-dev`;
+- `pstore` is empty after reboot;
+- live DT still exposes route A on `cam_i2cmux/i2c@0/ov5647_a@36`;
+- `nv_ov5647` is not loaded and `/dev/video0` is absent before manual load;
+- the user replaced the previous camera on Jetson `cam0` with another OV5647 and a longer ribbon marked `Frank-s15-v1.0`;
+- attempted `run_manual_rmmod_trace.sh` returned `rmmod rc=1` because the module was not loaded, which is expected and not a fault.
+
+Next smallest safe step:
+
+- skip `rmmod`;
+- manually run one fresh `insmod` of the new `0x3821 = 0x03` diagnostic build on the new `Frank-s15-v1.0` camera/ribbon;
+- only if probe succeeds, run one traced single-frame capture.

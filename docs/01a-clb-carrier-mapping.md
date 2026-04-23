@@ -18,6 +18,7 @@ This document tracks only hardware facts that are confirmed for the actual targe
 | Physical camera population | Confirmed | User reports identical OV5647 modules inserted into both Jetson 22-pin CSI connectors |
 | Camera flex/module marking | Confirmed | User-reported marking: `JT-ZERO-V2.0 YH` |
 | Camera connector family | Confirmed from user physical inspection | User confirms the cameras are Raspberry Pi Zero camera modules with 22-pin connectors |
+| Alternate camera/ribbon on current route-A retest | Confirmed from user physical inspection | On 2026-04-23 the user connected another OV5647 to Jetson `cam0` with a longer ribbon marked `Frank-s15-v1.0` |
 | Corrected carrier name | Confirmed from user physical inspection | User corrected the kit name to `CLB Developer Kit`; earlier project notes used a mistyped carrier name |
 | Partner/vendor marking | Confirmed from user physical inspection | User reports the box says the board is from partner `makerobo` |
 | Public certification identity | Confirmed from public FCC listing | FCC ID `2BE7C-NXCLB` lists `Hunan Chuang Le Bo Intelligent Technology Co., Ltd.` and product/model `NXCLB`; this matches the `CLB` naming pattern |
@@ -248,6 +249,16 @@ The first corrected-MCLK route-A capture test also failed to observe CSI frame d
 - driver readback confirmed stream-on state with `0x0100 = 0x01`, output-enable restored, continuous MIPI clock diagnostic active, and MCLK at `24000000`.
 
 This means both route A and route C have now failed after the corrected `TEGRA234_CLK_EXTPERIPH1` binding. The current blocker should be treated as physical CSI-path validation until disproven.
+
+Post-reboot state on 2026-04-23 before the next manual `insmod`:
+
+- boot profile still `ov5647-dev`;
+- live DT still selects route A: `ov5647_a@36`, `serial_b`, `port-index = 1`, `lane_polarity = 6`;
+- `nv_ov5647` is not loaded;
+- `/dev/video0` is absent before manual load, as expected;
+- the user replaced the previous camera on Jetson `cam0` with another OV5647 using a longer ribbon marked `Frank-s15-v1.0`.
+
+This creates a cleaner next runtime test: same route-A overlay and same driver image, but different physical camera/ribbon hardware on the intended `cam0` connector.
 
 ## Blocking Next Checks
 

@@ -1,0 +1,88 @@
+[20260423T075000Z] post reboot module media state
+## lsmod
+snd_soc_tegra186_asrc    36864  1
+snd_soc_tegra186_arad    24576  2 snd_soc_tegra186_asrc
+snd_soc_tegra210_admaif   118784  1
+snd_soc_tegra210_afc    20480  6
+snd_soc_tegra_pcm      16384  1 snd_soc_tegra210_admaif
+snd_soc_tegra210_mixer    45056  1
+snd_soc_tegra210_ope    32768  1
+snd_soc_tegra210_mvc    20480  2
+snd_soc_tegra186_dspk    20480  2
+snd_soc_tegra210_adx    28672  4
+snd_soc_tegra210_dmic    20480  3
+snd_soc_tegra210_sfc    57344  4
+snd_soc_tegra210_amx    32768  4
+snd_soc_tegra210_i2s    24576  4
+tegra210_adma          24576  0
+snd_soc_tegra210_ahub  1257472  3 snd_soc_tegra210_ope,snd_soc_tegra210_sfc
+snd_soc_tegra_machine_driver    16384  2
+snd_soc_tegra_utils    28672  2 snd_soc_tegra210_admaif,snd_soc_tegra_machine_driver
+tegra234_oc_event      16384  0
+snd_soc_simple_card_utils    28672  1 snd_soc_tegra_utils
+tegra_cactmon_mc_all    16384  0
+tegra234_aon           49152  1
+tegra_aconnect         16384  0
+pwm_tegra_tachometer    16384  0
+snd_hda_tegra          20480  1
+snd_hda_codec         126976  2 snd_hda_codec_hdmi,snd_hda_tegra
+snd_hda_core           98304  3 snd_hda_codec_hdmi,snd_hda_codec,snd_hda_tegra
+spi_tegra114           28672  0
+tegra_dce              98304  2 nvidia
+tegra_pcie_dma_test    20480  0
+tegra_pcie_edma        20480  1 tegra_pcie_dma_test
+tegra_camera          221184  3 nvhost_isp5,nvhost_nvcsi_t194,nvhost_vi5
+v4l2_dv_timings        36864  1 tegra_camera
+nvhost_nvcsi           24576  1 tegra_camera
+tegra_camera_platform    24576  4 nvhost_isp5,nvhost_nvcsi_t194,tegra_camera,nvhost_vi5
+capture_ivc            28672  1 tegra_camera
+tegra_camera_rtcpu    176128  2 capture_ivc,tegra_camera
+ivc_bus                24576  2 capture_ivc,tegra_camera_rtcpu
+hsp_mailbox_client     20480  2 ivc_bus,tegra_camera_rtcpu
+v4l2_fwnode            20480  1 tegra_camera
+v4l2_async             20480  2 v4l2_fwnode,tegra_camera
+videobuf2_dma_contig    24576  1 tegra_camera
+videobuf2_memops       20480  1 videobuf2_dma_contig
+tegra_drm             348160  13
+videobuf2_v4l2         28672  1 tegra_camera
+videobuf2_common       61440  4 videobuf2_dma_contig,videobuf2_v4l2,tegra_camera,videobuf2_memops
+tegra_wmark            16384  0
+videodev              249856  4 v4l2_async,videobuf2_v4l2,tegra_camera,videobuf2_common
+mc                     57344  4 videodev,videobuf2_v4l2,tegra_camera,videobuf2_common
+nvhwpm                106496  4 mc_hwpm,tegra_drm,nvhost_nvdla,nvhost_pva
+cec                    57344  1 tegra_drm
+tegra_se               57344  2
+host1x_nvhost          40960  10 nvhost_isp5,nvhost_nvcsi_t194,nvidia,tegra_camera,nvhost_nvdla,nvhost_capture,nvhost_nvcsi,nvhost_pva,nvhost_vi5,nvidia_modeset
+crypto_engine          16384  1 tegra_se
+drm_kms_helper        278528  4 tegra_drm,nvidia_drm
+host1x                180224  9 host1x_nvhost,host1x_fence,tegra_se,nvgpu,tegra_drm,nvhost_nvdla,nvidia_drm,nvhost_pva,nvidia_modeset
+mc_utils               16384  3 nvidia,nvgpu,tegra_camera_platform
+drm                   602112  18 drm_kms_helper,nvidia,tegra_drm,nvidia_drm
+pwm_tegra              20480  1
+tegra_bpmp_thermal     16384  0
+tegra_xudc             45056  0
+phy_tegra194_p2u       16384  9
+pcie_tegra194          40960  0
+## v4l2 devices
+Cannot open device /dev/video0, exiting.
+NVIDIA Tegra Video Input Device (platform:tegra-camrtc-ca):
+	/dev/media0
+
+## media
+Media controller API version 5.15.185
+
+Media device information
+------------------------
+driver          tegra-camrtc-ca
+model           NVIDIA Tegra Video Input Device
+serial          
+bus info        
+hw revision     0x3
+driver version  5.15.185
+
+Device topology
+- entity 1: 13e00000.host1x:nvcsi@15a00000- (2 pads, 0 link)
+            type V4L2 subdev subtype Unknown flags 0
+	pad0: Sink
+	pad1: Source
+

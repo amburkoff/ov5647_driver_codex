@@ -1,0 +1,55 @@
+[20260423T075400Z] stage post reboot frank-s15 docs and logs
+ docs/01a-clb-carrier-mapping.md                    |  11 ++
+ docs/10-results-and-status.md                      |  15 ++
+ docs/11-known-issues.md                            |   1 +
+ logs/20260423T075000Z-post-reboot-basic-state.log  |  12 ++
+ logs/20260423T075000Z-post-reboot-git-state.log    | 148 +++++++++++++++
+ logs/20260423T075000Z-post-reboot-media-state.log  |  88 +++++++++
+ logs/20260423T075000Z-post-reboot-pstore-dmesg.log |   5 +
+ ...100Z-collect-camera-route-state-post-reboot.log |   8 +
+ ...60423T075100Z-inspect-rmmod-not-loaded-logs.log |  19 ++
+ ...60423T075100Z-sudo-post-reboot-pstore-dmesg.log | 205 +++++++++++++++++++++
+ ...Z-inspect-collected-route-state-post-reboot.log |  16 ++
+ ...75220Z-read-route-summary-files-post-reboot.log | 144 +++++++++++++++
+ .../2026-04-23-post-reboot-frank-s15-route-a.md    |  51 +++++
+ 13 files changed, 723 insertions(+)
+## cached check
+logs/20260423T075000Z-post-reboot-basic-state.log:3: trailing whitespace.
++root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+logs/20260423T075000Z-post-reboot-media-state.log:78: trailing whitespace.
++serial          
+logs/20260423T075000Z-post-reboot-media-state.log:79: trailing whitespace.
++bus info        
+logs/20260423T075000Z-post-reboot-media-state.log:88: new blank line at EOF.
+logs/20260423T075100Z-sudo-post-reboot-pstore-dmesg.log:37: space before tab in indent.
++               	| base addr   |0x0c312000|
+logs/20260423T075100Z-sudo-post-reboot-pstore-dmesg.log:38: space before tab in indent.
++               	| sidfc_flssa |0x00000000|
+logs/20260423T075100Z-sudo-post-reboot-pstore-dmesg.log:39: space before tab in indent.
++               	| xidfc_flesa |0x00000040|
+logs/20260423T075100Z-sudo-post-reboot-pstore-dmesg.log:40: space before tab in indent.
++               	| rxf0c_f0sa  |0x000000c0|
+logs/20260423T075100Z-sudo-post-reboot-pstore-dmesg.log:41: space before tab in indent.
++               	| rxf1c_f1sa  |0x000009c0|
+logs/20260423T075100Z-sudo-post-reboot-pstore-dmesg.log:42: space before tab in indent.
++               	| rxbc_rbsa   |0x000009c0|
+logs/20260423T075100Z-sudo-post-reboot-pstore-dmesg.log:43: space before tab in indent.
++               	| txefc_efsa  |0x000009c0|
+logs/20260423T075100Z-sudo-post-reboot-pstore-dmesg.log:44: space before tab in indent.
++               	| txbc_tbsa   |0x00000a40|
+logs/20260423T075100Z-sudo-post-reboot-pstore-dmesg.log:45: space before tab in indent.
++               	| tmc_tmsa    |0x00000ec0|
+logs/20260423T075100Z-sudo-post-reboot-pstore-dmesg.log:46: space before tab in indent.
++               	| mram size   |0x00001000|
+logs/20260423T075100Z-sudo-post-reboot-pstore-dmesg.log:102: trailing whitespace.
++[    8.625176] r8168  Copyright (C) 2024 Realtek NIC software team <nicfae@realtek.com> 
+logs/20260423T075100Z-sudo-post-reboot-pstore-dmesg.log:103: trailing whitespace.
++                This program comes with ABSOLUTELY NO WARRANTY; for details, please see <http://www.gnu.org/licenses/>. 
+logs/20260423T075100Z-sudo-post-reboot-pstore-dmesg.log:104: trailing whitespace.
++                This is free software, and you are welcome to redistribute it under certain conditions; see <http://www.gnu.org/licenses/>. 
+logs/20260423T075220Z-read-route-summary-files-post-reboot.log:116: trailing whitespace.
++root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+logs/20260423T075220Z-read-route-summary-files-post-reboot.log:125: trailing whitespace.
++serial          
+logs/20260423T075220Z-read-route-summary-files-post-reboot.log:126: trailing whitespace.
++bus info        

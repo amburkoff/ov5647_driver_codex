@@ -15,6 +15,7 @@
 - The active dev overlay is now a route-A corrected-`extperiph1` candidate from the physical-connector point of view; it is logically validated by successful probe and `/dev/video0`, but not by SOF/frame delivery.
 - The physical camera modules are present on both 22-pin connectors, but the exact mapping from physical connector to route `A` or `C` is still unverified.
 - The visible camera marking `JT-ZERO-V2.0 YH` and user confirmation identify the modules as Raspberry Pi Zero-style 22-pin OV5647 cameras, but the exact FFC/adaptor topology is not yet documented.
+- A new route-A retest now uses a different OV5647 on Jetson `cam0` with longer ribbon marking `Frank-s15-v1.0`; this changes the physical camera/ribbon variable without changing the current route-A overlay.
 - The previous local 640x480 mode table used `0x3821 = 0x01`; mainline upstream Linux OV5647 VGA mode uses `0x3821 = 0x03`, while Raspberry Pi downstream 6.6.y uses `0x01`. Source now stages the mainline `0x03` variant as a controlled diagnostic and needs manual runtime validation.
 - Local `nvidia-oot` headers are present, but full local sample sensor source files are not installed under `/usr/src/nvidia/`.
 - Unprivileged `dmesg` access is restricted, so full kernel-buffer capture requires elevated privileges.

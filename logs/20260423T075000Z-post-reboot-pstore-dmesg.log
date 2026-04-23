@@ -1,0 +1,5 @@
+[20260423T075000Z] post reboot pstore and dmesg tail
+## pstore
+ls: cannot open directory '/sys/fs/pstore': Permission denied
+## console-ramoops tail
+## dmesg tail

@@ -1,0 +1,19 @@
+[20260423T075100Z] inspect latest rmmod trace logs
+## 20260423T074714Z
+[20260423T074714Z] starting live dmesg capture
+[20260423T074714Z] collecting pre-rmmod state
+[20260423T074714Z] running: rmmod nv_ov5647
+rmmod: ERROR: Module nv_ov5647 is not currently loaded
+[20260423T074714Z] rmmod rc=1
+## 20260423T074722Z
+[20260423T074722Z] starting live dmesg capture
+[20260423T074722Z] collecting pre-rmmod state
+[20260423T074722Z] running: rmmod nv_ov5647
+rmmod: ERROR: Module nv_ov5647 is not currently loaded
+[20260423T074722Z] rmmod rc=1
+## 20260423T074735Z
+[20260423T074735Z] starting live dmesg capture
+[20260423T074735Z] collecting pre-rmmod state
+[20260423T074735Z] running: rmmod nv_ov5647
+rmmod: ERROR: Module nv_ov5647 is not currently loaded
+[20260423T074735Z] rmmod rc=1

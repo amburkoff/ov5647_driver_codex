@@ -1,0 +1,65 @@
+[20260423T075400Z] diff post reboot frank-s15 docs
+diff --git a/docs/01a-clb-carrier-mapping.md b/docs/01a-clb-carrier-mapping.md
+index 9b27714..f0de2e1 100644
+--- a/docs/01a-clb-carrier-mapping.md
++++ b/docs/01a-clb-carrier-mapping.md
+@@ -18,6 +18,7 @@ This document tracks only hardware facts that are confirmed for the actual targe
+ | Physical camera population | Confirmed | User reports identical OV5647 modules inserted into both Jetson 22-pin CSI connectors |
+ | Camera flex/module marking | Confirmed | User-reported marking: `JT-ZERO-V2.0 YH` |
+ | Camera connector family | Confirmed from user physical inspection | User confirms the cameras are Raspberry Pi Zero camera modules with 22-pin connectors |
++| Alternate camera/ribbon on current route-A retest | Confirmed from user physical inspection | On 2026-04-23 the user connected another OV5647 to Jetson `cam0` with a longer ribbon marked `Frank-s15-v1.0` |
+ | Corrected carrier name | Confirmed from user physical inspection | User corrected the kit name to `CLB Developer Kit`; earlier project notes used a mistyped carrier name |
+ | Partner/vendor marking | Confirmed from user physical inspection | User reports the box says the board is from partner `makerobo` |
+ | Public certification identity | Confirmed from public FCC listing | FCC ID `2BE7C-NXCLB` lists `Hunan Chuang Le Bo Intelligent Technology Co., Ltd.` and product/model `NXCLB`; this matches the `CLB` naming pattern |
+@@ -249,6 +250,16 @@ The first corrected-MCLK route-A capture test also failed to observe CSI frame d
+ 
+ This means both route A and route C have now failed after the corrected `TEGRA234_CLK_EXTPERIPH1` binding. The current blocker should be treated as physical CSI-path validation until disproven.
+ 
++Post-reboot state on 2026-04-23 before the next manual `insmod`:
++
++- boot profile still `ov5647-dev`;
++- live DT still selects route A: `ov5647_a@36`, `serial_b`, `port-index = 1`, `lane_polarity = 6`;
++- `nv_ov5647` is not loaded;
++- `/dev/video0` is absent before manual load, as expected;
++- the user replaced the previous camera on Jetson `cam0` with another OV5647 using a longer ribbon marked `Frank-s15-v1.0`.
++
++This creates a cleaner next runtime test: same route-A overlay and same driver image, but different physical camera/ribbon hardware on the intended `cam0` connector.
++
+ ## Blocking Next Checks
+ 
+ 1. Inspect the physical carrier board silkscreen and connector labels.
+diff --git a/docs/10-results-and-status.md b/docs/10-results-and-status.md
+index aaa2d25..8f0d9a6 100644
+--- a/docs/10-results-and-status.md
++++ b/docs/10-results-and-status.md
+@@ -588,3 +588,18 @@ Update after user confirmed Raspberry Pi Zero 22-pin cameras:
+   - Raspberry Pi downstream 6.6.y OV5647 VGA table uses `0x3821 = 0x01`;
+   - the local driver previously matched the Raspberry Pi downstream value;
+ - next safe software step is to test the mainline upstream `0x3821 = 0x03` variant as a single controlled variable, rebuild only, and ask the user to perform one manual load/capture cycle.
++
++Post-reboot checkpoint on 2026-04-23:
++
++- system booted cleanly into `boot_profile=ov5647-dev`;
++- `pstore` is empty after reboot;
++- live DT still exposes route A on `cam_i2cmux/i2c@0/ov5647_a@36`;
++- `nv_ov5647` is not loaded and `/dev/video0` is absent before manual load;
++- the user replaced the previous camera on Jetson `cam0` with another OV5647 and a longer ribbon marked `Frank-s15-v1.0`;
++- attempted `run_manual_rmmod_trace.sh` returned `rmmod rc=1` because the module was not loaded, which is expected and not a fault.
++
++Next smallest safe step:
++
++- skip `rmmod`;
++- manually run one fresh `insmod` of the new `0x3821 = 0x03` diagnostic build on the new `Frank-s15-v1.0` camera/ribbon;
++- only if probe succeeds, run one traced single-frame capture.
+diff --git a/docs/11-known-issues.md b/docs/11-known-issues.md
+index 567a7dc..945172b 100644
+--- a/docs/11-known-issues.md
++++ b/docs/11-known-issues.md
+@@ -15,6 +15,7 @@
+ - The active dev overlay is now a route-A corrected-`extperiph1` candidate from the physical-connector point of view; it is logically validated by successful probe and `/dev/video0`, but not by SOF/frame delivery.
+ - The physical camera modules are present on both 22-pin connectors, but the exact mapping from physical connector to route `A` or `C` is still unverified.
+ - The visible camera marking `JT-ZERO-V2.0 YH` and user confirmation identify the modules as Raspberry Pi Zero-style 22-pin OV5647 cameras, but the exact FFC/adaptor topology is not yet documented.
++- A new route-A retest now uses a different OV5647 on Jetson `cam0` with longer ribbon marking `Frank-s15-v1.0`; this changes the physical camera/ribbon variable without changing the current route-A overlay.
+ - The previous local 640x480 mode table used `0x3821 = 0x01`; mainline upstream Linux OV5647 VGA mode uses `0x3821 = 0x03`, while Raspberry Pi downstream 6.6.y uses `0x01`. Source now stages the mainline `0x03` variant as a controlled diagnostic and needs manual runtime validation.
+ - Local `nvidia-oot` headers are present, but full local sample sensor source files are not installed under `/usr/src/nvidia/`.
+ - Unprivileged `dmesg` access is restricted, so full kernel-buffer capture requires elevated privileges.

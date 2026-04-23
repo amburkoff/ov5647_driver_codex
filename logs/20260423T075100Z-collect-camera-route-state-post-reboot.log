@@ -1,0 +1,8 @@
+[20260423T075100Z] collect camera route state after reboot
+[2026-04-23T07:50:23Z] Starting read-only camera route state collection
+[2026-04-23T07:50:23Z] Repository root: /home/cam/ov5647_driver_codex
+[2026-04-23T07:50:23Z] Boot profile token: ov5647-dev
+[2026-04-23T07:50:23Z] State directory: /home/cam/ov5647_driver_codex/artifacts/camera-route-state/20260423T075023Z
+[2026-04-23T07:50:24Z] Camera route state collection finished
+[2026-04-23T07:50:24Z] Saved state under /home/cam/ov5647_driver_codex/artifacts/camera-route-state/20260423T075023Z
+[2026-04-23T07:50:24Z] No module load, unload, streaming, or reboot was performed
