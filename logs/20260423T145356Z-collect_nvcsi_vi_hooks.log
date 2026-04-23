@@ -1,0 +1,6 @@
+[2026-04-23T14:53:56Z] Collecting safe NVCSI/VI hook map
+[2026-04-23T14:53:56Z] Boot profile token: ov5647-dev
+[2026-04-23T14:53:56Z] Output dir: /home/cam/ov5647_driver_codex/artifacts/nvcsi-vi-hooks/20260423T145356Z
+[2026-04-23T14:53:56Z] No live debugfs regset files will be read
+[2026-04-23T14:53:56Z] Safe NVCSI/VI hook collection finished
+[2026-04-23T14:53:56Z] Artifacts saved under /home/cam/ov5647_driver_codex/artifacts/nvcsi-vi-hooks/20260423T145356Z

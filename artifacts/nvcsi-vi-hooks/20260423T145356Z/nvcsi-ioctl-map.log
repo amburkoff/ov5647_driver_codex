@@ -1,0 +1,16 @@
+[2026-04-23T14:53:56Z] CMD: bash -lc 
+	grep -nE 'NVHOST_NVCSI_IOCTL_DESKEW_SETUP|NVHOST_NVCSI_IOCTL_DESKEW_APPLY|nvcsi_ioctl|deskew' '/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/video/tegra/host/nvcsi/nvcsi.c'
+
+20:#include <uapi/linux/nvhost_nvcsi_ioctl.h>
+32:#include "deskew.h"
+55:	struct nvcsi_deskew_context deskew_ctx;
+81:static long nvcsi_ioctl(struct file *file, unsigned int cmd,
+90:	case NVHOST_NVCSI_IOCTL_DESKEW_SETUP: {
+93:		dev_dbg(mc_csi->dev, "ioctl: deskew_setup\n");
+94:		priv->deskew_ctx.deskew_lanes = get_user(active_lanes,
+96:		ret = nvcsi_deskew_setup(&priv->deskew_ctx);
+99:	case NVHOST_NVCSI_IOCTL_DESKEW_APPLY: {
+100:		dev_dbg(mc_csi->dev, "ioctl: deskew_apply\n");
+101:		ret = nvcsi_deskew_apply_check(&priv->deskew_ctx);
+138:	.unlocked_ioctl = nvcsi_ioctl,
+140:	.compat_ioctl = nvcsi_ioctl,

@@ -1,0 +1,123 @@
+[2026-04-23T14:53:56Z] CMD: bash -lc 
+	grep -nE 'debugfs_create_(dir|file|regset32)|coverage|version|reboot|ping|sm-ping|log-level|forced-reset-restore|irqstat|memstat|regs-common|regs-region' '/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/platform/tegra/rtcpu/rtcpu-debug.c'
+
+60:struct camrtc_falcon_coverage {
+86:	struct camrtc_falcon_coverage vi_falc_coverage;
+87:	struct camrtc_falcon_coverage isp_falc_coverage;
+164:static int camrtc_show_version(struct seq_file *file, void *data)
+168:	char version[TEGRA_CAMRTC_VERSION_LEN];
+170:	tegra_camrtc_print_version(rce_dev, version, sizeof(version));
+172:	seq_puts(file, version);
+178:DEFINE_SEQ_FOPS(camrtc_dbgfs_fops_version, camrtc_show_version);
+180:static int camrtc_show_reboot(struct seq_file *file, void *data)
+191:	ret = tegra_camrtc_reboot(rce_dev);
+202:DEFINE_SEQ_FOPS(camrtc_dbgfs_fops_reboot, camrtc_show_reboot);
+341:static int camrtc_show_ping(struct seq_file *file, void *data)
+352:	req.data.ping_data.ts_req = sent;
+359:	tsc = resp.data.ping_data.ts_resp;
+372:		(int)sizeof(resp.data.ping_data.data),
+373:		(char *)resp.data.ping_data.data);
+378:DEFINE_SEQ_FOPS(camrtc_dbgfs_fops_ping, camrtc_show_ping);
+380:static int camrtc_show_sm_ping(struct seq_file *file, void *data)
+393:	err = tegra_camrtc_ping(camrtc, (uint32_t)sent & 0xffffffU, 0);
+413:DEFINE_SEQ_FOPS(camrtc_dbgfs_fops_sm_ping, camrtc_show_sm_ping);
+514:static int camrtc_dbgfs_show_memstat(struct seq_file *file, void *data)
+542:DEFINE_SEQ_FOPS(camrtc_dbgfs_fops_memstat, camrtc_dbgfs_show_memstat);
+544:static int camrtc_dbgfs_show_irqstat(struct seq_file *file, void *data)
+586:DEFINE_SEQ_FOPS(camrtc_dbgfs_fops_irqstat, camrtc_dbgfs_show_irqstat);
+688:			if (dma_mapping_error(mem_dev,  mem->iova)) {
+790:			dev_info(&ch->dev, "rebooting after a failed test run");
+791:			(void)tegra_camrtc_reboot(camrtc_get_device(ch));
+874:		if (dma_mapping_error(dev, *return_iova)) {
+982:			if (dma_mapping_error(mem_dev, iova)) {
+1103:	/* Reset mapping info, memory can still be used by cpu tests */
+1177:static int camrtc_coverage_msg(struct camrtc_falcon_coverage *cov,
+1184:			.coverage_data = {
+1202:	} else if (resp->data.coverage_stat.full == 1) {
+1209:static bool camrtc_coverage_is_supported(struct camrtc_falcon_coverage *cov)
+1213:	(void)camrtc_coverage_msg(cov, &resp, false, false);
+1218:static ssize_t camrtc_read_falcon_coverage(struct file *file,
+1221:	struct camrtc_falcon_coverage *cov = file->f_inode->i_private;
+1233:		ret = camrtc_coverage_msg(cov, &resp, true, false);
+1238:		cov->mem.used = resp.data.coverage_stat.bytes_written;
+1250:static ssize_t camrtc_write_falcon_coverage(struct file *file,
+1253:	struct camrtc_falcon_coverage *cov = file->f_inode->i_private;
+1259:		if (camrtc_coverage_msg(cov, &resp, false, true))
+1269:static const struct file_operations camrtc_dbgfs_fops_falcon_coverage = {
+1270:	.read = camrtc_read_falcon_coverage,
+1271:	.write = camrtc_write_falcon_coverage,
+1274:static int camrtc_falcon_coverage_enable(struct camrtc_falcon_coverage *cov)
+1285:	if (!camrtc_coverage_is_supported(cov)) {
+1296:			"Failed to allocate Falcon 0x%02x coverage memory!\n",
+1307:			"Failed to map Falcon 0x%02x coverage memory\n",
+1312:	/* Keep rtcpu alive when falcon coverage is in use. */
+1320:	camrtc_coverage_msg(cov, &resp, false, false);
+1322:	dev_dbg(&ch->dev, "Falcon 0x%02x code coverage enabled.\n",
+1337:static void camrtc_falcon_coverage_disable(struct camrtc_falcon_coverage *cov)
+1349:	camrtc_coverage_msg(cov, &resp, false, false);
+1366:static int camrtc_dbgfs_show_coverage_enable(void *data, u64 *val)
+1368:	struct camrtc_falcon_coverage *cov = data;
+1375:static int camrtc_dbgfs_store_coverage_enable(void *data, u64 val)
+1377:	struct camrtc_falcon_coverage *cov = data;
+1383:			ret = camrtc_falcon_coverage_enable(cov);
+1385:			camrtc_falcon_coverage_disable(cov);
+1391:DEFINE_SIMPLE_ATTRIBUTE(camrtc_dbgfs_fops_coverage_enable,
+1392:			camrtc_dbgfs_show_coverage_enable,
+1393:			camrtc_dbgfs_store_coverage_enable,
+1615:	debugfs_create_regset32("regs-common", 0444, dir, &ars->common);
+1620:		snprintf(name, sizeof(name), "regs-region%u", i);
+1626:		debugfs_create_regset32(name, 0444, dir, &ars->region[i]);
+1636:	struct dentry *coverage;
+1645:	crd->root = dir = debugfs_create_dir(name, NULL);
+1649:	coverage = debugfs_create_dir("coverage", dir);
+1650:	if (coverage == NULL)
+1652:	vi = debugfs_create_dir("vi", coverage);
+1655:	isp = debugfs_create_dir("isp", coverage);
+1658:	if (!debugfs_create_file("data", 0600, vi,
+1659:			&crd->vi_falc_coverage,
+1660:			&camrtc_dbgfs_fops_falcon_coverage))
+1662:	if (!debugfs_create_file("enable", 0600, vi,
+1663:			&crd->vi_falc_coverage,
+1664:			&camrtc_dbgfs_fops_coverage_enable))
+1666:	if (!debugfs_create_file("data", 0600, isp,
+1667:			&crd->isp_falc_coverage,
+1668:			&camrtc_dbgfs_fops_falcon_coverage))
+1670:	if (!debugfs_create_file("enable", 0600, isp,
+1671:			&crd->isp_falc_coverage,
+1672:			&camrtc_dbgfs_fops_coverage_enable))
+1675:	if (!debugfs_create_file("version", 0444, dir, ch,
+1676:			&camrtc_dbgfs_fops_version))
+1678:	if (!debugfs_create_file("reboot", 0400, dir, ch,
+1679:			&camrtc_dbgfs_fops_reboot))
+1681:	if (!debugfs_create_file("ping", 0444, dir, ch,
+1682:			&camrtc_dbgfs_fops_ping))
+1684:	if (!debugfs_create_file("sm-ping", 0444, dir, ch,
+1685:			&camrtc_dbgfs_fops_sm_ping))
+1687:	if (!debugfs_create_file("log-level", 0644, dir, ch,
+1694:	if (!debugfs_create_file("forced-reset-restore", 0400, dir, ch,
+1698:	if (!debugfs_create_file("irqstat", 0444, dir, ch,
+1699:			&camrtc_dbgfs_fops_irqstat))
+1701:	if (!debugfs_create_file("memstat", 0444, dir, ch,
+1702:			&camrtc_dbgfs_fops_memstat))
+1705:	dir = debugfs_create_dir("mods", crd->root);
+1718:	if (!debugfs_create_file("result", 0400, dir, ch,
+1722:	dir = debugfs_create_dir("rtos", crd->root);
+1725:	if (!debugfs_create_file("state", 0444, dir, ch,
+1729:	dir = debugfs_create_dir("test", crd->root);
+1732:	if (!debugfs_create_file("available", 0444, dir, ch,
+1735:	if (!debugfs_create_file("case", 0644, dir, ch,
+1738:	if (!debugfs_create_file("result", 0400, dir, ch,
+1750:		if (!debugfs_create_file(name, 0644, dir,
+1763:		dir = debugfs_create_dir(ast_name, crd->root);
+1774:		if (!debugfs_create_file("all", 0444, dir, ast_nodes,
+1789:			if (!debugfs_create_file(name, 0444, dir, ast_nodes,
+1863:	crd->vi_falc_coverage.id = CAMRTC_DBG_FALCON_ID_VI;
+1864:	crd->vi_falc_coverage.mem_dev = camrtc_dbgfs_memory_dev(crd);
+1865:	crd->vi_falc_coverage.falcon_dev = crd->mem_devices[1];
+1866:	crd->vi_falc_coverage.ch = ch;
+1868:	crd->isp_falc_coverage.id = CAMRTC_DBG_FALCON_ID_ISP;
+1869:	crd->isp_falc_coverage.mem_dev = crd->mem_devices[0];
+1870:	crd->isp_falc_coverage.falcon_dev = crd->mem_devices[2];
+1871:	crd->isp_falc_coverage.ch = ch;
+1903:	camrtc_falcon_coverage_disable(&crd->vi_falc_coverage);
+1904:	camrtc_falcon_coverage_disable(&crd->isp_falc_coverage);

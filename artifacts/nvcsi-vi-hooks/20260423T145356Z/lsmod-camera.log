@@ -1,0 +1,22 @@
+[2026-04-23T14:53:56Z] CMD: bash -lc lsmod | grep -E 'nvhost_(nvcsi|vi5|capture)|tegra_camera|capture_ivc|ivc_bus|hsp_mailbox' || true
+nvhost_vi5             20480  0
+nvhost_nvcsi_t194      16384  0
+tegra_camera          221184  3 nvhost_isp5,nvhost_nvcsi_t194,nvhost_vi5
+v4l2_dv_timings        36864  1 tegra_camera
+nvhost_nvcsi           24576  1 tegra_camera
+tegra_camera_platform    24576  4 nvhost_isp5,nvhost_nvcsi_t194,tegra_camera,nvhost_vi5
+capture_ivc            28672  1 tegra_camera
+tegra_camera_rtcpu    176128  2 capture_ivc,tegra_camera
+ivc_bus                24576  2 capture_ivc,tegra_camera_rtcpu
+hsp_mailbox_client     20480  2 ivc_bus,tegra_camera_rtcpu
+ivc_ext                20480  2 ivc_bus,capture_ivc
+v4l2_fwnode            20480  1 tegra_camera
+v4l2_async             20480  2 v4l2_fwnode,tegra_camera
+videobuf2_dma_contig    24576  1 tegra_camera
+videobuf2_v4l2         28672  1 tegra_camera
+videobuf2_common       61440  4 videobuf2_dma_contig,videobuf2_v4l2,tegra_camera,videobuf2_memops
+videodev              249856  4 v4l2_async,videobuf2_v4l2,tegra_camera,videobuf2_common
+mc                     57344  4 videodev,videobuf2_v4l2,tegra_camera,videobuf2_common
+nvhost_capture         20480  2 nvhost_isp5,nvhost_vi5
+host1x_nvhost          40960  10 nvhost_isp5,nvhost_nvcsi_t194,nvidia,tegra_camera,nvhost_nvdla,nvhost_capture,nvhost_nvcsi,nvhost_pva,nvhost_vi5,nvidia_modeset
+mc_utils               16384  3 nvidia,nvgpu,tegra_camera_platform

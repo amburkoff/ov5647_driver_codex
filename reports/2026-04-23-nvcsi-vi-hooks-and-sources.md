@@ -106,6 +106,16 @@ including debugfs files/directories for:
 - `coverage/isp`
 - RTOS/test-related control files
 
+`tegra_rtcpu_trace` debugfs support exists separately in source:
+
+- `drivers/platform/tegra/rtcpu/tegra-rtcpu-trace.c`
+
+with source-created files:
+
+- `tegra_rtcpu_trace/stats`
+- `tegra_rtcpu_trace/last_exception`
+- `tegra_rtcpu_trace/last_event`
+
 ## Important Runtime Hazard Found
 
 After probing the debug path, the Jetson rebooted and pstore shows the reason:
@@ -128,6 +138,17 @@ Practical consequence:
 - do **not** read `VI/NVCSI/camrtc` debugfs regset files casually on the live target;
 - prefer source inspection and existing RTCPU tracepoints first.
 
+Current safe/unsafe bias:
+
+- likely safer, but still not yet runtime-certified:
+  - `tegra_rtcpu_trace/stats`
+  - `tegra_rtcpu_trace/last_exception`
+  - `tegra_rtcpu_trace/last_event`
+- currently unsafe on this image unless proven otherwise:
+  - `vi5` `debugfs_create_regset32("ch0", ...)`
+  - `camrtc` `debugfs_create_regset32("regs-common", ...)`
+  - `camrtc` `debugfs_create_regset32("regs-region*", ...)`
+
 ## Best Next Receiver-Side Step
 
 The safest next step is now:
@@ -137,3 +158,11 @@ The safest next step is now:
 2. use only tracepoint-based collection first;
 3. avoid direct reads of `debugfs regset32` nodes until a safe subset is
    identified.
+
+For reproducibility, the repository now includes:
+
+- `scripts/collect_nvcsi_vi_hooks.sh`
+
+This helper collects the current hook map from local modules, NVIDIA headers,
+and the sparse-checked-out official `linux-nv-oot-r36.5` sources without reading
+live `debugfs regset32` files.

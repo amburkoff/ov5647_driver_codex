@@ -1,0 +1,58 @@
+[2026-04-23T14:53:56Z] CMD: bash -lc 
+	printf 'OOT tree: %s\n' '/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5'
+	if [[ -d '/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/.git' ]]; then
+		git -C '/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5' rev-parse --abbrev-ref HEAD
+		git -C '/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5' rev-parse HEAD
+	fi
+	printf '\n'
+	find '/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers' -maxdepth 5 \( -path '*/camera/*' -o -path '*/nvcsi/*' -o -path '*/vi/*' -o -path '*/rtcpu/*' \) | sort
+
+OOT tree: /home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5
+l4t/l4t-r36.5
+b05da1f94ae5a2dbfe928ef7ab387035a2b77a20
+
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/media/platform/tegra/camera/Makefile
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/media/platform/tegra/camera/camera_common.c
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/media/platform/tegra/camera/camera_gpio.c
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/media/platform/tegra/camera/camera_gpio.h
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/media/platform/tegra/camera/camera_version_utils.c
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/media/platform/tegra/camera/csi
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/media/platform/tegra/camera/fusa-capture
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/media/platform/tegra/camera/nvcamera_log.c
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/media/platform/tegra/camera/nvcamera_log.h
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/media/platform/tegra/camera/nvcsi
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/media/platform/tegra/camera/regmap_util.c
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/media/platform/tegra/camera/sensor_common.c
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/media/platform/tegra/camera/tegracam_core.c
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/media/platform/tegra/camera/tegracam_ctrls.c
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/media/platform/tegra/camera/tegracam_utils.c
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/media/platform/tegra/camera/tegracam_v4l2.c
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/media/platform/tegra/camera/tests
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/media/platform/tegra/camera/vi
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/platform/tegra/rtcpu/Makefile
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/platform/tegra/rtcpu/camchar.c
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/platform/tegra/rtcpu/camera-diagnostics.c
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/platform/tegra/rtcpu/capture-ivc-priv.h
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/platform/tegra/rtcpu/capture-ivc.c
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/platform/tegra/rtcpu/clk-group.c
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/platform/tegra/rtcpu/clk-group.h
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/platform/tegra/rtcpu/device-group.c
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/platform/tegra/rtcpu/device-group.h
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/platform/tegra/rtcpu/hsp-mailbox-client.c
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/platform/tegra/rtcpu/ivc-bus.c
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/platform/tegra/rtcpu/reset-group.c
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/platform/tegra/rtcpu/reset-group.h
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/platform/tegra/rtcpu/rtcpu-debug.c
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/platform/tegra/rtcpu/rtcpu-monitor.c
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/platform/tegra/rtcpu/tegra-camera-rtcpu-base.c
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/platform/tegra/rtcpu/tegra-rtcpu-trace.c
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/video/tegra/host/nvcsi/Makefile
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/video/tegra/host/nvcsi/deskew.c
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/video/tegra/host/nvcsi/deskew.h
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/video/tegra/host/nvcsi/nvcsi-t194.c
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/video/tegra/host/nvcsi/nvcsi-t194.h
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/video/tegra/host/nvcsi/nvcsi.c
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/video/tegra/host/nvcsi/nvcsi.h
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/video/tegra/host/vi/Makefile
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/video/tegra/host/vi/vi5.c
+/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/video/tegra/host/vi/vi5.h

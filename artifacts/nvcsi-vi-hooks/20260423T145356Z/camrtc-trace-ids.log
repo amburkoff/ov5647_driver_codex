@@ -1,0 +1,10 @@
+[2026-04-23T14:53:56Z] CMD: bash -lc 
+	grep -nE 'camrtc_trace_vinotify_error|camrtc_trace_vi_frame_begin|camrtc_trace_vi_frame_end|camrtc_trace_nvcsi_intr|camrtc_trace_capture_event_sof|camrtc_trace_capture_event_eof|camrtc_trace_capture_event_error' '/usr/src/nvidia/nvidia-oot/include/soc/tegra/camrtc-trace.h'
+
+384:#define camrtc_trace_vinotify_error \
+391:#define camrtc_trace_vi_frame_begin \
+393:#define camrtc_trace_vi_frame_end \
+411:#define camrtc_trace_nvcsi_intr \
+418:#define camrtc_trace_capture_event_sof \
+420:#define camrtc_trace_capture_event_eof \
+422:#define camrtc_trace_capture_event_error \

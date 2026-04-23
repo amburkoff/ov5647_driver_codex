@@ -1,0 +1,27 @@
+[2026-04-23T14:53:56Z] CMD: bash -lc 
+	grep -nE 'debugfs_create_(dir|file)|stats|last_exception|last_event' '/home/cam/ov5647_driver_codex/tools/vendor/linux-nv-oot-r36.5/drivers/platform/tegra/rtcpu/tegra-rtcpu-trace.c'
+
+86:	char last_exception_str[EXCEPTION_STR_LENGTH];
+87:	struct camrtc_event_struct copy_last_event;
+223:	char *buf = tracer->last_exception_str;
+224:	size_t buf_size = sizeof(tracer->last_exception_str);
+1187:	struct camrtc_event_struct *event, *last_event;
+1212:		last_event = event;
+1221:	tracer->copy_last_event = *last_event;
+1270:static int rtcpu_trace_debugfs_stats_read(
+1281:DEFINE_SEQ_FOPS(rtcpu_trace_debugfs_stats, rtcpu_trace_debugfs_stats_read);
+1283:static int rtcpu_trace_debugfs_last_exception_read(
+1288:	seq_puts(file, tracer->last_exception_str);
+1293:DEFINE_SEQ_FOPS(rtcpu_trace_debugfs_last_exception,
+1294:	rtcpu_trace_debugfs_last_exception_read);
+1296:static int rtcpu_trace_debugfs_last_event_read(
+1300:	struct camrtc_event_struct *event = &tracer->copy_last_event;
+1341:DEFINE_SEQ_FOPS(rtcpu_trace_debugfs_last_event,
+1342:	rtcpu_trace_debugfs_last_event_read);
+1353:	tracer->debugfs_root = debugfs_create_dir("tegra_rtcpu_trace", NULL);
+1357:	entry = debugfs_create_file("stats", S_IRUGO,
+1358:	    tracer->debugfs_root, tracer, &rtcpu_trace_debugfs_stats);
+1362:	entry = debugfs_create_file("last_exception", S_IRUGO,
+1363:	    tracer->debugfs_root, tracer, &rtcpu_trace_debugfs_last_exception);
+1367:	entry = debugfs_create_file("last_event", S_IRUGO,
+1368:	    tracer->debugfs_root, tracer, &rtcpu_trace_debugfs_last_event);

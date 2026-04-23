@@ -116,3 +116,22 @@ The current safe bias is:
 - prefer RTCPU tracepoints and source inspection first;
 - avoid direct reads of `VI/NVCSI/camrtc` register-dump files until a safe node
   subset is identified from source.
+
+## Safe Hook Inventory
+
+Use this helper to collect the current receiver-side hook map from safe sources
+only:
+
+```bash
+/home/cam/ov5647_driver_codex/scripts/collect_nvcsi_vi_hooks.sh
+```
+
+It collects:
+
+- loaded camera/receiver modules;
+- official local header definitions for `camrtc` trace IDs;
+- sparse-checked-out `linux-nv-oot-r36.5` source paths for `nvcsi`, `vi`, and `rtcpu`;
+- source-created debugfs node names from `rtcpu-debug.c` and `vi5.c`;
+- the tracepoint list used by `run_manual_single_frame_rtcpu_trace.sh`.
+
+It does **not** read live vendor `debugfs regset32` files.

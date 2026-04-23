@@ -1,0 +1,7 @@
+[2026-04-23T14:53:56Z] CMD: bash -lc find /lib/modules/$(uname -r) -type f \( -name 'nvhost-nvcsi*.ko' -o -name 'nvhost-vi5.ko' -o -name 'nvhost-capture.ko' -o -name 'tegra-camera-rtcpu.ko' -o -name 'capture-ivc.ko' \) | sort
+/lib/modules/5.15.185-tegra/updates/drivers/platform/tegra/rtcpu/capture-ivc.ko
+/lib/modules/5.15.185-tegra/updates/drivers/platform/tegra/rtcpu/tegra-camera-rtcpu.ko
+/lib/modules/5.15.185-tegra/updates/drivers/video/tegra/host/capture/nvhost-capture.ko
+/lib/modules/5.15.185-tegra/updates/drivers/video/tegra/host/nvcsi/nvhost-nvcsi-t194.ko
+/lib/modules/5.15.185-tegra/updates/drivers/video/tegra/host/nvcsi/nvhost-nvcsi.ko
+/lib/modules/5.15.185-tegra/updates/drivers/video/tegra/host/vi/nvhost-vi5.ko
