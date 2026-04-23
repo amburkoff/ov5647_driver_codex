@@ -1,0 +1,3 @@
+ .../2026-04-23-route-c-reset25-runtime-timeout.md  | 62 ++++++++++++++++++++++
+ scripts/run_manual_insmod_diag.sh                  | 11 +++-
+ 2 files changed, 72 insertions(+), 1 deletion(-)

@@ -1,0 +1,97 @@
+diff --git a/reports/2026-04-23-route-c-reset25-runtime-timeout.md b/reports/2026-04-23-route-c-reset25-runtime-timeout.md
+new file mode 100644
+index 0000000..8a960fe
+--- /dev/null
++++ b/reports/2026-04-23-route-c-reset25-runtime-timeout.md
+@@ -0,0 +1,62 @@
++# Route C Reset25 Runtime Timeout
++
++Date: 2026-04-23
++
++## What Was Verified
++
++After reboot, live DT confirmed the new branch was active:
++
++- `boot_profile=ov5647-dev`
++- node `ov5647_c@36`
++- `serial_c`
++- `cil_settletime = 0`
++- `mclk_khz = 25000`
++- `discontinuous_clk = yes`
++- `reset-gpios` present
++- no `pwdn-gpios`
++
++Manual runtime test:
++
++```bash
++sudo /home/cam/ov5647_driver_codex/scripts/run_manual_insmod_diag.sh full-delay-dump
++sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_rtcpu_trace.sh
++```
++
++## What Changed
++
++- `parse_dt` now reports:
++  - `reset_gpio=486`
++  - `pwdn_gpio=-1`
++- driver logs show:
++  - `ov5647_apply_pwdn_gpio: ... no pwdn GPIO`
++- this confirms the reset-only semantics branch is really active.
++
++## What Did Not Change
++
++- probe succeeds
++- chip-id `0x5647` is read
++- `VIDIOC_STREAMON` returns success
++- raw output stays `0 bytes`
++- VI still logs repeated `uncorr_err: request timed out after 2500 ms`
++- RTCPU/NVCSI trace still shows no SOF/EOF or receiver interrupt events
++
++## Important Caveat
++
++This was not yet a full electrical `25 MHz` test.
++
++Although live DT says `mclk_khz = 25000`, the runtime log still shows:
++
++- `mclk enabled rate=24000000`
++
++So the next narrow follow-up is:
++
++- same route-C reset-only branch
++- but force `mclk_override_hz=25000000`
++
++## Interpretation
++
++The route-C reset-only branch itself did not restore SOF.
++
++But it did reveal one remaining software-only gap:
++
++- the branch has not yet been tested with a real forced `25 MHz` MCLK at runtime.
+diff --git a/scripts/run_manual_insmod_diag.sh b/scripts/run_manual_insmod_diag.sh
+index 93aa226..978bd90 100755
+--- a/scripts/run_manual_insmod_diag.sh
++++ b/scripts/run_manual_insmod_diag.sh
+@@ -28,6 +28,15 @@ case "${PROFILE}" in
+ 			unload_marker_delay_ms=500
+ 		)
+ 		;;
++	full-delay-dump-mclk25)
++		PARAMS=(
++			register_i2c_driver=1
++			allow_hw_probe=1
++			dump_stream_regs=1
++			mclk_override_hz=25000000
++			unload_marker_delay_ms=500
++		)
++		;;
+ 	full-delay-dump-mclk24-testpat)
+ 		PARAMS=(
+ 			register_i2c_driver=1
+@@ -103,7 +112,7 @@ case "${PROFILE}" in
+ 		PARAMS=(register_i2c_driver=1 allow_hw_probe=1 split_v4l2_unregister=1 unload_marker_delay_ms=500)
+ 		;;
+ 	*)
+-		echo "usage: $0 [full-delay|full-delay-dump|full-delay-dump-mclk24|full-delay-dump-mclk24-testpat|full-delay-dump-mclk24-pwdn-inverted|full-delay-dump-mclk24-pwdn-ignore|full-delay-dump-mclk24-pwdn-ignore-keep|full-delay-dump-mclk24-pwdn-inverted-keep|full-delay-dump-contclk|full-delay-dump-contclk-mclk24|skip-register|skip-unregister|split-unregister]" \
++		echo "usage: $0 [full-delay|full-delay-dump|full-delay-dump-mclk24|full-delay-dump-mclk25|full-delay-dump-mclk24-testpat|full-delay-dump-mclk24-pwdn-inverted|full-delay-dump-mclk24-pwdn-ignore|full-delay-dump-mclk24-pwdn-ignore-keep|full-delay-dump-mclk24-pwdn-inverted-keep|full-delay-dump-contclk|full-delay-dump-contclk-mclk24|skip-register|skip-unregister|split-unregister]" \
+ 			>&2
+ 		exit 2
+ 		;;

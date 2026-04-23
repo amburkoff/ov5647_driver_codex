@@ -28,6 +28,15 @@ case "${PROFILE}" in
 			unload_marker_delay_ms=500
 		)
 		;;
+	full-delay-dump-mclk25)
+		PARAMS=(
+			register_i2c_driver=1
+			allow_hw_probe=1
+			dump_stream_regs=1
+			mclk_override_hz=25000000
+			unload_marker_delay_ms=500
+		)
+		;;
 	full-delay-dump-mclk24-testpat)
 		PARAMS=(
 			register_i2c_driver=1
@@ -103,7 +112,7 @@ case "${PROFILE}" in
 		PARAMS=(register_i2c_driver=1 allow_hw_probe=1 split_v4l2_unregister=1 unload_marker_delay_ms=500)
 		;;
 	*)
-		echo "usage: $0 [full-delay|full-delay-dump|full-delay-dump-mclk24|full-delay-dump-mclk24-testpat|full-delay-dump-mclk24-pwdn-inverted|full-delay-dump-mclk24-pwdn-ignore|full-delay-dump-mclk24-pwdn-ignore-keep|full-delay-dump-mclk24-pwdn-inverted-keep|full-delay-dump-contclk|full-delay-dump-contclk-mclk24|skip-register|skip-unregister|split-unregister]" \
+		echo "usage: $0 [full-delay|full-delay-dump|full-delay-dump-mclk24|full-delay-dump-mclk25|full-delay-dump-mclk24-testpat|full-delay-dump-mclk24-pwdn-inverted|full-delay-dump-mclk24-pwdn-ignore|full-delay-dump-mclk24-pwdn-ignore-keep|full-delay-dump-mclk24-pwdn-inverted-keep|full-delay-dump-contclk|full-delay-dump-contclk-mclk24|skip-register|skip-unregister|split-unregister]" \
 			>&2
 		exit 2
 		;;
