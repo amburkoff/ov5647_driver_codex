@@ -1,0 +1,2 @@
+[2026-04-23T08:50:21Z] CMD: bash -lc if [ -d /sys/module/nv_ov5647/parameters ]; then for f in /sys/module/nv_ov5647/parameters/*; do printf "%s=" "$(basename "$f")"; cat "$f"; done; else echo "nv_ov5647 not loaded"; fi
+nv_ov5647 not loaded

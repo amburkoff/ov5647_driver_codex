@@ -1,0 +1,7 @@
+# new post-reboot logs
+logs/20260423T085200Z-collect-camera-route-state-route-a-lanepol0.log
+logs/20260423T085200Z-post-reboot-basic-state-route-a-lanepol0.log
+logs/20260423T085200Z-post-reboot-pstore-route-a-lanepol0.log
+logs/20260423T085300Z-post-reboot-dmesg-tail-route-a-lanepol0.log
+logs/20260423T085300Z-post-reboot-journal-k-tail-route-a-lanepol0.log
+logs/20260423T085300Z-post-reboot-route-summary-route-a-lanepol0.log

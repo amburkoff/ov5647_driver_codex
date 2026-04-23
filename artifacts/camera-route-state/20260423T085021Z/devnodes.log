@@ -1,0 +1,4 @@
+[2026-04-23T08:50:21Z] CMD: bash -lc ls -l /dev/media* /dev/video* /dev/v4l-subdev* 2>&1 || true
+ls: cannot access '/dev/video*': No such file or directory
+ls: cannot access '/dev/v4l-subdev*': No such file or directory
+crw-rw----+ 1 root video 503, 0 Aug 26  2025 /dev/media0

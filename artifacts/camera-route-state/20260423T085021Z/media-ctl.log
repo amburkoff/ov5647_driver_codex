@@ -1,0 +1,18 @@
+[2026-04-23T08:50:21Z] CMD: bash -lc media-ctl -p 2>&1 || true
+Media controller API version 5.15.185
+
+Media device information
+------------------------
+driver          tegra-camrtc-ca
+model           NVIDIA Tegra Video Input Device
+serial          
+bus info        
+hw revision     0x3
+driver version  5.15.185
+
+Device topology
+- entity 1: 13e00000.host1x:nvcsi@15a00000- (2 pads, 0 link)
+            type V4L2 subdev subtype Unknown flags 0
+	pad0: Sink
+	pad1: Source
+

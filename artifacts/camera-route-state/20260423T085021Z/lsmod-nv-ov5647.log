@@ -1,0 +1,2 @@
+[2026-04-23T08:50:21Z] CMD: bash -lc lsmod | grep -E '^nv_ov5647|^Module' || true
+Module                  Size  Used by

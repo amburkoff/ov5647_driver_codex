@@ -1,0 +1,15 @@
+# new post-reboot artifacts
+artifacts/camera-route-state/20260423T085021Z/cmdline.log
+artifacts/camera-route-state/20260423T085021Z/devnodes.log
+artifacts/camera-route-state/20260423T085021Z/dtc.stderr.log
+artifacts/camera-route-state/20260423T085021Z/extlinux.conf
+artifacts/camera-route-state/20260423T085021Z/git-status.log
+artifacts/camera-route-state/20260423T085021Z/i2c-buses.log
+artifacts/camera-route-state/20260423T085021Z/live-device-tree.dts
+artifacts/camera-route-state/20260423T085021Z/live-dt-ov5647-route-summary.log
+artifacts/camera-route-state/20260423T085021Z/lsmod-nv-ov5647.log
+artifacts/camera-route-state/20260423T085021Z/media-ctl.log
+artifacts/camera-route-state/20260423T085021Z/module-params.log
+artifacts/camera-route-state/20260423T085021Z/nv_tegra_release.log
+artifacts/camera-route-state/20260423T085021Z/uname.log
+artifacts/camera-route-state/20260423T085021Z/v4l2-list-devices.log

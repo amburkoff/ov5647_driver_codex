@@ -648,3 +648,24 @@ Next staged DT step:
 - build and stage `patches/ov5647-p3768-port-a-lanepol0-probe.dts`;
 - dev profile should point at `/boot/ov5647-p3768-port-a-lanepol0.dtbo`;
 - reboot is required before this overlay can be tested.
+
+Route-A lane-polarity-0 post-reboot checkpoint:
+
+- user rebooted after staging `ov5647-dev` with `/boot/ov5647-p3768-port-a-lanepol0.dtbo`;
+- `/proc/cmdline` confirms `boot_profile=ov5647-dev`;
+- `pstore` is empty after reboot;
+- `nv_ov5647` is not auto-loaded and `/dev/video0` is absent before manual load, which is expected for this safe development loop;
+- live DT now confirms the staged one-variable change:
+  - `cam_i2cmux/i2c@0/ov5647_a@36`;
+  - `tegra_sinterface = "serial_b"`;
+  - `port-index = 1`;
+  - `lane_polarity = 0`;
+  - `discontinuous_clk = "yes"`;
+  - `clocks = <&bpmp 0x24>`.
+
+Next smallest safe step:
+
+- keep the runtime side identical to the last matched non-continuous route-A test;
+- do not run `rmmod` because the module is not loaded after reboot;
+- manually run one `insmod` with `full-delay-dump-mclk24`;
+- only if probe succeeds, run one RTCPU/NVCSI traced single-frame capture.

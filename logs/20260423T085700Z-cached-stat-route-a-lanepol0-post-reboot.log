@@ -1,0 +1,26 @@
+ .../20260423T085021Z/cmdline.log                   |     2 +
+ .../20260423T085021Z/devnodes.log                  |     4 +
+ .../20260423T085021Z/dtc.stderr.log                |  1384 +++
+ .../20260423T085021Z/extlinux.conf                 |    19 +
+ .../20260423T085021Z/git-status.log                |     2 +
+ .../20260423T085021Z/i2c-buses.log                 |     9 +
+ .../20260423T085021Z/live-device-tree.dts          | 11807 +++++++++++++++++++
+ .../live-dt-ov5647-route-summary.log               |   111 +
+ .../20260423T085021Z/lsmod-nv-ov5647.log           |     2 +
+ .../20260423T085021Z/media-ctl.log                 |    18 +
+ .../20260423T085021Z/module-params.log             |     2 +
+ .../20260423T085021Z/nv_tegra_release.log          |     5 +
+ .../camera-route-state/20260423T085021Z/uname.log  |     2 +
+ .../20260423T085021Z/v4l2-list-devices.log         |     5 +
+ docs/10-results-and-status.md                      |    21 +
+ docs/11-known-issues.md                            |     1 +
+ ...collect-camera-route-state-route-a-lanepol0.log |     7 +
+ ...0Z-post-reboot-basic-state-route-a-lanepol0.log |    25 +
+ ...085200Z-post-reboot-pstore-route-a-lanepol0.log |     2 +
+ ...00Z-post-reboot-dmesg-tail-route-a-lanepol0.log |   260 +
+ ...post-reboot-journal-k-tail-route-a-lanepol0.log |   260 +
+ ...-post-reboot-route-summary-route-a-lanepol0.log |   132 +
+ ...list-post-reboot-artifacts-route-a-lanepol0.log |    15 +
+ ...500Z-list-post-reboot-logs-route-a-lanepol0.log |     7 +
+ reports/2026-04-23-route-a-lanepol0-post-reboot.md |    36 +
+ 25 files changed, 14138 insertions(+)

@@ -1,0 +1,5 @@
+[2026-04-23T08:50:21Z] CMD: bash -lc v4l2-ctl --list-devices 2>&1 || true
+Cannot open device /dev/video0, exiting.
+NVIDIA Tegra Video Input Device (platform:tegra-camrtc-ca):
+	/dev/media0
+
