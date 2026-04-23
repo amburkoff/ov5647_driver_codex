@@ -23,6 +23,17 @@ Capture these before changing anything:
 - whether there is any inline 15-pin-to-22-pin or 22-pin-to-22-pin adapter board;
 - if the FFC is direct 22-pin-to-22-pin, whether contacts are same-side or opposite-side from end to end.
 
+Current photo evidence already captured in the repository:
+
+- `ov5647_JT-ZERO-V2.0_top.jpg`
+- `ov5647_JT-ZERO-V2.0_bottom.jpg`
+
+What those photos already prove:
+
+- `JT-ZERO-V2.0` is a native 22-pin camera module with an integrated flex tail;
+- this photographed module is not using a detachable `15->22` Raspberry Pi camera adapter cable;
+- no inline adapter board is visible in this camera-side path.
+
 ## Facts To Confirm
 
 - Which physical connector is silkscreened as `J20` or camera #0.
@@ -57,6 +68,12 @@ Implication:
 Current high-value question:
 
 - is the OV5647 board under test a normal 15-pin Raspberry Pi camera board connected through a proper `15->22` Jetson cable, or is it a native 22-pin Raspberry Pi Zero-style path that relies on a different pinout assumption?
+
+Current answer from the new photo evidence:
+
+- `JT-ZERO-V2.0` is not a standard 15-pin Raspberry Pi camera plus adapter;
+- it is a native 22-pin Pi Zero-style module;
+- if it is being connected directly into the Jetson/CLB 22-pin carrier connector, pin-count equality alone does not prove electrical compatibility.
 
 ## Why This Is Blocking
 

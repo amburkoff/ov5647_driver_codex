@@ -18,6 +18,7 @@ This document tracks only hardware facts that are confirmed for the actual targe
 | Physical camera population | Confirmed | User reports identical OV5647 modules inserted into both Jetson 22-pin CSI connectors |
 | Camera flex/module marking | Confirmed | User-reported marking: `JT-ZERO-V2.0 YH` |
 | Camera connector family | Confirmed from user physical inspection | User confirms the cameras are Raspberry Pi Zero camera modules with 22-pin connectors |
+| Camera module construction | Confirmed from user photos | `ov5647_JT-ZERO-V2.0_top.jpg` and `_bottom.jpg` show a native 22-pin integrated flex module, not a standard 15-pin Raspberry Pi camera with detachable `15->22` adapter cable |
 | Alternate camera/ribbon on current route-A retest | Confirmed from user physical inspection | On 2026-04-23 the user connected another OV5647 to Jetson `cam0` with a longer ribbon marked `Frank-s15-v1.0` |
 | Corrected carrier name | Confirmed from user physical inspection | User corrected the kit name to `CLB Developer Kit`; earlier project notes used a mistyped carrier name |
 | Partner/vendor marking | Confirmed from user physical inspection | User reports the box says the board is from partner `makerobo` |
@@ -103,6 +104,10 @@ Reference sources:
 
 - both Jetson 22-pin CSI connectors are populated with identical OV5647 modules;
 - the visible marking on the camera flex/module is `JT-ZERO-V2.0 YH`;
+- repository photos `ov5647_JT-ZERO-V2.0_top.jpg` and `ov5647_JT-ZERO-V2.0_bottom.jpg` show:
+  - a native 22-pin host-side flex tail;
+  - no visible inline adapter PCB;
+  - no detachable `15->22` conversion cable in the photographed path;
 - the kit name is `CLB Developer Kit`;
 - the box identifies the board as a partner board from `makerobo`;
 - the included booklet instructs installing the official Jetson Developer Kit image;
@@ -277,6 +282,7 @@ Current implication:
 
 - the route-A lane-polarity-0 DT boot is valid enough for probe, media registration, and `STREAMON`;
 - it is still not producing any observable CSI frame activity at the receiver;
+- the newly confirmed native `JT-ZERO-V2.0` 22-pin module form factor makes a direct Raspberry Pi Zero-style pinout mismatch materially more likely than before;
 - the dominant blocker remains physical CSI path validation on the CLB/makerobo carrier, not basic I2C/probe/stream-state programming.
 
 This creates a cleaner next runtime test: same route-A overlay and same driver image, but different physical camera/ribbon hardware on the intended `cam0` connector.

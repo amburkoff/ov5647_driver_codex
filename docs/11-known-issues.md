@@ -17,6 +17,8 @@
 - The route-A lane-polarity-0 overlay has now booted successfully and has been runtime-tested with a fresh manual `insmod` and traced capture.
 - The physical camera modules are present on both 22-pin connectors, but the exact mapping from physical connector to route `A` or `C` is still unverified.
 - The visible camera marking `JT-ZERO-V2.0 YH` and user confirmation identify the modules as Raspberry Pi Zero-style 22-pin OV5647 cameras, but the exact FFC/adaptor topology is not yet documented.
+- Repository photos now confirm `JT-ZERO-V2.0` is a native 22-pin integrated-flex camera module, not a standard 15-pin Raspberry Pi camera using a detachable `15->22` adapter cable.
+- This materially increases the probability of a direct 22-pin pinout/orientation mismatch with Jetson `J20/J21`, even though I2C chip-ID still works on the current path.
 - A new route-A retest now uses a different OV5647 on Jetson `cam0` with longer ribbon marking `Frank-s15-v1.0`; this changes the physical camera/ribbon variable without changing the current route-A overlay.
 - The previous local 640x480 mode table used `0x3821 = 0x01`; mainline upstream Linux OV5647 VGA mode uses `0x3821 = 0x03`, while Raspberry Pi downstream 6.6.y uses `0x01`. Source now stages the mainline `0x03` variant as a controlled diagnostic and needs manual runtime validation.
 - The `Frank-s15-v1.0` route-A capture with `0x3821 = 0x03` still timed out with no SOF while using sensor-side continuous clock `0x4800 = 0x04`.
