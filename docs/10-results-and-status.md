@@ -717,3 +717,24 @@ Updated interpretation:
 - the best remaining software-side discriminator is now a built-in OV5647 test-pattern capture on the current route;
 - if test pattern still gives no SOF, the blocker is overwhelmingly the physical CSI path / cable / pinout;
 - if test pattern works while live scene capture does not, then the CSI path is basically valid and the remaining problem is sensor-mode or image-path programming.
+
+Test-pattern checkpoint prepared on 2026-04-23:
+
+- local driver now has a gated diagnostic module parameter:
+  - `ov5647_test_pattern=0` disables built-in test pattern;
+  - `ov5647_test_pattern=1` enables OV5647 color bars through `0x0600/0x0601`;
+- test-pattern registers are now included in the stream-register dump;
+- manual helper profile added:
+  - `scripts/run_manual_insmod_diag.sh full-delay-dump-mclk24-testpat`
+  - expands to `dump_stream_regs=1 mclk_override_hz=24000000 ov5647_test_pattern=1`
+- rebuilt module succeeded with:
+  - `srcversion=6E3B684D5BEDF0A0E024035`
+  - `modinfo` now exposes `parm: ov5647_test_pattern`.
+
+Next smallest safe step:
+
+- do one manual `insmod` with `full-delay-dump-mclk24-testpat`;
+- then run one RTCPU/NVCSI traced single-frame capture;
+- interpret the result strictly:
+  - still no SOF => hardware CSI path remains the dominant blocker;
+  - SOF/frame appears => CSI transport is alive and live-scene mode programming becomes the next target.

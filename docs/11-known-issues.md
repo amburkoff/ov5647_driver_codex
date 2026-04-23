@@ -32,8 +32,11 @@
 - Public `NXCLB` manual evidence makes devkit-style `J20`/`J21` routing plausible on the CLB/makerobo carrier, but it does not validate the actual FFC orientation or Raspberry Pi-market camera pinout path in this setup.
 - Review of the GiraffAI OV5647 Nano articles and `digitallyamar/ov5647` repo suggests one higher-value remaining software test:
   - enable OV5647 built-in test pattern through sensor registers `0x0600/0x0601`;
-  - this is not yet implemented in the local Orin driver;
+  - this is now implemented as diagnostic module parameter `ov5647_test_pattern`;
   - it is more informative than another blind route/lane permutation because it decouples optical/exposure issues from basic CSI frame delivery.
+- The test-pattern path is prepared but not yet runtime-validated on the current CLB/Orin setup:
+  - manual helper profile: `full-delay-dump-mclk24-testpat`;
+  - expected diagnostic readback fields include `0x0600` and `0x0601`.
 - Local `nvidia-oot` headers are present, but full local sample sensor source files are not installed under `/usr/src/nvidia/`.
 - Unprivileged `dmesg` access is restricted, so full kernel-buffer capture requires elevated privileges.
 - `journalctl --list-boots` and `uptime -s` disagree about the current boot start time, so timestamp interpretation needs care.

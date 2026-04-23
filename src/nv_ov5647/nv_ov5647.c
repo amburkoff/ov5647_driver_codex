@@ -110,6 +110,11 @@ module_param(mclk_override_hz, uint, 0644);
 MODULE_PARM_DESC(mclk_override_hz,
 		 "Diagnostic only: override tegracam DT-derived MCLK rate in Hz before power-on. Default: 0");
 
+static uint ov5647_test_pattern;
+module_param(ov5647_test_pattern, uint, 0644);
+MODULE_PARM_DESC(ov5647_test_pattern,
+		 "Diagnostic only: OV5647 built-in test pattern. 0=off, 1=colorbars. Default: 0");
+
 static bool driver_registered;
 
 struct ov5647_reg_dump {
@@ -144,6 +149,8 @@ static const struct ov5647_reg_dump ov5647_stream_reg_dump[] = {
 	{ OV5647_REG_FRAME_OFF_NUMBER, "frame_off_number" },
 	{ OV5647_REG_MIPI_CTRL00, "mipi_ctrl00" },
 	{ OV5647_REG_MIPI_CTRL14, "mipi_ctrl14" },
+	{ 0x0600, "test_pattern_ctrl0" },
+	{ 0x0601, "test_pattern_ctrl1" },
 };
 
 static void ov5647_unload_marker_delay(void)
@@ -262,6 +269,18 @@ static const struct reg_8 ov5647_sensor_oe_disable_regs[] = {
 	{0x3000, 0x00},
 	{0x3001, 0x00},
 	{0x3002, 0x00},
+	{ OV5647_TABLE_END, 0x00 },
+};
+
+static const struct reg_8 ov5647_test_pattern_off_regs[] = {
+	{0x0600, 0x00},
+	{0x0601, 0x00},
+	{ OV5647_TABLE_END, 0x00 },
+};
+
+static const struct reg_8 ov5647_test_pattern_colorbars_regs[] = {
+	{0x0600, 0x00},
+	{0x0601, 0x02},
 	{ OV5647_TABLE_END, 0x00 },
 };
 
@@ -527,6 +546,33 @@ static int ov5647_write_stream_stop_regs(struct camera_common_data *s_data,
 
 	return ov5647_write_reg(s_data, OV5647_REG_MODE_SELECT,
 				OV5647_MODE_STANDBY);
+}
+
+static int ov5647_apply_test_pattern(struct camera_common_data *s_data)
+{
+	const struct reg_8 *table;
+	const char *name;
+
+	switch (ov5647_test_pattern) {
+	case 0:
+		table = ov5647_test_pattern_off_regs;
+		name = "off";
+		break;
+	case 1:
+		table = ov5647_test_pattern_colorbars_regs;
+		name = "colorbars";
+		break;
+	default:
+		dev_err(s_data->dev,
+			"%s: unsupported ov5647_test_pattern=%u\n",
+			__func__, ov5647_test_pattern);
+		return -EINVAL;
+	}
+
+	dev_info(s_data->dev, "%s: applying test pattern=%s (%u)\n",
+		 __func__, name, ov5647_test_pattern);
+
+	return ov5647_write_table(s_data, table);
 }
 
 static struct camera_common_pdata *ov5647_parse_dt(struct tegracam_device *tc_dev)
@@ -932,6 +978,13 @@ static int ov5647_set_mode(struct tegracam_device *tc_dev)
 	err = ov5647_write_table(s_data, ov5647_modes[mode].table);
 	if (err) {
 		dev_err(tc_dev->dev, "%s: mode table failed err=%d\n",
+			__func__, err);
+		return err;
+	}
+
+	err = ov5647_apply_test_pattern(s_data);
+	if (err) {
+		dev_err(tc_dev->dev, "%s: test pattern apply failed err=%d\n",
 			__func__, err);
 		return err;
 	}
@@ -1350,6 +1403,8 @@ static int __init nv_ov5647_init(void)
 		OV5647_NAME, dump_stream_regs);
 	pr_info("%s: diagnostics continuous_mipi_clock=%d\n",
 		OV5647_NAME, continuous_mipi_clock);
+	pr_info("%s: diagnostics ov5647_test_pattern=%u\n",
+		OV5647_NAME, ov5647_test_pattern);
 
 	if (!register_i2c_driver) {
 		pr_info("%s: safety gate active; i2c driver registration skipped\n",
