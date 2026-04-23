@@ -31,6 +31,32 @@ Capture these before changing anything:
 - Whether route C (`cam_i2cmux/i2c@1`, `serial_c`, `port-index = 2`) corresponds to physical `J21`.
 - Whether the Jetson-side 22-pin cable contacts face the carrier bottom side as NVIDIA documents for the Orin Nano developer kit.
 - Whether the Raspberry Pi-style OV5647 module connector expects the opposite contact orientation or a remapping cable.
+- Whether the OV5647 PCB itself has a 15-pin camera connector with a `15->22` adapter cable, or a native 22-pin connector.
+- Whether the current cable is a standard-to-mini camera cable rather than a generic same-pin-count FFC.
+- Whether the printed `Frank-s15-v1.0` ribbon is the actual Jetson-side camera cable now under test.
+
+## Concrete Cable Clues
+
+- NVIDIA documents the Jetson Orin Nano/NX developer-carrier camera connectors as 22-pin, 0.5 mm pitch, bottom-contact connectors.
+- NVIDIA also documents that a Raspberry Pi Camera Module v2 with a 15-pin connector requires a 15-pin-to-22-pin conversion cable on the Jetson side.
+- Raspberry Pi documents its own 22-pin CSI pinout with:
+  - pin 1 = `GND`
+  - pins 20/21 = `SCL` / `SDA`
+  - pin 22 = `3V3`
+- NVIDIA documents Jetson `J20`/`J21` with:
+  - pin 1 = `3.3V`
+  - pins 2/3 = `CAM_I2C_SDA` / `CAM_I2C_SCL`
+  - dedicated `MCLK` / `PWDN` on pins 5/6
+
+Implication:
+
+- a native Raspberry Pi 22-pin camera-side pinout is not automatically same-numbered compatible with the Jetson 22-pin carrier connector;
+- a correct cable or adapter can still make the path valid by reversing or remapping the flex;
+- therefore the exact cable type matters as much as the sensor module.
+
+Current high-value question:
+
+- is the OV5647 board under test a normal 15-pin Raspberry Pi camera board connected through a proper `15->22` Jetson cable, or is it a native 22-pin Raspberry Pi Zero-style path that relies on a different pinout assumption?
 
 ## Why This Is Blocking
 
