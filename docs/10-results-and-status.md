@@ -2,6 +2,17 @@
 
 Current overall status: `route-C reset-only plus explicit clk_set_rate-to-25MHz still no-SOF, manual LKM-only workflow retained, route-A and route-C probes work, remove path fixed, and physical CLB/makerobo CSI path remains the dominant blocker`
 
+Latest receiver-side debug update:
+
+- safe manual reads of `tegra_rtcpu_trace/{stats,last_exception,last_event}`
+  now complete without crashing the kernel;
+- the returned data is low-information for the active failure:
+  - `Exceptions: 0`
+  - `Events: 3`
+  - last event = generic `Start` (`0x03010000`)
+- this did not reveal any hidden RTCPU-side `NVCSI`, `VI`, or `capture` error
+  beyond the already-known `no SOF / VI timeout` pattern.
+
 Completed:
 
 - live platform inventory gathered from the target;

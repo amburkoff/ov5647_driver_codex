@@ -67,6 +67,11 @@
   - `tegra_rtcpu_trace/last_event`
   - these are created by `tegra-rtcpu-trace.c` with `debugfs_create_file()` and `single_open()`/`seq_read()`, not `debugfs_create_regset32()`;
   - they are still not promoted to automatic reads and should only be tried manually.
+- Manual runtime validation of that `tegra_rtcpu_trace` whitelist succeeded without a crash, but the readout is low-information for the current failure:
+  - `Exceptions: 0`
+  - `Events: 3`
+  - `last_event = Start (0x03010000)`
+  - no retained RTCPU exception or explicit camera/NVCSI failure marker was exposed.
 - Local `nvidia-oot` headers are present, but full local sample sensor source files are not installed under `/usr/src/nvidia/`.
 - Official `linux-nv-oot.git` source for `l4t-r36.5` is now fetched locally under `tools/vendor/linux-nv-oot-r36.5` for read-only analysis of `nvcsi`, `vi`, `rtcpu`, and `camera` code paths.
 - Unprivileged `dmesg` access is restricted, so full kernel-buffer capture requires elevated privileges.
