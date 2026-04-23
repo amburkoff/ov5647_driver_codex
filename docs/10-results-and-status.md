@@ -1,6 +1,6 @@
 # Results And Status
 
-Current overall status: `route-A corrected-MCLK capture also no-SOF, manual LKM-only workflow retained, route-A and route-C probes work, remove path fixed, physical CLB/makerobo CSI path now the dominant blocker`
+Current overall status: `route-A lane-polarity-0 corrected-MCLK capture also no-SOF, manual LKM-only workflow retained, route-A and route-C probes work, remove path fixed, physical CLB/makerobo CSI path now the dominant blocker`
 
 Completed:
 
@@ -669,3 +669,32 @@ Next smallest safe step:
 - do not run `rmmod` because the module is not loaded after reboot;
 - manually run one `insmod` with `full-delay-dump-mclk24`;
 - only if probe succeeds, run one RTCPU/NVCSI traced single-frame capture.
+
+Route-A lane-polarity-0 runtime result:
+
+- user loaded `srcversion=632487CC0794D5D198269C9` with profile `full-delay-dump-mclk24`;
+- probe succeeded on `nv_ov5647 9-0036`;
+- chip ID remained `0x5647`;
+- MCLK was enabled at `24000000` Hz;
+- capture `20260423T085323Z` reached `VIDIOC_STREAMON returned 0`;
+- readback after `set_mode()` and after `STREAMON` confirmed internally consistent stream state:
+  - `0x0100 = 0x01`;
+  - `0x3000 = 0x0f`, `0x3001 = 0xff`, `0x3002 = 0xe4`;
+  - `0x3016 = 0x08`, `0x3017 = 0xe0`, `0x3018 = 0x44`;
+  - `0x3821 = 0x03`;
+  - `0x4800 = 0x34`;
+- raw output remained zero bytes and capture returned `rc=124`;
+- RTCPU/NVCSI trace again showed no `vi_frame_begin`, `vi_frame_end`, `rtcpu_nvcsi_intr`, `rtcpu_vinotify_error`, `capture_event_sof`, or `capture_event_error`.
+
+Updated interpretation:
+
+- route A with reference `lane_polarity = 6`, route A with `lane_polarity = 0`, and route C have now all failed after the corrected `extperiph1` clock binding;
+- the CLB/NXCLB public user manual now strengthens the inference that the carrier exposes devkit-style `J20`/`J21` camera connectors with the same mux split as NVIDIA `p3768`;
+- the remaining blocker is therefore more likely the physical FFC/pinout/orientation path than another small OV5647 register or DT field tweak.
+
+Next smallest safe step:
+
+- stop blind route/lane permutations;
+- switch to one hardware-validation step that can falsify the physical-path hypothesis:
+  - actual CLB connector-label and cable-orientation evidence, or
+  - a known-good Jetson camera kit on the same connector with the stock NVIDIA overlay.

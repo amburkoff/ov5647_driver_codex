@@ -1,6 +1,6 @@
 # CLB Carrier Mapping
 
-Status: `partially verified, route-A live, physical CSI path still blocked`
+Status: `partially verified, route-A lane-polarity-0 live, physical CSI path still blocked`
 
 This document tracks only hardware facts that are confirmed for the actual target. Anything not verified from the running system, carrier documentation, or direct physical inspection stays marked as unresolved.
 
@@ -29,7 +29,7 @@ This document tracks only hardware facts that are confirmed for the actual targe
 | Live CSI route | Confirmed for current test path | Live sensor node uses `tegra_sinterface = "serial_b"` |
 | Live CSI port index | Confirmed for current test path | Live endpoint graph uses route-A style `port-index = 1` |
 | Live lane count | Confirmed for current test path | Live DT mode uses `num_lanes = "2"` and endpoint `bus-width = <2>` |
-| Live lane polarity | Confirmed for current test path | Live DT mode uses `lane_polarity = "6"` |
+| Live lane polarity | Confirmed for current test path | Live DT mode uses `lane_polarity = "0"` |
 | Live discontinuous clock mode | Confirmed for current test path | Live DT mode uses `discontinuous_clk = "yes"` while the diagnostic module parameter can force sensor-side continuous clock |
 | Live sensor node | Confirmed | `/bus@0/cam_i2cmux/i2c@0/ov5647_a@36` |
 | Live PWDN GPIO | Confirmed from live DT and driver logs | `pwdn-gpios = <... 0x3e 0>` => Linux GPIO `397` |
@@ -69,9 +69,11 @@ Public FCC evidence provides a second, non-runtime identity reference:
 - FCC ID page `2BE7C-NXCLB` identifies an `Embedded development board NXCLB`;
 - applicant/manufacturer listed there is `Hunan Chuang Le Bo Intelligent Technology Co., Ltd.`;
 - the page exposes a user manual for `NXCLB`;
-- the user manual's camera connector tables match the NVIDIA developer-carrier style `J20` and `J21` 22-pin camera connector descriptions.
+- the user manual's camera connector tables match the NVIDIA developer-carrier style `J20` and `J21` 22-pin camera connector descriptions;
+- `J20` is documented as camera connector `#0` on the first CAM I2C mux output, with `CAM0_MCLK`, `CAM0_PWDN`, and CSI lane group `CSI0/CSI1`;
+- `J21` is documented as camera connector `#1` on the second CAM I2C mux output, with `CAM1_MCLK`, `CAM1_PWDN`, and CSI lane group `CSI2/CSI3`.
 
-This is useful supporting evidence that `CLB` maps to `Chuang Le Bo / NXCLB`, but it still does not prove the exact physical cable/adaptor path from the currently installed `JT-ZERO-V2.0 YH` OV5647 modules to the CLB carrier connectors.
+This is useful supporting evidence that `CLB` maps to `Chuang Le Bo / NXCLB`, and it makes a devkit-style connector split more plausible on the real carrier. It still does not prove the exact physical cable/adaptor path from the currently installed `JT-ZERO-V2.0 YH` or `Frank-s15-v1.0` OV5647 modules to the CLB carrier connectors.
 
 ## 22-Pin Connector Compatibility Risk
 
@@ -208,7 +210,7 @@ The latest route-C continuous-clock runtime test proves that the Linux/V4L2 path
 - after the clock-ID fix, driver logs confirm `extperiph1` MCLK is enabled at `24000000` Hz;
 - RTCPU/NVCSI trace contains no `vi_frame_begin`, `vi_frame_end`, `rtcpu_nvcsi_intr`, `rtcpu_vinotify_error`, `capture_event_sof`, or `capture_event_error`.
 
-This does not prove the sensor is incapable of output. It proves that the current DT route, physical lane path, cable/adapter path, or MIPI electrical output state is still not producing an observable SOF at the Jetson receiver. Because the earlier route-A test used the old wrong BPMP clock binding, one corrected-MCLK route-A retest is still a valid controlled software experiment before treating the issue as purely physical.
+This does not prove the sensor is incapable of output. It proves that the current DT route, physical lane path, cable/adapter path, or MIPI electrical output state is still not producing an observable SOF at the Jetson receiver. The corrected-MCLK route-A retest has now been run on the live `lane_polarity = 0` boot and still shows the same no-SOF signature, so software-only route-A retests now have sharply diminishing value unless they are tied to a stronger hardware hypothesis.
 
 ## Current Route-A State
 
@@ -250,13 +252,32 @@ The first corrected-MCLK route-A capture test also failed to observe CSI frame d
 
 This means both route A and route C have now failed after the corrected `TEGRA234_CLK_EXTPERIPH1` binding. The current blocker should be treated as physical CSI-path validation until disproven.
 
-Post-reboot state on 2026-04-23 before the next manual `insmod`:
+Post-reboot state on 2026-04-23 before the latest manual `insmod`:
 
 - boot profile still `ov5647-dev`;
-- live DT still selects route A: `ov5647_a@36`, `serial_b`, `port-index = 1`, `lane_polarity = 6`;
+- live DT selects route A: `ov5647_a@36`, `serial_b`, `port-index = 1`, `lane_polarity = 0`;
 - `nv_ov5647` is not loaded;
 - `/dev/video0` is absent before manual load, as expected;
 - the user replaced the previous camera on Jetson `cam0` with another OV5647 using a longer ribbon marked `Frank-s15-v1.0`.
+
+Latest runtime result on this live route:
+
+- manual `insmod` with `full-delay-dump-mclk24` succeeded at `20260423T085315Z`;
+- traced single-frame capture at `20260423T085323Z` reached `VIDIOC_STREAMON`;
+- raw output remained zero bytes and capture returned `rc=124`;
+- register readback after `set_mode` and after `STREAMON` remained internally consistent:
+  - `0x0100 = 0x01`
+  - `0x3000 = 0x0f`, `0x3001 = 0xff`, `0x3002 = 0xe4`
+  - `0x3016 = 0x08`, `0x3017 = 0xe0`, `0x3018 = 0x44`
+  - `0x3821 = 0x03`
+  - `0x4800 = 0x34`
+- RTCPU/NVCSI trace again showed no `vi_frame_begin`, no `vi_frame_end`, no `rtcpu_nvcsi_intr`, and no `rtcpu_vinotify_error`.
+
+Current implication:
+
+- the route-A lane-polarity-0 DT boot is valid enough for probe, media registration, and `STREAMON`;
+- it is still not producing any observable CSI frame activity at the receiver;
+- the dominant blocker remains physical CSI path validation on the CLB/makerobo carrier, not basic I2C/probe/stream-state programming.
 
 This creates a cleaner next runtime test: same route-A overlay and same driver image, but different physical camera/ribbon hardware on the intended `cam0` connector.
 

@@ -8,7 +8,7 @@ Design intent:
 
 ## Current Ground Truth
 
-- the live dev boot has an active OV5647 route-A corrected-MCLK overlay;
+- the live dev boot has an active OV5647 route-A lane-polarity-0 corrected-MCLK overlay;
 - `cam_i2c` resolves to `i2c@3180000`;
 - NVIDIA p3768 reference overlays on disk describe 22-pin camera routes through `cam_i2cmux`;
 - reference route `A` maps to `serial_b` and `port-index = 1`;
@@ -19,7 +19,7 @@ Design intent:
   - `serial_b`;
   - `port-index = 1`;
   - `bus-width = 2`;
-  - `lane_polarity = "6"`;
+  - `lane_polarity = "0"`;
   - `discontinuous_clk = "yes"`.
 
 ## Minimal OV5647 Overlay Plan
@@ -40,7 +40,7 @@ Current active runtime target:
 - `serial_b`
 - `port-index = 1`
 - `bus-width = 2`
-- reference `lane_polarity = 6`
+- current staged `lane_polarity = 0` for the active rebooted experiment
 - receiver-side discontinuous clock: `discontinuous_clk = "yes"`
 
 Reason:
@@ -61,7 +61,7 @@ Fields that remain blocked until hardware verification:
 ## Safe Boot Interaction
 
 - the generated `ov5647-safe` profile will not reference any OV5647 overlay;
-- the generated `ov5647-dev` profile is staged for the next reboot with `OVERLAYS /boot/ov5647-p3768-port-a-extperiph1.dtbo`;
+- the generated `ov5647-dev` profile currently boots with `OVERLAYS /boot/ov5647-p3768-port-a-lanepol0.dtbo`;
 - the currently running live DT remains whatever was loaded at boot until the next reboot;
 - `FDTOVERLAYS` did not apply correctly on this UEFI boot path; the working syntax is `FDT` plus `OVERLAYS`.
 
@@ -131,13 +131,13 @@ Post-reboot validation:
 
 ## Current DT Conclusion
 
-The DT overlay is good enough to bind the sensor, register `/dev/video0`, and execute stream start on route C. It is not proven electrically correct because neither route A nor route C produces SOF.
+The DT overlay is good enough to bind the sensor, register `/dev/video0`, and execute stream start on route A and route C. It is not proven electrically correct because neither route produces SOF.
 
 The next DT work should be tightly bounded:
 
 - route A with `lane_polarity = "6"` has failed with corrected MCLK, `0x3821 = 0x03`, continuous sensor clock, and matched non-continuous sensor clock;
-- the next staged DT candidate is a one-variable route-A lane-polarity check: `lane_polarity = "0"`;
-- after that, prefer hardware evidence over more blind edits: confirmed CLB connector label to p3768 route mapping, makerobo CLB camera connector wiring, cable/adapter pinout for the Raspberry Pi Zero-style OV5647 modules, or a known-good Jetson camera cross-check.
+- route A with `lane_polarity = "0"` has now also failed with corrected MCLK and matched non-continuous sensor clock;
+- after this point, prefer hardware evidence over more blind edits: confirmed CLB connector label to p3768 route mapping, makerobo CLB camera connector wiring, cable/adapter pinout for the Raspberry Pi Zero-style OV5647 modules, or a known-good Jetson camera cross-check.
 
 ## Route-A Lane-Polarity-0 Stage
 
@@ -153,3 +153,11 @@ The next reboot-only candidate is now staged:
 This stage intentionally changes only one DT variable relative to the current route-A test line:
 
 - `lane_polarity = "0"` instead of `lane_polarity = "6"`.
+
+Runtime result on the rebooted `lane_polarity = "0"` stage:
+
+- manual `insmod` with `mclk_override_hz=24000000` succeeded;
+- single-frame traced capture reached `VIDIOC_STREAMON`;
+- raw output stayed zero bytes and capture timed out after 30 seconds;
+- VI still logged repeated `uncorr_err: request timed out after 2500 ms`;
+- RTCPU/NVCSI trace again showed no SOF/EOF or receiver interrupt events.

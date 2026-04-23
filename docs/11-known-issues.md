@@ -13,14 +13,21 @@
   - route A also probes successfully with corrected MCLK and still produces zero-byte capture timeout with no SOF/NVCSI interrupt events.
 - The safe boot entry still exists, but the on-disk default is currently set to `ov5647-dev` with the route-A corrected-MCLK overlay.
 - The active dev overlay is now a route-A corrected-`extperiph1` candidate from the physical-connector point of view; it is logically validated by successful probe and `/dev/video0`, but not by SOF/frame delivery.
-- The next reboot-only candidate has been staged in `/boot/ov5647-p3768-port-a-lanepol0.dtbo` and set as the `ov5647-dev` overlay; it still needs a reboot before any conclusion can be drawn from it.
-- The route-A lane-polarity-0 overlay has now booted successfully and is visible in live DT, but it has not yet been runtime-tested with a fresh manual `insmod` and traced capture.
+- The active `ov5647-dev` overlay is now `/boot/ov5647-p3768-port-a-lanepol0.dtbo`.
+- The route-A lane-polarity-0 overlay has now booted successfully and has been runtime-tested with a fresh manual `insmod` and traced capture.
 - The physical camera modules are present on both 22-pin connectors, but the exact mapping from physical connector to route `A` or `C` is still unverified.
 - The visible camera marking `JT-ZERO-V2.0 YH` and user confirmation identify the modules as Raspberry Pi Zero-style 22-pin OV5647 cameras, but the exact FFC/adaptor topology is not yet documented.
 - A new route-A retest now uses a different OV5647 on Jetson `cam0` with longer ribbon marking `Frank-s15-v1.0`; this changes the physical camera/ribbon variable without changing the current route-A overlay.
 - The previous local 640x480 mode table used `0x3821 = 0x01`; mainline upstream Linux OV5647 VGA mode uses `0x3821 = 0x03`, while Raspberry Pi downstream 6.6.y uses `0x01`. Source now stages the mainline `0x03` variant as a controlled diagnostic and needs manual runtime validation.
 - The `Frank-s15-v1.0` route-A capture with `0x3821 = 0x03` still timed out with no SOF while using sensor-side continuous clock `0x4800 = 0x04`.
 - The matched non-continuous-clock route-A retest also timed out with no SOF while readback confirmed `0x4800 = 0x34`; this makes lane polarity, physical lane route, or module/cable pinout more likely than a continuous-clock mismatch.
+- The route-A lane-polarity-0 retest also timed out with no SOF:
+  - live DT confirmed `lane_polarity = "0"`;
+  - probe, media graph, and `STREAMON` still succeeded;
+  - raw output remained zero bytes;
+  - RTCPU/NVCSI trace still had no SOF/EOF or receiver interrupt events.
+- Because route A with `lane_polarity = 6`, route A with `lane_polarity = 0`, and route C have all now failed after the corrected `extperiph1` clock binding, another blind route/lane software permutation is unlikely to beat a physical camera-path validation step.
+- Public `NXCLB` manual evidence makes devkit-style `J20`/`J21` routing plausible on the CLB/makerobo carrier, but it does not validate the actual FFC orientation or Raspberry Pi-market camera pinout path in this setup.
 - Local `nvidia-oot` headers are present, but full local sample sensor source files are not installed under `/usr/src/nvidia/`.
 - Unprivileged `dmesg` access is restricted, so full kernel-buffer capture requires elevated privileges.
 - `journalctl --list-boots` and `uptime -s` disagree about the current boot start time, so timestamp interpretation needs care.
