@@ -46,6 +46,17 @@
   - sensor register `0x503d` reads back as `0x80` after `set_mode` and after `STREAMON`;
   - raw output remains zero bytes and RTCPU/NVCSI still shows no SOF or receiver interrupt;
   - this sharply lowers the value of further live-scene or exposure-related tuning on the current hardware path.
+- `PWDN/CAM_IO0` diagnostics narrowed but did not solve the problem:
+  - `pwdn_mode=2` (`ignore`) still yields probe success but no SOF;
+  - `pwdn_mode=2` with `skip_board_setup_power_off=1` still yields probe success but no SOF;
+  - `pwdn_mode=1` (`inverted`) breaks early register access with `err=-121`, so the current control line is not active-low.
+- Receiver timing auto-calibration is no longer the main remaining software-only suspect:
+  - live DT now has a controlled `cil_settletime = 58` experiment on route A / `lane_polarity = 0`;
+  - runtime on that DT still produces `VIDIOC_STREAMON ok`, zero-byte raw output, and no SOF/NVCSI receiver events.
+- The remaining software-only space is now narrow:
+  - carrier-specific CLB routing could still differ from p3768 assumptions;
+  - deeper NVIDIA receiver-side instrumentation could still expose a hidden route/config mismatch;
+  - but ordinary OV5647 mode, test-pattern, `PWDN`, and basic settle-timing hypotheses no longer explain the failure well.
 - Local `nvidia-oot` headers are present, but full local sample sensor source files are not installed under `/usr/src/nvidia/`.
 - Unprivileged `dmesg` access is restricted, so full kernel-buffer capture requires elevated privileges.
 - `journalctl --list-boots` and `uptime -s` disagree about the current boot start time, so timestamp interpretation needs care.

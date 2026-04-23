@@ -67,3 +67,31 @@ Chosen controlled experiment:
 ## Failure Interpretation
 
 If explicit mid-range `cil_settletime = 58` still produces no SOF, the remaining software-only room narrows further and the physical pinout/remap hypothesis becomes even stronger.
+
+## Runtime Result
+
+Post-reboot validation confirmed:
+
+- `boot_profile=ov5647-dev`
+- live DT `cil_settletime = 58`
+- live DT `lane_polarity = 0`
+- live DT `tegra_sinterface = "serial_b"`
+
+Manual runtime test result:
+
+- `sudo /home/cam/ov5647_driver_codex/scripts/run_manual_insmod_diag.sh full-delay-dump-mclk24`
+- `sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_rtcpu_trace.sh`
+
+Observed outcome:
+
+- module loaded successfully
+- `VIDIOC_STREAMON` returned success
+- raw output stayed `0` bytes
+- VI still logged repeated `uncorr_err: request timed out after 2500 ms`
+- RTCPU/NVCSI trace still showed no SOF/EOF or receiver interrupt events
+
+Interpretation:
+
+- explicit mid-range `cil_settletime = 58` did not change the failure signature;
+- receiver-side auto-calibrate vs explicit mid-range settle timing is therefore no longer a strong differentiator for this setup;
+- the dominant hypothesis remains physical CSI pinout/remap/orientation mismatch on the current native 22-pin path.

@@ -783,3 +783,20 @@ Current conclusion:
 - this is the strongest software-side falsification obtained so far;
 - even sensor-generated synthetic frames do not reach NVCSI/VI;
 - the dominant blocker is now the physical CSI path on the current CLB/makerobo plus `JT-ZERO-V2.0` setup, not OV5647 exposure/mode/live-scene programming.
+
+Additional software-only narrowing on 2026-04-23:
+
+- `PWDN/CAM_IO0` diagnostics did not restore SOF:
+  - `pwdn=ignore` still produced `VIDIOC_STREAMON ok`, zero-byte raw output, and repeated VI timeouts;
+  - `pwdn=ignore + keep-powered` also still produced `VIDIOC_STREAMON ok`, zero-byte raw output, and repeated VI timeouts;
+  - `pwdn=inverted` failed much earlier with I2C/register access error `-121`, so active-low is not the correct polarity for the current control line.
+- explicit receiver settle timing did not restore SOF either:
+  - rebooted live DT confirms `cil_settletime = 58`, `lane_polarity = 0`, `tegra_sinterface = "serial_b"`;
+  - runtime capture on that DT still produced `VIDIOC_STREAMON ok`, zero-byte raw output, and repeated VI `uncorr_err: request timed out after 2500 ms`;
+  - RTCPU/NVCSI trace still showed no SOF/EOF or receiver interrupt activity.
+
+Updated conclusion:
+
+- current software-only hypotheses around `PWDN` polarity/usage and receiver-side auto-settle timing have now both been tested without changing the no-SOF signature;
+- the remaining software-only room is narrow and mostly limited to deeper carrier-specific route assumptions or NVIDIA receiver internals;
+- the dominant explanation remains physical CSI pinout/remap/orientation mismatch on the present native `JT-ZERO-V2.0` 22-pin path.

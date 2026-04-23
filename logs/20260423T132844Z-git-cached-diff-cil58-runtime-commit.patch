@@ -1,0 +1,83 @@
+diff --git a/docs/10-results-and-status.md b/docs/10-results-and-status.md
+index 5c96989..7e6427e 100644
+--- a/docs/10-results-and-status.md
++++ b/docs/10-results-and-status.md
+@@ -783,3 +783,20 @@ Current conclusion:
+ - this is the strongest software-side falsification obtained so far;
+ - even sensor-generated synthetic frames do not reach NVCSI/VI;
+ - the dominant blocker is now the physical CSI path on the current CLB/makerobo plus `JT-ZERO-V2.0` setup, not OV5647 exposure/mode/live-scene programming.
++
++Additional software-only narrowing on 2026-04-23:
++
++- `PWDN/CAM_IO0` diagnostics did not restore SOF:
++  - `pwdn=ignore` still produced `VIDIOC_STREAMON ok`, zero-byte raw output, and repeated VI timeouts;
++  - `pwdn=ignore + keep-powered` also still produced `VIDIOC_STREAMON ok`, zero-byte raw output, and repeated VI timeouts;
++  - `pwdn=inverted` failed much earlier with I2C/register access error `-121`, so active-low is not the correct polarity for the current control line.
++- explicit receiver settle timing did not restore SOF either:
++  - rebooted live DT confirms `cil_settletime = 58`, `lane_polarity = 0`, `tegra_sinterface = "serial_b"`;
++  - runtime capture on that DT still produced `VIDIOC_STREAMON ok`, zero-byte raw output, and repeated VI `uncorr_err: request timed out after 2500 ms`;
++  - RTCPU/NVCSI trace still showed no SOF/EOF or receiver interrupt activity.
++
++Updated conclusion:
++
++- current software-only hypotheses around `PWDN` polarity/usage and receiver-side auto-settle timing have now both been tested without changing the no-SOF signature;
++- the remaining software-only room is narrow and mostly limited to deeper carrier-specific route assumptions or NVIDIA receiver internals;
++- the dominant explanation remains physical CSI pinout/remap/orientation mismatch on the present native `JT-ZERO-V2.0` 22-pin path.
+diff --git a/docs/11-known-issues.md b/docs/11-known-issues.md
+index 92cbd67..434db21 100644
+--- a/docs/11-known-issues.md
++++ b/docs/11-known-issues.md
+@@ -46,6 +46,17 @@
+   - sensor register `0x503d` reads back as `0x80` after `set_mode` and after `STREAMON`;
+   - raw output remains zero bytes and RTCPU/NVCSI still shows no SOF or receiver interrupt;
+   - this sharply lowers the value of further live-scene or exposure-related tuning on the current hardware path.
++- `PWDN/CAM_IO0` diagnostics narrowed but did not solve the problem:
++  - `pwdn_mode=2` (`ignore`) still yields probe success but no SOF;
++  - `pwdn_mode=2` with `skip_board_setup_power_off=1` still yields probe success but no SOF;
++  - `pwdn_mode=1` (`inverted`) breaks early register access with `err=-121`, so the current control line is not active-low.
++- Receiver timing auto-calibration is no longer the main remaining software-only suspect:
++  - live DT now has a controlled `cil_settletime = 58` experiment on route A / `lane_polarity = 0`;
++  - runtime on that DT still produces `VIDIOC_STREAMON ok`, zero-byte raw output, and no SOF/NVCSI receiver events.
++- The remaining software-only space is now narrow:
++  - carrier-specific CLB routing could still differ from p3768 assumptions;
++  - deeper NVIDIA receiver-side instrumentation could still expose a hidden route/config mismatch;
++  - but ordinary OV5647 mode, test-pattern, `PWDN`, and basic settle-timing hypotheses no longer explain the failure well.
+ - Local `nvidia-oot` headers are present, but full local sample sensor source files are not installed under `/usr/src/nvidia/`.
+ - Unprivileged `dmesg` access is restricted, so full kernel-buffer capture requires elevated privileges.
+ - `journalctl --list-boots` and `uptime -s` disagree about the current boot start time, so timestamp interpretation needs care.
+diff --git a/reports/2026-04-23-cil-settletime-58-stage.md b/reports/2026-04-23-cil-settletime-58-stage.md
+index 3c9bf56..65bc261 100644
+--- a/reports/2026-04-23-cil-settletime-58-stage.md
++++ b/reports/2026-04-23-cil-settletime-58-stage.md
+@@ -67,3 +67,31 @@ Chosen controlled experiment:
+ ## Failure Interpretation
+ 
+ If explicit mid-range `cil_settletime = 58` still produces no SOF, the remaining software-only room narrows further and the physical pinout/remap hypothesis becomes even stronger.
++
++## Runtime Result
++
++Post-reboot validation confirmed:
++
++- `boot_profile=ov5647-dev`
++- live DT `cil_settletime = 58`
++- live DT `lane_polarity = 0`
++- live DT `tegra_sinterface = "serial_b"`
++
++Manual runtime test result:
++
++- `sudo /home/cam/ov5647_driver_codex/scripts/run_manual_insmod_diag.sh full-delay-dump-mclk24`
++- `sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_rtcpu_trace.sh`
++
++Observed outcome:
++
++- module loaded successfully
++- `VIDIOC_STREAMON` returned success
++- raw output stayed `0` bytes
++- VI still logged repeated `uncorr_err: request timed out after 2500 ms`
++- RTCPU/NVCSI trace still showed no SOF/EOF or receiver interrupt events
++
++Interpretation:
++
++- explicit mid-range `cil_settletime = 58` did not change the failure signature;
++- receiver-side auto-calibrate vs explicit mid-range settle timing is therefore no longer a strong differentiator for this setup;
++- the dominant hypothesis remains physical CSI pinout/remap/orientation mismatch on the current native 22-pin path.
