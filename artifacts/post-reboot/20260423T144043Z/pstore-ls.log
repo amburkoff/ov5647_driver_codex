@@ -1,0 +1,2 @@
+[2026-04-23T14:40:43Z] CMD: bash -lc ls -la /sys/fs/pstore 2>&1 || true
+ls: cannot open directory '/sys/fs/pstore': Permission denied

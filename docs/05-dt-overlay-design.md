@@ -8,18 +8,21 @@ Design intent:
 
 ## Current Ground Truth
 
-- the live dev boot has an active OV5647 route-A lane-polarity-0 corrected-MCLK overlay;
+- the repository reference overlay is now the route-C reset-only baseline;
 - `cam_i2c` resolves to `i2c@3180000`;
 - NVIDIA p3768 reference overlays on disk describe 22-pin camera routes through `cam_i2cmux`;
 - reference route `A` maps to `serial_b` and `port-index = 1`;
 - reference route `C` maps to `serial_c` and `port-index = 2`.
-- the active live route is:
-  - `cam_i2cmux/i2c@0/ov5647_a@36`;
+- the reference route is:
+  - `cam_i2cmux/i2c@1/ov5647_c@36`;
   - Linux downstream bus `i2c-9`;
-  - `serial_b`;
-  - `port-index = 1`;
+  - `serial_c`;
+  - `port-index = 2`;
   - `bus-width = 2`;
   - `lane_polarity = "0"`;
+  - `reset-gpios = <&gpio 0xa0 0>`;
+  - no `pwdn-gpios`;
+  - `mclk_khz = "25000"`;
   - `discontinuous_clk = "yes"`.
 
 ## Minimal OV5647 Overlay Plan
@@ -33,21 +36,24 @@ The first OV5647 overlay will need:
 - one `mode0` only;
 - no experimental boot-time enablement until manual probe is stable.
 
-Current active runtime target:
+Current reference runtime target:
 
-- p3768-style route `A`
-- `cam_i2cmux/i2c@0`
-- `serial_b`
-- `port-index = 1`
+- p3768-style route `C`
+- `cam_i2cmux/i2c@1`
+- `serial_c`
+- `port-index = 2`
 - `bus-width = 2`
-- current staged `lane_polarity = 0` for the active rebooted experiment
+- `lane_polarity = 0`
+- `reset-gpios = <&gpio 0xa0 0>`
+- no `pwdn-gpios`
 - receiver-side discontinuous clock: `discontinuous_clk = "yes"`
 
 Reason:
 
-- route `A` produced valid probe/chip ID but repeated zero-byte capture timeouts;
-- route `C` also produced valid probe/chip ID and `/dev/video0`, but capture still timed out;
-- the current route-A overlay is the latest boot-applied experiment and matches the physical `cam0` test requested by the user.
+- this route matches the cleanest external Orin NX route-C OV5647 sample reviewed during bring-up;
+- it avoids the ambiguous `pwdn-gpios` path and uses reset-only semantics;
+- it keeps the first milestone aligned to one 2-lane route and one minimal mode;
+- it is the repository's current software-most-correct baseline even though capture still times out.
 
 Fields that remain blocked until hardware verification:
 
@@ -61,7 +67,7 @@ Fields that remain blocked until hardware verification:
 ## Safe Boot Interaction
 
 - the generated `ov5647-safe` profile will not reference any OV5647 overlay;
-- the generated `ov5647-dev` profile currently boots with `OVERLAYS /boot/ov5647-p3768-port-a-lanepol0.dtbo`;
+- the generated `ov5647-dev` profile is staged to boot with `OVERLAYS /boot/ov5647-p3768-port-c-reference.dtbo`;
 - the currently running live DT remains whatever was loaded at boot until the next reboot;
 - `FDTOVERLAYS` did not apply correctly on this UEFI boot path; the working syntax is `FDT` plus `OVERLAYS`.
 
@@ -74,12 +80,14 @@ The repository now contains:
 - `patches/ov5647-p3768-port-a-probe.dts`
 - `patches/ov5647-p3768-port-a-lanepol0-probe.dts`
 - `patches/ov5647-p3768-port-c-probe.dts`
+- `patches/ov5647-p3768-port-c-reference.dts`
 
 - `ov5647-p3768-port-a-reference.dts.in` remains the unconstrained placeholder template.
 - `ov5647-p3768-port-a-draft.dts` is a compile-ready draft for local build validation only.
 - `ov5647-p3768-port-a-probe.dts` is the first route-A candidate; it probe-validated but capture timed out.
 - `ov5647-p3768-port-a-lanepol0-probe.dts` differs from the route-A probe only by `lane_polarity = "0"` and traceable names/badges.
 - `ov5647-p3768-port-c-probe.dts` is the route-C candidate; it probe-validated but capture timed out.
+- `ov5647-p3768-port-c-reference.dts` is the canonical baseline for further comparisons.
 - The draft keeps the sensor node `status = "disabled"` and must not be treated as a verified or boot-ready carrier overlay.
 
 ## Route-C Candidate

@@ -20,3 +20,6 @@ artifacts/reference/
 artifacts/reference/**/*.tbz2
 artifacts/reference/**/*.tar
 artifacts/reference/**/*.tar.gz
+
+# Local sparse checkouts of official vendor trees are for read-only analysis.
+tools/vendor/

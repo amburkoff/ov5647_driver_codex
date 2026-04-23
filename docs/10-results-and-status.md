@@ -238,6 +238,11 @@ Completed:
   - `mclk enabled rate` still remains `24000000`;
   - `VIDIOC_STREAMON` still succeeds but the raw output stays `0 bytes`;
   - VI still reports repeated `uncorr_err` timeouts and RTCPU/NVCSI still show no frame ingress.
+- the repository now freezes a single comparison baseline:
+  - canonical overlay source `patches/ov5647-p3768-port-c-reference.dts`;
+  - route `C`, `serial_c`, `port-index=2`, `lane_polarity="0"`, `reset-gpios=<0xa0>`, no `pwdn-gpios`;
+  - `/boot/ov5647-p3768-port-c-reference.dtbo` is staged into the `ov5647-dev` boot profile for future reboot-based comparisons;
+  - safe profile remains unchanged.
 - runtime validation of the no-duplicate-set-mode experiment still timed out:
   - manual `rmmod` returned cleanly;
   - manual `insmod full-delay` loaded module `srcversion=E9CE1D1EF58B852F6484431`;

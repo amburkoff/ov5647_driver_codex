@@ -57,7 +57,12 @@
   - carrier-specific CLB routing could still differ from p3768 assumptions;
   - deeper NVIDIA receiver-side instrumentation could still expose a hidden route/config mismatch;
   - but ordinary OV5647 mode, test-pattern, `PWDN`, and basic settle-timing hypotheses no longer explain the failure well.
+- A new kernel-panic hazard was found while probing receiver-side debug hooks:
+  - pstore shows a fatal NULL dereference in `debugfs_print_regs32()` from a userspace `cat`;
+  - the call trace goes through `debugfs_show_regset32()` and matches NVIDIA `VI/camrtc` debugfs regset code paths;
+  - until narrowed further, vendor `debugfs regset32` files in the camera path should be treated as unsafe on this image.
 - Local `nvidia-oot` headers are present, but full local sample sensor source files are not installed under `/usr/src/nvidia/`.
+- Official `linux-nv-oot.git` source for `l4t-r36.5` is now fetched locally under `tools/vendor/linux-nv-oot-r36.5` for read-only analysis of `nvcsi`, `vi`, `rtcpu`, and `camera` code paths.
 - Unprivileged `dmesg` access is restricted, so full kernel-buffer capture requires elevated privileges.
 - `journalctl --list-boots` and `uptime -s` disagree about the current boot start time, so timestamp interpretation needs care.
 - The draft route-A OV5647 overlay compiles locally, but it still relies on unresolved hardware assumptions and keeps the sensor node disabled.

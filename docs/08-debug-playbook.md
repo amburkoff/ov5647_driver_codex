@@ -99,3 +99,20 @@ sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_rtcpu_trace.s
 ```
 
 This enables selected `camera_common`, `tegra_capture`, and `tegra_rtcpu` tracepoints only for the duration of one capture attempt and saves trace artifacts under `artifacts/traces/<timestamp>/`.
+
+## Receiver-Side Safety Note
+
+Do not casually read vendor `debugfs regset32` files under camera-related
+`debugfs` paths on this image.
+
+Pstore now contains a kernel panic showing:
+
+- `debugfs_print_regs32()`
+- `debugfs_show_regset32()`
+- userspace `cat`
+
+The current safe bias is:
+
+- prefer RTCPU tracepoints and source inspection first;
+- avoid direct reads of `VI/NVCSI/camrtc` register-dump files until a safe node
+  subset is identified from source.
