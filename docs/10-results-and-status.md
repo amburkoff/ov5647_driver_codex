@@ -1,6 +1,6 @@
 # Results And Status
 
-Current overall status: `route-A lane-polarity-0 corrected-MCLK capture also no-SOF, manual LKM-only workflow retained, route-A and route-C probes work, remove path fixed, physical CLB/makerobo CSI path now the dominant blocker`
+Current overall status: `route-C reset-only and forced-mclk25 runtime still no-SOF, manual LKM-only workflow retained, route-A and route-C probes work, remove path fixed, physical CLB/makerobo CSI path remains the dominant blocker while one final MCLK override implementation gap is being closed`
 
 Completed:
 
@@ -218,6 +218,20 @@ Completed:
 - source-side no-duplicate-set-mode experiment is prepared and builds:
   - removed duplicate `ov5647_set_mode()` from `ov5647_start_streaming()`;
   - this avoids re-applying common/mode tables and software reset `0x0103` immediately before stream enable;
+- external NVIDIA forum and shared OV5647 reference review was completed:
+  - NVIDIA's trace interpretation points at lane/PHY control failure rather than a basic sensor-register issue;
+  - the shared route-C example uses `serial_c`, `reset-gpios`, and `mclk_khz = 25000`.
+- a route-C reset-only 25 MHz DT branch was staged and runtime-tested:
+  - live DT confirms `serial_c`, `port-index = 2`, `reset_gpio=486`, `pwdn_gpio=-1`, `mclk_khz = 25000`;
+  - manual runtime still reaches `VIDIOC_STREAMON` but produces `0 bytes` and repeated VI `uncorr_err` timeouts;
+  - RTCPU/NVCSI traces still show no SOF/EOF receiver activity.
+- a follow-up forced-`mclk_override_hz=25000000` runtime test was also run on the same route-C reset-only branch:
+  - module parameters did include `mclk_override_hz=25000000`;
+  - the actual clock log still reported `mclk enabled rate=24000000`;
+  - therefore the earlier override path changed `def_clk_freq` but did not prove the underlying clock switched to 25 MHz.
+- source-side MCLK override fix is now prepared:
+  - `ov5647_power_on()` explicitly calls `clk_set_rate(pw->mclk, mclk_override_hz)` and logs the before/after rate before `camera_common_mclk_enable()`;
+  - this is the next narrow runtime retest on the route-C reset-only branch.
 - runtime validation of the no-duplicate-set-mode experiment still timed out:
   - manual `rmmod` returned cleanly;
   - manual `insmod full-delay` loaded module `srcversion=E9CE1D1EF58B852F6484431`;

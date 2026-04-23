@@ -860,6 +860,21 @@ static int ov5647_power_on(struct camera_common_data *s_data)
 		dev_warn(dev, "%s: overriding def_clk_freq %d -> %u Hz\n",
 			 __func__, s_data->def_clk_freq, mclk_override_hz);
 		s_data->def_clk_freq = mclk_override_hz;
+		if (pw->mclk) {
+			unsigned long before = clk_get_rate(pw->mclk);
+
+			err = clk_set_rate(pw->mclk, mclk_override_hz);
+			if (err)
+				dev_warn(dev,
+					 "%s: clk_set_rate(%u) failed err=%d current_rate=%lu\n",
+					 __func__, mclk_override_hz, err,
+					 clk_get_rate(pw->mclk));
+			else
+				dev_info(dev,
+					 "%s: clk_set_rate(%u) ok rate %lu -> %lu\n",
+					 __func__, mclk_override_hz, before,
+					 clk_get_rate(pw->mclk));
+		}
 	}
 
 	dev_info(dev, "%s: enabling mclk def_clk_freq=%d current_rate=%lu\n",
