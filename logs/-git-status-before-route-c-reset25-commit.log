@@ -1,0 +1,5 @@
+?? artifacts/boot/20260423T140139Z/
+?? artifacts/dtbo/20260423T140126Z-ov5647-p3768-port-c-reset25-probe.dtbo
+?? logs/20260423T140126Z-build_overlay-ov5647-p3768-port-c-reset25-probe.log
+?? patches/ov5647-p3768-port-c-reset25-probe.dts
+?? reports/2026-04-23-route-c-reset25-stage.md
