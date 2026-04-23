@@ -1,6 +1,6 @@
 # Results And Status
 
-Current overall status: `route-C reset-only and forced-mclk25 runtime still no-SOF, manual LKM-only workflow retained, route-A and route-C probes work, remove path fixed, physical CLB/makerobo CSI path remains the dominant blocker while one final MCLK override implementation gap is being closed`
+Current overall status: `route-C reset-only plus explicit clk_set_rate-to-25MHz still no-SOF, manual LKM-only workflow retained, route-A and route-C probes work, remove path fixed, and physical CLB/makerobo CSI path remains the dominant blocker`
 
 Completed:
 
@@ -232,6 +232,12 @@ Completed:
 - source-side MCLK override fix is now prepared:
   - `ov5647_power_on()` explicitly calls `clk_set_rate(pw->mclk, mclk_override_hz)` and logs the before/after rate before `camera_common_mclk_enable()`;
   - this is the next narrow runtime retest on the route-C reset-only branch.
+- runtime validation of the explicit `clk_set_rate()` path is now complete:
+  - loaded module `srcversion=64571279B7D881EB1BFF782`;
+  - runtime logs show `clk_set_rate(25000000) ok rate 24000000 -> 24000000`;
+  - `mclk enabled rate` still remains `24000000`;
+  - `VIDIOC_STREAMON` still succeeds but the raw output stays `0 bytes`;
+  - VI still reports repeated `uncorr_err` timeouts and RTCPU/NVCSI still show no frame ingress.
 - runtime validation of the no-duplicate-set-mode experiment still timed out:
   - manual `rmmod` returned cleanly;
   - manual `insmod full-delay` loaded module `srcversion=E9CE1D1EF58B852F6484431`;

@@ -1,0 +1,1493 @@
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd421]
+[    0.000000] Linux version 5.15.185-tegra (buildbrain@239549d1-8639-491a-b9e7-120e21430986-l1eu-vqrkv) (aarch64-buildroot-linux-gnu-gcc.br_real (Buildroot 2022.08) 11.3.0, GNU ld (GNU Binutils) 2.38) #1 SMP PREEMPT Thu Jan 15 19:24:38 PST 2026 ()
+[    0.000000] Machine model: NVIDIA Jetson Orin NX Engineering Reference Developer Kit
+[    0.000000] efi: EFI v2.70 by EDK II
+[    0.000000] efi: RTPROP=0x46de1e698 TPMFinalLog=0x45e8f0000 SMBIOS=0xffff0000 SMBIOS 3.0=0x46da40000 MEMATTR=0x467efe018 ESRT=0x468420518 TPMEventLog=0x45e0cc018 RNG=0x45e900018 MEMRESERVE=0x45e901f98 
+[    0.000000] random: crng init done
+[    0.000000] secureboot: Secure boot disabled
+[    0.000000] esrt: Reserving ESRT space from 0x0000000468420518 to 0x0000000468420550.
+[    0.000000] Reserved memory: created CMA memory pool at 0x0000000446000000, size 256 MiB
+[    0.000000] OF: reserved mem: initialized node linux,cma, compatible id shared-dma-pool
+[    0.000000] NUMA: No NUMA configuration found
+[    0.000000] NUMA: Faking a node at [mem 0x0000000080000000-0x0000000477ffffff]
+[    0.000000] NUMA: NODE_DATA [mem 0x4702fb800-0x4702fdfff]
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem 0x0000000080000000-0x00000000ffffffff]
+[    0.000000]   DMA32    empty
+[    0.000000]   Normal   [mem 0x0000000100000000-0x0000000477ffffff]
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000080000000-0x00000000bdffffff]
+[    0.000000]   node   0: [mem 0x00000000c2000000-0x00000000fffdffff]
+[    0.000000]   node   0: [mem 0x00000000fffe0000-0x00000000ffffffff]
+[    0.000000]   node   0: [mem 0x0000000100000000-0x000000045d48ffff]
+[    0.000000]   node   0: [mem 0x000000045d490000-0x000000045e0bffff]
+[    0.000000]   node   0: [mem 0x000000045e0c0000-0x000000045e0effff]
+[    0.000000]   node   0: [mem 0x000000045e0f0000-0x000000045e0fffff]
+[    0.000000]   node   0: [mem 0x000000045e100000-0x000000045e14ffff]
+[    0.000000]   node   0: [mem 0x000000045e150000-0x000000045e30ffff]
+[    0.000000]   node   0: [mem 0x000000045e310000-0x000000045e8effff]
+[    0.000000]   node   0: [mem 0x000000045e8f0000-0x000000045e8fffff]
+[    0.000000]   node   0: [mem 0x000000045e900000-0x000000046bedffff]
+[    0.000000]   node   0: [mem 0x000000046bee0000-0x000000046de1ffff]
+[    0.000000]   node   0: [mem 0x000000046de20000-0x0000000471dfffff]
+[    0.000000]   node   0: [mem 0x0000000471e00000-0x0000000471ffffff]
+[    0.000000]   node   0: [mem 0x0000000472000000-0x000000047259ffff]
+[    0.000000]   node   0: [mem 0x0000000476000000-0x0000000477ffffff]
+[    0.000000] mminit::pageflags_layout_widths Section 0 Node 4 Zone 2 Lastcpupid 16 Kasantag 0 Flags 24
+[    0.000000] mminit::pageflags_layout_shifts Section 21 Node 4 Zone 2 Lastcpupid 16 Kasantag 0
+[    0.000000] mminit::pageflags_layout_pgshifts Section 0 Node 60 Zone 58 Lastcpupid 42 Kasantag 0
+[    0.000000] mminit::pageflags_layout_nodezoneid Node/Zone ID: 64 -> 58
+[    0.000000] mminit::pageflags_layout_usage location: 64 -> 42 layout 42 -> 24 unused 24 -> 0 page-flags
+[    0.000000] Initmem setup node 0 [mem 0x0000000080000000-0x0000000477ffffff]
+[    0.000000] mminit::memmap_init Initialising map node 0 zone 0 pfns 524288 -> 1048576
+[    0.000000] mminit::memmap_init Initialising map node 0 zone 2 pfns 1048576 -> 4685824
+[    0.000000] On node 0, zone DMA: 16384 pages in unavailable ranges
+[    0.000000] On node 0, zone Normal: 14944 pages in unavailable ranges
+[    0.000000] psci: probing for conduit method from DT.
+[    0.000000] psci: PSCIv1.1 detected in firmware.
+[    0.000000] psci: Using standard PSCI v0.2 function IDs
+[    0.000000] psci: Trusted OS migration not required
+[    0.000000] psci: SMC Calling Convention v1.2
+[    0.000000] percpu: Embedded 30 pages/cpu s83480 r8192 d31208 u122880
+[    0.000000] pcpu-alloc: s83480 r8192 d31208 u122880 alloc=30*4096
+[    0.000000] pcpu-alloc: [0] 0 [0] 1 [0] 2 [0] 3 [0] 4 [0] 5 [0] 6 [0] 7 
+[    0.000000] Detected PIPT I-cache on CPU0
+[    0.000000] CPU features: detected: Address authentication (architected algorithm)
+[    0.000000] CPU features: detected: GIC system register CPU interface
+[    0.000000] CPU features: detected: Virtualization Host Extensions
+[    0.000000] CPU features: detected: Hardware dirty bit management
+[    0.000000] CPU features: detected: Spectre-v4
+[    0.000000] CPU features: detected: Spectre-BHB
+[    0.000000] CPU features: kernel page table isolation forced ON by KASLR
+[    0.000000] CPU features: detected: Kernel page table isolation (KPTI)
+[    0.000000] alternatives: patching kernel code
+[    0.000000] mminit::zonelist general 0:DMA = 0:DMA 
+[    0.000000] mminit::zonelist general 0:Normal = 0:Normal 0:DMA 
+[    0.000000] mminit::zonelist thisnode 0:DMA = 0:DMA 
+[    0.000000] mminit::zonelist thisnode 0:Normal = 0:Normal 0:DMA 
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 4065184
+[    0.000000] Policy zone: Normal
+[    0.000000] Kernel command line: root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+[    0.000000] Unknown kernel command line parameters "boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000", will be passed to user space.
+[    0.000000] Dentry cache hash table entries: 2097152 (order: 12, 16777216 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 1048576 (order: 11, 8388608 bytes, linear)
+[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000] software IO TLB: mapped [mem 0x00000000fbfe0000-0x00000000fffe0000] (64MB)
+[    0.000000] Memory: 15732944K/16520832K available (20480K kernel code, 4086K rwdata, 10172K rodata, 7744K init, 529K bss, 525744K reserved, 262144K cma-reserved)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=8, Nodes=1
+[    0.000000] trace event string verifier disabled
+[    0.000000] rcu: Preemptible hierarchical RCU implementation.
+[    0.000000] rcu: 	RCU event tracing is enabled.
+[    0.000000] rcu: 	RCU restricting CPUs from NR_CPUS=256 to nr_cpu_ids=8.
+[    0.000000] 	Trampoline variant of Tasks RCU enabled.
+[    0.000000] 	Rude variant of Tasks RCU enabled.
+[    0.000000] 	Tracing variant of Tasks RCU enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=8
+[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[    0.000000] GICv3: GIC: Using split EOI/Deactivate mode
+[    0.000000] GICv3: 960 SPIs implemented
+[    0.000000] GICv3: 0 Extended SPIs implemented
+[    0.000000] GICv3: Distributor has no Range Selector support
+[    0.000000] Root IRQ handler: gic_handle_irq
+[    0.000000] GICv3: 16 PPIs implemented
+[    0.000000] GICv3: CPU0: found redistributor 0 region 0:0x000000000f440000
+[    0.000000] arch_timer: cp15 timer(s) running at 31.25MHz (phys).
+[    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0xe6a171046, max_idle_ns: 881590405314 ns
+[    0.000001] sched_clock: 56 bits at 31MHz, resolution 32ns, wraps every 4398046511088ns
+[    0.000352] Console: colour dummy device 80x25
+[    0.000358] printk: console [tty0] enabled
+[    0.000402] Calibrating delay loop (skipped), value calculated using timer frequency.. 62.50 BogoMIPS (lpj=125000)
+[    0.000407] pid_max: default: 32768 minimum: 301
+[    0.000437] LSM: Security Framework initializing
+[    0.000455] Yama: becoming mindful.
+[    0.000465] SELinux:  Initializing.
+[    0.000531] Mount-cache hash table entries: 32768 (order: 6, 262144 bytes, linear)
+[    0.000550] Mountpoint-cache hash table entries: 32768 (order: 6, 262144 bytes, linear)
+[    0.001411] rcu: Hierarchical SRCU implementation.
+[    0.003607] Tegra Revision: A01 SKU: 211 CPU Process: 0 SoC Process: 0
+[    0.003864] Remapping and enabling EFI services.
+[    0.004890] smp: Bringing up secondary CPUs ...
+[    0.005265] Detected PIPT I-cache on CPU1
+[    0.005293] GICv3: CPU1: found redistributor 100 region 0:0x000000000f460000
+[    0.005320] CPU1: Booted secondary processor 0x0000000100 [0x410fd421]
+[    0.005670] Detected PIPT I-cache on CPU2
+[    0.005681] GICv3: CPU2: found redistributor 200 region 0:0x000000000f480000
+[    0.005693] CPU2: Booted secondary processor 0x0000000200 [0x410fd421]
+[    0.006006] Detected PIPT I-cache on CPU3
+[    0.006016] GICv3: CPU3: found redistributor 300 region 0:0x000000000f4a0000
+[    0.006027] CPU3: Booted secondary processor 0x0000000300 [0x410fd421]
+[    0.008318] Detected PIPT I-cache on CPU4
+[    0.008340] GICv3: CPU4: found redistributor 10000 region 0:0x000000000f4c0000
+[    0.008361] CPU4: Booted secondary processor 0x0000010000 [0x410fd421]
+[    0.008727] Detected PIPT I-cache on CPU5
+[    0.008736] GICv3: CPU5: found redistributor 10100 region 0:0x000000000f4e0000
+[    0.008748] CPU5: Booted secondary processor 0x0000010100 [0x410fd421]
+[    0.009077] Detected PIPT I-cache on CPU6
+[    0.009087] GICv3: CPU6: found redistributor 10200 region 0:0x000000000f500000
+[    0.009098] CPU6: Booted secondary processor 0x0000010200 [0x410fd421]
+[    0.009432] Detected PIPT I-cache on CPU7
+[    0.009442] GICv3: CPU7: found redistributor 10300 region 0:0x000000000f520000
+[    0.009454] CPU7: Booted secondary processor 0x0000010300 [0x410fd421]
+[    0.009501] smp: Brought up 1 node, 8 CPUs
+[    0.009504] SMP: Total of 8 processors activated.
+[    0.009506] CPU features: detected: 32-bit EL0 Support
+[    0.009507] CPU features: detected: Data cache clean to the PoU not required for I/D coherence
+[    0.009509] CPU features: detected: Common not Private translations
+[    0.009509] CPU features: detected: CRC32 instructions
+[    0.009510] CPU features: detected: Data cache clean to Point of Persistence
+[    0.009511] CPU features: detected: Generic authentication (architected algorithm)
+[    0.009512] CPU features: detected: RCpc load-acquire (LDAPR)
+[    0.009512] CPU features: detected: LSE atomic instructions
+[    0.009513] CPU features: detected: Privileged Access Never
+[    0.009514] CPU features: detected: RAS Extension Support
+[    0.009516] CPU features: detected: Speculative Store Bypassing Safe (SSBS)
+[    0.037181] CPU: All CPU(s) started at EL2
+[    0.038897] devtmpfs: initialized
+[    0.050043] KASLR enabled
+[    0.050138] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+[    0.050151] futex hash table entries: 2048 (order: 5, 131072 bytes, linear)
+[    0.052302] pinctrl core: initialized pinctrl subsystem
+[    0.052838] SMBIOS 3.6.0 present.
+[    0.052846] DMI: NVIDIA NVIDIA Jetson Orin NX Engineering Reference Developer Kit/Jetson, BIOS 36.5.0-gcid-43688277 01/16/2026
+[    0.053144] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.054319] DMA: preallocated 2048 KiB GFP_KERNEL pool for atomic allocations
+[    0.054449] DMA: preallocated 2048 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+[    0.054568] DMA: preallocated 2048 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+[    0.054605] audit: initializing netlink subsys (disabled)
+[    0.054692] audit: type=2000 audit(0.052:1): state=initialized audit_enabled=0 res=1
+[    0.055728] thermal_sys: Registered thermal governor 'step_wise'
+[    0.055732] thermal_sys: Registered thermal governor 'user_space'
+[    0.055734] thermal_sys: Registered thermal governor 'power_allocator'
+[    0.057812] cpuidle: using governor menu
+[    0.057956] hw-breakpoint: found 6 breakpoint and 4 watchpoint registers.
+[    0.058038] ASID allocator initialised with 32768 entries
+[    0.059159] Serial: AMBA PL011 UART driver
+[    0.067841] 31d0000.serial: ttyAMA0 at MMIO 0x31d0000 (irq = 117, base_baud = 0) is a SBSA
+[    0.075699] platform bpmp: Fixing up cyclic dependency with 2c60000.external-memory-controller
+[    0.082446] HugeTLB registered 1.00 GiB page size, pre-allocated 0 pages
+[    0.082452] HugeTLB registered 32.0 MiB page size, pre-allocated 0 pages
+[    0.082454] HugeTLB registered 2.00 MiB page size, pre-allocated 0 pages
+[    0.082456] HugeTLB registered 64.0 KiB page size, pre-allocated 0 pages
+[    0.083098] cryptd: max_cpu_qlen set to 1000
+[    0.084440] ACPI: Interpreter disabled.
+[    0.085340] VDD_1V8_AO: supplied by VDD_5V0_SYS
+[    0.085433] VDD_3V3_AO: supplied by VDD_5V0_SYS
+[    0.085575] VDD_AV10_HUB: supplied by VDD_5V0_SYS
+[    0.085877] iommu: Default domain type: Translated 
+[    0.085879] iommu: DMA domain TLB invalidation policy: strict mode 
+[    0.086052] SCSI subsystem initialized
+[    0.086110] libata version 3.00 loaded.
+[    0.086164] vgaarb: loaded
+[    0.086266] usbcore: registered new interface driver usbfs
+[    0.086280] usbcore: registered new interface driver hub
+[    0.086289] usbcore: registered new device driver usb
+[    0.086606] pps_core: LinuxPPS API ver. 1 registered
+[    0.086608] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.086613] PTP clock support registered
+[    0.086661] EDAC MC: Ver: 3.0.0
+[    0.087301] Registered efivars operations
+[    0.087709] FPGA manager framework
+[    0.087750] Advanced Linux Sound Architecture Driver Initialized.
+[    0.088040] Bluetooth: Core ver 2.22
+[    0.088055] NET: Registered PF_BLUETOOTH protocol family
+[    0.088057] Bluetooth: HCI device and connection manager initialized
+[    0.088062] Bluetooth: HCI socket layer initialized
+[    0.088064] Bluetooth: L2CAP socket layer initialized
+[    0.088072] Bluetooth: SCO socket layer initialized
+[    0.088356] clocksource: Switched to clocksource arch_sys_counter
+[    0.117132] VFS: Disk quotas dquot_6.6.0
+[    0.117179] VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+[    0.117432] pnp: PnP ACPI: disabled
+[    0.120811] NET: Registered PF_INET protocol family
+[    0.121434] IP idents hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+[    0.123948] tcp_listen_portaddr_hash hash table entries: 8192 (order: 5, 131072 bytes, linear)
+[    0.124140] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    0.124162] TCP established hash table entries: 131072 (order: 8, 1048576 bytes, linear)
+[    0.124605] TCP bind hash table entries: 65536 (order: 8, 1048576 bytes, linear)
+[    0.126048] TCP: Hash tables configured (established 131072 bind 65536)
+[    0.126283] UDP hash table entries: 8192 (order: 6, 262144 bytes, linear)
+[    0.126445] UDP-Lite hash table entries: 8192 (order: 6, 262144 bytes, linear)
+[    0.126849] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    0.127363] RPC: Registered named UNIX socket transport module.
+[    0.127368] RPC: Registered udp transport module.
+[    0.127370] RPC: Registered tcp transport module.
+[    0.127371] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    0.127389] PCI: CLS 0 bytes, default 64
+[    0.127654] Unpacking initramfs...
+[    0.133457] hw perfevents: enabled with armv8_cortex_a78 PMU driver, 7 counters available
+[    0.133762] kvm [1]: IPA Size Limit: 48 bits
+[    0.133800] kvm [1]: GICv3: no GICV resource entry
+[    0.133807] kvm [1]: disabling GICv2 emulation
+[    0.133835] kvm [1]: GIC system register CPU interface enabled
+[    0.133926] kvm [1]: vgic interrupt IRQ9
+[    0.134105] kvm [1]: VHE mode initialized successfully
+[    0.137365] Initialise system trusted keyrings
+[    0.137407] Key type blacklist registered
+[    0.137517] workingset: timestamp_bits=42 max_order=22 bucket_order=0
+[    0.141189] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.141734] NFS: Registering the id_resolver key type
+[    0.141766] Key type id_resolver registered
+[    0.141770] Key type id_legacy registered
+[    0.141822] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+[    0.141841] nfs4flexfilelayout_init: NFSv4 Flexfile Layout Driver Registering...
+[    0.141868] ntfs: driver 2.1.32 [Flags: R/O].
+[    0.142085] 9p: Installing v9fs 9p2000 file system support
+[    0.142839] integrity: Platform Keyring initialized
+[    0.154245] Key type asymmetric registered
+[    0.154250] Asymmetric key parser 'x509' registered
+[    0.154325] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 245)
+[    0.154335] io scheduler mq-deadline registered
+[    0.154343] io scheduler kyber registered
+[    0.165050] EINJ: ACPI disabled.
+[    0.177715] Serial: 8250/16550 driver, 4 ports, IRQ sharing enabled
+[    0.179565] SuperH (H)SCI(F) driver initialized
+[    0.179901] msm_serial: driver initialized
+[    0.180607] printk: console [ttyTCU0] enabled
+[    0.181525] arm-smmu 8000000.iommu: probing hardware configuration...
+[    0.181532] arm-smmu 8000000.iommu: SMMUv2 with:
+[    0.181540] arm-smmu 8000000.iommu: 	stage 1 translation
+[    0.181542] arm-smmu 8000000.iommu: 	stage 2 translation
+[    0.181545] arm-smmu 8000000.iommu: 	nested translation
+[    0.181549] arm-smmu 8000000.iommu: 	stream matching with 128 register groups
+[    0.181551] arm-smmu 8000000.iommu: 	128 context banks (0 stage-2 only)
+[    0.181573] arm-smmu 8000000.iommu: 	Supported page sizes: 0x61311000
+[    0.181574] arm-smmu 8000000.iommu: 	Stage-1: 48-bit VA -> 48-bit IPA
+[    0.181575] arm-smmu 8000000.iommu: 	Stage-2: 48-bit IPA -> 48-bit PA
+[    0.182534] arm-smmu 10000000.iommu: probing hardware configuration...
+[    0.182538] arm-smmu 10000000.iommu: SMMUv2 with:
+[    0.182539] arm-smmu 10000000.iommu: 	stage 1 translation
+[    0.182540] arm-smmu 10000000.iommu: 	stage 2 translation
+[    0.182541] arm-smmu 10000000.iommu: 	nested translation
+[    0.182544] arm-smmu 10000000.iommu: 	stream matching with 128 register groups
+[    0.182546] arm-smmu 10000000.iommu: 	128 context banks (0 stage-2 only)
+[    0.182550] arm-smmu 10000000.iommu: 	Supported page sizes: 0x61311000
+[    0.182551] arm-smmu 10000000.iommu: 	Stage-1: 48-bit VA -> 48-bit IPA
+[    0.182553] arm-smmu 10000000.iommu: 	Stage-2: 48-bit IPA -> 48-bit PA
+[    0.182912] arm-smmu 12000000.iommu: probing hardware configuration...
+[    0.182916] arm-smmu 12000000.iommu: SMMUv2 with:
+[    0.182921] arm-smmu 12000000.iommu: 	stage 1 translation
+[    0.182924] arm-smmu 12000000.iommu: 	stage 2 translation
+[    0.182925] arm-smmu 12000000.iommu: 	nested translation
+[    0.182927] arm-smmu 12000000.iommu: 	stream matching with 128 register groups
+[    0.182929] arm-smmu 12000000.iommu: 	128 context banks (0 stage-2 only)
+[    0.182937] arm-smmu 12000000.iommu: 	Supported page sizes: 0x61311000
+[    0.182940] arm-smmu 12000000.iommu: 	Stage-1: 48-bit VA -> 48-bit IPA
+[    0.182942] arm-smmu 12000000.iommu: 	Stage-2: 48-bit IPA -> 48-bit PA
+[    0.191211] loop: module loaded
+[    0.192292] megasas: 07.727.03.00-rc1
+[    0.196617] tun: Universal TUN/TAP device driver, 1.6
+[    0.197229] thunder_xcv, ver 1.0
+[    0.197266] thunder_bgx, ver 1.0
+[    0.197290] nicpf, ver 1.0
+[    0.198147] hns3: Hisilicon Ethernet Network Driver for Hip08 Family - version
+[    0.198155] hns3: Copyright (c) 2017 Huawei Corporation.
+[    0.198201] hclge is initializing
+[    0.198233] e1000: Intel(R) PRO/1000 Network Driver
+[    0.198239] e1000: Copyright (c) 1999-2006 Intel Corporation.
+[    0.198270] e1000e: Intel(R) PRO/1000 Network Driver
+[    0.198275] e1000e: Copyright(c) 1999 - 2015 Intel Corporation.
+[    0.198311] igb: Intel(R) Gigabit Ethernet Network Driver
+[    0.198317] igb: Copyright (c) 2007-2014 Intel Corporation.
+[    0.198340] igbvf: Intel(R) Gigabit Virtual Function Network Driver
+[    0.198346] igbvf: Copyright (c) 2009 - 2012 Intel Corporation.
+[    0.198548] sky2: driver version 1.30
+[    0.199219] VFIO - User Level meta-driver version: 0.3
+[    0.200894] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    0.200905] ehci-pci: EHCI PCI platform driver
+[    0.200931] ehci-platform: EHCI generic platform driver
+[    0.200999] ehci-orion: EHCI orion driver
+[    0.201069] ehci-exynos: EHCI Exynos driver
+[    0.201131] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+[    0.201155] ohci-pci: OHCI PCI platform driver
+[    0.201180] ohci-platform: OHCI generic platform driver
+[    0.201249] ohci-exynos: OHCI Exynos driver
+[    0.201675] usbcore: registered new interface driver usb-storage
+[    0.203550] i2c_dev: i2c /dev entries driver
+[    0.204877] pps_ldisc: PPS line discipline registered
+[    0.207309] device-mapper: ioctl: 4.45.0-ioctl (2021-03-22) initialised: dm-devel@redhat.com
+[    0.209504] sdhci: Secure Digital Host Controller Interface driver
+[    0.209509] sdhci: Copyright(c) Pierre Ossman
+[    0.209952] Synopsys Designware Multimedia Card Interface Driver
+[    0.210575] sdhci-pltfm: SDHCI platform and OF driver helper
+[    0.211716] ledtrig-cpu: registered to indicate activity on CPUs
+[    0.212671] SMCCC: SOC_ID: ID = jep106:036b:0234 Revision = 0x00000401
+[    0.213236] tegra-bpmp bpmp: Adding to iommu group 0
+[    0.214737] tegra-bpmp bpmp: firmware: 40c4ded2a7425760713a-68f126a8abf
+[    0.384239] Freeing initrd memory: 15548K
+[    1.719455] clocksource: tsc: mask: 0xffffffffffffff max_cycles: 0xe6a171046, max_idle_ns: 881590405314 ns
+[    1.719482] clocksource: osc: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 49772407460 ns
+[    1.719485] clocksource: usec: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1911260446275 ns
+[    1.719841] hid: raw HID events driver (C) Jiri Kosina
+[    1.720199] usbcore: registered new interface driver usbhid
+[    1.720204] usbhid: USB HID core driver
+[    1.724288] optee: probing for conduit method.
+[    1.724358] optee: revision 4.2 (5ef90dab)
+[    1.783800] optee: dynamic shared memory is enabled
+[    1.784091] optee: initialized driver
+[    1.787111] usbcore: registered new interface driver snd-usb-audio
+[    1.788580] NET: Registered PF_PACKET protocol family
+[    1.789316] Bluetooth: RFCOMM TTY layer initialized
+[    1.789329] Bluetooth: RFCOMM socket layer initialized
+[    1.789355] Bluetooth: RFCOMM ver 1.11
+[    1.789599] 9pnet: Installing 9P2000 support
+[    1.789707] Key type dns_resolver registered
+[    1.790752] printk: console [tty0]: printing thread started
+[    1.791554] printk: console [ttyTCU0]: printing thread started
+[    1.791635] Loading compiled-in X.509 certificates
+[    1.795200] Loaded X.509 cert 'Build time autogenerated kernel key: d77ad5d0e7e5d02a2dc9cf8ec8dfa4a966aa85ba'
+[    1.831288] tegra-gpcdma 2600000.dma-controller: Adding to iommu group 1
+[    1.833465] tegra-gpcdma 2600000.dma-controller: GPC DMA driver register 31 channels
+[    1.835032] 3100000.serial: ttyTHS1 at MMIO 0x3100000 (irq = 112, base_baud = 0) is a TEGRA_UART
+[    1.836051] 3140000.serial: ttyTHS2 at MMIO 0x3140000 (irq = 113, base_baud = 0) is a TEGRA_UART
+[    1.838879] tegra_rtc c2a0000.rtc: registered as rtc1
+[    1.838889] tegra_rtc c2a0000.rtc: Tegra internal Real Time Clock
+[    1.839313] tegra-i2c 3160000.i2c: Adding to iommu group 1
+[    1.842965] tegra-i2c 3180000.i2c: Adding to iommu group 1
+[    1.844554] tegra-i2c 31b0000.i2c: Adding to iommu group 1
+[    1.845947] tegra-i2c c240000.i2c: Adding to iommu group 1
+[    1.847316] i2c 1-0025: Fixing up cyclic dependency with 3520000.padctl
+[    1.847847] tegra-i2c c250000.i2c: Adding to iommu group 1
+[    1.850037] i2c i2c-2: Added multiplexed i2c bus 9
+[    1.850143] i2c i2c-2: Added multiplexed i2c bus 10
+[    1.850150] i2c-mux-gpio bus@0:cam_i2cmux: 2 port mux on 3180000.i2c adapter
+[    1.868964] cpufreq: cpufreq_online: CPU4: Running at unlisted initial frequency: 1993000 KHz, changing to: 1984000 KHz
+[    1.871254] tegra-xusb 3610000.usb: Adding to iommu group 2
+[    1.886025] tegra-xusb 3610000.usb: Firmware timestamp: 2023-02-10 03:48:10 UTC
+[    1.886032] tegra-xusb 3610000.usb: xHCI Host Controller
+[    1.886041] tegra-xusb 3610000.usb: new USB bus registered, assigned bus number 1
+[    1.886779] tegra-xusb 3610000.usb: hcc params 0x0180ff05 hci version 0x120 quirks 0x0000000000010810
+[    1.886798] tegra-xusb 3610000.usb: irq 123, io mem 0x03610000
+[    1.886905] tegra-xusb 3610000.usb: xHCI Host Controller
+[    1.886908] tegra-xusb 3610000.usb: new USB bus registered, assigned bus number 2
+[    1.886911] tegra-xusb 3610000.usb: Host supports USB 3.1 Enhanced SuperSpeed
+[    1.887326] hub 1-0:1.0: USB hub found
+[    1.887341] hub 1-0:1.0: 4 ports detected
+[    1.887597] hub 2-0:1.0: USB hub found
+[    1.887609] hub 2-0:1.0: 4 ports detected
+[    1.888638] irq: IRQ227: trimming hierarchy from :bus@0:pmc@c360000
+[    1.888738] irq: IRQ228: trimming hierarchy from :bus@0:interrupt-controller@f400000-1
+[    1.888805] input: gpio-keys as /devices/platform/gpio-keys/input/input0
+[    1.889576] clk: Disabling unused clocks
+[    1.930250] ALSA device list:
+[    1.930253]   No soundcards found.
+[    1.940155] Freeing unused kernel memory: 7744K
+[    1.940227] Run /init as init process
+[    1.940229]   with arguments:
+[    1.940229]     /init
+[    1.940230]   with environment:
+[    1.940230]     HOME=/
+[    1.940230]     TERM=linux
+[    1.940231]     boot_profile=ov5647-dev
+[    1.940232]     bl_prof_dataptr=2031616@0x471E10000
+[    1.940232]     bl_prof_ro_ptr=65536@0x471E00000
+[    1.954590] Checking overlayfs setting...
+[    1.963785] Overlayfs is disabled...
+[    1.970534] Root device found: PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344
+[    2.224358] usb 1-2: new high-speed USB device number 2 using tegra-xusb
+[    2.397381] hub 1-2:1.0: USB hub found
+[    2.398711] hub 1-2:1.0: 4 ports detected
+[    2.509839] usb 2-1: new SuperSpeed Plus Gen 2x1 USB device number 2 using tegra-xusb
+[    2.560982] hub 2-1:1.0: USB hub found
+[    2.563677] hub 2-1:1.0: 4 ports detected
+[    2.668551] usb 1-3: new full-speed USB device number 3 using tegra-xusb
+[    3.096615] usb 1-2.4: new low-speed USB device number 4 using tegra-xusb
+[    3.217046] input: Lenovo Lenovo Calliope USB Keyboard as /devices/platform/bus@0/3610000.usb/usb1/1-2/1-2.4/1-2.4:1.0/0003:17EF:608C.0001/input/input1
+[    3.360985] hid-generic 0003:17EF:608C.0001: input,hidraw0: USB HID v1.11 Keyboard [Lenovo Lenovo Calliope USB Keyboard] on usb-3610000.usb-2.4/input0
+[    3.367968] input: Lenovo Lenovo Calliope USB Keyboard System Control as /devices/platform/bus@0/3610000.usb/usb1/1-2/1-2.4/1-2.4:1.1/0003:17EF:608C.0002/input/input2
+[    3.425257] input: Lenovo Lenovo Calliope USB Keyboard Consumer Control as /devices/platform/bus@0/3610000.usb/usb1/1-2/1-2.4/1-2.4:1.1/0003:17EF:608C.0002/input/input3
+[    3.426444] hid-generic 0003:17EF:608C.0002: input,hidraw1: USB HID v1.11 Device [Lenovo Lenovo Calliope USB Keyboard] on usb-3610000.usb-2.4/input1
+[    5.478862] tegra194-pcie 14100000.pcie: Adding to iommu group 3
+[    5.479902] irq: IRQ229: trimming hierarchy from :bus@0:interrupt-controller@f400000-1
+[    5.480737] tegra194-pcie 14100000.pcie: host bridge /bus@0/pcie@14100000 ranges:
+[    5.480755] tegra194-pcie 14100000.pcie:      MEM 0x2080000000..0x20a7ffffff -> 0x2080000000
+[    5.480761] tegra194-pcie 14100000.pcie:      MEM 0x20a8000000..0x20afffffff -> 0x0040000000
+[    5.480765] tegra194-pcie 14100000.pcie:       IO 0x0030100000..0x00301fffff -> 0x0030100000
+[    5.481083] tegra194-pcie 14100000.pcie: iATU unroll: enabled
+[    5.481085] tegra194-pcie 14100000.pcie: Detected iATU regions: 8 outbound, 2 inbound
+[    5.499345] tegra-xudc 3550000.usb: Adding to iommu group 4
+[    5.588361] tegra194-pcie 14100000.pcie: Link up
+[    5.591115] tegra194-pcie 14100000.pcie: Link up
+[    5.591447] tegra194-pcie 14100000.pcie: PCI host bridge to bus 0001:00
+[    5.591452] pci_bus 0001:00: root bus resource [bus 00-ff]
+[    5.591456] pci_bus 0001:00: root bus resource [mem 0x2080000000-0x20a7ffffff pref]
+[    5.591458] pci_bus 0001:00: root bus resource [mem 0x20a8000000-0x20afffffff] (bus address [0x40000000-0x47ffffff])
+[    5.591461] pci_bus 0001:00: root bus resource [io  0x0000-0xfffff] (bus address [0x30100000-0x301fffff])
+[    5.591514] pci 0001:00:00.0: [10de:229e] type 01 class 0x060400
+[    5.591683] pci 0001:00:00.0: PME# supported from D0 D3hot
+[    5.595092] pci 0001:01:00.0: [10ec:c822] type 00 class 0x028000
+[    5.595626] pci 0001:01:00.0: reg 0x10: [io  0x0000-0x00ff]
+[    5.595671] pci 0001:01:00.0: reg 0x18: [mem 0x20a8000000-0x20a800ffff 64bit]
+[    5.596563] pci 0001:01:00.0: supports D1 D2
+[    5.596565] pci 0001:01:00.0: PME# supported from D0 D1 D2 D3hot D3cold
+[    5.611043] pci 0001:00:00.0: BAR 14: assigned [mem 0x20a8000000-0x20a80fffff]
+[    5.611047] pci 0001:00:00.0: BAR 13: assigned [io  0x1000-0x1fff]
+[    5.611050] pci 0001:01:00.0: BAR 2: assigned [mem 0x20a8000000-0x20a800ffff 64bit]
+[    5.611152] pci 0001:01:00.0: BAR 0: assigned [io  0x1000-0x10ff]
+[    5.611184] pci 0001:00:00.0: PCI bridge to [bus 01-ff]
+[    5.611187] pci 0001:00:00.0:   bridge window [io  0x1000-0x1fff]
+[    5.611191] pci 0001:00:00.0:   bridge window [mem 0x20a8000000-0x20a80fffff]
+[    5.611211] pci 0001:00:00.0: Max Payload Size set to  256/ 256 (was  128), Max Read Rq  256
+[    5.611358] pci 0001:01:00.0: Max Payload Size set to  128/ 128 (was  128), Max Read Rq  128
+[    5.611447] pcieport 0001:00:00.0: Adding to iommu group 3
+[    5.611547] pcieport 0001:00:00.0: PME: Signaling with IRQ 190
+[    5.611658] pcieport 0001:00:00.0: AER: enabled with IRQ 190
+[    5.612522] tegra194-pcie 14160000.pcie: Adding to iommu group 5
+[    5.614362] tegra194-pcie 14160000.pcie: host bridge /bus@0/pcie@14160000 ranges:
+[    5.614374] tegra194-pcie 14160000.pcie:      MEM 0x2140000000..0x2427ffffff -> 0x2140000000
+[    5.614380] tegra194-pcie 14160000.pcie:      MEM 0x2428000000..0x242fffffff -> 0x0040000000
+[    5.614383] tegra194-pcie 14160000.pcie:       IO 0x0036100000..0x00361fffff -> 0x0036100000
+[    5.614681] tegra194-pcie 14160000.pcie: iATU unroll: enabled
+[    5.614683] tegra194-pcie 14160000.pcie: Detected iATU regions: 8 outbound, 2 inbound
+[    5.720539] tegra194-pcie 14160000.pcie: Link up
+[    5.721771] tegra194-pcie 14160000.pcie: Link up
+[    5.721826] tegra194-pcie 14160000.pcie: PCI host bridge to bus 0004:00
+[    5.721828] pci_bus 0004:00: root bus resource [bus 00-ff]
+[    5.721831] pci_bus 0004:00: root bus resource [mem 0x2140000000-0x2427ffffff pref]
+[    5.721834] pci_bus 0004:00: root bus resource [mem 0x2428000000-0x242fffffff] (bus address [0x40000000-0x47ffffff])
+[    5.721836] pci_bus 0004:00: root bus resource [io  0x100000-0x1fffff] (bus address [0x36100000-0x361fffff])
+[    5.721878] pci 0004:00:00.0: [10de:229c] type 01 class 0x060400
+[    5.722019] pci 0004:00:00.0: PME# supported from D0 D3hot
+[    5.725020] pci 0004:01:00.0: [4321:2263] type 00 class 0x010802
+[    5.725481] pci 0004:01:00.0: reg 0x10: [mem 0x00000000-0x00003fff 64bit]
+[    5.739041] pci 0004:00:00.0: BAR 14: assigned [mem 0x2428000000-0x24280fffff]
+[    5.739046] pci 0004:01:00.0: BAR 0: assigned [mem 0x2428000000-0x2428003fff 64bit]
+[    5.739131] pci 0004:00:00.0: PCI bridge to [bus 01-ff]
+[    5.739136] pci 0004:00:00.0:   bridge window [mem 0x2428000000-0x24280fffff]
+[    5.739155] pci 0004:00:00.0: Max Payload Size set to  256/ 256 (was  128), Max Read Rq  256
+[    5.739279] pci 0004:01:00.0: Max Payload Size set to  128/ 128 (was  128), Max Read Rq  128
+[    5.739353] pcieport 0004:00:00.0: Adding to iommu group 5
+[    5.739429] pcieport 0004:00:00.0: PME: Signaling with IRQ 192
+[    5.739537] pcieport 0004:00:00.0: AER: enabled with IRQ 192
+[    5.739707] nvme 0004:01:00.0: Adding to iommu group 5
+[    5.740064] nvme nvme0: pci function 0004:01:00.0
+[    5.740399] nvme 0004:01:00.0: enabling device (0000 -> 0002)
+[    5.740622] tegra194-pcie 141e0000.pcie: Adding to iommu group 6
+[    5.741772] tegra194-pcie 141e0000.pcie: host bridge /bus@0/pcie@141e0000 ranges:
+[    5.741785] tegra194-pcie 141e0000.pcie:      MEM 0x3000000000..0x3227ffffff -> 0x3000000000
+[    5.741790] tegra194-pcie 141e0000.pcie:      MEM 0x3228000000..0x322fffffff -> 0x0040000000
+[    5.741793] tegra194-pcie 141e0000.pcie:       IO 0x003e100000..0x003e1fffff -> 0x003e100000
+[    5.742096] tegra194-pcie 141e0000.pcie: iATU unroll: enabled
+[    5.742098] tegra194-pcie 141e0000.pcie: Detected iATU regions: 8 outbound, 2 inbound
+[    5.758874] nvme nvme0: allocated 64 MiB host memory buffer.
+[    5.777321] nvme nvme0: 8/0/0 default/read/poll queues
+[    5.785895]  nvme0n1: p1 p2 p3 p4 p5 p6 p7 p8 p9 p10 p11 p12 p13 p14 p15
+[    6.051613] EXT4-fs (nvme0n1p1): mounted filesystem with ordered data mode. Opts: (null). Quota mode: none.
+[    6.057191] Rootfs mounted over PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344
+[    6.066094] Switching from initrd to actual rootfs
+[    6.118945] systemd[1]: System time before build time, advancing clock.
+[    6.137896] NET: Registered PF_INET6 protocol family
+[    6.138337] Segment Routing with IPv6
+[    6.138345] In-situ OAM (IOAM) with IPv6
+[    6.152021] systemd[1]: systemd 249.11-0ubuntu3.17 running in system mode (+PAM +AUDIT +SELINUX +APPARMOR +IMA +SMACK +SECCOMP +GCRYPT +GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS +FIDO2 +IDN2 -IDN +IPTC +KMOD +LIBCRYPTSETUP +LIBFDISK +PCRE2 -PWQUALITY -P11KIT -QRENCODE +BZIP2 +LZ4 +XZ +ZLIB +ZSTD -XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified)
+[    6.152410] systemd[1]: Detected architecture arm64.
+[    6.153691] systemd[1]: Hostname set to <cam-desktop>.
+[    6.160121] systemd[1]: Using hardware watchdog 'NVIDIA Tegra186 WDT', version 0, device /dev/watchdog
+[    6.160138] systemd[1]: Set hardware watchdog to 2min.
+[    6.306147] systemd[1]: /lib/systemd/system/snapd.service:23: Unknown key name 'RestartMode' in section 'Service', ignoring.
+[    6.317045] systemd[1]: /etc/systemd/system/nvs-service.service:41: Standard output type syslog is obsolete, automatically updating to journal. Please update your unit file, and consider removing the setting altogether.
+[    6.319953] systemd[1]: /etc/systemd/system/nvargus-daemon.service:42: Standard output type syslog is obsolete, automatically updating to journal. Please update your unit file, and consider removing the setting altogether.
+[    6.378599] systemd[1]: Queued start job for default target Graphical Interface.
+[    6.380099] systemd[1]: Created slice Slice /system/modprobe.
+[    6.380724] systemd[1]: Created slice Slice /system/openvpn.
+[    6.381791] systemd[1]: Created slice Slice /system/serial-getty.
+[    6.382185] systemd[1]: Created slice Slice /system/systemd-fsck.
+[    6.382503] systemd[1]: Created slice User and Session Slice.
+[    6.382669] systemd[1]: Started Forward Password Requests to Wall Directory Watch.
+[    6.383035] systemd[1]: Set up automount Arbitrary Executable File Formats File System Automount Point.
+[    6.383192] systemd[1]: Reached target Slice Units.
+[    6.383252] systemd[1]: Reached target Mounting snaps.
+[    6.383309] systemd[1]: Reached target Swaps.
+[    6.383367] systemd[1]: Reached target Local Verity Protected Volumes.
+[    6.383512] systemd[1]: Listening on Device-mapper event daemon FIFOs.
+[    6.383726] systemd[1]: Listening on LVM2 poll daemon socket.
+[    6.388776] systemd[1]: Listening on RPCbind Server Activation Socket.
+[    6.389217] systemd[1]: Listening on Syslog Socket.
+[    6.389425] systemd[1]: Listening on fsck to fsckd communication Socket.
+[    6.389564] systemd[1]: Listening on initctl Compatibility Named Pipe.
+[    6.389890] systemd[1]: Listening on Journal Audit Socket.
+[    6.390065] systemd[1]: Listening on Journal Socket (/dev/log).
+[    6.390278] systemd[1]: Listening on Journal Socket.
+[    6.390834] systemd[1]: Listening on udev Control Socket.
+[    6.391027] systemd[1]: Listening on udev Kernel Socket.
+[    6.392151] systemd[1]: Mounting Huge Pages File System...
+[    6.393289] systemd[1]: Mounting POSIX Message Queue File System...
+[    6.434885] systemd[1]: Mounting Kernel Debug File System...
+[    6.446715] systemd[1]: Mounting Kernel Trace File System...
+[    6.449732] systemd[1]: Starting Journal Service...
+[    6.456614] systemd[1]: Finished Availability of block devices.
+[    6.458207] systemd[1]: Starting Set the console keyboard layout...
+[    6.459442] systemd[1]: Starting Create List of Static Device Nodes...
+[    6.460865] systemd[1]: Starting Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling...
+[    6.487428] systemd[1]: Starting Load Kernel Module configfs...
+[    6.488856] systemd[1]: Starting Load Kernel Module drm...
+[    6.498336] systemd[1]: Starting Load Kernel Module efi_pstore...
+[    6.499555] systemd[1]: Starting Load Kernel Module fuse...
+[    6.501058] systemd[1]: Starting NVIDIA specific first-boot udev script...
+[    6.505959] fuse: init (API version 7.34)
+[    6.521485] systemd[1]: Started Nameserver information manager.
+[    6.521713] systemd[1]: Reached target Preparation for Network.
+[    6.521924] systemd[1]: Condition check resulted in File System Check on Root Device being skipped.
+[    6.523896] systemd[1]: Starting Load Kernel Modules...
+[    6.525081] systemd[1]: Starting Remount Root and Kernel File Systems...
+[    6.530985] nvsciipc: loading out-of-tree module taints kernel.
+[    6.531960] EXT4-fs (nvme0n1p1): re-mounted. Opts: (null). Quota mode: none.
+[    6.532002] nvsciipc: loaded module
+[    6.537487] nvmap_heap_init: nvmap_heap_init: created heap block cache
+[    6.537980] nvmap_page_pool_init: Total RAM pages: 4004595
+[    6.537982] nvmap_page_pool_init: nvmap page pool size: 500574 pages (1955 MB)
+[    6.538040] nvmap_background_zero_thread: PP zeroing thread starting.
+[    6.544689] tegra-host1x 13e00000.host1x: Adding to iommu group 7
+[    6.545929] host1x-context host1x-ctx.0: Adding to iommu group 8
+[    6.546051] host1x-context host1x-ctx.1: Adding to iommu group 9
+[    6.546150] host1x-context host1x-ctx.2: Adding to iommu group 10
+[    6.546249] host1x-context host1x-ctx.3: Adding to iommu group 11
+[    6.546342] host1x-context host1x-ctx.4: Adding to iommu group 12
+[    6.546437] host1x-context host1x-ctx.5: Adding to iommu group 13
+[    6.546543] host1x-context host1x-ctx.6: Adding to iommu group 14
+[    6.546640] host1x-context host1x-ctx.7: Adding to iommu group 15
+[    6.546734] host1x-context host1x-ctx.8: Adding to iommu group 16
+[    6.546832] host1x-context host1x-ctx.9: Adding to iommu group 17
+[    6.546926] host1x-context host1x-ctx.10: Adding to iommu group 18
+[    6.547018] host1x-context host1x-ctx.11: Adding to iommu group 19
+[    6.547116] host1x-context host1x-ctx.12: Adding to iommu group 20
+[    6.547206] host1x-context host1x-ctx.13: Adding to iommu group 21
+[    6.547328] host1x-context host1x-ctx.14: Adding to iommu group 22
+[    6.547415] host1x-context host1x-ctx.15: Adding to iommu group 23
+[    6.555628] platform 13e00000.host1x:nvcsi@15a00000: Fixing up cyclic dependency with 9-0036
+[    6.555651] platform 13e00000.host1x:nvcsi@15a00000: Fixing up cyclic dependency with tegra-capture-vi
+[    6.560794] systemd[1]: Starting Coldplug All udev Devices...
+[    6.593514] nvgpu: 17000000.gpu          nvgpu_nvhost_syncpt_init:122  [INFO]  syncpt_unit_base 60000000 syncpt_unit_size 4000000 size 10000
+
+[    6.597442] systemd[1]: Mounted Huge Pages File System.
+[    6.651079] systemd[1]: Mounted POSIX Message Queue File System.
+[    6.700337] systemd[1]: Mounted Kernel Debug File System.
+[    6.753912] systemd[1]: Mounted Kernel Trace File System.
+[    6.754430] systemd[1]: Finished Set the console keyboard layout.
+[    6.754946] systemd[1]: Finished Create List of Static Device Nodes.
+[    6.755319] systemd[1]: modprobe@configfs.service: Deactivated successfully.
+[    6.755605] systemd[1]: Finished Load Kernel Module configfs.
+[    6.756003] systemd[1]: modprobe@drm.service: Deactivated successfully.
+[    6.756273] systemd[1]: Finished Load Kernel Module drm.
+[    6.756676] systemd[1]: modprobe@efi_pstore.service: Deactivated successfully.
+[    6.756950] systemd[1]: Finished Load Kernel Module efi_pstore.
+[    6.804612] systemd[1]: modprobe@fuse.service: Deactivated successfully.
+[    6.804877] systemd[1]: Finished Load Kernel Module fuse.
+[    6.822975] systemd[1]: Finished NVIDIA specific first-boot udev script.
+[    6.823757] systemd[1]: Finished Load Kernel Modules.
+[    6.824188] systemd[1]: Finished Remount Root and Kernel File Systems.
+[    6.826859] systemd[1]: Mounting FUSE Control File System...
+[    6.844357] tegra194-pcie 141e0000.pcie: Phy link never came up
+[    6.853629] systemd[1]: Mounting Kernel Configuration File System...
+[    6.855734] systemd[1]: Starting OP-TEE Client Supplicant...
+[    6.855926] systemd[1]: Condition check resulted in Platform Persistent Storage Archival being skipped.
+[    6.857118] systemd[1]: Starting Load/Save Random Seed...
+[    6.887687] systemd[1]: Starting Apply Kernel Variables...
+[    6.888919] systemd[1]: Starting Create System Users...
+[    6.906298] systemd[1]: Mounted FUSE Control File System.
+[    6.906519] systemd[1]: Mounted Kernel Configuration File System.
+[    6.907036] systemd[1]: Finished Load/Save Random Seed.
+[    6.907561] systemd[1]: Finished Apply Kernel Variables.
+[    6.907777] systemd[1]: Condition check resulted in First Boot Complete being skipped.
+[    6.916925] systemd[1]: Finished Create System Users.
+[    6.918681] systemd[1]: Starting Create Static Device Nodes in /dev...
+[    6.928236] systemd[1]: Finished Create Static Device Nodes in /dev.
+[    6.930497] systemd[1]: Starting Rule-based Manager for Device Events and Files...
+[    6.993874] systemd[1]: Started Rule-based Manager for Device Events and Files.
+[    7.031490] tegra-se 15820000.crypto: Adding to iommu group 24
+[    7.050771] tegra-se 15840000.crypto: Adding to iommu group 25
+[    7.052378] tegra-soc-hwpm f100000.hwpm: Adding to iommu group 26
+[    7.065265] scare-pigeon 13e00000.host1x:vi0-thi@15f00000: Adding to iommu group 27
+[    7.084564] scare-pigeon 13e00000.host1x:vi0-thi@15f00000: syncpt_unit_base 60000000 syncpt_unit_size 4000000 size 10000
+[    7.087868] scare-pigeon 13e00000.host1x:vi1-thi@14f00000: Adding to iommu group 28
+[    7.094689] scare-pigeon 13e00000.host1x:vi1-thi@14f00000: syncpt_unit_base 60000000 syncpt_unit_size 4000000 size 10000
+[    7.098229] scare-pigeon 13e00000.host1x:isp-thi@14b00000: Adding to iommu group 29
+[    7.100468] scare-pigeon 13e00000.host1x:isp-thi@14b00000: syncpt_unit_base 60000000 syncpt_unit_size 4000000 size 10000
+[    7.303507] mc: Linux media interface: v0.10
+[    7.313767] videodev: Linux video capture interface: v2.00
+[    7.313978] nvdla 15880000.nvdla0: Adding to iommu group 30
+[    7.320598] pva 16000000.pva0: Adding to iommu group 31
+[    7.322205] nvdla 15880000.nvdla0: syncpt_unit_base 60000000 syncpt_unit_size 4000000 size 10000
+[    7.323280] nvdla 158c0000.nvdla1: Adding to iommu group 32
+[    7.329034] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx0: Adding to iommu group 33
+[    7.329367] nvdla 158c0000.nvdla1: syncpt_unit_base 60000000 syncpt_unit_size 4000000 size 10000
+[    7.330265] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx0: initialized (streamid=18, iommu=smmu.0x0000000008000000)
+[    7.334342] systemd[1]: Started OP-TEE Client Supplicant.
+[    7.335278] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx1: Adding to iommu group 34
+[    7.335996] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx1: initialized (streamid=19, iommu=smmu.0x0000000008000000)
+[    7.346866] tegra-vic 15340000.vic: Adding to iommu group 35
+[    7.352212] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx2: Adding to iommu group 36
+[    7.353233] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx2: initialized (streamid=20, iommu=smmu.0x0000000008000000)
+[    7.357698] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx3: Adding to iommu group 37
+[    7.358513] Inserting ivc_ext.ko module
+[    7.360252] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx3: initialized (streamid=21, iommu=smmu.0x0000000008000000)
+[    7.368821] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx4: Adding to iommu group 38
+[    7.369676] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx4: initialized (streamid=22, iommu=smmu.0x0000000008000000)
+[    7.380561] tegra-nvdec 15480000.nvdec: Adding to iommu group 39
+[    7.385914] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx5: Adding to iommu group 40
+[    7.386640] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx5: initialized (streamid=23, iommu=smmu.0x0000000008000000)
+[    7.392686] tegra186-cam-rtcpu bc00000.rtcpu: Adding to iommu group 42
+[    7.392764] tegra-nvenc 154c0000.nvenc: Adding to iommu group 43
+[    7.393578] tegra186-cam-rtcpu bc00000.rtcpu: Trace buffer configured at IOVA=0xbff00000
+[    7.394058] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx6: Adding to iommu group 41
+[    7.394425] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx6: initialized (streamid=24, iommu=smmu.0x0000000008000000)
+[    7.396704] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx7: Adding to iommu group 44
+[    7.396793] pva_iommu_context_dev 16000000.pva0:pva0_niso1_ctx7: initialized (streamid=25, iommu=smmu.0x0000000008000000)
+[    7.396820] pva 16000000.pva0: pdata->version is HW_GEN2
+[    7.401724] tegra-ivc-bus bc00000.rtcpu:ivc-bus: region 0: iova=0xbfec0000-0xbfee027f size=131712
+[    7.401955] tegra-ivc-bus bc00000.rtcpu:ivc-bus:echo@0: echo: ver=0 grp=1 RX[16x64]=0x1000-0x1480 TX[16x64]=0x1480-0x1900
+[    7.402387] tegra-ivc-bus bc00000.rtcpu:ivc-bus:dbg@1: dbg: ver=0 grp=1 RX[1x512]=0x1900-0x1b80 TX[1x512]=0x1b80-0x1e00
+[    7.403120] tegra-ivc-bus bc00000.rtcpu:ivc-bus:dbg@2: dbg: ver=0 grp=1 RX[1x8192]=0x1e00-0x3e80 TX[1x8192]=0x3e80-0x5f00
+[    7.403776] pva 16000000.pva0: Completed nvhost_client_device_init
+[    7.408209] pva 16000000.pva0: syncpt_unit_base 60000000 syncpt_unit_size 4000000 size 10000
+[    7.408602] tegra-ivc-bus bc00000.rtcpu:ivc-bus:ivccontrol@3: ivccontrol: ver=0 grp=1 RX[64x320]=0x5f00-0xaf80 TX[64x320]=0xaf80-0x10000
+[    7.409238] tegra-ivc-bus bc00000.rtcpu:ivc-bus:ivccapture@4: ivccapture: ver=0 grp=1 RX[512x64]=0x10000-0x18080 TX[512x64]=0x18080-0x20100
+[    7.412407] tegra-ivc-bus bc00000.rtcpu:ivc-bus:diag@5: diag: ver=0 grp=1 RX[1x64]=0x20100-0x201c0 TX[1x64]=0x201c0-0x20280
+[    7.413946] tegra186-cam-rtcpu bc00000.rtcpu: using cam RTCPU IRQ (218)
+[    7.413951] tegra186-cam-rtcpu bc00000.rtcpu: tegra_camrtc_mon_create is successful
+[    7.414019] tegra-nvjpg 15380000.nvjpg: Adding to iommu group 45
+[    7.414759] tegra186-cam-rtcpu bc00000.rtcpu: firmware version cpu=rce cmd=6 sha1=04ea869968864dcb132a50cad9712bd529a09ee2
+[    7.416380] tegra-ivc-bus bc00000.rtcpu:ivc-bus:echo@0: ivc channel driver missing
+[    7.416387] tegra-ivc-bus bc00000.rtcpu:ivc-bus:dbg@1: ivc channel driver missing
+[    7.416390] tegra-ivc-bus bc00000.rtcpu:ivc-bus:dbg@2: ivc channel driver missing
+[    7.416392] tegra-ivc-bus bc00000.rtcpu:ivc-bus:ivccontrol@3: ivc channel driver missing
+[    7.416394] tegra-ivc-bus bc00000.rtcpu:ivc-bus:ivccapture@4: ivc channel driver missing
+[    7.416397] tegra-ivc-bus bc00000.rtcpu:ivc-bus:diag@5: ivc channel driver missing
+[    7.434962] tegra-nvjpg 15540000.nvjpg: Adding to iommu group 46
+[    7.448384] [RCE] TCU debug prints will be routed to traces.
+[    7.458959] tegra-ofa 15a50000.ofa: Adding to iommu group 47
+[    7.470618] [drm] Initialized tegra 1.0.99 20120330 for drm on minor 0
+[    7.470643] drm drm: [drm] Cannot find any crtc or sizes
+[    7.579724] tegra194-vi5 13e00000.host1x:vi0@15c00000: Adding to iommu group 27
+[    7.582206] tegra194-isp5 14800000.isp: Adding to iommu group 29
+[    7.582989] tegra-camrtc-capture-vi tegra-capture-vi: subdev 13e00000.host1x:nvcsi@15a00000- bound
+[    7.591820] tegra194-vi5 13e00000.host1x:vi1@14c00000: Adding to iommu group 28
+[    7.592489] (NULL device *): fops function table already registered
+[    7.844564] tegra194-pcie 141e0000.pcie: Phy link never came up
+[    7.844677] tegra194-pcie 141e0000.pcie: PCI host bridge to bus 0007:00
+[    7.844681] pci_bus 0007:00: root bus resource [bus 00-ff]
+[    7.844685] pci_bus 0007:00: root bus resource [mem 0x3000000000-0x3227ffffff pref]
+[    7.844688] pci_bus 0007:00: root bus resource [mem 0x3228000000-0x322fffffff] (bus address [0x40000000-0x47ffffff])
+[    7.844691] pci_bus 0007:00: root bus resource [io  0x200000-0x2fffff] (bus address [0x3e100000-0x3e1fffff])
+[    7.844744] pci 0007:00:00.0: [10de:229a] type 01 class 0x060400
+[    7.844893] pci 0007:00:00.0: PME# supported from D0 D3hot
+[    7.850932] pci 0007:00:00.0: PCI bridge to [bus 01-ff]
+[    7.850958] pci 0007:00:00.0: Max Payload Size set to  256/ 256 (was  128), Max Read Rq  256
+[    7.851106] pcieport 0007:00:00.0: Adding to iommu group 6
+[    7.851232] pcieport 0007:00:00.0: PME: Signaling with IRQ 194
+[    7.851552] pcieport 0007:00:00.0: AER: enabled with IRQ 194
+[    7.851964] pci_bus 0007:01: busn_res: [bus 01-ff] is released
+[    7.852218] pci 0007:00:00.0: Removing from iommu group 6
+[    7.852235] pci_bus 0007:00: busn_res: [bus 00-ff] is released
+[    7.854285] tegra194-pcie 140a0000.pcie: Adding to iommu group 48
+[    7.955621] tegra-dce d800000.dce: Adding to iommu group 49
+[    7.955727] nvvrs_pseq 4-003c: NVVRS Vendor ID: 0x9
+[    7.958106] nvvrs_pseq 4-003c: NVVRS Model Rev: 0x82
+[    7.959923] dce: dce_ipc_channel_init:311  Invalid Channel State [0x0] for ch_type [2]
+[    7.960279] dce: tegra_dce_probe:247  Found display consumer device
+[    7.961064] dce: dce_mailbox_set_full_interrupt:157  Intr bit set multiple times for MB : [0x5]
+[    7.961072] dce: dce_mailbox_set_full_interrupt:157  Intr bit set multiple times for MB : [0x5]
+[    7.961336] dce: dce_admin_send_cmd_ver:456  version : [0x3] err : [0x0]
+[    7.961550] dce: dce_mailbox_set_full_interrupt:157  Intr bit set multiple times for MB : [0x1]
+[    7.961556] dce: dce_mailbox_set_full_interrupt:157  Intr bit set multiple times for MB : [0x1]
+[    7.961558] dce: dce_admin_setup_clients_ipc:585  Channel Reset Complete for Type [1] ...
+[    7.961560] dce: dce_admin_setup_clients_ipc:561  Get queue info failed for [2]
+[    7.961764] dce: dce_mailbox_set_full_interrupt:157  Intr bit set multiple times for MB : [0x2]
+[    7.961771] dce: dce_admin_setup_clients_ipc:585  Channel Reset Complete for Type [3] ...
+[    7.962734] dce: dce_start_boot_flow:166  DCE_BOOT_DONE
+[    7.964892] tegra194-pcie 140a0000.pcie: host bridge /bus@0/pcie@140a0000 ranges:
+[    7.964923] tegra194-pcie 140a0000.pcie:      MEM 0x3240000000..0x3527ffffff -> 0x3240000000
+[    7.964929] tegra194-pcie 140a0000.pcie:      MEM 0x3528000000..0x352fffffff -> 0x0040000000
+[    7.964932] tegra194-pcie 140a0000.pcie:       IO 0x002a100000..0x002a1fffff -> 0x002a100000
+[    7.968430] tegra194-pcie 140a0000.pcie: iATU unroll: enabled
+[    7.968439] tegra194-pcie 140a0000.pcie: Detected iATU regions: 8 outbound, 2 inbound
+[    7.976207] nvvrs_pseq 4-003c: NVVRS PSEQ probe successful
+[    7.994390] systemd[1]: Finished Coldplug All udev Devices.
+[    7.994869] systemd[1]: Condition check resulted in Show Plymouth Boot Screen being skipped.
+[    7.995045] systemd[1]: Started Dispatch Password Requests to Console Directory Watch.
+[    7.995150] systemd[1]: Condition check resulted in Forward Password Requests to Plymouth Directory Watch being skipped.
+[    7.995178] systemd[1]: Reached target Local Encrypted Volumes.
+[    8.012639] nv_platform 13800000.display: Adding to iommu group 50
+[    8.016886] platform 13800000.display:nvdisplay-niso: Adding to iommu group 51
+[    8.080365] tegra194-pcie 140a0000.pcie: Link up
+[    8.081790] tegra194-pcie 140a0000.pcie: Link up
+[    8.081869] tegra194-pcie 140a0000.pcie: PCI host bridge to bus 0008:00
+[    8.081875] pci_bus 0008:00: root bus resource [bus 00-ff]
+[    8.081880] pci_bus 0008:00: root bus resource [mem 0x3240000000-0x3527ffffff pref]
+[    8.081884] pci_bus 0008:00: root bus resource [mem 0x3528000000-0x352fffffff] (bus address [0x40000000-0x47ffffff])
+[    8.081887] pci_bus 0008:00: root bus resource [io  0x300000-0x3fffff] (bus address [0x2a100000-0x2a1fffff])
+[    8.081936] pci 0008:00:00.0: [10de:229c] type 01 class 0x060400
+[    8.082087] pci 0008:00:00.0: PME# supported from D0 D3hot
+[    8.085716] pci 0008:01:00.0: [10ec:8168] type 00 class 0x020000
+[    8.086194] pci 0008:01:00.0: reg 0x10: [io  0x0000-0x00ff]
+[    8.086236] pci 0008:01:00.0: reg 0x18: [mem 0x00000000-0x00000fff 64bit]
+[    8.086264] pci 0008:01:00.0: reg 0x20: [mem 0x00000000-0x00003fff 64bit]
+[    8.087183] pci 0008:01:00.0: supports D1 D2
+[    8.087184] pci 0008:01:00.0: PME# supported from D0 D1 D2 D3hot D3cold
+[    8.103101] pci 0008:00:00.0: BAR 14: assigned [mem 0x3528000000-0x35280fffff]
+[    8.103106] pci 0008:00:00.0: BAR 13: assigned [io  0x300000-0x300fff]
+[    8.103109] pci 0008:01:00.0: BAR 4: assigned [mem 0x3528000000-0x3528003fff 64bit]
+[    8.103202] pci 0008:01:00.0: BAR 2: assigned [mem 0x3528004000-0x3528004fff 64bit]
+[    8.103293] pci 0008:01:00.0: BAR 0: assigned [io  0x300000-0x3000ff]
+[    8.103322] pci 0008:00:00.0: PCI bridge to [bus 01-ff]
+[    8.103325] pci 0008:00:00.0:   bridge window [io  0x300000-0x300fff]
+[    8.103328] pci 0008:00:00.0:   bridge window [mem 0x3528000000-0x35280fffff]
+[    8.103347] pci 0008:00:00.0: Max Payload Size set to  256/ 256 (was  128), Max Read Rq  256
+[    8.103479] pci 0008:01:00.0: Max Payload Size set to  128/ 128 (was  128), Max Read Rq  128
+[    8.103596] pcieport 0008:00:00.0: Adding to iommu group 48
+[    8.103694] pcieport 0008:00:00.0: PME: Signaling with IRQ 188
+[    8.103816] pcieport 0008:00:00.0: AER: enabled with IRQ 188
+[    8.119903] systemd[1]: Started Journal Service.
+[    8.132785] systemd-journald[265]: Received client request to flush runtime journal.
+[    8.149569] cfg80211: Loading compiled-in X.509 certificates for regulatory database
+[    8.150037] cfg80211: Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+[    8.150220] cfg80211: Loaded X.509 cert 'wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600'
+[    8.151893] spi-tegra114 3210000.spi: Adding to iommu group 1
+[    8.192842] at24 0-0050: 256 byte 24c02 EEPROM, read-only
+[    8.203623] at24 0-0057: 256 byte 24c02 EEPROM, read-only
+[    8.207413] spi-tegra114 3230000.spi: Adding to iommu group 1
+[    8.212674] tegra-hda 3510000.hda: Adding to iommu group 52
+[    8.228732] rtl88x2ce 0001:01:00.0: Adding to iommu group 3
+[    8.231494] rtl88x2ce 0001:01:00.0: enabling device (0000 -> 0003)
+[    8.268074] tegra234-aon c000000.aon: Adding to iommu group 53
+[    8.273603]  c000000.aon:hsp: probed
+[    8.281447] tegra234-aon c000000.aon: init done
+[    8.302871] CAN device driver interface
+[    8.310166] gic 2a41000.interrupt-controller: GIC IRQ controller registered
+[    8.310215] tegra-aconnect bus@0:aconnect@2900000: Tegra ACONNECT bus registered
+[    8.312569] irq: IRQ255: trimming hierarchy from :bus@0:pmc@c360000
+[    8.313068] fusb301 1-0025: device id: 0x12
+[    8.315445] fusb301 1-0025: fusb301_work_handler: int_sts[0x00]
+[    8.317147] input: NVIDIA Jetson Orin NX HDA HDMI/DP,pcm=3 as /devices/platform/bus@0/3510000.hda/sound/card0/input4
+[    8.318159] input: NVIDIA Jetson Orin NX HDA HDMI/DP,pcm=7 as /devices/platform/bus@0/3510000.hda/sound/card0/input5
+[    8.324555] thermal-trip-event cpu-throttle-alert: cooling device registered.
+[    8.327976] thermal-trip-event gpu-throttle-alert: cooling device registered.
+[    8.339736] TT CAN feature is not supported
+[    8.340284] 	 Message RAM Configuration
+               	| base addr   |0x0c312000|
+               	| sidfc_flssa |0x00000000|
+               	| xidfc_flesa |0x00000040|
+               	| rxf0c_f0sa  |0x000000c0|
+               	| rxf1c_f1sa  |0x000009c0|
+               	| rxbc_rbsa   |0x000009c0|
+               	| txefc_efsa  |0x000009c0|
+               	| txbc_tbsa   |0x00000a40|
+               	| tmc_tmsa    |0x00000ec0|
+               	| mram size   |0x00001000|
+[    8.341722] Release 3.2.3 from 09.06.2018
+[    8.341881] fusb301 1-0025: toggle_time(0) is not updated
+[    8.342282] fusb301 1-0025: fusb301_set_mode: mode (32)(32)
+[    8.342459] input: NVIDIA Jetson Orin NX HDA HDMI/DP,pcm=8 as /devices/platform/bus@0/3510000.hda/sound/card0/input6
+[    8.342759] fusb301 1-0025: fusb301_detach: type[0x00] chipstate[0x01]
+[    8.342783] fusb301 1-0025: fusb_update_state: 1
+[    8.342897] thermal-trip-event cv0-throttle-alert: cooling device registered.
+[    8.343588] fusb301 1-0025: mode[0x20], host_cur[0x02], dttime[0x00]
+[    8.346298] thermal-trip-event cv1-throttle-alert: cooling device registered.
+[    8.349631] net can0: mttcan device registered (regs=00000000c8c7866b, irq=200)
+[    8.350607] thermal-trip-event cv2-throttle-alert: cooling device registered.
+[    8.359275] thermal-trip-event soc0-throttle-alert: cooling device registered.
+[    8.367996] thermal-trip-event soc1-throttle-alert: cooling device registered.
+[    8.368652] input: NVIDIA Jetson Orin NX HDA HDMI/DP,pcm=9 as /devices/platform/bus@0/3510000.hda/sound/card0/input7
+[    8.387761] thermal-trip-event soc2-throttle-alert: cooling device registered.
+[    8.415840] thermal-trip-event hot-surface-alert: cooling device registered.
+[    8.462489] Bluetooth: hci0: RTL: examining hci_ver=0a hci_rev=000c lmp_ver=0a lmp_subver=8822
+[    8.463479] Bluetooth: hci0: RTL: rom_version status=0 version=3
+[    8.463487] Bluetooth: hci0: RTL: loading rtl_bt/rtl8822cu_fw.bin
+[    8.463679] usbcore: registered new interface driver btusb
+[    8.464053] Bluetooth: hci0: RTL: loading rtl_bt/rtl8822cu_config.bin
+[    8.464400] Bluetooth: hci0: RTL: cfg_sz 6, total sz 35086
+[    8.469285] rtk_btusb: Realtek Bluetooth USB driver ver 3.1.65ab490.20240531-141726
+[    8.469291] rtk_btcoex: rtk_btcoex_init: version: 1.2
+[    8.469293] rtk_btcoex: create workqueue
+[    8.469934] rtk_btcoex: alloc buffers 1792, 2432 for ev and l2
+[    8.469995] usbcore: registered new interface driver rtk_btusb
+[    8.488851] loop0: detected capacity change from 0 to 8
+[    8.489118] loop1: detected capacity change from 0 to 373072
+[    8.491525] loop2: detected capacity change from 0 to 141232
+[    8.494885] loop3: detected capacity change from 0 to 126776
+[    8.502067] loop4: detected capacity change from 0 to 95512
+[    8.506849] loop5: detected capacity change from 0 to 1132440
+[    8.509885] loop6: detected capacity change from 0 to 187776
+[    8.511202] loop7: detected capacity change from 0 to 357512
+[    8.512247] fusb301 1-0025: fusb301_work_handler: int_sts[0x05]
+[    8.512824] fusb301 1-0025: sts[0x2f], type[0x08]
+[    8.512830] fusb301 1-0025: fusb_update_state: 6
+[    8.515355] loop8: detected capacity change from 0 to 85664
+[    8.571463] nvvrs-pseq-rtc nvvrs-pseq-rtc: registered as rtc0
+[    8.572717] nvvrs-pseq-rtc nvvrs-pseq-rtc: setting system clock to 2026-04-23T14:05:24 UTC (1776953124)
+[    8.623399] rtl88x2ce 0001:01:00.0 wlP1p1s0: renamed from wlan0
+[    8.625407] r8168 0008:01:00.0: Adding to iommu group 48
+[    8.625705] r8168 Gigabit Ethernet driver 8.053.00-NAPI loaded
+[    8.625779] r8168 0008:01:00.0: enabling device (0000 -> 0003)
+[    8.647244] r8168: This product is covered by one or more of the following patents: US6,570,884, US6,115,776, and US6,327,625.
+[    8.662495] r8168  Copyright (C) 2024 Realtek NIC software team <nicfae@realtek.com> 
+                This program comes with ABSOLUTELY NO WARRANTY; for details, please see <http://www.gnu.org/licenses/>. 
+                This is free software, and you are welcome to redistribute it under certain conditions; see <http://www.gnu.org/licenses/>. 
+[    8.707793] tegra-adma 2930000.dma-controller: Tegra210 ADMA driver registered 32 channels
+[    8.758001] r8168 0008:01:00.0 enP8p1s0: renamed from eth0
+[    8.860250] tegra210-admaif 290f000.admaif: Adding to iommu group 54
+[    8.953458] Bluetooth: hci0: RTL: fw version 0x19b76d7d
+[   10.723515] using random self ethernet address
+[   10.723524] using random host ethernet address
+[   10.773990] Bluetooth: BNEP (Ethernet Emulation) ver 1.3
+[   10.774000] Bluetooth: BNEP filters: protocol multicast
+[   10.774013] Bluetooth: BNEP socket layer initialized
+[   10.787094] loop9: detected capacity change from 0 to 32768
+[   10.790509] NET: Registered PF_ALG protocol family
+[   10.865395] nv_nvsciipc_init.sh[947]: found /dev/nvsciipc
+[   10.874934] nvsciipc: set_db start
+[   10.874959] nvsciipc: set_db done
+[   10.918572] enP8p1s0: 0xffff8000092c5000, 3c:6d:66:0d:53:d9, IRQ 256
+[   10.949340] IRQ230: set affinity failed(-22).
+[   10.949375] IRQ253: set affinity failed(-22).
+[   10.949380] IRQ256: set affinity failed(-22).
+[   10.950477] psci: CPU4 killed (polled 0 ms)
+[   11.036870] IRQ230: set affinity failed(-22).
+[   11.036906] IRQ253: set affinity failed(-22).
+[   11.036910] IRQ256: set affinity failed(-22).
+[   11.037993] psci: CPU5 killed (polled 0 ms)
+[   11.087123] Mass Storage Function, version: 2009/09/11
+[   11.087131] LUN: removable file: (no medium)
+[   11.144840] IRQ230: set affinity failed(-22).
+[   11.144883] IRQ253: set affinity failed(-22).
+[   11.144891] IRQ256: set affinity failed(-22).
+[   11.145107] psci: CPU6 killed (polled 0 ms)
+[   11.225683] IRQ230: set affinity failed(-22).
+[   11.227034] psci: CPU7 killed (polled 0 ms)
+[   11.243673] using random self ethernet address
+[   11.243680] using random host ethernet address
+[   11.283227] pstore: Using crash dump compression: deflate
+[   11.283296] printk: console [ramoops-1]: printing thread started
+[   11.283312] printk: console [ramoops-1] enabled
+[   11.283313] pstore: Registered ramoops as persistent store backend
+[   11.283315] ramoops: using 0x200000@0x4725f0000, ecc: 0
+[   11.343954] bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your scripts to load br_netfilter if you need this.
+[   11.355882] usb0: HOST MAC c2:d6:da:8f:db:b0
+[   11.355892] usb0: MAC c2:d6:da:8f:db:b1
+[   11.356196] usb1: HOST MAC c2:d6:da:8f:db:b2
+[   11.356200] usb1: MAC c2:d6:da:8f:db:b3
+[   11.356219] tegra-xudc 3550000.usb: EP 0 (type: ctrl, dir: out) enabled
+[   11.363854] l4tbr0: port 1(usb0) entered blocking state
+[   11.363877] l4tbr0: port 1(usb0) entered disabled state
+[   11.364251] device usb0 entered promiscuous mode
+[   11.381154] l4tbr0: port 2(usb1) entered blocking state
+[   11.381174] l4tbr0: port 2(usb1) entered disabled state
+[   11.381648] device usb1 entered promiscuous mode
+[   11.389327] loop9: detected capacity change from 0 to 32768
+[   11.423482] nvgpu: 17000000.gpu                  gk20a_scale_init:541  [INFO]  enabled scaling for GPU
+
+[   11.575598] zram: Added device: zram0
+[   11.582909] zram: Added device: zram1
+[   11.592585] zram: Added device: zram2
+[   11.599743] zram: Added device: zram3
+[   11.685455] zram0: detected capacity change from 0 to 4004600
+[   11.697800] Adding 2002296k swap on /dev/zram0.  Priority:5 extents:1 across:2002296k SS
+[   11.703283] zram1: detected capacity change from 0 to 4004600
+[   11.715873] Adding 2002296k swap on /dev/zram1.  Priority:5 extents:1 across:2002296k SS
+[   11.721065] zram2: detected capacity change from 0 to 4004600
+[   11.732725] Adding 2002296k swap on /dev/zram2.  Priority:5 extents:1 across:2002296k SS
+[   11.738829] zram3: detected capacity change from 0 to 4004600
+[   11.764439] Adding 2002296k swap on /dev/zram3.  Priority:5 extents:1 across:2002296k SS
+[   11.890630] tegra-xudc 3550000.usb: EP 5 (type: intr, dir: in) enabled
+[   11.890653] tegra-xudc 3550000.usb: EP 3 (type: bulk, dir: in) enabled
+[   11.890666] tegra-xudc 3550000.usb: EP 2 (type: bulk, dir: out) enabled
+[   11.890716] IPv6: ADDRCONF(NETDEV_CHANGE): usb0: link becomes ready
+[   11.890741] tegra-xudc 3550000.usb: EP 9 (type: intr, dir: in) enabled
+[   11.890755] tegra-xudc 3550000.usb: EP 7 (type: bulk, dir: in) enabled
+[   11.890767] tegra-xudc 3550000.usb: EP 4 (type: bulk, dir: out) enabled
+[   11.890793] tegra-xudc 3550000.usb: EP 15 (type: intr, dir: in) enabled
+[   11.891248] tegra-xudc 3550000.usb: EP 11 (type: bulk, dir: in) enabled
+[   11.891264] tegra-xudc 3550000.usb: EP 6 (type: bulk, dir: out) enabled
+[   11.898988] tegra-xudc 3550000.usb: EP 13 (type: bulk, dir: in) enabled
+[   11.899009] tegra-xudc 3550000.usb: EP 8 (type: bulk, dir: out) enabled
+[   11.899491] IPv6: ADDRCONF(NETDEV_CHANGE): usb1: link becomes ready
+[   11.900987] tegra-xudc 3550000.usb: ep 13 disabled
+[   11.901071] tegra-xudc 3550000.usb: ep 8 disabled
+[   11.921128] tegra-xudc 3550000.usb: EP 13 (type: bulk, dir: in) enabled
+[   11.921151] tegra-xudc 3550000.usb: EP 8 (type: bulk, dir: out) enabled
+[   13.811389] l4tbr0: port 2(usb1) entered blocking state
+[   13.811403] l4tbr0: port 2(usb1) entered forwarding state
+[   13.811473] l4tbr0: port 1(usb0) entered blocking state
+[   13.811478] l4tbr0: port 1(usb0) entered forwarding state
+[   13.820422] IPv6: ADDRCONF(NETDEV_CHANGE): l4tbr0: link becomes ready
+[   14.023206] nvidia-modeset: Loading NVIDIA UNIX Open Kernel Mode Setting Driver for aarch64  540.5.0  Release Build  (buildbrain@239549d1-8639-491a-b9e7-120e21430986-l1eu-vqrkv)  Thu Jan 15 19:36:45 PST 2026
+[   14.031442] [drm] [nvidia-drm] [GPU ID 0x00020000] Loading driver
+[   14.319988] NVRM rpcRmApiControl_dce: NVRM_RPC_DCE: Failed RM ctrl call cmd:0x731341 result 0xffff:
+[   14.321136] NVRM rpcRmApiControl_dce: NVRM_RPC_DCE: Failed RM ctrl call cmd:0x730282 result 0x1f:
+[   14.373475] [drm] Initialized nvidia-drm 0.0.0 20160202 for 13800000.display on minor 1
+[   14.455801] Console: switching to colour frame buffer device 240x67
+[   14.455827] nv_platform 13800000.display: [drm] fb0: nvidia-drmdrmfb frame buffer device
+[   15.705825] ACK 04 d4
+[   15.706535] ACK 04 d4
+[   15.708848] ACK 04 d4
+[   15.712947] IPv6: ADDRCONF(NETDEV_CHANGE): wlP1p1s0: link becomes ready
+[   18.029457] loop10: detected capacity change from 0 to 8
+[   19.528875] audit: type=1326 audit(1776953135.452:2): auid=4294967295 uid=0 gid=0 ses=4294967295 subj=kernel pid=2154 comm="cupsd" exe="/snap/cups/1184/sbin/cupsd" sig=0 arch=c00000b7 syscall=55 compat=0 ip=0xffff91dfce0c code=0x50000
+[   20.031444] audit: type=1326 audit(1776953135.952:3): auid=4294967295 uid=0 gid=0 ses=4294967295 subj=kernel pid=2154 comm="cupsd" exe="/snap/cups/1184/sbin/cupsd" sig=0 arch=c00000b7 syscall=55 compat=0 ip=0xffff91dfce0c code=0x50000
+[   20.061005] audit: type=1326 audit(1776953135.984:4): auid=4294967295 uid=0 gid=0 ses=4294967295 subj=kernel pid=2166 comm="cups-browsed" exe="/snap/cups/1184/sbin/cups-browsed" sig=0 arch=c00000b7 syscall=274 compat=0 ip=0xffff8a875b68 code=0x50000
+[   20.703105] rfkill: input handler disabled
+[  236.497616] nv_ov5647: module verification failed: signature and/or required key missing - tainting kernel
+[  236.498394] nv_ov5647: module init register_i2c_driver=1 allow_hw_probe=1 skip_v4l2_register=0 skip_v4l2_unregister=0 split_v4l2_unregister=0 unload_marker_delay_ms=500
+[  236.498399] nv_ov5647: diagnostics dump_stream_regs=1
+[  236.498401] nv_ov5647: diagnostics continuous_mipi_clock=0
+[  236.498402] nv_ov5647: diagnostics ov5647_test_pattern=0
+[  236.498653] nv_ov5647 9-0036: ov5647_probe: enter client=ov5647 addr=0x36
+[  236.498734] nv_ov5647 9-0036: ov5647_parse_dt: enter
+[  236.498757] nv_ov5647 9-0036: ov5647_parse_dt: pdata=000000009499a703 mclk=extperiph1 reset_gpio=486 pwdn_gpio=-1 avdd=vana dvdd=vdig iovdd=vif
+[  236.498763] nv_ov5647 9-0036: ov5647_power_get: enter priv=000000004cf31032 s_data=00000000d4031a81 pdata=000000009499a703
+[  236.498787] nv_ov5647 9-0036: supply vana not found, using dummy regulator
+[  236.498921] nv_ov5647 9-0036: supply vdig not found, using dummy regulator
+[  236.498950] nv_ov5647 9-0036: supply vif not found, using dummy regulator
+[  236.499003] nv_ov5647 9-0036: ov5647_power_get: mclk get ok name=extperiph1 current_rate=51000000 def_clk_freq=0
+[  236.499039] nv_ov5647 9-0036: ov5647_power_get: exit
+[  236.499088] nv_ov5647 9-0036: tegracam sensor driver:nv_ov5647_v2.0.6
+[  236.499090] nv_ov5647 9-0036: ov5647_probe: private data linked tc_dev=000000004163276a tc_dev->priv=000000004cf31032 s_data=00000000d4031a81 s_data->priv=000000004cf31032
+[  236.499111] nv_ov5647 9-0036: ov5647_board_setup: enter
+[  236.499113] nv_ov5647 9-0036: ov5647_power_on: enter
+[  236.499120] nv_ov5647 9-0036: ov5647_power_on: diagnostics pwdn_mode=0(normal) skip_board_setup_power_off=0
+[  236.499125] nv_ov5647 9-0036: ov5647_power_on: enabling mclk def_clk_freq=25000000 current_rate=51000000
+[  236.500142] nv_ov5647 9-0036: ov5647_power_on: mclk enabled rate=24000000
+[  236.501658] nv_ov5647 9-0036: ov5647_apply_pwdn_gpio: power_on: no pwdn GPIO
+[  236.510091] nv_ov5647 9-0036: ov5647_power_on: stream-stop LP-11 setup complete
+[  236.510094] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=power_on_lp11
+[  236.510284] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x0100 name=mode_select val=0x00
+[  236.510475] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x0103 name=sw_reset val=0x00
+[  236.510666] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3000 name=sys_ctrl0 val=0x0f
+[  236.510855] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3001 name=sys_ctrl1 val=0xff
+[  236.511045] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3002 name=sys_ctrl2 val=0xe4
+[  236.511234] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x300d name=pad_out val=0x01
+[  236.511425] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3016 name=mipi_ctrl16 val=0x00
+[  236.511615] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3017 name=mipi_ctrl17 val=0x10
+[  236.511804] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3018 name=mipi_ctrl18 val=0x58
+[  236.511994] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3034 name=pll_ctrl34 val=0x1a
+[  236.512183] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3035 name=pll_ctrl35 val=0x11
+[  236.512372] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3036 name=pll_ctrl36 val=0x69
+[  236.512562] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x303c name=pll_ctrl3c val=0x11
+[  236.512751] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3808 name=x_output_size_h val=0x0a
+[  236.512940] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3809 name=x_output_size_l val=0x20
+[  236.513130] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380a name=y_output_size_h val=0x07
+[  236.513319] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380b name=y_output_size_l val=0x98
+[  236.513508] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380c name=hts_h val=0x0a
+[  236.513698] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380d name=hts_l val=0x8c
+[  236.513929] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380e name=vts_h val=0x07
+[  236.514124] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380f name=vts_l val=0xb0
+[  236.514314] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3820 name=timing_format1 val=0x40
+[  236.514504] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3821 name=timing_format2 val=0x00
+[  236.514694] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4202 name=frame_off_number val=0x0f
+[  236.514885] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4800 name=mipi_ctrl00 val=0x25
+[  236.515075] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4814 name=mipi_ctrl14 val=0x2a
+[  236.515267] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x503d name=ispctrl3d_test_pattern val=0x00
+[  236.515269] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=power_on_lp11
+[  236.515270] nv_ov5647 9-0036: ov5647_power_on: exit success
+[  236.515647] nv_ov5647 9-0036: ov5647_board_setup: detected chip_id=0x5647
+[  236.515649] nv_ov5647 9-0036: ov5647_power_off: enter
+[  236.515650] nv_ov5647 9-0036: ov5647_power_off: diagnostics pwdn_mode=0(normal) skip_board_setup_power_off=0
+[  236.516081] nv_ov5647 9-0036: ov5647_apply_pwdn_gpio: power_off: no pwdn GPIO
+[  236.516086] nv_ov5647 9-0036: ov5647_power_off: disabling mclk rate=24000000
+[  236.516410] nv_ov5647 9-0036: ov5647_power_off: exit success
+[  236.516411] nv_ov5647 9-0036: ov5647_board_setup: exit success
+[  236.516473] tegra-camrtc-capture-vi tegra-capture-vi: subdev nv_ov5647 9-0036 bound
+[  236.517011] nv_ov5647 9-0036: ov5647_probe: v4l2 registered tc_dev=000000004163276a tc_dev->priv=000000004cf31032 s_data=00000000d4031a81 s_data->priv=000000004cf31032 v4l2_registered=1
+[  236.517018] nv_ov5647 9-0036: ov5647_probe: exit success
+[  236.522281] nv_ov5647: i2c driver registered
+[  244.325727] nv_ov5647 9-0036: ov5647_power_on: enter
+[  244.325738] nv_ov5647 9-0036: ov5647_power_on: diagnostics pwdn_mode=0(normal) skip_board_setup_power_off=0
+[  244.325750] nv_ov5647 9-0036: ov5647_power_on: enabling mclk def_clk_freq=25000000 current_rate=24000000
+[  244.326866] nv_ov5647 9-0036: ov5647_power_on: mclk enabled rate=24000000
+[  244.328417] nv_ov5647 9-0036: ov5647_apply_pwdn_gpio: power_on: no pwdn GPIO
+[  244.336739] nv_ov5647 9-0036: ov5647_power_on: stream-stop LP-11 setup complete
+[  244.336743] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=power_on_lp11
+[  244.336933] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x0100 name=mode_select val=0x00
+[  244.337124] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x0103 name=sw_reset val=0x00
+[  244.337335] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3000 name=sys_ctrl0 val=0x0f
+[  244.337526] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3001 name=sys_ctrl1 val=0xff
+[  244.337717] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3002 name=sys_ctrl2 val=0xe4
+[  244.338004] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x300d name=pad_out val=0x01
+[  244.338210] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3016 name=mipi_ctrl16 val=0x00
+[  244.338408] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3017 name=mipi_ctrl17 val=0x10
+[  244.338601] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3018 name=mipi_ctrl18 val=0x58
+[  244.338794] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3034 name=pll_ctrl34 val=0x1a
+[  244.338982] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3035 name=pll_ctrl35 val=0x11
+[  244.339170] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3036 name=pll_ctrl36 val=0x69
+[  244.339358] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x303c name=pll_ctrl3c val=0x11
+[  244.339547] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3808 name=x_output_size_h val=0x0a
+[  244.339735] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3809 name=x_output_size_l val=0x20
+[  244.339925] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380a name=y_output_size_h val=0x07
+[  244.340113] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380b name=y_output_size_l val=0x98
+[  244.340301] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380c name=hts_h val=0x0a
+[  244.340489] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380d name=hts_l val=0x8c
+[  244.340678] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380e name=vts_h val=0x07
+[  244.340868] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380f name=vts_l val=0xb0
+[  244.341057] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3820 name=timing_format1 val=0x40
+[  244.341245] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3821 name=timing_format2 val=0x00
+[  244.341434] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4202 name=frame_off_number val=0x0f
+[  244.341622] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4800 name=mipi_ctrl00 val=0x25
+[  244.341811] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4814 name=mipi_ctrl14 val=0x2a
+[  244.342120] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x503d name=ispctrl3d_test_pattern val=0x00
+[  244.342125] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=power_on_lp11
+[  244.342127] nv_ov5647 9-0036: ov5647_power_on: exit success
+[  244.352822] nv_ov5647 9-0036: ov5647_set_mode: applying mode=0 name=640x480-10bpp-30fps 640x480
+[  244.364186] nv_ov5647 9-0036: ov5647_apply_test_pattern: applying test pattern=off (0)
+[  244.365136] nv_ov5647 9-0036: ov5647_set_mode: sensor output-enable restored after mode programming
+[  244.365138] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=after_set_mode
+[  244.365326] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x0100 name=mode_select val=0x00
+[  244.365515] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x0103 name=sw_reset val=0x00
+[  244.365704] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3000 name=sys_ctrl0 val=0x0f
+[  244.365941] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3001 name=sys_ctrl1 val=0xff
+[  244.366152] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3002 name=sys_ctrl2 val=0xe4
+[  244.366361] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x300d name=pad_out val=0x00
+[  244.366571] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3016 name=mipi_ctrl16 val=0x08
+[  244.366765] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3017 name=mipi_ctrl17 val=0xe0
+[  244.366957] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3018 name=mipi_ctrl18 val=0x44
+[  244.367148] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3034 name=pll_ctrl34 val=0x1a
+[  244.367339] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3035 name=pll_ctrl35 val=0x21
+[  244.367531] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3036 name=pll_ctrl36 val=0x46
+[  244.367722] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x303c name=pll_ctrl3c val=0x11
+[  244.367913] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3808 name=x_output_size_h val=0x02
+[  244.368113] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3809 name=x_output_size_l val=0x80
+[  244.368303] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380a name=y_output_size_h val=0x01
+[  244.368492] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380b name=y_output_size_l val=0xe0
+[  244.368680] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380c name=hts_h val=0x07
+[  244.368867] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380d name=hts_l val=0x3c
+[  244.369066] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380e name=vts_h val=0x01
+[  244.369256] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380f name=vts_l val=0xf8
+[  244.369444] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3820 name=timing_format1 val=0x41
+[  244.369633] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3821 name=timing_format2 val=0x03
+[  244.370108] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4202 name=frame_off_number val=0x00
+[  244.370325] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4800 name=mipi_ctrl00 val=0x34
+[  244.370534] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4814 name=mipi_ctrl14 val=0x2a
+[  244.370731] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x503d name=ispctrl3d_test_pattern val=0x00
+[  244.370734] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=after_set_mode
+[  244.370735] nv_ov5647 9-0036: ov5647_set_mode: mode applied, sensor remains in standby
+[  244.370743] nv_ov5647 9-0036: ov5647_start_streaming: enter
+[  244.370744] nv_ov5647 9-0036: ov5647_start_streaming: using mode already applied by tegracam set_mode
+[  244.370746] nv_ov5647 9-0036: ov5647_start_streaming: mipi_ctrl00 stream value=0x34 continuous_mipi_clock=0
+[  244.371158] nv_ov5647 9-0036: ov5647_start_streaming: sensor output-enable restored before stream
+[  244.371703] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=after_stream_on
+[  244.371891] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x0100 name=mode_select val=0x01
+[  244.372080] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x0103 name=sw_reset val=0x00
+[  244.372269] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3000 name=sys_ctrl0 val=0x0f
+[  244.372457] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3001 name=sys_ctrl1 val=0xff
+[  244.372665] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3002 name=sys_ctrl2 val=0xe4
+[  244.372855] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x300d name=pad_out val=0x00
+[  244.373070] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3016 name=mipi_ctrl16 val=0x08
+[  244.373280] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3017 name=mipi_ctrl17 val=0xe0
+[  244.373481] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3018 name=mipi_ctrl18 val=0x44
+[  244.373673] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3034 name=pll_ctrl34 val=0x1a
+[  244.373979] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3035 name=pll_ctrl35 val=0x21
+[  244.374181] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3036 name=pll_ctrl36 val=0x46
+[  244.374376] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x303c name=pll_ctrl3c val=0x11
+[  244.374571] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3808 name=x_output_size_h val=0x02
+[  244.374783] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3809 name=x_output_size_l val=0x80
+[  244.374972] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380a name=y_output_size_h val=0x01
+[  244.375160] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380b name=y_output_size_l val=0xe0
+[  244.375348] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380c name=hts_h val=0x07
+[  244.375536] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380d name=hts_l val=0x3c
+[  244.375724] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380e name=vts_h val=0x01
+[  244.375912] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380f name=vts_l val=0xf8
+[  244.376100] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3820 name=timing_format1 val=0x41
+[  244.376287] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3821 name=timing_format2 val=0x03
+[  244.376474] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4202 name=frame_off_number val=0x00
+[  244.376662] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4800 name=mipi_ctrl00 val=0x34
+[  244.376851] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4814 name=mipi_ctrl14 val=0x2a
+[  244.377040] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x503d name=ispctrl3d_test_pattern val=0x00
+[  244.377042] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=after_stream_on
+[  244.377044] nv_ov5647 9-0036: ov5647_start_streaming: exit success
+[  246.997859] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  249.557812] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  252.117791] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  254.677761] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  274.312974] nv_ov5647 9-0036: ov5647_stop_streaming: enter
+[  274.313564] nv_ov5647 9-0036: ov5647_stop_streaming: exit success
+[  274.315609] nv_ov5647 9-0036: ov5647_power_off: enter
+[  274.315618] nv_ov5647 9-0036: ov5647_power_off: diagnostics pwdn_mode=0(normal) skip_board_setup_power_off=0
+[  274.316077] nv_ov5647 9-0036: ov5647_apply_pwdn_gpio: power_off: no pwdn GPIO
+[  274.316090] nv_ov5647 9-0036: ov5647_power_off: disabling mclk rate=24000000
+[  274.316285] nv_ov5647 9-0036: ov5647_power_off: exit success
+[  434.178414] nv_ov5647: module exit enter driver_registered=1
+[  434.706225] nv_ov5647: before i2c_del_driver
+[  435.218286] nv_ov5647 9-0036: ov5647_remove: enter
+[  435.218297] nv_ov5647 9-0036: ov5647_remove: state tc_dev=000000004163276a tc_dev->dev=00000000c632b869 priv=000000004cf31032 tc_dev->priv=000000004cf31032 s_data=00000000d4031a81 s_data->priv=000000004cf31032 v4l2_registered=1 skip_v4l2_register=0 skip_v4l2_unregister=0 split_v4l2_unregister=0
+[  435.218316] nv_ov5647 9-0036: ov5647_remove: before tegracam_v4l2subdev_unregister
+[  435.730670] tegra-camrtc-capture-vi tegra-capture-vi: subdev nv_ov5647 9-0036 unbind
+[  435.730791] nv_ov5647 9-0036: ov5647_remove: after tegracam_v4l2subdev_unregister
+[  435.730798] nv_ov5647 9-0036: ov5647_remove: before tegracam_device_unregister
+[  436.242216] nv_ov5647 9-0036: ov5647_power_put: power rail references cleared
+[  436.242279] nv_ov5647 9-0036: ov5647_remove: after tegracam_device_unregister
+[  436.242286] nv_ov5647 9-0036: ov5647_remove: exit success
+[  436.242731] nv_ov5647: after i2c_del_driver
+[  436.242735] nv_ov5647: i2c driver unregistered
+[  438.835986] nv_ov5647: module init register_i2c_driver=1 allow_hw_probe=1 skip_v4l2_register=0 skip_v4l2_unregister=0 split_v4l2_unregister=0 unload_marker_delay_ms=500
+[  438.835999] nv_ov5647: diagnostics dump_stream_regs=1
+[  438.836001] nv_ov5647: diagnostics continuous_mipi_clock=0
+[  438.836003] nv_ov5647: diagnostics ov5647_test_pattern=0
+[  438.836100] nv_ov5647 9-0036: ov5647_probe: enter client=ov5647 addr=0x36
+[  438.836177] nv_ov5647 9-0036: ov5647_parse_dt: enter
+[  438.836200] nv_ov5647 9-0036: ov5647_parse_dt: pdata=0000000081aedfce mclk=extperiph1 reset_gpio=486 pwdn_gpio=-1 avdd=vana dvdd=vdig iovdd=vif
+[  438.836207] nv_ov5647 9-0036: ov5647_power_get: enter priv=00000000a144b4aa s_data=00000000193efd3e pdata=0000000081aedfce
+[  438.836234] nv_ov5647 9-0036: supply vana not found, using dummy regulator
+[  438.836363] nv_ov5647 9-0036: supply vdig not found, using dummy regulator
+[  438.836392] nv_ov5647 9-0036: supply vif not found, using dummy regulator
+[  438.836425] nv_ov5647 9-0036: ov5647_power_get: mclk get ok name=extperiph1 current_rate=24000000 def_clk_freq=0
+[  438.836458] nv_ov5647 9-0036: ov5647_power_get: exit
+[  438.836505] nv_ov5647 9-0036: tegracam sensor driver:nv_ov5647_v2.0.6
+[  438.836508] nv_ov5647 9-0036: ov5647_probe: private data linked tc_dev=000000004cf848a6 tc_dev->priv=00000000a144b4aa s_data=00000000193efd3e s_data->priv=00000000a144b4aa
+[  438.836528] nv_ov5647 9-0036: ov5647_board_setup: enter
+[  438.836529] nv_ov5647 9-0036: ov5647_power_on: enter
+[  438.836530] nv_ov5647 9-0036: ov5647_power_on: diagnostics pwdn_mode=0(normal) skip_board_setup_power_off=0
+[  438.836535] nv_ov5647 9-0036: ov5647_power_on: overriding def_clk_freq 25000000 -> 25000000 Hz
+[  438.836537] nv_ov5647 9-0036: ov5647_power_on: enabling mclk def_clk_freq=25000000 current_rate=24000000
+[  438.836999] nv_ov5647 9-0036: ov5647_power_on: mclk enabled rate=24000000
+[  438.838435] nv_ov5647 9-0036: ov5647_apply_pwdn_gpio: power_on: no pwdn GPIO
+[  438.847118] nv_ov5647 9-0036: ov5647_power_on: stream-stop LP-11 setup complete
+[  438.847122] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=power_on_lp11
+[  438.847315] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x0100 name=mode_select val=0x00
+[  438.847506] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x0103 name=sw_reset val=0x00
+[  438.847696] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3000 name=sys_ctrl0 val=0x0f
+[  438.847888] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3001 name=sys_ctrl1 val=0xff
+[  438.848077] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3002 name=sys_ctrl2 val=0xe4
+[  438.848267] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x300d name=pad_out val=0x01
+[  438.848456] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3016 name=mipi_ctrl16 val=0x00
+[  438.848645] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3017 name=mipi_ctrl17 val=0x10
+[  438.848838] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3018 name=mipi_ctrl18 val=0x58
+[  438.849027] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3034 name=pll_ctrl34 val=0x1a
+[  438.849217] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3035 name=pll_ctrl35 val=0x11
+[  438.849406] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3036 name=pll_ctrl36 val=0x69
+[  438.849595] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x303c name=pll_ctrl3c val=0x11
+[  438.849784] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3808 name=x_output_size_h val=0x0a
+[  438.849973] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3809 name=x_output_size_l val=0x20
+[  438.850258] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380a name=y_output_size_h val=0x07
+[  438.850469] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380b name=y_output_size_l val=0x98
+[  438.850660] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380c name=hts_h val=0x0a
+[  438.850850] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380d name=hts_l val=0x8c
+[  438.851043] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380e name=vts_h val=0x07
+[  438.851232] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380f name=vts_l val=0xb0
+[  438.851424] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3820 name=timing_format1 val=0x40
+[  438.851613] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3821 name=timing_format2 val=0x00
+[  438.851802] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4202 name=frame_off_number val=0x0f
+[  438.851992] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4800 name=mipi_ctrl00 val=0x25
+[  438.852182] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4814 name=mipi_ctrl14 val=0x2a
+[  438.852372] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x503d name=ispctrl3d_test_pattern val=0x00
+[  438.852373] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=power_on_lp11
+[  438.852375] nv_ov5647 9-0036: ov5647_power_on: exit success
+[  438.852753] nv_ov5647 9-0036: ov5647_board_setup: detected chip_id=0x5647
+[  438.852755] nv_ov5647 9-0036: ov5647_power_off: enter
+[  438.852757] nv_ov5647 9-0036: ov5647_power_off: diagnostics pwdn_mode=0(normal) skip_board_setup_power_off=0
+[  438.853167] nv_ov5647 9-0036: ov5647_apply_pwdn_gpio: power_off: no pwdn GPIO
+[  438.853172] nv_ov5647 9-0036: ov5647_power_off: disabling mclk rate=24000000
+[  438.853368] nv_ov5647 9-0036: ov5647_power_off: exit success
+[  438.853370] nv_ov5647 9-0036: ov5647_board_setup: exit success
+[  438.853428] tegra-camrtc-capture-vi tegra-capture-vi: subdev nv_ov5647 9-0036 bound
+[  438.853941] nv_ov5647 9-0036: ov5647_probe: v4l2 registered tc_dev=000000004cf848a6 tc_dev->priv=00000000a144b4aa s_data=00000000193efd3e s_data->priv=00000000a144b4aa v4l2_registered=1
+[  438.853949] nv_ov5647 9-0036: ov5647_probe: exit success
+[  438.854057] nv_ov5647: i2c driver registered
+[  446.935872] nv_ov5647 9-0036: ov5647_power_on: enter
+[  446.935882] nv_ov5647 9-0036: ov5647_power_on: diagnostics pwdn_mode=0(normal) skip_board_setup_power_off=0
+[  446.935892] nv_ov5647 9-0036: ov5647_power_on: overriding def_clk_freq 25000000 -> 25000000 Hz
+[  446.935897] nv_ov5647 9-0036: ov5647_power_on: enabling mclk def_clk_freq=25000000 current_rate=24000000
+[  446.937852] nv_ov5647 9-0036: ov5647_power_on: mclk enabled rate=24000000
+[  446.939380] nv_ov5647 9-0036: ov5647_apply_pwdn_gpio: power_on: no pwdn GPIO
+[  446.946961] nv_ov5647 9-0036: ov5647_power_on: stream-stop LP-11 setup complete
+[  446.946965] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=power_on_lp11
+[  446.947159] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x0100 name=mode_select val=0x00
+[  446.947352] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x0103 name=sw_reset val=0x00
+[  446.947541] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3000 name=sys_ctrl0 val=0x0f
+[  446.947730] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3001 name=sys_ctrl1 val=0xff
+[  446.947920] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3002 name=sys_ctrl2 val=0xe4
+[  446.948110] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x300d name=pad_out val=0x01
+[  446.948299] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3016 name=mipi_ctrl16 val=0x00
+[  446.948488] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3017 name=mipi_ctrl17 val=0x10
+[  446.948676] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3018 name=mipi_ctrl18 val=0x58
+[  446.948864] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3034 name=pll_ctrl34 val=0x1a
+[  446.949053] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3035 name=pll_ctrl35 val=0x11
+[  446.949242] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3036 name=pll_ctrl36 val=0x69
+[  446.949430] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x303c name=pll_ctrl3c val=0x11
+[  446.949618] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3808 name=x_output_size_h val=0x0a
+[  446.949806] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3809 name=x_output_size_l val=0x20
+[  446.949995] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380a name=y_output_size_h val=0x07
+[  446.950318] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380b name=y_output_size_l val=0x98
+[  446.950521] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380c name=hts_h val=0x0a
+[  446.950717] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380d name=hts_l val=0x8c
+[  446.950915] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380e name=vts_h val=0x07
+[  446.951110] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380f name=vts_l val=0xb0
+[  446.951304] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3820 name=timing_format1 val=0x40
+[  446.951495] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3821 name=timing_format2 val=0x00
+[  446.951684] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4202 name=frame_off_number val=0x0f
+[  446.951873] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4800 name=mipi_ctrl00 val=0x25
+[  446.952061] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4814 name=mipi_ctrl14 val=0x2a
+[  446.952249] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x503d name=ispctrl3d_test_pattern val=0x00
+[  446.952252] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=power_on_lp11
+[  446.952254] nv_ov5647 9-0036: ov5647_power_on: exit success
+[  446.962828] nv_ov5647 9-0036: ov5647_set_mode: applying mode=0 name=640x480-10bpp-30fps 640x480
+[  446.974285] nv_ov5647 9-0036: ov5647_apply_test_pattern: applying test pattern=off (0)
+[  446.975162] nv_ov5647 9-0036: ov5647_set_mode: sensor output-enable restored after mode programming
+[  446.975166] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=after_set_mode
+[  446.975357] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x0100 name=mode_select val=0x00
+[  446.975550] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x0103 name=sw_reset val=0x00
+[  446.975742] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3000 name=sys_ctrl0 val=0x0f
+[  446.975932] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3001 name=sys_ctrl1 val=0xff
+[  446.976122] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3002 name=sys_ctrl2 val=0xe4
+[  446.976322] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x300d name=pad_out val=0x00
+[  446.976511] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3016 name=mipi_ctrl16 val=0x08
+[  446.976701] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3017 name=mipi_ctrl17 val=0xe0
+[  446.976889] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3018 name=mipi_ctrl18 val=0x44
+[  446.977077] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3034 name=pll_ctrl34 val=0x1a
+[  446.977266] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3035 name=pll_ctrl35 val=0x21
+[  446.977453] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3036 name=pll_ctrl36 val=0x46
+[  446.977642] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x303c name=pll_ctrl3c val=0x11
+[  446.977831] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3808 name=x_output_size_h val=0x02
+[  446.978019] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3809 name=x_output_size_l val=0x80
+[  446.978238] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380a name=y_output_size_h val=0x01
+[  446.978440] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380b name=y_output_size_l val=0xe0
+[  446.978635] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380c name=hts_h val=0x07
+[  446.978827] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380d name=hts_l val=0x3c
+[  446.979017] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380e name=vts_h val=0x01
+[  446.979207] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380f name=vts_l val=0xf8
+[  446.979396] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3820 name=timing_format1 val=0x41
+[  446.979586] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3821 name=timing_format2 val=0x03
+[  446.979776] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4202 name=frame_off_number val=0x00
+[  446.979964] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4800 name=mipi_ctrl00 val=0x34
+[  446.980152] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4814 name=mipi_ctrl14 val=0x2a
+[  446.980356] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x503d name=ispctrl3d_test_pattern val=0x00
+[  446.980359] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=after_set_mode
+[  446.980360] nv_ov5647 9-0036: ov5647_set_mode: mode applied, sensor remains in standby
+[  446.980367] nv_ov5647 9-0036: ov5647_start_streaming: enter
+[  446.980368] nv_ov5647 9-0036: ov5647_start_streaming: using mode already applied by tegracam set_mode
+[  446.980369] nv_ov5647 9-0036: ov5647_start_streaming: mipi_ctrl00 stream value=0x34 continuous_mipi_clock=0
+[  446.980780] nv_ov5647 9-0036: ov5647_start_streaming: sensor output-enable restored before stream
+[  446.981324] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=after_stream_on
+[  446.981512] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x0100 name=mode_select val=0x01
+[  446.981700] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x0103 name=sw_reset val=0x00
+[  446.981889] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3000 name=sys_ctrl0 val=0x0f
+[  446.982090] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3001 name=sys_ctrl1 val=0xff
+[  446.982319] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3002 name=sys_ctrl2 val=0xe4
+[  446.982521] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x300d name=pad_out val=0x00
+[  446.982717] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3016 name=mipi_ctrl16 val=0x08
+[  446.982913] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3017 name=mipi_ctrl17 val=0xe0
+[  446.983104] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3018 name=mipi_ctrl18 val=0x44
+[  446.983294] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3034 name=pll_ctrl34 val=0x1a
+[  446.983484] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3035 name=pll_ctrl35 val=0x21
+[  446.983673] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3036 name=pll_ctrl36 val=0x46
+[  446.983862] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x303c name=pll_ctrl3c val=0x11
+[  446.984053] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3808 name=x_output_size_h val=0x02
+[  446.984242] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3809 name=x_output_size_l val=0x80
+[  446.984446] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380a name=y_output_size_h val=0x01
+[  446.984635] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380b name=y_output_size_l val=0xe0
+[  446.984823] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380c name=hts_h val=0x07
+[  446.985012] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380d name=hts_l val=0x3c
+[  446.985200] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380e name=vts_h val=0x01
+[  446.985388] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380f name=vts_l val=0xf8
+[  446.985576] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3820 name=timing_format1 val=0x41
+[  446.985764] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3821 name=timing_format2 val=0x03
+[  446.985952] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4202 name=frame_off_number val=0x00
+[  446.986272] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4800 name=mipi_ctrl00 val=0x34
+[  446.986471] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4814 name=mipi_ctrl14 val=0x2a
+[  446.986664] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x503d name=ispctrl3d_test_pattern val=0x00
+[  446.986668] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=after_stream_on
+[  446.986671] nv_ov5647 9-0036: ov5647_start_streaming: exit success
+[  449.490108] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  452.050005] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  454.609987] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  457.169962] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  476.923731] nv_ov5647 9-0036: ov5647_stop_streaming: enter
+[  476.924315] nv_ov5647 9-0036: ov5647_stop_streaming: exit success
+[  476.926619] nv_ov5647 9-0036: ov5647_power_off: enter
+[  476.926627] nv_ov5647 9-0036: ov5647_power_off: diagnostics pwdn_mode=0(normal) skip_board_setup_power_off=0
+[  476.927076] nv_ov5647 9-0036: ov5647_apply_pwdn_gpio: power_off: no pwdn GPIO
+[  476.927087] nv_ov5647 9-0036: ov5647_power_off: disabling mclk rate=24000000
+[  476.927284] nv_ov5647 9-0036: ov5647_power_off: exit success
+[  790.217863] nv_ov5647: module exit enter driver_registered=1
+[  790.726622] nv_ov5647: before i2c_del_driver
+[  791.238967] nv_ov5647 9-0036: ov5647_remove: enter
+[  791.238976] nv_ov5647 9-0036: ov5647_remove: state tc_dev=000000004cf848a6 tc_dev->dev=00000000c632b869 priv=00000000a144b4aa tc_dev->priv=00000000a144b4aa s_data=00000000193efd3e s_data->priv=00000000a144b4aa v4l2_registered=1 skip_v4l2_register=0 skip_v4l2_unregister=0 split_v4l2_unregister=0
+[  791.238987] nv_ov5647 9-0036: ov5647_remove: before tegracam_v4l2subdev_unregister
+[  791.751110] tegra-camrtc-capture-vi tegra-capture-vi: subdev nv_ov5647 9-0036 unbind
+[  791.751343] nv_ov5647 9-0036: ov5647_remove: after tegracam_v4l2subdev_unregister
+[  791.751351] nv_ov5647 9-0036: ov5647_remove: before tegracam_device_unregister
+[  792.262800] nv_ov5647 9-0036: ov5647_power_put: power rail references cleared
+[  792.262864] nv_ov5647 9-0036: ov5647_remove: after tegracam_device_unregister
+[  792.262870] nv_ov5647 9-0036: ov5647_remove: exit success
+[  792.263417] nv_ov5647: after i2c_del_driver
+[  792.263421] nv_ov5647: i2c driver unregistered
+[  795.786918] nv_ov5647: module init register_i2c_driver=1 allow_hw_probe=1 skip_v4l2_register=0 skip_v4l2_unregister=0 split_v4l2_unregister=0 unload_marker_delay_ms=500
+[  795.786931] nv_ov5647: diagnostics dump_stream_regs=1
+[  795.786933] nv_ov5647: diagnostics continuous_mipi_clock=0
+[  795.786935] nv_ov5647: diagnostics ov5647_test_pattern=0
+[  795.787033] nv_ov5647 9-0036: ov5647_probe: enter client=ov5647 addr=0x36
+[  795.787109] nv_ov5647 9-0036: ov5647_parse_dt: enter
+[  795.787130] nv_ov5647 9-0036: ov5647_parse_dt: pdata=0000000039ee39d5 mclk=extperiph1 reset_gpio=486 pwdn_gpio=-1 avdd=vana dvdd=vdig iovdd=vif
+[  795.787135] nv_ov5647 9-0036: ov5647_power_get: enter priv=00000000291615ff s_data=00000000de2e3415 pdata=0000000039ee39d5
+[  795.787160] nv_ov5647 9-0036: supply vana not found, using dummy regulator
+[  795.787289] nv_ov5647 9-0036: supply vdig not found, using dummy regulator
+[  795.787319] nv_ov5647 9-0036: supply vif not found, using dummy regulator
+[  795.787352] nv_ov5647 9-0036: ov5647_power_get: mclk get ok name=extperiph1 current_rate=24000000 def_clk_freq=0
+[  795.787384] nv_ov5647 9-0036: ov5647_power_get: exit
+[  795.787431] nv_ov5647 9-0036: tegracam sensor driver:nv_ov5647_v2.0.6
+[  795.787434] nv_ov5647 9-0036: ov5647_probe: private data linked tc_dev=000000007a37f00f tc_dev->priv=00000000291615ff s_data=00000000de2e3415 s_data->priv=00000000291615ff
+[  795.787454] nv_ov5647 9-0036: ov5647_board_setup: enter
+[  795.787456] nv_ov5647 9-0036: ov5647_power_on: enter
+[  795.787457] nv_ov5647 9-0036: ov5647_power_on: diagnostics pwdn_mode=0(normal) skip_board_setup_power_off=0
+[  795.787462] nv_ov5647 9-0036: ov5647_power_on: overriding def_clk_freq 25000000 -> 25000000 Hz
+[  795.787701] nv_ov5647 9-0036: ov5647_power_on: clk_set_rate(25000000) ok rate 24000000 -> 24000000
+[  795.787709] nv_ov5647 9-0036: ov5647_power_on: enabling mclk def_clk_freq=25000000 current_rate=24000000
+[  795.788084] nv_ov5647 9-0036: ov5647_power_on: mclk enabled rate=24000000
+[  795.789599] nv_ov5647 9-0036: ov5647_apply_pwdn_gpio: power_on: no pwdn GPIO
+[  795.798014] nv_ov5647 9-0036: ov5647_power_on: stream-stop LP-11 setup complete
+[  795.798018] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=power_on_lp11
+[  795.798209] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x0100 name=mode_select val=0x00
+[  795.798408] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x0103 name=sw_reset val=0x00
+[  795.798601] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3000 name=sys_ctrl0 val=0x0f
+[  795.798793] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3001 name=sys_ctrl1 val=0xff
+[  795.798983] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3002 name=sys_ctrl2 val=0xe4
+[  795.799173] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x300d name=pad_out val=0x01
+[  795.799362] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3016 name=mipi_ctrl16 val=0x00
+[  795.799552] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3017 name=mipi_ctrl17 val=0x10
+[  795.799743] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3018 name=mipi_ctrl18 val=0x58
+[  795.799932] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3034 name=pll_ctrl34 val=0x1a
+[  795.800122] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3035 name=pll_ctrl35 val=0x11
+[  795.800311] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3036 name=pll_ctrl36 val=0x69
+[  795.800500] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x303c name=pll_ctrl3c val=0x11
+[  795.800690] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3808 name=x_output_size_h val=0x0a
+[  795.800880] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3809 name=x_output_size_l val=0x20
+[  795.801069] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380a name=y_output_size_h val=0x07
+[  795.801258] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380b name=y_output_size_l val=0x98
+[  795.801447] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380c name=hts_h val=0x0a
+[  795.801639] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380d name=hts_l val=0x8c
+[  795.801828] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380e name=vts_h val=0x07
+[  795.802018] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380f name=vts_l val=0xb0
+[  795.802207] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3820 name=timing_format1 val=0x40
+[  795.802488] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3821 name=timing_format2 val=0x00
+[  795.802693] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4202 name=frame_off_number val=0x0f
+[  795.802886] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4800 name=mipi_ctrl00 val=0x25
+[  795.803078] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4814 name=mipi_ctrl14 val=0x2a
+[  795.803268] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x503d name=ispctrl3d_test_pattern val=0x00
+[  795.803270] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=power_on_lp11
+[  795.803271] nv_ov5647 9-0036: ov5647_power_on: exit success
+[  795.803647] nv_ov5647 9-0036: ov5647_board_setup: detected chip_id=0x5647
+[  795.803650] nv_ov5647 9-0036: ov5647_power_off: enter
+[  795.803651] nv_ov5647 9-0036: ov5647_power_off: diagnostics pwdn_mode=0(normal) skip_board_setup_power_off=0
+[  795.804063] nv_ov5647 9-0036: ov5647_apply_pwdn_gpio: power_off: no pwdn GPIO
+[  795.804068] nv_ov5647 9-0036: ov5647_power_off: disabling mclk rate=24000000
+[  795.804267] nv_ov5647 9-0036: ov5647_power_off: exit success
+[  795.804269] nv_ov5647 9-0036: ov5647_board_setup: exit success
+[  795.804321] tegra-camrtc-capture-vi tegra-capture-vi: subdev nv_ov5647 9-0036 bound
+[  795.804854] nv_ov5647 9-0036: ov5647_probe: v4l2 registered tc_dev=000000007a37f00f tc_dev->priv=00000000291615ff s_data=00000000de2e3415 s_data->priv=00000000291615ff v4l2_registered=1
+[  795.804862] nv_ov5647 9-0036: ov5647_probe: exit success
+[  795.806932] nv_ov5647: i2c driver registered
+[  803.500539] nv_ov5647 9-0036: ov5647_power_on: enter
+[  803.500550] nv_ov5647 9-0036: ov5647_power_on: diagnostics pwdn_mode=0(normal) skip_board_setup_power_off=0
+[  803.500560] nv_ov5647 9-0036: ov5647_power_on: overriding def_clk_freq 25000000 -> 25000000 Hz
+[  803.500870] nv_ov5647 9-0036: ov5647_power_on: clk_set_rate(25000000) ok rate 24000000 -> 24000000
+[  803.500876] nv_ov5647 9-0036: ov5647_power_on: enabling mclk def_clk_freq=25000000 current_rate=24000000
+[  803.501229] nv_ov5647 9-0036: ov5647_power_on: mclk enabled rate=24000000
+[  803.502752] nv_ov5647 9-0036: ov5647_apply_pwdn_gpio: power_on: no pwdn GPIO
+[  803.510994] nv_ov5647 9-0036: ov5647_power_on: stream-stop LP-11 setup complete
+[  803.510999] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=power_on_lp11
+[  803.511196] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x0100 name=mode_select val=0x00
+[  803.511394] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x0103 name=sw_reset val=0x00
+[  803.511589] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3000 name=sys_ctrl0 val=0x0f
+[  803.511784] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3001 name=sys_ctrl1 val=0xff
+[  803.511978] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3002 name=sys_ctrl2 val=0xe4
+[  803.512189] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x300d name=pad_out val=0x01
+[  803.512377] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3016 name=mipi_ctrl16 val=0x00
+[  803.512567] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3017 name=mipi_ctrl17 val=0x10
+[  803.512754] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3018 name=mipi_ctrl18 val=0x58
+[  803.512943] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3034 name=pll_ctrl34 val=0x1a
+[  803.513131] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3035 name=pll_ctrl35 val=0x11
+[  803.513319] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3036 name=pll_ctrl36 val=0x69
+[  803.513506] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x303c name=pll_ctrl3c val=0x11
+[  803.513693] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3808 name=x_output_size_h val=0x0a
+[  803.513880] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3809 name=x_output_size_l val=0x20
+[  803.514125] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380a name=y_output_size_h val=0x07
+[  803.514332] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380b name=y_output_size_l val=0x98
+[  803.514527] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380c name=hts_h val=0x0a
+[  803.514720] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380d name=hts_l val=0x8c
+[  803.514913] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380e name=vts_h val=0x07
+[  803.515108] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380f name=vts_l val=0xb0
+[  803.515300] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3820 name=timing_format1 val=0x40
+[  803.515492] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3821 name=timing_format2 val=0x00
+[  803.515683] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4202 name=frame_off_number val=0x0f
+[  803.515875] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4800 name=mipi_ctrl00 val=0x25
+[  803.516066] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4814 name=mipi_ctrl14 val=0x2a
+[  803.516279] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x503d name=ispctrl3d_test_pattern val=0x00
+[  803.516282] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=power_on_lp11
+[  803.516283] nv_ov5647 9-0036: ov5647_power_on: exit success
+[  803.527763] nv_ov5647 9-0036: ov5647_set_mode: applying mode=0 name=640x480-10bpp-30fps 640x480
+[  803.539964] nv_ov5647 9-0036: ov5647_apply_test_pattern: applying test pattern=off (0)
+[  803.540849] nv_ov5647 9-0036: ov5647_set_mode: sensor output-enable restored after mode programming
+[  803.540852] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=after_set_mode
+[  803.541039] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x0100 name=mode_select val=0x00
+[  803.541229] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x0103 name=sw_reset val=0x00
+[  803.541416] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3000 name=sys_ctrl0 val=0x0f
+[  803.541604] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3001 name=sys_ctrl1 val=0xff
+[  803.541794] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3002 name=sys_ctrl2 val=0xe4
+[  803.541981] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x300d name=pad_out val=0x00
+[  803.542303] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3016 name=mipi_ctrl16 val=0x08
+[  803.542528] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3017 name=mipi_ctrl17 val=0xe0
+[  803.542753] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3018 name=mipi_ctrl18 val=0x44
+[  803.542950] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3034 name=pll_ctrl34 val=0x1a
+[  803.543146] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3035 name=pll_ctrl35 val=0x21
+[  803.543342] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3036 name=pll_ctrl36 val=0x46
+[  803.543535] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x303c name=pll_ctrl3c val=0x11
+[  803.543728] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3808 name=x_output_size_h val=0x02
+[  803.543921] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3809 name=x_output_size_l val=0x80
+[  803.544114] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380a name=y_output_size_h val=0x01
+[  803.544323] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380b name=y_output_size_l val=0xe0
+[  803.544512] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380c name=hts_h val=0x07
+[  803.544699] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380d name=hts_l val=0x3c
+[  803.544887] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380e name=vts_h val=0x01
+[  803.545074] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x380f name=vts_l val=0xf8
+[  803.545262] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3820 name=timing_format1 val=0x41
+[  803.545449] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x3821 name=timing_format2 val=0x03
+[  803.545636] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4202 name=frame_off_number val=0x00
+[  803.545824] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4800 name=mipi_ctrl00 val=0x34
+[  803.546012] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x4814 name=mipi_ctrl14 val=0x2a
+[  803.546316] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_set_mode reg=0x503d name=ispctrl3d_test_pattern val=0x00
+[  803.546321] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=after_set_mode
+[  803.546324] nv_ov5647 9-0036: ov5647_set_mode: mode applied, sensor remains in standby
+[  803.546333] nv_ov5647 9-0036: ov5647_start_streaming: enter
+[  803.546336] nv_ov5647 9-0036: ov5647_start_streaming: using mode already applied by tegracam set_mode
+[  803.546339] nv_ov5647 9-0036: ov5647_start_streaming: mipi_ctrl00 stream value=0x34 continuous_mipi_clock=0
+[  803.546772] nv_ov5647 9-0036: ov5647_start_streaming: sensor output-enable restored before stream
+[  803.547342] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=after_stream_on
+[  803.547537] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x0100 name=mode_select val=0x01
+[  803.547732] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x0103 name=sw_reset val=0x00
+[  803.547927] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3000 name=sys_ctrl0 val=0x0f
+[  803.548122] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3001 name=sys_ctrl1 val=0xff
+[  803.548316] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3002 name=sys_ctrl2 val=0xe4
+[  803.548522] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x300d name=pad_out val=0x00
+[  803.548711] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3016 name=mipi_ctrl16 val=0x08
+[  803.548898] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3017 name=mipi_ctrl17 val=0xe0
+[  803.549086] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3018 name=mipi_ctrl18 val=0x44
+[  803.549274] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3034 name=pll_ctrl34 val=0x1a
+[  803.549462] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3035 name=pll_ctrl35 val=0x21
+[  803.549649] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3036 name=pll_ctrl36 val=0x46
+[  803.549837] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x303c name=pll_ctrl3c val=0x11
+[  803.550026] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3808 name=x_output_size_h val=0x02
+[  803.550331] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3809 name=x_output_size_l val=0x80
+[  803.550528] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380a name=y_output_size_h val=0x01
+[  803.550727] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380b name=y_output_size_l val=0xe0
+[  803.550926] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380c name=hts_h val=0x07
+[  803.551126] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380d name=hts_l val=0x3c
+[  803.551323] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380e name=vts_h val=0x01
+[  803.551517] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x380f name=vts_l val=0xf8
+[  803.551709] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3820 name=timing_format1 val=0x41
+[  803.551902] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x3821 name=timing_format2 val=0x03
+[  803.552094] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4202 name=frame_off_number val=0x00
+[  803.552286] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4800 name=mipi_ctrl00 val=0x34
+[  803.552491] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x4814 name=mipi_ctrl14 val=0x2a
+[  803.552680] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=after_stream_on reg=0x503d name=ispctrl3d_test_pattern val=0x00
+[  803.552682] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=after_stream_on
+[  803.552683] nv_ov5647 9-0036: ov5647_start_streaming: exit success
+[  806.085995] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  808.645900] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  811.205809] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  813.765722] tegra-camrtc-capture-vi tegra-capture-vi: uncorr_err: request timed out after 2500 ms
+[  833.487143] nv_ov5647 9-0036: ov5647_stop_streaming: enter
+[  833.487736] nv_ov5647 9-0036: ov5647_stop_streaming: exit success
+[  833.490627] nv_ov5647 9-0036: ov5647_power_off: enter
+[  833.490634] nv_ov5647 9-0036: ov5647_power_off: diagnostics pwdn_mode=0(normal) skip_board_setup_power_off=0
+[  833.491113] nv_ov5647 9-0036: ov5647_apply_pwdn_gpio: power_off: no pwdn GPIO
+[  833.491122] nv_ov5647 9-0036: ov5647_power_off: disabling mclk rate=24000000
+[  833.491318] nv_ov5647 9-0036: ov5647_power_off: exit success
