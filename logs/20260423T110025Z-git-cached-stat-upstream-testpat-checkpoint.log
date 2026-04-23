@@ -1,0 +1,37 @@
+ .../20260423T105442Z/ov5647-640x480-bg10.raw       |    0
+ .../traces/20260423T105442Z/after-set_event.log    |   22 +
+ artifacts/traces/20260423T105442Z/after-trace.log  |   50 +
+ .../traces/20260423T105442Z/after-trace_clock.log  |    1 +
+ .../traces/20260423T105442Z/after-tracing_on.log   |    1 +
+ .../traces/20260423T105442Z/before-set_event.log   |   22 +
+ artifacts/traces/20260423T105442Z/before-trace.log |   14 +
+ .../traces/20260423T105442Z/before-trace_clock.log |    1 +
+ .../traces/20260423T105442Z/before-tracing_on.log  |    1 +
+ .../traces/20260423T105442Z/enabled-events.log     |   22 +
+ .../traces/20260423T105442Z/final-set_event.log    |   22 +
+ artifacts/traces/20260423T105442Z/final-trace.log  |   50 +
+ .../traces/20260423T105442Z/final-trace_clock.log  |    1 +
+ .../traces/20260423T105442Z/final-tracing_on.log   |    1 +
+ artifacts/traces/20260423T105442Z/last_event       |    4 +
+ artifacts/traces/20260423T105442Z/last_exception   |    0
+ .../traces/20260423T105442Z/missing-events.log     |    0
+ .../traces/20260423T105442Z/pre-capture-state.log  |  142 +++
+ artifacts/traces/20260423T105442Z/stats            |    2 +
+ docs/10-results-and-status.md                      |   24 +
+ docs/11-known-issues.md                            |    5 +
+ ...-camera-route-state-before-upstream-testpat.log |    7 +
+ ...Z-post-reboot-before-upstream-testpat-state.log |    6 +
+ ...20260423T105411Z-collect_camera_route_state.log |    7 +
+ ...d-full-delay-dump-mclk24-testpat.dmesg-tail.log |  160 +++
+ ...anual-insmod-full-delay-dump-mclk24-testpat.log |    6 +
+ ...smod-full-delay-dump-mclk24-testpat.modinfo.log |   22 +
+ ...60423T105442Z-single-frame-rtcpu-live-dmesg.log | 1130 ++++++++++++++++++++
+ ...T105442Z-single-frame-rtcpu-post-dmesg-tail.log |  220 ++++
+ logs/20260423T105442Z-single-frame-rtcpu-trace.log |   19 +
+ ...60423T105649Z-grep-upstream-testpat-runtime.log |  132 +++
+ ...T105649Z-post-upstream-testpat-module-state.log |   14 +
+ ...105649Z-review-upstream-testpat-rtcpu-trace.log |   19 +
+ ...t-diff-before-upstream-testpat-checkpoint.patch |   48 +
+ ...t-status-before-upstream-testpat-checkpoint.log |  615 +++++++++++
+ reports/2026-04-23-upstream-test-pattern-no-sof.md |   70 ++
+ 36 files changed, 2860 insertions(+)

@@ -1,0 +1,160 @@
+[   12.199898] pstore: Using crash dump compression: deflate
+[   12.199980] printk: console [ramoops-1]: printing thread started
+[   12.199989] printk: console [ramoops-1] enabled
+[   12.199991] pstore: Registered ramoops as persistent store backend
+[   12.199993] ramoops: using 0x200000@0x4725f0000, ecc: 0
+[   12.347973] nvgpu: 17000000.gpu                  gk20a_scale_init:541  [INFO]  enabled scaling for GPU
+
+[   12.355338] bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your scripts to load br_netfilter if you need this.
+[   12.367871] usb0: HOST MAC c2:d6:da:8f:db:b0
+[   12.367881] usb0: MAC c2:d6:da:8f:db:b1
+[   12.373348] usb1: HOST MAC c2:d6:da:8f:db:b2
+[   12.373356] usb1: MAC c2:d6:da:8f:db:b3
+[   12.373384] tegra-xudc 3550000.usb: EP 0 (type: ctrl, dir: out) enabled
+[   12.407052] l4tbr0: port 1(usb0) entered blocking state
+[   12.407076] l4tbr0: port 1(usb0) entered disabled state
+[   12.407928] device usb0 entered promiscuous mode
+[   12.429415] l4tbr0: port 2(usb1) entered blocking state
+[   12.429437] l4tbr0: port 2(usb1) entered disabled state
+[   12.430355] device usb1 entered promiscuous mode
+[   12.469902] loop9: detected capacity change from 0 to 32768
+[   12.478328] zram: Added device: zram0
+[   12.492325] zram: Added device: zram1
+[   12.498641] zram: Added device: zram2
+[   12.504137] zram: Added device: zram3
+[   12.562131] zram0: detected capacity change from 0 to 4004600
+[   12.601450] Adding 2002296k swap on /dev/zram0.  Priority:5 extents:1 across:2002296k SS
+[   12.608470] zram1: detected capacity change from 0 to 4004600
+[   12.620220] Adding 2002296k swap on /dev/zram1.  Priority:5 extents:1 across:2002296k SS
+[   12.624557] zram2: detected capacity change from 0 to 4004600
+[   12.654366] Adding 2002296k swap on /dev/zram2.  Priority:5 extents:1 across:2002296k SS
+[   12.660391] zram3: detected capacity change from 0 to 4004600
+[   12.676080] Adding 2002296k swap on /dev/zram3.  Priority:5 extents:1 across:2002296k SS
+[   12.902588] tegra-xudc 3550000.usb: EP 5 (type: intr, dir: in) enabled
+[   12.902610] tegra-xudc 3550000.usb: EP 3 (type: bulk, dir: in) enabled
+[   12.902623] tegra-xudc 3550000.usb: EP 2 (type: bulk, dir: out) enabled
+[   12.902704] tegra-xudc 3550000.usb: EP 9 (type: intr, dir: in) enabled
+[   12.902719] tegra-xudc 3550000.usb: EP 7 (type: bulk, dir: in) enabled
+[   12.902730] tegra-xudc 3550000.usb: EP 4 (type: bulk, dir: out) enabled
+[   12.902757] tegra-xudc 3550000.usb: EP 15 (type: intr, dir: in) enabled
+[   12.902771] tegra-xudc 3550000.usb: EP 11 (type: bulk, dir: in) enabled
+[   12.902790] tegra-xudc 3550000.usb: EP 6 (type: bulk, dir: out) enabled
+[   12.902837] IPv6: ADDRCONF(NETDEV_CHANGE): usb0: link becomes ready
+[   12.908952] tegra-xudc 3550000.usb: EP 13 (type: bulk, dir: in) enabled
+[   12.908972] tegra-xudc 3550000.usb: EP 8 (type: bulk, dir: out) enabled
+[   12.909081] IPv6: ADDRCONF(NETDEV_CHANGE): usb1: link becomes ready
+[   12.910827] tegra-xudc 3550000.usb: ep 13 disabled
+[   12.910916] tegra-xudc 3550000.usb: ep 8 disabled
+[   12.929576] tegra-xudc 3550000.usb: EP 13 (type: bulk, dir: in) enabled
+[   12.929594] tegra-xudc 3550000.usb: EP 8 (type: bulk, dir: out) enabled
+[   14.770840] l4tbr0: port 2(usb1) entered blocking state
+[   14.770852] l4tbr0: port 2(usb1) entered forwarding state
+[   14.770913] l4tbr0: port 1(usb0) entered blocking state
+[   14.770917] l4tbr0: port 1(usb0) entered forwarding state
+[   14.779335] IPv6: ADDRCONF(NETDEV_CHANGE): l4tbr0: link becomes ready
+[   14.984786] nvidia-modeset: Loading NVIDIA UNIX Open Kernel Mode Setting Driver for aarch64  540.5.0  Release Build  (buildbrain@239549d1-8639-491a-b9e7-120e21430986-l1eu-vqrkv)  Thu Jan 15 19:36:45 PST 2026
+[   14.992112] [drm] [nvidia-drm] [GPU ID 0x00020000] Loading driver
+[   15.279724] NVRM rpcRmApiControl_dce: NVRM_RPC_DCE: Failed RM ctrl call cmd:0x731341 result 0xffff:
+[   15.280817] NVRM rpcRmApiControl_dce: NVRM_RPC_DCE: Failed RM ctrl call cmd:0x730282 result 0x1f:
+[   15.333347] [drm] Initialized nvidia-drm 0.0.0 20160202 for 13800000.display on minor 1
+[   15.414136] Console: switching to colour frame buffer device 240x67
+[   15.414157] nv_platform 13800000.display: [drm] fb0: nvidia-drmdrmfb frame buffer device
+[   16.806493] ACK 04 d4
+[   16.807235] ACK 04 d4
+[   16.813448] ACK 04 d4
+[   16.815590] IPv6: ADDRCONF(NETDEV_CHANGE): wlP1p1s0: link becomes ready
+[   19.942994] rfkill: input handler disabled
+[   20.360515] loop10: detected capacity change from 0 to 8
+[   23.881957] audit: type=1326 audit(1776941456.016:2): auid=4294967295 uid=0 gid=0 ses=4294967295 subj=kernel pid=2575 comm="cupsd" exe="/snap/cups/1184/sbin/cupsd" sig=0 arch=c00000b7 syscall=55 compat=0 ip=0xffff8101ce0c code=0x50000
+[   24.343986] audit: type=1326 audit(1776941456.480:3): auid=4294967295 uid=0 gid=0 ses=4294967295 subj=kernel pid=2575 comm="cupsd" exe="/snap/cups/1184/sbin/cupsd" sig=0 arch=c00000b7 syscall=55 compat=0 ip=0xffff8101ce0c code=0x50000
+[   24.377013] audit: type=1326 audit(1776941456.512:4): auid=4294967295 uid=0 gid=0 ses=4294967295 subj=kernel pid=2591 comm="cups-browsed" exe="/snap/cups/1184/sbin/cups-browsed" sig=0 arch=c00000b7 syscall=274 compat=0 ip=0xffff9d575b68 code=0x50000
+[  193.792990] l4tbr0: port 1(usb0) entered disabled state
+[  193.845486] tegra-xudc 3550000.usb: ep 13 disabled
+[  193.845585] tegra-xudc 3550000.usb: ep 8 disabled
+[  193.904487] tegra-xudc 3550000.usb: ep 3 disabled
+[  193.904515] tegra-xudc 3550000.usb: ep 2 disabled
+[  193.904529] tegra-xudc 3550000.usb: ep 5 disabled
+[  193.904545] tegra-xudc 3550000.usb: ep 4 disabled
+[  193.904557] tegra-xudc 3550000.usb: ep 7 disabled
+[  193.904584] tegra-xudc 3550000.usb: ep 9 disabled
+[  193.904602] tegra-xudc 3550000.usb: ep 15 disabled
+[  193.904733] tegra-xudc 3550000.usb: ep 11 disabled
+[  193.904747] tegra-xudc 3550000.usb: ep 6 disabled
+[  194.126808] tegra-xudc 3550000.usb: EP 5 (type: intr, dir: in) enabled
+[  194.126832] tegra-xudc 3550000.usb: EP 3 (type: bulk, dir: in) enabled
+[  194.126844] tegra-xudc 3550000.usb: EP 2 (type: bulk, dir: out) enabled
+[  194.126916] tegra-xudc 3550000.usb: EP 9 (type: intr, dir: in) enabled
+[  194.126929] tegra-xudc 3550000.usb: EP 7 (type: bulk, dir: in) enabled
+[  194.126941] tegra-xudc 3550000.usb: EP 4 (type: bulk, dir: out) enabled
+[  194.126947] l4tbr0: port 1(usb0) entered blocking state
+[  194.126958] l4tbr0: port 1(usb0) entered forwarding state
+[  194.127020] tegra-xudc 3550000.usb: EP 15 (type: intr, dir: in) enabled
+[  194.127068] tegra-xudc 3550000.usb: EP 11 (type: bulk, dir: in) enabled
+[  194.127081] tegra-xudc 3550000.usb: EP 6 (type: bulk, dir: out) enabled
+[  194.130796] tegra-xudc 3550000.usb: EP 13 (type: bulk, dir: in) enabled
+[  194.130816] tegra-xudc 3550000.usb: EP 8 (type: bulk, dir: out) enabled
+[  194.132682] tegra-xudc 3550000.usb: ep 13 disabled
+[  194.132761] tegra-xudc 3550000.usb: ep 8 disabled
+[  194.153685] tegra-xudc 3550000.usb: EP 13 (type: bulk, dir: in) enabled
+[  194.153711] tegra-xudc 3550000.usb: EP 8 (type: bulk, dir: out) enabled
+[  240.374406] nv_ov5647: module verification failed: signature and/or required key missing - tainting kernel
+[  240.375122] nv_ov5647: module init register_i2c_driver=1 allow_hw_probe=1 skip_v4l2_register=0 skip_v4l2_unregister=0 split_v4l2_unregister=0 unload_marker_delay_ms=500
+[  240.375128] nv_ov5647: diagnostics dump_stream_regs=1
+[  240.375129] nv_ov5647: diagnostics continuous_mipi_clock=0
+[  240.375130] nv_ov5647: diagnostics ov5647_test_pattern=1
+[  240.375348] nv_ov5647 9-0036: ov5647_probe: enter client=ov5647 addr=0x36
+[  240.375424] nv_ov5647 9-0036: ov5647_parse_dt: enter
+[  240.375443] nv_ov5647 9-0036: ov5647_parse_dt: pdata=000000007c347cf2 mclk=extperiph1 reset_gpio=-1 pwdn_gpio=397 avdd=vana dvdd=vdig iovdd=vif
+[  240.375449] nv_ov5647 9-0036: ov5647_power_get: enter priv=00000000650f3d63 s_data=000000002250c2a8 pdata=000000007c347cf2
+[  240.375470] nv_ov5647 9-0036: supply vana not found, using dummy regulator
+[  240.375596] nv_ov5647 9-0036: supply vdig not found, using dummy regulator
+[  240.375631] nv_ov5647 9-0036: supply vif not found, using dummy regulator
+[  240.375675] nv_ov5647 9-0036: ov5647_power_get: mclk get ok name=extperiph1 current_rate=51000000 def_clk_freq=0
+[  240.375707] nv_ov5647 9-0036: ov5647_power_get: exit
+[  240.375753] nv_ov5647 9-0036: tegracam sensor driver:nv_ov5647_v2.0.6
+[  240.375755] nv_ov5647 9-0036: ov5647_probe: private data linked tc_dev=000000001c5a7c7f tc_dev->priv=00000000650f3d63 s_data=000000002250c2a8 s_data->priv=00000000650f3d63
+[  240.375776] nv_ov5647 9-0036: ov5647_board_setup: enter
+[  240.375777] nv_ov5647 9-0036: ov5647_power_on: enter
+[  240.375781] nv_ov5647 9-0036: ov5647_power_on: overriding def_clk_freq 24000000 -> 24000000 Hz
+[  240.375783] nv_ov5647 9-0036: ov5647_power_on: enabling mclk def_clk_freq=24000000 current_rate=51000000
+[  240.376741] nv_ov5647 9-0036: ov5647_power_on: mclk enabled rate=24000000
+[  240.384886] nv_ov5647 9-0036: ov5647_power_on: stream-stop LP-11 setup complete
+[  240.384890] nv_ov5647 9-0036: ov5647_dump_stream_regs: begin phase=power_on_lp11
+[  240.385083] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x0100 name=mode_select val=0x00
+[  240.385276] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x0103 name=sw_reset val=0x00
+[  240.385464] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3000 name=sys_ctrl0 val=0x0f
+[  240.385655] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3001 name=sys_ctrl1 val=0xff
+[  240.385845] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3002 name=sys_ctrl2 val=0xe4
+[  240.386139] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x300d name=pad_out val=0x01
+[  240.386333] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3016 name=mipi_ctrl16 val=0x00
+[  240.386528] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3017 name=mipi_ctrl17 val=0x10
+[  240.386720] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3018 name=mipi_ctrl18 val=0x58
+[  240.386912] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3034 name=pll_ctrl34 val=0x1a
+[  240.387102] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3035 name=pll_ctrl35 val=0x11
+[  240.387293] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3036 name=pll_ctrl36 val=0x69
+[  240.387487] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x303c name=pll_ctrl3c val=0x11
+[  240.387676] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3808 name=x_output_size_h val=0x0a
+[  240.387866] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3809 name=x_output_size_l val=0x20
+[  240.388056] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380a name=y_output_size_h val=0x07
+[  240.388245] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380b name=y_output_size_l val=0x98
+[  240.388437] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380c name=hts_h val=0x0a
+[  240.388628] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380d name=hts_l val=0x8c
+[  240.388817] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380e name=vts_h val=0x07
+[  240.389006] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x380f name=vts_l val=0xb0
+[  240.389195] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3820 name=timing_format1 val=0x40
+[  240.389387] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x3821 name=timing_format2 val=0x00
+[  240.389576] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4202 name=frame_off_number val=0x0f
+[  240.389766] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4800 name=mipi_ctrl00 val=0x25
+[  240.389954] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x4814 name=mipi_ctrl14 val=0x2a
+[  240.390162] nv_ov5647 9-0036: ov5647_dump_stream_regs: phase=power_on_lp11 reg=0x503d name=ispctrl3d_test_pattern val=0x00
+[  240.390164] nv_ov5647 9-0036: ov5647_dump_stream_regs: end phase=power_on_lp11
+[  240.390166] nv_ov5647 9-0036: ov5647_power_on: exit success
+[  240.390547] nv_ov5647 9-0036: ov5647_board_setup: detected chip_id=0x5647
+[  240.390549] nv_ov5647 9-0036: ov5647_power_off: enter
+[  240.390967] nv_ov5647 9-0036: ov5647_power_off: disabling mclk rate=24000000
+[  240.391179] nv_ov5647 9-0036: ov5647_power_off: exit success
+[  240.391181] nv_ov5647 9-0036: ov5647_board_setup: exit success
+[  240.391232] tegra-camrtc-capture-vi tegra-capture-vi: subdev nv_ov5647 9-0036 bound
+[  240.391743] nv_ov5647 9-0036: ov5647_probe: v4l2 registered tc_dev=000000001c5a7c7f tc_dev->priv=00000000650f3d63 s_data=000000002250c2a8 s_data->priv=00000000650f3d63 v4l2_registered=1
+[  240.391748] nv_ov5647 9-0036: ov5647_probe: exit success
+[  240.391977] nv_ov5647: i2c driver registered

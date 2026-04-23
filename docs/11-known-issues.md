@@ -41,6 +41,11 @@
   - earlier code used `0x0600/0x0601` from community material;
   - upstream Linux OV5647 uses `0x503d` for test-pattern selection;
   - local driver is now corrected to the upstream register map, but that corrected build is not yet runtime-validated.
+- Corrected upstream-style test pattern is now runtime-validated and still does not produce SOF:
+  - live module parameter `ov5647_test_pattern=1` is confirmed;
+  - sensor register `0x503d` reads back as `0x80` after `set_mode` and after `STREAMON`;
+  - raw output remains zero bytes and RTCPU/NVCSI still shows no SOF or receiver interrupt;
+  - this sharply lowers the value of further live-scene or exposure-related tuning on the current hardware path.
 - Local `nvidia-oot` headers are present, but full local sample sensor source files are not installed under `/usr/src/nvidia/`.
 - Unprivileged `dmesg` access is restricted, so full kernel-buffer capture requires elevated privileges.
 - `journalctl --list-boots` and `uptime -s` disagree about the current boot start time, so timestamp interpretation needs care.

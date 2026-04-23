@@ -759,3 +759,27 @@ Updated next smallest safe step:
 - reboot once to guarantee the old loaded module is gone;
 - manually load the corrected module with `full-delay-dump-mclk24-testpat`;
 - run one traced capture and inspect `0x503d` plus RTCPU/NVCSI events.
+
+Corrected upstream test-pattern runtime result on 2026-04-23:
+
+- user loaded the corrected module:
+  - `srcversion=A0015C1CFA665DFD8D8A041`
+  - `ov5647_test_pattern=1`
+- diagnostic readback now confirms built-in color bars were actually enabled:
+  - `phase=after_set_mode reg=0x503d val=0x80`
+  - `phase=after_stream_on reg=0x503d val=0x80`
+- sensor stream state remained internally consistent:
+  - `0x0100 = 0x01`
+  - `0x3000 = 0x0f`, `0x3001 = 0xff`, `0x3002 = 0xe4`
+  - `0x4800 = 0x34`
+- capture still failed exactly the same way:
+  - `VIDIOC_STREAMON` returned success
+  - raw output stayed zero bytes
+  - VI logged repeated `uncorr_err: request timed out after 2500 ms`
+  - RTCPU/NVCSI trace still showed no SOF/EOF and no receiver interrupt events
+
+Current conclusion:
+
+- this is the strongest software-side falsification obtained so far;
+- even sensor-generated synthetic frames do not reach NVCSI/VI;
+- the dominant blocker is now the physical CSI path on the current CLB/makerobo plus `JT-ZERO-V2.0` setup, not OV5647 exposure/mode/live-scene programming.

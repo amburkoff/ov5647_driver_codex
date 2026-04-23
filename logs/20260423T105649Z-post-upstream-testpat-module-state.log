@@ -1,0 +1,14 @@
+### params
+/sys/module/nv_ov5647/parameters/allow_hw_probe=Y
+/sys/module/nv_ov5647/parameters/continuous_mipi_clock=N
+/sys/module/nv_ov5647/parameters/dump_stream_regs=Y
+/sys/module/nv_ov5647/parameters/mclk_override_hz=24000000
+/sys/module/nv_ov5647/parameters/ov5647_test_pattern=1
+/sys/module/nv_ov5647/parameters/register_i2c_driver=Y
+/sys/module/nv_ov5647/parameters/skip_v4l2_register=N
+/sys/module/nv_ov5647/parameters/skip_v4l2_unregister=N
+/sys/module/nv_ov5647/parameters/split_v4l2_unregister=N
+/sys/module/nv_ov5647/parameters/unload_marker_delay_ms=500
+
+### capture file
+-rw-r--r-- 1 cam cam 0 Apr 23 13:54 artifacts/captures/20260423T105442Z/ov5647-640x480-bg10.raw

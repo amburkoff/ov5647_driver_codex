@@ -1,0 +1,48 @@
+diff --git a/docs/10-results-and-status.md b/docs/10-results-and-status.md
+index 7ed160b..5c96989 100644
+--- a/docs/10-results-and-status.md
++++ b/docs/10-results-and-status.md
+@@ -759,3 +759,27 @@ Updated next smallest safe step:
+ - reboot once to guarantee the old loaded module is gone;
+ - manually load the corrected module with `full-delay-dump-mclk24-testpat`;
+ - run one traced capture and inspect `0x503d` plus RTCPU/NVCSI events.
++
++Corrected upstream test-pattern runtime result on 2026-04-23:
++
++- user loaded the corrected module:
++  - `srcversion=A0015C1CFA665DFD8D8A041`
++  - `ov5647_test_pattern=1`
++- diagnostic readback now confirms built-in color bars were actually enabled:
++  - `phase=after_set_mode reg=0x503d val=0x80`
++  - `phase=after_stream_on reg=0x503d val=0x80`
++- sensor stream state remained internally consistent:
++  - `0x0100 = 0x01`
++  - `0x3000 = 0x0f`, `0x3001 = 0xff`, `0x3002 = 0xe4`
++  - `0x4800 = 0x34`
++- capture still failed exactly the same way:
++  - `VIDIOC_STREAMON` returned success
++  - raw output stayed zero bytes
++  - VI logged repeated `uncorr_err: request timed out after 2500 ms`
++  - RTCPU/NVCSI trace still showed no SOF/EOF and no receiver interrupt events
++
++Current conclusion:
++
++- this is the strongest software-side falsification obtained so far;
++- even sensor-generated synthetic frames do not reach NVCSI/VI;
++- the dominant blocker is now the physical CSI path on the current CLB/makerobo plus `JT-ZERO-V2.0` setup, not OV5647 exposure/mode/live-scene programming.
+diff --git a/docs/11-known-issues.md b/docs/11-known-issues.md
+index ab3f81d..92cbd67 100644
+--- a/docs/11-known-issues.md
++++ b/docs/11-known-issues.md
+@@ -41,6 +41,11 @@
+   - earlier code used `0x0600/0x0601` from community material;
+   - upstream Linux OV5647 uses `0x503d` for test-pattern selection;
+   - local driver is now corrected to the upstream register map, but that corrected build is not yet runtime-validated.
++- Corrected upstream-style test pattern is now runtime-validated and still does not produce SOF:
++  - live module parameter `ov5647_test_pattern=1` is confirmed;
++  - sensor register `0x503d` reads back as `0x80` after `set_mode` and after `STREAMON`;
++  - raw output remains zero bytes and RTCPU/NVCSI still shows no SOF or receiver interrupt;
++  - this sharply lowers the value of further live-scene or exposure-related tuning on the current hardware path.
+ - Local `nvidia-oot` headers are present, but full local sample sensor source files are not installed under `/usr/src/nvidia/`.
+ - Unprivileged `dmesg` access is restricted, so full kernel-buffer capture requires elevated privileges.
+ - `journalctl --list-boots` and `uptime -s` disagree about the current boot start time, so timestamp interpretation needs care.
