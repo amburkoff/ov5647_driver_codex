@@ -30,6 +30,10 @@
   - RTCPU/NVCSI trace still had no SOF/EOF or receiver interrupt events.
 - Because route A with `lane_polarity = 6`, route A with `lane_polarity = 0`, and route C have all now failed after the corrected `extperiph1` clock binding, another blind route/lane software permutation is unlikely to beat a physical camera-path validation step.
 - Public `NXCLB` manual evidence makes devkit-style `J20`/`J21` routing plausible on the CLB/makerobo carrier, but it does not validate the actual FFC orientation or Raspberry Pi-market camera pinout path in this setup.
+- Review of the GiraffAI OV5647 Nano articles and `digitallyamar/ov5647` repo suggests one higher-value remaining software test:
+  - enable OV5647 built-in test pattern through sensor registers `0x0600/0x0601`;
+  - this is not yet implemented in the local Orin driver;
+  - it is more informative than another blind route/lane permutation because it decouples optical/exposure issues from basic CSI frame delivery.
 - Local `nvidia-oot` headers are present, but full local sample sensor source files are not installed under `/usr/src/nvidia/`.
 - Unprivileged `dmesg` access is restricted, so full kernel-buffer capture requires elevated privileges.
 - `journalctl --list-boots` and `uptime -s` disagree about the current boot start time, so timestamp interpretation needs care.

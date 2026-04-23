@@ -698,3 +698,22 @@ Next smallest safe step:
 - switch to one hardware-validation step that can falsify the physical-path hypothesis:
   - actual CLB connector-label and cable-orientation evidence, or
   - a known-good Jetson camera kit on the same connector with the stock NVIDIA overlay.
+
+External review result on 2026-04-23:
+
+- reviewed the GiraffAI OV5647 bring-up series and the matching `digitallyamar/ov5647` Nano repository;
+- most Nano-specific DT routing there is not portable to Orin NX / CLB:
+  - `tegra210`;
+  - `serial_a`;
+  - `port-index = 0`;
+  - 15-pin Raspberry Pi camera path.
+- the strongest transferable idea is their intermediate built-in sensor test-pattern milestone:
+  - they first proved chip-ID;
+  - then proved register programming by generating OV5647 test images before trusting live optical frames.
+- local source review shows our current driver has no OV5647 test-pattern hook for registers `0x0600/0x0601`.
+
+Updated interpretation:
+
+- the best remaining software-side discriminator is now a built-in OV5647 test-pattern capture on the current route;
+- if test pattern still gives no SOF, the blocker is overwhelmingly the physical CSI path / cable / pinout;
+- if test pattern works while live scene capture does not, then the CSI path is basically valid and the remaining problem is sensor-mode or image-path programming.
