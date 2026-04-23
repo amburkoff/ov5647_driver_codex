@@ -135,3 +135,50 @@ It collects:
 - the tracepoint list used by `run_manual_single_frame_rtcpu_trace.sh`.
 
 It does **not** read live vendor `debugfs regset32` files.
+
+## Manual Safe RTCPU Debugfs Dump
+
+After a reboot or after a traced capture, if you want one small receiver-side
+readout without touching known-dangerous register dump nodes, use:
+
+```bash
+sudo /home/cam/ov5647_driver_codex/scripts/run_manual_safe_rtcpu_debugfs_dump.sh
+```
+
+This helper is intentionally limited to:
+
+- `/sys/kernel/debug/tegra_rtcpu_trace/stats`
+- `/sys/kernel/debug/tegra_rtcpu_trace/last_exception`
+- `/sys/kernel/debug/tegra_rtcpu_trace/last_event`
+
+These files were chosen from official `linux-nv-oot-r36.5` source because
+`tegra-rtcpu-trace.c` creates them with `debugfs_create_file()` and
+`single_open()`/`seq_read()` handlers, not with `debugfs_create_regset32()`.
+
+It does **not** read:
+
+- `VI` `debugfs_create_regset32("ch0", ...)`
+- `camrtc` `regs-common`
+- `camrtc` `regs-region*`
+
+Current practical whitelist:
+
+- `tegra_rtcpu_trace/stats`
+- `tegra_rtcpu_trace/last_exception`
+- `tegra_rtcpu_trace/last_event`
+
+Current practical blacklist:
+
+- `vi/.../ch0`
+- `camrtc/ast-cpu/regs-common`
+- `camrtc/ast-cpu/regs-region*`
+- `camrtc/ast-dma/regs-common`
+- `camrtc/ast-dma/regs-region*`
+
+Reason for the blacklist:
+
+- pstore already captured a kernel panic in `debugfs_print_regs32()` from a
+  userspace `cat`;
+- `vi5.c` and `rtcpu-debug.c` both create camera-path register dumps through
+  `debugfs_create_regset32()`;
+- these nodes are therefore unsafe to probe casually on the live target.

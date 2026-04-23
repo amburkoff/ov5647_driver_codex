@@ -61,6 +61,12 @@
   - pstore shows a fatal NULL dereference in `debugfs_print_regs32()` from a userspace `cat`;
   - the call trace goes through `debugfs_show_regset32()` and matches NVIDIA `VI/camrtc` debugfs regset code paths;
   - until narrowed further, vendor `debugfs regset32` files in the camera path should be treated as unsafe on this image.
+- Source inspection on official `linux-nv-oot-r36.5` narrows a safer next candidate set:
+  - `tegra_rtcpu_trace/stats`
+  - `tegra_rtcpu_trace/last_exception`
+  - `tegra_rtcpu_trace/last_event`
+  - these are created by `tegra-rtcpu-trace.c` with `debugfs_create_file()` and `single_open()`/`seq_read()`, not `debugfs_create_regset32()`;
+  - they are still not promoted to automatic reads and should only be tried manually.
 - Local `nvidia-oot` headers are present, but full local sample sensor source files are not installed under `/usr/src/nvidia/`.
 - Official `linux-nv-oot.git` source for `l4t-r36.5` is now fetched locally under `tools/vendor/linux-nv-oot-r36.5` for read-only analysis of `nvcsi`, `vi`, `rtcpu`, and `camera` code paths.
 - Unprivileged `dmesg` access is restricted, so full kernel-buffer capture requires elevated privileges.
