@@ -1,0 +1,375 @@
+diff --git a/artifacts/boot/20260423T132157Z/extlinux.conf.current b/artifacts/boot/20260423T132157Z/extlinux.conf.current
+new file mode 100644
+index 0000000..a925209
+--- /dev/null
++++ b/artifacts/boot/20260423T132157Z/extlinux.conf.current
+@@ -0,0 +1,19 @@
++TIMEOUT 30
++DEFAULT ov5647-dev
++
++MENU TITLE L4T boot options
++
++LABEL ov5647-safe
++      MENU LABEL Jetson SAFE (no OV5647 auto-load)
++      LINUX /boot/Image
++      INITRD /boot/initrd
++      FDT /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb
++      APPEND ${cbootargs} root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-safe
++
++LABEL ov5647-dev
++      MENU LABEL Jetson DEV OV5647 auto-load
++      LINUX /boot/Image
++      INITRD /boot/initrd
++      FDT /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb
++      OVERLAYS /boot/ov5647-p3768-port-a-lanepol0.dtbo
++      APPEND ${cbootargs} root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev
+diff --git a/artifacts/boot/20260423T132157Z/extlinux.conf.generated b/artifacts/boot/20260423T132157Z/extlinux.conf.generated
+new file mode 100644
+index 0000000..2f66291
+--- /dev/null
++++ b/artifacts/boot/20260423T132157Z/extlinux.conf.generated
+@@ -0,0 +1,19 @@
++TIMEOUT 30
++DEFAULT ov5647-dev
++
++MENU TITLE L4T boot options
++
++LABEL ov5647-safe
++      MENU LABEL Jetson SAFE (no OV5647 auto-load)
++      LINUX /boot/Image
++      INITRD /boot/initrd
++      FDT /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb
++      APPEND ${cbootargs} root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-safe
++
++LABEL ov5647-dev
++      MENU LABEL Jetson DEV OV5647 auto-load
++      LINUX /boot/Image
++      INITRD /boot/initrd
++      FDT /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb
++      OVERLAYS /boot/ov5647-p3768-port-a-lanepol0-cil58.dtbo
++      APPEND ${cbootargs} root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev
+diff --git a/artifacts/dtbo/20260423T132125Z-ov5647-p3768-port-a-lanepol0-cil58-probe.dtbo b/artifacts/dtbo/20260423T132125Z-ov5647-p3768-port-a-lanepol0-cil58-probe.dtbo
+new file mode 100644
+index 0000000..3af3a3c
+Binary files /dev/null and b/artifacts/dtbo/20260423T132125Z-ov5647-p3768-port-a-lanepol0-cil58-probe.dtbo differ
+diff --git a/logs/20260423T132125Z-build_overlay-ov5647-p3768-port-a-lanepol0-cil58-probe.log b/logs/20260423T132125Z-build_overlay-ov5647-p3768-port-a-lanepol0-cil58-probe.log
+new file mode 100644
+index 0000000..6e2c872
+--- /dev/null
++++ b/logs/20260423T132125Z-build_overlay-ov5647-p3768-port-a-lanepol0-cil58-probe.log
+@@ -0,0 +1,13 @@
++[2026-04-23T13:21:25Z] Building overlay
++[2026-04-23T13:21:25Z] Source: patches/ov5647-p3768-port-a-lanepol0-cil58-probe.dts
++[2026-04-23T13:21:25Z] Output: /home/cam/ov5647_driver_codex/artifacts/dtbo/20260423T132125Z-ov5647-p3768-port-a-lanepol0-cil58-probe.dtbo
++$ dtc -@ -I dts -O dtb -o /home/cam/ov5647_driver_codex/artifacts/dtbo/20260423T132125Z-ov5647-p3768-port-a-lanepol0-cil58-probe.dtbo patches/ov5647-p3768-port-a-lanepol0-cil58-probe.dts
++patches/ov5647-p3768-port-a-lanepol0-cil58-probe.dts:81.10-204.6: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0: node has a unit name, but no reg or ranges property
++patches/ov5647-p3768-port-a-lanepol0-cil58-probe.dts:82.21-115.7: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/host1x@13e00000: node has a unit name, but no reg or ranges property
++patches/ov5647-p3768-port-a-lanepol0-cil58-probe.dts:83.21-114.8: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000: node has a unit name, but no reg or ranges property
++patches/ov5647-p3768-port-a-lanepol0-cil58-probe.dts:98.55-102.12: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@0/endpoint@0: node has a unit name, but no reg or ranges property
++patches/ov5647-p3768-port-a-lanepol0-cil58-probe.dts:108.56-110.12: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@1/endpoint@1: node has a unit name, but no reg or ranges property
++patches/ov5647-p3768-port-a-lanepol0-cil58-probe.dts:47.11-60.7: Warning (graph_child_address): /fragment@0/__overlay__/tegra-capture-vi/ports: graph node has single child node 'port@0', #address-cells/#size-cells are not necessary
++patches/ov5647-p3768-port-a-lanepol0-cil58-probe.dts:187.14-200.10: Warning (graph_child_address): /fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports: graph node has single child node 'port@0', #address-cells/#size-cells are not necessary
++[2026-04-23T13:21:25Z] Overlay build finished
++[2026-04-23T13:21:25Z] Artifacts saved under /home/cam/ov5647_driver_codex/artifacts/dtbo/20260423T132125Z-ov5647-p3768-port-a-lanepol0-cil58-probe.dtbo
+diff --git a/logs/20260423T132156Z-switch-boot-profile-cil58.log b/logs/20260423T132156Z-switch-boot-profile-cil58.log
+new file mode 100644
+index 0000000..b5f8b38
+--- /dev/null
++++ b/logs/20260423T132156Z-switch-boot-profile-cil58.log
+@@ -0,0 +1,8 @@
++[2026-04-23T13:21:57Z] Rendered candidate boot profile config
++[2026-04-23T13:21:57Z] Source label: ov5647-dev
++[2026-04-23T13:21:57Z] Source menu label: Jetson DEV OV5647 auto-load
++[2026-04-23T13:21:57Z] Requested default profile: dev
++[2026-04-23T13:21:57Z] Requested dev overlay: /boot/ov5647-p3768-port-a-lanepol0-cil58.dtbo
++[2026-04-23T13:21:57Z] Detected UEFI DTB: /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb
++[2026-04-23T13:21:57Z] Generated config: /home/cam/ov5647_driver_codex/artifacts/boot/20260423T132157Z/extlinux.conf.generated
++[2026-04-23T13:21:57Z] Applied generated extlinux.conf and backed up the previous file to /boot/extlinux/extlinux.conf.20260423T132157Z.bak
+diff --git a/patches/ov5647-p3768-port-a-lanepol0-cil58-probe.dts b/patches/ov5647-p3768-port-a-lanepol0-cil58-probe.dts
+new file mode 100644
+index 0000000..2e0f5be
+--- /dev/null
++++ b/patches/ov5647-p3768-port-a-lanepol0-cil58-probe.dts
+@@ -0,0 +1,207 @@
++/dts-v1/;
++/plugin/;
++
++/ {
++	overlay-name = "OV5647 probe route A lane-polarity 0 cil_settletime 58 for p3768/p3767";
++	jetson-header-name = "Jetson 22pin CSI Connector";
++	compatible =
++		"nvidia,p3768-0000+p3767-0000",
++		"nvidia,p3768-0000+p3767-0001",
++		"nvidia,p3768-0000+p3767-0003",
++		"nvidia,p3768-0000+p3767-0004",
++		"nvidia,p3768-0000+p3767-0005";
++
++	/*
++	 * Controlled RX timing experiment after:
++	 * - route A lane_polarity 6 -> no SOF
++	 * - route A lane_polarity 0 -> no SOF
++	 * - route C -> no SOF
++	 * - upstream OV5647 test pattern -> no SOF
++	 * - pwdn/power-cycle diagnostic matrix -> no SOF
++	 *
++	 * This variant keeps the current best route-A assumptions and changes
++	 * only one receiver-timing field:
++	 * - cil_settletime = 58
++	 *
++	 * The value 58 is an inference from NVIDIA's r36.x DPHY guidance:
++	 * - pix_clk_hz = 58.333 MHz
++	 * - 10-bit Bayer, 2 lanes -> approximate lane bit rate 291.665 Mbps
++	 * - UI ~= 3.43 ns
++	 * - acceptable settle window ~= 105.6 ns .. 179.3 ns
++	 * - midpoint ~= 142.4 ns
++	 * - lp_clock_period = 1 / 408 MHz ~= 2.451 ns
++	 * - midpoint / lp_clock_period ~= 58.1
++	 *
++	 * This does not prove the sensor's actual DPHY timing. It is a narrow,
++	 * traceable experiment to replace auto-calibrate (0) with a single
++	 * explicit mid-range value.
++	 */
++
++	fragment@0 {
++		target-path = "/";
++
++		__overlay__ {
++			tegra-capture-vi {
++				num-channels = <1>;
++
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					port@0 {
++						reg = <0>;
++
++						ov5647_probe_a_lp0_cil58_vi_in0: endpoint {
++							port-index = <1>;
++							bus-width = <2>;
++							remote-endpoint = <&ov5647_probe_a_lp0_cil58_csi_out0>;
++						};
++					};
++				};
++			};
++
++			tegra-camera-platform {
++				compatible = "nvidia, tegra-camera-platform";
++
++				modules {
++					module0 {
++						badge = "probe_ov5647_route_a_lanepol0_cil58";
++						position = "front";
++						orientation = "1";
++
++						drivernode0 {
++							pcl_id = "v4l2_sensor";
++							sysfs-device-tree =
++								"/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36";
++						};
++					};
++				};
++			};
++
++			bus@0 {
++				host1x@13e00000 {
++					nvcsi@15a00000 {
++						num-channels = <1>;
++						#address-cells = <1>;
++						#size-cells = <0>;
++
++						channel@0 {
++							reg = <0>;
++
++							ports {
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++								port@0 {
++									reg = <0>;
++
++									ov5647_probe_a_lp0_cil58_csi_in0: endpoint@0 {
++										port-index = <1>;
++										bus-width = <2>;
++										remote-endpoint = <&ov5647_probe_a_lp0_cil58_out0>;
++									};
++								};
++
++								port@1 {
++									reg = <1>;
++
++									ov5647_probe_a_lp0_cil58_csi_out0: endpoint@1 {
++										remote-endpoint = <&ov5647_probe_a_lp0_cil58_vi_in0>;
++									};
++								};
++							};
++						};
++					};
++				};
++
++				cam_i2cmux {
++					status = "okay";
++					compatible = "i2c-mux-gpio";
++					#address-cells = <1>;
++					#size-cells = <0>;
++					mux-gpios = <&gpio_aon 19 0>;
++					i2c-parent = <&cam_i2c>;
++
++					i2c@0 {
++						status = "okay";
++						reg = <0>;
++						#address-cells = <1>;
++						#size-cells = <0>;
++
++						ov5647_a@36 {
++							status = "okay";
++							compatible = "ovti,ov5647";
++							reg = <0x36>;
++							devnode = "video0";
++							physical_w = "3.674";
++							physical_h = "2.738";
++							sensor_model = "ov5647";
++							use_sensor_mode_id = "true";
++							mclk = "extperiph1";
++							clocks = <&bpmp 0x24>;
++							clock-names = "extperiph1";
++							avdd-reg = "vana";
++							dvdd-reg = "vdig";
++							iovdd-reg = "vif";
++							pwdn-gpios = <&gpio 0x3e 0>;
++
++							mode0 {
++								mclk_khz = "24000";
++								num_lanes = "2";
++								tegra_sinterface = "serial_b";
++								lane_polarity = "0";
++								phy_mode = "DPHY";
++								discontinuous_clk = "yes";
++								dpcm_enable = "false";
++								cil_settletime = "58";
++								active_w = "640";
++								active_h = "480";
++								mode_type = "bayer";
++								pixel_phase = "bggr";
++								csi_pixel_bit_depth = "10";
++								readout_orientation = "0";
++								line_length = "1852";
++								inherent_gain = "1";
++								mclk_multiplier = "2.43";
++								pix_clk_hz = "58333000";
++								gain_factor = "16";
++								framerate_factor = "1000000";
++								exposure_factor = "1000000";
++								min_gain_val = "16";
++								max_gain_val = "1023";
++								step_gain_val = "1";
++								default_gain = "32";
++								min_hdr_ratio = "1";
++								max_hdr_ratio = "1";
++								min_framerate = "5000000";
++								max_framerate = "60000000";
++								step_framerate = "1";
++								default_framerate = "60000000";
++								min_exp_time = "13";
++								max_exp_time = "16000";
++								step_exp_time = "1";
++								default_exp_time = "1000";
++								embedded_metadata_height = "0";
++							};
++
++							ports {
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++								port@0 {
++									reg = <0>;
++
++									ov5647_probe_a_lp0_cil58_out0: endpoint {
++										port-index = <1>;
++										bus-width = <2>;
++										remote-endpoint = <&ov5647_probe_a_lp0_cil58_csi_in0>;
++									};
++								};
++							};
++						};
++					};
++				};
++			};
++		};
++	};
++};
+diff --git a/reports/2026-04-23-cil-settletime-58-stage.md b/reports/2026-04-23-cil-settletime-58-stage.md
+new file mode 100644
+index 0000000..3c9bf56
+--- /dev/null
++++ b/reports/2026-04-23-cil-settletime-58-stage.md
+@@ -0,0 +1,69 @@
++# CIL Settletime 58 Stage
++
++Date: 2026-04-23
++
++## Why This Experiment
++
++The `PWDN/CAM_IO0` diagnostic matrix narrowed the software-only hypotheses:
++
++- `pwdn=normal` -> probe ok, no SOF
++- `pwdn=ignore` -> probe ok, no SOF
++- `pwdn=ignore + keep-powered` -> probe ok, no SOF
++- `pwdn=inverted` -> early I2C/register access fails, so active-low is not the right polarity for the current control line
++
++This makes the next strongest software-only hypothesis a receiver-side timing issue, specifically `cil_settletime`.
++
++## Source Of Truth
++
++NVIDIA Jetson Linux r36.x documents:
++
++- `cil_settletime = 0` means auto-calibrate
++- for DPHY, the acceptable settle window is:
++  - `85 ns + 6*UI < cil_settletime * lp_clock_period < 145 ns + 10*UI`
++  - `lp_clock_period = 1 / 408 MHz`
++
++Reference:
++
++- NVIDIA Jetson Linux Developer Guide, Sensor Software Driver Programming
++
++## Local Inference For This OV5647 Mode
++
++For the current minimal mode:
++
++- `pix_clk_hz = 58,333,000`
++- `csi_pixel_bit_depth = 10`
++- `num_lanes = 2`
++
++Approximate lane bit rate inference:
++
++- `lane_rate ~= pix_clk_hz * bits_per_pixel / num_lanes`
++- `lane_rate ~= 58.333 MHz * 10 / 2 ~= 291.665 Mbps`
++- `UI ~= 1 / lane_rate ~= 3.43 ns`
++
++This gives an approximate acceptable THS-settle range:
++
++- low ~= `105.6 ns`
++- high ~= `179.3 ns`
++- midpoint ~= `142.4 ns`
++
++Converting midpoint into Jetson's `cil_settletime` units:
++
++- `lp_clock_period ~= 2.451 ns`
++- `142.4 / 2.451 ~= 58.1`
++
++Chosen controlled experiment:
++
++- `cil_settletime = "58"`
++
++## Files Added
++
++- `patches/ov5647-p3768-port-a-lanepol0-cil58-probe.dts`
++
++## Success Criterion
++
++- any change from the current `VIDIOC_STREAMON ok + no SOF + 0 bytes` pattern
++- ideally real frame ingress, or at least new NVCSI/VI events
++
++## Failure Interpretation
++
++If explicit mid-range `cil_settletime = 58` still produces no SOF, the remaining software-only room narrows further and the physical pinout/remap hypothesis becomes even stronger.

@@ -1,0 +1,8 @@
+ .../boot/20260423T132157Z/extlinux.conf.current    |  19 ++
+ .../boot/20260423T132157Z/extlinux.conf.generated  |  19 ++
+ ...Z-ov5647-p3768-port-a-lanepol0-cil58-probe.dtbo | Bin 0 -> 4955 bytes
+ ...ay-ov5647-p3768-port-a-lanepol0-cil58-probe.log |  13 ++
+ .../20260423T132156Z-switch-boot-profile-cil58.log |   8 +
+ .../ov5647-p3768-port-a-lanepol0-cil58-probe.dts   | 207 +++++++++++++++++++++
+ reports/2026-04-23-cil-settletime-58-stage.md      |  69 +++++++
+ 7 files changed, 335 insertions(+)
