@@ -82,6 +82,13 @@ fi
 
 if lsmod | awk '$1 == "nv_ov5647" { found = 1 } END { exit(found ? 0 : 1) }'; then
 	echo "[${TS}] refusing insmod: nv_ov5647 is already loaded" | tee -a "${LOGFILE}"
+	echo "[${TS}] loaded module parameters:" | tee -a "${LOGFILE}"
+	for p in /sys/module/nv_ov5647/parameters/*; do
+		if [[ -e "${p}" ]]; then
+			printf '[%s] %s=' "${TS}" "${p}" | tee -a "${LOGFILE}"
+			cat "${p}" | tee -a "${LOGFILE}"
+		fi
+	done
 	exit 2
 fi
 
