@@ -1,0 +1,519 @@
+diff --git a/logs/20260423T130445Z-git-diff-before-pwdn-diag-commit.patch b/logs/20260423T130445Z-git-diff-before-pwdn-diag-commit.patch
+new file mode 100644
+index 0000000..73ba35f
+--- /dev/null
++++ b/logs/20260423T130445Z-git-diff-before-pwdn-diag-commit.patch
+@@ -0,0 +1,223 @@
++diff --git a/scripts/run_manual_insmod_diag.sh b/scripts/run_manual_insmod_diag.sh
++index e64e645..93aa226 100755
++--- a/scripts/run_manual_insmod_diag.sh
+++++ b/scripts/run_manual_insmod_diag.sh
++@@ -38,6 +38,48 @@ case "${PROFILE}" in
++ 			unload_marker_delay_ms=500
++ 		)
++ 		;;
+++	full-delay-dump-mclk24-pwdn-inverted)
+++		PARAMS=(
+++			register_i2c_driver=1
+++			allow_hw_probe=1
+++			dump_stream_regs=1
+++			mclk_override_hz=24000000
+++			pwdn_mode=1
+++			unload_marker_delay_ms=500
+++		)
+++		;;
+++	full-delay-dump-mclk24-pwdn-ignore)
+++		PARAMS=(
+++			register_i2c_driver=1
+++			allow_hw_probe=1
+++			dump_stream_regs=1
+++			mclk_override_hz=24000000
+++			pwdn_mode=2
+++			unload_marker_delay_ms=500
+++		)
+++		;;
+++	full-delay-dump-mclk24-pwdn-ignore-keep)
+++		PARAMS=(
+++			register_i2c_driver=1
+++			allow_hw_probe=1
+++			dump_stream_regs=1
+++			mclk_override_hz=24000000
+++			pwdn_mode=2
+++			skip_board_setup_power_off=1
+++			unload_marker_delay_ms=500
+++		)
+++		;;
+++	full-delay-dump-mclk24-pwdn-inverted-keep)
+++		PARAMS=(
+++			register_i2c_driver=1
+++			allow_hw_probe=1
+++			dump_stream_regs=1
+++			mclk_override_hz=24000000
+++			pwdn_mode=1
+++			skip_board_setup_power_off=1
+++			unload_marker_delay_ms=500
+++		)
+++		;;
++ 	full-delay-dump-contclk)
++ 		PARAMS=(register_i2c_driver=1 allow_hw_probe=1 dump_stream_regs=1 continuous_mipi_clock=1 unload_marker_delay_ms=500)
++ 		;;
++@@ -61,7 +103,7 @@ case "${PROFILE}" in
++ 		PARAMS=(register_i2c_driver=1 allow_hw_probe=1 split_v4l2_unregister=1 unload_marker_delay_ms=500)
++ 		;;
++ 	*)
++-		echo "usage: $0 [full-delay|full-delay-dump|full-delay-dump-mclk24|full-delay-dump-mclk24-testpat|full-delay-dump-contclk|full-delay-dump-contclk-mclk24|skip-register|skip-unregister|split-unregister]" \
+++		echo "usage: $0 [full-delay|full-delay-dump|full-delay-dump-mclk24|full-delay-dump-mclk24-testpat|full-delay-dump-mclk24-pwdn-inverted|full-delay-dump-mclk24-pwdn-ignore|full-delay-dump-mclk24-pwdn-ignore-keep|full-delay-dump-mclk24-pwdn-inverted-keep|full-delay-dump-contclk|full-delay-dump-contclk-mclk24|skip-register|skip-unregister|split-unregister]" \
++ 			>&2
++ 		exit 2
++ 		;;
++diff --git a/src/nv_ov5647/nv_ov5647.c b/src/nv_ov5647/nv_ov5647.c
++index f1ecdcc..21cd784 100644
++--- a/src/nv_ov5647/nv_ov5647.c
+++++ b/src/nv_ov5647/nv_ov5647.c
++@@ -48,6 +48,10 @@
++ #define OV5647_MIPI_CTRL00_BUS_IDLE		BIT(2)
++ #define OV5647_MIPI_CTRL00_CLOCK_LANE_DISABLE	BIT(0)
++ 
+++#define OV5647_PWDN_MODE_NORMAL		0U
+++#define OV5647_PWDN_MODE_INVERTED	1U
+++#define OV5647_PWDN_MODE_IGNORE		2U
+++
++ struct ov5647_mode {
++ 	const char *name;
++ 	u32 width;
++@@ -116,6 +120,16 @@ module_param(ov5647_test_pattern, uint, 0644);
++ MODULE_PARM_DESC(ov5647_test_pattern,
++ 		 "Diagnostic only: OV5647 built-in test pattern. 0=off, 1=colorbars. Default: 0");
++ 
+++static uint pwdn_mode;
+++module_param(pwdn_mode, uint, 0644);
+++MODULE_PARM_DESC(pwdn_mode,
+++		 "Diagnostic only: PWDN GPIO handling. 0=normal drive high on power-on, 1=inverted drive low on power-on, 2=ignore PWDN GPIO. Default: 0");
+++
+++static bool skip_board_setup_power_off;
+++module_param(skip_board_setup_power_off, bool, 0644);
+++MODULE_PARM_DESC(skip_board_setup_power_off,
+++		 "Diagnostic only: leave sensor powered after board_setup chip-id check instead of calling power_off(). Default: false");
+++
++ static bool driver_registered;
++ 
++ struct ov5647_reg_dump {
++@@ -159,6 +173,70 @@ static void ov5647_unload_marker_delay(void)
++ 		msleep(unload_marker_delay_ms);
++ }
++ 
+++static const char *ov5647_pwdn_mode_name(void)
+++{
+++	switch (pwdn_mode) {
+++	case OV5647_PWDN_MODE_NORMAL:
+++		return "normal";
+++	case OV5647_PWDN_MODE_INVERTED:
+++		return "inverted";
+++	case OV5647_PWDN_MODE_IGNORE:
+++		return "ignore";
+++	default:
+++		return "invalid";
+++	}
+++}
+++
+++static int ov5647_pwdn_power_on_value(void)
+++{
+++	switch (pwdn_mode) {
+++	case OV5647_PWDN_MODE_NORMAL:
+++		return 1;
+++	case OV5647_PWDN_MODE_INVERTED:
+++		return 0;
+++	case OV5647_PWDN_MODE_IGNORE:
+++	default:
+++		return -1;
+++	}
+++}
+++
+++static int ov5647_pwdn_power_off_value(void)
+++{
+++	switch (pwdn_mode) {
+++	case OV5647_PWDN_MODE_NORMAL:
+++		return 1;
+++	case OV5647_PWDN_MODE_INVERTED:
+++		return 1;
+++	case OV5647_PWDN_MODE_IGNORE:
+++	default:
+++		return -1;
+++	}
+++}
+++
+++static void ov5647_apply_pwdn_gpio(struct device *dev,
+++				      struct camera_common_power_rail *pw,
+++				      const char *phase, int value)
+++{
+++	if (!gpio_is_valid((int)pw->pwdn_gpio)) {
+++		dev_info(dev, "%s: %s: no pwdn GPIO\n", __func__, phase);
+++		return;
+++	}
+++
+++	if (value < 0) {
+++		dev_info(dev,
+++			 "%s: %s: pwdn_mode=%s, leaving gpio=%u unchanged\n",
+++			 __func__, phase, ov5647_pwdn_mode_name(),
+++			 pw->pwdn_gpio);
+++		return;
+++	}
+++
+++	gpio_set_value(pw->pwdn_gpio, value);
+++	dev_info(dev,
+++		 "%s: %s: pwdn_mode=%s set gpio=%u value=%d\n",
+++		 __func__, phase, ov5647_pwdn_mode_name(),
+++		 pw->pwdn_gpio, value);
+++}
+++
++ static void ov5647_split_v4l2subdev_unregister(struct tegracam_device *tc_dev)
++ {
++ 	struct camera_common_data *s_data = tc_dev->s_data;
++@@ -738,6 +816,10 @@ static int ov5647_power_on(struct camera_common_data *s_data)
++ 	int err;
++ 
++ 	dev_info(dev, "%s: enter\n", __func__);
+++	dev_info(dev,
+++		 "%s: diagnostics pwdn_mode=%u(%s) skip_board_setup_power_off=%d\n",
+++		 __func__, pwdn_mode, ov5647_pwdn_mode_name(),
+++		 skip_board_setup_power_off);
++ 
++ 	if (!pw)
++ 		return -EINVAL;
++@@ -793,8 +875,7 @@ static int ov5647_power_on(struct camera_common_data *s_data)
++ 
++ 	usleep_range(1000, 1500);
++ 
++-	if (gpio_is_valid((int)pw->pwdn_gpio))
++-		gpio_set_value(pw->pwdn_gpio, 1);
+++	ov5647_apply_pwdn_gpio(dev, pw, "power_on", ov5647_pwdn_power_on_value());
++ 
++ 	if (gpio_is_valid((int)pw->reset_gpio)) {
++ 		gpio_set_value(pw->reset_gpio, 0);
++@@ -861,6 +942,10 @@ static int ov5647_power_off(struct camera_common_data *s_data)
++ 	}
++ 
++ 	dev_info(dev, "%s: enter\n", __func__);
+++	dev_info(dev,
+++		 "%s: diagnostics pwdn_mode=%u(%s) skip_board_setup_power_off=%d\n",
+++		 __func__, pwdn_mode, ov5647_pwdn_mode_name(),
+++		 skip_board_setup_power_off);
++ 
++ 	if (!pw) {
++ 		dev_warn(dev, "%s: s_data->power is NULL, skipping\n", __func__);
++@@ -876,8 +961,8 @@ static int ov5647_power_off(struct camera_common_data *s_data)
++ 		dev_warn(dev, "%s: sensor output-disable table failed\n",
++ 			 __func__);
++ 
++-	if (gpio_is_valid((int)pw->pwdn_gpio))
++-		gpio_set_value(pw->pwdn_gpio, 1);
+++	ov5647_apply_pwdn_gpio(dev, pw, "power_off",
+++				 ov5647_pwdn_power_off_value());
++ 
++ 	if (gpio_is_valid((int)pw->reset_gpio))
++ 		gpio_set_value(pw->reset_gpio, 0);
++@@ -1120,8 +1205,13 @@ static int ov5647_board_setup(struct ov5647 *priv)
++ 	err = 0;
++ 
++ power_off:
++-	if (ov5647_power_off(s_data))
+++	if (!err && skip_board_setup_power_off) {
+++		dev_warn(dev,
+++			 "%s: skip_board_setup_power_off=1, leaving sensor powered after chip-id check\n",
+++			 __func__);
+++	} else if (ov5647_power_off(s_data)) {
++ 		dev_warn(dev, "%s: power_off failed during unwind\n", __func__);
+++	}
++ 
++ 	if (err)
++ 		dev_err(dev, "%s: exit failure err=%d\n", __func__, err);
+diff --git a/logs/20260423T130445Z-git-status-before-pwdn-diag-commit.log b/logs/20260423T130445Z-git-status-before-pwdn-diag-commit.log
+new file mode 100644
+index 0000000..572747d
+--- /dev/null
++++ b/logs/20260423T130445Z-git-status-before-pwdn-diag-commit.log
+@@ -0,0 +1,3 @@
++ M scripts/run_manual_insmod_diag.sh
++ M src/nv_ov5647/nv_ov5647.c
++?? reports/2026-04-23-pwdn-diagnostic-matrix-prep.md
+diff --git a/reports/2026-04-23-pwdn-diagnostic-matrix-prep.md b/reports/2026-04-23-pwdn-diagnostic-matrix-prep.md
+new file mode 100644
+index 0000000..00d827e
+--- /dev/null
++++ b/reports/2026-04-23-pwdn-diagnostic-matrix-prep.md
+@@ -0,0 +1,52 @@
++# PWDN Diagnostic Matrix Prep
++
++Date: 2026-04-23
++
++## What Changed
++
++- Added diagnostic module parameter `pwdn_mode`:
++  - `0` = current/default behavior
++  - `1` = inverted PWDN on power-on
++  - `2` = ignore PWDN GPIO
++- Added diagnostic module parameter `skip_board_setup_power_off`:
++  - leaves the sensor powered after board-setup chip-id validation
++  - intended to test whether the board-setup power cycle itself suppresses CSI bring-up on the current module path
++- Added manual `insmod` profiles to `scripts/run_manual_insmod_diag.sh`:
++  - `full-delay-dump-mclk24-pwdn-inverted`
++  - `full-delay-dump-mclk24-pwdn-ignore`
++  - `full-delay-dump-mclk24-pwdn-ignore-keep`
++  - `full-delay-dump-mclk24-pwdn-inverted-keep`
++
++## Build Result
++
++- Module rebuild succeeded.
++- New module `srcversion=246B8D72861E7177B779CB8`
++- New `modinfo` parameters are visible:
++  - `pwdn_mode`
++  - `skip_board_setup_power_off`
++
++## Why This Matters
++
++Current evidence still allows one software-side hypothesis:
++
++- on the native Pi Zero-style `22-pin` path, the Jetson `PWDN` line may actually land on a module-side `CAM_IO0` function rather than a true sensor `PWDN` input;
++- repeated power cycling during `board_setup()` may also leave the module in a state where I2C still works but CSI transport never starts.
++
++These new knobs let us test that hypothesis without changing DT or rewriting the core stream path again.
++
++## Planned Manual Test Order
++
++Run exactly one capture after each clean manual load:
++
++1. `full-delay-dump-mclk24-pwdn-ignore`
++2. `full-delay-dump-mclk24-pwdn-inverted`
++3. `full-delay-dump-mclk24-pwdn-ignore-keep`
++4. `full-delay-dump-mclk24-pwdn-inverted-keep`
++
++Success criterion:
++
++- any test that changes the result from `no SOF / 0 bytes` to a real frame or at least visible NVCSI/VI ingress events becomes the next branch to follow.
++
++Failure criterion:
++
++- if all four still produce the same `no SOF` signature, the remaining software-only room narrows further and the physical pinout/remap hypothesis becomes even stronger.
+diff --git a/scripts/run_manual_insmod_diag.sh b/scripts/run_manual_insmod_diag.sh
+index e64e645..93aa226 100755
+--- a/scripts/run_manual_insmod_diag.sh
++++ b/scripts/run_manual_insmod_diag.sh
+@@ -38,6 +38,48 @@ case "${PROFILE}" in
+ 			unload_marker_delay_ms=500
+ 		)
+ 		;;
++	full-delay-dump-mclk24-pwdn-inverted)
++		PARAMS=(
++			register_i2c_driver=1
++			allow_hw_probe=1
++			dump_stream_regs=1
++			mclk_override_hz=24000000
++			pwdn_mode=1
++			unload_marker_delay_ms=500
++		)
++		;;
++	full-delay-dump-mclk24-pwdn-ignore)
++		PARAMS=(
++			register_i2c_driver=1
++			allow_hw_probe=1
++			dump_stream_regs=1
++			mclk_override_hz=24000000
++			pwdn_mode=2
++			unload_marker_delay_ms=500
++		)
++		;;
++	full-delay-dump-mclk24-pwdn-ignore-keep)
++		PARAMS=(
++			register_i2c_driver=1
++			allow_hw_probe=1
++			dump_stream_regs=1
++			mclk_override_hz=24000000
++			pwdn_mode=2
++			skip_board_setup_power_off=1
++			unload_marker_delay_ms=500
++		)
++		;;
++	full-delay-dump-mclk24-pwdn-inverted-keep)
++		PARAMS=(
++			register_i2c_driver=1
++			allow_hw_probe=1
++			dump_stream_regs=1
++			mclk_override_hz=24000000
++			pwdn_mode=1
++			skip_board_setup_power_off=1
++			unload_marker_delay_ms=500
++		)
++		;;
+ 	full-delay-dump-contclk)
+ 		PARAMS=(register_i2c_driver=1 allow_hw_probe=1 dump_stream_regs=1 continuous_mipi_clock=1 unload_marker_delay_ms=500)
+ 		;;
+@@ -61,7 +103,7 @@ case "${PROFILE}" in
+ 		PARAMS=(register_i2c_driver=1 allow_hw_probe=1 split_v4l2_unregister=1 unload_marker_delay_ms=500)
+ 		;;
+ 	*)
+-		echo "usage: $0 [full-delay|full-delay-dump|full-delay-dump-mclk24|full-delay-dump-mclk24-testpat|full-delay-dump-contclk|full-delay-dump-contclk-mclk24|skip-register|skip-unregister|split-unregister]" \
++		echo "usage: $0 [full-delay|full-delay-dump|full-delay-dump-mclk24|full-delay-dump-mclk24-testpat|full-delay-dump-mclk24-pwdn-inverted|full-delay-dump-mclk24-pwdn-ignore|full-delay-dump-mclk24-pwdn-ignore-keep|full-delay-dump-mclk24-pwdn-inverted-keep|full-delay-dump-contclk|full-delay-dump-contclk-mclk24|skip-register|skip-unregister|split-unregister]" \
+ 			>&2
+ 		exit 2
+ 		;;
+diff --git a/src/nv_ov5647/nv_ov5647.c b/src/nv_ov5647/nv_ov5647.c
+index f1ecdcc..21cd784 100644
+--- a/src/nv_ov5647/nv_ov5647.c
++++ b/src/nv_ov5647/nv_ov5647.c
+@@ -48,6 +48,10 @@
+ #define OV5647_MIPI_CTRL00_BUS_IDLE		BIT(2)
+ #define OV5647_MIPI_CTRL00_CLOCK_LANE_DISABLE	BIT(0)
+ 
++#define OV5647_PWDN_MODE_NORMAL		0U
++#define OV5647_PWDN_MODE_INVERTED	1U
++#define OV5647_PWDN_MODE_IGNORE		2U
++
+ struct ov5647_mode {
+ 	const char *name;
+ 	u32 width;
+@@ -116,6 +120,16 @@ module_param(ov5647_test_pattern, uint, 0644);
+ MODULE_PARM_DESC(ov5647_test_pattern,
+ 		 "Diagnostic only: OV5647 built-in test pattern. 0=off, 1=colorbars. Default: 0");
+ 
++static uint pwdn_mode;
++module_param(pwdn_mode, uint, 0644);
++MODULE_PARM_DESC(pwdn_mode,
++		 "Diagnostic only: PWDN GPIO handling. 0=normal drive high on power-on, 1=inverted drive low on power-on, 2=ignore PWDN GPIO. Default: 0");
++
++static bool skip_board_setup_power_off;
++module_param(skip_board_setup_power_off, bool, 0644);
++MODULE_PARM_DESC(skip_board_setup_power_off,
++		 "Diagnostic only: leave sensor powered after board_setup chip-id check instead of calling power_off(). Default: false");
++
+ static bool driver_registered;
+ 
+ struct ov5647_reg_dump {
+@@ -159,6 +173,70 @@ static void ov5647_unload_marker_delay(void)
+ 		msleep(unload_marker_delay_ms);
+ }
+ 
++static const char *ov5647_pwdn_mode_name(void)
++{
++	switch (pwdn_mode) {
++	case OV5647_PWDN_MODE_NORMAL:
++		return "normal";
++	case OV5647_PWDN_MODE_INVERTED:
++		return "inverted";
++	case OV5647_PWDN_MODE_IGNORE:
++		return "ignore";
++	default:
++		return "invalid";
++	}
++}
++
++static int ov5647_pwdn_power_on_value(void)
++{
++	switch (pwdn_mode) {
++	case OV5647_PWDN_MODE_NORMAL:
++		return 1;
++	case OV5647_PWDN_MODE_INVERTED:
++		return 0;
++	case OV5647_PWDN_MODE_IGNORE:
++	default:
++		return -1;
++	}
++}
++
++static int ov5647_pwdn_power_off_value(void)
++{
++	switch (pwdn_mode) {
++	case OV5647_PWDN_MODE_NORMAL:
++		return 1;
++	case OV5647_PWDN_MODE_INVERTED:
++		return 1;
++	case OV5647_PWDN_MODE_IGNORE:
++	default:
++		return -1;
++	}
++}
++
++static void ov5647_apply_pwdn_gpio(struct device *dev,
++				      struct camera_common_power_rail *pw,
++				      const char *phase, int value)
++{
++	if (!gpio_is_valid((int)pw->pwdn_gpio)) {
++		dev_info(dev, "%s: %s: no pwdn GPIO\n", __func__, phase);
++		return;
++	}
++
++	if (value < 0) {
++		dev_info(dev,
++			 "%s: %s: pwdn_mode=%s, leaving gpio=%u unchanged\n",
++			 __func__, phase, ov5647_pwdn_mode_name(),
++			 pw->pwdn_gpio);
++		return;
++	}
++
++	gpio_set_value(pw->pwdn_gpio, value);
++	dev_info(dev,
++		 "%s: %s: pwdn_mode=%s set gpio=%u value=%d\n",
++		 __func__, phase, ov5647_pwdn_mode_name(),
++		 pw->pwdn_gpio, value);
++}
++
+ static void ov5647_split_v4l2subdev_unregister(struct tegracam_device *tc_dev)
+ {
+ 	struct camera_common_data *s_data = tc_dev->s_data;
+@@ -738,6 +816,10 @@ static int ov5647_power_on(struct camera_common_data *s_data)
+ 	int err;
+ 
+ 	dev_info(dev, "%s: enter\n", __func__);
++	dev_info(dev,
++		 "%s: diagnostics pwdn_mode=%u(%s) skip_board_setup_power_off=%d\n",
++		 __func__, pwdn_mode, ov5647_pwdn_mode_name(),
++		 skip_board_setup_power_off);
+ 
+ 	if (!pw)
+ 		return -EINVAL;
+@@ -793,8 +875,7 @@ static int ov5647_power_on(struct camera_common_data *s_data)
+ 
+ 	usleep_range(1000, 1500);
+ 
+-	if (gpio_is_valid((int)pw->pwdn_gpio))
+-		gpio_set_value(pw->pwdn_gpio, 1);
++	ov5647_apply_pwdn_gpio(dev, pw, "power_on", ov5647_pwdn_power_on_value());
+ 
+ 	if (gpio_is_valid((int)pw->reset_gpio)) {
+ 		gpio_set_value(pw->reset_gpio, 0);
+@@ -861,6 +942,10 @@ static int ov5647_power_off(struct camera_common_data *s_data)
+ 	}
+ 
+ 	dev_info(dev, "%s: enter\n", __func__);
++	dev_info(dev,
++		 "%s: diagnostics pwdn_mode=%u(%s) skip_board_setup_power_off=%d\n",
++		 __func__, pwdn_mode, ov5647_pwdn_mode_name(),
++		 skip_board_setup_power_off);
+ 
+ 	if (!pw) {
+ 		dev_warn(dev, "%s: s_data->power is NULL, skipping\n", __func__);
+@@ -876,8 +961,8 @@ static int ov5647_power_off(struct camera_common_data *s_data)
+ 		dev_warn(dev, "%s: sensor output-disable table failed\n",
+ 			 __func__);
+ 
+-	if (gpio_is_valid((int)pw->pwdn_gpio))
+-		gpio_set_value(pw->pwdn_gpio, 1);
++	ov5647_apply_pwdn_gpio(dev, pw, "power_off",
++				 ov5647_pwdn_power_off_value());
+ 
+ 	if (gpio_is_valid((int)pw->reset_gpio))
+ 		gpio_set_value(pw->reset_gpio, 0);
+@@ -1120,8 +1205,13 @@ static int ov5647_board_setup(struct ov5647 *priv)
+ 	err = 0;
+ 
+ power_off:
+-	if (ov5647_power_off(s_data))
++	if (!err && skip_board_setup_power_off) {
++		dev_warn(dev,
++			 "%s: skip_board_setup_power_off=1, leaving sensor powered after chip-id check\n",
++			 __func__);
++	} else if (ov5647_power_off(s_data)) {
+ 		dev_warn(dev, "%s: power_off failed during unwind\n", __func__);
++	}
+ 
+ 	if (err)
+ 		dev_err(dev, "%s: exit failure err=%d\n", __func__, err);

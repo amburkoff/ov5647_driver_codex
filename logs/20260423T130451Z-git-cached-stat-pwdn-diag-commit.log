@@ -1,0 +1,6 @@
+ ...T130445Z-git-diff-before-pwdn-diag-commit.patch | 223 +++++++++++++++++++++
+ ...T130445Z-git-status-before-pwdn-diag-commit.log |   3 +
+ reports/2026-04-23-pwdn-diagnostic-matrix-prep.md  |  52 +++++
+ scripts/run_manual_insmod_diag.sh                  |  44 +++-
+ src/nv_ov5647/nv_ov5647.c                          | 100 ++++++++-
+ 5 files changed, 416 insertions(+), 6 deletions(-)

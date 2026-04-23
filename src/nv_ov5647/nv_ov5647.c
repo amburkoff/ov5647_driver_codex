@@ -48,6 +48,10 @@
 #define OV5647_MIPI_CTRL00_BUS_IDLE		BIT(2)
 #define OV5647_MIPI_CTRL00_CLOCK_LANE_DISABLE	BIT(0)
 
+#define OV5647_PWDN_MODE_NORMAL		0U
+#define OV5647_PWDN_MODE_INVERTED	1U
+#define OV5647_PWDN_MODE_IGNORE		2U
+
 struct ov5647_mode {
 	const char *name;
 	u32 width;
@@ -116,6 +120,16 @@ module_param(ov5647_test_pattern, uint, 0644);
 MODULE_PARM_DESC(ov5647_test_pattern,
 		 "Diagnostic only: OV5647 built-in test pattern. 0=off, 1=colorbars. Default: 0");
 
+static uint pwdn_mode;
+module_param(pwdn_mode, uint, 0644);
+MODULE_PARM_DESC(pwdn_mode,
+		 "Diagnostic only: PWDN GPIO handling. 0=normal drive high on power-on, 1=inverted drive low on power-on, 2=ignore PWDN GPIO. Default: 0");
+
+static bool skip_board_setup_power_off;
+module_param(skip_board_setup_power_off, bool, 0644);
+MODULE_PARM_DESC(skip_board_setup_power_off,
+		 "Diagnostic only: leave sensor powered after board_setup chip-id check instead of calling power_off(). Default: false");
+
 static bool driver_registered;
 
 struct ov5647_reg_dump {
@@ -157,6 +171,70 @@ static void ov5647_unload_marker_delay(void)
 {
 	if (unload_marker_delay_ms)
 		msleep(unload_marker_delay_ms);
+}
+
+static const char *ov5647_pwdn_mode_name(void)
+{
+	switch (pwdn_mode) {
+	case OV5647_PWDN_MODE_NORMAL:
+		return "normal";
+	case OV5647_PWDN_MODE_INVERTED:
+		return "inverted";
+	case OV5647_PWDN_MODE_IGNORE:
+		return "ignore";
+	default:
+		return "invalid";
+	}
+}
+
+static int ov5647_pwdn_power_on_value(void)
+{
+	switch (pwdn_mode) {
+	case OV5647_PWDN_MODE_NORMAL:
+		return 1;
+	case OV5647_PWDN_MODE_INVERTED:
+		return 0;
+	case OV5647_PWDN_MODE_IGNORE:
+	default:
+		return -1;
+	}
+}
+
+static int ov5647_pwdn_power_off_value(void)
+{
+	switch (pwdn_mode) {
+	case OV5647_PWDN_MODE_NORMAL:
+		return 1;
+	case OV5647_PWDN_MODE_INVERTED:
+		return 1;
+	case OV5647_PWDN_MODE_IGNORE:
+	default:
+		return -1;
+	}
+}
+
+static void ov5647_apply_pwdn_gpio(struct device *dev,
+				      struct camera_common_power_rail *pw,
+				      const char *phase, int value)
+{
+	if (!gpio_is_valid((int)pw->pwdn_gpio)) {
+		dev_info(dev, "%s: %s: no pwdn GPIO\n", __func__, phase);
+		return;
+	}
+
+	if (value < 0) {
+		dev_info(dev,
+			 "%s: %s: pwdn_mode=%s, leaving gpio=%u unchanged\n",
+			 __func__, phase, ov5647_pwdn_mode_name(),
+			 pw->pwdn_gpio);
+		return;
+	}
+
+	gpio_set_value(pw->pwdn_gpio, value);
+	dev_info(dev,
+		 "%s: %s: pwdn_mode=%s set gpio=%u value=%d\n",
+		 __func__, phase, ov5647_pwdn_mode_name(),
+		 pw->pwdn_gpio, value);
 }
 
 static void ov5647_split_v4l2subdev_unregister(struct tegracam_device *tc_dev)
@@ -738,6 +816,10 @@ static int ov5647_power_on(struct camera_common_data *s_data)
 	int err;
 
 	dev_info(dev, "%s: enter\n", __func__);
+	dev_info(dev,
+		 "%s: diagnostics pwdn_mode=%u(%s) skip_board_setup_power_off=%d\n",
+		 __func__, pwdn_mode, ov5647_pwdn_mode_name(),
+		 skip_board_setup_power_off);
 
 	if (!pw)
 		return -EINVAL;
@@ -793,8 +875,7 @@ static int ov5647_power_on(struct camera_common_data *s_data)
 
 	usleep_range(1000, 1500);
 
-	if (gpio_is_valid((int)pw->pwdn_gpio))
-		gpio_set_value(pw->pwdn_gpio, 1);
+	ov5647_apply_pwdn_gpio(dev, pw, "power_on", ov5647_pwdn_power_on_value());
 
 	if (gpio_is_valid((int)pw->reset_gpio)) {
 		gpio_set_value(pw->reset_gpio, 0);
@@ -861,6 +942,10 @@ static int ov5647_power_off(struct camera_common_data *s_data)
 	}
 
 	dev_info(dev, "%s: enter\n", __func__);
+	dev_info(dev,
+		 "%s: diagnostics pwdn_mode=%u(%s) skip_board_setup_power_off=%d\n",
+		 __func__, pwdn_mode, ov5647_pwdn_mode_name(),
+		 skip_board_setup_power_off);
 
 	if (!pw) {
 		dev_warn(dev, "%s: s_data->power is NULL, skipping\n", __func__);
@@ -876,8 +961,8 @@ static int ov5647_power_off(struct camera_common_data *s_data)
 		dev_warn(dev, "%s: sensor output-disable table failed\n",
 			 __func__);
 
-	if (gpio_is_valid((int)pw->pwdn_gpio))
-		gpio_set_value(pw->pwdn_gpio, 1);
+	ov5647_apply_pwdn_gpio(dev, pw, "power_off",
+				 ov5647_pwdn_power_off_value());
 
 	if (gpio_is_valid((int)pw->reset_gpio))
 		gpio_set_value(pw->reset_gpio, 0);
@@ -1120,8 +1205,13 @@ static int ov5647_board_setup(struct ov5647 *priv)
 	err = 0;
 
 power_off:
-	if (ov5647_power_off(s_data))
+	if (!err && skip_board_setup_power_off) {
+		dev_warn(dev,
+			 "%s: skip_board_setup_power_off=1, leaving sensor powered after chip-id check\n",
+			 __func__);
+	} else if (ov5647_power_off(s_data)) {
 		dev_warn(dev, "%s: power_off failed during unwind\n", __func__);
+	}
 
 	if (err)
 		dev_err(dev, "%s: exit failure err=%d\n", __func__, err);
