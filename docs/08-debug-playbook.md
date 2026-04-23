@@ -182,3 +182,11 @@ Reason for the blacklist:
 - `vi5.c` and `rtcpu-debug.c` both create camera-path register dumps through
   `debugfs_create_regset32()`;
 - these nodes are therefore unsafe to probe casually on the live target.
+
+Current live-layout caveat:
+
+- on this target runtime there is no exported `camrtc/` debugfs root;
+- `vi0/vi1` currently expose only `ch0`, which is a `debugfs_create_regset32()`
+  node and remains blacklisted;
+- `nvcsi` is present as a directory, but no low-risk child files are currently
+  visible in the exported layout.

@@ -72,6 +72,10 @@
   - `Events: 3`
   - `last_event = Start (0x03010000)`
   - no retained RTCPU exception or explicit camera/NVCSI failure marker was exposed.
+- Live debugfs layout currently offers no better receiver-side alternative:
+  - no `camrtc/` root is exported on this runtime;
+  - `vi0/ch0` and `vi1/ch0` are present but are `debugfs_create_regset32()` nodes;
+  - `nvcsi` is present only as a directory with no visible low-risk child files.
 - Local `nvidia-oot` headers are present, but full local sample sensor source files are not installed under `/usr/src/nvidia/`.
 - Official `linux-nv-oot.git` source for `l4t-r36.5` is now fetched locally under `tools/vendor/linux-nv-oot-r36.5` for read-only analysis of `nvcsi`, `vi`, `rtcpu`, and `camera` code paths.
 - Unprivileged `dmesg` access is restricted, so full kernel-buffer capture requires elevated privileges.
