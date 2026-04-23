@@ -1,0 +1,75 @@
+# Official 22-Pin Pinout Comparison
+
+Date: 2026-04-23
+
+## Purpose
+
+Document the official connector-level evidence behind the current hardware-blocker hypothesis.
+
+## Sources
+
+- NVIDIA Jetson Orin Nano Developer Kit User Guide hardware spec page
+- NVIDIA Jetson Orin Nano Developer Kit Carrier Board Specification
+- Raspberry Pi camera documentation for the 22-pin CSI connector
+
+## Confirmed Facts
+
+Jetson developer-carrier side:
+
+- NVIDIA documents two `22-pin, 0.5 mm pitch` CSI connectors on the Orin Nano developer carrier.
+- NVIDIA explicitly says a `15-pin to 22-pin conversion cable` is required for Raspberry Pi Camera Module v2 use on Jetson.
+- NVIDIA J20/J21 start with:
+  - pin 1 = `+3.3V`
+  - pin 2 = `CAM_I2C_SDA`
+  - pin 3 = `CAM_I2C_SCL`
+  - pin 5 = `CAMx_MCLK`
+  - pin 6 = `CAMx_PWDN`
+
+Raspberry Pi 22-pin side:
+
+- Raspberry Pi documents a different 22-pin pin family used on Raspberry Pi Zero and CM IO boards.
+- Raspberry Pi 22-pin starts with:
+  - pin 1 = `GND`
+  - pin 2 = `CAM_DN0`
+  - pin 3 = `CAM_DP0`
+  - pin 20 = `SCL`
+  - pin 21 = `SDA`
+  - pin 22 = `3V3`
+- Raspberry Pi also warns that FFC pin-1 orientation depends on connector and cable contact geometry.
+
+## Why This Matters Here
+
+- The tested `JT-ZERO-V2.0` module is now photo-confirmed as a native Raspberry Pi Zero-style 22-pin camera.
+- The current CLB/makerobo platform is booting NVIDIA reference `p3768` software and DT.
+- The custom OV5647 driver now passes:
+  - probe
+  - chip-id
+  - `/dev/video0`
+  - `VIDIOC_STREAMON`
+  - corrected upstream test pattern enable (`0x503d = 0x80`)
+- Capture still fails with:
+  - zero-byte raw output
+  - repeated VI timeout
+  - no RTCPU/NVCSI SOF or receiver interrupt activity
+
+This combination is consistent with a path where low-speed sideband signals are usable but the MIPI CSI clock/data mapping is wrong for the current cable/module/carrier combination.
+
+## Current Conclusion
+
+The project is no longer blocked by the obvious OV5647 software items.
+
+The leading blocker is now the physical CSI transport path on the present hardware setup:
+
+- native Raspberry Pi 22-pin camera module
+- unknown cable/contact remap details
+- CLB/makerobo carrier using NVIDIA reference p3768 camera routing assumptions
+
+## Best Next Step
+
+Do not spend another cycle on blind OV5647 register tuning first.
+
+Prefer one of:
+
+- replace the current module/cable with a known-good Jetson-compatible camera kit;
+- verify an explicit remap cable/adapter intended for Raspberry Pi Zero-style 22-pin camera modules on Jetson;
+- capture close in-situ photos of the carrier connector and flex orientation, then compare against the official pinout/orientation docs.

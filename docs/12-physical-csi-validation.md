@@ -65,6 +65,53 @@ Implication:
 - a correct cable or adapter can still make the path valid by reversing or remapping the flex;
 - therefore the exact cable type matters as much as the sensor module.
 
+## Official Pinout Evidence
+
+NVIDIA and Raspberry Pi both publish 22-pin CSI documentation, but they do not describe the same connector pin assignment.
+
+Jetson Orin Nano/NX developer-carrier side:
+
+- NVIDIA says the carrier has two 22-pin, 0.5 mm pitch camera connectors and explicitly calls out a separate `15-pin to 22-pin conversion cable` for Raspberry Pi Camera Module v2 use.
+- NVIDIA J20 camera connector starts with:
+  - pin 1 = `+3.3V`
+  - pin 2 = `CAM_I2C_SDA`
+  - pin 3 = `CAM_I2C_SCL`
+  - pin 5 = `CAM0_MCLK`
+  - pin 6 = `CAM0_PWDN`
+- NVIDIA J21 camera connector also starts with:
+  - pin 1 = `+3.3V`
+  - pin 2 = `CAM_I2C_SDA`
+  - pin 3 = `CAM_I2C_SCL`
+  - pin 5 = `CAM1_MCLK`
+  - pin 6 = `CAM1_PWDN`
+
+Raspberry Pi 22-pin camera side:
+
+- Raspberry Pi says the 22-pin CSI connector used on Raspberry Pi Zero series and CM IO boards has:
+  - pin 1 = `GND`
+  - pins 2/3 = `CAM_DN0` / `CAM_DP0`
+  - pins 17/18 = `CAM_IO0` / `CAM_IO1`
+  - pin 20 = `SCL`
+  - pin 21 = `SDA`
+  - pin 22 = `3V3`
+- Raspberry Pi also notes that pin numbering on FFC links depends on connector orientation and whether the cable contacts are top-side, bottom-side, or mirrored.
+
+What this means for the current hardware:
+
+- a direct `22-pin to 22-pin` assumption is unsafe;
+- even if a camera probes over I2C, that does not prove the MIPI clock/data lanes are mapped correctly;
+- the current `JT-ZERO-V2.0` module is a native Raspberry Pi Zero-style 22-pin camera, so it needs either:
+  - a Jetson-compatible remap cable/adapter, or
+  - a carrier whose camera connector was intentionally wired to the Raspberry Pi 22-pin pin family.
+
+Given the latest runtime evidence:
+
+- corrected upstream OV5647 test pattern now reads back as enabled (`0x503d = 0x80`);
+- `VIDIOC_STREAMON` succeeds;
+- NVCSI/VI still sees no SOF and no receiver interrupt activity.
+
+Taken together, the official pinout mismatch risk is now fully consistent with the observed `I2C works but CSI does not` failure signature.
+
 Current high-value question:
 
 - is the OV5647 board under test a normal 15-pin Raspberry Pi camera board connected through a proper `15->22` Jetson cable, or is it a native 22-pin Raspberry Pi Zero-style path that relies on a different pinout assumption?

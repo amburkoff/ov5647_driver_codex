@@ -1,0 +1,5 @@
+ docs/12-physical-csi-validation.md                 | 47 ++++++++++++++
+ ...110226Z-git-diff-before-pinout-doc-commit.patch | 58 +++++++++++++++++
+ ...110226Z-git-status-before-pinout-doc-commit.log |  2 +
+ .../2026-04-23-official-22pin-pinout-comparison.md | 75 ++++++++++++++++++++++
+ 4 files changed, 182 insertions(+)
