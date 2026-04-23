@@ -36,7 +36,11 @@
   - it is more informative than another blind route/lane permutation because it decouples optical/exposure issues from basic CSI frame delivery.
 - The test-pattern path is prepared but not yet runtime-validated on the current CLB/Orin setup:
   - manual helper profile: `full-delay-dump-mclk24-testpat`;
-  - expected diagnostic readback fields include `0x0600` and `0x0601`.
+  - expected diagnostic readback field is upstream OV5647 test-pattern register `0x503d`.
+- A first implementation mistake was found in the local test-pattern path:
+  - earlier code used `0x0600/0x0601` from community material;
+  - upstream Linux OV5647 uses `0x503d` for test-pattern selection;
+  - local driver is now corrected to the upstream register map, but that corrected build is not yet runtime-validated.
 - Local `nvidia-oot` headers are present, but full local sample sensor source files are not installed under `/usr/src/nvidia/`.
 - Unprivileged `dmesg` access is restricted, so full kernel-buffer capture requires elevated privileges.
 - `journalctl --list-boots` and `uptime -s` disagree about the current boot start time, so timestamp interpretation needs care.

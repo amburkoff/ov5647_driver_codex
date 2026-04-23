@@ -738,3 +738,24 @@ Next smallest safe step:
 - interpret the result strictly:
   - still no SOF => hardware CSI path remains the dominant blocker;
   - SOF/frame appears => CSI transport is alive and live-scene mode programming becomes the next target.
+
+Test-pattern runtime correction on 2026-04-23:
+
+- the first test-pattern-capable runtime was valid as a module-load test, but the chosen test-pattern register map was not;
+- runtime readback showed `ov5647_test_pattern=1` was loaded, yet the previous implementation left the supposed test-pattern registers at `0x00`;
+- upstream Linux OV5647 uses:
+  - register `0x503d`
+  - values:
+    - `0x00` disabled
+    - `0x80` color bars
+    - `0x82` color squares
+    - `0x81` random data
+- local driver has now been corrected to use upstream-aligned `0x503d` test-pattern programming instead of the earlier `0x0600/0x0601` assumption;
+- rebuilt module now has:
+  - `srcversion=A0015C1CFA665DFD8D8A041`
+
+Updated next smallest safe step:
+
+- reboot once to guarantee the old loaded module is gone;
+- manually load the corrected module with `full-delay-dump-mclk24-testpat`;
+- run one traced capture and inspect `0x503d` plus RTCPU/NVCSI events.

@@ -36,6 +36,7 @@
 #define OV5647_REG_FRAME_OFF_NUMBER	0x4202
 #define OV5647_REG_MIPI_CTRL00		0x4800
 #define OV5647_REG_MIPI_CTRL14		0x4814
+#define OV5647_REG_ISPCTRL3D		0x503d
 #define OV5640_REG_PAD_OUT		0x300d
 
 #define OV5647_MODE_STANDBY		0x00
@@ -149,8 +150,7 @@ static const struct ov5647_reg_dump ov5647_stream_reg_dump[] = {
 	{ OV5647_REG_FRAME_OFF_NUMBER, "frame_off_number" },
 	{ OV5647_REG_MIPI_CTRL00, "mipi_ctrl00" },
 	{ OV5647_REG_MIPI_CTRL14, "mipi_ctrl14" },
-	{ 0x0600, "test_pattern_ctrl0" },
-	{ 0x0601, "test_pattern_ctrl1" },
+	{ OV5647_REG_ISPCTRL3D, "ispctrl3d_test_pattern" },
 };
 
 static void ov5647_unload_marker_delay(void)
@@ -273,14 +273,12 @@ static const struct reg_8 ov5647_sensor_oe_disable_regs[] = {
 };
 
 static const struct reg_8 ov5647_test_pattern_off_regs[] = {
-	{0x0600, 0x00},
-	{0x0601, 0x00},
+	{OV5647_REG_ISPCTRL3D, 0x00},
 	{ OV5647_TABLE_END, 0x00 },
 };
 
 static const struct reg_8 ov5647_test_pattern_colorbars_regs[] = {
-	{0x0600, 0x00},
-	{0x0601, 0x02},
+	{OV5647_REG_ISPCTRL3D, 0x80},
 	{ OV5647_TABLE_END, 0x00 },
 };
 
