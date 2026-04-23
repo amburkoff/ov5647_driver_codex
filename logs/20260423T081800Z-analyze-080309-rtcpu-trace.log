@@ -1,0 +1,49 @@
+# trace files
+after-set_event.log
+after-trace.log
+after-trace_clock.log
+after-tracing_on.log
+before-set_event.log
+before-trace.log
+before-trace_clock.log
+before-tracing_on.log
+enabled-events.log
+final-set_event.log
+final-trace.log
+final-trace_clock.log
+final-tracing_on.log
+last_event
+last_exception
+missing-events.log
+pre-capture-state.log
+stats
+
+# stats
+Exceptions: 0
+Events: 3
+
+# final trace key lines
+
+# enabled events
+camera_common/camera_common_s_power
+camera_common/csi_s_power
+camera_common/csi_s_stream
+camera_common/tegra_channel_capture_done
+camera_common/tegra_channel_capture_frame
+camera_common/tegra_channel_capture_setup
+camera_common/tegra_channel_notify_status_callback
+camera_common/tegra_channel_set_power
+camera_common/tegra_channel_set_stream
+camera_common/vi_task_submit
+tegra_capture/capture_event_eof
+tegra_capture/capture_event_error
+tegra_capture/capture_event_sof
+tegra_capture/capture_event_wdt
+tegra_capture/capture_ivc_recv
+tegra_capture/capture_ivc_send
+tegra_rtcpu/rtcpu_nvcsi_intr
+tegra_rtcpu/rtcpu_vinotify_error
+tegra_rtcpu/rtcpu_vinotify_event
+tegra_rtcpu/rtcpu_vinotify_event_ts64
+tegra_rtcpu/vi_frame_begin
+tegra_rtcpu/vi_frame_end

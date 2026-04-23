@@ -1,0 +1,4 @@
+source=artifacts/dtbo/20260423T080742Z-ov5647-p3768-port-a-lanepol0-probe.dtbo
+19536ef268cc0925e906c161ab6c041b6345192f8df15bbba87eddaafb1c1dc3  artifacts/dtbo/20260423T080742Z-ov5647-p3768-port-a-lanepol0-probe.dtbo
+19536ef268cc0925e906c161ab6c041b6345192f8df15bbba87eddaafb1c1dc3  /boot/ov5647-p3768-port-a-lanepol0.dtbo
+-rw-r--r-- 1 root root 4911 Apr 23 11:13 /boot/ov5647-p3768-port-a-lanepol0.dtbo

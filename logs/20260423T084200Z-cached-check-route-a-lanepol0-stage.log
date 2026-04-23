@@ -1,0 +1,135 @@
+artifacts/traces/20260423T080309Z/pre-capture-state.log:2: trailing whitespace.
++root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+artifacts/traces/20260423T080309Z/pre-capture-state.log:45: trailing whitespace.
++	Serial           : 
+artifacts/traces/20260423T080309Z/pre-capture-state.log:46: trailing whitespace.
++	Bus info         : 
+artifacts/traces/20260423T080309Z/pre-capture-state.log:71: trailing whitespace.
++	Flags             : 
+artifacts/traces/20260423T080309Z/pre-capture-state.log:115: trailing whitespace.
++serial          
+artifacts/traces/20260423T080309Z/pre-capture-state.log:116: trailing whitespace.
++bus info        
+artifacts/traces/20260423T080309Z/pre-capture-state.log:141: new blank line at EOF.
+logs/20260423T080302Z-manual-insmod-full-delay-dump-mclk24.log:4: trailing whitespace.
++[20260423T080302Z] cmdline=root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+logs/20260423T080309Z-single-frame-rtcpu-live-dmesg.log:5: trailing whitespace.
++[    0.000000] efi: RTPROP=0x46de1e698 TPMFinalLog=0x45e8f0000 SMBIOS=0xffff0000 SMBIOS 3.0=0x46da40000 MEMATTR=0x467efe018 ESRT=0x468420518 TPMEventLog=0x45e0cc018 RNG=0x45e900018 MEMRESERVE=0x45e901f98 
+logs/20260423T080309Z-single-frame-rtcpu-live-dmesg.log:54: trailing whitespace.
++[    0.000000] pcpu-alloc: [0] 0 [0] 1 [0] 2 [0] 3 [0] 4 [0] 5 [0] 6 [0] 7 
+logs/20260423T080309Z-single-frame-rtcpu-live-dmesg.log:65: trailing whitespace.
++[    0.000000] mminit::zonelist general 0:DMA = 0:DMA 
+logs/20260423T080309Z-single-frame-rtcpu-live-dmesg.log:66: trailing whitespace.
++[    0.000000] mminit::zonelist general 0:Normal = 0:Normal 0:DMA 
+logs/20260423T080309Z-single-frame-rtcpu-live-dmesg.log:67: trailing whitespace.
++[    0.000000] mminit::zonelist thisnode 0:DMA = 0:DMA 
+logs/20260423T080309Z-single-frame-rtcpu-live-dmesg.log:68: trailing whitespace.
++[    0.000000] mminit::zonelist thisnode 0:Normal = 0:Normal 0:DMA 
+logs/20260423T080309Z-single-frame-rtcpu-live-dmesg.log:71: trailing whitespace.
++[    0.000000] Kernel command line: root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+logs/20260423T080309Z-single-frame-rtcpu-live-dmesg.log:178: trailing whitespace.
++[    0.085176] iommu: Default domain type: Translated 
+logs/20260423T080309Z-single-frame-rtcpu-live-dmesg.log:179: trailing whitespace.
++[    0.085178] iommu: DMA domain TLB invalidation policy: strict mode 
+logs/20260423T080309Z-single-frame-rtcpu-live-dmesg.log:763: space before tab in indent.
++               	| base addr   |0x0c312000|
+logs/20260423T080309Z-single-frame-rtcpu-live-dmesg.log:764: space before tab in indent.
++               	| sidfc_flssa |0x00000000|
+logs/20260423T080309Z-single-frame-rtcpu-live-dmesg.log:765: space before tab in indent.
++               	| xidfc_flesa |0x00000040|
+logs/20260423T080309Z-single-frame-rtcpu-live-dmesg.log:766: space before tab in indent.
++               	| rxf0c_f0sa  |0x000000c0|
+logs/20260423T080309Z-single-frame-rtcpu-live-dmesg.log:767: space before tab in indent.
++               	| rxf1c_f1sa  |0x000009c0|
+logs/20260423T080309Z-single-frame-rtcpu-live-dmesg.log:768: space before tab in indent.
++               	| rxbc_rbsa   |0x000009c0|
+logs/20260423T080309Z-single-frame-rtcpu-live-dmesg.log:769: space before tab in indent.
++               	| txefc_efsa  |0x000009c0|
+logs/20260423T080309Z-single-frame-rtcpu-live-dmesg.log:770: space before tab in indent.
++               	| txbc_tbsa   |0x00000a40|
+logs/20260423T080309Z-single-frame-rtcpu-live-dmesg.log:771: space before tab in indent.
++               	| tmc_tmsa    |0x00000ec0|
+logs/20260423T080309Z-single-frame-rtcpu-live-dmesg.log:772: space before tab in indent.
++               	| mram size   |0x00001000|
+logs/20260423T080309Z-single-frame-rtcpu-live-dmesg.log:828: trailing whitespace.
++[    8.625176] r8168  Copyright (C) 2024 Realtek NIC software team <nicfae@realtek.com> 
+logs/20260423T080309Z-single-frame-rtcpu-live-dmesg.log:829: trailing whitespace.
++                This program comes with ABSOLUTELY NO WARRANTY; for details, please see <http://www.gnu.org/licenses/>. 
+logs/20260423T080309Z-single-frame-rtcpu-live-dmesg.log:830: trailing whitespace.
++                This is free software, and you are welcome to redistribute it under certain conditions; see <http://www.gnu.org/licenses/>. 
+logs/20260423T081900Z-analyze-080302-insmod-mclk24.log:5: trailing whitespace.
++[20260423T080302Z] cmdline=root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+logs/20260423T081900Z-inspect-080309-dmesg-content.log:11: trailing whitespace.
++[    0.000000] efi: RTPROP=0x46de1e698 TPMFinalLog=0x45e8f0000 SMBIOS=0xffff0000 SMBIOS 3.0=0x46da40000 MEMATTR=0x467efe018 ESRT=0x468420518 TPMEventLog=0x45e0cc018 RNG=0x45e900018 MEMRESERVE=0x45e901f98 
+logs/20260423T081900Z-inspect-080309-dmesg-content.log:60: trailing whitespace.
++[    0.000000] pcpu-alloc: [0] 0 [0] 1 [0] 2 [0] 3 [0] 4 [0] 5 [0] 6 [0] 7 
+logs/20260423T081900Z-inspect-080309-dmesg-content.log:71: trailing whitespace.
++[    0.000000] mminit::zonelist general 0:DMA = 0:DMA 
+logs/20260423T081900Z-inspect-080309-dmesg-content.log:72: trailing whitespace.
++[    0.000000] mminit::zonelist general 0:Normal = 0:Normal 0:DMA 
+logs/20260423T081900Z-inspect-080309-dmesg-content.log:73: trailing whitespace.
++[    0.000000] mminit::zonelist thisnode 0:DMA = 0:DMA 
+logs/20260423T081900Z-inspect-080309-dmesg-content.log:74: trailing whitespace.
++[    0.000000] mminit::zonelist thisnode 0:Normal = 0:Normal 0:DMA 
+logs/20260423T081900Z-inspect-080309-dmesg-content.log:77: trailing whitespace.
++[    0.000000] Kernel command line: root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+logs/20260423T081900Z-inspect-080309-trace-content.log:3: trailing whitespace.
++root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+logs/20260423T081900Z-inspect-080309-trace-content.log:46: trailing whitespace.
++	Serial           : 
+logs/20260423T081900Z-inspect-080309-trace-content.log:47: trailing whitespace.
++	Bus info         : 
+logs/20260423T081900Z-inspect-080309-trace-content.log:72: trailing whitespace.
++	Flags             : 
+logs/20260423T081900Z-inspect-080309-trace-content.log:116: trailing whitespace.
++serial          
+logs/20260423T081900Z-inspect-080309-trace-content.log:117: trailing whitespace.
++bus info        
+logs/20260423T082100Z-inspect-live-route-state-after-080309.log:607: trailing whitespace.
++serial          
+logs/20260423T082100Z-inspect-live-route-state-after-080309.log:608: trailing whitespace.
++bus info        
+logs/20260423T082100Z-inspect-live-route-state-after-080309.log:638: trailing whitespace.
++root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+logs/20260423T082100Z-inspect-live-route-state-after-080309.log:1244: trailing whitespace.
++serial          
+logs/20260423T082100Z-inspect-live-route-state-after-080309.log:1245: trailing whitespace.
++bus info        
+logs/20260423T082100Z-inspect-live-route-state-after-080309.log:1301: trailing whitespace.
++root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+logs/20260423T082100Z-inspect-live-route-state-after-080309.log:1905: trailing whitespace.
++serial          
+logs/20260423T082100Z-inspect-live-route-state-after-080309.log:1906: trailing whitespace.
++bus info        
+logs/20260423T082100Z-inspect-live-route-state-after-080309.log:1933: new blank line at EOF.
+logs/20260423T082500Z-read-build-overlay-script-lanepol0.log:53: new blank line at EOF.
+logs/20260423T083300Z-diff-before-lanepol0-boot-stage.log:7: trailing whitespace.
++ 
+logs/20260423T083300Z-diff-before-lanepol0-boot-stage.log:9: trailing whitespace.
++ 
+logs/20260423T083300Z-diff-before-lanepol0-boot-stage.log:29: trailing whitespace.
++ 
+logs/20260423T083300Z-diff-before-lanepol0-boot-stage.log:31: trailing whitespace.
++ 
+logs/20260423T083300Z-diff-before-lanepol0-boot-stage.log:33: trailing whitespace.
++ 
+logs/20260423T083300Z-diff-before-lanepol0-boot-stage.log:35: trailing whitespace.
++ 
+logs/20260423T083300Z-diff-before-lanepol0-boot-stage.log:49: trailing whitespace.
++ 
+logs/20260423T083300Z-diff-before-lanepol0-boot-stage.log:51: trailing whitespace.
++ 
+logs/20260423T083300Z-diff-before-lanepol0-boot-stage.log:57: trailing whitespace.
++ 
+logs/20260423T083300Z-diff-before-lanepol0-boot-stage.log:59: trailing whitespace.
++ 
+logs/20260423T083300Z-diff-before-lanepol0-boot-stage.log:66: trailing whitespace.
++ 
+logs/20260423T083300Z-diff-before-lanepol0-boot-stage.log:74: trailing whitespace.
++ 
+logs/20260423T083300Z-diff-before-lanepol0-boot-stage.log:77: trailing whitespace.
++ 
+logs/20260423T083300Z-diff-before-lanepol0-boot-stage.log:79: trailing whitespace.
++ 
+logs/20260423T083300Z-runtime-state-before-lanepol0-boot-stage.log:5: trailing whitespace.
++root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 

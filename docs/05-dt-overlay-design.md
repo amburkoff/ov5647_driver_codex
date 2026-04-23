@@ -8,19 +8,19 @@ Design intent:
 
 ## Current Ground Truth
 
-- the live dev boot has an active OV5647 route-C continuous-clock overlay;
+- the live dev boot has an active OV5647 route-A corrected-MCLK overlay;
 - `cam_i2c` resolves to `i2c@3180000`;
 - NVIDIA p3768 reference overlays on disk describe 22-pin camera routes through `cam_i2cmux`;
 - reference route `A` maps to `serial_b` and `port-index = 1`;
 - reference route `C` maps to `serial_c` and `port-index = 2`.
 - the active live route is:
-  - `cam_i2cmux/i2c@1/ov5647_c@36`;
+  - `cam_i2cmux/i2c@0/ov5647_a@36`;
   - Linux downstream bus `i2c-9`;
-  - `serial_c`;
-  - `port-index = 2`;
+  - `serial_b`;
+  - `port-index = 1`;
   - `bus-width = 2`;
-  - `lane_polarity = "0"`;
-  - `discontinuous_clk = "no"`.
+  - `lane_polarity = "6"`;
+  - `discontinuous_clk = "yes"`.
 
 ## Minimal OV5647 Overlay Plan
 
@@ -35,19 +35,19 @@ The first OV5647 overlay will need:
 
 Current active runtime target:
 
-- p3768-style route `C`
-- `cam_i2cmux/i2c@1`
-- `serial_c`
-- `port-index = 2`
+- p3768-style route `A`
+- `cam_i2cmux/i2c@0`
+- `serial_b`
+- `port-index = 1`
 - `bus-width = 2`
-- reference `lane_polarity = 0`
-- receiver-side continuous clock: `discontinuous_clk = "no"`
+- reference `lane_polarity = 6`
+- receiver-side discontinuous clock: `discontinuous_clk = "yes"`
 
 Reason:
 
 - route `A` produced valid probe/chip ID but repeated zero-byte capture timeouts;
-- route `C` also produces valid probe/chip ID and `/dev/video0`, but capture still times out;
-- the current route-C overlay is the latest boot-applied experiment and matches the sensor-side continuous-clock diagnostic.
+- route `C` also produced valid probe/chip ID and `/dev/video0`, but capture still timed out;
+- the current route-A overlay is the latest boot-applied experiment and matches the physical `cam0` test requested by the user.
 
 Fields that remain blocked until hardware verification:
 
@@ -72,12 +72,14 @@ The repository now contains:
 - `patches/ov5647-p3768-port-a-reference.dts.in`
 - `patches/ov5647-p3768-port-a-draft.dts`
 - `patches/ov5647-p3768-port-a-probe.dts`
+- `patches/ov5647-p3768-port-a-lanepol0-probe.dts`
 - `patches/ov5647-p3768-port-c-probe.dts`
 
 - `ov5647-p3768-port-a-reference.dts.in` remains the unconstrained placeholder template.
 - `ov5647-p3768-port-a-draft.dts` is a compile-ready draft for local build validation only.
 - `ov5647-p3768-port-a-probe.dts` is the first route-A candidate; it probe-validated but capture timed out.
-- `ov5647-p3768-port-c-probe.dts` is the active route-C candidate currently used by the dev profile.
+- `ov5647-p3768-port-a-lanepol0-probe.dts` differs from the route-A probe only by `lane_polarity = "0"` and traceable names/badges.
+- `ov5647-p3768-port-c-probe.dts` is the route-C candidate; it probe-validated but capture timed out.
 - The draft keeps the sensor node `status = "disabled"` and must not be treated as a verified or boot-ready carrier overlay.
 
 ## Route-C Candidate
@@ -133,6 +135,21 @@ The DT overlay is good enough to bind the sensor, register `/dev/video0`, and ex
 
 The next DT work should be tightly bounded:
 
-- first, reboot into the staged route-A corrected-`TEGRA234_CLK_EXTPERIPH1` overlay and retest route A once because earlier route-A captures used the old wrong BPMP clock ID;
-- after that, prefer hardware evidence over blind edits: confirmed CLB connector label to p3768 route mapping, makerobo CLB camera connector wiring, cable/adapter pinout for the `JT-ZERO-V2.0 YH` module, or a known-good Jetson camera cross-check;
-- only then consider a one-variable lane-polarity or route variant.
+- route A with `lane_polarity = "6"` has failed with corrected MCLK, `0x3821 = 0x03`, continuous sensor clock, and matched non-continuous sensor clock;
+- the next staged DT candidate is a one-variable route-A lane-polarity check: `lane_polarity = "0"`;
+- after that, prefer hardware evidence over more blind edits: confirmed CLB connector label to p3768 route mapping, makerobo CLB camera connector wiring, cable/adapter pinout for the Raspberry Pi Zero-style OV5647 modules, or a known-good Jetson camera cross-check.
+
+## Route-A Lane-Polarity-0 Stage
+
+The next reboot-only candidate is now staged:
+
+- source: `patches/ov5647-p3768-port-a-lanepol0-probe.dts`;
+- artifact: `artifacts/dtbo/20260423T080742Z-ov5647-p3768-port-a-lanepol0-probe.dtbo`;
+- boot copy: `/boot/ov5647-p3768-port-a-lanepol0.dtbo`;
+- dev profile overlay: `OVERLAYS /boot/ov5647-p3768-port-a-lanepol0.dtbo`;
+- boot default remains `ov5647-dev`;
+- safe profile remains present and unchanged.
+
+This stage intentionally changes only one DT variable relative to the current route-A test line:
+
+- `lane_polarity = "0"` instead of `lane_polarity = "6"`.

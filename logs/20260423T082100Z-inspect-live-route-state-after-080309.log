@@ -1,0 +1,1933 @@
+# live ov5647 dt paths
+/sys/firmware/devicetree/base/__symbols__/camera_ivc_channels
+/sys/firmware/devicetree/base/aliases/tegra-camera-rtcpu
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36
+/sys/firmware/devicetree/base/camera-ivc-channels
+/sys/firmware/devicetree/base/tegra-camera-platform
+
+# route state summary
+--- artifacts/camera-route-state/20260422T140521Z/dtc.stderr.log
+<stdout>: Warning (unit_address_vs_reg): /camera-ivc-channels/ivccapture@4: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /camera-ivc-channels/ivccontrol@3: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /camera-ivc-channels/dbg@2: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /camera-ivc-channels/diag@5: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /camera-ivc-channels/dbg@1: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /camera-ivc-channels/echo@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/xusb_padctl@3520000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/spi@3250000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/i2c@c240000/fusb301@25/connector@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/i2c@c240000/fusb301@25/connector@0/port@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/spi@3240000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/vi1@14c00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/vi0@15c00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/nvcsi@15a00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@0/endpoint@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@1/endpoint@1: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/isp-thi@14b00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/vi0-thi@15f00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/vi1-thi@14f00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/aon@c000000/ivc-channels@80000000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@133: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@68: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@161: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@96: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@123: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@58: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@9: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@151: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@86: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@113: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@48: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@141: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@76: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@103: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@38: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@131: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@66: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@94: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@28: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@121: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@56: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@7: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@84: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@18: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@178: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@111: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@46: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@74: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@168: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@101: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@36: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@64: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@158: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@92: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@26: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@54: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@5: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@148: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@82: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@16: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@176: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@44: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@138: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@72: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@166: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@34: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@128: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@62: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@156: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@90: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@24: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@118: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@52: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@3: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@146: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@80: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@14: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@174: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@108: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@42: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@136: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@70: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@164: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@99: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@32: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@126: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@60: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@154: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@89: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@22: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@182: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@116: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@50: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@1: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@144: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@79: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@12: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@172: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@106: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@40: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@134: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@69: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@162: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@97: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@30: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@124: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@59: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@152: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@87: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@20: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@180: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@114: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@49: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@142: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@77: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@10: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@170: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@104: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@39: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@132: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@67: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@160: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@95: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@29: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@122: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@57: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@8: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@150: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@85: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@19: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@179: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@112: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@47: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@140: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@75: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@169: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@102: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@37: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@130: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@65: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@159: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@93: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@27: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@120: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@55: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@6: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@149: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@83: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@17: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@177: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@110: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@45: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@139: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@73: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@167: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@100: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@35: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@129: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@63: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@157: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@91: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@25: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@119: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@53: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@4: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@147: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@81: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@15: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@175: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@109: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@43: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@137: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@71: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@165: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@33: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@127: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@61: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@155: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@23: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@117: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@51: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@2: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@145: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@13: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@173: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@107: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@41: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@135: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@163: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@98: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@31: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@125: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@153: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@88: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@21: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@181: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@115: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@143: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@78: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@11: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@171: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@105: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /reserved-memory/ramoops_carveout: node has a reg or ranges property, but no unit name
+<stdout>: Warning (unit_address_vs_reg): /reserved-memory/pva-carveout: node has a reg or ranges property, but no unit name
+<stdout>: Warning (simple_bus_reg): /bus@0/xusb_padctl@3520000: missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): /bus@0/spi@3250000: missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): /bus@0/aon_echo: missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): /bus@0/cam_i2cmux: missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): /bus@0/smmu_test: missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): /bus@0/spi@3240000: missing or empty reg/ranges property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@3160000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@31e0000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@31b0000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@c240000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@3180000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@31c0000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@c250000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@3190000/prod-settings: missing or empty reg property
+<stdout>: Warning (spi_bus_bridge): /bus@0/spi@3210000/spi@1: incorrect #address-cells for SPI bus
+--- artifacts/camera-route-state/20260422T140521Z/extlinux.conf
+TIMEOUT 30
+DEFAULT ov5647-dev
+
+MENU TITLE L4T boot options
+
+LABEL ov5647-safe
+      MENU LABEL Jetson SAFE (no OV5647 auto-load)
+      LINUX /boot/Image
+      INITRD /boot/initrd
+      FDT /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb
+      APPEND ${cbootargs} root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-safe
+
+LABEL ov5647-dev
+      MENU LABEL Jetson DEV OV5647 auto-load
+      LINUX /boot/Image
+      INITRD /boot/initrd
+      FDT /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb
+      OVERLAYS /boot/ov5647-p3768-port-a-extperiph1.dtbo
+      APPEND ${cbootargs} root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev
+--- artifacts/camera-route-state/20260422T140521Z/git-status.log
+[2026-04-22T14:05:21Z] CMD: git -C /home/cam/ov5647_driver_codex status --short --branch --untracked-files=no
+## main...origin/main
+--- artifacts/camera-route-state/20260422T140521Z/i2c-buses.log
+[2026-04-22T14:05:21Z] CMD: i2cdetect -l
+i2c-0	i2c       	3160000.i2c                     	I2C adapter
+i2c-1	i2c       	c240000.i2c                     	I2C adapter
+i2c-2	i2c       	3180000.i2c                     	I2C adapter
+i2c-4	i2c       	Tegra BPMP I2C adapter          	I2C adapter
+i2c-5	i2c       	31b0000.i2c                     	I2C adapter
+i2c-7	i2c       	c250000.i2c                     	I2C adapter
+i2c-9	i2c       	i2c-2-mux (chan_id 0)           	I2C adapter
+i2c-10	i2c       	NVIDIA SOC i2c adapter 0        	I2C adapter
+--- artifacts/camera-route-state/20260422T140521Z/live-device-tree.dts
+/dts-v1/;
+
+/ {
+	#address-cells = <0x02>;
+	model = "NVIDIA Jetson Orin NX Engineering Reference Developer Kit";
+	serial-number = "1422924338877\0";
+	#size-cells = <0x02>;
+	interrupt-parent = <0x01>;
+	compatible = "nvidia,p3768-0000+p3767-0000\0nvidia,p3767-0000\0nvidia,tegra234";
+
+	soc1-throttle-alert {
+		cdev-type = "soc1-throttle-alert";
+		compatible = "thermal-trip-event";
+		phandle = <0x1eb>;
+		#cooling-cells = <0x02>;
+	};
+
+	regulator-vdd-3v3-sd {
+		regulator-max-microvolt = <0x325aa0>;
+		gpio = <0xf3 0x00 0x00>;
+		enable-active-high;
+		regulator-min-microvolt = <0x325aa0>;
+		regulator-name = "VDD_3V3_SD";
+		compatible = "regulator-fixed";
+		phandle = <0xf4>;
+	};
+
+	opp-table-cluster1 {
+		opp-shared;
+		compatible = "operating-points-v2";
+		phandle = <0x12a>;
+
+		opp-192000000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0xb71b000>;
+			phandle = <0x339>;
+		};
+
+		opp-1420800000 {
+			opp-peak-kBps = <0x18e700>;
+			opp-hz = <0x00 0x54afb000>;
+			phandle = <0x349>;
+		};
+
+		opp-729600000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x2b7cd000>;
+			phandle = <0x340>;
+		};
+
+		opp-2188800000 {
+			opp-peak-kBps = <0x61a800>;
+			opp-hz = <0x00 0x82767000>;
+			phandle = <0x353>;
+		};
+
+		opp-115200000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x6ddd000>;
+			phandle = <0x338>;
+		};
+
+		opp-1510400000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x5a06e000>;
+		};
+
+		opp-1881600000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x7026f000>;
+			phandle = <0x34f>;
+		};
+
+		opp-1728000000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x66ff3000>;
+			phandle = <0x34d>;
+		};
+
+		opp-576000000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x22551000>;
+			phandle = <0x33e>;
+		};
+
+		opp-1804800000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x6b931000>;
+			phandle = <0x34e>;
+		};
+
+		opp-2112000000 {
+			opp-peak-kBps = <0x61a800>;
+			opp-hz = <0x00 0x7de29000>;
+			phandle = <0x352>;
+		};
+
+		opp-1190400000 {
+			opp-peak-kBps = <0x18e700>;
+			opp-hz = <0x00 0x46f41000>;
+			phandle = <0x346>;
+		};
+
+		opp-499200000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x1dc13000>;
+			phandle = <0x33d>;
+		};
+
+		opp-2035200000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x794eb000>;
+			phandle = <0x351>;
+		};
+
+		opp-652800000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x26e8f000>;
+			phandle = <0x33f>;
+		};
+
+		opp-1113600000 {
+			opp-peak-kBps = <0x18e700>;
+			opp-hz = <0x00 0x42603000>;
+			phandle = <0x345>;
+		};
+
+		opp-1036800000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x3dcc5000>;
+			phandle = <0x344>;
+		};
+
+		opp-1984000000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x76417000>;
+		};
+
+		opp-1651200000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x626b5000>;
+			phandle = <0x34c>;
+		};
+
+		opp-1574400000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x5dd77000>;
+			phandle = <0x34b>;
+		};
+
+		opp-2201600000 {
+			opp-peak-kBps = <0x61a800>;
+			opp-hz = <0x00 0x8339c000>;
+			phandle = <0x354>;
+		};
+
+		opp-1497600000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x59439000>;
+			phandle = <0x34a>;
+		};
+
+		opp-422400000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x192d5000>;
+			phandle = <0x33c>;
+		};
+
+		opp-345600000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x14997000>;
+			phandle = <0x33b>;
+		};
+
+		opp-960000000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x39387000>;
+			phandle = <0x343>;
+		};
+
+		opp-268800000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x10059000>;
+			phandle = <0x33a>;
+		};
+
+		opp-1958400000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x74bad000>;
+			phandle = <0x350>;
+		};
+
+		opp-883200000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x34a49000>;
+			phandle = <0x342>;
+		};
+
+		opp-1344000000 {
+			opp-peak-kBps = <0x18e700>;
+			opp-hz = <0x00 0x501bd000>;
+			phandle = <0x348>;
+		};
+
+		opp-1267200000 {
+			opp-peak-kBps = <0x18e700>;
+			opp-hz = <0x00 0x4b87f000>;
+			phandle = <0x347>;
+		};
+
+		opp-806400000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x3010b000>;
+			phandle = <0x341>;
+		};
+	};
+
+	regulator-vdd-3v3-ao {
+		regulator-max-microvolt = <0x1f78a40>;
+		regulator-always-on;
+--- artifacts/camera-route-state/20260422T140521Z/live-dt-ov5647-route-summary.log
+# OV5647 live DT nodes
+/sys/firmware/devicetree/base/__symbols__/ov5647_probe_csi_in0
+/sys/firmware/devicetree/base/__symbols__/ov5647_probe_csi_out0
+/sys/firmware/devicetree/base/__symbols__/ov5647_probe_out0
+/sys/firmware/devicetree/base/__symbols__/ov5647_probe_vi_in0
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/avdd-reg
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/clock-names
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/clocks
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/compatible
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/devnode
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/dvdd-reg
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/iovdd-reg
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mclk
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/active_h
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/active_w
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/cil_settletime
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/csi_pixel_bit_depth
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/default_exp_time
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/default_framerate
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/default_gain
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/discontinuous_clk
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/dpcm_enable
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/embedded_metadata_height
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/exposure_factor
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/framerate_factor
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/gain_factor
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/inherent_gain
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/lane_polarity
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/line_length
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/max_exp_time
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/max_framerate
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/max_gain_val
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/max_hdr_ratio
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/mclk_khz
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/mclk_multiplier
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/min_exp_time
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/min_framerate
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/min_gain_val
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/min_hdr_ratio
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/mode_type
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/name
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/num_lanes
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/phy_mode
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/pix_clk_hz
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/pixel_phase
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/readout_orientation
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/step_exp_time
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/step_framerate
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/step_gain_val
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/tegra_sinterface
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/name
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/physical_h
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/physical_w
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/#address-cells
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/#size-cells
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/name
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/endpoint
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/endpoint/bus-width
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/endpoint/name
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/endpoint/phandle
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/endpoint/port-index
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/endpoint/remote-endpoint
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/name
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/reg
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/pwdn-gpios
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/reg
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/sensor_model
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/status
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/use_sensor_mode_id
+
+# Selected OV5647 properties
+
+node=/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36
+compatible=ovti,ov5647
+status=okay
+reg=6
+devnode=video0
+mclk=extperiph1
+clocks_hex=00 00 00 03 00 00 00 24
+
+pwdn-gpios_hex=00 00 00 f3 00 00 00 3e 00 00 00 00
+
+mode0=/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0
+mode0.num_lanes=2
+mode0.tegra_sinterface=serial_b
+mode0.lane_polarity=6
+mode0.discontinuous_clk=yes
+mode0.pix_clk_hz=58333000
+mode0.line_length=1852
+mode0.active_w=640
+mode0.active_h=480
+mode0.mode_type=bayer
+mode0.pixel_phase=bggr
+mode0.csi_pixel_bit_depth=10
+endpoint=/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/endpoint
+endpoint.port-index_hex=00 00 00 01
+
+endpoint.bus-width_hex=00 00 00 02
+
+endpoint.remote-endpoint_hex=00 00 03 7b
+
+
+# Route-related endpoint symbols
+ov5647_probe_csi_in0=/bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@0/endpoint@0
+ov5647_probe_csi_out0=/bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@1/endpoint@1
+ov5647_probe_out0=/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/endpoint
+ov5647_probe_vi_in0=/tegra-capture-vi/ports/port@0/endpoint
+--- artifacts/camera-route-state/20260422T140521Z/lsmod-nv-ov5647.log
+[2026-04-22T14:05:21Z] CMD: bash -lc lsmod | grep -E '^nv_ov5647|^Module' || true
+Module                  Size  Used by
+--- artifacts/camera-route-state/20260422T140521Z/media-ctl.log
+[2026-04-22T14:05:21Z] CMD: bash -lc media-ctl -p 2>&1 || true
+Media controller API version 5.15.185
+
+Media device information
+------------------------
+driver          tegra-camrtc-ca
+model           NVIDIA Tegra Video Input Device
+serial          
+bus info        
+hw revision     0x3
+driver version  5.15.185
+
+Device topology
+- entity 1: 13e00000.host1x:nvcsi@15a00000- (2 pads, 0 link)
+            type V4L2 subdev subtype Unknown flags 0
+	pad0: Sink
+	pad1: Source
+
+--- artifacts/camera-route-state/20260422T140521Z/module-params.log
+[2026-04-22T14:05:21Z] CMD: bash -lc if [ -d /sys/module/nv_ov5647/parameters ]; then for f in /sys/module/nv_ov5647/parameters/*; do printf "%s=" "$(basename "$f")"; cat "$f"; done; else echo "nv_ov5647 not loaded"; fi
+nv_ov5647 not loaded
+--- artifacts/camera-route-state/20260422T140521Z/nv_tegra_release.log
+[2026-04-22T14:05:21Z] CMD: cat /etc/nv_tegra_release
+# R36 (release), REVISION: 5.0, GCID: 43688277, BOARD: generic, EABI: aarch64, DATE: Fri Jan 16 03:50:45 UTC 2026
+# KERNEL_VARIANT: oot
+TARGET_USERSPACE_LIB_DIR=nvidia
+TARGET_USERSPACE_LIB_DIR_PATH=usr/lib/aarch64-linux-gnu/nvidia
+--- artifacts/camera-route-state/20260422T140521Z/uname.log
+[2026-04-22T14:05:21Z] CMD: uname -a
+Linux cam-desktop 5.15.185-tegra #1 SMP PREEMPT Thu Jan 15 19:24:38 PST 2026 aarch64 aarch64 aarch64 GNU/Linux
+--- artifacts/camera-route-state/20260422T140521Z/v4l2-list-devices.log
+[2026-04-22T14:05:21Z] CMD: bash -lc v4l2-ctl --list-devices 2>&1 || true
+Cannot open device /dev/video0, exiting.
+NVIDIA Tegra Video Input Device (platform:tegra-camrtc-ca):
+	/dev/media0
+
+--- artifacts/camera-route-state/20260422T140801Z/cmdline.log
+[2026-04-22T14:08:01Z] CMD: cat /proc/cmdline
+root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+--- artifacts/camera-route-state/20260422T140801Z/devnodes.log
+[2026-04-22T14:08:01Z] CMD: bash -lc ls -l /dev/media* /dev/video* /dev/v4l-subdev* 2>&1 || true
+crw-rw----+ 1 root video 504, 0 Aug 26  2025 /dev/media0
+crw-rw----+ 1 root video  81, 1 Apr 22 17:07 /dev/v4l-subdev0
+crw-rw----+ 1 root video  81, 2 Apr 22 17:07 /dev/v4l-subdev1
+crw-rw----+ 1 root video  81, 0 Apr 22 17:07 /dev/video0
+--- artifacts/camera-route-state/20260422T140801Z/dtc.stderr.log
+<stdout>: Warning (unit_address_vs_reg): /camera-ivc-channels/ivccapture@4: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /camera-ivc-channels/ivccontrol@3: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /camera-ivc-channels/dbg@2: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /camera-ivc-channels/diag@5: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /camera-ivc-channels/dbg@1: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /camera-ivc-channels/echo@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/xusb_padctl@3520000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/spi@3250000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/i2c@c240000/fusb301@25/connector@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/i2c@c240000/fusb301@25/connector@0/port@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/spi@3240000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/vi1@14c00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/vi0@15c00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/nvcsi@15a00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@0/endpoint@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@1/endpoint@1: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/isp-thi@14b00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/vi0-thi@15f00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/vi1-thi@14f00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/aon@c000000/ivc-channels@80000000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@133: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@68: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@161: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@96: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@123: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@58: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@9: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@151: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@86: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@113: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@48: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@141: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@76: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@103: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@38: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@131: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@66: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@94: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@28: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@121: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@56: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@7: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@84: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@18: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@178: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@111: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@46: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@74: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@168: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@101: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@36: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@64: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@158: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@92: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@26: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@54: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@5: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@148: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@82: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@16: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@176: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@44: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@138: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@72: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@166: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@34: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@128: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@62: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@156: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@90: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@24: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@118: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@52: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@3: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@146: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@80: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@14: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@174: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@108: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@42: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@136: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@70: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@164: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@99: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@32: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@126: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@60: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@154: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@89: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@22: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@182: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@116: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@50: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@1: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@144: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@79: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@12: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@172: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@106: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@40: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@134: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@69: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@162: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@97: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@30: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@124: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@59: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@152: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@87: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@20: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@180: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@114: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@49: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@142: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@77: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@10: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@170: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@104: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@39: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@132: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@67: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@160: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@95: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@29: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@122: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@57: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@8: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@150: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@85: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@19: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@179: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@112: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@47: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@140: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@75: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@169: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@102: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@37: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@130: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@65: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@159: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@93: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@27: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@120: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@55: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@6: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@149: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@83: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@17: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@177: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@110: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@45: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@139: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@73: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@167: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@100: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@35: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@129: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@63: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@157: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@91: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@25: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@119: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@53: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@4: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@147: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@81: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@15: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@175: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@109: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@43: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@137: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@71: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@165: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@33: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@127: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@61: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@155: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@23: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@117: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@51: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@2: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@145: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@13: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@173: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@107: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@41: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@135: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@163: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@98: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@31: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@125: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@153: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@88: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@21: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@181: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@115: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@143: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@78: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@11: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@171: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@105: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /reserved-memory/ramoops_carveout: node has a reg or ranges property, but no unit name
+<stdout>: Warning (unit_address_vs_reg): /reserved-memory/pva-carveout: node has a reg or ranges property, but no unit name
+<stdout>: Warning (simple_bus_reg): /bus@0/xusb_padctl@3520000: missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): /bus@0/spi@3250000: missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): /bus@0/aon_echo: missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): /bus@0/cam_i2cmux: missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): /bus@0/smmu_test: missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): /bus@0/spi@3240000: missing or empty reg/ranges property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@3160000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@31e0000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@31b0000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@c240000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@3180000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@31c0000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@c250000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@3190000/prod-settings: missing or empty reg property
+<stdout>: Warning (spi_bus_bridge): /bus@0/spi@3210000/spi@1: incorrect #address-cells for SPI bus
+--- artifacts/camera-route-state/20260422T140801Z/extlinux.conf
+TIMEOUT 30
+DEFAULT ov5647-dev
+
+MENU TITLE L4T boot options
+
+LABEL ov5647-safe
+      MENU LABEL Jetson SAFE (no OV5647 auto-load)
+      LINUX /boot/Image
+      INITRD /boot/initrd
+      FDT /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb
+      APPEND ${cbootargs} root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-safe
+
+LABEL ov5647-dev
+      MENU LABEL Jetson DEV OV5647 auto-load
+      LINUX /boot/Image
+      INITRD /boot/initrd
+      FDT /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb
+      OVERLAYS /boot/ov5647-p3768-port-a-extperiph1.dtbo
+      APPEND ${cbootargs} root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev
+--- artifacts/camera-route-state/20260422T140801Z/git-status.log
+[2026-04-22T14:08:01Z] CMD: git -C /home/cam/ov5647_driver_codex status --short --branch --untracked-files=no
+## main...origin/main
+--- artifacts/camera-route-state/20260422T140801Z/i2c-buses.log
+[2026-04-22T14:08:01Z] CMD: i2cdetect -l
+i2c-0	i2c       	3160000.i2c                     	I2C adapter
+i2c-1	i2c       	c240000.i2c                     	I2C adapter
+i2c-2	i2c       	3180000.i2c                     	I2C adapter
+i2c-4	i2c       	Tegra BPMP I2C adapter          	I2C adapter
+i2c-5	i2c       	31b0000.i2c                     	I2C adapter
+i2c-7	i2c       	c250000.i2c                     	I2C adapter
+i2c-9	i2c       	i2c-2-mux (chan_id 0)           	I2C adapter
+i2c-10	i2c       	NVIDIA SOC i2c adapter 0        	I2C adapter
+--- artifacts/camera-route-state/20260422T140801Z/live-device-tree.dts
+/dts-v1/;
+
+/ {
+	#address-cells = <0x02>;
+	model = "NVIDIA Jetson Orin NX Engineering Reference Developer Kit";
+	serial-number = "1422924338877\0";
+	#size-cells = <0x02>;
+	interrupt-parent = <0x01>;
+	compatible = "nvidia,p3768-0000+p3767-0000\0nvidia,p3767-0000\0nvidia,tegra234";
+
+	soc1-throttle-alert {
+		cdev-type = "soc1-throttle-alert";
+		compatible = "thermal-trip-event";
+		phandle = <0x1eb>;
+		#cooling-cells = <0x02>;
+	};
+
+	regulator-vdd-3v3-sd {
+		regulator-max-microvolt = <0x325aa0>;
+		gpio = <0xf3 0x00 0x00>;
+		enable-active-high;
+		regulator-min-microvolt = <0x325aa0>;
+		regulator-name = "VDD_3V3_SD";
+		compatible = "regulator-fixed";
+		phandle = <0xf4>;
+	};
+
+	opp-table-cluster1 {
+		opp-shared;
+		compatible = "operating-points-v2";
+		phandle = <0x12a>;
+
+		opp-192000000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0xb71b000>;
+			phandle = <0x339>;
+		};
+
+		opp-1420800000 {
+			opp-peak-kBps = <0x18e700>;
+			opp-hz = <0x00 0x54afb000>;
+			phandle = <0x349>;
+		};
+
+		opp-729600000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x2b7cd000>;
+			phandle = <0x340>;
+		};
+
+		opp-2188800000 {
+			opp-peak-kBps = <0x61a800>;
+			opp-hz = <0x00 0x82767000>;
+			phandle = <0x353>;
+		};
+
+		opp-115200000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x6ddd000>;
+			phandle = <0x338>;
+		};
+
+		opp-1510400000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x5a06e000>;
+		};
+
+		opp-1881600000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x7026f000>;
+			phandle = <0x34f>;
+		};
+
+		opp-1728000000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x66ff3000>;
+			phandle = <0x34d>;
+		};
+
+		opp-576000000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x22551000>;
+			phandle = <0x33e>;
+		};
+
+		opp-1804800000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x6b931000>;
+			phandle = <0x34e>;
+		};
+
+		opp-2112000000 {
+			opp-peak-kBps = <0x61a800>;
+			opp-hz = <0x00 0x7de29000>;
+			phandle = <0x352>;
+		};
+
+		opp-1190400000 {
+			opp-peak-kBps = <0x18e700>;
+			opp-hz = <0x00 0x46f41000>;
+			phandle = <0x346>;
+		};
+
+		opp-499200000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x1dc13000>;
+			phandle = <0x33d>;
+		};
+
+		opp-2035200000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x794eb000>;
+			phandle = <0x351>;
+		};
+
+		opp-652800000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x26e8f000>;
+			phandle = <0x33f>;
+		};
+
+		opp-1113600000 {
+			opp-peak-kBps = <0x18e700>;
+			opp-hz = <0x00 0x42603000>;
+			phandle = <0x345>;
+		};
+
+		opp-1036800000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x3dcc5000>;
+			phandle = <0x344>;
+		};
+
+		opp-1984000000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x76417000>;
+		};
+
+		opp-1651200000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x626b5000>;
+			phandle = <0x34c>;
+		};
+
+		opp-1574400000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x5dd77000>;
+			phandle = <0x34b>;
+		};
+
+		opp-2201600000 {
+			opp-peak-kBps = <0x61a800>;
+			opp-hz = <0x00 0x8339c000>;
+			phandle = <0x354>;
+		};
+
+		opp-1497600000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x59439000>;
+			phandle = <0x34a>;
+		};
+
+		opp-422400000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x192d5000>;
+			phandle = <0x33c>;
+		};
+
+		opp-345600000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x14997000>;
+			phandle = <0x33b>;
+		};
+
+		opp-960000000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x39387000>;
+			phandle = <0x343>;
+		};
+
+		opp-268800000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x10059000>;
+			phandle = <0x33a>;
+		};
+
+		opp-1958400000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x74bad000>;
+			phandle = <0x350>;
+		};
+
+		opp-883200000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x34a49000>;
+			phandle = <0x342>;
+		};
+
+		opp-1344000000 {
+			opp-peak-kBps = <0x18e700>;
+			opp-hz = <0x00 0x501bd000>;
+			phandle = <0x348>;
+		};
+
+		opp-1267200000 {
+			opp-peak-kBps = <0x18e700>;
+			opp-hz = <0x00 0x4b87f000>;
+			phandle = <0x347>;
+		};
+
+		opp-806400000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x3010b000>;
+			phandle = <0x341>;
+		};
+	};
+
+	regulator-vdd-3v3-ao {
+		regulator-max-microvolt = <0x1f78a40>;
+		regulator-always-on;
+--- artifacts/camera-route-state/20260422T140801Z/live-dt-ov5647-route-summary.log
+# OV5647 live DT nodes
+/sys/firmware/devicetree/base/__symbols__/ov5647_probe_csi_in0
+/sys/firmware/devicetree/base/__symbols__/ov5647_probe_csi_out0
+/sys/firmware/devicetree/base/__symbols__/ov5647_probe_out0
+/sys/firmware/devicetree/base/__symbols__/ov5647_probe_vi_in0
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/avdd-reg
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/clock-names
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/clocks
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/compatible
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/devnode
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/dvdd-reg
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/iovdd-reg
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mclk
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/active_h
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/active_w
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/cil_settletime
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/csi_pixel_bit_depth
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/default_exp_time
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/default_framerate
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/default_gain
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/discontinuous_clk
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/dpcm_enable
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/embedded_metadata_height
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/exposure_factor
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/framerate_factor
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/gain_factor
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/inherent_gain
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/lane_polarity
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/line_length
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/max_exp_time
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/max_framerate
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/max_gain_val
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/max_hdr_ratio
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/mclk_khz
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/mclk_multiplier
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/min_exp_time
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/min_framerate
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/min_gain_val
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/min_hdr_ratio
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/mode_type
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/name
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/num_lanes
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/phy_mode
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/pix_clk_hz
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/pixel_phase
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/readout_orientation
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/step_exp_time
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/step_framerate
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/step_gain_val
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/tegra_sinterface
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/name
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/physical_h
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/physical_w
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/#address-cells
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/#size-cells
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/name
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/endpoint
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/endpoint/bus-width
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/endpoint/name
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/endpoint/phandle
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/endpoint/port-index
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/endpoint/remote-endpoint
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/name
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/reg
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/pwdn-gpios
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/reg
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/sensor_model
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/status
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/use_sensor_mode_id
+
+# Selected OV5647 properties
+
+node=/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36
+compatible=ovti,ov5647
+status=okay
+reg=6
+devnode=video0
+mclk=extperiph1
+clocks_hex=00 00 00 03 00 00 00 24
+
+pwdn-gpios_hex=00 00 00 f3 00 00 00 3e 00 00 00 00
+
+mode0=/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0
+mode0.num_lanes=2
+mode0.tegra_sinterface=serial_b
+mode0.lane_polarity=6
+mode0.discontinuous_clk=yes
+mode0.pix_clk_hz=58333000
+mode0.line_length=1852
+mode0.active_w=640
+mode0.active_h=480
+mode0.mode_type=bayer
+mode0.pixel_phase=bggr
+mode0.csi_pixel_bit_depth=10
+endpoint=/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/endpoint
+endpoint.port-index_hex=00 00 00 01
+
+endpoint.bus-width_hex=00 00 00 02
+
+endpoint.remote-endpoint_hex=00 00 03 7b
+
+
+# Route-related endpoint symbols
+ov5647_probe_csi_in0=/bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@0/endpoint@0
+ov5647_probe_csi_out0=/bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@1/endpoint@1
+ov5647_probe_out0=/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/endpoint
+ov5647_probe_vi_in0=/tegra-capture-vi/ports/port@0/endpoint
+--- artifacts/camera-route-state/20260422T140801Z/lsmod-nv-ov5647.log
+[2026-04-22T14:08:01Z] CMD: bash -lc lsmod | grep -E '^nv_ov5647|^Module' || true
+Module                  Size  Used by
+nv_ov5647              36864  0
+--- artifacts/camera-route-state/20260422T140801Z/media-ctl.log
+[2026-04-22T14:08:01Z] CMD: bash -lc media-ctl -p 2>&1 || true
+Media controller API version 5.15.185
+
+Media device information
+------------------------
+driver          tegra-camrtc-ca
+model           NVIDIA Tegra Video Input Device
+serial          
+bus info        
+hw revision     0x3
+driver version  5.15.185
+
+Device topology
+- entity 1: 13e00000.host1x:nvcsi@15a00000- (2 pads, 2 links)
+            type V4L2 subdev subtype Unknown flags 0
+            device node name /dev/v4l-subdev0
+	pad0: Sink
+		<- "nv_ov5647 9-0036":0 [ENABLED]
+	pad1: Source
+		-> "vi-output, nv_ov5647 9-0036":0 [ENABLED]
+
+- entity 4: nv_ov5647 9-0036 (1 pad, 1 link)
+            type V4L2 subdev subtype Sensor flags 0
+            device node name /dev/v4l-subdev1
+	pad0: Source
+		[fmt:SBGGR10_1X10/640x480@1/30 field:none colorspace:srgb]
+		-> "13e00000.host1x:nvcsi@15a00000-":0 [ENABLED]
+
+- entity 6: vi-output, nv_ov5647 9-0036 (1 pad, 1 link)
+            type Node subtype V4L flags 0
+            device node name /dev/video0
+	pad0: Sink
+		<- "13e00000.host1x:nvcsi@15a00000-":1 [ENABLED]
+
+--- artifacts/camera-route-state/20260422T140801Z/module-params.log
+[2026-04-22T14:08:01Z] CMD: bash -lc if [ -d /sys/module/nv_ov5647/parameters ]; then for f in /sys/module/nv_ov5647/parameters/*; do printf "%s=" "$(basename "$f")"; cat "$f"; done; else echo "nv_ov5647 not loaded"; fi
+allow_hw_probe=Y
+continuous_mipi_clock=Y
+dump_stream_regs=Y
+mclk_override_hz=24000000
+register_i2c_driver=Y
+skip_v4l2_register=N
+skip_v4l2_unregister=N
+split_v4l2_unregister=N
+unload_marker_delay_ms=500
+--- artifacts/camera-route-state/20260422T140801Z/nv_tegra_release.log
+[2026-04-22T14:08:01Z] CMD: cat /etc/nv_tegra_release
+# R36 (release), REVISION: 5.0, GCID: 43688277, BOARD: generic, EABI: aarch64, DATE: Fri Jan 16 03:50:45 UTC 2026
+# KERNEL_VARIANT: oot
+TARGET_USERSPACE_LIB_DIR=nvidia
+TARGET_USERSPACE_LIB_DIR_PATH=usr/lib/aarch64-linux-gnu/nvidia
+--- artifacts/camera-route-state/20260422T140801Z/uname.log
+[2026-04-22T14:08:01Z] CMD: uname -a
+Linux cam-desktop 5.15.185-tegra #1 SMP PREEMPT Thu Jan 15 19:24:38 PST 2026 aarch64 aarch64 aarch64 GNU/Linux
+--- artifacts/camera-route-state/20260422T140801Z/v4l2-list-devices.log
+[2026-04-22T14:08:01Z] CMD: bash -lc v4l2-ctl --list-devices 2>&1 || true
+NVIDIA Tegra Video Input Device (platform:tegra-camrtc-ca):
+	/dev/media0
+
+vi-output, nv_ov5647 9-0036 (platform:tegra-capture-vi:1):
+	/dev/video0
+
+--- artifacts/camera-route-state/20260423T075023Z/cmdline.log
+[2026-04-23T07:50:23Z] CMD: cat /proc/cmdline
+root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+--- artifacts/camera-route-state/20260423T075023Z/devnodes.log
+[2026-04-23T07:50:23Z] CMD: bash -lc ls -l /dev/media* /dev/video* /dev/v4l-subdev* 2>&1 || true
+ls: cannot access '/dev/video*': No such file or directory
+ls: cannot access '/dev/v4l-subdev*': No such file or directory
+crw-rw----+ 1 root video 503, 0 Aug 26  2025 /dev/media0
+--- artifacts/camera-route-state/20260423T075023Z/dtc.stderr.log
+<stdout>: Warning (unit_address_vs_reg): /camera-ivc-channels/ivccapture@4: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /camera-ivc-channels/ivccontrol@3: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /camera-ivc-channels/dbg@2: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /camera-ivc-channels/diag@5: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /camera-ivc-channels/dbg@1: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /camera-ivc-channels/echo@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/xusb_padctl@3520000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/spi@3250000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/i2c@c240000/fusb301@25/connector@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/i2c@c240000/fusb301@25/connector@0/port@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/spi@3240000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/vi1@14c00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/vi0@15c00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/nvcsi@15a00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@0/endpoint@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@1/endpoint@1: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/isp-thi@14b00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/vi0-thi@15f00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/host1x@13e00000/vi1-thi@14f00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /bus@0/aon@c000000/ivc-channels@80000000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@133: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@68: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@161: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@96: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@123: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@58: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@9: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@151: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@86: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@113: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@48: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@141: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@76: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@103: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@38: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@131: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@66: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@94: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@28: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@121: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@56: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@7: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@84: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@18: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@178: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@111: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@46: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@74: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@168: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@101: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@36: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@64: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@158: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@92: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@26: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@54: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@5: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@148: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@82: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@16: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@176: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@44: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@138: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@72: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@166: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@34: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@128: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@62: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@156: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@90: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@24: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@118: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@52: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@3: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@146: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@80: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@14: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@174: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@108: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@42: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@136: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@70: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@164: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@99: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@32: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@126: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@60: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@154: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@89: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@22: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@182: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@116: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@50: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@1: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@144: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@79: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@12: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@172: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@106: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@40: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@134: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@69: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@162: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@97: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@30: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@124: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@59: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@152: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@87: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@20: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@180: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@114: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@49: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@142: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@77: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@10: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@170: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@104: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@39: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@132: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@67: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@160: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@95: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@29: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@122: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@57: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@8: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@150: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@85: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@19: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@179: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@112: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@47: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@140: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@75: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@169: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@102: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@37: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@130: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@65: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@159: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@93: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@27: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@120: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@55: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@6: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@149: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@83: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@17: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@177: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@110: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@45: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@139: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@73: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@167: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@100: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@35: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@129: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@63: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@157: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@91: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@25: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@119: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@53: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@4: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@147: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@81: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@15: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@175: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@109: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@43: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@137: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@71: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@165: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@33: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@127: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@61: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@155: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@23: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@117: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@51: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@2: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@145: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@13: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@173: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@107: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@41: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@135: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@163: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@98: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@31: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@125: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@153: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@88: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@21: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@181: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@115: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@143: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@78: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@11: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@171: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /sound/nvidia-audio-card,dai-link@105: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /reserved-memory/ramoops_carveout: node has a reg or ranges property, but no unit name
+<stdout>: Warning (unit_address_vs_reg): /reserved-memory/pva-carveout: node has a reg or ranges property, but no unit name
+<stdout>: Warning (simple_bus_reg): /bus@0/xusb_padctl@3520000: missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): /bus@0/spi@3250000: missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): /bus@0/aon_echo: missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): /bus@0/cam_i2cmux: missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): /bus@0/smmu_test: missing or empty reg/ranges property
+<stdout>: Warning (simple_bus_reg): /bus@0/spi@3240000: missing or empty reg/ranges property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@3160000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@31e0000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@31b0000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@c240000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@3180000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@31c0000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@c250000/prod-settings: missing or empty reg property
+<stdout>: Warning (i2c_bus_reg): /bus@0/i2c@3190000/prod-settings: missing or empty reg property
+<stdout>: Warning (spi_bus_bridge): /bus@0/spi@3210000/spi@1: incorrect #address-cells for SPI bus
+--- artifacts/camera-route-state/20260423T075023Z/extlinux.conf
+TIMEOUT 30
+DEFAULT ov5647-dev
+
+MENU TITLE L4T boot options
+
+LABEL ov5647-safe
+      MENU LABEL Jetson SAFE (no OV5647 auto-load)
+      LINUX /boot/Image
+      INITRD /boot/initrd
+      FDT /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb
+      APPEND ${cbootargs} root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-safe
+
+LABEL ov5647-dev
+      MENU LABEL Jetson DEV OV5647 auto-load
+      LINUX /boot/Image
+      INITRD /boot/initrd
+      FDT /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb
+      OVERLAYS /boot/ov5647-p3768-port-a-extperiph1.dtbo
+      APPEND ${cbootargs} root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev
+--- artifacts/camera-route-state/20260423T075023Z/git-status.log
+[2026-04-23T07:50:23Z] CMD: git -C /home/cam/ov5647_driver_codex status --short --branch --untracked-files=no
+## main...origin/main
+--- artifacts/camera-route-state/20260423T075023Z/i2c-buses.log
+[2026-04-23T07:50:23Z] CMD: i2cdetect -l
+i2c-0	i2c       	3160000.i2c                     	I2C adapter
+i2c-1	i2c       	c240000.i2c                     	I2C adapter
+i2c-2	i2c       	3180000.i2c                     	I2C adapter
+i2c-4	i2c       	Tegra BPMP I2C adapter          	I2C adapter
+i2c-5	i2c       	31b0000.i2c                     	I2C adapter
+i2c-7	i2c       	c250000.i2c                     	I2C adapter
+i2c-9	i2c       	i2c-2-mux (chan_id 0)           	I2C adapter
+i2c-10	i2c       	NVIDIA SOC i2c adapter 0        	I2C adapter
+--- artifacts/camera-route-state/20260423T075023Z/live-device-tree.dts
+/dts-v1/;
+
+/ {
+	#address-cells = <0x02>;
+	model = "NVIDIA Jetson Orin NX Engineering Reference Developer Kit";
+	serial-number = "1422924338877\0";
+	#size-cells = <0x02>;
+	interrupt-parent = <0x01>;
+	compatible = "nvidia,p3768-0000+p3767-0000\0nvidia,p3767-0000\0nvidia,tegra234";
+
+	soc1-throttle-alert {
+		cdev-type = "soc1-throttle-alert";
+		compatible = "thermal-trip-event";
+		phandle = <0x1eb>;
+		#cooling-cells = <0x02>;
+	};
+
+	regulator-vdd-3v3-sd {
+		regulator-max-microvolt = <0x325aa0>;
+		gpio = <0xf3 0x00 0x00>;
+		enable-active-high;
+		regulator-min-microvolt = <0x325aa0>;
+		regulator-name = "VDD_3V3_SD";
+		compatible = "regulator-fixed";
+		phandle = <0xf4>;
+	};
+
+	opp-table-cluster1 {
+		opp-shared;
+		compatible = "operating-points-v2";
+		phandle = <0x12a>;
+
+		opp-192000000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0xb71b000>;
+			phandle = <0x339>;
+		};
+
+		opp-1420800000 {
+			opp-peak-kBps = <0x18e700>;
+			opp-hz = <0x00 0x54afb000>;
+			phandle = <0x349>;
+		};
+
+		opp-729600000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x2b7cd000>;
+			phandle = <0x340>;
+		};
+
+		opp-2188800000 {
+			opp-peak-kBps = <0x61a800>;
+			opp-hz = <0x00 0x82767000>;
+			phandle = <0x353>;
+		};
+
+		opp-115200000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x6ddd000>;
+			phandle = <0x338>;
+		};
+
+		opp-1510400000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x5a06e000>;
+		};
+
+		opp-1881600000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x7026f000>;
+			phandle = <0x34f>;
+		};
+
+		opp-1728000000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x66ff3000>;
+			phandle = <0x34d>;
+		};
+
+		opp-576000000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x22551000>;
+			phandle = <0x33e>;
+		};
+
+		opp-1804800000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x6b931000>;
+			phandle = <0x34e>;
+		};
+
+		opp-2112000000 {
+			opp-peak-kBps = <0x61a800>;
+			opp-hz = <0x00 0x7de29000>;
+			phandle = <0x352>;
+		};
+
+		opp-1190400000 {
+			opp-peak-kBps = <0x18e700>;
+			opp-hz = <0x00 0x46f41000>;
+			phandle = <0x346>;
+		};
+
+		opp-499200000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x1dc13000>;
+			phandle = <0x33d>;
+		};
+
+		opp-2035200000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x794eb000>;
+			phandle = <0x351>;
+		};
+
+		opp-652800000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x26e8f000>;
+			phandle = <0x33f>;
+		};
+
+		opp-1113600000 {
+			opp-peak-kBps = <0x18e700>;
+			opp-hz = <0x00 0x42603000>;
+			phandle = <0x345>;
+		};
+
+		opp-1036800000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x3dcc5000>;
+			phandle = <0x344>;
+		};
+
+		opp-1984000000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x76417000>;
+		};
+
+		opp-1651200000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x626b5000>;
+			phandle = <0x34c>;
+		};
+
+		opp-1574400000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x5dd77000>;
+			phandle = <0x34b>;
+		};
+
+		opp-2201600000 {
+			opp-peak-kBps = <0x61a800>;
+			opp-hz = <0x00 0x8339c000>;
+			phandle = <0x354>;
+		};
+
+		opp-1497600000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x59439000>;
+			phandle = <0x34a>;
+		};
+
+		opp-422400000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x192d5000>;
+			phandle = <0x33c>;
+		};
+
+		opp-345600000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x14997000>;
+			phandle = <0x33b>;
+		};
+
+		opp-960000000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x39387000>;
+			phandle = <0x343>;
+		};
+
+		opp-268800000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x10059000>;
+			phandle = <0x33a>;
+		};
+
+		opp-1958400000 {
+			opp-peak-kBps = <0x30d400>;
+			opp-hz = <0x00 0x74bad000>;
+			phandle = <0x350>;
+		};
+
+		opp-883200000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x34a49000>;
+			phandle = <0x342>;
+		};
+
+		opp-1344000000 {
+			opp-peak-kBps = <0x18e700>;
+			opp-hz = <0x00 0x501bd000>;
+			phandle = <0x348>;
+		};
+
+		opp-1267200000 {
+			opp-peak-kBps = <0x18e700>;
+			opp-hz = <0x00 0x4b87f000>;
+			phandle = <0x347>;
+		};
+
+		opp-806400000 {
+			opp-peak-kBps = <0xc7380>;
+			opp-hz = <0x00 0x3010b000>;
+			phandle = <0x341>;
+		};
+	};
+
+	regulator-vdd-3v3-ao {
+		regulator-max-microvolt = <0x1f78a40>;
+		regulator-always-on;
+--- artifacts/camera-route-state/20260423T075023Z/live-dt-ov5647-route-summary.log
+# OV5647 live DT nodes
+/sys/firmware/devicetree/base/__symbols__/ov5647_probe_csi_in0
+/sys/firmware/devicetree/base/__symbols__/ov5647_probe_csi_out0
+/sys/firmware/devicetree/base/__symbols__/ov5647_probe_out0
+/sys/firmware/devicetree/base/__symbols__/ov5647_probe_vi_in0
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/avdd-reg
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/clock-names
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/clocks
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/compatible
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/devnode
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/dvdd-reg
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/iovdd-reg
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mclk
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/active_h
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/active_w
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/cil_settletime
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/csi_pixel_bit_depth
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/default_exp_time
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/default_framerate
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/default_gain
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/discontinuous_clk
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/dpcm_enable
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/embedded_metadata_height
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/exposure_factor
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/framerate_factor
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/gain_factor
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/inherent_gain
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/lane_polarity
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/line_length
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/max_exp_time
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/max_framerate
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/max_gain_val
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/max_hdr_ratio
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/mclk_khz
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/mclk_multiplier
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/min_exp_time
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/min_framerate
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/min_gain_val
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/min_hdr_ratio
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/mode_type
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/name
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/num_lanes
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/phy_mode
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/pix_clk_hz
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/pixel_phase
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/readout_orientation
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/step_exp_time
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/step_framerate
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/step_gain_val
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0/tegra_sinterface
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/name
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/physical_h
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/physical_w
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/#address-cells
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/#size-cells
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/name
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/endpoint
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/endpoint/bus-width
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/endpoint/name
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/endpoint/phandle
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/endpoint/port-index
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/endpoint/remote-endpoint
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/name
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/reg
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/pwdn-gpios
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/reg
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/sensor_model
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/status
+/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/use_sensor_mode_id
+
+# Selected OV5647 properties
+
+node=/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36
+compatible=ovti,ov5647
+status=okay
+reg=6
+devnode=video0
+mclk=extperiph1
+clocks_hex=00 00 00 03 00 00 00 24
+
+pwdn-gpios_hex=00 00 00 f3 00 00 00 3e 00 00 00 00
+
+mode0=/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/mode0
+mode0.num_lanes=2
+mode0.tegra_sinterface=serial_b
+mode0.lane_polarity=6
+mode0.discontinuous_clk=yes
+mode0.pix_clk_hz=58333000
+mode0.line_length=1852
+mode0.active_w=640
+mode0.active_h=480
+mode0.mode_type=bayer
+mode0.pixel_phase=bggr
+mode0.csi_pixel_bit_depth=10
+endpoint=/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/endpoint
+endpoint.port-index_hex=00 00 00 01
+
+endpoint.bus-width_hex=00 00 00 02
+
+endpoint.remote-endpoint_hex=00 00 03 7b
+
+
+# Route-related endpoint symbols
+ov5647_probe_csi_in0=/bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@0/endpoint@0
+ov5647_probe_csi_out0=/bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@1/endpoint@1
+ov5647_probe_out0=/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/endpoint
+ov5647_probe_vi_in0=/tegra-capture-vi/ports/port@0/endpoint
+--- artifacts/camera-route-state/20260423T075023Z/lsmod-nv-ov5647.log
+[2026-04-23T07:50:23Z] CMD: bash -lc lsmod | grep -E '^nv_ov5647|^Module' || true
+Module                  Size  Used by
+--- artifacts/camera-route-state/20260423T075023Z/media-ctl.log
+[2026-04-23T07:50:23Z] CMD: bash -lc media-ctl -p 2>&1 || true
+Media controller API version 5.15.185
+
+Media device information
+------------------------
+driver          tegra-camrtc-ca
+model           NVIDIA Tegra Video Input Device
+serial          
+bus info        
+hw revision     0x3
+driver version  5.15.185
+
+Device topology
+- entity 1: 13e00000.host1x:nvcsi@15a00000- (2 pads, 0 link)
+            type V4L2 subdev subtype Unknown flags 0
+	pad0: Sink
+	pad1: Source
+
+--- artifacts/camera-route-state/20260423T075023Z/module-params.log
+[2026-04-23T07:50:23Z] CMD: bash -lc if [ -d /sys/module/nv_ov5647/parameters ]; then for f in /sys/module/nv_ov5647/parameters/*; do printf "%s=" "$(basename "$f")"; cat "$f"; done; else echo "nv_ov5647 not loaded"; fi
+nv_ov5647 not loaded
+--- artifacts/camera-route-state/20260423T075023Z/nv_tegra_release.log
+[2026-04-23T07:50:23Z] CMD: cat /etc/nv_tegra_release
+# R36 (release), REVISION: 5.0, GCID: 43688277, BOARD: generic, EABI: aarch64, DATE: Fri Jan 16 03:50:45 UTC 2026
+# KERNEL_VARIANT: oot
+TARGET_USERSPACE_LIB_DIR=nvidia
+TARGET_USERSPACE_LIB_DIR_PATH=usr/lib/aarch64-linux-gnu/nvidia
+--- artifacts/camera-route-state/20260423T075023Z/uname.log
+[2026-04-23T07:50:23Z] CMD: uname -a
+Linux cam-desktop 5.15.185-tegra #1 SMP PREEMPT Thu Jan 15 19:24:38 PST 2026 aarch64 aarch64 aarch64 GNU/Linux
+--- artifacts/camera-route-state/20260423T075023Z/v4l2-list-devices.log
+[2026-04-23T07:50:23Z] CMD: bash -lc v4l2-ctl --list-devices 2>&1 || true
+Cannot open device /dev/video0, exiting.
+NVIDIA Tegra Video Input Device (platform:tegra-camrtc-ca):
+	/dev/media0
+

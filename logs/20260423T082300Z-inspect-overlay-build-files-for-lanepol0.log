@@ -1,0 +1,247 @@
+# patch files
+patches/README.md
+patches/ov5647-p3768-port-a-draft.dts
+patches/ov5647-p3768-port-a-probe.dts
+patches/ov5647-p3768-port-a-reference.dts.in
+patches/ov5647-p3768-port-c-probe.dts
+
+# scripts
+scripts/build_module.sh
+scripts/build_overlay.sh
+scripts/capture_kernel_logs.sh
+scripts/collect_camera_route_state.sh
+scripts/collect_env.sh
+scripts/collect_post_reboot.sh
+scripts/install_module.sh
+scripts/lib.sh
+scripts/recover_safe_boot.sh
+scripts/run_argus_tests.sh
+scripts/run_manual_insmod_diag.sh
+scripts/run_manual_rmmod_trace.sh
+scripts/run_manual_single_frame_rtcpu_trace.sh
+scripts/run_manual_single_frame_trace.sh
+scripts/run_smoke_tests.sh
+scripts/run_stream_stress.sh
+scripts/run_v4l2_tests.sh
+scripts/switch_boot_profile.sh
+scripts/unload_module.sh
+
+# route strings in patch/scripts
+patches/ov5647-p3768-port-a-draft.dts:25:	 * - serial_b / port-index 1 / 2 lanes / lane_polarity 6
+patches/ov5647-p3768-port-a-draft.dts:52:						ov5647_vi_in0: endpoint {
+patches/ov5647-p3768-port-a-draft.dts:53:							port-index = <1>;
+patches/ov5647-p3768-port-a-draft.dts:55:							remote-endpoint = <&ov5647_csi_out0>;
+patches/ov5647-p3768-port-a-draft.dts:66:						badge = "draft_ov5647_route_a";
+patches/ov5647-p3768-port-a-draft.dts:73:								"/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36";
+patches/ov5647-p3768-port-a-draft.dts:96:									ov5647_csi_in0: endpoint@0 {
+patches/ov5647-p3768-port-a-draft.dts:97:										port-index = <1>;
+patches/ov5647-p3768-port-a-draft.dts:99:										remote-endpoint = <&ov5647_out0>;
+patches/ov5647-p3768-port-a-draft.dts:106:									ov5647_csi_out0: endpoint@1 {
+patches/ov5647-p3768-port-a-draft.dts:107:										remote-endpoint = <&ov5647_vi_in0>;
+patches/ov5647-p3768-port-a-draft.dts:129:						ov5647_a@36 {
+patches/ov5647-p3768-port-a-draft.dts:131:							compatible = "ovti,ov5647";
+patches/ov5647-p3768-port-a-draft.dts:136:							sensor_model = "ov5647";
+patches/ov5647-p3768-port-a-draft.dts:147:								tegra_sinterface = "serial_b";
+patches/ov5647-p3768-port-a-draft.dts:148:								lane_polarity = "6";
+patches/ov5647-p3768-port-a-draft.dts:150:								discontinuous_clk = "yes";
+patches/ov5647-p3768-port-a-draft.dts:190:									ov5647_out0: endpoint {
+patches/ov5647-p3768-port-a-draft.dts:191:										port-index = <1>;
+patches/ov5647-p3768-port-a-draft.dts:193:										remote-endpoint = <&ov5647_csi_in0>;
+patches/ov5647-p3768-port-c-probe.dts:22:	 * - serial_c / port-index 2 / 2 lanes
+patches/ov5647-p3768-port-c-probe.dts:25:	 * - lane_polarity "0" based on imx477-C and default handling in imx219-C
+patches/ov5647-p3768-port-c-probe.dts:45:						ov5647_probe_c_vi_in0: endpoint {
+patches/ov5647-p3768-port-c-probe.dts:46:							port-index = <2>;
+patches/ov5647-p3768-port-c-probe.dts:48:							remote-endpoint = <&ov5647_probe_c_csi_out0>;
+patches/ov5647-p3768-port-c-probe.dts:59:						badge = "probe_ov5647_route_c";
+patches/ov5647-p3768-port-c-probe.dts:66:								"/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36";
+patches/ov5647-p3768-port-c-probe.dts:89:									ov5647_probe_c_csi_in0: endpoint@2 {
+patches/ov5647-p3768-port-c-probe.dts:90:										port-index = <2>;
+patches/ov5647-p3768-port-c-probe.dts:92:										remote-endpoint = <&ov5647_probe_c_out0>;
+patches/ov5647-p3768-port-c-probe.dts:99:									ov5647_probe_c_csi_out0: endpoint@3 {
+patches/ov5647-p3768-port-c-probe.dts:100:										remote-endpoint = <&ov5647_probe_c_vi_in0>;
+patches/ov5647-p3768-port-c-probe.dts:122:						ov5647_a@36 {
+patches/ov5647-p3768-port-c-probe.dts:134:						ov5647_c@36 {
+patches/ov5647-p3768-port-c-probe.dts:136:							compatible = "ovti,ov5647";
+patches/ov5647-p3768-port-c-probe.dts:141:							sensor_model = "ov5647";
+patches/ov5647-p3768-port-c-probe.dts:155:								tegra_sinterface = "serial_c";
+patches/ov5647-p3768-port-c-probe.dts:156:								lane_polarity = "0";
+patches/ov5647-p3768-port-c-probe.dts:158:								discontinuous_clk = "no";
+patches/ov5647-p3768-port-c-probe.dts:198:									ov5647_probe_c_out0: endpoint {
+patches/ov5647-p3768-port-c-probe.dts:199:										port-index = <2>;
+patches/ov5647-p3768-port-c-probe.dts:201:										remote-endpoint = <&ov5647_probe_c_csi_in0>;
+patches/ov5647-p3768-port-a-probe.dts:24:	 * - serial_b / port-index 1 / 2 lanes / lane_polarity 6
+patches/ov5647-p3768-port-a-probe.dts:49:						ov5647_probe_vi_in0: endpoint {
+patches/ov5647-p3768-port-a-probe.dts:50:							port-index = <1>;
+patches/ov5647-p3768-port-a-probe.dts:52:							remote-endpoint = <&ov5647_probe_csi_out0>;
+patches/ov5647-p3768-port-a-probe.dts:63:						badge = "probe_ov5647_route_a";
+patches/ov5647-p3768-port-a-probe.dts:70:								"/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36";
+patches/ov5647-p3768-port-a-probe.dts:93:									ov5647_probe_csi_in0: endpoint@0 {
+patches/ov5647-p3768-port-a-probe.dts:94:										port-index = <1>;
+patches/ov5647-p3768-port-a-probe.dts:96:										remote-endpoint = <&ov5647_probe_out0>;
+patches/ov5647-p3768-port-a-probe.dts:103:									ov5647_probe_csi_out0: endpoint@1 {
+patches/ov5647-p3768-port-a-probe.dts:104:										remote-endpoint = <&ov5647_probe_vi_in0>;
+patches/ov5647-p3768-port-a-probe.dts:126:						ov5647_a@36 {
+patches/ov5647-p3768-port-a-probe.dts:128:							compatible = "ovti,ov5647";
+patches/ov5647-p3768-port-a-probe.dts:133:							sensor_model = "ov5647";
+patches/ov5647-p3768-port-a-probe.dts:147:								tegra_sinterface = "serial_b";
+patches/ov5647-p3768-port-a-probe.dts:148:								lane_polarity = "6";
+patches/ov5647-p3768-port-a-probe.dts:150:								discontinuous_clk = "yes";
+patches/ov5647-p3768-port-a-probe.dts:190:									ov5647_probe_out0: endpoint {
+patches/ov5647-p3768-port-a-probe.dts:191:										port-index = <1>;
+patches/ov5647-p3768-port-a-probe.dts:193:										remote-endpoint = <&ov5647_probe_csi_in0>;
+patches/ov5647-p3768-port-a-reference.dts.in:30:	 * - tegra_sinterface = "serial_b"
+patches/ov5647-p3768-port-a-reference.dts.in:31:	 * - port-index = 1
+patches/ov5647-p3768-port-a-reference.dts.in:33:	 * - lane_polarity = 6
+patches/ov5647-p3768-port-a-reference.dts.in:51:						ov5647_vi_in0: endpoint {
+patches/ov5647-p3768-port-a-reference.dts.in:52:							port-index = <1>;
+patches/ov5647-p3768-port-a-reference.dts.in:54:							remote-endpoint = <&ov5647_csi_out0>;
+patches/ov5647-p3768-port-a-reference.dts.in:65:						badge = "unverified_ov5647_A";
+patches/ov5647-p3768-port-a-reference.dts.in:72:								"/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@__OV5647_I2C_ADDR_HEX__";
+patches/ov5647-p3768-port-a-reference.dts.in:95:									ov5647_csi_in0: endpoint@0 {
+patches/ov5647-p3768-port-a-reference.dts.in:96:										port-index = <1>;
+patches/ov5647-p3768-port-a-reference.dts.in:98:										remote-endpoint = <&ov5647_out0>;
+patches/ov5647-p3768-port-a-reference.dts.in:105:									ov5647_csi_out0: endpoint@1 {
+patches/ov5647-p3768-port-a-reference.dts.in:106:										remote-endpoint = <&ov5647_vi_in0>;
+patches/ov5647-p3768-port-a-reference.dts.in:123:						ov5647_a@__OV5647_I2C_ADDR_DEC__ {
+patches/ov5647-p3768-port-a-reference.dts.in:125:							compatible = "ovti,ov5647";
+patches/ov5647-p3768-port-a-reference.dts.in:128:							sensor_model = "ov5647";
+patches/ov5647-p3768-port-a-reference.dts.in:140:								tegra_sinterface = "serial_b";
+patches/ov5647-p3768-port-a-reference.dts.in:141:								lane_polarity = "6";
+patches/ov5647-p3768-port-a-reference.dts.in:143:								discontinuous_clk = "yes";
+patches/ov5647-p3768-port-a-reference.dts.in:184:									ov5647_out0: endpoint {
+patches/ov5647-p3768-port-a-reference.dts.in:185:										port-index = <1>;
+patches/ov5647-p3768-port-a-reference.dts.in:187:										remote-endpoint = <&ov5647_csi_in0>;
+scripts/run_smoke_tests.sh:10:MODULE_PATH=${1:-"${REPO_ROOT}/src/nv_ov5647/nv_ov5647.ko"}
+scripts/recover_safe_boot.sh:20:if ! grep -q '^LABEL ov5647-safe$' "${EXTLINUX}"; then
+scripts/recover_safe_boot.sh:30:        print "DEFAULT ov5647-safe"
+scripts/recover_safe_boot.sh:37:            print "DEFAULT ov5647-safe"
+scripts/recover_safe_boot.sh:45:note "Set DEFAULT ov5647-safe and backed up previous extlinux.conf" | tee -a "${LOGFILE}"
+scripts/run_manual_single_frame_trace.sh:10:RAW_OUT="${CAP_DIR}/ov5647-640x480-bg10.raw"
+scripts/collect_camera_route_state.sh:56:save_cmd_output "${STATE_DIR}/lsmod-nv-ov5647.log" bash -lc "lsmod | grep -E '^nv_ov5647|^Module' || true"
+scripts/collect_camera_route_state.sh:57:save_cmd_output "${STATE_DIR}/module-params.log" bash -lc 'if [ -d /sys/module/nv_ov5647/parameters ]; then for f in /sys/module/nv_ov5647/parameters/*; do printf "%s=" "$(basename "$f")"; cat "$f"; done; else echo "nv_ov5647 not loaded"; fi'
+scripts/collect_camera_route_state.sh:67:    find /sys/firmware/devicetree/base -path '*ov5647*' -print 2>/dev/null | sort || true
+scripts/collect_camera_route_state.sh:70:    mapfile -t ov5647_nodes < <(find /sys/firmware/devicetree/base -type d -name 'ov5647*' -print 2>/dev/null | sort || true)
+scripts/collect_camera_route_state.sh:71:    for node in "${ov5647_nodes[@]}"; do
+scripts/collect_camera_route_state.sh:75:        for prop in compatible status reg devnode mclk tegra_sinterface num_lanes lane_polarity discontinuous_clk pix_clk_hz line_length active_w active_h mode_type pixel_phase csi_pixel_bit_depth; do
+scripts/collect_camera_route_state.sh:82:        for prop in clocks pwdn-gpios reset-gpios port-index bus-width remote-endpoint; do
+scripts/collect_camera_route_state.sh:91:            for prop in num_lanes tegra_sinterface lane_polarity discontinuous_clk pix_clk_hz line_length active_w active_h mode_type pixel_phase csi_pixel_bit_depth; do
+scripts/collect_camera_route_state.sh:102:                for prop in port-index bus-width remote-endpoint; do
+scripts/collect_camera_route_state.sh:115:        mapfile -t ov5647_symbols < <(find /sys/firmware/devicetree/base/__symbols__ -type f -name '*ov5647*' -print 2>/dev/null | sort || true)
+scripts/collect_camera_route_state.sh:116:        for sym in "${ov5647_symbols[@]}"; do
+scripts/collect_camera_route_state.sh:122:} >"${STATE_DIR}/live-dt-ov5647-route-summary.log" 2>&1
+scripts/run_manual_insmod_diag.sh:7:MODULE_PATH="${ROOT_DIR}/src/nv_ov5647/nv_ov5647.ko"
+scripts/run_manual_insmod_diag.sh:73:if lsmod | awk '$1 == "nv_ov5647" { found = 1 } END { exit(found ? 0 : 1) }'; then
+scripts/run_manual_insmod_diag.sh:74:	echo "[${TS}] refusing insmod: nv_ov5647 is already loaded" | tee -a "${LOGFILE}"
+scripts/unload_module.sh:15:    note "Removing nv_ov5647"
+scripts/unload_module.sh:19:if ! lsmod | awk '$1 == "nv_ov5647" { found = 1 } END { exit(found ? 0 : 1) }'; then
+scripts/unload_module.sh:20:    note "nv_ov5647 is not loaded" | tee -a "${LOGFILE}"
+scripts/unload_module.sh:33:rmmod nv_ov5647 2>&1 | tee -a "${LOGFILE}"
+scripts/switch_boot_profile.sh:11:  ./scripts/switch_boot_profile.sh [--default safe|dev] [--dev-overlay /boot/<name>.dtbo] [--render-only]
+scripts/switch_boot_profile.sh:12:  sudo ./scripts/switch_boot_profile.sh --apply [--default safe|dev] [--dev-overlay /boot/<name>.dtbo]
+scripts/switch_boot_profile.sh:99:FDTOVERLAYS_LINE=$(awk '/^[[:space:]]*FDTOVERLAYS / { sub(/^[[:space:]]*FDTOVERLAYS[[:space:]]+/, ""); print; exit }' "${TMP_STANZA}")
+scripts/switch_boot_profile.sh:117:DEFAULT_LABEL="ov5647-safe"
+scripts/switch_boot_profile.sh:119:    DEFAULT_LABEL="ov5647-dev"
+scripts/switch_boot_profile.sh:127:    printf "LABEL ov5647-safe\n"
+scripts/switch_boot_profile.sh:136:    printf "      APPEND %s boot_profile=ov5647-safe\n\n" "${APPEND_LINE}"
+scripts/switch_boot_profile.sh:138:    printf "LABEL ov5647-dev\n"
+scripts/switch_boot_profile.sh:148:        printf "      OVERLAYS %s\n" "${DEV_OVERLAY}"
+scripts/switch_boot_profile.sh:150:    printf "      APPEND %s boot_profile=ov5647-dev\n" "${APPEND_LINE}"
+scripts/collect_env.sh:50:dtc -I dtb -O dts /boot/tegra234-p3767-camera-p3768-imx219-A.dtbo >"${REF_DIR}/tegra234-p3767-camera-p3768-imx219-A.dts" 2>"${REF_DIR}/imx219-A.stderr.log" || true
+scripts/collect_env.sh:51:dtc -I dtb -O dts /boot/tegra234-p3767-camera-p3768-imx219-C.dtbo >"${REF_DIR}/tegra234-p3767-camera-p3768-imx219-C.dts" 2>"${REF_DIR}/imx219-C.stderr.log" || true
+scripts/build_module.sh:12:SRC_DIR="${REPO_ROOT}/src/nv_ov5647"
+scripts/build_module.sh:19:    note "Building nv_ov5647 external module"
+scripts/build_module.sh:26:cp -- "${SRC_DIR}/nv_ov5647.ko" "${OUT_DIR}/"
+scripts/build_module.sh:30:modinfo "${SRC_DIR}/nv_ov5647.ko" >"${OUT_DIR}/nv_ov5647.modinfo.txt"
+scripts/install_module.sh:12:MODULE_PATH=${1:-"${REPO_ROOT}/src/nv_ov5647/nv_ov5647.ko"}
+scripts/install_module.sh:26:if lsmod | awk '$1 == "nv_ov5647" { found = 1 } END { exit(found ? 0 : 1) }'; then
+scripts/install_module.sh:27:    note "nv_ov5647 is already loaded" | tee -a "${LOGFILE}"
+scripts/run_manual_single_frame_rtcpu_trace.sh:13:RAW_OUT="${CAP_DIR}/ov5647-640x480-bg10.raw"
+scripts/run_manual_single_frame_rtcpu_trace.sh:133:	lsmod | grep nv_ov5647 || true
+scripts/run_manual_single_frame_rtcpu_trace.sh:136:	param_files=(/sys/module/nv_ov5647/parameters/*)
+scripts/run_manual_single_frame_rtcpu_trace.sh:138:		echo "nv_ov5647 parameter files not found; is the module loaded?"
+scripts/run_manual_single_frame_rtcpu_trace.sh:169:write_tracefs "${TRACEFS}/trace_marker" "ov5647_rtcpu_trace_capture_begin ${TS}"
+scripts/run_manual_single_frame_rtcpu_trace.sh:188:write_tracefs "${TRACEFS}/trace_marker" "ov5647_rtcpu_trace_capture_end ${TS} rc=${RC}"
+scripts/build_overlay.sh:11:  ./scripts/build_overlay.sh <path-to-overlay.dts>
+scripts/build_overlay.sh:13:Builds a DT overlay into artifacts/dtbo/<timestamp>-<name>.dtbo and writes a
+scripts/build_overlay.sh:32:OUT_DIR="${ARTIFACT_DIR}/dtbo"
+scripts/build_overlay.sh:35:OUT_FILE="${OUT_DIR}/${STAMP}-${NAME}.dtbo"
+scripts/build_overlay.sh:36:LOGFILE="${LOG_DIR}/${STAMP}-build_overlay-${NAME}.log"
+scripts/run_manual_rmmod_trace.sh:40:lsmod | grep -E '^nv_ov5647\\b' | tee -a "${RUN_LOG}" || true
+scripts/run_manual_rmmod_trace.sh:72:echo "[${TS}] running: rmmod nv_ov5647" | tee -a "${RUN_LOG}"
+scripts/run_manual_rmmod_trace.sh:75:sudo rmmod nv_ov5647 2>&1 | tee -a "${RUN_LOG}"
+docs/05-dt-overlay-design.md:14:- reference route `A` maps to `serial_b` and `port-index = 1`;
+docs/05-dt-overlay-design.md:15:- reference route `C` maps to `serial_c` and `port-index = 2`.
+docs/05-dt-overlay-design.md:17:  - `cam_i2cmux/i2c@1/ov5647_c@36`;
+docs/05-dt-overlay-design.md:20:  - `port-index = 2`;
+docs/05-dt-overlay-design.md:22:  - `lane_polarity = "0"`;
+docs/05-dt-overlay-design.md:23:  - `discontinuous_clk = "no"`.
+docs/05-dt-overlay-design.md:41:- `port-index = 2`
+docs/05-dt-overlay-design.md:43:- reference `lane_polarity = 0`
+docs/05-dt-overlay-design.md:44:- receiver-side continuous clock: `discontinuous_clk = "no"`
+docs/05-dt-overlay-design.md:63:- the generated `ov5647-safe` profile will not reference any OV5647 overlay;
+docs/05-dt-overlay-design.md:64:- the generated `ov5647-dev` profile is staged for the next reboot with `OVERLAYS /boot/ov5647-p3768-port-a-extperiph1.dtbo`;
+docs/05-dt-overlay-design.md:66:- `FDTOVERLAYS` did not apply correctly on this UEFI boot path; the working syntax is `FDT` plus `OVERLAYS`.
+docs/05-dt-overlay-design.md:72:- `patches/ov5647-p3768-port-a-reference.dts.in`
+docs/05-dt-overlay-design.md:73:- `patches/ov5647-p3768-port-a-draft.dts`
+docs/05-dt-overlay-design.md:74:- `patches/ov5647-p3768-port-a-probe.dts`
+docs/05-dt-overlay-design.md:75:- `patches/ov5647-p3768-port-c-probe.dts`
+docs/05-dt-overlay-design.md:77:- `ov5647-p3768-port-a-reference.dts.in` remains the unconstrained placeholder template.
+docs/05-dt-overlay-design.md:78:- `ov5647-p3768-port-a-draft.dts` is a compile-ready draft for local build validation only.
+docs/05-dt-overlay-design.md:79:- `ov5647-p3768-port-a-probe.dts` is the first route-A candidate; it probe-validated but capture timed out.
+docs/05-dt-overlay-design.md:80:- `ov5647-p3768-port-c-probe.dts` is the active route-C candidate currently used by the dev profile.
+docs/05-dt-overlay-design.md:88:- `ov5647_c@36`;
+docs/05-dt-overlay-design.md:89:- `tegra_sinterface = "serial_c"`;
+docs/05-dt-overlay-design.md:90:- endpoint `port-index = <2>`;
+docs/05-dt-overlay-design.md:93:- `lane_polarity = "0"`.
+docs/05-dt-overlay-design.md:97:- NVIDIA `imx219-C` and `imx477-C` both use `i2c@1`, `serial_c`, `port-index=2`, and GPIO token `0xa0`;
+docs/05-dt-overlay-design.md:98:- NVIDIA `imx477-C` explicitly uses `lane_polarity = "0"`;
+docs/05-dt-overlay-design.md:103:- `artifacts/dtbo/20260421T155351Z-ov5647-p3768-port-c-probe.dtbo` builds;
+docs/05-dt-overlay-design.md:104:- `artifacts/boot/20260421T155412Z/extlinux.conf.generated` renders a dev profile using `/boot/ov5647-p3768-port-c-probe.dtbo`;
+docs/05-dt-overlay-design.md:105:- `artifacts/dtbo/20260422T082931Z-ov5647-p3768-port-c-probe.dtbo` builds with `discontinuous_clk = "no"`;
+docs/05-dt-overlay-design.md:106:- the live `/boot` dev profile now uses `/boot/ov5647-p3768-port-c-extperiph1.dtbo`;
+docs/05-dt-overlay-design.md:115:- source: `patches/ov5647-p3768-port-a-probe.dts`;
+docs/05-dt-overlay-design.md:116:- artifact: `artifacts/dtbo/20260422T135929Z-ov5647-p3768-port-a-probe.dtbo`;
+docs/05-dt-overlay-design.md:117:- boot copy: `/boot/ov5647-p3768-port-a-extperiph1.dtbo`;
+docs/05-dt-overlay-design.md:118:- route: `cam_i2cmux/i2c@0`, `serial_b`, `port-index=1`, `lane_polarity="6"`;
+docs/05-dt-overlay-design.md:124:- active boot profile is `boot_profile=ov5647-dev`;
+docs/05-dt-overlay-design.md:125:- live DT contains `bus@0/cam_i2cmux/i2c@0/ov5647_a@36`;
+docs/05-dt-overlay-design.md:126:- live DT does not contain the route-C `ov5647_c@36` node;
+docs/01a-clb-carrier-mapping.md:15:| Active boot profile | Confirmed | `/proc/cmdline` contains `boot_profile=ov5647-dev` |
+docs/01a-clb-carrier-mapping.md:16:| Running camera overlay | Confirmed present | Live DT contains `cam_i2cmux` and active `ov5647_a@36` |
+docs/01a-clb-carrier-mapping.md:29:| Live CSI route | Confirmed for current test path | Live sensor node uses `tegra_sinterface = "serial_b"` |
+docs/01a-clb-carrier-mapping.md:30:| Live CSI port index | Confirmed for current test path | Live endpoint graph uses route-A style `port-index = 1` |
+docs/01a-clb-carrier-mapping.md:32:| Live lane polarity | Confirmed for current test path | Live DT mode uses `lane_polarity = "6"` |
+docs/01a-clb-carrier-mapping.md:33:| Live discontinuous clock mode | Confirmed for current test path | Live DT mode uses `discontinuous_clk = "yes"` while the diagnostic module parameter can force sensor-side continuous clock |
+docs/01a-clb-carrier-mapping.md:34:| Live sensor node | Confirmed | `/bus@0/cam_i2cmux/i2c@0/ov5647_a@36` |
+docs/01a-clb-carrier-mapping.md:58:- connector `A`: `serial_b`, `port-index = 1`, `cam_i2cmux/i2c@0`
+docs/01a-clb-carrier-mapping.md:59:- connector `C`: `serial_c`, `port-index = 2`, `cam_i2cmux/i2c@1`
+docs/01a-clb-carrier-mapping.md:120:  - `tegra_sinterface = "serial_b"`
+docs/01a-clb-carrier-mapping.md:121:  - `port-index = 1`
+docs/01a-clb-carrier-mapping.md:124:  - `lane_polarity = "6"`
+docs/01a-clb-carrier-mapping.md:127:  - `tegra_sinterface = "serial_b"`
+docs/01a-clb-carrier-mapping.md:128:  - `port-index = 1`
+docs/01a-clb-carrier-mapping.md:131:  - `lane_polarity = "6"`
+docs/01a-clb-carrier-mapping.md:137:  - `tegra_sinterface = "serial_c"`
+docs/01a-clb-carrier-mapping.md:138:  - `port-index = 2`
+docs/01a-clb-carrier-mapping.md:141:  - no explicit `lane_polarity` seen in the decompiled overlay excerpt
+docs/01a-clb-carrier-mapping.md:144:  - `tegra_sinterface = "serial_c"`
+docs/01a-clb-carrier-mapping.md:145:  - `port-index = 2`
+docs/01a-clb-carrier-mapping.md:148:  - `lane_polarity = "0"`
+docs/01a-clb-carrier-mapping.md:155:  - `port-index = 1`
+docs/01a-clb-carrier-mapping.md:157:  - `lane_polarity = 6`
+docs/01a-clb-carrier-mapping.md:161:  - `port-index = 2`;
+docs/01a-clb-carrier-mapping.md:179:  - `cam_i2cmux/i2c@1/ov5647_c@36`
+docs/01a-clb-carrier-mapping.md:183:  - `port-index = 2`
+docs/01a-clb-carrier-mapping.md:185:  - `lane_polarity = "0"`
+docs/01a-clb-carrier-mapping.md:186:  - `discontinuous_clk = "no"`
+docs/01a-clb-carrier-mapping.md:195:  - with the earlier route-A path, chip-ID reads failed when `ov5647_power_on()` drove `pwdn_gpio=397` low;
+docs/01a-clb-carrier-mapping.md:196:  - chip-ID reads succeeded when `ov5647_power_on()` kept `pwdn_gpio=397` high;
+docs/01a-clb-carrier-mapping.md:218:- `ov5647_a@36`;
+docs/01a-clb-carrier-mapping.md:221:- `mode0.tegra_sinterface = "serial_b"`;
+docs/01a-clb-carrier-mapping.md:223:- `mode0.lane_polarity = "6"`;
+docs/01a-clb-carrier-mapping.md:224:- endpoint `port-index = 1`;
+docs/01a-clb-carrier-mapping.md:232:- I2C client is `nv_ov5647 9-0036`;
+docs/01a-clb-carrier-mapping.md:237:- media graph links `nv_ov5647 9-0036 -> nvcsi -> vi-output` are enabled.
+docs/01a-clb-carrier-mapping.md:255:- boot profile still `ov5647-dev`;
+docs/01a-clb-carrier-mapping.md:256:- live DT still selects route A: `ov5647_a@36`, `serial_b`, `port-index = 1`, `lane_polarity = 6`;
+docs/01a-clb-carrier-mapping.md:257:- `nv_ov5647` is not loaded;

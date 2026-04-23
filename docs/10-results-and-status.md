@@ -621,3 +621,30 @@ Next smallest safe step:
 - the last manual profile forced sensor-side continuous clock with `0x4800 = 0x04`;
 - add and use a non-continuous-clock manual profile with MCLK override: `full-delay-dump-mclk24`;
 - after manual `rmmod`, load that profile and run one traced single-frame capture.
+
+Frank-s15 route-A matched non-continuous-clock result:
+
+- user loaded profile `full-delay-dump-mclk24`;
+- module parameters confirmed:
+  - `continuous_mipi_clock = N`;
+  - `dump_stream_regs = Y`;
+  - `mclk_override_hz = 24000000`;
+- capture `20260423T080309Z` reached `VIDIOC_STREAMON returned 0`;
+- stream-on readback confirmed:
+  - `0x0100 = 0x01`;
+  - `0x3821 = 0x03`;
+  - `0x4800 = 0x34`;
+- raw output remained zero bytes and capture returned `rc=124`;
+- RTCPU/NVCSI trace again showed no `vi_frame_begin`, `vi_frame_end`, `rtcpu_nvcsi_intr`, `rtcpu_vinotify_error`, `capture_event_sof`, or `capture_event_error`.
+
+Current interpretation:
+
+- route-A MCLK, I2C, probe, media graph, set-mode, and stream register state are internally consistent;
+- neither sensor-side continuous clock nor matched non-continuous clock produces SOF;
+- the next controlled software variable is route-A lane polarity, because wrong polarity/physical lane mapping can produce a no-event receiver symptom.
+
+Next staged DT step:
+
+- build and stage `patches/ov5647-p3768-port-a-lanepol0-probe.dts`;
+- dev profile should point at `/boot/ov5647-p3768-port-a-lanepol0.dtbo`;
+- reboot is required before this overlay can be tested.

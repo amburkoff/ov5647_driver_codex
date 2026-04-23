@@ -1,0 +1,545 @@
+# current route docs status
+  - `lane_polarity = "6"`
+
+### Route C
+
+- `imx219-C`
+  - `cam_i2cmux/i2c@1`
+  - `tegra_sinterface = "serial_c"`
+  - `port-index = 2`
+  - `bus-width = 2`
+  - `reset-gpios = <... 0xa0 ...>`
+  - no explicit `lane_polarity` seen in the decompiled overlay excerpt
+- `imx477-C`
+  - `cam_i2cmux/i2c@1`
+  - `tegra_sinterface = "serial_c"`
+  - `port-index = 2`
+  - `bus-width = 2`
+  - `reset-gpios = <... 0xa0 ...>`
+  - `lane_polarity = "0"`
+
+Inference from these local references and the live successful probes:
+
+- route `A` was the cleaner first candidate because two separate NVIDIA overlays agree on:
+  - the mux leg
+  - `serial_b`
+  - `port-index = 1`
+  - reset GPIO token `0x3e`
+  - `lane_polarity = 6`
+- route `C` became the second controlled overlay experiment after repeated route-A capture timeouts:
+  - `cam_i2cmux/i2c@1`;
+  - `serial_c`;
+  - `port-index = 2`;
+  - reset/PWDN GPIO token `0xa0`;
+  - lane polarity candidate `0`.
+- route `C` has now probe-validated and stream-attempted:
+  - Linux downstream bus `i2c-9`;
+  - sensor address `0x36`;
+  - chip ID `0x5647`;
+  - Linux PWDN GPIO `486`;
+  - VI route `platform:tegra-capture-vi:2`;
+  - `/dev/video0` created.
+- route `C` still does not deliver frames:
+  - `VIDIOC_STREAMON` returns success;
+  - raw output remains zero bytes;
+  - RTCPU/NVCSI tracing shows no SOF, no EOF, no NVCSI interrupt, and no vinotify error in the capture window.
+
+## Route-C Working Probe Facts
+
+- previous route-C sensor path in live DT:
+  - `cam_i2cmux/i2c@1/ov5647_c@36`
+- active logical camera route:
+  - route `C`
+  - `serial_c`
+  - `port-index = 2`
+  - `bus-width = <2>`
+  - `lane_polarity = "0"`
+  - `discontinuous_clk = "no"`
+- active I2C path:
+  - base controller `3180000.i2c` as Linux `i2c-2`
+  - muxed downstream bus `i2c-9`
+  - sensor address `0x36`
+- direct hardware confirmation:
+  - `sudo i2ctransfer -f -y 9 w2@0x36 0x30 0x0a r1` -> `0x56`
+  - `sudo i2ctransfer -f -y 9 w2@0x36 0x30 0x0b r1` -> `0x47`
+- route-C driver-specific power observation:
+  - with the earlier route-A path, chip-ID reads failed when `ov5647_power_on()` drove `pwdn_gpio=397` low;
+  - chip-ID reads succeeded when `ov5647_power_on()` kept `pwdn_gpio=397` high;
+  - route-C uses `pwdn_gpio=486` with the same deassert-high driver policy;
+  - this means the present path should currently be treated as `pwdn deasserted high` until carrier wiring proves otherwise.
+
+## Current No-SOF Evidence
+
+The latest route-C continuous-clock runtime test proves that the Linux/V4L2 path reaches stream start but no frame start reaches NVCSI/VI:
+
+- `VIDIOC_STREAMON` returns success;
+- register readback after stream-on confirms `0x0100 = 0x01`;
+- output-enable readback confirms `0x3000 = 0x0f`, `0x3001 = 0xff`, `0x3002 = 0xe4`;
+- MIPI clock register readback confirms the continuous-clock diagnostic value `0x4800 = 0x04`;
+- after the clock-ID fix, driver logs confirm `extperiph1` MCLK is enabled at `24000000` Hz;
+- RTCPU/NVCSI trace contains no `vi_frame_begin`, `vi_frame_end`, `rtcpu_nvcsi_intr`, `rtcpu_vinotify_error`, `capture_event_sof`, or `capture_event_error`.
+
+This does not prove the sensor is incapable of output. It proves that the current DT route, physical lane path, cable/adapter path, or MIPI electrical output state is still not producing an observable SOF at the Jetson receiver. Because the earlier route-A test used the old wrong BPMP clock binding, one corrected-MCLK route-A retest is still a valid controlled software experiment before treating the issue as purely physical.
+
+## Current Route-A State
+
+After rebooting the staged route-A corrected-MCLK overlay, the live DT now maps the single active OV5647 node to:
+
+- `cam_i2cmux/i2c@0`;
+- `ov5647_a@36`;
+- `mclk = "extperiph1"`;
+- `clocks = <&bpmp 0x24>`;
+- `mode0.tegra_sinterface = "serial_b"`;
+- `mode0.num_lanes = "2"`;
+- `mode0.lane_polarity = "6"`;
+- endpoint `port-index = 1`;
+- endpoint `bus-width = 2`;
+- `pwdn-gpios` token `0x3e`.
+
+This confirms that the next manual module-load test will exercise route A, not route C.
+
+The first manual module-load test on this route-A state succeeded:
+
+- I2C client is `nv_ov5647 9-0036`;
+- `pwdn_gpio = 397`;
+- MCLK enabled at `24000000` Hz;
+- chip ID is `0x5647`;
+- `/dev/video0` appears;
+- media graph links `nv_ov5647 9-0036 -> nvcsi -> vi-output` are enabled.
+
+This proves route A has a working I2C/probe path. It still does not prove the route-A physical CSI lane path until a frame or SOF is observed.
+
+The first corrected-MCLK route-A capture test also failed to observe CSI frame delivery:
+
+- timestamp: `20260422T140936Z`;
+- `VIDIOC_STREAMON` returned success;
+- capture returned `rc=124`;
+- raw output was zero bytes;
+- VI reported repeated request timeouts;
+- RTCPU/NVCSI tracepoints were enabled but showed no `vi_frame_begin`, `vi_frame_end`, `rtcpu_nvcsi_intr`, `rtcpu_vinotify_error`, `capture_event_sof`, `capture_event_eof`, or `capture_event_error`;
+- driver readback confirmed stream-on state with `0x0100 = 0x01`, output-enable restored, continuous MIPI clock diagnostic active, and MCLK at `24000000`.
+
+This means both route A and route C have now failed after the corrected `TEGRA234_CLK_EXTPERIPH1` binding. The current blocker should be treated as physical CSI-path validation until disproven.
+
+Post-reboot state on 2026-04-23 before the next manual `insmod`:
+
+- boot profile still `ov5647-dev`;
+- live DT still selects route A: `ov5647_a@36`, `serial_b`, `port-index = 1`, `lane_polarity = 6`;
+- `nv_ov5647` is not loaded;
+- `/dev/video0` is absent before manual load, as expected;
+- the user replaced the previous camera on Jetson `cam0` with another OV5647 using a longer ribbon marked `Frank-s15-v1.0`.
+
+This creates a cleaner next runtime test: same route-A overlay and same driver image, but different physical camera/ribbon hardware on the intended `cam0` connector.
+
+## Blocking Next Checks
+
+1. Inspect the physical carrier board silkscreen and connector labels.
+2. Record the exact FFC cable and any adapter board between the carrier and OV5647 module.
+3. Confirm whether the carrier exposes Jetson devkit-style 22-pin connectors or a custom route.
+4. Map each physical connector to the observed route-A and route-C logical paths.
+5. Verify whether the `JT-ZERO-V2.0 YH` Raspberry Pi-style OV5647 flex/module path is pin-compatible with the CLB/Jetson 22-pin connector orientation.
+6. Do not continue blind stream-register tuning until the physical CSI lane path or a known-good Jetson camera module cross-check is available.
+
+# dt overlay design tail
+# DT Overlay Design
+
+Design intent:
+
+- start from the current `p3768` reference camera overlay structure shipped with Jetson Linux `r36.5`;
+- replace sensor-specific pieces with OV5647 data only after the physical connector, CSI path, and power wiring are verified;
+- keep the first overlay minimal and single-sensor.
+
+## Current Ground Truth
+
+- the live dev boot has an active OV5647 route-C continuous-clock overlay;
+- `cam_i2c` resolves to `i2c@3180000`;
+- NVIDIA p3768 reference overlays on disk describe 22-pin camera routes through `cam_i2cmux`;
+- reference route `A` maps to `serial_b` and `port-index = 1`;
+- reference route `C` maps to `serial_c` and `port-index = 2`.
+- the active live route is:
+  - `cam_i2cmux/i2c@1/ov5647_c@36`;
+  - Linux downstream bus `i2c-9`;
+  - `serial_c`;
+  - `port-index = 2`;
+  - `bus-width = 2`;
+  - `lane_polarity = "0"`;
+  - `discontinuous_clk = "no"`.
+
+## Minimal OV5647 Overlay Plan
+
+The first OV5647 overlay will need:
+
+- one `tegra-capture-vi` port;
+- one `nvcsi` channel;
+- one `tegra-camera-platform` module entry;
+- one sensor node on the verified camera I2C path;
+- one `mode0` only;
+- no experimental boot-time enablement until manual probe is stable.
+
+Current active runtime target:
+
+- p3768-style route `C`
+- `cam_i2cmux/i2c@1`
+- `serial_c`
+- `port-index = 2`
+- `bus-width = 2`
+- reference `lane_polarity = 0`
+- receiver-side continuous clock: `discontinuous_clk = "no"`
+
+Reason:
+
+- route `A` produced valid probe/chip ID but repeated zero-byte capture timeouts;
+- route `C` also produces valid probe/chip ID and `/dev/video0`, but capture still times out;
+- the current route-C overlay is the latest boot-applied experiment and matches the sensor-side continuous-clock diagnostic.
+
+Fields that remain blocked until hardware verification:
+
+- physical connector selection for the first single-sensor milestone
+- whether the path exposes only `pwdn-gpios` or separate `reset-gpios` and `pwdn-gpios`
+- exact clock wiring beyond the default `extperiph1` assumption
+- final rail mapping on the real carrier path
+- whether the CLB physical connector/cable path actually matches NVIDIA p3768 route A or route C electrically
+- whether the `JT-ZERO-V2.0 YH` Raspberry Pi-style camera flex/module path is pin-compatible with the Jetson/CLB 22-pin connector orientation
+
+## Safe Boot Interaction
+
+- the generated `ov5647-safe` profile will not reference any OV5647 overlay;
+- the generated `ov5647-dev` profile is staged for the next reboot with `OVERLAYS /boot/ov5647-p3768-port-a-extperiph1.dtbo`;
+- the currently running live DT remains whatever was loaded at boot until the next reboot;
+- `FDTOVERLAYS` did not apply correctly on this UEFI boot path; the working syntax is `FDT` plus `OVERLAYS`.
+
+## Draft Overlay Artifact
+
+The repository now contains:
+
+- `patches/ov5647-p3768-port-a-reference.dts.in`
+- `patches/ov5647-p3768-port-a-draft.dts`
+- `patches/ov5647-p3768-port-a-probe.dts`
+- `patches/ov5647-p3768-port-c-probe.dts`
+
+- `ov5647-p3768-port-a-reference.dts.in` remains the unconstrained placeholder template.
+- `ov5647-p3768-port-a-draft.dts` is a compile-ready draft for local build validation only.
+- `ov5647-p3768-port-a-probe.dts` is the first route-A candidate; it probe-validated but capture timed out.
+- `ov5647-p3768-port-c-probe.dts` is the active route-C candidate currently used by the dev profile.
+- The draft keeps the sensor node `status = "disabled"` and must not be treated as a verified or boot-ready carrier overlay.
+
+## Route-C Candidate
+
+Route-C candidate fields:
+
+- `cam_i2cmux/i2c@1`;
+- `ov5647_c@36`;
+- `tegra_sinterface = "serial_c"`;
+- endpoint `port-index = <2>`;
+- endpoint `bus-width = <2>`;
+- `pwdn-gpios = <&gpio 0xa0 0>`;
+- `lane_polarity = "0"`.
+
+Reference basis:
+
+- NVIDIA `imx219-C` and `imx477-C` both use `i2c@1`, `serial_c`, `port-index=2`, and GPIO token `0xa0`;
+- NVIDIA `imx477-C` explicitly uses `lane_polarity = "0"`;
+- NVIDIA `imx219-C` omits explicit lane polarity, so default `0` is the least surprising route-C candidate.
+
+Status:
+
+- `artifacts/dtbo/20260421T155351Z-ov5647-p3768-port-c-probe.dtbo` builds;
+- `artifacts/boot/20260421T155412Z/extlinux.conf.generated` renders a dev profile using `/boot/ov5647-p3768-port-c-probe.dtbo`;
+- `artifacts/dtbo/20260422T082931Z-ov5647-p3768-port-c-probe.dtbo` builds with `discontinuous_clk = "no"`;
+- the live `/boot` dev profile now uses `/boot/ov5647-p3768-port-c-extperiph1.dtbo`;
+- live DT confirms route-C fields after reboot;
+- route-C corrected-`extperiph1` continuous-clock capture still times out with zero-byte output;
+- RTCPU/NVCSI trace shows no SOF or NVCSI receiver interrupt during the capture window.
+
+## Route-A Corrected-MCLK Retest
+
+The route-A overlay has been rebuilt after the Tegra234 BPMP clock-ID fix:
+
+- source: `patches/ov5647-p3768-port-a-probe.dts`;
+- artifact: `artifacts/dtbo/20260422T135929Z-ov5647-p3768-port-a-probe.dtbo`;
+- boot copy: `/boot/ov5647-p3768-port-a-extperiph1.dtbo`;
+- route: `cam_i2cmux/i2c@0`, `serial_b`, `port-index=1`, `lane_polarity="6"`;
+- clock: `clocks = <&bpmp 0x24>`, `clock-names = "extperiph1"`;
+- dev profile default is staged for this overlay, but live DT validation still requires reboot.
+
+Post-reboot validation:
+
+- active boot profile is `boot_profile=ov5647-dev`;
+- live DT contains `bus@0/cam_i2cmux/i2c@0/ov5647_a@36`;
+- live DT does not contain the route-C `ov5647_c@36` node;
+- live route-A clock binding is `clocks_hex = 00 00 00 03 00 00 00 24`;
+- media graph has no sensor entity until the manual module load, which is expected because the driver is not auto-loaded.
+
+## Current DT Conclusion
+
+The DT overlay is good enough to bind the sensor, register `/dev/video0`, and execute stream start on route C. It is not proven electrically correct because neither route A nor route C produces SOF.
+
+The next DT work should be tightly bounded:
+
+- first, reboot into the staged route-A corrected-`TEGRA234_CLK_EXTPERIPH1` overlay and retest route A once because earlier route-A captures used the old wrong BPMP clock ID;
+- after that, prefer hardware evidence over blind edits: confirmed CLB connector label to p3768 route mapping, makerobo CLB camera connector wiring, cable/adapter pinout for the `JT-ZERO-V2.0 YH` module, or a known-good Jetson camera cross-check;
+- only then consider a one-variable lane-polarity or route variant.
+
+# results tail
+  - `mode0.tegra_sinterface = "serial_b"`;
+  - `mode0.lane_polarity = "6"`;
+  - endpoint `port-index = 1`;
+  - endpoint `bus-width = 2`;
+- route-C `ov5647_c@36` node is absent;
+- `media-ctl -p` currently shows only the base `nvcsi` entity with no sensor link before module load;
+- pstore contains `console-ramoops-0` from the previous boot, including the earlier route-C capture timeout and a normal `reboot: Restarting system` tail; no panic/oops/NULL dereference signature was found in that pstore scan.
+
+Next manual test:
+
+- run only manual route-A insmod diagnostics first;
+- do not run capture until route-A probe/chip-ID/MCLK are confirmed after this reboot.
+
+Manual route-A insmod after corrected-MCLK reboot:
+
+- user ran `sudo /home/cam/ov5647_driver_codex/scripts/run_manual_insmod_diag.sh full-delay-dump-contclk-mclk24`;
+- command returned `insmod rc=0`;
+- module parameters:
+  - `register_i2c_driver=Y`;
+  - `allow_hw_probe=Y`;
+  - `dump_stream_regs=Y`;
+  - `continuous_mipi_clock=Y`;
+  - `mclk_override_hz=24000000`;
+- probe path:
+  - `ov5647_parse_dt`: `mclk=extperiph1`, `reset_gpio=-1`, `pwdn_gpio=397`;
+  - supplies are dummy regulators for `vana`, `vdig`, `vif`;
+  - `ov5647_power_on`: enabled MCLK at `24000000`;
+  - `ov5647_board_setup`: detected `chip_id=0x5647`;
+  - V4L2 registration succeeded;
+- active BPMP clocks after probe:
+  - `extperiph1 = 24000000`;
+  - `aud_mclk = 45158398`;
+- media graph after probe:
+  - `nv_ov5647 9-0036` sensor entity exists;
+  - `/dev/video0` exists as `vi-output, nv_ov5647 9-0036`;
+  - sensor -> nvcsi -> vi links are enabled;
+- `v4l2-ctl --all` shows:
+  - format `BG10`;
+  - `640x480`;
+  - `Size Image = 614400`;
+  - `30 fps`;
+  - `sensor_modes = 1`.
+
+Next manual runtime test:
+
+- run the RTCPU/NVCSI traced single-frame capture on this route-A corrected-MCLK setup;
+- if this still gives `rc=124`, zero bytes, and no SOF, both route A and route C will have failed after the clock-ID fix and physical CLB/makerobo connector/cable/adaptor compatibility becomes the dominant root-cause track.
+
+Manual route-A corrected-MCLK capture result:
+
+- user ran `sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_rtcpu_trace.sh`;
+- timestamp: `20260422T140936Z`;
+- capture setup reached `VIDIOC_STREAMON returned 0 (Success)`;
+- capture returned `rc=124`;
+- raw output `artifacts/captures/20260422T140936Z/ov5647-640x480-bg10.raw` is zero bytes;
+- dmesg log: `logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log`;
+- RTCPU/NVCSI trace dir: `artifacts/traces/20260422T140936Z`;
+- driver readback during stream-on remained internally consistent:
+  - MCLK enabled at `24000000`;
+  - `0x0100 = 0x01`;
+  - output-enable registers restored: `0x3000 = 0x0f`, `0x3001 = 0xff`, `0x3002 = 0xe4`;
+  - continuous-clock diagnostic value active: `0x4800 = 0x04`;
+- VI logged repeated `uncorr_err: request timed out after 2500 ms`;
+- trace events were enabled, but the trace contained no runtime `vi_frame_begin`, `vi_frame_end`, `rtcpu_nvcsi_intr`, `rtcpu_vinotify_error`, `capture_event_sof`, `capture_event_eof`, or `capture_event_error`.
+
+Current interpretation after route-A and route-C corrected-MCLK tests:
+
+- the original wrong BPMP clock-ID binding was a real bug and is fixed;
+- output-enable, duplicate set-mode, LP-11 setup, HTS/VTS, and continuous-clock experiments did not produce SOF;
+- route A and route C both probe and both fail to deliver any observable CSI SOF after corrected 24 MHz `extperiph1` MCLK;
+- the highest-probability blocker is now the physical CLB/makerobo camera path: exact connector route, FFC/adaptor pinout/orientation, Raspberry Pi-style `JT-ZERO-V2.0 YH` module compatibility, or lane wiring/polarity not represented by the NVIDIA p3768 reference overlays.
+
+Next smallest safe step:
+
+- do not run more blind stream-register tuning or repeated captures until the physical CSI path is verified;
+- collect physical evidence for both camera connectors: carrier silkscreen labels, cable orientation, contact side, any adapter board, camera module front/back, and the full FFC marking;
+- if available, test a known-good Jetson-compatible camera/cable kit with a stock NVIDIA overlay to prove the CLB CSI connector path independently of this OV5647 driver.
+
+Update after user confirmed Raspberry Pi Zero 22-pin cameras:
+
+- user confirms the cameras are Raspberry Pi Zero-style 22-pin OV5647 modules;
+- this makes the cable family more specific, but does not by itself prove MIPI lane delivery because I2C success can coexist with a CSI lane mismatch;
+- a source-side timing/register variant was found in the current 640x480 mode table:
+  - mainline upstream Linux OV5647 VGA table uses `0x3821 = 0x03`;
+  - Raspberry Pi downstream 6.6.y OV5647 VGA table uses `0x3821 = 0x01`;
+  - the local driver previously matched the Raspberry Pi downstream value;
+- next safe software step is to test the mainline upstream `0x3821 = 0x03` variant as a single controlled variable, rebuild only, and ask the user to perform one manual load/capture cycle.
+
+Post-reboot checkpoint on 2026-04-23:
+
+- system booted cleanly into `boot_profile=ov5647-dev`;
+- `pstore` is empty after reboot;
+- live DT still exposes route A on `cam_i2cmux/i2c@0/ov5647_a@36`;
+- `nv_ov5647` is not loaded and `/dev/video0` is absent before manual load;
+- the user replaced the previous camera on Jetson `cam0` with another OV5647 and a longer ribbon marked `Frank-s15-v1.0`;
+- attempted `run_manual_rmmod_trace.sh` returned `rmmod rc=1` because the module was not loaded, which is expected and not a fault.
+
+Next smallest safe step:
+
+- skip `rmmod`;
+- manually run one fresh `insmod` of the new `0x3821 = 0x03` diagnostic build on the new `Frank-s15-v1.0` camera/ribbon;
+- only if probe succeeds, run one traced single-frame capture.
+
+Frank-s15 route-A runtime result:
+
+- user loaded `srcversion=632487CC0794D5D198269C9` with profile `full-delay-dump-contclk-mclk24`;
+- probe succeeded on `nv_ov5647 9-0036`;
+- chip ID remained `0x5647`;
+- capture `20260423T075323Z` reached `VIDIOC_STREAMON returned 0`;
+- readback confirmed the new diagnostic mode bit was active: `0x3821 = 0x03`;
+- readback confirmed sensor-side continuous clock diagnostic was active: `0x4800 = 0x04`;
+- raw output remained zero bytes and capture returned `rc=124`;
+- RTCPU trace still showed no `vi_frame_begin`, `vi_frame_end`, `rtcpu_nvcsi_intr`, `rtcpu_vinotify_error`, `capture_event_sof`, or `capture_event_error`.
+
+Next smallest safe step:
+
+- current route-A DT still says `discontinuous_clk = "yes"`;
+- the last manual profile forced sensor-side continuous clock with `0x4800 = 0x04`;
+- add and use a non-continuous-clock manual profile with MCLK override: `full-delay-dump-mclk24`;
+- after manual `rmmod`, load that profile and run one traced single-frame capture.
+
+# known issues
+# Known Issues
+
+- The user target is corrected to a CLB Developer Kit carrier; earlier project notes used a mistyped carrier name.
+- The box identifies the board as a partner board from `makerobo`.
+- The included booklet says to install the official Jetson Developer Kit image.
+- The running DT identifies NVIDIA reference carrier `p3768-0000`, which is consistent with the official Developer Kit image instruction but still does not prove CLB camera connector wiring.
+- The running system currently boots with `boot_profile=ov5647-dev`, while the carrier hardware still needs independent CLB-specific camera-route documentation beyond what the base DT exposes.
+- The active no-SOF problem is not explained by register stream-start state or by the previously wrong BPMP clock ID alone:
+  - RTCPU/NVCSI tracing showed no frame-start or NVCSI interrupt events during capture;
+  - MCLK diagnostics showed the older active overlay was binding `clock-names = "extperiph1"` to BPMP clock ID `0x07`, which is `TEGRA234_CLK_AUD_MCLK`, not `TEGRA234_CLK_EXTPERIPH1`;
+  - route C now boots with BPMP clock ID `0x24` / decimal `36` and driver logs confirm `mclk enabled rate=24000000`;
+  - route C still produces zero-byte capture timeout and no SOF with corrected MCLK;
+  - route A also probes successfully with corrected MCLK and still produces zero-byte capture timeout with no SOF/NVCSI interrupt events.
+- The safe boot entry still exists, but the on-disk default is currently set to `ov5647-dev` with the route-A corrected-MCLK overlay.
+- The active dev overlay is now a route-A corrected-`extperiph1` candidate from the physical-connector point of view; it is logically validated by successful probe and `/dev/video0`, but not by SOF/frame delivery.
+- The physical camera modules are present on both 22-pin connectors, but the exact mapping from physical connector to route `A` or `C` is still unverified.
+- The visible camera marking `JT-ZERO-V2.0 YH` and user confirmation identify the modules as Raspberry Pi Zero-style 22-pin OV5647 cameras, but the exact FFC/adaptor topology is not yet documented.
+- A new route-A retest now uses a different OV5647 on Jetson `cam0` with longer ribbon marking `Frank-s15-v1.0`; this changes the physical camera/ribbon variable without changing the current route-A overlay.
+- The previous local 640x480 mode table used `0x3821 = 0x01`; mainline upstream Linux OV5647 VGA mode uses `0x3821 = 0x03`, while Raspberry Pi downstream 6.6.y uses `0x01`. Source now stages the mainline `0x03` variant as a controlled diagnostic and needs manual runtime validation.
+- The `Frank-s15-v1.0` route-A capture with `0x3821 = 0x03` still timed out with no SOF while using sensor-side continuous clock `0x4800 = 0x04`; because live route-A DT has `discontinuous_clk = "yes"`, a matched non-continuous sensor-side retest is still pending.
+- Local `nvidia-oot` headers are present, but full local sample sensor source files are not installed under `/usr/src/nvidia/`.
+- Unprivileged `dmesg` access is restricted, so full kernel-buffer capture requires elevated privileges.
+- `journalctl --list-boots` and `uptime -s` disagree about the current boot start time, so timestamp interpretation needs care.
+- The draft route-A OV5647 overlay compiles locally, but it still relies on unresolved hardware assumptions and keeps the sensor node disabled.
+- The probe-oriented route-A OV5647 overlay now applies at boot, reads chip ID, enables 24 MHz `extperiph1`, registers `/dev/video0`, and builds the media graph, but it still relies on unresolved hardware assumptions until capture proves SOF/frame delivery.
+- Route-A corrected-MCLK capture was tested at `20260422T140936Z` and still failed with `VIDIOC_STREAMON` success, `rc=124`, zero-byte raw output, repeated VI timeouts, and no RTCPU/NVCSI SOF/error events.
+- The first rebooted dev attempt proved that `FDTOVERLAYS` was not the correct overlay mechanism for this UEFI-based boot path; the corrected path now uses `FDT + OVERLAYS`.
+- A previous manual `insmod` of `nv_ov5647` triggered a kernel panic due to `tegracam_set_privdata()` being called too early; that ordering bug is fixed, but the panic history remains relevant for regression checking.
+- The earlier `mclk get failed err=-2` blocker was fixed by adding an explicit DT clock binding, but the first binding used the wrong Tegra234 BPMP clock ID:
+  - wrong live binding before reboot: `clocks = <&bpmp 0x07>` / `TEGRA234_CLK_AUD_MCLK`;
+  - corrected staged binding: `clocks = <&bpmp 0x24>` / `TEGRA234_CLK_EXTPERIPH1`;
+  - live DT verification after reboot is required.
+- The current path confirms a responder at `0x36` and a correct chip ID `0x5647`, but the observed `pwdn` semantics differ from the original assumption:
+  - chip-ID failed when the driver drove GPIO 397 low on power-on;
+  - chip-ID succeeded when GPIO 397 stayed high on power-on;
+  - this polarity still needs carrier-level confirmation.
+- A failed probe path that reaches `tegracam_device_unregister()` still triggers a kernel warning in `devm_kfree`; successful probe no longer hits that path, but the failure unwind issue remains open for robustness work.
+- A later unload test on the previously loaded module caused a second reboot:
+  - `ov5647_remove()` dereferenced invalid state through `ov5647_power_off()`;
+  - `pstore` shows `Unable to handle kernel NULL pointer dereference` followed by `Kernel panic - not syncing`;
+  - further `rmmod`, `insmod`, and `STREAMON` tests must be run manually by the user after each checkpoint is committed and the new `.ko` is confirmed built.
+- Even after the NULL-dereference fix, manual unload is still not stable:
+  - `sudo rmmod nv_ov5647` can still hang the Jetson hard enough that no useful `pstore` record is left behind;
+  - the latest preserved unload trace stops before any visible `ov5647_remove()` marker, so the exact stall boundary is still being narrowed.
+- The latest preserved unload trace also stops before the newly added `module exit enter` marker:
+  - the `.ko` contains that marker string;
+  - this makes the full unload path too risky to repeat without further isolation;
+  - `skip_v4l2_register=1` was added to separate chip-ID probe from V4L2 subdev/media graph registration.
+- The `skip_v4l2_register=1` isolated unload succeeds:
+  - this narrows the hard hang to the V4L2 subdev/media graph lifetime path;
+  - `tegracam_device_unregister()` alone still emits a `devm_kfree` warning but returns.
+- Full V4L2-registration unload still hangs after removing direct `ov5647_power_off()` from `remove()`:
+  - the `dmesg -W` live trace for the failed run was empty;
+  - the pre-rmmod dmesg tail confirms full probe and subdev bind completed.
+- The hang is not explained by obvious userspace/module references:
+  - `fuser` and `lsof` show no holders for current media/video/subdev nodes;
+  - `/sys/module/nv_ov5647/refcnt` is `0`;
+  - `/sys/module/nv_ov5647/holders` is empty.
+- `skip_v4l2_unregister` is diagnostic-only:
+  - it can intentionally skip framework cleanup and may leak media/V4L2 state;
+  - do not treat it as a production workaround.
+- `split_v4l2_unregister` is diagnostic-only:
+  - it is intended to identify whether full unload blocks at control cleanup, V4L2 async unregister, or media entity cleanup;
+  - it should not be enabled in normal operation.
+- The previous `devm_kfree` warning in isolated unload was traced to wrong `s_data->power` ownership:
+  - code-side fix is prepared;
+  - runtime validation still requires loading the rebuilt module in a future manual cycle.
+- Latest `rmmod` hang evidence is incomplete:
+  - `logs/20260421T101016Z-rmmod-trace.log` stopped at `running: rmmod nv_ov5647`;
+  - `logs/20260421T101016Z-rmmod-live-dmesg.log` is empty;
+  - the later accidental clean `sudo reboot` likely overwrote useful pstore evidence.
+- The current minimal stream path reaches sensor `STREAMING` state in driver logs, but VI still times out:
+  - capture returns with zero-byte output files;
+  - kernel logs show repeated `uncorr_err: request timed out after 2500 ms`;
+  - this indicates mode/CSI timing is still incomplete even though probe and node registration succeed.
+- A later manual `rmmod` hang with live dmesg reached:
+  - `ov5647_remove: enter`;
+  - skipped V4L2 unregister because the private `v4l2_registered` flag was false;
+  - `before tegracam_device_unregister`.
+- The private V4L2 registration flag is therefore not reliable enough as the only remove-time guard:
+  - source-side fix now forces V4L2 unregister on the full-probe path when `s_data` exists and `skip_v4l2_register=0`;
+  - runtime validation still requires a future manual load/unload cycle.
+- Root cause for the invalid remove-time state was found:
+  - `i2c_get_clientdata(client)` is not a stable `struct tegracam_device *` after V4L2 subdev registration;
+  - the driver was miscasting V4L2 subdev clientdata as tegracam device state;
+  - source-side fix now follows NVIDIA sample drivers and resolves remove state through `to_camera_common_data(&client->dev)` and `s_data->priv`.
+- Runtime validation of the corrected remove lookup passed once with split-unregister diagnostics:
+  - manual `rmmod` returned `rc=0`;
+  - V4L2 ctrl cleanup, async unregister, media cleanup, tegracam unregister, and i2c driver unregister all completed.
+- Normal `tegracam_v4l2subdev_unregister()` without split diagnostics also passed once:
+  - manual `rmmod` returned `rc=0`;
+  - VI subdev unbind, tegracam unregister, and i2c driver unregister all completed.
+- After the clean normal remove checkpoint, a fresh full-delay load followed by manual single-frame capture still timed out:
+  - `VIDIOC_STREAMON` returned success;
+  - capture timed out with `rc=124`;
+  - raw output size was zero bytes;
+  - VI reported repeated `uncorr_err: request timed out after 2500 ms`.
+- The current minimal 640x480 mode table differs from upstream Linux OV5647 VGA setup:
+  - upstream VGA mode uses `0x3821 = 0x03`;
+  - current local code uses `0x3821 = 0x01`;
+  - current local code includes local-only VGA writes to `0x5002` and `0x4837`.
+- Before the LP-11 source fix, local `ov5647_power_on()` missed an upstream power-on step:
+  - upstream writes a stream-stop register sequence after sensor output-enable;
+  - this is intended to force CSI lanes into LP-11 before stream start;
+  - the local code now has this fix built, but runtime validation requires a manual unload/load/capture cycle.
+- Runtime validation of the LP-11 power-on fix still timed out:
+  - the new marker executed in probe and capture power-on;
+  - `VIDIOC_STREAMON` returned success;
+  - capture still returned `rc=124`;
+  - raw output remained zero bytes;
+  - VI still reported repeated `uncorr_err: request timed out after 2500 ms`.
+- The local control callbacks are still stubs, so upstream timing values that are normally applied through V4L2 controls are not guaranteed to reach the sensor:
+  - upstream VGA `hts = 1852`;
+  - upstream VGA `vts = 0x1f8`;
+  - the minimal local mode table should explicitly program these for the first single-mode bring-up.
+- Source-side HTS/VTS programming has been added to the local VGA mode table and runtime-tested.
+- Runtime validation of the HTS/VTS programming still timed out:
+  - `VIDIOC_STREAMON` returned success;
+  - capture returned `rc=124`;
+  - raw output remained zero bytes;
+  - VI still reported repeated `uncorr_err: request timed out after 2500 ms`.
+- After LP-11 setup and explicit HTS/VTS both failed to produce frames, the probability of a wrong CSI route, lane polarity, or physical connector mapping is higher than before:
+  - two identical OV5647 modules are installed in both physical CSI connectors;
+  - I2C chip-ID success proves the sensor on `i2c-9` responds, but does not prove that valid CSI lanes are connected to the configured `serial_b` capture route;
+  - the physical connector to DT route mapping remains unresolved and must be treated as a blocking hardware assumption before declaring the overlay correct.
+- Read-only route analysis confirms the active route-A overlay is consistent with NVIDIA p3768 `imx219-A` and `imx477-A` references:
+  - this reduces the probability of a route-A DT modeling typo;
+  - it does not prove the CLB physical connector/cable path or the Raspberry Pi-style adapter pinout.
+- The local VGA mode table had two local-only writes not present in either mainline Linux or Raspberry Pi 6.6.y VGA arrays:
+  - `0x5002 = 0x41`;
+  - `0x4837 = 0x16`;
+  - these are now removed in source.
+- Runtime validation of the VGA table cleanup still timed out:
+  - the loaded module matched the rebuilt cleanup `srcversion`;
+  - `VIDIOC_STREAMON` returned success;
+  - capture returned `rc=124`;
+  - raw output remained zero bytes;
+  - route-A VI still reported repeated `uncorr_err: request timed out after 2500 ms`.
+- Continuing to tune route-A sensor registers now has diminishing value until route-C is tested:
+  - route-A probe is real, but frame delivery is absent;

@@ -1,0 +1,68 @@
+ .../boot/20260423T081349Z/extlinux.conf.current    |   19 +
+ .../boot/20260423T081349Z/extlinux.conf.generated  |   19 +
+ .../20260423T080309Z/ov5647-640x480-bg10.raw       |    0
+ ...080742Z-ov5647-p3768-port-a-lanepol0-probe.dtbo |  Bin 0 -> 4911 bytes
+ .../traces/20260423T080309Z/after-set_event.log    |   22 +
+ artifacts/traces/20260423T080309Z/after-trace.log  |   50 +
+ .../traces/20260423T080309Z/after-trace_clock.log  |    1 +
+ .../traces/20260423T080309Z/after-tracing_on.log   |    1 +
+ .../traces/20260423T080309Z/before-set_event.log   |   22 +
+ artifacts/traces/20260423T080309Z/before-trace.log |   14 +
+ .../traces/20260423T080309Z/before-trace_clock.log |    1 +
+ .../traces/20260423T080309Z/before-tracing_on.log  |    1 +
+ .../traces/20260423T080309Z/enabled-events.log     |   22 +
+ .../traces/20260423T080309Z/final-set_event.log    |   22 +
+ artifacts/traces/20260423T080309Z/final-trace.log  |   50 +
+ .../traces/20260423T080309Z/final-trace_clock.log  |    1 +
+ .../traces/20260423T080309Z/final-tracing_on.log   |    1 +
+ artifacts/traces/20260423T080309Z/last_event       |    4 +
+ artifacts/traces/20260423T080309Z/last_exception   |    0
+ .../traces/20260423T080309Z/missing-events.log     |    0
+ .../traces/20260423T080309Z/pre-capture-state.log  |  141 ++
+ artifacts/traces/20260423T080309Z/stats            |    2 +
+ docs/05-dt-overlay-design.md                       |   53 +-
+ docs/10-results-and-status.md                      |   27 +
+ docs/11-known-issues.md                            |    4 +-
+ logs/20260423T080247Z-rmmod-devnodes.log           |    4 +
+ logs/20260423T080247Z-rmmod-fuser.log              |    0
+ logs/20260423T080247Z-rmmod-live-dmesg.log         |   13 +
+ logs/20260423T080247Z-rmmod-lsof.log               |    4 +
+ logs/20260423T080247Z-rmmod-pre-dmesg-tail.log     |  120 ++
+ logs/20260423T080247Z-rmmod-sysrq-watchdog.log     |    1 +
+ logs/20260423T080247Z-rmmod-trace.log              |    4 +
+ ...al-insmod-full-delay-dump-mclk24.dmesg-tail.log |  160 ++
+ ...80302Z-manual-insmod-full-delay-dump-mclk24.log |    6 +
+ ...anual-insmod-full-delay-dump-mclk24.modinfo.log |   21 +
+ ...60423T080309Z-single-frame-rtcpu-live-dmesg.log | 1275 +++++++++++++
+ ...T080309Z-single-frame-rtcpu-post-dmesg-tail.log |  220 +++
+ logs/20260423T080309Z-single-frame-rtcpu-trace.log |   19 +
+ ..._overlay-ov5647-p3768-port-a-lanepol0-probe.log |   13 +
+ logs/20260423T081349Z-switch_boot_profile.log      |    8 +
+ logs/20260423T081800Z-analyze-080309-capture.log   |   22 +
+ ...20260423T081800Z-analyze-080309-rtcpu-trace.log |   49 +
+ ...0Z-latest-runtime-logs-after-080309-capture.log |   36 +
+ ...260423T081900Z-analyze-080302-insmod-mclk24.log |   32 +
+ ...260423T081900Z-inspect-080309-dmesg-content.log |  530 ++++++
+ ...260423T081900Z-inspect-080309-trace-content.log |  246 +++
+ ...2100Z-inspect-live-route-state-after-080309.log | 1933 ++++++++++++++++++++
+ ...60423T082100Z-inspect-route-overlay-options.log |    3 +
+ ...100Z-read-docs-before-080309-route-decision.log |  545 ++++++
+ ...0423T082300Z-git-state-before-lanepol0-work.log |  549 ++++++
+ ...0Z-inspect-overlay-build-files-for-lanepol0.log |  247 +++
+ ...T082500Z-read-build-overlay-script-lanepol0.log |   53 +
+ ...3T082500Z-read-port-a-probe-before-lanepol0.log |  203 ++
+ ...0Z-read-switch-boot-profile-script-lanepol0.log |  171 ++
+ ...900Z-build-route-a-lanepol0-overlay-wrapper.log |   13 +
+ ...260423T083000Z-verify-route-a-lanepol0-dtbo.log |   49 +
+ ...423T083300Z-diff-before-lanepol0-boot-stage.log |  134 ++
+ ...0Z-runtime-state-before-lanepol0-boot-stage.log |    5 +
+ ...0423T083500Z-stage-route-a-lanepol0-overlay.log |    4 +
+ ...0423T083500Z-switch-dev-to-route-a-lanepol0.log |    8 +
+ ...verify-boot-profile-fields-route-a-lanepol0.log |   15 +
+ ...23T083600Z-verify-extlinux-route-a-lanepol0.log |   20 +
+ ...423T083900Z-list-new-artifacts-before-stage.log |   22 +
+ ...20260423T083900Z-list-new-logs-before-stage.log |   39 +
+ patches/ov5647-p3768-port-a-lanepol0-probe.dts     |  203 ++
+ reports/2026-04-23-route-a-lanepol0-boot-stage.md  |   42 +
+ .../2026-04-23-route-a-noncontinuous-timeout.md    |   43 +
+ 67 files changed, 7542 insertions(+), 19 deletions(-)

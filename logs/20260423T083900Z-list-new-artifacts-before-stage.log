@@ -1,0 +1,22 @@
+# new artifact dirs
+artifacts/boot/20260423T081349Z/extlinux.conf.current
+artifacts/boot/20260423T081349Z/extlinux.conf.generated
+artifacts/captures/20260423T080309Z/ov5647-640x480-bg10.raw
+artifacts/traces/20260423T080309Z/after-set_event.log
+artifacts/traces/20260423T080309Z/after-trace.log
+artifacts/traces/20260423T080309Z/after-trace_clock.log
+artifacts/traces/20260423T080309Z/after-tracing_on.log
+artifacts/traces/20260423T080309Z/before-set_event.log
+artifacts/traces/20260423T080309Z/before-trace.log
+artifacts/traces/20260423T080309Z/before-trace_clock.log
+artifacts/traces/20260423T080309Z/before-tracing_on.log
+artifacts/traces/20260423T080309Z/enabled-events.log
+artifacts/traces/20260423T080309Z/final-set_event.log
+artifacts/traces/20260423T080309Z/final-trace.log
+artifacts/traces/20260423T080309Z/final-trace_clock.log
+artifacts/traces/20260423T080309Z/final-tracing_on.log
+artifacts/traces/20260423T080309Z/last_event
+artifacts/traces/20260423T080309Z/last_exception
+artifacts/traces/20260423T080309Z/missing-events.log
+artifacts/traces/20260423T080309Z/pre-capture-state.log
+artifacts/traces/20260423T080309Z/stats

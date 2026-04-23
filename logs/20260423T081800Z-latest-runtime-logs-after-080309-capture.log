@@ -1,0 +1,36 @@
+# latest manual insmod logs
+logs/20260423T080302Z-manual-insmod-full-delay-dump-mclk24.log
+logs/20260423T080302Z-manual-insmod-full-delay-dump-mclk24.dmesg-tail.log
+logs/20260423T080302Z-manual-insmod-full-delay-dump-mclk24.modinfo.log
+logs/20260423T080100Z-latest-manual-insmod-logs-frank-s15.log
+logs/20260423T080000Z-inspect-manual-insmod-profiles-after-frank-s15-timeout.log
+logs/20260423T075314Z-manual-insmod-full-delay-dump-contclk-mclk24.log
+logs/20260423T075314Z-manual-insmod-full-delay-dump-contclk-mclk24.dmesg-tail.log
+logs/20260423T075314Z-manual-insmod-full-delay-dump-contclk-mclk24.modinfo.log
+logs/20260423T075400Z-modinfo-current-ko-before-manual-insmod.log
+logs/20260422T144009Z-manual-insmod-full-delay-dump-contclk-mclk24.log
+logs/20260422T144009Z-manual-insmod-full-delay-dump-contclk-mclk24.dmesg-tail.log
+logs/20260422T144009Z-manual-insmod-full-delay-dump-contclk-mclk24.modinfo.log
+
+# latest capture logs
+logs/20260423T080309Z-single-frame-rtcpu-trace.log
+logs/20260423T080309Z-single-frame-rtcpu-post-dmesg-tail.log
+logs/20260423T080309Z-single-frame-rtcpu-live-dmesg.log
+logs/20260423T075323Z-single-frame-rtcpu-trace.log
+logs/20260423T075323Z-single-frame-rtcpu-post-dmesg-tail.log
+logs/20260423T075323Z-single-frame-rtcpu-live-dmesg.log
+logs/20260422T144015Z-single-frame-rtcpu-trace.log
+logs/20260422T144015Z-single-frame-rtcpu-post-dmesg-tail.log
+logs/20260422T144015Z-single-frame-rtcpu-live-dmesg.log
+logs/20260422T140936Z-single-frame-rtcpu-trace.log
+logs/20260422T140936Z-single-frame-rtcpu-post-dmesg-tail.log
+logs/20260422T140936Z-single-frame-rtcpu-live-dmesg.log
+
+# latest trace dirs
+artifacts/traces/20260423T080309Z
+artifacts/traces/20260423T075323Z
+artifacts/traces/20260422T144015Z
+artifacts/traces/20260422T140936Z
+artifacts/traces/20260422T135523Z
+artifacts/traces/20260422T134034Z
+artifacts/traces/20260422T085920Z

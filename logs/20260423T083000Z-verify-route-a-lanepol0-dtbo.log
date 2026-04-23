@@ -1,0 +1,49 @@
+dtbo=artifacts/dtbo/20260423T080742Z-ov5647-p3768-port-a-lanepol0-probe.dtbo
+4:	overlay-name = "OV5647 probe route A lane-polarity 0 for p3768/p3767";
+24:							port-index = <0x01>;
+25:							bus-width = <0x02>;
+39:						badge = "probe_ov5647_route_a_lanepol0";
+45:							sysfs-device-tree = "/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_a@36";
+71:										port-index = <0x01>;
+72:										bus-width = <0x02>;
+105:						ov5647_a@36 {
+115:							clocks = <0xffffffff 0x24>;
+116:							clock-names = "extperiph1";
+120:							pwdn-gpios = <0xffffffff 0x3e 0x00>;
+125:								tegra_sinterface = "serial_b";
+126:								lane_polarity = "0";
+128:								discontinuous_clk = "yes";
+169:										port-index = <0x01>;
+170:										bus-width = <0x02>;
+187:		ov5647_probe_a_lp0_out0 = "/fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0/endpoint";
+193:		bpmp = "/fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@0/ov5647_a@36:clocks:0";
+194:		gpio = "/fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@0/ov5647_a@36:pwdn-gpios:0";
+248:							ov5647_a@36 {
+# dtc stderr
+<stdout>: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/host1x@13e00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@0/endpoint@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@1/endpoint@1: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /__local_fixups__/fragment@0/__overlay__/tegra-capture-vi/ports/port@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /__local_fixups__/fragment@0/__overlay__/bus@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /__local_fixups__/fragment@0/__overlay__/bus@0/host1x@13e00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /__local_fixups__/fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /__local_fixups__/fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000/channel@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /__local_fixups__/fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /__local_fixups__/fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@0/endpoint@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /__local_fixups__/fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@1: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /__local_fixups__/fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000/channel@0/ports/port@1/endpoint@1: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /__local_fixups__/fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /__local_fixups__/fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@0/ov5647_a@36: node has a unit name, but no reg or ranges property
+<stdout>: Warning (unit_address_vs_reg): /__local_fixups__/fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports/port@0: node has a unit name, but no reg or ranges property
+<stdout>: Warning (i2c_bus_bridge): /__local_fixups__/fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@0: incorrect #address-cells for I2C bus
+<stdout>: Warning (i2c_bus_bridge): /__local_fixups__/fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@0: incorrect #size-cells for I2C bus
+<stdout>: Warning (i2c_bus_reg): Failed prerequisite 'i2c_bus_bridge'
+<stdout>: Warning (clocks_property): /fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@0/ov5647_a@36:clocks: Could not get phandle node for (cell 1)
+<stdout>: Warning (gpios_property): /fragment@0/__overlay__/bus@0/cam_i2cmux:mux-gpios: Could not get phandle node for (cell 1)
+<stdout>: Warning (gpios_property): /fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@0/ov5647_a@36:pwdn-gpios: Could not get phandle node for (cell 1)
+<stdout>: Warning (gpios_property): /__fixups__:gpio: Could not get phandle node for (cell 0)
+<stdout>: Warning (graph_child_address): /fragment@0/__overlay__/tegra-capture-vi/ports: graph node has single child node 'port@0', #address-cells/#size-cells are not necessary
+<stdout>: Warning (graph_child_address): /fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@0/ov5647_a@36/ports: graph node has single child node 'port@0', #address-cells/#size-cells are not necessary
+19536ef268cc0925e906c161ab6c041b6345192f8df15bbba87eddaafb1c1dc3  artifacts/dtbo/20260423T080742Z-ov5647-p3768-port-a-lanepol0-probe.dtbo
