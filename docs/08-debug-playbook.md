@@ -136,6 +136,31 @@ It collects:
 
 It does **not** read live vendor `debugfs regset32` files.
 
+## RTCPU Trace Analysis
+
+After a manual traced capture, summarize the result with:
+
+```bash
+/home/cam/ov5647_driver_codex/scripts/analyze_rtcpu_trace.sh \
+  /home/cam/ov5647_driver_codex/artifacts/traces/<timestamp>
+```
+
+This helper parses `final-trace.log` or `after-trace.log` and reports counts
+for the most important receiver-side events:
+
+- `capture_event_sof/eof/error/wdt`
+- `rtcpu_nvcsi_intr`
+- `rtcpu_vinotify_error`
+- `vi_frame_begin/end`
+- `capture_ivc_send/recv`
+- `vi_task_submit`
+
+It also emits a compact diagnosis such as:
+
+- `receiver_signature=no_receiver_ingress_visible`
+- `receiver_signature=receiver_sees_errors_without_frame`
+- `receiver_signature=receiver_activity_present`
+
 ## Manual Safe RTCPU Debugfs Dump
 
 After a reboot or after a traced capture, if you want one small receiver-side
