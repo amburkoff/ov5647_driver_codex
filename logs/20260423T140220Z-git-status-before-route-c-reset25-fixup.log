@@ -1,0 +1,7 @@
+A  artifacts/boot/20260423T140139Z/extlinux.conf.current
+A  artifacts/boot/20260423T140139Z/extlinux.conf.generated
+A  artifacts/dtbo/20260423T140126Z-ov5647-p3768-port-c-reset25-probe.dtbo
+A  logs/20260423T140126Z-build_overlay-ov5647-p3768-port-c-reset25-probe.log
+A  logs/20260423T140139Z-switch-boot-profile-route-c-reset25.log
+A  patches/ov5647-p3768-port-c-reset25-probe.dts
+A  reports/2026-04-23-route-c-reset25-stage.md

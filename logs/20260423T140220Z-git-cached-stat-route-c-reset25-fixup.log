@@ -1,0 +1,8 @@
+ .../boot/20260423T140139Z/extlinux.conf.current    |  19 ++
+ .../boot/20260423T140139Z/extlinux.conf.generated  |  19 ++
+ ...T140126Z-ov5647-p3768-port-c-reset25-probe.dtbo | Bin 0 -> 5068 bytes
+ ...d_overlay-ov5647-p3768-port-c-reset25-probe.log |  14 ++
+ ...140139Z-switch-boot-profile-route-c-reset25.log |   8 +
+ patches/ov5647-p3768-port-c-reset25-probe.dts      | 209 +++++++++++++++++++++
+ reports/2026-04-23-route-c-reset25-stage.md        |  55 ++++++
+ 7 files changed, 324 insertions(+)

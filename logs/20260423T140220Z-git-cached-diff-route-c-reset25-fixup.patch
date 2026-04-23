@@ -1,0 +1,364 @@
+diff --git a/artifacts/boot/20260423T140139Z/extlinux.conf.current b/artifacts/boot/20260423T140139Z/extlinux.conf.current
+new file mode 100644
+index 0000000..2f66291
+--- /dev/null
++++ b/artifacts/boot/20260423T140139Z/extlinux.conf.current
+@@ -0,0 +1,19 @@
++TIMEOUT 30
++DEFAULT ov5647-dev
++
++MENU TITLE L4T boot options
++
++LABEL ov5647-safe
++      MENU LABEL Jetson SAFE (no OV5647 auto-load)
++      LINUX /boot/Image
++      INITRD /boot/initrd
++      FDT /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb
++      APPEND ${cbootargs} root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-safe
++
++LABEL ov5647-dev
++      MENU LABEL Jetson DEV OV5647 auto-load
++      LINUX /boot/Image
++      INITRD /boot/initrd
++      FDT /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb
++      OVERLAYS /boot/ov5647-p3768-port-a-lanepol0-cil58.dtbo
++      APPEND ${cbootargs} root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev
+diff --git a/artifacts/boot/20260423T140139Z/extlinux.conf.generated b/artifacts/boot/20260423T140139Z/extlinux.conf.generated
+new file mode 100644
+index 0000000..0fd61a6
+--- /dev/null
++++ b/artifacts/boot/20260423T140139Z/extlinux.conf.generated
+@@ -0,0 +1,19 @@
++TIMEOUT 30
++DEFAULT ov5647-dev
++
++MENU TITLE L4T boot options
++
++LABEL ov5647-safe
++      MENU LABEL Jetson SAFE (no OV5647 auto-load)
++      LINUX /boot/Image
++      INITRD /boot/initrd
++      FDT /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb
++      APPEND ${cbootargs} root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-safe
++
++LABEL ov5647-dev
++      MENU LABEL Jetson DEV OV5647 auto-load
++      LINUX /boot/Image
++      INITRD /boot/initrd
++      FDT /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb
++      OVERLAYS /boot/ov5647-p3768-port-c-reset25.dtbo
++      APPEND ${cbootargs} root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev
+diff --git a/artifacts/dtbo/20260423T140126Z-ov5647-p3768-port-c-reset25-probe.dtbo b/artifacts/dtbo/20260423T140126Z-ov5647-p3768-port-c-reset25-probe.dtbo
+new file mode 100644
+index 0000000..65c31ef
+Binary files /dev/null and b/artifacts/dtbo/20260423T140126Z-ov5647-p3768-port-c-reset25-probe.dtbo differ
+diff --git a/logs/20260423T140126Z-build_overlay-ov5647-p3768-port-c-reset25-probe.log b/logs/20260423T140126Z-build_overlay-ov5647-p3768-port-c-reset25-probe.log
+new file mode 100644
+index 0000000..67558fe
+--- /dev/null
++++ b/logs/20260423T140126Z-build_overlay-ov5647-p3768-port-c-reset25-probe.log
+@@ -0,0 +1,14 @@
++[2026-04-23T14:01:26Z] Building overlay
++[2026-04-23T14:01:26Z] Source: patches/ov5647-p3768-port-c-reset25-probe.dts
++[2026-04-23T14:01:26Z] Output: /home/cam/ov5647_driver_codex/artifacts/dtbo/20260423T140126Z-ov5647-p3768-port-c-reset25-probe.dtbo
++$ dtc -@ -I dts -O dtb -o /home/cam/ov5647_driver_codex/artifacts/dtbo/20260423T140126Z-ov5647-p3768-port-c-reset25-probe.dtbo patches/ov5647-p3768-port-c-reset25-probe.dts
++patches/ov5647-p3768-port-c-reset25-probe.dts:71.10-206.6: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0: node has a unit name, but no reg or ranges property
++patches/ov5647-p3768-port-c-reset25-probe.dts:72.21-105.7: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/host1x@13e00000: node has a unit name, but no reg or ranges property
++patches/ov5647-p3768-port-c-reset25-probe.dts:73.21-104.8: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000: node has a unit name, but no reg or ranges property
++patches/ov5647-p3768-port-c-reset25-probe.dts:88.51-92.12: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000/channel@1/ports/port@0/endpoint@2: node has a unit name, but no reg or ranges property
++patches/ov5647-p3768-port-c-reset25-probe.dts:98.52-100.12: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000/channel@1/ports/port@1/endpoint@3: node has a unit name, but no reg or ranges property
++patches/ov5647-p3768-port-c-reset25-probe.dts:37.11-50.7: Warning (graph_child_address): /fragment@0/__overlay__/tegra-capture-vi/ports: graph node has single child node 'port@1', #address-cells/#size-cells are not necessary
++patches/ov5647-p3768-port-c-reset25-probe.dts:189.14-202.10: Warning (graph_child_address): /fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/ports: graph node has single child node 'port@0', #address-cells/#size-cells are not necessary
++patches/ov5647-p3768-port-c-reset25-probe.dts:41.13-49.8: Warning (graph_port): /fragment@0/__overlay__/tegra-capture-vi/ports/port@1: graph node unit address error, expected "0"
++[2026-04-23T14:01:26Z] Overlay build finished
++[2026-04-23T14:01:26Z] Artifacts saved under /home/cam/ov5647_driver_codex/artifacts/dtbo/20260423T140126Z-ov5647-p3768-port-c-reset25-probe.dtbo
+diff --git a/logs/20260423T140139Z-switch-boot-profile-route-c-reset25.log b/logs/20260423T140139Z-switch-boot-profile-route-c-reset25.log
+new file mode 100644
+index 0000000..a6e491b
+--- /dev/null
++++ b/logs/20260423T140139Z-switch-boot-profile-route-c-reset25.log
+@@ -0,0 +1,8 @@
++[2026-04-23T14:01:39Z] Rendered candidate boot profile config
++[2026-04-23T14:01:39Z] Source label: ov5647-dev
++[2026-04-23T14:01:39Z] Source menu label: Jetson DEV OV5647 auto-load
++[2026-04-23T14:01:39Z] Requested default profile: dev
++[2026-04-23T14:01:39Z] Requested dev overlay: /boot/ov5647-p3768-port-c-reset25.dtbo
++[2026-04-23T14:01:39Z] Detected UEFI DTB: /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb
++[2026-04-23T14:01:39Z] Generated config: /home/cam/ov5647_driver_codex/artifacts/boot/20260423T140139Z/extlinux.conf.generated
++[2026-04-23T14:01:39Z] Applied generated extlinux.conf and backed up the previous file to /boot/extlinux/extlinux.conf.20260423T140139Z.bak
+diff --git a/patches/ov5647-p3768-port-c-reset25-probe.dts b/patches/ov5647-p3768-port-c-reset25-probe.dts
+new file mode 100644
+index 0000000..32efb99
+--- /dev/null
++++ b/patches/ov5647-p3768-port-c-reset25-probe.dts
+@@ -0,0 +1,209 @@
++/dts-v1/;
++/plugin/;
++
++/ {
++	overlay-name = "OV5647 probe route C reset-only 25MHz for p3768/p3767";
++	jetson-header-name = "Jetson 22pin CSI Connector";
++	compatible =
++		"nvidia,p3768-0000+p3767-0000",
++		"nvidia,p3768-0000+p3767-0001",
++		"nvidia,p3768-0000+p3767-0003",
++		"nvidia,p3768-0000+p3767-0004",
++		"nvidia,p3768-0000+p3767-0005";
++
++	/*
++	 * Controlled software-only branch derived from the reviewed external
++	 * Orin NX/P3768 sample:
++	 *
++	 * - route C / serial_c / port-index 2 / 2 lanes
++	 * - reset-only semantics on GPIO token 0xa0
++	 * - no pwdn-gpios
++	 * - mclk_khz = 25000
++	 * - discontinuous_clk = "yes"
++	 * - cil_settletime = "0"
++	 *
++	 * This is intentionally separate from the route-A work. It tests whether
++	 * the current setup is closer to the shared route-C sample than to the
++	 * route-A p3768 references we have tried so far.
++	 */
++
++	fragment@0 {
++		target-path = "/";
++
++		__overlay__ {
++			tegra-capture-vi {
++				num-channels = <1>;
++
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					port@1 {
++						reg = <0>;
++
++						ov5647_probe_c_rst25_vi_in0: endpoint {
++							port-index = <2>;
++							bus-width = <2>;
++							remote-endpoint = <&ov5647_probe_c_rst25_csi_out0>;
++						};
++					};
++				};
++			};
++
++			tegra-camera-platform {
++				compatible = "nvidia, tegra-camera-platform";
++
++				modules {
++					module1 {
++						badge = "probe_ov5647_route_c_reset25";
++						position = "rear";
++						orientation = "1";
++
++						drivernode0 {
++							pcl_id = "v4l2_sensor";
++							sysfs-device-tree =
++								"/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@1/ov5647_c@36";
++						};
++					};
++				};
++			};
++
++			bus@0 {
++				host1x@13e00000 {
++					nvcsi@15a00000 {
++						num-channels = <1>;
++						#address-cells = <1>;
++						#size-cells = <0>;
++
++						channel@1 {
++							reg = <0>;
++
++							ports {
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++								port@0 {
++									reg = <0>;
++
++									ov5647_probe_c_rst25_csi_in0: endpoint@2 {
++										port-index = <2>;
++										bus-width = <2>;
++										remote-endpoint = <&ov5647_probe_c_rst25_out0>;
++									};
++								};
++
++								port@1 {
++									reg = <1>;
++
++									ov5647_probe_c_rst25_csi_out0: endpoint@3 {
++										remote-endpoint = <&ov5647_probe_c_rst25_vi_in0>;
++									};
++								};
++							};
++						};
++					};
++				};
++
++				cam_i2cmux {
++					status = "okay";
++					compatible = "i2c-mux-gpio";
++					#address-cells = <1>;
++					#size-cells = <0>;
++					mux-gpios = <&gpio_aon 19 0>;
++					i2c-parent = <&cam_i2c>;
++
++					i2c@0 {
++						status = "okay";
++						reg = <0>;
++						#address-cells = <1>;
++						#size-cells = <0>;
++
++						ov5647_a@36 {
++							reg = <0x36>;
++							status = "disabled";
++						};
++					};
++
++					i2c@1 {
++						status = "okay";
++						reg = <1>;
++						#address-cells = <1>;
++						#size-cells = <0>;
++
++						ov5647_c@36 {
++							status = "okay";
++							compatible = "ovti,ov5647";
++							reg = <0x36>;
++							devnode = "video0";
++							physical_w = "3.680";
++							physical_h = "2.760";
++							sensor_model = "ov5647";
++							use_sensor_mode_id = "true";
++							mclk = "extperiph1";
++							clocks = <&bpmp 0x24>;
++							clock-names = "extperiph1";
++							avdd-reg = "vana";
++							dvdd-reg = "vdig";
++							iovdd-reg = "vif";
++							reset-gpios = <&gpio 0xa0 0>;
++
++							mode0 {
++								mclk_khz = "25000";
++								num_lanes = "2";
++								tegra_sinterface = "serial_c";
++								lane_polarity = "0";
++								phy_mode = "DPHY";
++								discontinuous_clk = "yes";
++								dpcm_enable = "false";
++								cil_settletime = "0";
++								active_w = "640";
++								active_h = "480";
++								mode_type = "bayer";
++								pixel_phase = "bggr";
++								csi_pixel_bit_depth = "10";
++								readout_orientation = "90";
++								line_length = "1852";
++								inherent_gain = "1";
++								mclk_multiplier = "2.33";
++								pix_clk_hz = "58333000";
++								gain_factor = "16";
++								framerate_factor = "1000000";
++								exposure_factor = "1000000";
++								min_gain_val = "16";
++								max_gain_val = "1023";
++								step_gain_val = "1";
++								default_gain = "32";
++								min_hdr_ratio = "1";
++								max_hdr_ratio = "1";
++								min_framerate = "1000000";
++								max_framerate = "60000000";
++								step_framerate = "1";
++								default_framerate = "60000000";
++								min_exp_time = "4";
++								max_exp_time = "500000";
++								step_exp_time = "1";
++								default_exp_time = "1000";
++								embedded_metadata_height = "0";
++							};
++
++							ports {
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++								port@0 {
++									reg = <0>;
++
++									ov5647_probe_c_rst25_out0: endpoint {
++										port-index = <2>;
++										bus-width = <2>;
++										remote-endpoint = <&ov5647_probe_c_rst25_csi_in0>;
++									};
++								};
++							};
++						};
++					};
++				};
++			};
++		};
++	};
++};
+diff --git a/reports/2026-04-23-route-c-reset25-stage.md b/reports/2026-04-23-route-c-reset25-stage.md
+new file mode 100644
+index 0000000..5ed1d66
+--- /dev/null
++++ b/reports/2026-04-23-route-c-reset25-stage.md
+@@ -0,0 +1,55 @@
++# Route C Reset25 Stage
++
++Date: 2026-04-23
++
++## Why This Experiment
++
++After:
++
++- route A / route C attempts
++- lane polarity tuning
++- test pattern
++- `PWDN/CAM_IO0` diagnostics
++- explicit `cil_settletime = 58`
++
++the remaining software-only room is narrow.
++
++The most concrete external reference branch not yet tested in this repository is:
++
++- route C
++- reset-only control semantics
++- `mclk_khz = 25000`
++
++This branch comes from the reviewed shared Orin NX/P3768 OV5647 sample files.
++
++## What Changes
++
++New controlled overlay:
++
++- `patches/ov5647-p3768-port-c-reset25-probe.dts`
++
++Key differences versus the previous route-C probe overlay:
++
++- `reset-gpios = <&gpio 0xa0 0>`
++- no `pwdn-gpios`
++- `mclk_khz = "25000"`
++- `discontinuous_clk = "yes"`
++- `mclk_multiplier = "2.33"`
++- route remains `serial_c`, `port-index = 2`, `num_lanes = 2`
++
++## Goal
++
++This does not try to prove the shared sample is correct.
++
++It tests one final high-value software-only branch:
++
++- whether the current hardware behaves more like a reset-driven route-C design than like the route-A / pwdn-driven assumptions used so far.
++
++## Success Criterion
++
++- any change from the current `STREAMON ok + no SOF + 0 bytes` signature
++- ideally `/dev/video0` plus at least some new NVCSI/VI ingress events, even if capture is not yet fully correct
++
++## Failure Interpretation
++
++If this branch still shows the same no-SOF signature, the remaining software-only search space becomes very small and the physical pinout/remap hypothesis becomes even stronger.
