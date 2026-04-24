@@ -58,6 +58,15 @@
     - `port-index = 2`
     - `2 lanes`
   - NVIDIA route-C references themselves use more than one internal numbering layout (`port@1/channel@1` vs `port@0/channel@0`), so the OV5647 `port@1/channel@1` choice is not by itself suspicious.
+- The canonical route-C clock intent still contains one unresolved inconsistency:
+  - DT declares `mclk_khz = 25000`;
+  - official NVIDIA route-C overlays on this platform use `24000`;
+  - NVIDIA framework code clearly propagates `mclk_khz` into `def_clk_freq` and then into `clk_set_rate()`;
+  - runtime still enables `24000000`, even when the driver explicitly requests `25000000`.
+- This keeps `25 MHz intent vs 24 MHz runtime` as a bounded secondary hypothesis, but not the strongest one:
+  - route-A tests that already used `24000` still showed the same `no_receiver_ingress_visible` signature;
+  - blind cross-route hybrids also showed the same signature;
+  - official NVIDIA route-C examples normalize toward `24000`.
 - Public `NXCLB` manual evidence makes devkit-style `J20`/`J21` routing plausible on the CLB/makerobo carrier, but it does not validate the actual FFC orientation or Raspberry Pi-market camera pinout path in this setup.
 - Review of the GiraffAI OV5647 Nano articles and `digitallyamar/ov5647` repo suggests one higher-value remaining software test:
   - enable OV5647 built-in test pattern through sensor registers `0x0600/0x0601`;

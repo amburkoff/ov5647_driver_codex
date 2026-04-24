@@ -29,6 +29,24 @@ now also recorded:
   `port@1/channel@1`, which is therefore still within NVIDIA reference
   patterns.
 
+Focused `mclk` audit is now also recorded:
+
+- canonical OV5647 route-C DT still declares `mclk_khz = 25000`;
+- official NVIDIA route-C references on this platform declare `mclk_khz = 24000`;
+- NVIDIA framework path confirms:
+  - `mclk_khz` -> `signal_properties.mclk_freq`
+  - `signal_properties.mclk_freq` -> `s_data->def_clk_freq`
+  - `s_data->def_clk_freq` -> `camera_common_mclk_enable()` -> `clk_set_rate()`
+- runtime still ends at `mclk enabled rate=24000000`, even when explicit
+  `clk_set_rate(25000000)` is attempted.
+
+Current interpretation:
+
+- the `25 MHz intent vs 24 MHz runtime` mismatch remains a bounded secondary
+  hypothesis;
+- but it is now weaker than the hardware-path hypothesis and stronger than a
+  simple graph-shape hypothesis.
+
 Latest receiver-side debug update:
 
 - safe manual reads of `tegra_rtcpu_trace/{stats,last_exception,last_event}`
