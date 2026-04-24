@@ -2,6 +2,39 @@
 
 Current overall status: `reference route-C baseline still no-SOF, both blind cross-route hybrids reproduce the same no-receiver-ingress signature, the software-only route permutation branch is effectively exhausted, and the canonical route-C mclk24 retest also reproduces the same signature`
 
+Capture-side route-C assumption audit is now also recorded:
+
+- official NVIDIA `r36.5` source confirms the capture stack really uses:
+  - endpoint `port-index`
+  - endpoint `bus-width`
+  - optional `vc-id`
+  - mode `mclk_khz`
+  - `num_lanes`
+  - `pix_clk_hz`
+  - `csi_pixel_bit_depth`
+  - `cil_settletime`
+  - `lane_polarity`
+  - `discontinuous_clk`
+  - `tegra_sinterface`
+  - optional `embedded_metadata_height`
+- canonical OV5647 route-C is already aligned with official route-C reference
+  sensors on the main capture-side fields:
+  - `serial_c`
+  - `port-index = 2`
+  - `bus-width = 2`
+  - `num_lanes = 2`
+  - `mclk_khz = 24000`
+  - `cil_settletime = 0`
+  - `lane_polarity = 0`
+- `mclk_multiplier` is not a meaningful runtime lever in the inspected NVIDIA
+  capture-side source path;
+- `embedded_metadata_height = 0` differs from the official references, but it
+  only affects embedded-data buffer sizing after mode parsing and is not a
+  strong explanation for complete lack of `SOF/NVCSI/VI` ingress;
+- the only remaining capture-side DT assumption with any software-only weight
+  is `pix_clk_hz = 58333000`, but even that now looks weaker than the hardware
+  path hypothesis.
+
 Fresh canonical route-C `mclk24` runtime retest (`20260424T132054Z`) is now
 also negative:
 

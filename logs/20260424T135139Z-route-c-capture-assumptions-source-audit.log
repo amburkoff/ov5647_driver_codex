@@ -1,0 +1,244 @@
+# sensor_common runtime fields
+		else {
+			dev_err(dev, "%s: Invalid Phy mode\n", __func__);
+			return -EINVAL;
+		}
+	}
+
+	/* Do not report error for these properties yet */
+	err = read_property_u32(node, "readout_orientation", &value);
+	if (err)
+		signal->readout_orientation = 0;
+	else
+		signal->readout_orientation = value;
+
+	err = read_property_u32(node, "mclk_khz", &value);
+	if (err)
+		signal->mclk_freq = 0;
+	else
+		signal->mclk_freq = value;
+
+	err = read_property_u32(node, "num_lanes", &value);
+	if (err) {
+		dev_err(dev, "%s:num_lanes property missing\n", __func__);
+		return err;
+	}
+	signal->num_lanes = value;
+
+	err = read_property_u64(node, "pix_clk_hz", &val64);
+	if (err) {
+		dev_err(dev, "%s:pix_clk_hz property missing\n", __func__);
+		return err;
+	}
+	signal->pixel_clock.val = val64;
+
+	err = read_property_u64(node, "serdes_pix_clk_hz", &val64);
+	if (err)
+		signal->serdes_pixel_clock.val = 0;
+	else
+		signal->serdes_pixel_clock.val = val64;
+
+	if (signal->serdes_pixel_clock.val != 0ULL) {
+		if (signal->serdes_pixel_clock.val < signal->pixel_clock.val) {
+			dev_err(dev,
+				"%s: serdes_pix_clk_hz is lower than pix_clk_hz!\n",
+				__func__);
+			return -EINVAL;
+		}
+		rate = signal->serdes_pixel_clock.val;
+	} else {
+		rate = signal->pixel_clock.val;
+	}
+
+	err = read_property_u32(node, "csi_pixel_bit_depth", &depth);
+	if (err) {
+		dev_err(dev,
+			"%s:csi_pixel_bit_depth property missing.\n",
+			__func__);
+		return err;
+	}
+
+	/* Convert pixel rate to lane data rate */
+	rate = rate * depth / signal->num_lanes;
+
+	if (signal->phy_mode == CSI_PHY_MODE_DPHY) {
+		/* MIPI clock rate */
+		signal->mipi_clock.val = rate / 2;
+	} else if (signal->phy_mode == CSI_PHY_MODE_CPHY) {
+		/* Symbol rate */
+		signal->mipi_clock.val = rate * 7 / 16;
+	} else {
+		/* Data rate */
+		signal->mipi_clock.val = rate;
+	}
+
+	err = read_property_u32(node, "cil_settletime", &value);
+	if (err)
+		signal->cil_settletime = 0;
+	else
+		signal->cil_settletime = value;
+
+	err = read_property_u32(node, "lane_polarity", &value);
+	/*
+	 * absence of this value is not an error and default behaviour is
+	 * no polarity swap on any CSI lane
+	 */
+	if (err)
+		signal->lane_polarity = 0;
+	else
+		signal->lane_polarity = value;
+
+	/* initialize default if this prop not available */
+	err = of_property_read_string(node, "discontinuous_clk", &temp_str);
+	if (!err)
+		signal->discontinuous_clk =
+			!strncmp(temp_str, "yes", sizeof("yes"));
+	else
+		signal->discontinuous_clk = 1;
+
+	/* initialize default if this prop not available */
+	err = of_property_read_string(node, "dpcm_enable", &temp_str);
+	if (!err)
+		signal->dpcm_enable =
+			!strncmp(temp_str, "true", sizeof("true"));
+	else
+		signal->dpcm_enable = 0;
+
+	/* initialize default if this prop not available */
+	err = of_property_read_string(node,
+					"deskew_initial_enable", &temp_str);
+	if (!err)
+		signal->deskew_initial_enable =
+				!strncmp(temp_str, "true", sizeof("true"));
+	else
+		signal->deskew_initial_enable = 0;
+	err = of_property_read_string(node,
+					"deskew_periodic_enable", &temp_str);
+	if (!err)
+		signal->deskew_periodic_enable =
+				!strncmp(temp_str, "true", sizeof("true"));
+	else
+		signal->deskew_periodic_enable = 0;
+
+	err = of_property_read_string(node, "tegra_sinterface", &temp_str);
+	if (err) {
+		dev_err(dev,
+			"%s: tegra_sinterface property missing\n", __func__);
+		return err;
+	}
+
+	if (strcmp(temp_str, "serial_a") == 0)
+		signal->tegra_sinterface = 0;
+	else if (strcmp(temp_str, "serial_b") == 0)
+		signal->tegra_sinterface = 1;
+	else if (strcmp(temp_str, "serial_c") == 0)
+		signal->tegra_sinterface = 2;
+	else if (strcmp(temp_str, "serial_d") == 0)
+		signal->tegra_sinterface = 3;
+	else if (strcmp(temp_str, "serial_e") == 0)
+		signal->tegra_sinterface = 4;
+	else if (strcmp(temp_str, "serial_f") == 0)
+		signal->tegra_sinterface = 5;
+	else if (strcmp(temp_str, "serial_g") == 0)
+
+# vi endpoint parsing
+
+		if (value != index)
+			continue;
+
+		for_each_child_of_node(port, ep) {
+			if (!ep->name || of_node_cmp(ep->name, "endpoint"))
+				continue;
+
+			/* Get virtual channel id */
+			ret = of_property_read_u32(ep, "vc-id", &value);
+
+			/* vc-id is optional, default is 0 */
+			chan->virtual_channel = (ret < 0) ? 0 : value;
+
+			/* Consider max simultaneous sensor streams to be 16 */
+			if (value > 16) {
+				dev_err(chan->vi->dev, "vc id >16!\n");
+				return -EINVAL;
+			}
+
+			/* Get CSI port */
+			ret = of_property_read_u32(ep, "port-index", &value);
+			if (ret < 0)
+				dev_err(chan->vi->dev, "port index error\n");
+			chan->port[0] = value;
+
+			if (value > NVCSI_PORT_H) {
+				dev_err(chan->vi->dev, "port index >%d!\n",
+					NVCSI_PORT_H);
+				return -EINVAL;
+			}
+
+			/* Get number of data lanes for the endpoint */
+			ret = of_property_read_u32(ep, "bus-width", &value);
+			if (ret < 0)
+				dev_err(chan->vi->dev, "num lanes error\n");
+			chan->numlanes = value;
+
+			if (value > 12) {
+				dev_err(chan->vi->dev, "num lanes >12!\n");
+				return -EINVAL;
+			}
+			/*
+			 * for numlanes greater than 4 multiple CSI bricks
+			 * are needed to capture the image, the logic below
+			 * checks for numlanes > 4 and add a new CSI brick
+
+# csi endpoint parsing
+			continue;
+		for_each_child_of_node(port, ep) {
+			if (!ep->name || of_node_cmp(ep->name, "endpoint"))
+				continue;
+			ret = of_property_read_u32(ep, "port-index", &value);
+			if (ret < 0)
+				dev_err(chan->csi->dev, "No port index info\n");
+			chan->port[0] = value;
+
+			ret = of_property_read_u32(ep, "bus-width", &value);
+			if (ret < 0)
+				dev_err(chan->csi->dev, "No bus width info\n");
+			chan->numlanes = value;
+			if (value > 12) {
+				dev_err(chan->csi->dev, "Invalid num lanes\n");
+				return -EINVAL;
+			}
+			/*
+			 * for numlanes greater than 4 multiple CSI bricks
+			 * are needed to capture the image, the logic below
+			 * checks for numlanes > 4 and add a new CSI brick
+			 * as a valid port. Loops around the three CSI
+			 * bricks to add as many ports necessary.
+			 */
+			value -= 4;
+			for (i = 1; value > 0 && i < TEGRA_CSI_BLOCKS; i++, value -= 4) {
+				int next_port = chan->port[i-1] + 2;
+
+				next_port = (next_port % (NVCSI_PORT_H + 1));
+				chan->port[i] = next_port;
+			}
+		}
+	}
+
+	for (i = 0; csi_port_is_valid(chan->port[i]); i++)
+		chan->numports++;
+
+	return 0;
+}
+
+int tegra_csi_init(struct tegra_csi_device *csi,
+
+# mclk_multiplier grep
+tools/vendor/linux-nv-oot-r36.5/drivers/media/platform/tegra/camera/tests/sensor_dt_test_nodes.c:70:	MAKE_LINK_ALL(node, attrs, NULL, "mclk_multiplier", LTYPE_REQUIRED);
+
+# embedded metadata grep
+tools/vendor/linux-nv-oot-r36.5/drivers/media/platform/tegra/camera/vi/vi5_fops.c:924:						      embedded_metadata_height;
+tools/vendor/linux-nv-oot-r36.5/drivers/media/platform/tegra/camera/sensor_common.c:339:	/* embedded_metadata_height is optional */
+tools/vendor/linux-nv-oot-r36.5/drivers/media/platform/tegra/camera/sensor_common.c:340:	err = read_property_u32(node, "embedded_metadata_height", &value);
+tools/vendor/linux-nv-oot-r36.5/drivers/media/platform/tegra/camera/sensor_common.c:342:		image->embedded_metadata_height = 0;
+tools/vendor/linux-nv-oot-r36.5/drivers/media/platform/tegra/camera/sensor_common.c:344:		image->embedded_metadata_height = value;
+tools/vendor/linux-nv-oot-r36.5/drivers/media/platform/tegra/camera/tests/sensor_dt_test_nodes.c:76:	MAKE_LINK_ALL(node, attrs, NULL, "embedded_metadata_height",

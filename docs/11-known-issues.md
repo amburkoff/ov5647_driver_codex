@@ -84,6 +84,26 @@
 - This further weakens the remaining software-only MCLK-intent hypothesis:
   - aligning route-C DT intent to the official `24000` value did not change
     the receiver-side failure class.
+- A focused audit of NVIDIA's route-C capture-side assumptions is now also
+  negative on the main fields:
+  - canonical OV5647 route-C already matches official route-C references on:
+    - `serial_c`
+    - `port-index = 2`
+    - `bus-width = 2`
+    - `num_lanes = 2`
+    - `mclk_khz = 24000`
+    - `cil_settletime = 0`
+    - `lane_polarity = 0`
+  - `vc-id` is optional and defaults to `0` in the NVIDIA capture stack;
+  - `mclk_multiplier` is not a meaningful runtime lever in the inspected
+    NVIDIA code paths;
+  - `embedded_metadata_height = 0` remains different from official references
+    but only affects embedded-data buffer sizing after mode parsing.
+- The only notable capture-side DT assumption still left is `pix_clk_hz`, but
+  it now looks weaker than the hardware-path hypothesis:
+  - there is no obvious remaining route-C DT mismatch of the same class as a
+    wrong `port-index`, `bus-width`, `tegra_sinterface`, lane count, or MCLK
+    intent.
 - Public `NXCLB` manual evidence makes devkit-style `J20`/`J21` routing plausible on the CLB/makerobo carrier, but it does not validate the actual FFC orientation or Raspberry Pi-market camera pinout path in this setup.
 - Review of the GiraffAI OV5647 Nano articles and `digitallyamar/ov5647` repo suggests one higher-value remaining software test:
   - enable OV5647 built-in test pattern through sensor registers `0x0600/0x0601`;

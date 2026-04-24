@@ -1,0 +1,98 @@
+== /boot/tegra234-p3767-camera-p3768-imx219-C.dtbo ==
+25:							port-index = <0x02>;
+26:							bus-width = <0x02>;
+39:					module1 {
+82:										port-index = <0x02>;
+83:										bus-width = <0x02>;
+135:								mclk_khz = "24000";
+136:								num_lanes = "2";
+137:								tegra_sinterface = "serial_c";
+139:								discontinuous_clk = "yes";
+141:								cil_settletime = "0";
+150:								mclk_multiplier = "9.33";
+151:								pix_clk_hz = "182400000";
+169:								embedded_metadata_height = "2";
+173:								mclk_khz = "24000";
+174:								num_lanes = "2";
+175:								tegra_sinterface = "serial_c";
+177:								discontinuous_clk = "yes";
+179:								cil_settletime = "0";
+188:								mclk_multiplier = "9.33";
+189:								pix_clk_hz = "182400000";
+207:								embedded_metadata_height = "2";
+211:								mclk_khz = "24000";
+212:								num_lanes = "2";
+213:								tegra_sinterface = "serial_c";
+215:								discontinuous_clk = "yes";
+217:								cil_settletime = "0";
+226:								mclk_multiplier = "9.33";
+227:								pix_clk_hz = "182400000";
+245:								embedded_metadata_height = "2";
+249:								mclk_khz = "24000";
+250:								num_lanes = "2";
+251:								tegra_sinterface = "serial_c";
+253:								discontinuous_clk = "yes";
+255:								cil_settletime = "0";
+264:								mclk_multiplier = "9.33";
+265:								pix_clk_hz = "182400000";
+283:								embedded_metadata_height = "2";
+287:								mclk_khz = "24000";
+288:								num_lanes = "2";
+289:								tegra_sinterface = "serial_c";
+291:								discontinuous_clk = "yes";
+293:								cil_settletime = "0";
+302:								mclk_multiplier = "9.33";
+303:								pix_clk_hz = "182400000";
+321:								embedded_metadata_height = "2";
+333:										port-index = <0x02>;
+334:										bus-width = <0x02>;
+378:		cam_module1 = "/fragment@0/__overlay__/tegra-camera-platform/modules/module1";
+379:		cam_module1_drivernode0 = "/fragment@0/__overlay__/tegra-camera-platform/modules/module1/drivernode0";
+380:		cam_module1_drivernode1 = "/fragment@0/__overlay__/tegra-camera-platform/modules/module1/drivernode1";
+
+== /boot/tegra234-p3767-camera-p3768-imx477-C.dtbo ==
+24:							port-index = <0x02>;
+25:							bus-width = <0x02>;
+38:					module1 {
+71:										port-index = <0x02>;
+72:										bus-width = <0x02>;
+127:								mclk_khz = "24000";
+128:								num_lanes = "2";
+129:								tegra_sinterface = "serial_c";
+131:								discontinuous_clk = "no";
+133:								cil_settletime = "0";
+134:								lane_polarity = "0";
+143:								mclk_multiplier = "80";
+144:								pix_clk_hz = "300000000";
+162:								embedded_metadata_height = "2";
+166:								mclk_khz = "24000";
+167:								num_lanes = "2";
+168:								tegra_sinterface = "serial_c";
+170:								discontinuous_clk = "no";
+172:								cil_settletime = "0";
+173:								lane_polarity = "0";
+182:								mclk_multiplier = "80";
+183:								pix_clk_hz = "300000000";
+201:								embedded_metadata_height = "2";
+212:										port-index = <0x02>;
+213:										bus-width = <0x02>;
+
+== ov5647 route-c mclk24 ==
+19:	 * - update the dependent mclk_multiplier accordingly
+22:	 * - official NVIDIA route-C overlays on this platform use mclk_khz = 24000
+43:							port-index = <2>;
+44:							bus-width = <2>;
+55:					module1 {
+87:										port-index = <2>;
+88:										bus-width = <2>;
+149:								mclk_khz = "24000";
+150:								num_lanes = "2";
+151:								tegra_sinterface = "serial_c";
+152:								lane_polarity = "0";
+154:								discontinuous_clk = "yes";
+156:								cil_settletime = "0";
+165:								mclk_multiplier = "2.43";
+166:								pix_clk_hz = "58333000";
+184:								embedded_metadata_height = "0";
+195:										port-index = <2>;
+196:										bus-width = <2>;
