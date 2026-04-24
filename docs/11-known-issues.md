@@ -67,6 +67,10 @@
   - route-A tests that already used `24000` still showed the same `no_receiver_ingress_visible` signature;
   - blind cross-route hybrids also showed the same signature;
   - official NVIDIA route-C examples normalize toward `24000`.
+- A controlled route-C retest is now staged specifically to close that gap:
+  - boot overlay `/boot/ov5647-p3768-port-c-reference-mclk24.dtbo`;
+  - same route-C graph and reset-only semantics;
+  - only `mclk_khz` and dependent `mclk_multiplier` intent were changed.
 - Public `NXCLB` manual evidence makes devkit-style `J20`/`J21` routing plausible on the CLB/makerobo carrier, but it does not validate the actual FFC orientation or Raspberry Pi-market camera pinout path in this setup.
 - Review of the GiraffAI OV5647 Nano articles and `digitallyamar/ov5647` repo suggests one higher-value remaining software test:
   - enable OV5647 built-in test pattern through sensor registers `0x0600/0x0601`;

@@ -47,6 +47,20 @@ Current interpretation:
 - but it is now weaker than the hardware-path hypothesis and stronger than a
   simple graph-shape hypothesis.
 
+Next staged reboot-only retest:
+
+- `ov5647-dev` now points at `/boot/ov5647-p3768-port-c-reference-mclk24.dtbo`
+- this is a controlled route-C variant that keeps:
+  - `serial_c`
+  - `port-index = 2`
+  - `2 lanes`
+  - `reset-gpios`
+  - `discontinuous_clk = yes`
+  - `cil_settletime = 0`
+- and changes only the MCLK intent tuple:
+  - `mclk_khz: 25000 -> 24000`
+  - `mclk_multiplier: 2.33 -> 2.43`
+
 Latest receiver-side debug update:
 
 - safe manual reads of `tegra_rtcpu_trace/{stats,last_exception,last_event}`
