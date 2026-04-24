@@ -38,6 +38,37 @@ Use this when Codex context may be lost or before any risky module/capture comma
 
 This helper is intentionally read-only. It does not load/unload modules, start streaming, or reboot. It saves cmdline, extlinux, I2C bus list, module state, media graph, and live OV5647 DT route fields under `artifacts/camera-route-state/<timestamp>/`.
 
+## Canonical Route-C Baseline Check
+
+Use this after staging `ov5647-dev` back to the canonical route-C reference
+overlay and again after the next reboot:
+
+```bash
+/home/cam/ov5647_driver_codex/scripts/collect_reference_baseline_state.sh
+```
+
+This helper is also read-only. It saves a compact baseline package under:
+
+- `artifacts/reference-baseline-state/<timestamp>/`
+
+and emits explicit assertions for:
+
+- `boot_profile=ov5647-dev`
+- on-disk `extlinux` overlay path
+- expected live DT node `cam_i2cmux/i2c@1/ov5647_c@36`
+- expected route-C mode fields:
+  - `serial_c`
+  - `lane_polarity=0`
+  - `num_lanes=2`
+  - `discontinuous_clk=yes`
+  - `cil_settletime=0`
+
+This is useful immediately after staging the boot config, because it will show
+the honest mixed state:
+
+- `PASS` for the new on-disk `extlinux` overlay
+- `FAIL` for the live DT node until the user performs the next reboot
+
 ## Manual Unload Hang Capture
 
 Use manual-only unload tests. Do not run these from Codex when a hard hang is plausible.

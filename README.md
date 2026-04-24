@@ -36,6 +36,7 @@ Useful scripts:
 
 - `scripts/collect_env.sh`
 - `scripts/collect_camera_route_state.sh`
+- `scripts/collect_reference_baseline_state.sh`
 - `scripts/capture_kernel_logs.sh`
 - `scripts/build_module.sh`
 - `scripts/switch_boot_profile.sh`

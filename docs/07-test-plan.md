@@ -6,6 +6,10 @@
 - snapshot current `extlinux.conf`;
 - confirm `boot_profile=*` token presence or absence;
 - record whether any live camera overlay is active.
+- when `ov5647-dev` is staged back to the canonical route-C baseline, run
+  `scripts/collect_reference_baseline_state.sh` and record whether:
+  - on-disk `extlinux` already points at `/boot/ov5647-p3768-port-c-reference.dtbo`;
+  - live DT has or has not caught up yet after reboot.
 
 ## Phase 1: Build Infrastructure
 
@@ -49,4 +53,3 @@
 - raw capture works;
 - visible image is shown from the sensor;
 - documentation and logs are complete.
-
