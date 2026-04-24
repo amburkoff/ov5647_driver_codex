@@ -23,6 +23,23 @@ Latest clock/power-domain observation from traced capture `20260424T081333Z`:
 - the trace summary for the same run still reports
   `receiver_signature=no_receiver_ingress_visible`.
 
+Timed clock/power sampling on traced capture `20260424T101451Z` refined that picture:
+
+- `max_nvcsi_enable_count = 1`
+- `max_vi_enable_count = 1`
+- `max_vi_prepare_count = 1`
+- sample rates during timeout included:
+  - `extperiph1 = 24000000`
+  - `nvcsi = 10045312`
+  - `vi = 115200000`
+- receiver tracepoints still remained fully silent:
+  - no `SOF/EOF`
+  - no `rtcpu_nvcsi_intr`
+  - no `vi_frame_begin/end`
+
+So `VI` does come up at the Jetson clock-bookkeeping level during the failed
+stream, but valid frame ingress still never becomes visible.
+
 Completed:
 
 - live platform inventory gathered from the target;
