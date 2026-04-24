@@ -1,6 +1,33 @@
 # Results And Status
 
-Current overall status: `reference route-C baseline still no-SOF, both blind cross-route hybrids reproduce the same no-receiver-ingress signature, the software-only route permutation branch is effectively exhausted, and ov5647-dev is now staged back to the canonical route-C baseline`
+Current overall status: `reference route-C baseline still no-SOF, both blind cross-route hybrids reproduce the same no-receiver-ingress signature, the software-only route permutation branch is effectively exhausted, and the canonical route-C mclk24 retest also reproduces the same signature`
+
+Fresh canonical route-C `mclk24` runtime retest (`20260424T132054Z`) is now
+also negative:
+
+- live DT confirmed the controlled route-C variant with:
+  - `mclk_khz = 24000`
+  - `mclk_multiplier = 2.43`
+  - `serial_c`
+  - `port-index = 2`
+  - `num_lanes = 2`
+- manual `insmod full-delay-dump` succeeded;
+- single-frame capture again reached `VIDIOC_STREAMON`;
+- raw output remained `0 bytes`;
+- driver logs still showed `mclk enabled rate=24000000`;
+- repeated VI timeouts remained:
+  - `tegra-camrtc-capture-vi: uncorr_err: request timed out after 2500 ms`
+- RTCPU/VI trace still contained only control-path events:
+  - `tegra_channel_capture_setup`
+  - `capture_ivc_send/recv`
+  - `tegra_channel_set_stream`
+- receiver-side events were still absent:
+  - no `SOF/EOF`
+  - no `rtcpu_nvcsi_intr`
+  - no `vi_frame_begin/end`
+
+This means the focused `25000 vs 24000` MCLK-intent gap has now been tested on
+the canonical route-C baseline and did not change the failure class.
 
 Fresh canonical route-C runtime after restoring the baseline and rebooting back
 into it (`20260424T130137Z`) still matches the same receiver-side signature:
@@ -42,24 +69,16 @@ Focused `mclk` audit is now also recorded:
 
 Current interpretation:
 
-- the `25 MHz intent vs 24 MHz runtime` mismatch remains a bounded secondary
+- the `25 MHz intent vs 24 MHz runtime` mismatch was a bounded secondary
   hypothesis;
-- but it is now weaker than the hardware-path hypothesis and stronger than a
-  simple graph-shape hypothesis.
+- the controlled route-C `mclk24` runtime retest is now negative, so this gap
+  becomes weaker still and no longer looks like the leading software-only
+  candidate.
 
-Next staged reboot-only retest:
+The `ov5647-dev` boot entry currently points at the controlled route-C
+`mclk24` variant used for that negative retest:
 
-- `ov5647-dev` now points at `/boot/ov5647-p3768-port-c-reference-mclk24.dtbo`
-- this is a controlled route-C variant that keeps:
-  - `serial_c`
-  - `port-index = 2`
-  - `2 lanes`
-  - `reset-gpios`
-  - `discontinuous_clk = yes`
-  - `cil_settletime = 0`
-- and changes only the MCLK intent tuple:
-  - `mclk_khz: 25000 -> 24000`
-  - `mclk_multiplier: 2.33 -> 2.43`
+- `/boot/ov5647-p3768-port-c-reference-mclk24.dtbo`
 
 Latest receiver-side debug update:
 
