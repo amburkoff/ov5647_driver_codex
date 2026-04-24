@@ -49,6 +49,15 @@
   - `receiver_signature=no_receiver_ingress_visible`;
   - `clk_pm_signature=vi_and_nvcsi_clocks_observed_during_timeout`;
   - this confirms the return-to-baseline did not uncover a hidden regression from the blind cross-route branch.
+- A pure graph-shape mismatch is now a weaker hypothesis:
+  - the loaded canonical route-C media graph is the expected `sensor -> nvcsi -> vi-output` chain;
+  - canonical OV5647 route-C matches official NVIDIA route-C overlays on the main structural fields:
+    - `module1`
+    - `cam_i2cmux/i2c@1`
+    - `serial_c`
+    - `port-index = 2`
+    - `2 lanes`
+  - NVIDIA route-C references themselves use more than one internal numbering layout (`port@1/channel@1` vs `port@0/channel@0`), so the OV5647 `port@1/channel@1` choice is not by itself suspicious.
 - Public `NXCLB` manual evidence makes devkit-style `J20`/`J21` routing plausible on the CLB/makerobo carrier, but it does not validate the actual FFC orientation or Raspberry Pi-market camera pinout path in this setup.
 - Review of the GiraffAI OV5647 Nano articles and `digitallyamar/ov5647` repo suggests one higher-value remaining software test:
   - enable OV5647 built-in test pattern through sensor registers `0x0600/0x0601`;

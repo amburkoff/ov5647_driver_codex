@@ -11,6 +11,24 @@ into it (`20260424T130137Z`) still matches the same receiver-side signature:
 - trace summary remained `receiver_signature=no_receiver_ingress_visible`;
 - timed sampling again showed `clk_pm_signature=vi_and_nvcsi_clocks_observed_during_timeout`.
 
+Canonical route-C graph comparison against official NVIDIA route-C overlays is
+now also recorded:
+
+- live media graph with the loaded module is the expected simple chain:
+  - `nv_ov5647 -> nvcsi -> vi-output`
+- official `imx219-C` and `imx477-C` route-C overlays both confirm:
+  - `module1`
+  - `cam_i2cmux/i2c@1`
+  - `serial_c`
+  - `port-index = 2`
+  - `2 lanes`
+- official route-C overlays use more than one internal numbering pattern:
+  - `imx219-C`: `tegra-capture-vi/port@1`, `nvcsi/channel@1`
+  - `imx477-C`: `tegra-capture-vi/port@0`, `nvcsi/channel@0`
+- our OV5647 route-C reference uses the `imx219-C` style
+  `port@1/channel@1`, which is therefore still within NVIDIA reference
+  patterns.
+
 Latest receiver-side debug update:
 
 - safe manual reads of `tegra_rtcpu_trace/{stats,last_exception,last_event}`
