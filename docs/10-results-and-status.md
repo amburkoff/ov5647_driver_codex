@@ -2,6 +2,15 @@
 
 Current overall status: `reference route-C baseline still no-SOF, both blind cross-route hybrids reproduce the same no-receiver-ingress signature, the software-only route permutation branch is effectively exhausted, and ov5647-dev is now staged back to the canonical route-C baseline`
 
+Fresh canonical route-C runtime after restoring the baseline and rebooting back
+into it (`20260424T130137Z`) still matches the same receiver-side signature:
+
+- manual `insmod full-delay-dump` succeeded;
+- single-frame capture reached `VIDIOC_STREAMON`;
+- raw output remained `0 bytes`;
+- trace summary remained `receiver_signature=no_receiver_ingress_visible`;
+- timed sampling again showed `clk_pm_signature=vi_and_nvcsi_clocks_observed_during_timeout`.
+
 Latest receiver-side debug update:
 
 - safe manual reads of `tegra_rtcpu_trace/{stats,last_exception,last_event}`
