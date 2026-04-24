@@ -11,11 +11,10 @@
   - route C now boots with BPMP clock ID `0x24` / decimal `36` and driver logs confirm `mclk enabled rate=24000000`;
   - route C still produces zero-byte capture timeout and no SOF with corrected MCLK;
   - route A also probes successfully with corrected MCLK and still produces zero-byte capture timeout with no SOF/NVCSI interrupt events.
-- The safe boot entry still exists, but the on-disk default is currently set to `ov5647-dev` with the second blind cross-route overlay.
-- The active staged `ov5647-dev` overlay on disk is now `/boot/ov5647-p3768-cross-i2c1-serialb-probe.dtbo`.
-- This dev overlay is not the canonical repository baseline:
-  - it is a narrow experiment that keeps route-C low-speed control wiring and forces route-A receiver routing;
-  - the canonical repository baseline remains `patches/ov5647-p3768-port-c-reference.dts`.
+- The safe boot entry still exists, and the on-disk default remains `ov5647-dev`.
+- After closing the blind cross-route matrix, the staged `ov5647-dev` overlay on disk is again the canonical repository baseline:
+  - `/boot/ov5647-p3768-port-c-reference.dtbo`
+  - source baseline: `patches/ov5647-p3768-port-c-reference.dts`
 - The physical camera modules are present on both 22-pin connectors, but the exact mapping from physical connector to route `A` or `C` is still unverified.
 - The visible camera marking `JT-ZERO-V2.0 YH` and user confirmation identify the modules as Raspberry Pi Zero-style 22-pin OV5647 cameras, but the exact FFC/adaptor topology is not yet documented.
 - Repository photos now confirm `JT-ZERO-V2.0` is a native 22-pin integrated-flex camera module, not a standard 15-pin Raspberry Pi camera using a detachable `15->22` adapter cable.

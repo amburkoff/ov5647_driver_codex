@@ -1,6 +1,6 @@
 # Results And Status
 
-Current overall status: `reference route-C baseline still no-SOF, both blind cross-route hybrids now reproduce the same no-receiver-ingress signature, and the software-only route permutation branch is effectively exhausted`
+Current overall status: `reference route-C baseline still no-SOF, both blind cross-route hybrids reproduce the same no-receiver-ingress signature, the software-only route permutation branch is effectively exhausted, and ov5647-dev is now staged back to the canonical route-C baseline`
 
 Latest receiver-side debug update:
 
@@ -70,6 +70,9 @@ Cross-route status:
   - `serial_c`
   - `port-index = 2`
   - `bus-width = 2`
+- after closing both negative checks, the on-disk `ov5647-dev` boot entry has
+  been returned to `/boot/ov5647-p3768-port-c-reference.dtbo` so further work
+  can compare against the canonical baseline instead of a blind hybrid.
 
 Completed:
 
