@@ -2,13 +2,13 @@
 
 ## Current State
 
-The on-disk boot configuration is staged for the first blind cross-route overlay experiment:
+The on-disk boot configuration is staged for the second blind cross-route overlay experiment:
 
 - `DEFAULT ov5647-dev`;
 - `LABEL ov5647-safe`;
 - `LABEL ov5647-dev`;
 - safe profile has no OV5647 overlay;
-- dev profile uses `OVERLAYS /boot/ov5647-p3768-cross-i2c0-serialc-probe.dtbo`.
+- dev profile uses `OVERLAYS /boot/ov5647-p3768-cross-i2c1-serialb-probe.dtbo`.
 
 After the next reboot, the first required check is:
 
@@ -24,10 +24,10 @@ boot_profile=ov5647-dev
 
 Expected live-DT target for the next reboot-only test:
 
-- `cam_i2cmux/i2c@0/ov5647_cross_i2c0_sc@36`;
-- `serial_c`;
-- `port-index = 2`;
-- `pwdn-gpios = <&gpio 0x3e 0>`.
+- `cam_i2cmux/i2c@1/ov5647_cross_i2c1_sb@36`;
+- `serial_b`;
+- `port-index = 1`;
+- `reset-gpios = <&gpio 0xa0 0>`.
 
 ## Prepared Workflow
 
@@ -56,7 +56,7 @@ Current design choice:
 - on this r36.x target, local NVIDIA `jetson-io` tooling indicates the UEFI/L4tLauncher path should use `FDT + OVERLAYS`, not `FDTOVERLAYS`.
 - current corrected dev entry points at:
   - `FDT /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb`
-  - `OVERLAYS /boot/ov5647-p3768-cross-i2c0-serialc-probe.dtbo`
+  - `OVERLAYS /boot/ov5647-p3768-cross-i2c1-serialb-probe.dtbo`
 
 ## Recovery Policy
 

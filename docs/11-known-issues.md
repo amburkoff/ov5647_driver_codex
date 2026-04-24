@@ -11,10 +11,10 @@
   - route C now boots with BPMP clock ID `0x24` / decimal `36` and driver logs confirm `mclk enabled rate=24000000`;
   - route C still produces zero-byte capture timeout and no SOF with corrected MCLK;
   - route A also probes successfully with corrected MCLK and still produces zero-byte capture timeout with no SOF/NVCSI interrupt events.
-- The safe boot entry still exists, but the on-disk default is currently set to `ov5647-dev` with a blind cross-route overlay.
-- The active `ov5647-dev` overlay is now `/boot/ov5647-p3768-cross-i2c0-serialc-probe.dtbo`.
+- The safe boot entry still exists, but the on-disk default is currently set to `ov5647-dev` with the second blind cross-route overlay.
+- The active staged `ov5647-dev` overlay on disk is now `/boot/ov5647-p3768-cross-i2c1-serialb-probe.dtbo`.
 - This dev overlay is not the canonical repository baseline:
-  - it is a narrow experiment that keeps route-A low-speed control wiring and forces route-C receiver routing;
+  - it is a narrow experiment that keeps route-C low-speed control wiring and forces route-A receiver routing;
   - the canonical repository baseline remains `patches/ov5647-p3768-port-c-reference.dts`.
 - The physical camera modules are present on both 22-pin connectors, but the exact mapping from physical connector to route `A` or `C` is still unverified.
 - The visible camera marking `JT-ZERO-V2.0 YH` and user confirmation identify the modules as Raspberry Pi Zero-style 22-pin OV5647 cameras, but the exact FFC/adaptor topology is not yet documented.
@@ -34,6 +34,11 @@
   - `i2c@0 + serial_c + port-index=2`
   - `i2c@1 + serial_b + port-index=1`
   - they are being kept only as narrow checks against a possible crossed low-speed-vs-receiver-route wiring assumption.
+- The first blind cross-route runtime result is now negative:
+  - live DT `cam_i2cmux/i2c@0/ov5647_cross_i2c0_sc@36`;
+  - runtime trace `20260424T121630Z`;
+  - `receiver_signature=no_receiver_ingress_visible`;
+  - timed sampling still showed `vi` and `nvcsi` clocks during timeout, so the failure signature stayed aligned with the earlier route-A and route-C tests.
 - Public `NXCLB` manual evidence makes devkit-style `J20`/`J21` routing plausible on the CLB/makerobo carrier, but it does not validate the actual FFC orientation or Raspberry Pi-market camera pinout path in this setup.
 - Review of the GiraffAI OV5647 Nano articles and `digitallyamar/ov5647` repo suggests one higher-value remaining software test:
   - enable OV5647 built-in test pattern through sensor registers `0x0600/0x0601`;

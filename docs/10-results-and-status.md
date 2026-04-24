@@ -1,6 +1,6 @@
 # Results And Status
 
-Current overall status: `reference route-C baseline still no-SOF, timed receiver-side sampling confirms Jetson clocks come up without observable frame ingress, and a first blind cross-route overlay is now staged for reboot-only comparison`
+Current overall status: `reference route-C baseline still no-SOF, first blind cross-route hybrid i2c@0+serial_c also reproduced the same no-receiver-ingress signature, and the second blind hybrid i2c@1+serial_b is now staged as the next reboot-only comparison`
 
 Latest receiver-side debug update:
 
@@ -40,20 +40,31 @@ Timed clock/power sampling on traced capture `20260424T101451Z` refined that pic
 So `VI` does come up at the Jetson clock-bookkeeping level during the failed
 stream, but valid frame ingress still never becomes visible.
 
-Next staged DT experiment:
+Cross-route status:
 
 - the canonical baseline remains `patches/ov5647-p3768-port-c-reference.dts`;
-- the next reboot-only dev overlay is now the blind hybrid
-  `/boot/ov5647-p3768-cross-i2c0-serialc-probe.dtbo`;
-- this overlay keeps the route-A low-speed branch:
+- first blind hybrid runtime result on trace `20260424T121630Z`:
+  - `cam_i2cmux/i2c@0`
+  - `serial_c`
+  - `port-index = 2`
+  - `receiver_signature=no_receiver_ingress_visible`
+  - `clk_pm_signature=vi_and_nvcsi_clocks_observed_during_timeout`
+- this means the first hybrid did not improve on reference route A or C;
+- the next reboot-only dev overlay is now the second blind hybrid
+  `/boot/ov5647-p3768-cross-i2c1-serialb-probe.dtbo`;
+- that staged overlay keeps the route-C low-speed branch:
+  - `cam_i2cmux/i2c@1`
+  - `reset-gpios = <&gpio 0xa0 0>`
+- and forces the route-A receiver graph:
+  - `serial_b`
+  - `port-index = 1`
+- the first blind hybrid kept the route-A low-speed branch:
   - `cam_i2cmux/i2c@0`
   - `pwdn-gpios = <&gpio 0x3e 0>`
-- and forces the route-C receiver graph:
+- and forced the route-C receiver graph:
   - `serial_c`
   - `port-index = 2`
   - `bus-width = 2`
-- a second blind hybrid `i2c@1 + serial_b + port-index=1` is prepared in the
-  repo but is intentionally not yet staged as the boot default.
 
 Completed:
 
