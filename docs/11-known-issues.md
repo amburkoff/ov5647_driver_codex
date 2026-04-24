@@ -11,10 +11,11 @@
   - route C now boots with BPMP clock ID `0x24` / decimal `36` and driver logs confirm `mclk enabled rate=24000000`;
   - route C still produces zero-byte capture timeout and no SOF with corrected MCLK;
   - route A also probes successfully with corrected MCLK and still produces zero-byte capture timeout with no SOF/NVCSI interrupt events.
-- The safe boot entry still exists, but the on-disk default is currently set to `ov5647-dev` with the route-A corrected-MCLK overlay.
-- The active dev overlay is now a route-A corrected-`extperiph1` candidate from the physical-connector point of view; it is logically validated by successful probe and `/dev/video0`, but not by SOF/frame delivery.
-- The active `ov5647-dev` overlay is now `/boot/ov5647-p3768-port-a-lanepol0.dtbo`.
-- The route-A lane-polarity-0 overlay has now booted successfully and has been runtime-tested with a fresh manual `insmod` and traced capture.
+- The safe boot entry still exists, but the on-disk default is currently set to `ov5647-dev` with a blind cross-route overlay.
+- The active `ov5647-dev` overlay is now `/boot/ov5647-p3768-cross-i2c0-serialc-probe.dtbo`.
+- This dev overlay is not the canonical repository baseline:
+  - it is a narrow experiment that keeps route-A low-speed control wiring and forces route-C receiver routing;
+  - the canonical repository baseline remains `patches/ov5647-p3768-port-c-reference.dts`.
 - The physical camera modules are present on both 22-pin connectors, but the exact mapping from physical connector to route `A` or `C` is still unverified.
 - The visible camera marking `JT-ZERO-V2.0 YH` and user confirmation identify the modules as Raspberry Pi Zero-style 22-pin OV5647 cameras, but the exact FFC/adaptor topology is not yet documented.
 - Repository photos now confirm `JT-ZERO-V2.0` is a native 22-pin integrated-flex camera module, not a standard 15-pin Raspberry Pi camera using a detachable `15->22` adapter cable.
@@ -29,6 +30,10 @@
   - raw output remained zero bytes;
   - RTCPU/NVCSI trace still had no SOF/EOF or receiver interrupt events.
 - Because route A with `lane_polarity = 6`, route A with `lane_polarity = 0`, and route C have all now failed after the corrected `extperiph1` clock binding, another blind route/lane software permutation is unlikely to beat a physical camera-path validation step.
+- The newly prepared cross-route hybrids are lower-confidence than the route-A and route-C reference overlays:
+  - `i2c@0 + serial_c + port-index=2`
+  - `i2c@1 + serial_b + port-index=1`
+  - they are being kept only as narrow checks against a possible crossed low-speed-vs-receiver-route wiring assumption.
 - Public `NXCLB` manual evidence makes devkit-style `J20`/`J21` routing plausible on the CLB/makerobo carrier, but it does not validate the actual FFC orientation or Raspberry Pi-market camera pinout path in this setup.
 - Review of the GiraffAI OV5647 Nano articles and `digitallyamar/ov5647` repo suggests one higher-value remaining software test:
   - enable OV5647 built-in test pattern through sensor registers `0x0600/0x0601`;

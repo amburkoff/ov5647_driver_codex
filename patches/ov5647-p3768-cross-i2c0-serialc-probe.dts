@@ -1,0 +1,206 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	overlay-name = "OV5647 cross-route probe i2c0 serial_c for p3768/p3767";
+	jetson-header-name = "Jetson 22pin CSI Connector";
+	compatible =
+		"nvidia,p3768-0000+p3767-0000",
+		"nvidia,p3768-0000+p3767-0001",
+		"nvidia,p3768-0000+p3767-0003",
+		"nvidia,p3768-0000+p3767-0004",
+		"nvidia,p3768-0000+p3767-0005";
+
+	/*
+	 * Blind low-confidence cross-route experiment:
+	 *
+	 * - keep route-A I2C branch: cam_i2cmux/i2c@0
+	 * - keep route-A PWDN semantics: pwdn-gpios = <&gpio 0x3e 0>
+	 * - force route-C receiver mapping: serial_c / port-index 2
+	 * - 2 lanes, lane_polarity 0
+	 *
+	 * This is intentionally non-reference. It exists only to test the user
+	 * hypothesis that the working low-speed path and the intended CSI receiver
+	 * path might be crossed relative to the standard p3768 routes.
+	 */
+
+	fragment@0 {
+		target-path = "/";
+
+		__overlay__ {
+			tegra-capture-vi {
+				num-channels = <1>;
+
+				ports {
+					#address-cells = <1>;
+					#size-cells = <0>;
+
+					port@1 {
+						reg = <0>;
+
+						ov5647_cross_i2c0_sc_vi_in0: endpoint {
+							port-index = <2>;
+							bus-width = <2>;
+							remote-endpoint = <&ov5647_cross_i2c0_sc_csi_out0>;
+						};
+					};
+				};
+			};
+
+			tegra-camera-platform {
+				compatible = "nvidia, tegra-camera-platform";
+
+				modules {
+					module0 {
+						badge = "ov5647_cross_i2c0_serialc";
+						position = "front";
+						orientation = "1";
+
+						drivernode0 {
+							pcl_id = "v4l2_sensor";
+							sysfs-device-tree =
+								"/sys/firmware/devicetree/base/bus@0/cam_i2cmux/i2c@0/ov5647_cross_i2c0_sc@36";
+						};
+					};
+				};
+			};
+
+			bus@0 {
+				host1x@13e00000 {
+					nvcsi@15a00000 {
+						num-channels = <1>;
+						#address-cells = <1>;
+						#size-cells = <0>;
+
+						channel@1 {
+							reg = <0>;
+
+							ports {
+								#address-cells = <1>;
+								#size-cells = <0>;
+
+								port@0 {
+									reg = <0>;
+
+									ov5647_cross_i2c0_sc_csi_in0: endpoint@2 {
+										port-index = <2>;
+										bus-width = <2>;
+										remote-endpoint = <&ov5647_cross_i2c0_sc_out0>;
+									};
+								};
+
+								port@1 {
+									reg = <1>;
+
+									ov5647_cross_i2c0_sc_csi_out0: endpoint@3 {
+										remote-endpoint = <&ov5647_cross_i2c0_sc_vi_in0>;
+									};
+								};
+							};
+						};
+					};
+				};
+
+				cam_i2cmux {
+					status = "okay";
+					compatible = "i2c-mux-gpio";
+					#address-cells = <1>;
+					#size-cells = <0>;
+					mux-gpios = <&gpio_aon 19 0>;
+					i2c-parent = <&cam_i2c>;
+
+					i2c@0 {
+						status = "okay";
+						reg = <0>;
+						#address-cells = <1>;
+						#size-cells = <0>;
+
+						ov5647_cross_i2c0_sc@36 {
+							status = "okay";
+							compatible = "ovti,ov5647";
+							reg = <0x36>;
+							devnode = "video0";
+							physical_w = "3.674";
+							physical_h = "2.738";
+							sensor_model = "ov5647";
+							use_sensor_mode_id = "true";
+							mclk = "extperiph1";
+							clocks = <&bpmp 0x24>;
+							clock-names = "extperiph1";
+							avdd-reg = "vana";
+							dvdd-reg = "vdig";
+							iovdd-reg = "vif";
+							pwdn-gpios = <&gpio 0x3e 0>;
+
+							mode0 {
+								mclk_khz = "24000";
+								num_lanes = "2";
+								tegra_sinterface = "serial_c";
+								lane_polarity = "0";
+								phy_mode = "DPHY";
+								discontinuous_clk = "yes";
+								dpcm_enable = "false";
+								cil_settletime = "0";
+								active_w = "640";
+								active_h = "480";
+								mode_type = "bayer";
+								pixel_phase = "bggr";
+								csi_pixel_bit_depth = "10";
+								readout_orientation = "0";
+								line_length = "1852";
+								inherent_gain = "1";
+								mclk_multiplier = "2.43";
+								pix_clk_hz = "58333000";
+								gain_factor = "16";
+								framerate_factor = "1000000";
+								exposure_factor = "1000000";
+								min_gain_val = "16";
+								max_gain_val = "1023";
+								step_gain_val = "1";
+								default_gain = "32";
+								min_hdr_ratio = "1";
+								max_hdr_ratio = "1";
+								min_framerate = "5000000";
+								max_framerate = "60000000";
+								step_framerate = "1";
+								default_framerate = "60000000";
+								min_exp_time = "13";
+								max_exp_time = "16000";
+								step_exp_time = "1";
+								default_exp_time = "1000";
+								embedded_metadata_height = "0";
+							};
+
+							ports {
+								#address-cells = <1>;
+								#size-cells = <0>;
+
+								port@0 {
+									reg = <0>;
+
+									ov5647_cross_i2c0_sc_out0: endpoint {
+										port-index = <2>;
+										bus-width = <2>;
+										remote-endpoint = <&ov5647_cross_i2c0_sc_csi_in0>;
+									};
+								};
+							};
+						};
+					};
+
+					i2c@1 {
+						status = "okay";
+						reg = <1>;
+						#address-cells = <1>;
+						#size-cells = <0>;
+
+						ov5647_c@36 {
+							reg = <0x36>;
+							status = "disabled";
+						};
+					};
+				};
+			};
+		};
+	};
+};

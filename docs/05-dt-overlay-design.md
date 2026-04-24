@@ -81,6 +81,8 @@ The repository now contains:
 - `patches/ov5647-p3768-port-a-lanepol0-probe.dts`
 - `patches/ov5647-p3768-port-c-probe.dts`
 - `patches/ov5647-p3768-port-c-reference.dts`
+- `patches/ov5647-p3768-cross-i2c0-serialc-probe.dts`
+- `patches/ov5647-p3768-cross-i2c1-serialb-probe.dts`
 
 - `ov5647-p3768-port-a-reference.dts.in` remains the unconstrained placeholder template.
 - `ov5647-p3768-port-a-draft.dts` is a compile-ready draft for local build validation only.
@@ -88,7 +90,39 @@ The repository now contains:
 - `ov5647-p3768-port-a-lanepol0-probe.dts` differs from the route-A probe only by `lane_polarity = "0"` and traceable names/badges.
 - `ov5647-p3768-port-c-probe.dts` is the route-C candidate; it probe-validated but capture timed out.
 - `ov5647-p3768-port-c-reference.dts` is the canonical baseline for further comparisons.
+- `ov5647-p3768-cross-i2c0-serialc-probe.dts` is a blind hybrid that keeps route-A low-speed control wiring but points the receiver at route C.
+- `ov5647-p3768-cross-i2c1-serialb-probe.dts` is the opposite blind hybrid that keeps route-C low-speed control wiring but points the receiver at route A.
 - The draft keeps the sensor node `status = "disabled"` and must not be treated as a verified or boot-ready carrier overlay.
+
+## Blind Cross-Route Matrix
+
+These two overlays are intentionally non-reference and low-confidence. They are
+not new baselines. They exist only to test one narrow hypothesis:
+
+- the current low-speed path (`cam_i2cmux` branch, I2C, `pwdn/reset`) might be
+  correct;
+- the current receiver route (`serial_b` or `serial_c`) might be crossed
+  relative to that low-speed path.
+
+The staged matrix is:
+
+- `i2c@0 + serial_c + port-index = 2`
+- `i2c@1 + serial_b + port-index = 1`
+
+Design choice for this matrix:
+
+- preserve the control-GPIO semantics of the chosen `i2c@` branch;
+- change only the receiver route and endpoint graph;
+- keep the mode minimal and 2-lane.
+
+Current staging order:
+
+- first reboot-only experiment:
+  - `patches/ov5647-p3768-cross-i2c0-serialc-probe.dts`
+  - `/boot/ov5647-p3768-cross-i2c0-serialc-probe.dtbo`
+- second follow-up experiment, not yet staged by default:
+  - `patches/ov5647-p3768-cross-i2c1-serialb-probe.dts`
+  - `/boot/ov5647-p3768-cross-i2c1-serialb-probe.dtbo`
 
 ## Route-C Candidate
 

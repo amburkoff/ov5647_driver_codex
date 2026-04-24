@@ -5,8 +5,9 @@ This repository is the working area for a clean-room OV5647 MIPI CSI-2 bring-up 
 Current checkpoint:
 
 - safe/dev boot profiles are active; the current boot is `boot_profile=ov5647-dev`;
-- the dev boot profile applies the route-A corrected-MCLK overlay `/boot/ov5647-p3768-port-a-extperiph1.dtbo`;
-- live DT confirms `ov5647_a@36`, `serial_b`, `port-index = <1>`, `bus-width = <2>`, `lane_polarity = "6"`, and `clocks = <&bpmp 0x24>`;
+- the repository reference baseline remains route-C reset-only in `patches/ov5647-p3768-port-c-reference.dts`;
+- the next staged reboot-only experiment is the blind cross-route overlay `/boot/ov5647-p3768-cross-i2c0-serialc-probe.dtbo`;
+- that staged experiment keeps the route-A low-speed path `cam_i2cmux/i2c@0` and `pwdn-gpios`, but forces receiver route `serial_c` / `port-index = <2>`;
 - manual route-A and route-C probes have both read OV5647 chip ID `0x5647`;
 - module load/unload is no longer blocked by the earlier remove-path crash after fixing the I2C clientdata misuse;
 - route-A and route-C manual streaming reach `VIDIOC_STREAMON`, but no CSI frames are delivered yet.
@@ -19,6 +20,7 @@ Current blockers:
 - physical CLB connector to DT route mapping is still not independently verified;
 - the Raspberry Pi-style camera/cable path marked `JT-ZERO-V2.0 YH` may not be CSI-compatible with the current CLB/Jetson 22-pin route;
 - route-A and route-C both create `/dev/video0` after manual LKM load, but RTCPU/NVCSI traced raw captures still time out with zero-byte files and no SOF/NVCSI interrupt events;
+- the newly staged cross-route overlays are intentionally non-reference and low-confidence; they exist only to test whether the low-speed `cam_i2cmux` branch and the receiver route are crossed relative to NVIDIA `p3768` assumptions;
 - live preview is not validated.
 
 Start here:

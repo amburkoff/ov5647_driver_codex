@@ -1,6 +1,6 @@
 # Results And Status
 
-Current overall status: `route-C reset-only plus explicit clk_set_rate-to-25MHz still no-SOF, manual LKM-only workflow retained, route-A and route-C probes work, remove path fixed, and physical CLB/makerobo CSI path remains the dominant blocker`
+Current overall status: `reference route-C baseline still no-SOF, timed receiver-side sampling confirms Jetson clocks come up without observable frame ingress, and a first blind cross-route overlay is now staged for reboot-only comparison`
 
 Latest receiver-side debug update:
 
@@ -39,6 +39,21 @@ Timed clock/power sampling on traced capture `20260424T101451Z` refined that pic
 
 So `VI` does come up at the Jetson clock-bookkeeping level during the failed
 stream, but valid frame ingress still never becomes visible.
+
+Next staged DT experiment:
+
+- the canonical baseline remains `patches/ov5647-p3768-port-c-reference.dts`;
+- the next reboot-only dev overlay is now the blind hybrid
+  `/boot/ov5647-p3768-cross-i2c0-serialc-probe.dtbo`;
+- this overlay keeps the route-A low-speed branch:
+  - `cam_i2cmux/i2c@0`
+  - `pwdn-gpios = <&gpio 0x3e 0>`
+- and forces the route-C receiver graph:
+  - `serial_c`
+  - `port-index = 2`
+  - `bus-width = 2`
+- a second blind hybrid `i2c@1 + serial_b + port-index=1` is prepared in the
+  repo but is intentionally not yet staged as the boot default.
 
 Completed:
 
