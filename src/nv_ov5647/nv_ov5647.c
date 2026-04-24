@@ -1132,6 +1132,8 @@ static int ov5647_start_streaming(struct tegracam_device *tc_dev)
 	dev_info(tc_dev->dev, "%s: mipi_ctrl00 stream value=0x%02x continuous_mipi_clock=%d\n",
 		 __func__, val, continuous_mipi_clock);
 
+	ov5647_dump_stream_regs(s_data, "before_stream_on");
+
 	err = ov5647_write_table(s_data, ov5647_sensor_oe_enable_regs);
 	if (err) {
 		dev_err(tc_dev->dev,
@@ -1172,11 +1174,13 @@ static int ov5647_stop_streaming(struct tegracam_device *tc_dev)
 	int err;
 
 	dev_info(tc_dev->dev, "%s: enter\n", __func__);
+	ov5647_dump_stream_regs(s_data, "before_stream_off");
 
 	err = ov5647_write_stream_stop_regs(s_data, true);
 	if (err)
 		return err;
 
+	ov5647_dump_stream_regs(s_data, "after_stream_off");
 	dev_info(tc_dev->dev, "%s: exit success\n", __func__);
 	return 0;
 }

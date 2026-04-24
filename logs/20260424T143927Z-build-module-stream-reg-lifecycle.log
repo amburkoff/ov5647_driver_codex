@@ -1,0 +1,14 @@
+[2026-04-24T14:39:27Z] Building nv_ov5647 external module
+[2026-04-24T14:39:27Z] Kernel headers: /lib/modules/5.15.185-tegra/build
+[2026-04-24T14:39:27Z] Source dir: /home/cam/ov5647_driver_codex/src/nv_ov5647
+make: Entering directory '/usr/src/linux-headers-5.15.185-tegra-ubuntu22.04_aarch64/3rdparty/canonical/linux-jammy/kernel-source'
+warning: the compiler differs from the one used to build the kernel
+  The kernel was built by: gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
+  You are using:           gcc (Ubuntu 11.4.0-1ubuntu1~22.04.2) 11.4.0
+  CC [M]  /home/cam/ov5647_driver_codex/src/nv_ov5647/nv_ov5647.o
+  MODPOST /home/cam/ov5647_driver_codex/src/nv_ov5647/Module.symvers
+  CC [M]  /home/cam/ov5647_driver_codex/src/nv_ov5647/nv_ov5647.mod.o
+  LD [M]  /home/cam/ov5647_driver_codex/src/nv_ov5647/nv_ov5647.ko
+make: Leaving directory '/usr/src/linux-headers-5.15.185-tegra-ubuntu22.04_aarch64/3rdparty/canonical/linux-jammy/kernel-source'
+[2026-04-24T14:39:30Z] Build finished
+[2026-04-24T14:39:30Z] Artifacts saved under /home/cam/ov5647_driver_codex/artifacts/build/20260424T143927Z

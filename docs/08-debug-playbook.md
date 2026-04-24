@@ -131,6 +131,27 @@ sudo /home/cam/ov5647_driver_codex/scripts/run_manual_single_frame_rtcpu_trace.s
 
 This enables selected `camera_common`, `tegra_capture`, and `tegra_rtcpu` tracepoints only for the duration of one capture attempt and saves trace artifacts under `artifacts/traces/<timestamp>/`.
 
+When the module is loaded with `dump_stream_regs=1`, the driver now emits a
+compact OV5647 register lifecycle around one capture attempt:
+
+- `power_on_lp11`
+- `after_set_mode`
+- `before_stream_on`
+- `after_stream_on`
+- `before_stream_off`
+- `after_stream_off`
+
+For timeout debugging, the most useful new comparison is:
+
+- `after_stream_on`
+- versus `before_stream_off` / `after_stream_off`
+
+This helps answer a narrower question:
+
+- did the sensor-side stream state collapse during the failed capture,
+- or did the sensor still look like it was streaming while Jetson never saw
+  receiver ingress?
+
 ## Receiver-Side Safety Note
 
 Do not casually read vendor `debugfs regset32` files under camera-related
