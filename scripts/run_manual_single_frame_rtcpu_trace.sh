@@ -14,6 +14,8 @@ RAW_OUT="${CAP_DIR}/ov5647-640x480-bg10.raw"
 CAPTURE_TIMEOUT_SEC="${CAPTURE_TIMEOUT_SEC:-30}"
 TRACEFS="${TRACEFS:-/sys/kernel/debug/tracing}"
 CLOCK_PM_HELPER="${ROOT_DIR}/scripts/collect_clk_pm_state.sh"
+CLK_PM_SAMPLE_INTERVAL_SEC="${CLK_PM_SAMPLE_INTERVAL_SEC:-1}"
+CLK_PM_SAMPLES_DIR="${TRACE_DIR}/clk-pm-samples"
 
 EVENTS=(
 	"camera_common/camera_common_s_power"
@@ -111,11 +113,41 @@ fix_artifact_permissions() {
 }
 
 DMESG_PID=""
+CLK_PM_SAMPLER_PID=""
+stop_clk_pm_sampler() {
+	if [[ -n "${CLK_PM_SAMPLER_PID}" ]] && kill -0 "${CLK_PM_SAMPLER_PID}" >/dev/null 2>&1; then
+		kill "${CLK_PM_SAMPLER_PID}" >/dev/null 2>&1 || true
+		wait "${CLK_PM_SAMPLER_PID}" 2>/dev/null || true
+	fi
+}
+
+start_clk_pm_sampler() {
+	local interval="$1"
+	local sample_idx=0
+
+	mkdir -p "${CLK_PM_SAMPLES_DIR}"
+
+	(
+		while true; do
+			local sample_dir
+			printf -v sample_dir "%s/sample-%04d" "${CLK_PM_SAMPLES_DIR}" "${sample_idx}"
+			if [[ -x "${CLOCK_PM_HELPER}" ]]; then
+				"${CLOCK_PM_HELPER}" "${sample_dir}" >> "${RUN_LOG}" 2>&1 || true
+			fi
+			sample_idx=$((sample_idx + 1))
+			sleep "${interval}" || exit 0
+		done
+	) &
+	CLK_PM_SAMPLER_PID=$!
+	log "started clk/pm sampler pid=${CLK_PM_SAMPLER_PID} interval=${interval}s"
+}
+
 cleanup() {
 	local rc=$?
 
 	write_tracefs "${TRACEFS}/tracing_on" 0
 	copy_trace_state "final"
+	stop_clk_pm_sampler
 	for event in "${EVENTS[@]}"; do
 		disable_event "${event}"
 	done
@@ -133,6 +165,7 @@ log "starting RTCPU/NVCSI traced single-frame capture"
 log "trace dir=${TRACE_DIR}"
 log "raw out=${RAW_OUT}"
 log "timeout=${CAPTURE_TIMEOUT_SEC}s"
+log "clk/pm sample interval=${CLK_PM_SAMPLE_INTERVAL_SEC}s"
 
 {
 	echo "# cmdline"
@@ -183,6 +216,7 @@ stdbuf -oL dmesg -w > "${DMESG_LOG}" 2>&1 &
 DMESG_PID=$!
 
 sleep 1
+start_clk_pm_sampler "${CLK_PM_SAMPLE_INTERVAL_SEC}"
 log "running v4l2 single-frame capture"
 set +e
 timeout --foreground "${CAPTURE_TIMEOUT_SEC}s" v4l2-ctl -d /dev/video0 \
@@ -195,6 +229,7 @@ timeout --foreground "${CAPTURE_TIMEOUT_SEC}s" v4l2-ctl -d /dev/video0 \
 RC=${PIPESTATUS[0]}
 set -e
 
+stop_clk_pm_sampler
 write_tracefs "${TRACEFS}/trace_marker" "ov5647_rtcpu_trace_capture_end ${TS} rc=${RC}"
 write_tracefs "${TRACEFS}/tracing_on" 0
 copy_trace_state "after"

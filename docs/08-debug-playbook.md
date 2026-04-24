@@ -183,6 +183,16 @@ The traced capture helper already runs this automatically and saves:
 - `artifacts/traces/<timestamp>/clk-pm-before`
 - `artifacts/traces/<timestamp>/clk-pm-after`
 
+It now also performs timed sampling during the capture timeout window and saves:
+
+- `artifacts/traces/<timestamp>/clk-pm-samples/sample-0000`
+- `artifacts/traces/<timestamp>/clk-pm-samples/sample-0001`
+- ...
+
+Sampling interval defaults to:
+
+- `CLK_PM_SAMPLE_INTERVAL_SEC=1`
+
 Use this to compare Jetson-side clock and power-domain state across
 `no SOF` runs without touching risky `VI/camrtc` register-dump nodes.
 
