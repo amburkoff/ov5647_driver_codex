@@ -13,6 +13,16 @@ Latest receiver-side debug update:
 - this did not reveal any hidden RTCPU-side `NVCSI`, `VI`, or `capture` error
   beyond the already-known `no SOF / VI timeout` pattern.
 
+Latest clock/power-domain observation from traced capture `20260424T081333Z`:
+
+- `extperiph1/clk_rate` stayed at `24000000`;
+- `nvcsi/clk_enable_count` changed from `0` before capture to `1` after the
+  failed attempt;
+- `vi/clk_enable_count` stayed at `0` in the saved before/after snapshot;
+- `pm_genpd/vi/current_state` stayed `off-0` and `active_time` stayed `0 ms`;
+- the trace summary for the same run still reports
+  `receiver_signature=no_receiver_ingress_visible`.
+
 Completed:
 
 - live platform inventory gathered from the target;
