@@ -104,6 +104,17 @@
   - there is no obvious remaining route-C DT mismatch of the same class as a
     wrong `port-index`, `bus-width`, `tegra_sinterface`, lane count, or MCLK
     intent.
+- The new stream-register lifecycle dump is also negative for the hypothesis
+  that the sensor silently falls out of stream during the timeout window:
+  - `after_stream_on` and `before_stream_off` stayed identical on the key
+    stream-state registers;
+  - only `after_stream_off` returned them to standby/LP11 values;
+  - this means the OV5647 still looked like it was streaming until the Jetson
+    stack explicitly stopped it.
+- So the current no-SOF failure is now even less likely to be explained by:
+  - sensor-side stream bit rollback;
+  - sensor-side spontaneous standby transition;
+  - simple mode-register collapse during the timeout window.
 - Public `NXCLB` manual evidence makes devkit-style `J20`/`J21` routing plausible on the CLB/makerobo carrier, but it does not validate the actual FFC orientation or Raspberry Pi-market camera pinout path in this setup.
 - Review of the GiraffAI OV5647 Nano articles and `digitallyamar/ov5647` repo suggests one higher-value remaining software test:
   - enable OV5647 built-in test pattern through sensor registers `0x0600/0x0601`;

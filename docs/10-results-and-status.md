@@ -2,6 +2,28 @@
 
 Current overall status: `reference route-C baseline still no-SOF, both blind cross-route hybrids reproduce the same no-receiver-ingress signature, the software-only route permutation branch is effectively exhausted, and the canonical route-C mclk24 retest also reproduces the same signature`
 
+The new stream-register lifecycle diagnostic is now runtime-validated on trace
+`20260424T144154Z` and strengthens the same conclusion:
+
+- `after_stream_on` and `before_stream_off` are effectively identical on the
+  most important sensor-side registers:
+  - `0x0100 = 0x01`
+  - `0x300d = 0x00`
+  - `0x4202 = 0x00`
+  - `0x4800 = 0x34`
+  - `0x503d = 0x00`
+- only `after_stream_off` then returns to the expected standby/LP11 state:
+  - `0x0100 = 0x00`
+  - `0x300d = 0x01`
+  - `0x4202 = 0x0f`
+  - `0x4800 = 0x25`
+- repeated VI timeouts still occurred during the same run;
+- RTCPU trace still showed control-path activity only and no receiver ingress.
+
+That means the sensor-side stream state does not appear to collapse during the
+30-second failed capture window. The sensor still looks like it is streaming
+right up until the stack explicitly stops it.
+
 Capture-side route-C assumption audit is now also recorded:
 
 - official NVIDIA `r36.5` source confirms the capture stack really uses:
