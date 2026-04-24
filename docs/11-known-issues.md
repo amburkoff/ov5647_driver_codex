@@ -39,6 +39,12 @@
   - runtime trace `20260424T121630Z`;
   - `receiver_signature=no_receiver_ingress_visible`;
   - timed sampling still showed `vi` and `nvcsi` clocks during timeout, so the failure signature stayed aligned with the earlier route-A and route-C tests.
+- The second blind cross-route runtime result is also negative:
+  - live DT `cam_i2cmux/i2c@1/ov5647_cross_i2c1_sb@36`;
+  - runtime trace `20260424T122315Z`;
+  - `receiver_signature=no_receiver_ingress_visible`;
+  - timed sampling again showed `vi` and `nvcsi` clocks during timeout.
+- With both hybrids now negative, the software-only CSI-route permutation branch is effectively exhausted on the current CLB/makerobo plus native 22-pin OV5647 hardware path.
 - Public `NXCLB` manual evidence makes devkit-style `J20`/`J21` routing plausible on the CLB/makerobo carrier, but it does not validate the actual FFC orientation or Raspberry Pi-market camera pinout path in this setup.
 - Review of the GiraffAI OV5647 Nano articles and `digitallyamar/ov5647` repo suggests one higher-value remaining software test:
   - enable OV5647 built-in test pattern through sensor registers `0x0600/0x0601`;

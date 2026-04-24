@@ -1,6 +1,6 @@
 # Results And Status
 
-Current overall status: `reference route-C baseline still no-SOF, first blind cross-route hybrid i2c@0+serial_c also reproduced the same no-receiver-ingress signature, and the second blind hybrid i2c@1+serial_b is now staged as the next reboot-only comparison`
+Current overall status: `reference route-C baseline still no-SOF, both blind cross-route hybrids now reproduce the same no-receiver-ingress signature, and the software-only route permutation branch is effectively exhausted`
 
 Latest receiver-side debug update:
 
@@ -50,12 +50,17 @@ Cross-route status:
   - `receiver_signature=no_receiver_ingress_visible`
   - `clk_pm_signature=vi_and_nvcsi_clocks_observed_during_timeout`
 - this means the first hybrid did not improve on reference route A or C;
-- the next reboot-only dev overlay is now the second blind hybrid
-  `/boot/ov5647-p3768-cross-i2c1-serialb-probe.dtbo`;
-- that staged overlay keeps the route-C low-speed branch:
+- second blind hybrid runtime result on trace `20260424T122315Z`:
+  - `cam_i2cmux/i2c@1`
+  - `serial_b`
+  - `port-index = 1`
+  - `receiver_signature=no_receiver_ingress_visible`
+  - `clk_pm_signature=vi_and_nvcsi_clocks_observed_during_timeout`
+- this means the second hybrid also did not improve on reference route A or C;
+- that second hybrid kept the route-C low-speed branch:
   - `cam_i2cmux/i2c@1`
   - `reset-gpios = <&gpio 0xa0 0>`
-- and forces the route-A receiver graph:
+- and forced the route-A receiver graph:
   - `serial_b`
   - `port-index = 1`
 - the first blind hybrid kept the route-A low-speed branch:

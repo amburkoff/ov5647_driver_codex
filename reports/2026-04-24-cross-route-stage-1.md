@@ -70,6 +70,32 @@ Conclusion:
 - the first blind hybrid is therefore only another negative check, not a new
   baseline.
 
+## Stage-2 Runtime Result
+
+Rebooted live DT for stage 2 confirmed:
+
+- `boot_profile=ov5647-dev`
+- `cam_i2cmux/i2c@1/ov5647_cross_i2c1_sb@36`
+- `serial_b`
+- `port-index = 1`
+- `lane_polarity = 0`
+
+Manual runtime result on trace `20260424T122315Z`:
+
+- manual `insmod full-delay-dump` succeeded;
+- manual single-frame capture again reached `VIDIOC_STREAMON`;
+- raw output remained `0 bytes`;
+- trace summary again remained:
+  - `receiver_signature=no_receiver_ingress_visible`
+- timed clock/power sampling again showed receiver clocks coming up:
+  - `clk_pm_signature=vi_and_nvcsi_clocks_observed_during_timeout`
+
+Conclusion:
+
+- `i2c@1 + serial_b + port-index=1` also does not change the failure
+  signature;
+- both blind cross-route hybrids are now negative checks.
+
 ## On-Disk Boot Staging
 
 Boot copies now exist for both hybrids:
@@ -77,7 +103,7 @@ Boot copies now exist for both hybrids:
 - `/boot/ov5647-p3768-cross-i2c0-serialc-probe.dtbo`
 - `/boot/ov5647-p3768-cross-i2c1-serialb-probe.dtbo`
 
-The development boot entry is now re-staged to use only:
+The development boot entry is now still staged to use only:
 
 - `/boot/ov5647-p3768-cross-i2c1-serialb-probe.dtbo`
 
