@@ -13,6 +13,7 @@ POST_DMESG_LOG="${LOG_DIR}/${TS}-single-frame-rtcpu-post-dmesg-tail.log"
 RAW_OUT="${CAP_DIR}/ov5647-640x480-bg10.raw"
 CAPTURE_TIMEOUT_SEC="${CAPTURE_TIMEOUT_SEC:-30}"
 TRACEFS="${TRACEFS:-/sys/kernel/debug/tracing}"
+CLOCK_PM_HELPER="${ROOT_DIR}/scripts/collect_clk_pm_state.sh"
 
 EVENTS=(
 	"camera_common/camera_common_s_power"
@@ -92,6 +93,14 @@ copy_trace_state() {
 	fi
 }
 
+collect_clk_pm_state() {
+	local phase="$1"
+
+	if [[ -x "${CLOCK_PM_HELPER}" ]]; then
+		"${CLOCK_PM_HELPER}" "${TRACE_DIR}/clk-pm-${phase}" >> "${RUN_LOG}" 2>&1 || true
+	fi
+}
+
 fix_artifact_permissions() {
 	chmod -R a+rX "${TRACE_DIR}" "${CAP_DIR}" 2>/dev/null || true
 	chmod a+r "${RUN_LOG}" "${DMESG_LOG}" "${POST_DMESG_LOG}" 2>/dev/null || true
@@ -166,6 +175,7 @@ for event in "${EVENTS[@]}"; do
 done
 
 copy_trace_state "before"
+collect_clk_pm_state "before"
 write_tracefs "${TRACEFS}/trace_marker" "ov5647_rtcpu_trace_capture_begin ${TS}"
 write_tracefs "${TRACEFS}/tracing_on" 1
 
@@ -188,6 +198,7 @@ set -e
 write_tracefs "${TRACEFS}/trace_marker" "ov5647_rtcpu_trace_capture_end ${TS} rc=${RC}"
 write_tracefs "${TRACEFS}/tracing_on" 0
 copy_trace_state "after"
+collect_clk_pm_state "after"
 
 log "capture rc=${RC}"
 if [[ -f "${RAW_OUT}" ]]; then

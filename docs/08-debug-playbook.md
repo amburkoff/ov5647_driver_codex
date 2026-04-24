@@ -161,6 +161,31 @@ It also emits a compact diagnosis such as:
 - `receiver_signature=receiver_sees_errors_without_frame`
 - `receiver_signature=receiver_activity_present`
 
+## Clock And PM Snapshot
+
+To collect a standalone read-only Jetson clock/power-domain snapshot:
+
+```bash
+sudo /home/cam/ov5647_driver_codex/scripts/collect_clk_pm_state.sh
+```
+
+This saves:
+
+- `clk/extperiph1`
+- `clk/nvcsi`
+- `clk/nvcsilp`
+- `clk/vi`
+- `pm_genpd/vi`
+- `pm_genpd/ispa`
+
+The traced capture helper already runs this automatically and saves:
+
+- `artifacts/traces/<timestamp>/clk-pm-before`
+- `artifacts/traces/<timestamp>/clk-pm-after`
+
+Use this to compare Jetson-side clock and power-domain state across
+`no SOF` runs without touching risky `VI/camrtc` register-dump nodes.
+
 ## Manual Safe RTCPU Debugfs Dump
 
 After a reboot or after a traced capture, if you want one small receiver-side
