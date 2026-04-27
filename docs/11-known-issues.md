@@ -21,6 +21,16 @@
     - `VTS = 504`
     - `fps = 60`
   - that implies a self-consistent `pix_clk_hz = 56004480`, not `58333000`.
+- That controlled `pix_clk_hz = 56004480` route-C retest is now also
+  negative:
+  - live DT confirmed the corrected pixel clock value after reboot;
+  - runtime trace `20260427T092149Z` still ended with:
+    - `VIDIOC_STREAMON` success;
+    - zero-byte raw output;
+    - repeated VI timeout;
+    - no `SOF/EOF`;
+    - no `rtcpu_nvcsi_intr`;
+    - no `vi_frame_begin/end`.
 - After closing the blind cross-route matrix, the repository baseline stayed
   canonical route-C, but the currently staged `ov5647-dev` overlay on disk is
   now a one-variable pixel-clock retest:

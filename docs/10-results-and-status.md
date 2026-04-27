@@ -1,9 +1,9 @@
 # Results And Status
 
-Current overall status: `reference route-C baseline still no-SOF, both blind cross-route hybrids reproduce the same no-receiver-ingress signature, the software-only route permutation branch is effectively exhausted, the canonical route-C mclk24 retest is negative, and a new NVIDIA-guided route-C pixclk56 retest is now staged`
+Current overall status: `reference route-C baseline still no-SOF, both blind cross-route hybrids reproduce the same no-receiver-ingress signature, the software-only route permutation branch is effectively exhausted, the canonical route-C mclk24 retest is negative, and the NVIDIA-guided route-C pixclk56 retest is also negative`
 
-NVIDIA forum guidance is now folded into the next controlled reboot-only
-experiment:
+NVIDIA forum guidance around Sensor Pixel Clock is now also closed as a
+negative controlled retest:
 
 - NVIDIA support explicitly asked to review Sensor Pixel Clock;
 - a live DT dump of the current canonical route-C baseline still showed:
@@ -15,13 +15,25 @@ experiment:
   - `VTS = 504`
 - that makes the self-consistent 60 fps pixel clock:
   - `1852 * 504 * 60 = 56004480`
-- a controlled route-C retest is therefore now staged with:
+- a controlled route-C retest was staged with:
   - `pix_clk_hz = 56004480`
   - unchanged `serial_c`
   - unchanged `port-index = 2`
   - unchanged `mclk_khz = 24000`
   - unchanged `num_lanes = 2`
-- the staged dev overlay on disk is now:
+- after reboot, live DT confirmed:
+  - `pix_clk_hz = 56004480`
+  - `mclk_khz = 24000`
+  - `serial_c`
+  - `num_lanes = 2`
+- runtime still remained negative:
+  - `VIDIOC_STREAMON` success
+  - zero-byte raw output
+  - repeated VI timeout
+  - no `SOF/EOF`
+  - no `rtcpu_nvcsi_intr`
+  - no `vi_frame_begin/end`
+- the staged dev overlay on disk remains:
   - `/boot/ov5647-p3768-port-c-reference-mclk24-pixclk56.dtbo`
 
 The new stream-register lifecycle diagnostic is now runtime-validated on trace
@@ -152,8 +164,8 @@ Current interpretation:
   becomes weaker still and no longer looks like the leading software-only
   candidate.
 
-The current `ov5647-dev` boot entry now points at the NVIDIA-guided
-Sensor-Pixel-Clock retest overlay:
+The current `ov5647-dev` boot entry still points at the NVIDIA-guided
+Sensor-Pixel-Clock retest overlay used for that negative check:
 
 - `/boot/ov5647-p3768-port-c-reference-mclk24-pixclk56.dtbo`
 
