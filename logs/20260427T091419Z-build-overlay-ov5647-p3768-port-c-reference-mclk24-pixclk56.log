@@ -1,0 +1,14 @@
+[2026-04-27T09:14:19Z] Building overlay
+[2026-04-27T09:14:19Z] Source: patches/ov5647-p3768-port-c-reference-mclk24-pixclk56.dts
+[2026-04-27T09:14:19Z] Output: /home/cam/ov5647_driver_codex/artifacts/dtbo/20260427T091419Z-ov5647-p3768-port-c-reference-mclk24-pixclk56.dtbo
+$ dtc -@ -I dts -O dtb -o /home/cam/ov5647_driver_codex/artifacts/dtbo/20260427T091419Z-ov5647-p3768-port-c-reference-mclk24-pixclk56.dtbo patches/ov5647-p3768-port-c-reference-mclk24-pixclk56.dts
+patches/ov5647-p3768-port-c-reference-mclk24-pixclk56.dts:73.10-208.6: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0: node has a unit name, but no reg or ranges property
+patches/ov5647-p3768-port-c-reference-mclk24-pixclk56.dts:74.21-107.7: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/host1x@13e00000: node has a unit name, but no reg or ranges property
+patches/ov5647-p3768-port-c-reference-mclk24-pixclk56.dts:75.21-106.8: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000: node has a unit name, but no reg or ranges property
+patches/ov5647-p3768-port-c-reference-mclk24-pixclk56.dts:90.45-94.12: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000/channel@1/ports/port@0/endpoint@2: node has a unit name, but no reg or ranges property
+patches/ov5647-p3768-port-c-reference-mclk24-pixclk56.dts:100.46-102.12: Warning (unit_address_vs_reg): /fragment@0/__overlay__/bus@0/host1x@13e00000/nvcsi@15a00000/channel@1/ports/port@1/endpoint@3: node has a unit name, but no reg or ranges property
+patches/ov5647-p3768-port-c-reference-mclk24-pixclk56.dts:39.11-52.7: Warning (graph_child_address): /fragment@0/__overlay__/tegra-capture-vi/ports: graph node has single child node 'port@1', #address-cells/#size-cells are not necessary
+patches/ov5647-p3768-port-c-reference-mclk24-pixclk56.dts:191.14-204.10: Warning (graph_child_address): /fragment@0/__overlay__/bus@0/cam_i2cmux/i2c@1/ov5647_c@36/ports: graph node has single child node 'port@0', #address-cells/#size-cells are not necessary
+patches/ov5647-p3768-port-c-reference-mclk24-pixclk56.dts:43.13-51.8: Warning (graph_port): /fragment@0/__overlay__/tegra-capture-vi/ports/port@1: graph node unit address error, expected "0"
+[2026-04-27T09:14:19Z] Overlay build finished
+[2026-04-27T09:14:19Z] Artifacts saved under /home/cam/ov5647_driver_codex/artifacts/dtbo/20260427T091419Z-ov5647-p3768-port-c-reference-mclk24-pixclk56.dtbo

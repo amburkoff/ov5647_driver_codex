@@ -12,9 +12,21 @@
   - route C still produces zero-byte capture timeout and no SOF with corrected MCLK;
   - route A also probes successfully with corrected MCLK and still produces zero-byte capture timeout with no SOF/NVCSI interrupt events.
 - The safe boot entry still exists, and the on-disk default remains `ov5647-dev`.
-- After closing the blind cross-route matrix, the staged `ov5647-dev` overlay on disk is again the canonical repository baseline:
-  - `/boot/ov5647-p3768-port-c-reference.dtbo`
-  - source baseline: `patches/ov5647-p3768-port-c-reference.dts`
+- NVIDIA support explicitly asked to review Sensor Pixel Clock for this no-SOF
+  case, and the current canonical route-C baseline still showed one concrete
+  DT inconsistency before the latest staging:
+  - live DT advertised `pix_clk_hz = 58333000`;
+  - runtime OV5647 register dumps for the same VGA mode showed:
+    - `HTS = 1852`
+    - `VTS = 504`
+    - `fps = 60`
+  - that implies a self-consistent `pix_clk_hz = 56004480`, not `58333000`.
+- After closing the blind cross-route matrix, the repository baseline stayed
+  canonical route-C, but the currently staged `ov5647-dev` overlay on disk is
+  now a one-variable pixel-clock retest:
+  - `/boot/ov5647-p3768-port-c-reference-mclk24-pixclk56.dtbo`
+  - source retest: `patches/ov5647-p3768-port-c-reference-mclk24-pixclk56.dts`
+  - parent baseline: `patches/ov5647-p3768-port-c-reference-mclk24.dts`
 - The physical camera modules are present on both 22-pin connectors, but the exact mapping from physical connector to route `A` or `C` is still unverified.
 - The visible camera marking `JT-ZERO-V2.0 YH` and user confirmation identify the modules as Raspberry Pi Zero-style 22-pin OV5647 cameras, but the exact FFC/adaptor topology is not yet documented.
 - Repository photos now confirm `JT-ZERO-V2.0` is a native 22-pin integrated-flex camera module, not a standard 15-pin Raspberry Pi camera using a detachable `15->22` adapter cable.

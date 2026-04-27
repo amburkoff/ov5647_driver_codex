@@ -1,0 +1,8 @@
+HTS=1852 VTS=504 fps=60 -> pix_clk_hz=56004480
+Derived DT values for controlled retest:
+pix_clk_hz=56004480
+min_framerate=461432
+max_framerate=60000000
+default_framerate=60000000
+min_exp_time=34
+max_exp_time=2167163
