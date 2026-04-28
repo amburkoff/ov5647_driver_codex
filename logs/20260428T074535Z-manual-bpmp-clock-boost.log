@@ -1,0 +1,44 @@
+[20260428T074535Z] starting manual BPMP clock boost
+[20260428T074535Z] clk_root=/sys/kernel/debug/bpmp/debug/clk
+[20260428T074535Z] cmdline=root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+[20260428T074535Z] before vi:
+[20260428T074535Z]   rate=115200000
+[20260428T074535Z]   max_rate=832000000
+[20260428T074535Z]   mrq_rate_locked=0
+[20260428T074535Z] before isp:
+[20260428T074535Z]   rate=115200000
+[20260428T074535Z]   max_rate=1011200000
+[20260428T074535Z]   mrq_rate_locked=0
+[20260428T074535Z] before nvcsi:
+[20260428T074535Z]   rate=10045312
+[20260428T074535Z]   max_rate=642900000
+[20260428T074535Z]   mrq_rate_locked=0
+[20260428T074535Z] before emc:
+[20260428T074535Z]   rate=2133000000
+[20260428T074535Z]   max_rate=3199000000
+[20260428T074535Z]   mrq_rate_locked=0
+[20260428T074535Z] locking vi mrq_rate_locked=1
+[20260428T074535Z] locking isp mrq_rate_locked=1
+[20260428T074535Z] locking nvcsi mrq_rate_locked=1
+[20260428T074535Z] locking emc mrq_rate_locked=1
+[20260428T074535Z] setting vi rate=832000000
+[20260428T074535Z] setting isp rate=1011200000
+[20260428T074535Z] setting nvcsi rate=642900000
+[20260428T074535Z] setting emc rate=3199000000
+[20260428T074535Z] after vi:
+[20260428T074535Z]   rate=832000000
+[20260428T074535Z]   max_rate=832000000
+[20260428T074535Z]   mrq_rate_locked=1
+[20260428T074535Z] after isp:
+[20260428T074535Z]   rate=1011200000
+[20260428T074535Z]   max_rate=1011200000
+[20260428T074535Z]   mrq_rate_locked=1
+[20260428T074535Z] after nvcsi:
+[20260428T074535Z]   rate=642900000
+[20260428T074535Z]   max_rate=642900000
+[20260428T074535Z]   mrq_rate_locked=1
+[20260428T074535Z] after emc:
+[20260428T074535Z]   rate=2133000000
+[20260428T074535Z]   max_rate=3199000000
+[20260428T074535Z]   mrq_rate_locked=1
+[20260428T074535Z] manual BPMP clock boost complete

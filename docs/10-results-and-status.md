@@ -2,6 +2,29 @@
 
 Current overall status: `reference route-C baseline still no-SOF, both blind cross-route hybrids reproduce the same no-receiver-ingress signature, the software-only route permutation branch is effectively exhausted, the canonical route-C mclk24 retest is negative, and the NVIDIA-guided route-C pixclk56 retest is also negative`
 
+The next NVIDIA-requested runtime branch is also now negative:
+
+- BPMP clock boost was applied successfully for:
+  - `vi`
+  - `isp`
+  - `nvcsi`
+- `emc` accepted `mrq_rate_locked=1` but stayed at `2133000000` instead of
+  `3199000000`
+- a direct `v4l2-ctl` stream test was then run outside the RTCPU trace wrapper
+  with:
+  - `BG10 640x480`
+  - `sensor_mode=0`
+  - `bypass_mode=0`
+  - `stream_count=100`
+- the direct path still reproduced the same failure class:
+  - `VIDIOC_STREAMON` success
+  - `capture rc=124`
+  - raw output `0 bytes`
+  - repeated `uncorr_err: request timed out after 2500 ms`
+
+So the current failure is not explained by low default `vi/isp/nvcsi` clocks
+or by the use of the RTCPU trace wrapper itself.
+
 NVIDIA forum guidance around Sensor Pixel Clock is now also closed as a
 negative controlled retest:
 

@@ -31,6 +31,16 @@
     - no `SOF/EOF`;
     - no `rtcpu_nvcsi_intr`;
     - no `vi_frame_begin/end`.
+- The NVIDIA-requested BPMP clock-boost plus direct-V4L2 validation is also
+  negative:
+  - `vi`, `isp`, and `nvcsi` were forced to their reported `max_rate`;
+  - `emc` accepted `mrq_rate_locked=1` but did not rise to its reported
+    `max_rate`;
+  - direct `v4l2-ctl` streaming with `bypass_mode=0` still ended with:
+    - `VIDIOC_STREAMON` success;
+    - `capture rc=124`;
+    - zero-byte raw output;
+    - repeated VI timeout.
 - After closing the blind cross-route matrix, the repository baseline stayed
   canonical route-C, but the currently staged `ov5647-dev` overlay on disk is
   now a one-variable pixel-clock retest:

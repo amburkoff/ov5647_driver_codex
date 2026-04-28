@@ -1,0 +1,24 @@
+[20260428T074544Z] starting manual direct V4L2 stream test
+[20260428T074544Z] device=/dev/video0
+[20260428T074544Z] format=640x480 BG10
+[20260428T074544Z] sensor_mode=0
+[20260428T074544Z] stream_count=100
+[20260428T074544Z] timeout=30s
+[20260428T074544Z] out_file=/home/cam/ov5647_driver_codex/artifacts/captures/20260428T074544Z/ov5647-640x480-bg10-count100.raw
+[20260428T074544Z] cmdline=root=PARTUUID=03f3e885-a6e9-47ba-b7e1-ccc5bf71a344 rw rootwait rootfstype=ext4 mminit_loglevel=4 console=ttyTCU0,115200 firmware_class.path=/etc/firmware fbcon=map:0 video=efifb:off console=tty0 efi=runtime pci=pcie_bus_perf nvme.use_threaded_interrupts=1 boot_profile=ov5647-dev bl_prof_dataptr=2031616@0x471E10000 bl_prof_ro_ptr=65536@0x471E00000 
+[20260428T074544Z] detected bypass_mode control; will set bypass_mode=0
+		VIDIOC_REQBUFS returned 0 (Success)
+		VIDIOC_QUERYBUF returned 0 (Success)
+		VIDIOC_QUERYBUF returned 0 (Success)
+		VIDIOC_QUERYBUF returned 0 (Success)
+		VIDIOC_QUERYBUF returned 0 (Success)
+		VIDIOC_QBUF returned 0 (Success)
+		VIDIOC_QBUF returned 0 (Success)
+		VIDIOC_QBUF returned 0 (Success)
+		VIDIOC_QBUF returned 0 (Success)
+		VIDIOC_STREAMON returned 0 (Success)
+[20260428T074544Z] capture rc=124
+[20260428T074544Z] raw size=0 bytes path=/home/cam/ov5647_driver_codex/artifacts/captures/20260428T074544Z/ov5647-640x480-bg10-count100.raw
+[20260428T074544Z] saved pre-state=/home/cam/ov5647_driver_codex/artifacts/captures/20260428T074544Z/pre-v4l2-state.log
+[20260428T074544Z] saved live dmesg=/home/cam/ov5647_driver_codex/logs/20260428T074544Z-manual-v4l2-direct-stream-live-dmesg.log
+[20260428T074544Z] saved post dmesg=/home/cam/ov5647_driver_codex/logs/20260428T074544Z-manual-v4l2-direct-stream-post-dmesg-tail.log
