@@ -1,0 +1,8 @@
+[2026-04-22T13:59:57Z] Rendered candidate boot profile config
+[2026-04-22T13:59:57Z] Source label: ov5647-dev
+[2026-04-22T13:59:57Z] Source menu label: Jetson DEV OV5647 auto-load
+[2026-04-22T13:59:57Z] Requested default profile: dev
+[2026-04-22T13:59:57Z] Requested dev overlay: /boot/ov5647-p3768-port-a-extperiph1.dtbo
+[2026-04-22T13:59:57Z] Detected UEFI DTB: /boot/dtb/kernel_tegra234-p3768-0000+p3767-0000-nv.dtb
+[2026-04-22T13:59:57Z] Generated config: /home/cam/ov5647_driver_codex/artifacts/boot/20260422T135957Z/extlinux.conf.generated
+[2026-04-22T13:59:57Z] Applied generated extlinux.conf and backed up the previous file to /boot/extlinux/extlinux.conf.20260422T135957Z.bak
