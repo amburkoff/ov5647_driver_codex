@@ -152,6 +152,58 @@ This helps answer a narrower question:
 - or did the sensor still look like it was streaming while Jetson never saw
   receiver ingress?
 
+## Manual BPMP Clock Boost
+
+To follow NVIDIA guidance and temporarily boost the `VI/ISP/NVCSI/EMC` clocks
+before a direct V4L2 stream test, run:
+
+```bash
+sudo /home/cam/ov5647_driver_codex/scripts/run_manual_bpmp_clock_boost.sh
+```
+
+This helper is manual-only. It writes:
+
+- `mrq_rate_locked=1`
+- `rate=max_rate`
+
+for:
+
+- `vi`
+- `isp`
+- `nvcsi`
+- `emc`
+
+and saves before/after values under `logs/<timestamp>-manual-bpmp-clock-boost.log`.
+
+## Manual Direct V4L2 IOCTL Stream
+
+To follow NVIDIA guidance and test camera streaming with direct `v4l2-ctl`
+instead of the RTCPU trace wrapper, run:
+
+```bash
+sudo /home/cam/ov5647_driver_codex/scripts/run_manual_v4l2_direct_stream.sh
+```
+
+Current defaults match the repository's known minimal mode:
+
+- `DEVICE=/dev/video0`
+- `WIDTH=640`
+- `HEIGHT=480`
+- `PIXELFORMAT=BG10`
+- `SENSOR_MODE=0`
+- `STREAM_COUNT=100`
+
+If the driver exports `bypass_mode`, the helper will also set:
+
+- `bypass_mode=0`
+
+It saves:
+
+- `artifacts/captures/<timestamp>/pre-v4l2-state.log`
+- `logs/<timestamp>-manual-v4l2-direct-stream.log`
+- `logs/<timestamp>-manual-v4l2-direct-stream-live-dmesg.log`
+- `logs/<timestamp>-manual-v4l2-direct-stream-post-dmesg-tail.log`
+
 ## Receiver-Side Safety Note
 
 Do not casually read vendor `debugfs regset32` files under camera-related

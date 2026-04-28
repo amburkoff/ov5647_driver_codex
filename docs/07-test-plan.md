@@ -45,6 +45,9 @@
 - validate the live DT graph after application;
 - bring up one mode;
 - run RAW capture and repeated stream on or off tests.
+- when NVIDIA requests a direct V4L2 validation, run the manual-only sequence:
+  - `scripts/run_manual_bpmp_clock_boost.sh`
+  - `scripts/run_manual_v4l2_direct_stream.sh`
 
 ## Phase 6: Acceptance
 
