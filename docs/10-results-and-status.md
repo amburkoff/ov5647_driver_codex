@@ -25,6 +25,24 @@ The next NVIDIA-requested runtime branch is also now negative:
 So the current failure is not explained by low default `vi/isp/nvcsi` clocks
 or by the use of the RTCPU trace wrapper itself.
 
+The latest physical-unit swap check on `CAM0` is also negative:
+
+- `ov5647-dev` was restaged from route-C back to route-A / `CAM0`;
+- live DT confirmed:
+  - `cam_i2cmux/i2c@0/ov5647_a@36`
+  - `serial_b`
+  - `port-index = 1`
+  - `lane_polarity = 0`
+- the OV5647 module in `CAM0` was physically replaced with another unit;
+- manual `insmod`, BPMP clock boost, and direct V4L2 streaming were rerun;
+- the failure class remained unchanged:
+  - `VIDIOC_STREAMON` success
+  - raw output `0 bytes`
+  - repeated VI timeout
+
+So swapping only the physical camera unit in `CAM0` does not change the route-A
+failure signature.
+
 NVIDIA forum guidance around Sensor Pixel Clock is now also closed as a
 negative controlled retest:
 

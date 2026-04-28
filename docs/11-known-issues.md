@@ -41,6 +41,16 @@
     - `capture rc=124`;
     - zero-byte raw output;
     - repeated VI timeout.
+- A physical camera-unit swap on `CAM0` is now also a negative check:
+  - the system was rebooted back onto the route-A / `CAM0` overlay before
+    retesting;
+  - a different OV5647 module was installed in `CAM0`;
+  - manual `insmod`, BPMP clock boost, and direct V4L2 streaming still ended
+    with:
+    - `VIDIOC_STREAMON` success;
+    - `capture rc=124`;
+    - zero-byte raw output;
+    - repeated VI timeout.
 - After closing the blind cross-route matrix, the repository baseline stayed
   canonical route-C, but the currently staged `ov5647-dev` overlay on disk is
   now a one-variable pixel-clock retest:
