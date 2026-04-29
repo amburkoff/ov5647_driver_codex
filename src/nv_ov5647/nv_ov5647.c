@@ -130,6 +130,11 @@ module_param(skip_board_setup_power_off, bool, 0644);
 MODULE_PARM_DESC(skip_board_setup_power_off,
 		 "Diagnostic only: leave sensor powered after board_setup chip-id check instead of calling power_off(). Default: false");
 
+static bool skip_mclk_enable;
+module_param(skip_mclk_enable, bool, 0644);
+MODULE_PARM_DESC(skip_mclk_enable,
+		 "Diagnostic only: skip camera_common_mclk_enable()/disable() to test behavior with no Jetson MCLK drive. Default: false");
+
 static bool driver_registered;
 
 struct ov5647_reg_dump {
@@ -817,9 +822,9 @@ static int ov5647_power_on(struct camera_common_data *s_data)
 
 	dev_info(dev, "%s: enter\n", __func__);
 	dev_info(dev,
-		 "%s: diagnostics pwdn_mode=%u(%s) skip_board_setup_power_off=%d\n",
+		 "%s: diagnostics pwdn_mode=%u(%s) skip_board_setup_power_off=%d skip_mclk_enable=%d\n",
 		 __func__, pwdn_mode, ov5647_pwdn_mode_name(),
-		 skip_board_setup_power_off);
+		 skip_board_setup_power_off, skip_mclk_enable);
 
 	if (!pw)
 		return -EINVAL;
@@ -877,16 +882,22 @@ static int ov5647_power_on(struct camera_common_data *s_data)
 		}
 	}
 
-	dev_info(dev, "%s: enabling mclk def_clk_freq=%d current_rate=%lu\n",
-		 __func__, s_data->def_clk_freq,
-		 pw->mclk ? clk_get_rate(pw->mclk) : 0);
-	err = camera_common_mclk_enable(s_data);
-	if (err) {
-		dev_err(dev, "%s: mclk enable failed err=%d\n", __func__, err);
-		goto disable_avdd;
+	if (skip_mclk_enable) {
+		dev_warn(dev,
+			 "%s: skip_mclk_enable=1, leaving MCLK undriven by Jetson\n",
+			 __func__);
+	} else {
+		dev_info(dev, "%s: enabling mclk def_clk_freq=%d current_rate=%lu\n",
+			 __func__, s_data->def_clk_freq,
+			 pw->mclk ? clk_get_rate(pw->mclk) : 0);
+		err = camera_common_mclk_enable(s_data);
+		if (err) {
+			dev_err(dev, "%s: mclk enable failed err=%d\n", __func__, err);
+			goto disable_avdd;
+		}
+		dev_info(dev, "%s: mclk enabled rate=%lu\n",
+			 __func__, pw->mclk ? clk_get_rate(pw->mclk) : 0);
 	}
-	dev_info(dev, "%s: mclk enabled rate=%lu\n",
-		 __func__, pw->mclk ? clk_get_rate(pw->mclk) : 0);
 
 	usleep_range(1000, 1500);
 
@@ -926,7 +937,8 @@ static int ov5647_power_on(struct camera_common_data *s_data)
 	return 0;
 
 disable_mclk:
-	camera_common_mclk_disable(s_data);
+	if (!skip_mclk_enable)
+		camera_common_mclk_disable(s_data);
 disable_avdd:
 	if (pw->avdd)
 		regulator_disable(pw->avdd);
@@ -958,9 +970,9 @@ static int ov5647_power_off(struct camera_common_data *s_data)
 
 	dev_info(dev, "%s: enter\n", __func__);
 	dev_info(dev,
-		 "%s: diagnostics pwdn_mode=%u(%s) skip_board_setup_power_off=%d\n",
+		 "%s: diagnostics pwdn_mode=%u(%s) skip_board_setup_power_off=%d skip_mclk_enable=%d\n",
 		 __func__, pwdn_mode, ov5647_pwdn_mode_name(),
-		 skip_board_setup_power_off);
+		 skip_board_setup_power_off, skip_mclk_enable);
 
 	if (!pw) {
 		dev_warn(dev, "%s: s_data->power is NULL, skipping\n", __func__);
@@ -982,9 +994,15 @@ static int ov5647_power_off(struct camera_common_data *s_data)
 	if (gpio_is_valid((int)pw->reset_gpio))
 		gpio_set_value(pw->reset_gpio, 0);
 
-	dev_info(dev, "%s: disabling mclk rate=%lu\n",
-		 __func__, pw->mclk ? clk_get_rate(pw->mclk) : 0);
-	camera_common_mclk_disable(s_data);
+	if (skip_mclk_enable) {
+		dev_info(dev,
+			 "%s: skip_mclk_enable=1, not disabling MCLK because it was never enabled\n",
+			 __func__);
+	} else {
+		dev_info(dev, "%s: disabling mclk rate=%lu\n",
+			 __func__, pw->mclk ? clk_get_rate(pw->mclk) : 0);
+		camera_common_mclk_disable(s_data);
+	}
 
 	if (pw->avdd)
 		regulator_disable(pw->avdd);
