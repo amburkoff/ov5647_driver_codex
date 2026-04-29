@@ -1,144 +1,649 @@
-# Physical CSI Validation Checklist
+# Чеклист физической проверки CSI
 
-Status: `blocking before more blind stream experiments`
+Статус: `блокирует дальнейшие слепые stream-эксперименты`
 
-Both route A and route C now probe OV5647, create `/dev/video0`, and reach `VIDIOC_STREAMON`, but neither route produces SOF at NVCSI/VI. The next useful work is to verify the physical CSI path.
+## Цель и текущая гипотеза
 
-## Safety Rules
+И route A, и route C уже успешно probe-ят OV5647, создают `/dev/video0` и
+доходят до `VIDIOC_STREAMON`, но ни один из путей не даёт `SOF` на
+`NVCSI/VI`.
 
-- Do not hot-plug CSI cables.
-- Power the Jetson fully off before changing camera cables.
-- Do not run repeated capture tests until the cable/adaptor path is documented.
-- Keep the safe boot entry available.
+Текущая рабочая гипотеза такая:
 
-## Photos Or Facts Needed
+- OV5647 доступен по `I2C`;
+- сенсор принимает команду stream-on и остаётся в состоянии streaming;
+- clocks на стороне Jetson для capture-path поднимаются;
+- но физический CSI-путь всё ещё может быть неправильным, “тихим” или не
+  доводить сигнал до приёмника Jetson в пригодном виде.
 
-Capture these before changing anything:
+Этот документ рассчитан на использование прямо на стенде во время физической
+проверки.
 
-- full top-side photo of the CLB carrier showing both CSI connectors and their silkscreen labels;
-- close-up of the connector currently treated as route A, including flex orientation and visible contact side;
-- close-up of the connector currently treated as route C, including flex orientation and visible contact side;
-- front and back of each OV5647 module;
-- full FFC marking on each cable, including `JT-ZERO-V2.0 YH` and any other printed text;
-- whether there is any inline 15-pin-to-22-pin or 22-pin-to-22-pin adapter board;
-- if the FFC is direct 22-pin-to-22-pin, whether contacts are same-side or opposite-side from end to end.
+## Правила безопасности
 
-Current photo evidence already captured in the repository:
+- Не подключать и не отключать CSI-кабели на горячую.
+- Полностью выключать Jetson перед сменой камеры или шлейфа.
+- Не лезть щупами с толстыми наконечниками в соседние FFC-пины.
+- Не считать 22-pin кабель совместимым только потому, что совпадает число пинов.
+- Не считать рабочий `I2C` доказательством того, что CSI clock/data подключены правильно.
+- Всегда сохранять safe boot entry.
+
+## Текущие runtime-факты
+
+Эти факты уже установлены и обосновывают переход к физической проверке:
+
+- `I2C` работает, chip ID сенсора читается как `0x5647`.
+- `VIDIOC_STREAMON` возвращает success.
+- Stream-state регистры OV5647 остаются в streaming-состоянии до явного
+  `stream_off`.
+- Clocks `vi`, `isp` и `nvcsi` можно поднять до их максимальных BPMP-значений.
+- Jetson по-прежнему не видит:
+  - `SOF`
+  - `EOF`
+  - `rtcpu_nvcsi_intr`
+  - `vi_frame_begin/end`
+- Прямые тесты через `v4l2-ctl` по-прежнему заканчиваются таймаутом и кадром
+  размером `0 bytes`.
+
+Это совместимо со следующими причинами:
+
+- неправильная ориентация кабеля;
+- неправильное предположение о pin family или remap;
+- физически отсутствующий CSI output;
+- CSI-активность есть на стороне камеры, но не доходит до стороны Jetson.
+
+## Какие фото и факты нужно зафиксировать до любых действий с железом
+
+Зафиксировать до любых изменений:
+
+- полное фото верхней стороны CLB carrier с обоими CSI-разъёмами и их silk labels;
+- крупный план разъёма, который сейчас считается route A, вместе с ориентацией
+  шлейфа и видимой стороной контактов;
+- крупный план разъёма, который сейчас считается route C, вместе с ориентацией
+  шлейфа и видимой стороной контактов;
+- обе стороны каждого OV5647 модуля;
+- полную маркировку на каждом FFC, включая `JT-ZERO-V2.0 YH`,
+  `Frank-s15-v1.0` и любой другой текст;
+- есть ли промежуточная `15-pin to 22-pin` или `22-pin to 22-pin` adapter board;
+- если FFC прямой `22-pin to 22-pin`, одинаковая ли сторона контактов на обоих
+  концах или противоположная.
+
+Уже имеющиеся фото в репозитории:
 
 - `ov5647_JT-ZERO-V2.0_top.jpg`
 - `ov5647_JT-ZERO-V2.0_bottom.jpg`
 
-What those photos already prove:
+Что эти фото уже доказывают:
 
-- `JT-ZERO-V2.0` is a native 22-pin camera module with an integrated flex tail;
-- this photographed module is not using a detachable `15->22` Raspberry Pi camera adapter cable;
-- no inline adapter board is visible in this camera-side path.
+- `JT-ZERO-V2.0` — это нативный 22-pin camera module со встроенным flex tail;
+- этот модуль не использует съёмный Raspberry Pi адаптерный кабель `15->22`;
+- в camera-side path не видно промежуточной adapter board.
 
-## Facts To Confirm
+## Что обязательно нужно подтвердить физически
 
-- Which physical connector is silkscreened as `J20` or camera #0.
-- Which physical connector is silkscreened as `J21` or camera #1.
-- Whether route A (`cam_i2cmux/i2c@0`, `serial_b`, `port-index = 1`) corresponds to physical `J20`.
-- Whether route C (`cam_i2cmux/i2c@1`, `serial_c`, `port-index = 2`) corresponds to physical `J21`.
-- Whether the Jetson-side 22-pin cable contacts face the carrier bottom side as NVIDIA documents for the Orin Nano developer kit.
-- Whether the Raspberry Pi-style OV5647 module connector expects the opposite contact orientation or a remapping cable.
-- Whether the OV5647 PCB itself has a 15-pin camera connector with a `15->22` adapter cable, or a native 22-pin connector.
-- Whether the current cable is a standard-to-mini camera cable rather than a generic same-pin-count FFC.
-- Whether the printed `Frank-s15-v1.0` ribbon is the actual Jetson-side camera cable now under test.
+- Какой физический разъём подписан как `J20` или camera #0.
+- Какой физический разъём подписан как `J21` или camera #1.
+- Соответствует ли route A (`cam_i2cmux/i2c@0`, `serial_b`, `port-index = 1`)
+  физическому `J20`.
+- Соответствует ли route C (`cam_i2cmux/i2c@1`, `serial_c`, `port-index = 2`)
+  физическому `J21`.
+- Смотрят ли контакты 22-pin кабеля на стороне Jetson вниз, как это
+  документирует NVIDIA для Orin Nano developer kit.
+- Ожидает ли Raspberry Pi-style OV5647 module противоположную ориентацию
+  контактов или remapping cable.
+- Имеет ли сама плата OV5647 15-pin camera connector с `15->22` adapter cable
+  или нативный 22-pin connector.
+- Является ли текущий кабель стандартным “standard-to-mini camera cable”, а не
+  generic FFC с тем же числом пинов.
+- Является ли шлейф с маркировкой `Frank-s15-v1.0` именно тем Jetson-side camera
+  cable, который сейчас участвует в тесте.
 
-## Concrete Cable Clues
+## Краткое резюме риска по pinout
 
-- NVIDIA documents the Jetson Orin Nano/NX developer-carrier camera connectors as 22-pin, 0.5 mm pitch, bottom-contact connectors.
-- NVIDIA also documents that a Raspberry Pi Camera Module v2 with a 15-pin connector requires a 15-pin-to-22-pin conversion cable on the Jetson side.
-- Raspberry Pi documents its own 22-pin CSI pinout with:
-  - pin 1 = `GND`
-  - pins 20/21 = `SCL` / `SDA`
-  - pin 22 = `3V3`
-- NVIDIA documents Jetson `J20`/`J21` with:
-  - pin 1 = `3.3V`
-  - pins 2/3 = `CAM_I2C_SDA` / `CAM_I2C_SCL`
-  - dedicated `MCLK` / `PWDN` on pins 5/6
+И NVIDIA, и Raspberry Pi используют 22-pin camera connectors, но они не
+назначают одинаковые функции одинаковым номерам пинов.
 
-Implication:
+Сторона Jetson Orin Nano/NX developer-carrier:
 
-- a native Raspberry Pi 22-pin camera-side pinout is not automatically same-numbered compatible with the Jetson 22-pin carrier connector;
-- a correct cable or adapter can still make the path valid by reversing or remapping the flex;
-- therefore the exact cable type matters as much as the sensor module.
+- pin 1 = `+3.3V`
+- pin 2 = `CAM_I2C_SDA`
+- pin 3 = `CAM_I2C_SCL`
+- pin 5 = `CAMx_MCLK`
+- pin 6 = `CAMx_PWDN`
 
-## Official Pinout Evidence
+Сторона Raspberry Pi 22-pin camera:
 
-NVIDIA and Raspberry Pi both publish 22-pin CSI documentation, but they do not describe the same connector pin assignment.
+- pin 1 = `GND`
+- pins 2/3 = `CAM_DN0` / `CAM_DP0`
+- pin 17 = `CAM_IO0`
+- pin 18 = `CAM_IO1`
+- pin 20 = `SCL`
+- pin 21 = `SDA`
+- pin 22 = `3V3`
 
-Jetson Orin Nano/NX developer-carrier side:
+Следствия:
 
-- NVIDIA says the carrier has two 22-pin, 0.5 mm pitch camera connectors and explicitly calls out a separate `15-pin to 22-pin conversion cable` for Raspberry Pi Camera Module v2 use.
-- NVIDIA J20 camera connector starts with:
-  - pin 1 = `+3.3V`
-  - pin 2 = `CAM_I2C_SDA`
-  - pin 3 = `CAM_I2C_SCL`
-  - pin 5 = `CAM0_MCLK`
-  - pin 6 = `CAM0_PWDN`
-- NVIDIA J21 camera connector also starts with:
-  - pin 1 = `+3.3V`
-  - pin 2 = `CAM_I2C_SDA`
-  - pin 3 = `CAM_I2C_SCL`
-  - pin 5 = `CAM1_MCLK`
-  - pin 6 = `CAM1_PWDN`
+- прямое предположение `22-pin to 22-pin` небезопасно;
+- `I2C` может работать даже если CSI lanes подключены неправильно;
+- нативный Raspberry Pi Zero-style 22-pin OV5647 может требовать remap cable
+  или carrier, специально разведённый под эту pin family.
 
-Raspberry Pi 22-pin camera side:
+## Официальные reference-таблицы pinout
 
-- Raspberry Pi says the 22-pin CSI connector used on Raspberry Pi Zero series and CM IO boards has:
-  - pin 1 = `GND`
-  - pins 2/3 = `CAM_DN0` / `CAM_DP0`
-  - pins 17/18 = `CAM_IO0` / `CAM_IO1`
-  - pin 20 = `SCL`
-  - pin 21 = `SDA`
-  - pin 22 = `3V3`
-- Raspberry Pi also notes that pin numbering on FFC links depends on connector orientation and whether the cable contacts are top-side, bottom-side, or mirrored.
+Ниже собраны официальные pinout-таблицы, на которые стоит опираться при
+физической проверке. Это reference-данные из vendor-документации, а не вывод о
+том, как именно разведён конкретный кабель в текущем стенде.
 
-What this means for the current hardware:
+### Jetson Orin NX/Nano carrier: J20 camera #0
 
-- a direct `22-pin to 22-pin` assumption is unsafe;
-- even if a camera probes over I2C, that does not prove the MIPI clock/data lanes are mapped correctly;
-- the current `JT-ZERO-V2.0` module is a native Raspberry Pi Zero-style 22-pin camera, so it needs either:
-  - a Jetson-compatible remap cable/adapter, or
-  - a carrier whose camera connector was intentionally wired to the Raspberry Pi 22-pin pin family.
+Источник: NVIDIA Jetson Orin Nano Developer Kit Carrier Board Specification,
+Table 3-1 `Camera #0 Connector Pin Description – J20`.
 
-Given the latest runtime evidence:
+| Pin | Сигнал | Назначение / комментарий | Тип / уровень |
+| --- | --- | --- | --- |
+| `1` | `+3.3V` | питание камеры | Power |
+| `2` | `CAM_I2C_SDA` | camera I2C data, первый выход mux | Bidir, `3.3V` |
+| `3` | `CAM_I2C_SCL` | camera I2C clock | Output, `3.3V` |
+| `4` | `GND` | земля | Ground |
+| `5` | `CAM0_MCLK` | primary clock камеры #0 | Output, `1.8V` |
+| `6` | `CAM0_PWDN` | power-down камеры #0 | Output, `1.8V` |
+| `7` | `GND` | земля | Ground |
+| `8` | `CSI0_D1_P` | CSI data 1 positive | Input |
+| `9` | `CSI0_D1_N` | CSI data 1 negative | Input |
+| `10` | `GND` | земля | Ground |
+| `11` | `CSI0_D0_P` | CSI data 0 positive | Input |
+| `12` | `CSI0_D0_N` | CSI data 0 negative | Input |
+| `13` | `GND` | земля | Ground |
+| `14` | `CSI1_CLK_P` | CSI clock positive | Input |
+| `15` | `CSI1_CLK_N` | CSI clock negative | Input |
+| `16` | `GND` | земля | Ground |
+| `17` | `CSI1_D1_P` | CSI data 1 positive | Input |
+| `18` | `CSI1_D1_N` | CSI data 1 negative | Input |
+| `19` | `GND` | земля | Ground |
+| `20` | `CSI1_D0_P` | CSI data 0 positive | Input |
+| `21` | `CSI1_D0_N` | CSI data 0 negative | Input |
+| `22` | `GND` | земля | Ground |
 
-- corrected upstream OV5647 test pattern now reads back as enabled (`0x503d = 0x80`);
-- `VIDIOC_STREAMON` succeeds;
-- NVCSI/VI still sees no SOF and no receiver interrupt activity.
+### Jetson Orin NX/Nano carrier: J21 camera #1
 
-Taken together, the official pinout mismatch risk is now fully consistent with the observed `I2C works but CSI does not` failure signature.
+Источник: NVIDIA Jetson Orin Nano Developer Kit Carrier Board Specification,
+Table 3-2 `Camera #1 Connector Pin Description – J21`.
 
-Current high-value question:
+| Pin | Сигнал | Назначение / комментарий | Тип / уровень |
+| --- | --- | --- | --- |
+| `1` | `+3.3V` | питание камеры | Power |
+| `2` | `CAM_I2C_SDA` | camera I2C data, второй выход mux | Bidir, `3.3V` |
+| `3` | `CAM_I2C_SCL` | camera I2C clock | Output, `3.3V` |
+| `4` | `GND` | земля | Ground |
+| `5` | `CAM1_MCLK` | primary clock камеры #1 | Output, `1.8V` |
+| `6` | `CAM1_PWDN` | power-down камеры #1 | Output, `1.8V` |
+| `7` | `GND` | земля | Ground |
+| `8` | `CSI3_D1_P` | CSI data 1 positive | Input |
+| `9` | `CSI3_D1_N` | CSI data 1 negative | Input |
+| `10` | `GND` | земля | Ground |
+| `11` | `CSI3_D0_P` | CSI data 0 positive | Input |
+| `12` | `CSI3_D0_N` | CSI data 0 negative | Input |
+| `13` | `GND` | земля | Ground |
+| `14` | `CSI2_CLK_P` | CSI clock positive | Input |
+| `15` | `CSI2_CLK_N` | CSI clock negative | Input |
+| `16` | `GND` | земля | Ground |
+| `17` | `CSI2_D1_P` | CSI data 1 positive | Input |
+| `18` | `CSI2_D1_N` | CSI data 1 negative | Input |
+| `19` | `GND` | земля | Ground |
+| `20` | `CSI2_D0_P` | CSI data 0 positive | Input |
+| `21` | `CSI2_D0_N` | CSI data 0 negative | Input |
+| `22` | `GND` | земля | Ground |
 
-- is the OV5647 board under test a normal 15-pin Raspberry Pi camera board connected through a proper `15->22` Jetson cable, or is it a native 22-pin Raspberry Pi Zero-style path that relies on a different pinout assumption?
+### Raspberry Pi Zero series / CM IO / Pi 5: 22-pin CSI
 
-Current answer from the new photo evidence:
+Источник: Raspberry Pi official camera documentation, section
+`Camera connector pinout (22-Pin)`.
 
-- `JT-ZERO-V2.0` is not a standard 15-pin Raspberry Pi camera plus adapter;
-- it is a native 22-pin Pi Zero-style module;
-- if it is being connected directly into the Jetson/CLB 22-pin carrier connector, pin-count equality alone does not prove electrical compatibility.
+| Pin | Сигнал | Назначение / комментарий | Тип / уровень |
+| --- | --- | --- | --- |
+| `1` | `GND` | земля | Ground |
+| `2` | `CAM_DN0` | D-PHY lane 0 negative | Input, D-PHY |
+| `3` | `CAM_DP0` | D-PHY lane 0 positive | Input, D-PHY |
+| `4` | `GND` | земля | Ground |
+| `5` | `CAM_DN1` | D-PHY lane 1 negative | Input, D-PHY |
+| `6` | `CAM_DP1` | D-PHY lane 1 positive | Input, D-PHY |
+| `7` | `GND` | земля | Ground |
+| `8` | `CAM_CN` | D-PHY clock negative | Input, D-PHY |
+| `9` | `CAM_CP` | D-PHY clock positive | Input, D-PHY |
+| `10` | `GND` | земля | Ground |
+| `11` | `CAM_DN2` | D-PHY lane 2 negative | Input, D-PHY |
+| `12` | `CAM_DP2` | D-PHY lane 2 positive | Input, D-PHY |
+| `13` | `GND` | земля | Ground |
+| `14` | `CAM_DN3` | D-PHY lane 3 negative | Input, D-PHY |
+| `15` | `CAM_DP3` | D-PHY lane 3 positive | Input, D-PHY |
+| `16` | `GND` | земля | Ground |
+| `17` | `CAM_IO0` | GPIO, часто power-enable | Bidir, `3.3V` |
+| `18` | `CAM_IO1` | GPIO, например clock/LED | Bidir, `3.3V` |
+| `19` | `GND` | земля | Ground |
+| `20` | `SCL` | I2C clock | Bidir, `3.3V` |
+| `21` | `SDA` | I2C data | Bidir, `3.3V` |
+| `22` | `3V3` | питание `3.3V` | Output |
 
-## Why This Is Blocking
+### Практический вывод из official pinout
 
-Successful I2C chip ID only proves power, I2C, and PWDN are plausible. It does not prove that MIPI CSI clock/data lanes are connected with the correct polarity, lane order, or contact orientation.
+- На стороне Jetson `J20/J21` low-speed пины находятся в начале разъёма:
+  `3.3V`, `I2C`, `MCLK`, `PWDN`.
+- На стороне Raspberry Pi Zero 22-pin в начале разъёма находятся
+  `GND` и CSI lanes, а `I2C` и `3V3` — в конце.
+- Поэтому простое совпадение “22-pin к 22-pin” не означает pin-compatible path.
+- Любой работающий current setup должен объясняться:
+  - либо специальным cable/remap path,
+  - либо carrier-specific wiring,
+  - либо определённой ориентацией шлейфа, которую нужно подтвердить физически.
 
-The current no-SOF evidence is consistent with one of these physical problems:
+## ASCII-схема ориентации разъёма и шлейфа
 
-- wrong connector-to-DT route;
-- wrong FFC side/orientation;
-- wrong 22-pin pinout family for a Raspberry Pi-market module;
-- missing or wrong 15-pin-to-22-pin conversion cable;
-- lane swap/polarity mismatch not represented by the NVIDIA p3768 reference overlays.
+Это не механический чертёж и не pinout-источник. Это только шпаргалка, чтобы не
+путать:
 
-## Next Software Step After Physical Evidence
+- начало и конец разъёма;
+- сторону контактов;
+- “same-side” и “opposite-side” FFC;
+- ситуацию, когда пин 1 физически оказывается не с той стороны, как ожидается
+  по интуиции.
 
-After the physical path is documented, choose only one next experiment:
+### 1. Смысл нумерации на FFC
 
-- if route A physically matches the connected module, keep the route-A overlay and test exactly one capture;
-- if route C physically matches the connected module, switch back to the route-C overlay and test exactly one capture;
-- if cable orientation or pinout is suspect, correct the hardware path before running another stream test;
-- if a known-good Jetson-compatible IMX219/IMX477 camera kit is available, test it with the stock NVIDIA overlay to prove the CLB CSI connector independently of the custom OV5647 driver.
+Общая идея:
+
+```text
+pin 1 ........................................ pin 22
+|                                                |
+o o o o o o o o o o o o o o o o o o o o o o
+```
+
+Важно:
+
+- pin numbers определяются документацией разъёма и платы;
+- они не определяются “левой” или “правой” стороной на глаз;
+- при перевороте шлейфа визуально “левая/правая” сторона может поменяться.
+
+### 2. Side of contacts на конце шлейфа
+
+Условно:
+
+```text
+Вид сверху на конец шлейфа
+
+Контакты сверху:
+==================== copper pads visible ====================
+
+Контакты снизу:
+-------------------- plain insulation side -------------------
+```
+
+При осмотре обязательно зафиксировать для каждого конца:
+
+- видны ли медные площадки сверху;
+- или сверху видна только изоляция, а контакты снизу.
+
+### 3. Same-side vs opposite-side FFC
+
+`Same-side` cable:
+
+```text
+Конец A: контакты сверху
+========================
+
+Конец B: контакты сверху
+========================
+```
+
+`Opposite-side` cable:
+
+```text
+Конец A: контакты сверху
+========================
+
+Конец B: контакты снизу
+-----------------------
+```
+
+Это критично, потому что:
+
+- один и тот же 22-pin кабель по длине и pitch может быть
+  mechanically compatible;
+- но electrically давать совершенно разный mapping в зависимости от того,
+  same-side он или opposite-side.
+
+### 4. Почему это важно именно для нашего случая
+
+У нас сравниваются две pin family:
+
+```text
+Jetson J20/J21:
+pin 1 = 3.3V
+pin 2 = I2C_SDA
+pin 3 = I2C_SCL
+pin 5 = MCLK
+pin 6 = PWDN
+...
+
+Raspberry Pi 22-pin:
+pin 1 = GND
+pin 2 = D0_N
+pin 3 = D0_P
+...
+pin 20 = SCL
+pin 21 = SDA
+pin 22 = 3V3
+```
+
+То есть ошибка ориентации может дать один из двух эффектов:
+
+- всё совсем не работает;
+- или low-speed линии случайно оказываются правдоподобными, а CSI lanes нет.
+
+Именно поэтому рабочий `I2C` у нас не доказывает правильный physical CSI path.
+
+### 5. Что фотографировать для исключения путаницы
+
+На каждой фото-сессии сохранить:
+
+- Jetson-side connector крупно;
+- camera-side connector крупно;
+- оба конца шлейфа;
+- отдельное фото, где видно, с какой стороны на каждом конце открытые контакты;
+- отдельное фото, где рукой или стрелкой отмечено предполагаемое направление
+  `pin 1 -> pin 22`.
+
+### 6. Как использовать ASCII-шпаргалку на практике
+
+1. Сначала определить, какой разъём на плате используется: `J20` или `J21`.
+2. Потом определить, какой стороной вставлен шлейф в этот разъём.
+3. Потом определить, same-side или opposite-side сам шлейф.
+4. Потом сверить official pinout:
+   - что должно оказаться у `pin 1` на стороне Jetson;
+   - что реально приходит к `pin 1` на стороне камеры.
+5. Только после этого делать выводы по измерениям `3V3`, `I2C`, `MCLK`,
+   `PWDN`, `CSI CLK`, `CSI D0`, `CSI D1`.
+
+## Порядок работы на стенде
+
+Физическую проверку выполнять в этом порядке.
+
+### 1. Визуальная проверка при выключенном питании
+
+Проверить:
+
+- какой именно разъём используется (`J20/CAM0` или `J21/CAM1`);
+- ориентацию FFC на стороне Jetson;
+- ориентацию FFC на стороне камеры;
+- находятся ли контакты кабеля на одной стороне или на противоположных;
+- до конца ли вставлен и защёлкнут кабель;
+- нет ли заломов, оторванных площадок или загрязнения на открытых контактах.
+
+Сохранить:
+
+- общее фото сверху;
+- крупный план обоих концов;
+- одно фото со стрелками, где видно, с какой стороны находятся контакты.
+
+### 2. Проверка прозвонки и питания при выключенном Jetson
+
+Использовать мультиметр только для low-speed sanity-check:
+
+- подтвердить continuity по земле;
+- проверить, что нет явного короткого между `3V3` и `GND`;
+- если используется breakout, прозвонить:
+  - `3V3`
+  - `SCL`
+  - `SDA`
+  - `MCLK`
+  - `PWDN`
+
+Не считать показания мультиметра на CSI differential pins валидной CSI-проверкой.
+
+### 3. Зафиксировать текущее software route state
+
+Перед живой проверкой сигналов сохранить текущий route и boot-context:
+
+```bash
+cat /proc/cmdline
+/home/cam/ov5647_driver_codex/scripts/collect_camera_route_state.sh
+```
+
+Записать:
+
+- active `boot_profile`
+- route A или route C
+- какой физический разъём используется
+- какой экземпляр OV5647 и какой шлейф подключены
+
+### 4. Загрузить драйвер и подтвердить low-speed активность
+
+Запустить:
+
+```bash
+sudo /home/cam/ov5647_driver_codex/scripts/run_manual_insmod_diag.sh full-delay-dump
+```
+
+С помощью логического анализатора или осциллографа:
+
+- смотреть `SCL/SDA` во время probe;
+- смотреть `MCLK`;
+- смотреть `PWDN`, если до него можно добраться.
+
+Ожидается:
+
+- активность `I2C` во время probe;
+- `MCLK` около `24 MHz`;
+- `PWDN` в стабильном активном уровне.
+
+### 5. Поднять receiver clocks
+
+Запустить:
+
+```bash
+sudo /home/cam/ov5647_driver_codex/scripts/run_manual_bpmp_clock_boost.sh
+```
+
+Это ещё не CSI-тест. Этот шаг просто убирает низкие Jetson receiver clocks как
+переменную перед stream-экспериментом.
+
+### 6. Смотреть CSI во время запуска стрима
+
+Запустить:
+
+```bash
+sudo /home/cam/ov5647_driver_codex/scripts/run_manual_v4l2_direct_stream.sh
+```
+
+Во время timeout window смотреть:
+
+- `CSI CLK`
+- `CSI D0`
+- `CSI D1`
+
+Если доступен только базовый осциллограф, задача не в том, чтобы декодировать
+MIPI. Задача ответить на два вопроса:
+
+- появляется ли burst-активность на `CLK`, когда стартует stream;
+- появляется ли burst-активность на `D0/D1` во время capture attempt.
+
+### 7. Зафиксировать состояние до / во время / после
+
+Для каждого доступного сигнала записать:
+
+- состояние до stream attempt;
+- состояние во время timeout окна после `VIDIOC_STREAMON`;
+- состояние после завершения теста.
+
+Сохранить:
+
+- скриншоты осциллографа;
+- короткое видео с телефона, если так проще, чем много скриншотов;
+- заметку, какой канал был подключён к какому пину или к какой стороне пути.
+
+## Живая таблица по ключевым пинам
+
+Использовать эту таблицу прямо на стенде. Она специально ограничена только теми
+пинами, которые важны для текущего расследования.
+
+| Сигнал | Пины на стороне Pi | Значение на стороне Pi | Пины на стороне Jetson | Значение на стороне Jetson | Ожидаемый уровень / тип | Безопасный инструмент | Хороший признак | Подозрительный признак | Интерпретация |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `3V3` | pin `22` | питание камеры | pin `1` | питание камеры | стабильные `3.3V` DC | мультиметр, осциллограф | стабильные `3.3V` до и во время тестов | низкое напряжение, просадки, reset-подобные провалы | проблема в питании или плохой контакт разъёма |
+| `GND` | pins `1/4/7/10/13/16/19` | земля | pins `4/7/10/13/16/19/22` | земля | общий опорный уровень | прозвонка мультиметром | надёжная continuity | прерывистая или отсутствующая continuity | либо неверная точка измерения, либо реальная проблема с землёй |
+| `SCL` | pin `20` | тактовая линия `I2C` | pin `3` | `CAM_I2C_SCL` | `3.3V` open-drain | логический анализатор, осциллограф | виден трафик во время probe | линия плоская несмотря на попытки probe | неправильный route, плохой кабель или нет пути `I2C` |
+| `SDA` | pin `21` | линия данных `I2C` | pin `2` | `CAM_I2C_SDA` | `3.3V` open-drain | логический анализатор, осциллограф | виден трафик во время probe | линия плоская или зажата в low | проблема шины, неправильный route или кабель |
+| `PWDN` / `CAM_IO0` | pin `17` | вспомогательная GPIO-style линия Pi | pin `6` | линия power-down камеры у Jetson | логический уровень, обычно стабильный в активном состоянии | осциллограф, мультиметр | стабильный корректный рабочий уровень | неожиданно дёргается или держит модуль в shutdown | неправильная семантика control line или неверный pin mapping |
+| `MCLK` / `CAM_IO1` | pin `18` | вспомогательная GPIO-style линия Pi | pin `5` | master clock камеры у Jetson | меандр около `24 MHz` | осциллограф | отчётливый clock во время активного probe/stream prep | clock отсутствует или частота неверна | проблема clock path или неверный pin mapping |
+| `CSI CLK` | pins `8/9` | clock lane MIPI D-PHY | pins `14/15` | clock lane MIPI D-PHY | differential high-speed/LP signaling | быстрый осциллограф, differential probe | активность появляется во время стрима | полная тишина, хотя сенсор считает себя streaming | сенсор не выдаёт CSI или сигнал не доходит до receiver side |
+| `CSI D0` | pins `2/3` | data lane 0 MIPI D-PHY | pins `20/21` | data lane 0 MIPI D-PHY | differential burst traffic | быстрый осциллограф, differential probe | burst-активность во время стрима | полная тишина | нет data output, неверная ориентация или физически сломанный путь |
+| `CSI D1` | pins `5/6` | data lane 1 MIPI D-PHY | pins `17/18` | data lane 1 MIPI D-PHY | differential burst traffic | быстрый осциллограф, differential probe | burst-активность во время стрима | полная тишина | нет второй data lane, проблема routing или сломанный путь |
+
+Примечания:
+
+- `I2C` и питание можно проверять дешёвыми инструментами.
+- Для `MCLK` обычно нужен хотя бы базовый осциллограф.
+- CSI differential pairs не проверяются осмысленно простым DC-измерением.
+- Если доступна только одна сторона дифференциальной пары, грубая проверка
+  осциллографом всё равно может ответить на вопрос: “есть ли вообще хоть какая-то
+  переключающаяся активность?”
+
+## Таблица дифференциальных пар CSI
+
+Использовать эту таблицу как быстрый справочник, какие два пина образуют одну
+дифференциальную пару.
+
+| Линия | Пара на стороне Pi | Значение на стороне Pi | Пара на стороне Jetson | Значение на стороне Jetson | Что смотреть |
+| --- | --- | --- | --- | --- | --- |
+| `CSI D0` | pins `2/3` | `DN0 / DP0` | pins `21/20` | `D0_N / D0_P` | burst-активность во время stream attempt |
+| `CSI D1` | pins `5/6` | `DN1 / DP1` | pins `18/17` | `D1_N / D1_P` | burst-активность во время stream attempt |
+| `CSI CLK` | pins `8/9` | `CN / CP` | pins `15/14` | `CLK_N / CLK_P` | активность clock lane при старте стрима |
+
+Примечания:
+
+- В таблице порядок `N/P` и номера пинов указаны именно как справочник по
+  логическим парам, а не как гарантия совместимости конкретного кабеля.
+- Если на стороне Jetson или камеры реально используется переворот шлейфа,
+  физическое соответствие контактов может идти не “номер к номеру”.
+- Если щупы позволяют смотреть только один провод из пары, начинать с `CLK`
+  обычно полезнее, чем с data lane.
+
+## Таблица интерпретации результатов
+
+Использовать после каждого физического наблюдения.
+
+| Наблюдение | Что это значит | Следующее действие |
+| --- | --- | --- |
+| `3V3` нестабильны или проседают во время stream attempt | питание камеры может быть нестабильным | остановить CSI-анализ и сначала исправить питание/контакты |
+| `I2C`-трафик есть, но `MCLK` отсутствует | камеру можно настраивать, но она может не формировать CSI корректно | разбираться с clock routing и `MCLK` pin mapping |
+| `I2C` и `MCLK` есть, но `PWDN` неверный или нестабильный | камера может удерживаться в неправильном состоянии | проверить семантику control line и физический mapping |
+| `I2C`, `MCLK`, `PWDN` выглядят нормально, но `CSI CLK/D0/D1` молчат | сенсор физически не выдаёт наблюдаемый CSI | подозревать ориентацию кабеля, pin-family mismatch или sensor-side output path |
+| CSI-активность видна только на стороне камеры | сенсор выдаёт сигнал, но он не доходит до стороны Jetson | подозревать ribbon, adapter, ориентацию разъёма или повреждённый путь |
+| CSI-активность видна и на стороне камеры, и на стороне Jetson, но Jetson всё равно не видит `SOF` | физический link может существовать, но интерпретируется неправильно | вернуться к software-side lane mapping / receiver assumptions |
+| На активном route вообще нет `I2C` | это пока не CSI-проблема | проверить route, выбор разъёма и посадку кабеля |
+| `VIDIOC_STREAMON` успешен, но CSI bursts не появляются | состояние сенсора и физический output противоречат друг другу | ещё раз проверить `PWDN`, `MCLK` и действительно ли измеряются нужные пины |
+
+## Что купить
+
+Выбирать минимальный набор, который даёт новую информацию.
+
+### Минимально полезный набор
+
+- телефон с хорошим макро-режимом или clip-on macro lens
+- простой мультиметр с режимом прозвонки
+
+Использовать для:
+
+- проверки ориентации разъёма;
+- осмотра стороны контактов;
+- фиксации маркировок кабелей;
+- проверки земли, питания и коротких замыканий.
+
+Этот набор не доказывает, что CSI активен, но часто позволяет поймать грубые
+ошибки ориентации и питания.
+
+### Практичный набор для отладки
+
+- логический анализатор для `I2C`
+- осциллограф `100 to 200 MHz`
+- тонкие крючки-щупы или grabber leads
+
+Использовать для:
+
+- трафика `I2C`;
+- проверки уровня `PWDN`;
+- наличия `MCLK` и грубой оценки его частоты;
+- грубой проверки “есть ли вообще какая-то активность” на CSI lanes.
+
+Это лучший вариант по соотношению цена / польза для этого проекта.
+
+### Лучший набор для проверки CSI
+
+- `22-pin 0.5 mm FFC breakout`
+- осциллограф `500 MHz+`, лучше `1 GHz+`
+- differential probe или другой MIPI-friendly high-speed probe
+
+Использовать для:
+
+- более безопасного доступа к FFC-пинам;
+- реальной проверки активности на CSI differential lanes;
+- сравнения наличия сигнала на стороне камеры и на стороне Jetson.
+
+Этот набор даёт наибольший шанс чисто закрыть вопрос о физическом link.
+
+## Как использовать каждый инструмент в этом проекте
+
+| Инструмент | Для чего использовать в этом репозитории | Для чего не использовать |
+| --- | --- | --- |
+| макро-камера телефона / лупа | определить ориентацию разъёма, сторону контактов, маркировки кабелей, наличие адаптера | для проверки CSI signaling |
+| мультиметр | continuity, `3V3`, `GND`, грубые короткие замыкания | для доказательства активности на CSI lanes |
+| логический анализатор | только `SCL/SDA` | для high-speed CSI lanes |
+| базовый осциллограф | `MCLK`, `PWDN`, грубая проверка активности | для надёжного декодирования MIPI |
+| FFC breakout | для более безопасного доступа к щупам | сам по себе не исправляет неправильный route |
+| быстрый осциллограф + differential probe | для подтверждения активности на CSI clock/data lanes | не заменяет полностью software validation |
+
+## Текущая рекомендуемая последовательность команд
+
+Во время bench-сессии использовать ровно такой набор:
+
+```bash
+cat /proc/cmdline
+/home/cam/ov5647_driver_codex/scripts/collect_camera_route_state.sh
+sudo /home/cam/ov5647_driver_codex/scripts/run_manual_insmod_diag.sh full-delay-dump
+sudo /home/cam/ov5647_driver_codex/scripts/run_manual_bpmp_clock_boost.sh
+sudo /home/cam/ov5647_driver_codex/scripts/run_manual_v4l2_direct_stream.sh
+```
+
+Эта последовательность даёт:
+
+- подтверждение активного route;
+- подтверждение probe и sensor setup;
+- поднятые receiver clocks на стороне Jetson;
+- одну чистую stream-попытку, которую можно наблюдать приборами.
+
+## Почему это блокирует дальнейшие слепые software-эксперименты
+
+Успешное чтение `I2C` chip ID доказывает только питание, `I2C` и, вероятно,
+достижимость control lines. Оно не доказывает, что MIPI clock/data lanes
+подключены с правильной полярностью, lane order или orientation контактов.
+
+Текущие no-`SOF` признаки полностью совместимы со следующими причинами:
+
+- неправильное соответствие физического разъёма и DT route;
+- неправильная ориентация FFC;
+- неправильная 22-pin pin family для Raspberry Pi-market модуля;
+- отсутствие правильного `15-pin to 22-pin` conversion cable;
+- lane swap или polarity issue, которые не отражены в NVIDIA reference overlays.
+
+## Следующий software-шаг после получения физического evidence
+
+После того как физический путь будет задокументирован, выбирать только один
+следующий эксперимент:
+
+- если route A физически соответствует подключённому модулю, оставить route-A
+  overlay и сделать ровно один capture-тест;
+- если route C физически соответствует подключённому модулю, переключиться
+  обратно на route-C overlay и сделать ровно один capture-тест;
+- если есть подозрение на ориентацию кабеля или pinout, сначала исправить
+  hardware path и только потом запускать новый stream-тест;
+- если есть заведомо совместимый Jetson-compatible IMX219 или IMX477 kit,
+  проверить его со stock NVIDIA overlay, чтобы независимо подтвердить сам CLB
+  CSI connector без участия кастомного OV5647 driver.
